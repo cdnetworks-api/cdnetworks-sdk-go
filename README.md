@@ -3,29 +3,27 @@
 </p>
 <h1 align="center">Cdnetworks SDK for Go</h1>
 
-# 目录
-1. [简介](#简介)
-2. [安装](#获取安装)
+# Table of Contents
+1. [Introduction](#introduction)
+2. [Installation](#installation)
 
+# Introduction
 
-# 简介
+Welcome to the Cdnetworks Developer Toolkit (SDK). This SDK is the companion development tool for the Cdnetworks OpenApi platform.
 
-欢迎使用Cdnetworks开发者工具套件（SDK），此 SDK 是Cdnetworks OpenApi平台的配套开发工具。
+# Installation
 
-# 获取安装
+## Environment Requirements
 
-## 依赖环境
+1. Go version 1.17 and above
+2. Some products require activation in the Cdnetworks console before their interfaces can be called normally.
+3. Obtain the accessKey ID and accessKey Secret from the [accessKey management](https://dash.cdnetworks.com/account/accessKey) page in the Cdnetworks console. Please keep them safe or use more secure temporary security credentials.
 
-1. Go 1.17 版本及以上
-2. 部分产品需要在Cdnetworks控制台开通后，才能正常调用此产品的接口。
-3. 在Cdnetworks控制台 [accessKey管理](https://dash.cdnetworks.com/account/accessKey) 页面获取密钥 accessKey ID 和 accessKey Secret，请务必妥善保管，或者使用更安全的临时安全凭证。
+## Installation via go get (Recommended)
 
+It is recommended to use Alibaba Cloud mirror for faster download:
 
-## 通过go get安装（推荐）
-
-推荐使用阿里云镜像加速下载：
-
-1. Linux 或 MacOS:
+1. Linux or MacOS:
 
     ```bash
     export GOPROXY=https://mirrors.aliyun.com/goproxy
@@ -37,12 +35,11 @@
     set GOPROXY=https://mirrors.aliyun.com/goproxy
     ```
 
-## 按需安装（推荐）
+## Install as needed (Recommended)
 
-注意：此安装方式仅支持使用 **Go Modules** 模式进行依赖管理，即环境变量 `GO111MODULE=auto`或者`GO111MODULE=on`, 并且在您的项目中执行了 `go mod init xxx`.
+Note: This installation method only supports dependency management using **Go Modules** mode, i.e., the environment variable `GO111MODULE=auto` or `GO111MODULE=on`, and you have executed `go mod init xxx` in your project.
 
-如果您使用 GOPATH, 请参考下节： 全部安装
+If you are using GOPATH, please refer to the next section: Complete Installation
 
 ```cmd
     go mod tidy
-```
