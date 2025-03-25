@@ -13,6 +13,8 @@ type AddDomainForTerraformRequest struct {
 	ContractId *string `json:"contractId,omitempty" xml:"contractId,omitempty"`
 	// 韩分产品id
 	ItemId *string `json:"itemId,omitempty" xml:"itemId,omitempty"`
+	// 是否纯海外加速，入参范围：true、false
+	AccelerateNoChina *string `json:"accelerateNoChina,omitempty" xml:"accelerateNoChina,omitempty"`
 	// {"en":"The service type of the accelerated domain name (only one service type can be submitted at a time):
 	//   web/web-https: Web page acceleration/Web page acceleration-https
 	// wsa/Wsa-https: Full-station acceleration/full-station acceleration-https
@@ -127,6 +129,11 @@ func (s *AddDomainForTerraformRequest) SetContractId(v string) *AddDomainForTerr
 
 func (s *AddDomainForTerraformRequest) SetItemId(v string) *AddDomainForTerraformRequest {
 	s.ItemId = &v
+	return s
+}
+
+func (s *AddDomainForTerraformRequest) SetAccelerateNoChina(v string) *AddDomainForTerraformRequest {
+	s.AccelerateNoChina = &v
 	return s
 }
 

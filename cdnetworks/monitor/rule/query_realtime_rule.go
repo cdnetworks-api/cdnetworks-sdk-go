@@ -8,7 +8,9 @@ import (
 // 查询请求体
 type QueryCloudMonitorRealTimeAlarmRuleRequest struct {
 	// {"en":"Alert rule ID", "zh_CN":"报警规则id，需要鉴权是否该调用账号下或其下子账号的规则"}
-	RuleId *string `json:"ruleId,omitempty" xml:"ruleId,omitempty" require:"true"`
+	RuleId *string `json:"ruleId,omitempty" xml:"ruleId,omitempty"`
+	// {"en":"Alarm rule name, rule ID and rule name, either one, rule ID takes priority", "zh_CN":"报警规则名称，规则ID和规则名称二选一，规则ID优先"}
+	RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty"`
 }
 
 func (s QueryCloudMonitorRealTimeAlarmRuleRequest) String() string {
@@ -21,6 +23,11 @@ func (s QueryCloudMonitorRealTimeAlarmRuleRequest) GoString() string {
 
 func (s *QueryCloudMonitorRealTimeAlarmRuleRequest) SetRuleId(v string) *QueryCloudMonitorRealTimeAlarmRuleRequest {
 	s.RuleId = &v
+	return s
+}
+
+func (s *QueryCloudMonitorRealTimeAlarmRuleRequest) SetRuleName(v string) *QueryCloudMonitorRealTimeAlarmRuleRequest {
+	s.RuleName = &v
 	return s
 }
 
@@ -146,6 +153,8 @@ func (s *QueryNotice) SetNoticeObject(v string) *QueryNotice {
 
 // 响应数据
 type QueryMonitorRuleData struct {
+	// {"en":"Alarm rule ID", "zh_CN":"报警规则id"}
+	RuleId *string `json:"ruleId,omitempty" xml:"ruleId,omitempty" require:"true"`
 	// {"en":"Alert rule name", "zh_CN":"报警规则名称"}
 	RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
 	// {"en":"Monitor product or dimension", "zh_CN":"按指定维度或指定已开通商品监控（userDimension-主账号维度、DG-域名组、CG-服务组、domainDimension-域名维度）"}
@@ -172,6 +181,11 @@ func (s QueryMonitorRuleData) String() string {
 
 func (s QueryMonitorRuleData) GoString() string {
 	return s.String()
+}
+
+func (s *QueryMonitorRuleData) SetRuleId(v string) *QueryMonitorRuleData {
+	s.RuleId = &v
+	return s
 }
 
 func (s *QueryMonitorRuleData) SetRuleName(v string) *QueryMonitorRuleData {
