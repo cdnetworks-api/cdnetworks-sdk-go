@@ -142,10 +142,12 @@ type DMSConfig struct {
 	// OFF：关闭"}
 	ConfigSwitch *string `json:"configSwitch,omitempty" xml:"configSwitch,omitempty" require:"true"`
 	// {"en":"DDoS protection mode.
-	// AI_DEPOSIT: Managed Auto-Protect
-	// UNDER_ATTACK: I'm Under Attack", "zh_CN":"DDoS防护模式。
-	// AI_DEPOSIT：智能托管
-	// UNDER_ATTACK：我受到攻击"}
+	// LOOSE：Loose
+	// MODERATE：Moderate
+	// STRICT：Strict", "zh_CN":"DDoS防护模式。
+	// LOOSE：宽松
+	// MODERATE：适中
+	// STRICT：严格"}
 	ProtectionMode *string `json:"protectionMode,omitempty" xml:"protectionMode,omitempty" require:"true"`
 	// {"en":"DDoS AI intelligent protection switch.
 	// ON: Enabled

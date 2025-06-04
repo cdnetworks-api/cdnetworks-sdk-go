@@ -2,16 +2,16 @@ package domain
 
 import (
 	"errors"
-	"github.com/cdnetworks-api/cdnetworks-sdk-go/common"
-	"github.com/cdnetworks-api/cdnetworks-sdk-go/common/auth"
+	common2 "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/common"
+	"github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/common/auth"
 	"log"
 )
 
 type Client struct {
-	common.Client
+	common2.Client
 }
 
-func NewClient(credential common.CredentialIface, httpProfile common.HttpProfileIface) (client *Client, err error) {
+func NewClient(credential common2.CredentialIface, httpProfile common2.HttpProfileIface) (client *Client, err error) {
 	client = &Client{}
 	client.WithCredential(credential)
 	client.WithHttpProfile(httpProfile)
