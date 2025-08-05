@@ -74,4 +74,3 @@ if err != nil {
 | Deletepolicy | 本接口用于删除自定义权限策略 | POST | /user/policies/delete |
 | Editpolicy | 本接口用于修改自定义权限策略 | POST | /user/policies/edit |
 | Getpolicy | 本接口用于查询指定的权限策略明细信息 | POST | /user/policies/get |
-| Getaccountsummary | 该接口用于查询调用账号的所属主账号的概览信息。包括允许创建用户组的最大数量、 用户组数量、 允许创建自定义策略的最大数量、 允许创建 RAM 用户的最大数量、 自定义策略数量、RAM 用户数量。 | POST | /user/summary |

@@ -95,156 +95,6 @@ func (s DeletePolicyResponseHeader) GoString() string {
 
 
 
-type GetAccountSummaryRequest struct {
-}
-
-func (s GetAccountSummaryRequest) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetAccountSummaryRequest) GoString() string {
-  return s.String()
-}
-
-type GetAccountSummaryRequestHeader struct {
-}
-
-func (s GetAccountSummaryRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetAccountSummaryRequestHeader) GoString() string {
-  return s.String()
-}
-
-type GetAccountSummaryPaths struct {
-}
-
-func (s GetAccountSummaryPaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetAccountSummaryPaths) GoString() string {
-  return s.String()
-}
-
-type GetAccountSummaryParameters struct {
-}
-
-func (s GetAccountSummaryParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetAccountSummaryParameters) GoString() string {
-  return s.String()
-}
-
-type GetAccountSummaryResponse struct {
-  // {"en":"code","zh_CN":"请求结果状态码"}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"message","zh_CN":"请求结果信息"}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {"en":"","zh_CN":"请求结果的详细数据"}
-  Data *GetAccountSummaryResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
-}
-
-func (s GetAccountSummaryResponse) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetAccountSummaryResponse) GoString() string {
-  return s.String()
-}
-
-func (s *GetAccountSummaryResponse) SetCode(v string) *GetAccountSummaryResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *GetAccountSummaryResponse) SetMsg(v string) *GetAccountSummaryResponse {
-  s.Msg = &v
-  return s
-}
-
-func (s *GetAccountSummaryResponse) SetData(v *GetAccountSummaryResponseData) *GetAccountSummaryResponse {
-  s.Data = v
-  return s
-}
-
-type GetAccountSummaryResponseData struct {
-  // {"en":"Maximum number of user groups to be created","zh_CN":"允许创建用户组最大数量"}
-  GroupsQuota *string `json:"groupsQuota,omitempty" xml:"groupsQuota,omitempty" require:"true"`
-  // {"en":"Number of user groups","zh_CN":"用户组数量"}
-  Groups *string `json:"groups,omitempty" xml:"groups,omitempty" require:"true"`
-  // {"en":"Maximum number of custom Policies allowed to be created","zh_CN":"允许创建自定义策略的最大数量"}
-  PoliciesQuota *string `json:"policiesQuota,omitempty" xml:"policiesQuota,omitempty" require:"true"`
-  // {"en":"Number of custom policies","zh_CN":"自定义策略数量"}
-  Policies *string `json:"policies,omitempty" xml:"policies,omitempty" require:"true"`
-  // {"en":"Maximum number of permission policy versions","zh_CN":"权限策略版本的最大数量"}
-  VersionPolicyQuota *string `json:"versionPolicyQuota,omitempty" xml:"versionPolicyQuota,omitempty" require:"true"`
-  // {"en":"Maximum number of sub-users allowed to create","zh_CN":"允许创建的子用户最大数量"}
-  UsersQuota *string `json:"usersQuota,omitempty" xml:"usersQuota,omitempty" require:"true"`
-  // {"en":"Number of sub-users","zh_CN":"子用户数量"}
-  Users *string `json:"users,omitempty" xml:"users,omitempty" require:"true"`
-}
-
-func (s GetAccountSummaryResponseData) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetAccountSummaryResponseData) GoString() string {
-  return s.String()
-}
-
-func (s *GetAccountSummaryResponseData) SetGroupsQuota(v string) *GetAccountSummaryResponseData {
-  s.GroupsQuota = &v
-  return s
-}
-
-func (s *GetAccountSummaryResponseData) SetGroups(v string) *GetAccountSummaryResponseData {
-  s.Groups = &v
-  return s
-}
-
-func (s *GetAccountSummaryResponseData) SetPoliciesQuota(v string) *GetAccountSummaryResponseData {
-  s.PoliciesQuota = &v
-  return s
-}
-
-func (s *GetAccountSummaryResponseData) SetPolicies(v string) *GetAccountSummaryResponseData {
-  s.Policies = &v
-  return s
-}
-
-func (s *GetAccountSummaryResponseData) SetVersionPolicyQuota(v string) *GetAccountSummaryResponseData {
-  s.VersionPolicyQuota = &v
-  return s
-}
-
-func (s *GetAccountSummaryResponseData) SetUsersQuota(v string) *GetAccountSummaryResponseData {
-  s.UsersQuota = &v
-  return s
-}
-
-func (s *GetAccountSummaryResponseData) SetUsers(v string) *GetAccountSummaryResponseData {
-  s.Users = &v
-  return s
-}
-
-type GetAccountSummaryResponseHeader struct {
-}
-
-func (s GetAccountSummaryResponseHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetAccountSummaryResponseHeader) GoString() string {
-  return s.String()
-}
-
-
-
-
 type EditPolicyRequest struct {
   // {"en":"The ID of the policy to be modified.", "zh_CN":"要修改的策略id"}
   PolicyId *string `json:"policyId,omitempty" xml:"policyId,omitempty" require:"true"`
@@ -402,7 +252,7 @@ func (s EditPolicyResponseHeader) GoString() string {
 type GetPolicyRequest struct {
   // {"en":"Policy ID","zh_CN":"策略ID"}
   PolicyId *int64 `json:"policyId,omitempty" xml:"policyId,omitempty"`
-  // {"en":"Policy name.Either Policy ID or Policy Name must be provided. If Policy ID is entered, it will be prioritized.","zh_CN":"策略名称。策略ID和策略名称取任一必填，若填写了策略ID将优先使用策略ID"}
+  // {"en":"Policy name","zh_CN":"策略名称"}
   PolicyName *string `json:"policyName,omitempty" xml:"policyName,omitempty"`
 }
 
@@ -425,8 +275,6 @@ func (s *GetPolicyRequest) SetPolicyName(v string) *GetPolicyRequest {
 }
 
 type GetPolicyRequestHeader struct {
-  // {"en":"Select the specified language and return the policy description of the corresponding language. Optional values:zh_CN，en，ko_KR，ja_JP；Default language is en. Custom policy descriptions are not language","zh_CN":"选择指定语言返回对应语言的策略描述，可选值：zh_CN，en，ko_KR，ja_JP；未选择默认en。  自定义策略描述不区分语言，语言参数不生效。"}
-  AcceptLanguage *string `json:"Accept-Language,omitempty" xml:"Accept-Language,omitempty"`
 }
 
 func (s GetPolicyRequestHeader) String() string {
@@ -435,11 +283,6 @@ func (s GetPolicyRequestHeader) String() string {
 
 func (s GetPolicyRequestHeader) GoString() string {
   return s.String()
-}
-
-func (s *GetPolicyRequestHeader) SetAcceptLanguage(v string) *GetPolicyRequestHeader {
-  s.AcceptLanguage = &v
-  return s
 }
 
 type GetPolicyPaths struct {

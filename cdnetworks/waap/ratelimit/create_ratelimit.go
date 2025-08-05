@@ -70,6 +70,7 @@ type CreatRateLimitingRuleRequest struct {
 	// DELAY:Delay
 	// BLOCK:Deny
 	// RESET:Reset Connection
+	// JSC:Interactive Captcha
 	// Custom response ID:Custom response ID
 	// When there is a status code in the matching condition, the supported actions are Log, Deny,Not Used, and Reset Connection.', 'zh_CN':'处理动作。
 	// NO_USE：不使用
@@ -80,6 +81,7 @@ type CreatRateLimitingRuleRequest struct {
 	// DELAY：延迟响应
 	// BLOCK：拦截
 	// RESET：断开连接
+	// JSC: 交互式验证
 	// 自定义响应ID：自定义响应ID
 	// 当匹配条件中存在状态码时，支持处理动作为监控、拦截、不使用、断开连接。'}
 	Action *string `json:"action,omitempty" xml:"action,omitempty" require:"true"`

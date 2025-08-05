@@ -321,6 +321,10 @@ type RateLimitRuleCondition struct {
 	StatusCodeConditions []*StatusCodeCondition `json:"statusCodeConditions,omitempty" xml:"statusCodeConditions,omitempty" type:"Repeated"`
 	// {'en':'HTTP/S, match type cannot be repeated.', 'zh_CN':'应用层协议，匹配类型不可重复。'}
 	SchemeConditions []*SchemeCondition `json:"schemeConditions,omitempty" xml:"schemeConditions,omitempty" type:"Repeated"`
+	// {"en":"JA3 Fingerprint, match type cannot be repeated.","zh_CN":"JA3指纹，匹配类型不可重复。"}
+	Ja3Conditions []*Ja3Condition `json:"ja3Conditions,omitempty" xml:"ja3Conditions,omitempty" type:"Repeated"`
+	// {"en":"JA4 Fingerprint, match type cannot be repeated.","zh_CN":"JA4指纹，匹配类型不可重复。"}
+	Ja4Conditions []*Ja4Condition `json:"ja4Conditions,omitempty" xml:"ja4Conditions,omitempty" type:"Repeated"`
 }
 
 func (s RateLimitRuleCondition) String() string {
@@ -554,5 +558,55 @@ func (s *SchemeCondition) SetMatchType(v string) *SchemeCondition {
 
 func (s *SchemeCondition) SetScheme(v []*string) *SchemeCondition {
 	s.Scheme = v
+	return s
+}
+
+type Ja3Condition struct {
+	// {"en":"Match type.\nEQUAL: Equals\nNOT_EQUAL: Does not equal","zh_CN":"匹配类型。\nEQUAL：等于 \nNOT_EQUAL：不等于"}
+	MatchType *string `json:"matchType,omitempty" xml:"matchType,omitempty" require:"true"`
+	// {"en":"JA3 Fingerprint List, maximum 300 JA3 Fingerprint.When the match type is EQUAL/NOT_EQUAL, each item's character length must be 32 and can only include numbers and lowercase letters.","zh_CN":"JA3指纹列表，最多300个JA3指纹。当匹配类型为等于/不等于时，每项字符长度必须为32，且仅限数字和小写字母。"}
+	Ja3List []*string `json:"ja3List,omitempty" xml:"ja3List,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s Ja3Condition) String() string {
+	return tea.Prettify(s)
+}
+
+func (s Ja3Condition) GoString() string {
+	return s.String()
+}
+
+func (s *Ja3Condition) SetMatchType(v string) *Ja3Condition {
+	s.MatchType = &v
+	return s
+}
+
+func (s *Ja3Condition) SetJa3List(v []*string) *Ja3Condition {
+	s.Ja3List = v
+	return s
+}
+
+type Ja4Condition struct {
+	// {"en":"JA4 Fingerprint List, maximum 300 JA4 Fingerprint.When the match type is EQUAL/NOT_EQUAL, each item's format must be 10 characters + 12 characters + 12 characters, separated by underscores, and can only include underscores, numbers, and lowercase letters.When the match type is CONTAIN/NOT_CONTAIN/START_WITH/END_WITH, each item is only allowed to include underscores, numbers, and lowercase letters.When the match type is WILDCARD/NOT_WILDCARD, each item, aside from  ** and ?, is only allowed to include underscores, numbers, and lowercase letters.","zh_CN":"JA4指纹列表，最多300个JA4指纹。当匹配类型为等于/不等于时，每项格式必须为10位字符+12位字符+12位字符，中间以“_”分隔，且仅限下划线、数字和小写字母。当匹配类型为包含/不包含/开头是/结尾是时，每项只允许输入下划线、数字和小写字母。当匹配类型为通配符匹配/通配符不匹配时，每项除*和?外，只允许输入下划线、数字和小写字母。"}
+	Ja4List []*string `json:"ja4List,omitempty" xml:"ja4List,omitempty" require:"true" type:"Repeated"`
+	// {"en":"Match type. \nEQUAL: Equals\nNOT_EQUAL: Does not equal\nCONTAIN: Contains\nNOT_CONTAIN: Does not Contains\nSTART_WITH: Starts with\nEND_WITH: Ends with\nWILDCARD: Wildcard matches, ** represents zero or more arbitrary characters, ? represents any single character\nNOT_WILDCARD: Wildcard does not match, ** represents zero or more arbitrary characters, ? represents any single character","zh_CN":"匹配类型。\nEQUAL：等于\nNOT_EQUAL：不等于\nCONTAIN：包含\nNOT_CONTAIN：不包含\nSTART_WITH：开头是\nEND_WITH：结尾是\nWILDCARD：通配符匹配，*代表零个或多个任意字符，?代表任意单个字符\nNOT_WILDCARD：通配符不匹配，*代表零个或多个任意字符，?代表任意单个字符"}
+	MatchType *string `json:"matchType,omitempty" xml:"matchType,omitempty" require:"true"`
+}
+
+func (s Ja4Condition) String() string {
+	return tea.Prettify(s)
+}
+
+func (s Ja4Condition) GoString() string {
+	return s.String()
+}
+
+func (s *Ja4Condition) SetJa4List(v []*string) *Ja4Condition {
+	s.Ja4List = v
+	return s
+}
+
+func (s *Ja4Condition) SetMatchType(v string) *Ja4Condition {
+	s.MatchType = &v
 	return s
 }

@@ -126,6 +126,7 @@ type CommonRateLimitVO struct {
 	// DELAY:Delay
 	// BLOCK:Deny
 	// RESET:Reset Connection
+	// JSC:Interactive Captcha
 	// Custom response ID:Custom response ID', 'zh_CN':'处理动作。
 	// NO_USE：不使用
 	// ACCEPT：放行
@@ -135,6 +136,7 @@ type CommonRateLimitVO struct {
 	// DELAY：延迟响应
 	// BLOCK：拦截
 	// RESET：断开连接
+	// JSC: 交互式验证
 	// 自定义响应ID：自定义响应ID'}
 	Action *string `json:"action,omitempty" xml:"action,omitempty" require:"true"`
 	// {'en':'Matching conditions.', 'zh_CN':'匹配条件。'}
