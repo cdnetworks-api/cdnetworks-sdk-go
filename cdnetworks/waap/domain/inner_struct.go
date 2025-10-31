@@ -260,40 +260,40 @@ func (s *AttackRiskType) SetIndustry(v string) *AttackRiskType {
 }
 
 type BOTConfig struct {
-	// {"en":"Known Bots action.
-	// NO_USE: not used
-	// BLOCK: Deny
-	// LOG: Log
-	// ACCEPT: Skip", "zh_CN":"已知Bot处理动作。
-	// NO_USE：不使用
-	// BLOCK：拦截
-	// LOG：监控
-	// ACCEPT：放行"}
-	PublicBotsAct *string `json:"publicBotsAct,omitempty" xml:"publicBotsAct,omitempty" require:"true"`
 	// {"en":"Bot management switch.
-	// ON:Enabled
-	// OFF:Disabled", "zh_CN":"Bot管理开关。
-	// ON：开启
-	// OFF：关闭"}
+	//ON:Enabled
+	//OFF:Disabled","zh_CN":"Bot管理开关。
+	//ON：开启
+	//OFF：关闭","exampleValue":"ON,OFF"}
 	ConfigSwitch *string `json:"configSwitch,omitempty" xml:"configSwitch,omitempty" require:"true"`
-	// {"en":"User-Agent based detection action.
-	// NO_USE: Not used
-	// BLOCK: Deny
-	// LOG: Log
-	// ACCEPT: Skip", "zh_CN":"User-Agent特征检测处理动作。
-	// NO_USE：不使用
-	// BLOCK：拦截
-	// LOG：监控
-	// ACCEPT：放行"}
-	UaBotsAct *string `json:"uaBotsAct,omitempty" xml:"uaBotsAct,omitempty" require:"true"`
-	// {"en":"Browser Bot defense.", "zh_CN":"Web风险检测。"}
-	WebRiskConfig *BotWebConfigDefault `json:"webRiskConfig,omitempty" xml:"webRiskConfig,omitempty" require:"true"`
-	// {"en":"Client-based detection function switch.
-	// ON: Enabled
-	// OFF: Disabled", "zh_CN":"客户端风险检测功能开关。
-	// ON：开启
-	// OFF：关闭"}
-	SceneAnalyseSwitch *string `json:"sceneAnalyseSwitch,omitempty" xml:"sceneAnalyseSwitch,omitempty" require:"true"`
+	// {"en":"AI Bots action.
+	//NO_USE: Not used
+	//BLOCK: Deny
+	//LOG: Log","zh_CN":"AI Bots处理动作。
+	//NO_USE：不使用
+	//BLOCK：拦截
+	//LOG：监控","exampleValue":"NO_USE,LOG,BLOCK"}
+	AiBotsAct *string `json:"aiBotsAct,omitempty" xml:"aiBotsAct,omitempty" require:"true"`
+	// {"en":"Public Bots action.
+	//NO_USE: not used
+	//BLOCK: Deny
+	//LOG: Log
+	//ACCEPT: Skip","zh_CN":"公开Bots处理动作。
+	//NO_USE：不使用
+	//BLOCK：拦截
+	//LOG：监控
+	//ACCEPT：放行","exampleValue":"NO_USE,LOG,BLOCK,ACCEPT"}
+	PublicBotsAct *string `json:"publicBotsAct,omitempty" xml:"publicBotsAct,omitempty" require:"true"`
+	// {"en":"Definite Bots action.
+	//NO_USE: Not used
+	//BLOCK: Deny
+	//LOG: Log","zh_CN":"绝对Bots处理动作。
+	//NO_USE：不使用
+	//BLOCK：拦截
+	//LOG：监控","exampleValue":"NO_USE,LOG,BLOCK"}
+	AbsoluteBotsAct *string `json:"absoluteBotsAct,omitempty" xml:"absoluteBotsAct,omitempty" require:"true"`
+	// {"en":"Browser Bot defense.","zh_CN":"Web风险检测。"}
+	WebRiskConfig *BotWebConfigDefault `json:"webRiskConfig,omitempty" xml:"webRiskConfig,omitempty" require:"true" type:"Struct"`
 }
 
 func (s BOTConfig) String() string {
@@ -314,18 +314,18 @@ func (s *BOTConfig) SetConfigSwitch(v string) *BOTConfig {
 	return s
 }
 
-func (s *BOTConfig) SetUaBotsAct(v string) *BOTConfig {
-	s.UaBotsAct = &v
+func (s *BOTConfig) SetAiBotsAct(v string) *BOTConfig {
+	s.AiBotsAct = &v
+	return s
+}
+
+func (s *BOTConfig) SetAbsoluteBotsAct(v string) *BOTConfig {
+	s.AbsoluteBotsAct = &v
 	return s
 }
 
 func (s *BOTConfig) SetWebRiskConfig(v *BotWebConfigDefault) *BOTConfig {
 	s.WebRiskConfig = v
-	return s
-}
-
-func (s *BOTConfig) SetSceneAnalyseSwitch(v string) *BOTConfig {
-	s.SceneAnalyseSwitch = &v
 	return s
 }
 
