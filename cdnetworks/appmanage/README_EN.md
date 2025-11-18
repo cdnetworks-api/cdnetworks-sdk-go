@@ -73,3 +73,4 @@ For detailed API documentation and available methods, please refer to the [offic
 | Createapp | Create an application to integrate with Android or iOS applications, and return the application ID. | POST | /mah/v1/app/create |
 | Adddebugfingerprint | Add debugging fingerprints for application debugging, Android applications only. | POST | /mah/v1/app/add-debug-fingerprint |
 | Deleteapp | Delete application; specify application ID to remove the corresponding application | POST | /mah/v1/app/delete |
+| Getapp | Query the application information list. Only the applications within the permission range can be queried, and the application ID, package name and other information will be returned. You can query accurately by package name, and all applications within the permission range will be queried by default. | POST | /mah/v1/app/getApp |

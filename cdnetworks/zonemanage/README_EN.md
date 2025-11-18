@@ -84,3 +84,5 @@ For detailed API documentation and available methods, please refer to the [offic
 | Deletezone | delete Zone | DELETE | /api/clouddns/zones/* |
 | Batchcreatezone | Batch Create new Zone | POST | /api/clouddns/zones/bulk |
 | Batchdeletezone | Batch delete zones, maximum 20 zones can be deleted at the same time | DELETE | /api/clouddns/zones/bulk/* |
+| Updateztsbulk | Batch create or update ZTS configuration information. Users can create or update ZTS configuration information autonomously through the interface to achieve Zone data synchronization | PUT | /api/clouddns/zts/bulk |
+| Deleteztsbulk | The ZTS configuration deletion interface removes the ZTS information configured on the Zone. After deletion, configuration changes to the Zone will no longer be automatically synchronized. | DELETE | /api/clouddns/zones/zts/bulk |

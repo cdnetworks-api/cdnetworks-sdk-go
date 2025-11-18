@@ -253,6 +253,96 @@ func (s UpdateRecordByIDResponseHeader) GoString() string {
 
 
 
+type DeleteZTSBulkRequest struct {
+  // {"en":"List of zoneIds for which ZTS configurations need to be deleted","zh_CN":"需要删除ZTS配置的zoneId列表"}
+  ZoneIds []*int `json:"zoneIds,omitempty" xml:"zoneIds,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s DeleteZTSBulkRequest) String() string {
+  return tea.Prettify(s)
+}
+
+func (s DeleteZTSBulkRequest) GoString() string {
+  return s.String()
+}
+
+func (s *DeleteZTSBulkRequest) SetZoneIds(v []*int) *DeleteZTSBulkRequest {
+  s.ZoneIds = v
+  return s
+}
+
+type DeleteZTSBulkRequestHeader struct {
+}
+
+func (s DeleteZTSBulkRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s DeleteZTSBulkRequestHeader) GoString() string {
+  return s.String()
+}
+
+type DeleteZTSBulkPaths struct {
+}
+
+func (s DeleteZTSBulkPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s DeleteZTSBulkPaths) GoString() string {
+  return s.String()
+}
+
+type DeleteZTSBulkParameters struct {
+}
+
+func (s DeleteZTSBulkParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s DeleteZTSBulkParameters) GoString() string {
+  return s.String()
+}
+
+type DeleteZTSBulkResponse struct {
+  // {"en":"Status code, 0 indicates success","zh_CN":"状态码,成功为0"}
+  Code *int `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Error message or Success","zh_CN":"错误信息或Success"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+}
+
+func (s DeleteZTSBulkResponse) String() string {
+  return tea.Prettify(s)
+}
+
+func (s DeleteZTSBulkResponse) GoString() string {
+  return s.String()
+}
+
+func (s *DeleteZTSBulkResponse) SetCode(v int) *DeleteZTSBulkResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *DeleteZTSBulkResponse) SetMessage(v string) *DeleteZTSBulkResponse {
+  s.Message = &v
+  return s
+}
+
+type DeleteZTSBulkResponseHeader struct {
+}
+
+func (s DeleteZTSBulkResponseHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s DeleteZTSBulkResponseHeader) GoString() string {
+  return s.String()
+}
+
+
+
+
 type BulkUpdateRecordsByZoneIDRequest struct {
   // {"en":"request data", "zh_CN":"请求数据"}
   Data []*BulkUpdateRecordsByZoneIDRequestData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
@@ -2758,6 +2848,238 @@ func (s UpdateZoneResponseHeader) String() string {
 }
 
 func (s UpdateZoneResponseHeader) GoString() string {
+  return s.String()
+}
+
+
+
+
+type UpdateZTSBulkRequest struct {
+  // {"en":"ZTS configuration object","zh_CN":"ZTS配置对象"}
+  Data []*UpdateZTSBulkRequestData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s UpdateZTSBulkRequest) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateZTSBulkRequest) GoString() string {
+  return s.String()
+}
+
+func (s *UpdateZTSBulkRequest) SetData(v []*UpdateZTSBulkRequestData) *UpdateZTSBulkRequest {
+  s.Data = v
+  return s
+}
+
+type UpdateZTSBulkRequestData struct     {
+  // {"en":"zoneId","zh_CN":"zoneId"}
+  ZoneId *int `json:"zoneId,omitempty" xml:"zoneId,omitempty" require:"true"`
+  // {"en":"Status: 0 - Enabled, 1 - Disabled","zh_CN":"状态，0-启用，1-停用"}
+  St *int `json:"st,omitempty" xml:"st,omitempty" require:"true"`
+  // {"en":"","zh_CN":""}
+  Axfr *UpdateZTSBulkRequestDataAxfr `json:"axfr,omitempty" xml:"axfr,omitempty" require:"true" type:"Struct"`
+}
+
+func (s UpdateZTSBulkRequestData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateZTSBulkRequestData) GoString() string {
+  return s.String()
+}
+
+func (s *UpdateZTSBulkRequestData) SetZoneId(v int) *UpdateZTSBulkRequestData {
+  s.ZoneId = &v
+  return s
+}
+
+func (s *UpdateZTSBulkRequestData) SetSt(v int) *UpdateZTSBulkRequestData {
+  s.St = &v
+  return s
+}
+
+func (s *UpdateZTSBulkRequestData) SetAxfr(v *UpdateZTSBulkRequestDataAxfr) *UpdateZTSBulkRequestData {
+  s.Axfr = v
+  return s
+}
+
+type UpdateZTSBulkRequestDataAxfr struct {
+  // {"en":"Source DNS server address","zh_CN":"源DNS服务器地址"}
+  MasterAddr *string `json:"masterAddr,omitempty" xml:"masterAddr,omitempty" require:"true"`
+  // {"en":"Optional: Source DNS server port, default is 53","zh_CN":"选填，源DNS服务器端口，默认53"}
+  Port *int `json:"port,omitempty" xml:"port,omitempty"`
+  // {"en":"Optional: Enable NS override, use CloudDNS's NS to override the NS configured on the original DNS, default is disabled.","zh_CN":"选填，启用NS覆盖，用CloudDNS的NS覆盖原DNS上配的NS，默认不启用"}
+  EnableSoaNsRewriting *bool `json:"enableSoaNsRewriting,omitempty" xml:"enableSoaNsRewriting,omitempty"`
+  // {"en":"Optional: Leave blank to disable encryption","zh_CN":"选填，不填不加密"}
+  Key *UpdateZTSBulkRequestDataAxfrKey `json:"key,omitempty" xml:"key,omitempty" type:"Struct"`
+  // {"en":"","zh_CN":""}
+  SoaPoll *UpdateZTSBulkRequestDataAxfrSoaPoll `json:"soaPoll,omitempty" xml:"soaPoll,omitempty" type:"Struct"`
+  // {"en":"Optional: Whitelist configuration, specify which ZTS servers are allowed to access the source DNS server","zh_CN":"选填，白名单配置，允许哪些ZTS服务器接入源DNS服务器"}
+  Whitelist []*string `json:"whitelist,omitempty" xml:"whitelist,omitempty" type:"Repeated"`
+}
+
+func (s UpdateZTSBulkRequestDataAxfr) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateZTSBulkRequestDataAxfr) GoString() string {
+  return s.String()
+}
+
+func (s *UpdateZTSBulkRequestDataAxfr) SetMasterAddr(v string) *UpdateZTSBulkRequestDataAxfr {
+  s.MasterAddr = &v
+  return s
+}
+
+func (s *UpdateZTSBulkRequestDataAxfr) SetPort(v int) *UpdateZTSBulkRequestDataAxfr {
+  s.Port = &v
+  return s
+}
+
+func (s *UpdateZTSBulkRequestDataAxfr) SetEnableSoaNsRewriting(v bool) *UpdateZTSBulkRequestDataAxfr {
+  s.EnableSoaNsRewriting = &v
+  return s
+}
+
+func (s *UpdateZTSBulkRequestDataAxfr) SetKey(v *UpdateZTSBulkRequestDataAxfrKey) *UpdateZTSBulkRequestDataAxfr {
+  s.Key = v
+  return s
+}
+
+func (s *UpdateZTSBulkRequestDataAxfr) SetSoaPoll(v *UpdateZTSBulkRequestDataAxfrSoaPoll) *UpdateZTSBulkRequestDataAxfr {
+  s.SoaPoll = v
+  return s
+}
+
+func (s *UpdateZTSBulkRequestDataAxfr) SetWhitelist(v []*string) *UpdateZTSBulkRequestDataAxfr {
+  s.Whitelist = v
+  return s
+}
+
+type UpdateZTSBulkRequestDataAxfrKey struct {
+  // {"en":"Encryption algorithms currently supported: hmac-md5/hmac-sha1/hmac-sha224/hmac-sha256/hmac-sha384/hmac-sha512","zh_CN":"加密算法，目前支持：hmac-md5/hmac-sha1/hmac-sha224/hmac-sha256/hmac-sha384/hmac-sha512"}
+  Algorithm *string `json:"algorithm,omitempty" xml:"algorithm,omitempty" require:"true"`
+  // {"en":"Encryption username.","zh_CN":"加密用户名"}
+  Name *string `json:"name,omitempty" xml:"name,omitempty" require:"true"`
+  // {"en":"Encryption key","zh_CN":"加密密钥"}
+  Secret *string `json:"secret,omitempty" xml:"secret,omitempty" require:"true"`
+}
+
+func (s UpdateZTSBulkRequestDataAxfrKey) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateZTSBulkRequestDataAxfrKey) GoString() string {
+  return s.String()
+}
+
+func (s *UpdateZTSBulkRequestDataAxfrKey) SetAlgorithm(v string) *UpdateZTSBulkRequestDataAxfrKey {
+  s.Algorithm = &v
+  return s
+}
+
+func (s *UpdateZTSBulkRequestDataAxfrKey) SetName(v string) *UpdateZTSBulkRequestDataAxfrKey {
+  s.Name = &v
+  return s
+}
+
+func (s *UpdateZTSBulkRequestDataAxfrKey) SetSecret(v string) *UpdateZTSBulkRequestDataAxfrKey {
+  s.Secret = &v
+  return s
+}
+
+type UpdateZTSBulkRequestDataAxfrSoaPoll struct {
+  // {"en":"Synchronization frequency, in seconds, default is 300","zh_CN":"同步频率，单位秒，默认300"}
+  PsInterval *int `json:"psInterval,omitempty" xml:"psInterval,omitempty"`
+  // {"en":"Timeout, in seconds, default is 10","zh_CN":"超时时间，单位秒，默认10"}
+  PsTimeout *int `json:"psTimeout,omitempty" xml:"psTimeout,omitempty"`
+}
+
+func (s UpdateZTSBulkRequestDataAxfrSoaPoll) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateZTSBulkRequestDataAxfrSoaPoll) GoString() string {
+  return s.String()
+}
+
+func (s *UpdateZTSBulkRequestDataAxfrSoaPoll) SetPsInterval(v int) *UpdateZTSBulkRequestDataAxfrSoaPoll {
+  s.PsInterval = &v
+  return s
+}
+
+func (s *UpdateZTSBulkRequestDataAxfrSoaPoll) SetPsTimeout(v int) *UpdateZTSBulkRequestDataAxfrSoaPoll {
+  s.PsTimeout = &v
+  return s
+}
+
+type UpdateZTSBulkRequestHeader struct {
+}
+
+func (s UpdateZTSBulkRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateZTSBulkRequestHeader) GoString() string {
+  return s.String()
+}
+
+type UpdateZTSBulkPaths struct {
+}
+
+func (s UpdateZTSBulkPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateZTSBulkPaths) GoString() string {
+  return s.String()
+}
+
+type UpdateZTSBulkParameters struct {
+}
+
+func (s UpdateZTSBulkParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateZTSBulkParameters) GoString() string {
+  return s.String()
+}
+
+type UpdateZTSBulkResponse struct {
+  // {"en":"Status code, 0 indicates success.","zh_CN":"状态码,成功为0"}
+  Code *int `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Error message or Success","zh_CN":"错误信息或Success"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+}
+
+func (s UpdateZTSBulkResponse) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateZTSBulkResponse) GoString() string {
+  return s.String()
+}
+
+func (s *UpdateZTSBulkResponse) SetCode(v int) *UpdateZTSBulkResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *UpdateZTSBulkResponse) SetMessage(v string) *UpdateZTSBulkResponse {
+  s.Message = &v
+  return s
+}
+
+type UpdateZTSBulkResponseHeader struct {
+}
+
+func (s UpdateZTSBulkResponseHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateZTSBulkResponseHeader) GoString() string {
   return s.String()
 }
 

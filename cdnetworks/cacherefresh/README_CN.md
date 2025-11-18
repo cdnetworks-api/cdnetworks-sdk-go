@@ -70,9 +70,11 @@ if err != nil {
 
 | ActionName | description | client_methods | uri |
 | --- | --- | --- | --- |
-| Querypurgestatus | 查询刷新缓存任务的执行状态，可查看是否已经全网执行生效。 | POST | /ccm/purge/ItemIdQuery |
+| Getpurgestatus | 查询刷新缓存任务的执行状态，可查看是否已经全网执行生效。 | POST | /ccm/purge/ItemIdQuery |
 | Purgefilewithtag | 针对客户下有开启tag开关的域名内的有标识的tag的文件进行推送。 | POST | /api/content/tag/purge |
-| Regexurlpurge | 根据正则url方式清理CDN节点上缓存的文件内容 | POST | /api/content/regular-url/purge |
+| Purgeurlsmatchingregex | 根据正则url方式清理CDN节点上缓存的文件内容 | POST | /api/content/regular-url/purge |
 | Purge | 刷新CDN节点上缓存的文件内容，全网一般在1~3分钟内生效，目录推送单账号单域名每日上限为500 | POST | /ccm/purge/ItemIdReceiver |
 | Querypurgelimit | 查询推送剩余量接口 | POST | /ccm/purge/limit |
 | Querypurgeresiduals | 推送剩余量查询 | GET | /ccm/upperQuery |
+| Getpurgequota | 该接口用于查询指定客户推送日上限和日剩余量，用户通过该接口获取其推送日上限和剩余量，包括url推送，目录推送，正则推送，tag推送。这对于客户是否能在继续提交任务至关重要，可以帮助客户及时发现是否达到日上限，当客户有大量任务要提交时，提前调整日上限。 | POST | /ccm/purge/quota |
+| Getprefetchquota | 该接口用于查询指定客户预取日上限和日剩余量，用户通过该接口获取其预取日上限和剩余量，包括url个数和预取大小。这对于客户是否能在继续提交任务至关重要，可以帮助客户及时发现是否达到日上限，当客户有大量任务要提交时，提前调整日上限。 | POST | /ccm/prefetch/quota |

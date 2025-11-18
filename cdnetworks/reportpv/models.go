@@ -7,19 +7,19 @@ import (
 
 type QueryDomainUVRequest struct {
   // {"en":"Start date:
-  //         1. The time format is yyyy-MM-ddTHH:MM:ss+08:00, for example, 2016-12-02T10:00:00+08:00 (Beijing Time 2 December 2016 10:0 min 0 seconds);
+  //         1. The time format is yyyy-MM-ddTHH:mm:ss±HH:mm. Please note: ±HH:mm is the time zone offset, which can be adjusted according to your data needs, for example, +00:00 represents UTC time, +08:00 represents East 8th District, and -05:00 represents West 5th District. 2024-01-15T10:30:45+00:00 means UTC time January 15, 2024 10:30:45 AM;
   //         2. Not Greater Than The Current Time
   //         3. Data for the last six months (183 days) are available at most.", "zh_CN":"开始时间：
-  //         1.时间格式为yyyy-MM-ddTHH:mm:ss+08:00，例如，2016-12-02T10:00:00+08:00（为北京时间2016年12月2日10点0分0秒）；
+  //         1.时间格式为 yyyy-MM-ddTHH:mm:ss±HH:mm。请注意：±HH:mm 为时区偏移量，可根据您的数据需要进行调整，例如 +00:00 代表 UTC 时间，+08:00 代表东八区，-05:00 代表西五区。2024-01-15T10:30:45+00:00，表示UTC 时间 2024 年 1 月 15 日上午 10 点 30 分 45 秒；
   //         2.不能大于当前时间
   //         3.最多可获取最近半年（183天）的数据。"}
   DateFrom *string `json:"dateFrom,omitempty" xml:"dateFrom,omitempty"`
   // {"en":"End time:
-  //         1. Time format yyyy-MM-ddTHH:MM:ss+08:00
+  //         1. The time format is yyyy-MM-ddTHH:mm:ss±HH:mm. Please note: ±HH:mm is the time zone offset, which can be adjusted according to your data needs, for example, +00:00 represents UTC time, +08:00 represents East 8th District, and -05:00 represents West 5th District. 2024-01-15T10:30:45+00:00 means UTC time January 15, 2024 10:30:45 AM;
   //         2. The end time must be greater than the start time. if the end time is greater than the current time, take the current time.
   //         3. Date from, dateTo, neither passed, default query past 24 hours; If there is only one unsent, throw an exception
   //         4. Maximum time interval allowed for queries: 31 days, i.e. the difference between Date from and dateTo cannot exceed 31 days. (Could contact technical support adjustment)", "zh_CN":"结束时间：
-  //         1.时间格式yyyy-MM-ddTHH:mm:ss+08:00
+  //         1.时间格式为 yyyy-MM-ddTHH:mm:ss±HH:mm。请注意：±HH:mm 为时区偏移量，可根据您的数据需要进行调整，例如 +00:00 代表 UTC 时间，+08:00 代表东八区，-05:00 代表西五区。2024-01-15T10:30:45+00:00，表示UTC 时间 2024 年 1 月 15 日上午 10 点 30 分 45 秒
   //         2.结束时间需大于开始时间，结束时间如果大于当前时间，取当前时间。
   //         3.dateFrom，dateTo二者都未传，默认查询过去的24小时；如仅有一个未传，抛异常
   //         4.允许查询最大时间间隔：31天，即dateFrom和dateTo相差不能超过31天。（可联系技术支持调整）"}

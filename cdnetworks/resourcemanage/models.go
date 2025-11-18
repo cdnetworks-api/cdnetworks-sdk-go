@@ -1009,65 +1009,75 @@ func (s VMPQueryFlavorRequest) GoString() string {
   return s.String()
 }
 
-type VMPQueryFlavorDisk struct {
-  // {"en":"disk type ,system disk or data disk", "zh_CN":"磁盘类型,数据盘或者系统盘"}
-  Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
-  // {"en":"VMPQueryFlavorDisk space size in GB", "zh_CN":"磁盘空间大小，单位是GB"}
-  Size *int `json:"size,omitempty" xml:"size,omitempty" require:"true"`
-  // {"en":"VMPQueryFlavorDisk type, value:HDD: ordinary hard disk,SSD: solid state drive,The default is HDD", "zh_CN":"磁盘类型，取值：HDD：普通硬盘,SSD：固态硬盘,默认是HDD"}
-  Category *string `json:"category,omitempty" xml:"category,omitempty" require:"true"`
+type VMPQueryFlavorRequestHeader struct {
 }
 
-func (s VMPQueryFlavorDisk) String() string {
+func (s VMPQueryFlavorRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s VMPQueryFlavorDisk) GoString() string {
+func (s VMPQueryFlavorRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *VMPQueryFlavorDisk) SetType(v string) *VMPQueryFlavorDisk {
-  s.Type = &v
-  return s
+type VMPQueryFlavorPaths struct {
 }
 
-func (s *VMPQueryFlavorDisk) SetSize(v int) *VMPQueryFlavorDisk {
-  s.Size = &v
-  return s
+func (s VMPQueryFlavorPaths) String() string {
+  return tea.Prettify(s)
 }
 
-func (s *VMPQueryFlavorDisk) SetCategory(v string) *VMPQueryFlavorDisk {
-  s.Category = &v
+func (s VMPQueryFlavorPaths) GoString() string {
+  return s.String()
+}
+
+type VMPQueryFlavorParameters struct {
+  // {"en":"The virtual machine specification is a unique identifier. Multiple values are separated by commas.Can be left blank, and when left blank, all available template specifications will be returned.","zh_CN":"实例规格唯一标识，多个值用英文逗号分隔。可放空不填，不填时返回所有可用模板规格。"}
+  Ids *string `json:"ids,omitempty" xml:"ids,omitempty"`
+}
+
+func (s VMPQueryFlavorParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s VMPQueryFlavorParameters) GoString() string {
+  return s.String()
+}
+
+func (s *VMPQueryFlavorParameters) SetIds(v string) *VMPQueryFlavorParameters {
+  s.Ids = &v
   return s
 }
 
 type VMPQueryFlavorResponse struct {
-  // {"en":"flavors", "zh_CN":"规格"}
+  // {"en":"flavors","zh_CN":"规格"}
   Flavors []*string `json:"flavors,omitempty" xml:"flavors,omitempty" require:"true" type:"Repeated"`
-  // {"en":"Unique identification of virtual machine specification, global unique", "zh_CN":"实例规格唯一标识，全局唯一"}
+  // {"en":"Unique identification of virtual machine specification, global unique","zh_CN":"实例规格唯一标识，全局唯一"}
   Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
-  // {"en":"form name", "zh_CN":"规格名称"}
+  // {"en":"form name","zh_CN":"规格名称"}
   Name *string `json:"name,omitempty" xml:"name,omitempty" require:"true"`
-  // {"en":"Number of CPUs of virtual machine", "zh_CN":"实例的cpu数"}
+  // {"en":"Number of CPUs of virtual machine","zh_CN":"实例的cpu数"}
   Vcpus *int `json:"vcpus,omitempty" xml:"vcpus,omitempty" require:"true"`
-  // {"en":"Virtual machine memory in GB", "zh_CN":"实例内存,单位是GB"}
+  // {"en":"Virtual machine memory in GB","zh_CN":"实例内存,单位是GB"}
   Ram *int `json:"ram,omitempty" xml:"ram,omitempty" require:"true"`
-  // {"en":"VMPQueryFlavorDisk information of virtual machine", "zh_CN":"实例的磁盘信息"}
-  Disks []*VMPQueryFlavorDisk `json:"disks,omitempty" xml:"disks,omitempty" require:"true" type:"Repeated"`
-  // {"en":"Bearable bandwidth, Mbps", "zh_CN":"可承载带宽，单位是Mbps"}
+  // {"en":"Disk information of virtual machine","zh_CN":"实例的磁盘信息"}
+  Disks []*VMPQueryFlavorResponseDisks `json:"disks,omitempty" xml:"disks,omitempty" require:"true" type:"Repeated"`
+  // {"en":"Bearable bandwidth, Mbps","zh_CN":"可承载带宽，单位是Mbps"}
   Bandwidth *int `json:"bandwidth,omitempty" xml:"bandwidth,omitempty" require:"true"`
-  // {"en":"1: Yes, -1: No,1 means the template is bare metal template;,-1 indicates that the template is a cloud host template;", "zh_CN":"1：是，-1：否,1表示该模板是裸机模板；-1表示该模板是云主机模板；"}
+  // {"en":"1: Yes, -1: No,1 means the template is bare metal template;,-1 indicates that the template is a cloud host template;","zh_CN":"1：是，-1：否,1表示该模板是裸机模板；-1表示该模板是云主机模板；"}
   IsBm *int `json:"isBm,omitempty" xml:"isBm,omitempty" require:"true"`
-  // {"en":"SSD system disk quota (GB). This parameter has no meaning if it is a bare-metal template or a stand-alone disk template", "zh_CN":"SSD系统盘限额（GB），如果是裸机模板或者是独立盘模板，该参数无意义"}
+  // {"en":"SSD system disk quota (GB). This parameter has no meaning if it is a bare-metal template or a stand-alone disk template","zh_CN":"SSD系统盘限额（GB），如果是裸机模板或者是独立盘模板，该参数无意义"}
   SysSsdLimit *int `json:"sysSsdLimit,omitempty" xml:"sysSsdLimit,omitempty" require:"true"`
-  // {"en":"HDD system disk quota (GB). If it is a bare-metal template or a stand-alone template, this parameter has no meaning", "zh_CN":"HDD系统盘限额（GB），如果是裸机模板或者是独立盘模板，该参数无意义"}
+  // {"en":"HDD system disk quota (GB). If it is a bare-metal template or a stand-alone template, this parameter has no meaning","zh_CN":"HDD系统盘限额（GB），如果是裸机模板或者是独立盘模板，该参数无意义"}
   SysHddLimit *int `json:"sysHddLimit,omitempty" xml:"sysHddLimit,omitempty" require:"true"`
-  // {"en":"SSD disk quota (GB). This parameter has no meaning if it is a bare-metal template or a stand-alone disk template", "zh_CN":"SSD数据盘限额（GB），如果是裸机模板或者是独立盘模板，该参数无意义"}
+  // {"en":"SSD disk quota (GB). This parameter has no meaning if it is a bare-metal template or a stand-alone disk template","zh_CN":"SSD数据盘限额（GB），如果是裸机模板或者是独立盘模板，该参数无意义"}
   DataSsdLimit *int `json:"dataSsdLimit,omitempty" xml:"dataSsdLimit,omitempty" require:"true"`
-  // {"en":"HDD disk quota (GB). This parameter has no meaning if it is a bare-metal template or a stand-alone disk template", "zh_CN":"HDD数据盘限额（GB），如果是裸机模板或者是独立盘模板，该参数无意义"}
+  // {"en":"HDD disk quota (GB). This parameter has no meaning if it is a bare-metal template or a stand-alone disk template","zh_CN":"HDD数据盘限额（GB），如果是裸机模板或者是独立盘模板，该参数无意义"}
   DataHddLimit *int `json:"dataHddLimit,omitempty" xml:"dataHddLimit,omitempty" require:"true"`
-  // {"en":"Template type,Values: 201- public template, 202- custom template", "zh_CN":"模板类型,取值：201-公共模板、202-自定义模板"}
+  // {"en":"Template type,Values: 201- public template, 202- custom template","zh_CN":"模板类型,取值：201-公共模板、202-自定义模板"}
   Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
+  // {"en":"Virtual Machine Area (see Appendix for details)","zh_CN":"【仅为预留字段，实际未使用】实例所属区域"}
+  RegionName *string `json:"regionName,omitempty" xml:"regionName,omitempty" require:"true"`
 }
 
 func (s VMPQueryFlavorResponse) String() string {
@@ -1103,7 +1113,7 @@ func (s *VMPQueryFlavorResponse) SetRam(v int) *VMPQueryFlavorResponse {
   return s
 }
 
-func (s *VMPQueryFlavorResponse) SetDisks(v []*VMPQueryFlavorDisk) *VMPQueryFlavorResponse {
+func (s *VMPQueryFlavorResponse) SetDisks(v []*VMPQueryFlavorResponseDisks) *VMPQueryFlavorResponse {
   s.Disks = v
   return s
 }
@@ -1143,44 +1153,41 @@ func (s *VMPQueryFlavorResponse) SetType(v string) *VMPQueryFlavorResponse {
   return s
 }
 
-type VMPQueryFlavorPaths struct {
-}
-
-func (s VMPQueryFlavorPaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s VMPQueryFlavorPaths) GoString() string {
-  return s.String()
-}
-
-type VMPQueryFlavorParameters struct {
-  // {"en":"The virtual machine specification is a unique identifier. Multiple values are separated by commas.Can be left blank, and when left blank, all available template specifications will be returned.", "zh_CN":"实例规格唯一标识，多个值用英文逗号分隔。可放空不填，不填时返回所有可用模板规格。"}
-  Ids *string `json:"ids,omitempty" xml:"ids,omitempty"`
-}
-
-func (s VMPQueryFlavorParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s VMPQueryFlavorParameters) GoString() string {
-  return s.String()
-}
-
-func (s *VMPQueryFlavorParameters) SetIds(v string) *VMPQueryFlavorParameters {
-  s.Ids = &v
+func (s *VMPQueryFlavorResponse) SetRegionName(v string) *VMPQueryFlavorResponse {
+  s.RegionName = &v
   return s
 }
 
-type VMPQueryFlavorRequestHeader struct {
+type VMPQueryFlavorResponseDisks struct     {
+  // {"en":"disk type ,system disk or data disk","zh_CN":"磁盘类型,数据盘或者系统盘"}
+  Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
+  // {"en":"Disk space size in GB","zh_CN":"磁盘空间大小，单位是GB"}
+  Size *int `json:"size,omitempty" xml:"size,omitempty" require:"true"`
+  // {"en":"Disk type, value:HDD: ordinary hard disk,SSD: solid state drive,The default is HDD","zh_CN":"磁盘类型，取值：HDD：普通硬盘,SSD：固态硬盘,默认是HDD"}
+  Category *string `json:"category,omitempty" xml:"category,omitempty" require:"true"`
 }
 
-func (s VMPQueryFlavorRequestHeader) String() string {
+func (s VMPQueryFlavorResponseDisks) String() string {
   return tea.Prettify(s)
 }
 
-func (s VMPQueryFlavorRequestHeader) GoString() string {
+func (s VMPQueryFlavorResponseDisks) GoString() string {
   return s.String()
+}
+
+func (s *VMPQueryFlavorResponseDisks) SetType(v string) *VMPQueryFlavorResponseDisks {
+  s.Type = &v
+  return s
+}
+
+func (s *VMPQueryFlavorResponseDisks) SetSize(v int) *VMPQueryFlavorResponseDisks {
+  s.Size = &v
+  return s
+}
+
+func (s *VMPQueryFlavorResponseDisks) SetCategory(v string) *VMPQueryFlavorResponseDisks {
+  s.Category = &v
+  return s
 }
 
 type VMPQueryFlavorResponseHeader struct {

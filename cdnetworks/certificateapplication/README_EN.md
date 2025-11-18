@@ -70,8 +70,9 @@ For detailed API documentation and available methods, please refer to the [offic
 
 | ActionName | enDescription | client_methods | uri |
 | --- | --- | --- | --- |
-| Createcertificateapplyingorder | Create the certificate applying order. | POST | /api/certificate/order/create |
-| Getcertificateapplyingorderlist | Get List of Certificate Applying Orders. | POST | /api/certificate/order/list |
-| Getdomaincontrolvalidationcontent | Get the validate content for domain control validation. | POST | /api/certificate/order/domain/validate/info |
-| Cancelcertificateapplyingorder | Cancel the certificate applying order. | POST | /api/certificate/order/cancel |
-| Querycertificatesalesorderdetailforwplus | query certificate sale order detail info | POST | /api/certificate/order/detail |
+| Createcertificateapplicationorder | Create the certificate applying order. | POST | /api/certificate/order/create |
+| Listcertificateapplicationorders | Get List of Certificate Applying Orders. | POST | /api/certificate/order/list |
+| Getdcvcontent | Get the validate content for domain control validation. | POST | /api/certificate/order/domain/validate/info |
+| Cancelcertificateapplicationorder | Cancel the certificate applying order. | POST | /api/certificate/order/cancel |
+| Getcertificateapplicationorder | query certificate sale order detail info | POST | /api/certificate/order/detail |
+| Reissuecertificateforwplus | This interface is used for reissuing certificates. You can reissue the certificate by providing the certificate ID, certificate description, certificate algorithm, verification method, whether it is automatically verified, whether it is automatically deployed, common name, and subject alternate name. When the call is successful, the interface will return the sales order ID. | POST | /api/certificate/reissue |

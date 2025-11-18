@@ -535,6 +535,8 @@ type GetACertificateVersionsDetailsResponse struct {
   // ", "zh_CN": "证书所涵盖的域名列表（SAN）。允许使用通配符，例如，*.domain.com。
   // "}
   SubjectAlternativeNames []*string `json:"subjectAlternativeNames,omitempty" xml:"subjectAlternativeNames,omitempty" require:"true" type:"Repeated"`
+  // {"en" : "Indicates whether the certificate version can be deleted. Only the latest certificate version that is never deployed can be deleted.", "zh_CN": "表示证书版本是否允许删除。仅允许删除未部署过的最新证书版本。"}
+  Deletable *bool `json:"deletable,omitempty" xml:"deletable,omitempty" require:"true"`
   // {"en" : "Describes the certificate chain.", "zh_CN": "链证书。"}
   ChainCertificates []*GetACertificateVersionsDetailsResponseChainCertificates `json:"chainCertificates,omitempty" xml:"chainCertificates,omitempty" require:"true" type:"Repeated"`
   // {"en" : "Issuer of the certificate.", "zh_CN": "证书的颁发者。"}
@@ -611,6 +613,11 @@ func (s *GetACertificateVersionsDetailsResponse) SetKeyLength(v int) *GetACertif
 
 func (s *GetACertificateVersionsDetailsResponse) SetSubjectAlternativeNames(v []*string) *GetACertificateVersionsDetailsResponse {
   s.SubjectAlternativeNames = v
+  return s
+}
+
+func (s *GetACertificateVersionsDetailsResponse) SetDeletable(v bool) *GetACertificateVersionsDetailsResponse {
+  s.Deletable = &v
   return s
 }
 
@@ -742,55 +749,16 @@ func (s DeleteACertificateResponse) GoString() string {
 
 
 
-type CreateACertificatePaths struct {
-}
-
-func (s CreateACertificatePaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateACertificatePaths) GoString() string {
-  return s.String()
-}
-
-type CreateACertificateParameters struct {
-}
-
-func (s CreateACertificateParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateACertificateParameters) GoString() string {
-  return s.String()
-}
-
-type CreateACertificateRequestHeader struct {
-}
-
-func (s CreateACertificateRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateACertificateRequestHeader) GoString() string {
-  return s.String()
-}
-
 type CreateACertificateRequest struct {
-  // {"en" : "Name of the certificate.", "zh_CN": "证书名称。"}
+  // {"en":"Name of the certificate.","zh_CN":"证书名称。"}
   Name *string `json:"name,omitempty" xml:"name,omitempty" require:"true"`
-  // {"en" : "A description of the new certificate.
-  // ", "zh_CN": "证书描述。"}
+  // {"en":"A description of the new certificate.","zh_CN":"证书描述。"}
   Description *string `json:"description,omitempty" xml:"description,omitempty"`
-  // {"en" : "Enum: LE,Off 
-  // Specifying 'LE' requests that we automatically renew your certificate through Let's Encrypt (https://letsencrypt.org/docs/challenge-types/) when it is close to expiring. ", "zh_CN": "取值范围: LE,Off 
-  // 是否开启证书自动更新。当值为'LE'时，我们将会在证书即将到期时通过Let's Encrypt自动更新您的证书。"}
+  // {"en":"Enum: LE,Off\nSpecifying 'LE' requests that we automatically renew your certificate through Let's Encrypt (https://letsencrypt.org/docs/challenge-types/) when it is close to expiring.","zh_CN":"取值范围: LE,Off\n是否开启证书自动更新。当值为'LE'时，我们将会在证书即将到期时通过Let's Encrypt自动更新您的证书。"}
   AutoRenew *string `json:"autoRenew,omitempty" xml:"autoRenew,omitempty"`
-  // {"en" : "This object is used to specify the initial version of the certificate.", "zh_CN": "证书的第一个版本。"}
-  NewVersion *CreateACertificateRequestNewVersion `json:"newVersion,omitempty" xml:"newVersion,omitempty" type:"Struct"`
-  // {"en" : "Default: False 
-  // A value of true requests the certificate to be auto-renewed as soon as possible instead of waiting for the certificate to expire in 15 days. The value will be set to false after a successful renewal.", "zh_CN": "默认值: False 
-  // 是否强制更新。当值为true时表示要求尽快自动更新证书，而不是等待证书在 15 天后过期。 
-  // 证书成功更新后，该值将设置为false。"}
+  // {"en":"This object is used to specify the initial version of the certificate.","zh_CN":"证书的第一个版本。"}
+  NewVersion *CreateACertificateRequestNewVersion `json:"newVersion,omitempty" xml:"newVersion,omitempty" require:"true" type:"Struct"`
+  // {"en":"Default: False\nA value of true requests the certificate to be auto-renewed as soon as possible instead of waiting for the certificate to expire in 15 days. The value will be set to false after a successful renewal.","zh_CN":"默认值: False\n是否强制更新。当值为true时表示要求尽快自动更新证书，而不是等待证书在 15 天后过期。\n证书成功更新后，该值将设置为false。"}
   ForceRenew *bool `json:"forceRenew,omitempty" xml:"forceRenew,omitempty"`
 }
 
@@ -828,15 +796,15 @@ func (s *CreateACertificateRequest) SetForceRenew(v bool) *CreateACertificateReq
 }
 
 type CreateACertificateRequestNewVersion struct {
-  // {"en" : "Comments about the certificate version.", "zh_CN": "证书版本的描述。"}
+  // {"en":"Comments about the certificate version.","zh_CN":"证书版本的描述。"}
   Comments *string `json:"comments,omitempty" xml:"comments,omitempty"`
-  // {"en" : "The value must be either the private key in PEM format and encrypted with the API key and timestamp OR the literal string 'RSA2048' or 'ECC256' if you opt to generate a self-signed certificate. The key must be encrypted with AES-128-CBC and base64-encoded. This helps protect your key when you upload it to CDN Pro.", "zh_CN": "用于指定证书私钥，必须是PEM格式的私钥。如果您选择生成自签名证书，则此处的值应为'RSA2048'或'ECC256'。请使用您API账号的密钥和时间戳对私钥进行加密再上传。请使用AES-128-CBC加密算法，并用base64编码。当您将私钥上传到CDN Pro时，这种加密方式可以保护您的私钥。"}
-  PrivateKey *string `json:"privateKey,omitempty" xml:"privateKey,omitempty"`
-  // {"en" : "Enter the certificate in PEM format or the literal string 'GENERATE' if you wish that we create a self-signed certificate valid for ten days for test purposes. If you enter 'GENERATE', then you must also specify either 'RSA2048' or 'ECC256' as the value of the privateKey field to choose the encryption for the self-signed certificate.", "zh_CN": "用于指定证书（公钥），必须是PEM格式。如果您希望系统自动生成自签名证书（有效期 10 天）用于测试，则此处的值应为'GENERATE'。 当您指定'GENERATE'时，必须同时指定'RSA2048'或'ECC256'作为 privateKey 字段的值，用于选择加密算法生成自签名证书。"}
-  Certificate *string `json:"certificate,omitempty" xml:"certificate,omitempty"`
-  // {"en" : "The chain certificate in PEM format.", "zh_CN": "用于指定链证书。必须是PEM格式"}
+  // {"en":"The value must be either the private key in PEM format and encrypted with the API key and timestamp OR the literal string 'RSA2048' or 'ECC256' if you opt to generate a self-signed certificate. The key must be encrypted with AES-128-CBC and base64-encoded. This helps protect your key when you upload it to CDN Pro.","zh_CN":"用于指定证书私钥，必须是PEM格式的私钥。如果您选择生成自签名证书，则此处的值应为'RSA2048'或'ECC256'。请使用您API账号的密钥和时间戳对私钥进行加密再上传。请使用AES-128-CBC加密算法，并用base64编码。当您将私钥上传到CDN Pro时，这种加密方式可以保护您的私钥。"}
+  PrivateKey *string `json:"privateKey,omitempty" xml:"privateKey,omitempty" require:"true"`
+  // {"en":"Enter the certificate in PEM format or the literal string 'GENERATE' if you wish that we create a self-signed certificate valid for ten days for test purposes. If you enter 'GENERATE', then you must also specify either 'RSA2048' or 'ECC256' as the value of the privateKey field to choose the encryption for the self-signed certificate.","zh_CN":"用于指定证书（公钥），必须是PEM格式。如果您希望系统自动生成自签名证书（有效期 10 天）用于测试，则此处的值应为'GENERATE'。 当您指定'GENERATE'时，必须同时指定'RSA2048'或'ECC256'作为 privateKey 字段的值，用于选择加密算法生成自签名证书。"}
+  Certificate *string `json:"certificate,omitempty" xml:"certificate,omitempty" require:"true"`
+  // {"en":"The chain certificate in PEM format.","zh_CN":"用于指定链证书。必须是PEM格式"}
   ChainCert *string `json:"chainCert,omitempty" xml:"chainCert,omitempty"`
-  // {"en" : "Information submitted when generating a self-signed certificate.", "zh_CN": "当您选择生成自签名证书时，需提交以下信息。"}
+  // {"en":"Information submitted when generating a self-signed certificate.","zh_CN":"当您选择生成自签名证书时，需提交以下信息。"}
   IdentificationInfo *CreateACertificateRequestNewVersionIdentificationInfo `json:"identificationInfo,omitempty" xml:"identificationInfo,omitempty" type:"Struct"`
 }
 
@@ -874,24 +842,21 @@ func (s *CreateACertificateRequestNewVersion) SetIdentificationInfo(v *CreateACe
 }
 
 type CreateACertificateRequestNewVersionIdentificationInfo struct {
-  // {"en" : "Range: [ 2 .. 2 ] characters 
-  // An ISO-3166 country code.", "zh_CN": "取值范围: [ 2 .. 2 ] 字符 
-  // ISO-3166国家代码。"}
+  // {"en":"Range: [ 2 .. 2 ] characters\nAn ISO-3166 country code.","zh_CN":"取值范围: [ 2 .. 2 ] 字符\nISO-3166国家代码。"}
   Country *string `json:"country,omitempty" xml:"country,omitempty"`
-  // {"en" : "A state or province.", "zh_CN": "州或省。"}
+  // {"en":"A state or province.","zh_CN":"州或省。"}
   State *string `json:"state,omitempty" xml:"state,omitempty"`
-  // {"en" : "A city.", "zh_CN": "城市。"}
+  // {"en":"A city.","zh_CN":"城市。"}
   City *string `json:"city,omitempty" xml:"city,omitempty"`
-  // {"en" : "A company name.", "zh_CN": "公司名称。"}
+  // {"en":"A company name.","zh_CN":"公司名称。"}
   Company *string `json:"company,omitempty" xml:"company,omitempty"`
-  // {"en" : "The department associated with the certificate.", "zh_CN": "与证书关联的部门。"}
+  // {"en":"The department associated with the certificate.","zh_CN":"与证书关联的部门。"}
   Department *string `json:"department,omitempty" xml:"department,omitempty"`
-  // {"en" : "A common name for the certificate.", "zh_CN": "证书的通用名称。"}
+  // {"en":"A common name for the certificate.","zh_CN":"证书的通用名称。"}
   CommonName *string `json:"commonName,omitempty" xml:"commonName,omitempty" require:"true"`
-  // {"en" : "An email address.", "zh_CN": "邮箱地址。"}
+  // {"en":"An email address.","zh_CN":"邮箱地址。"}
   Email *string `json:"email,omitempty" xml:"email,omitempty"`
-  // {"en" : "Hostnames that this certificate will serve. Each entry must be a valid hostname such as domain.com or a wildcard hostname beginning with '*' such as *.domain.com.", "zh_CN": "此证书涵盖的加速域名（SAN）列表。每个条目必须是有效的加速域名，例如 domain.com
-  // 或者是以'*'开头的泛域名，例如：*.domain.com。"}
+  // {"en":"Hostnames that this certificate will serve. Each entry must be a valid hostname such as domain.com or a wildcard hostname beginning with '*' such as.domain.com.","zh_CN":"此证书涵盖的加速域名（SAN）列表。每个条目必须是有效的加速域名，例如 domain.com\n或者是以'*'开头的泛域名，例如：*.domain.com。"}
   SubjectAlternativeNames []*string `json:"subjectAlternativeNames,omitempty" xml:"subjectAlternativeNames,omitempty" require:"true" type:"Repeated"`
 }
 
@@ -943,6 +908,39 @@ func (s *CreateACertificateRequestNewVersionIdentificationInfo) SetSubjectAltern
   return s
 }
 
+type CreateACertificateRequestHeader struct {
+}
+
+func (s CreateACertificateRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateACertificateRequestHeader) GoString() string {
+  return s.String()
+}
+
+type CreateACertificatePaths struct {
+}
+
+func (s CreateACertificatePaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateACertificatePaths) GoString() string {
+  return s.String()
+}
+
+type CreateACertificateParameters struct {
+}
+
+func (s CreateACertificateParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateACertificateParameters) GoString() string {
+  return s.String()
+}
+
 type CreateACertificateResponse struct {
 }
 
@@ -955,7 +953,7 @@ func (s CreateACertificateResponse) GoString() string {
 }
 
 type CreateACertificateResponseHeader struct {
-  // {"en":"The Location header's value will be a URL allowing you to get details about the new certificate.  Example: <code>Location: http://ngapi.cdnetworks.com/cdn/certificates/d60b730d9a586425677940cc</code>", "zh_CN":"通过Location响应头返回新建的证书的URL。URL中包含证书的ID，可使用该ID调用'查询证书详情'接口来查看证书详细信息。URL示例：<code>Location: http://open.chinanetcenter.com/cdn/certificates/5dca2205f9e9cc0001df7b33"}
+  // {"en":"Returns a URL pointing to the new certificate created, if the request is accepted. The URL contains the ID of the new certificate. </br> URL format: <code>{scheme}://{domain}/cdn/certificates/{certificateId}</code> Example URL: <code>https://api.example.com/cdn/certificates/5dca2205f9e9cc0001df7b33</code>","zh_CN":"当接口调用成功时，通过Location响应头返回新建的证书的URL。URL中包含证书的ID，可使用该ID调用'查询证书详情'接口来查看证书详细信息。</br> URL格式：<code>{协议}://{域名}/cdn/certificates/{证书ID}</code> URL示例： <code>https://open.chinanetcenter.com/cdn/certificates/5dca2205f9e9cc0001df7b33</code>"}
   Location *string `json:"Location,omitempty" xml:"Location,omitempty" require:"true"`
 }
 
@@ -975,60 +973,16 @@ func (s *CreateACertificateResponseHeader) SetLocation(v string) *CreateACertifi
 
 
 
-type UpdateACertificatePaths struct {
-  // {"en" : "ID of the certificate.", "zh_CN": "证书 id。"}
-  CertificateId *string `json:"certificateId,omitempty" xml:"certificateId,omitempty" require:"true"`
-}
-
-func (s UpdateACertificatePaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s UpdateACertificatePaths) GoString() string {
-  return s.String()
-}
-
-func (s *UpdateACertificatePaths) SetCertificateId(v string) *UpdateACertificatePaths {
-  s.CertificateId = &v
-  return s
-}
-
-type UpdateACertificateParameters struct {
-}
-
-func (s UpdateACertificateParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s UpdateACertificateParameters) GoString() string {
-  return s.String()
-}
-
-type UpdateACertificateRequestHeader struct {
-}
-
-func (s UpdateACertificateRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s UpdateACertificateRequestHeader) GoString() string {
-  return s.String()
-}
-
 type UpdateACertificateRequest struct {
-  // {"en" : "Name of the certificate.", "zh_CN": "证书名称。"}
+  // {"en":"Name of the certificate.","zh_CN":"证书名称。"}
   Name *string `json:"name,omitempty" xml:"name,omitempty"`
-  // {"en" : "Description of the certificate.", "zh_CN": "证书描述。"}
+  // {"en":"Description of the certificate.","zh_CN":"证书描述。"}
   Description *string `json:"description,omitempty" xml:"description,omitempty"`
-  // {"en" : "Enum: Off,LE 
-  // Indicates whether the certificate will be renewed with Let's Encrypt.", "zh_CN": "取值范围: Off,LE 
-  // 是否开启证书自动更新。当值为'LE'时，我们将会在证书即将到期时通过Let's Encrypt自动更新您的证书。"}
+  // {"en":"Enum: Off,LE\nIndicates whether the certificate will be renewed with Let's Encrypt.","zh_CN":"取值范围: Off,LE\n是否开启证书自动更新。当值为'LE'时，我们将会在证书即将到期时通过Let's Encrypt自动更新您的证书。"}
   AutoRenew *string `json:"autoRenew,omitempty" xml:"autoRenew,omitempty"`
-  // {"en" : "If this field is present, a new version of the certificate will be created. If the identificationInfo field is not provided, then the information will be copied from the latest version of the certificate.", "zh_CN": "如果该字段存在，则将创建一个新的证书版本。如果没有提供identiationinfo字段，则相关信息将从证书的最新版本中复制。"}
+  // {"en":"If this field is present, a new version of the certificate will be created. If the identificationInfo field is not provided, then the information will be copied from the latest version of the certificate.","zh_CN":"如果该字段存在，则将创建一个新的证书版本。如果没有提供identiationinfo字段，则相关信息将从证书的最新版本中复制。"}
   NewVersion *UpdateACertificateRequestNewVersion `json:"newVersion,omitempty" xml:"newVersion,omitempty" type:"Struct"`
-  // {"en" : "Default: False 
-  // A value of true requests the certificate to be auto-renewed as soon as possible instead of waiting for the certificate to expire in 15 days. The value will be set to false after a successful renewal.", "zh_CN": "默认值: False 
-  // 是否强制更新。当值为true时表示要求尽快自动更新证书，而不是等待证书在 15 天后过期。 证书成功更新后，该值将设置为false。"}
+  // {"en":"Default: False\nA value of true requests the certificate to be auto-renewed as soon as possible instead of waiting for the certificate to expire in 15 days. The value will be set to false after a successful renewal.","zh_CN":"默认值: False\n是否强制更新。当值为true时表示要求尽快自动更新证书，而不是等待证书在 15 天后过期。 证书成功更新后，该值将设置为false。"}
   ForceRenew *bool `json:"forceRenew,omitempty" xml:"forceRenew,omitempty"`
 }
 
@@ -1066,13 +1020,13 @@ func (s *UpdateACertificateRequest) SetForceRenew(v bool) *UpdateACertificateReq
 }
 
 type UpdateACertificateRequestNewVersion struct {
-  // {"en" : "If not present, the value will be copied from the latest version of the certificate. Please refer to the description of the privateKey field in the Create a certificate API for details about the format.", "zh_CN": "如果未指定该字段，则将从证书的最新版本中复制。 具体格式请参考'创建证书'接口中privateKey字段的说明。"}
+  // {"en":"If not present, the value will be copied from the latest version of the certificate. Please refer to the description of the privateKey field in the Create a certificate API for details about the format.","zh_CN":"如果未指定该字段，则将从证书的最新版本中复制。 具体格式请参考'创建证书'接口中privateKey字段的说明。"}
   PrivateKey *string `json:"privateKey,omitempty" xml:"privateKey,omitempty"`
-  // {"en" : "If not present, the value will be copied from the latest version of the certificate. Please refer to the description of the certificate field in the Create a certificate API for details about the format.", "zh_CN": "如果未指定该字段，则将从证书的最新版本中复制。 具体格式请参考'创建证书'接口中certificate字段的说明。"}
+  // {"en":"If not present, the value will be copied from the latest version of the certificate. Please refer to the description of the certificate field in the Create a certificate API for details about the format.","zh_CN":"如果未指定该字段，则将从证书的最新版本中复制。 具体格式请参考'创建证书'接口中certificate字段的说明。"}
   Certificate *string `json:"certificate,omitempty" xml:"certificate,omitempty"`
-  // {"en" : "This field must be filled in if the privateKey and certificate fields are both omitted. In this case, only the chain certificate will be updated. The chain certificate must be in PEM format.", "zh_CN": "当privateKey和certificate字段都未指定时，该字段必须填写。在这种情况下，只有链证书将被更新。链证书的格式必须为PEM。"}
+  // {"en":"This field must be filled in if the privateKey and certificate fields are both omitted. In this case, only the chain certificate will be updated. The chain certificate must be in PEM format.","zh_CN":"当privateKey和certificate字段都未指定时，该字段必须填写。在这种情况下，只有链证书将被更新。链证书的格式必须为PEM。"}
   ChainCert *string `json:"chainCert,omitempty" xml:"chainCert,omitempty"`
-  // {"en" : "Information submitted when generating a self-signed certificate.", "zh_CN": "生成自签名证书时提交的信息。"}
+  // {"en":"Information submitted when generating a self-signed certificate.","zh_CN":"生成自签名证书时提交的信息。"}
   IdentificationInfo *UpdateACertificateRequestNewVersionIdentificationInfo `json:"identificationInfo,omitempty" xml:"identificationInfo,omitempty" type:"Struct"`
 }
 
@@ -1105,24 +1059,21 @@ func (s *UpdateACertificateRequestNewVersion) SetIdentificationInfo(v *UpdateACe
 }
 
 type UpdateACertificateRequestNewVersionIdentificationInfo struct {
-  // {"en" : "Range: [ 2 .. 2 ] characters 
-  // An ISO-3166 country code.", "zh_CN": "取值范围: [ 2 .. 2 ] 字符 
-  // ISO-3166国家代码。"}
+  // {"en":"Range: [ 2 .. 2 ] characters\nAn ISO-3166 country code.","zh_CN":"取值范围: [ 2 .. 2 ] 字符\nISO-3166国家代码。"}
   Country *string `json:"country,omitempty" xml:"country,omitempty"`
-  // {"en" : "A state or province.", "zh_CN": "州或省。"}
+  // {"en":"A state or province.","zh_CN":"州或省。"}
   State *string `json:"state,omitempty" xml:"state,omitempty"`
-  // {"en" : "A city.", "zh_CN": "城市。"}
+  // {"en":"A city.","zh_CN":"城市。"}
   City *string `json:"city,omitempty" xml:"city,omitempty"`
-  // {"en" : "A company name.", "zh_CN": "公司名称。"}
+  // {"en":"A company name.","zh_CN":"公司名称。"}
   Company *string `json:"company,omitempty" xml:"company,omitempty"`
-  // {"en" : "The department associated with the certificate.", "zh_CN": "与证书关联的部门。"}
+  // {"en":"The department associated with the certificate.","zh_CN":"与证书关联的部门。"}
   Department *string `json:"department,omitempty" xml:"department,omitempty"`
-  // {"en" : "A common name for the certificate.", "zh_CN": "证书的通用名称。"}
+  // {"en":"A common name for the certificate.","zh_CN":"证书的通用名称。"}
   CommonName *string `json:"commonName,omitempty" xml:"commonName,omitempty" require:"true"`
-  // {"en" : "An email address.", "zh_CN": "邮箱地址。"}
+  // {"en":"An email address.","zh_CN":"邮箱地址。"}
   Email *string `json:"email,omitempty" xml:"email,omitempty"`
-  // {"en" : "Hostnames that this certificate will serve. Each entry must be a valid hostname such as domain.com or a wildcard hostname beginning with '*' such as *.domain.com.", "zh_CN": "此证书涵盖的加速域名。每个条目必须是有效的加速域名，例如 domain.com
-  // 或者是以'*'开头的泛域名，例如：*.domain.com。"}
+  // {"en":"Hostnames that this certificate will serve. Each entry must be a valid hostname such as domain.com or a wildcard hostname beginning with '*' such as *.domain.com.","zh_CN":"此证书涵盖的加速域名。每个条目必须是有效的加速域名，例如 domain.com\n或者是以'*'开头的泛域名，例如：*.domain.com。"}
   SubjectAlternativeNames []*string `json:"subjectAlternativeNames,omitempty" xml:"subjectAlternativeNames,omitempty" require:"true" type:"Repeated"`
 }
 
@@ -1174,6 +1125,46 @@ func (s *UpdateACertificateRequestNewVersionIdentificationInfo) SetSubjectAltern
   return s
 }
 
+type UpdateACertificateRequestHeader struct {
+}
+
+func (s UpdateACertificateRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateACertificateRequestHeader) GoString() string {
+  return s.String()
+}
+
+type UpdateACertificatePaths struct {
+  // {"en":"ID of the certificate.","zh_CN":"证书 id。"}
+  CertificateId *string `json:"certificateId,omitempty" xml:"certificateId,omitempty" require:"true"`
+}
+
+func (s UpdateACertificatePaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateACertificatePaths) GoString() string {
+  return s.String()
+}
+
+func (s *UpdateACertificatePaths) SetCertificateId(v string) *UpdateACertificatePaths {
+  s.CertificateId = &v
+  return s
+}
+
+type UpdateACertificateParameters struct {
+}
+
+func (s UpdateACertificateParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateACertificateParameters) GoString() string {
+  return s.String()
+}
+
 type UpdateACertificateResponse struct {
 }
 
@@ -1186,7 +1177,7 @@ func (s UpdateACertificateResponse) GoString() string {
 }
 
 type UpdateACertificateResponseHeader struct {
-  // {"en":"The Location header returns a URL to the specific certificate version if a new one is created.  Example:  <code>Location: http://open.chinanetcenter.com/cdn/certificates/329f12c1fe6708c23c31e91f/versions/5</code>", "zh_CN":"通过Location响应头返回新创建的证书版本的URL。示例：<code>Location:http://open.chinanetcenter.com/cdn/certificates/329f12c1fe6708c23c31e91f/versions/5</code>"}
+  // {"en":"Returns a URL pointing to the new certificate version created, if the request is accepted. The URL contains the certificate ID and the number of the new certificate version. </br> URL format: <code>{scheme}://{domain}/cdn/certificates/{certificateId}/versions/{versionNumber}</code> Example URL: <code>https://api.example.com/cdn/certificates/329f12c1fe6708c23c31e91f/verions/2</code>","zh_CN":"当接口调用成功时，通过Location响应头返回新创建的证书版本的URL。URL中包含了证书的ID以及版本号。</br> URL格式：<code>{协议}://{域名}/cdn/certificates/{证书ID}/versions/{版本号}</code> URL示例： <code>https://open.chinanetcenter.com/cdn/certificates/329f12c1fe6708c23c31e91f/versions/5</code>"}
   Location *string `json:"Location,omitempty" xml:"Location,omitempty" require:"true"`
 }
 

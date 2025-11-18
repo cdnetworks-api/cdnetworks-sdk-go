@@ -6,7 +6,7 @@ import (
 )
 
 type ConvertFreeTypeInstanceToChargeTypeRequest struct {
-  // {"en":"Unique cloud host identity.Up to 100 IDs can be sent at a time, separated by the half comma character ', '.", "zh_CN":"云主机唯一标识。单次最多可发送100 条ID，ID 之间用半角逗号字符','隔开。"}
+  // {"en":"Unique cloud host identity.Up to 100 IDs can be sent at a time, separated by the half comma character ', '.","zh_CN":"云主机唯一标识。单次最多可发送100 条ID，ID 之间用半角逗号字符','隔开。"}
   Servers *string `json:"servers,omitempty" xml:"servers,omitempty" require:"true"`
 }
 
@@ -23,53 +23,15 @@ func (s *ConvertFreeTypeInstanceToChargeTypeRequest) SetServers(v string) *Conve
   return s
 }
 
-type ConvertFreeTypeInstanceToChargeTypeResponse struct {
-  BatchErrorMsg []*ConvertFreeTypeInstanceToChargeTypeErrorMsg `json:"batchErrorMsg,omitempty" xml:"batchErrorMsg,omitempty" require:"true" type:"Repeated"`
+type ConvertFreeTypeInstanceToChargeTypeRequestHeader struct {
 }
 
-func (s ConvertFreeTypeInstanceToChargeTypeResponse) String() string {
+func (s ConvertFreeTypeInstanceToChargeTypeRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s ConvertFreeTypeInstanceToChargeTypeResponse) GoString() string {
+func (s ConvertFreeTypeInstanceToChargeTypeRequestHeader) GoString() string {
   return s.String()
-}
-
-func (s *ConvertFreeTypeInstanceToChargeTypeResponse) SetBatchErrorMsg(v []*ConvertFreeTypeInstanceToChargeTypeErrorMsg) *ConvertFreeTypeInstanceToChargeTypeResponse {
-  s.BatchErrorMsg = v
-  return s
-}
-
-type ConvertFreeTypeInstanceToChargeTypeErrorMsg struct {
-  // {"en":"error code", "zh_CN":"错误编码"}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"instance id", "zh_CN":"实例id"}
-  Key *string `json:"key,omitempty" xml:"key,omitempty" require:"true"`
-  // {"en":"error msg", "zh_CN":"错误信息"}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-}
-
-func (s ConvertFreeTypeInstanceToChargeTypeErrorMsg) String() string {
-  return tea.Prettify(s)
-}
-
-func (s ConvertFreeTypeInstanceToChargeTypeErrorMsg) GoString() string {
-  return s.String()
-}
-
-func (s *ConvertFreeTypeInstanceToChargeTypeErrorMsg) SetCode(v string) *ConvertFreeTypeInstanceToChargeTypeErrorMsg {
-  s.Code = &v
-  return s
-}
-
-func (s *ConvertFreeTypeInstanceToChargeTypeErrorMsg) SetKey(v string) *ConvertFreeTypeInstanceToChargeTypeErrorMsg {
-  s.Key = &v
-  return s
-}
-
-func (s *ConvertFreeTypeInstanceToChargeTypeErrorMsg) SetMsg(v string) *ConvertFreeTypeInstanceToChargeTypeErrorMsg {
-  s.Msg = &v
-  return s
 }
 
 type ConvertFreeTypeInstanceToChargeTypePaths struct {
@@ -94,15 +56,86 @@ func (s ConvertFreeTypeInstanceToChargeTypeParameters) GoString() string {
   return s.String()
 }
 
-type ConvertFreeTypeInstanceToChargeTypeRequestHeader struct {
+type ConvertFreeTypeInstanceToChargeTypeResponse struct {
+  // {"en":"Response code","zh_CN":"响应码，0为成功"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Response data","zh_CN":"响应数据"}
+  Data *ConvertFreeTypeInstanceToChargeTypeResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
+  // {"en":"Error message","zh_CN":"错误信息"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
 }
 
-func (s ConvertFreeTypeInstanceToChargeTypeRequestHeader) String() string {
+func (s ConvertFreeTypeInstanceToChargeTypeResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s ConvertFreeTypeInstanceToChargeTypeRequestHeader) GoString() string {
+func (s ConvertFreeTypeInstanceToChargeTypeResponse) GoString() string {
   return s.String()
+}
+
+func (s *ConvertFreeTypeInstanceToChargeTypeResponse) SetCode(v string) *ConvertFreeTypeInstanceToChargeTypeResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *ConvertFreeTypeInstanceToChargeTypeResponse) SetData(v *ConvertFreeTypeInstanceToChargeTypeResponseData) *ConvertFreeTypeInstanceToChargeTypeResponse {
+  s.Data = v
+  return s
+}
+
+func (s *ConvertFreeTypeInstanceToChargeTypeResponse) SetMessage(v string) *ConvertFreeTypeInstanceToChargeTypeResponse {
+  s.Message = &v
+  return s
+}
+
+type ConvertFreeTypeInstanceToChargeTypeResponseData struct {
+  // {"en":"Batch error","zh_CN":"批量操作失败信息"}
+  BatchErrorMsg []*ConvertFreeTypeInstanceToChargeTypeResponseDataBatchErrorMsg `json:"batchErrorMsg,omitempty" xml:"batchErrorMsg,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s ConvertFreeTypeInstanceToChargeTypeResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s ConvertFreeTypeInstanceToChargeTypeResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *ConvertFreeTypeInstanceToChargeTypeResponseData) SetBatchErrorMsg(v []*ConvertFreeTypeInstanceToChargeTypeResponseDataBatchErrorMsg) *ConvertFreeTypeInstanceToChargeTypeResponseData {
+  s.BatchErrorMsg = v
+  return s
+}
+
+type ConvertFreeTypeInstanceToChargeTypeResponseDataBatchErrorMsg struct     {
+  // {"en":"Error code","zh_CN":"错误编码"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Instance ID","zh_CN":"实例id"}
+  Key *string `json:"key,omitempty" xml:"key,omitempty" require:"true"`
+  // {"en":"Error message","zh_CN":"错误信息"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+}
+
+func (s ConvertFreeTypeInstanceToChargeTypeResponseDataBatchErrorMsg) String() string {
+  return tea.Prettify(s)
+}
+
+func (s ConvertFreeTypeInstanceToChargeTypeResponseDataBatchErrorMsg) GoString() string {
+  return s.String()
+}
+
+func (s *ConvertFreeTypeInstanceToChargeTypeResponseDataBatchErrorMsg) SetCode(v string) *ConvertFreeTypeInstanceToChargeTypeResponseDataBatchErrorMsg {
+  s.Code = &v
+  return s
+}
+
+func (s *ConvertFreeTypeInstanceToChargeTypeResponseDataBatchErrorMsg) SetKey(v string) *ConvertFreeTypeInstanceToChargeTypeResponseDataBatchErrorMsg {
+  s.Key = &v
+  return s
+}
+
+func (s *ConvertFreeTypeInstanceToChargeTypeResponseDataBatchErrorMsg) SetMsg(v string) *ConvertFreeTypeInstanceToChargeTypeResponseDataBatchErrorMsg {
+  s.Msg = &v
+  return s
 }
 
 type ConvertFreeTypeInstanceToChargeTypeResponseHeader struct {
@@ -120,9 +153,9 @@ func (s ConvertFreeTypeInstanceToChargeTypeResponseHeader) GoString() string {
 
 
 type ManageInstanceTagsRequest struct {
-  // {"en":"The cloud host ID, with multiple IDs separated by the half corner comma character ', '.", "zh_CN":"云主机id，多个ID 之间用半角逗号字符','隔开。"}
+  // {"en":"The cloud host ID, with multiple IDs separated by the half corner comma character ', '.","zh_CN":"云主机id，多个ID 之间用半角逗号字符','隔开。"}
   Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
-  // {"en":"New instance label value;If the value is null, the instance label of the specified cloud host is deleted.", "zh_CN":"新的实例标签值；如果值为空，则表示删除指定云主机的实例标签。"}
+  // {"en":"New instance label value;If the value is null, the instance label of the specified cloud host is deleted.","zh_CN":"新的实例标签值；如果值为空，则表示删除指定云主机的实例标签。"}
   Tag *string `json:"tag,omitempty" xml:"tag,omitempty" require:"true"`
 }
 
@@ -144,14 +177,14 @@ func (s *ManageInstanceTagsRequest) SetTag(v string) *ManageInstanceTagsRequest 
   return s
 }
 
-type ManageInstanceTagsResponse struct {
+type ManageInstanceTagsRequestHeader struct {
 }
 
-func (s ManageInstanceTagsResponse) String() string {
+func (s ManageInstanceTagsRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s ManageInstanceTagsResponse) GoString() string {
+func (s ManageInstanceTagsRequestHeader) GoString() string {
   return s.String()
 }
 
@@ -177,15 +210,86 @@ func (s ManageInstanceTagsParameters) GoString() string {
   return s.String()
 }
 
-type ManageInstanceTagsRequestHeader struct {
+type ManageInstanceTagsResponse struct {
+  // {"en":"Response code","zh_CN":"响应码，0为成功"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Error message","zh_CN":"错误信息"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+  // {"en":"Response data","zh_CN":"响应数据"}
+  Data *ManageInstanceTagsResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
 }
 
-func (s ManageInstanceTagsRequestHeader) String() string {
+func (s ManageInstanceTagsResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s ManageInstanceTagsRequestHeader) GoString() string {
+func (s ManageInstanceTagsResponse) GoString() string {
   return s.String()
+}
+
+func (s *ManageInstanceTagsResponse) SetCode(v string) *ManageInstanceTagsResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *ManageInstanceTagsResponse) SetMessage(v string) *ManageInstanceTagsResponse {
+  s.Message = &v
+  return s
+}
+
+func (s *ManageInstanceTagsResponse) SetData(v *ManageInstanceTagsResponseData) *ManageInstanceTagsResponse {
+  s.Data = v
+  return s
+}
+
+type ManageInstanceTagsResponseData struct {
+  // {"en":"Batch error","zh_CN":"批量操作失败信息"}
+  BatchErrorMsg []*ManageInstanceTagsResponseDataBatchErrorMsg `json:"batchErrorMsg,omitempty" xml:"batchErrorMsg,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s ManageInstanceTagsResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s ManageInstanceTagsResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *ManageInstanceTagsResponseData) SetBatchErrorMsg(v []*ManageInstanceTagsResponseDataBatchErrorMsg) *ManageInstanceTagsResponseData {
+  s.BatchErrorMsg = v
+  return s
+}
+
+type ManageInstanceTagsResponseDataBatchErrorMsg struct     {
+  // {"en":"Instance ID","zh_CN":"实例ID"}
+  Key *string `json:"key,omitempty" xml:"key,omitempty" require:"true"`
+  // {"en":"Error code","zh_CN":"错误码"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Error message","zh_CN":"错误信息"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+}
+
+func (s ManageInstanceTagsResponseDataBatchErrorMsg) String() string {
+  return tea.Prettify(s)
+}
+
+func (s ManageInstanceTagsResponseDataBatchErrorMsg) GoString() string {
+  return s.String()
+}
+
+func (s *ManageInstanceTagsResponseDataBatchErrorMsg) SetKey(v string) *ManageInstanceTagsResponseDataBatchErrorMsg {
+  s.Key = &v
+  return s
+}
+
+func (s *ManageInstanceTagsResponseDataBatchErrorMsg) SetCode(v string) *ManageInstanceTagsResponseDataBatchErrorMsg {
+  s.Code = &v
+  return s
+}
+
+func (s *ManageInstanceTagsResponseDataBatchErrorMsg) SetMsg(v string) *ManageInstanceTagsResponseDataBatchErrorMsg {
+  s.Msg = &v
+  return s
 }
 
 type ManageInstanceTagsResponseHeader struct {
@@ -203,13 +307,13 @@ func (s ManageInstanceTagsResponseHeader) GoString() string {
 
 
 type InstanceRebuildRequest struct {
-  // {"en":"vm id", "zh_CN":"云主机ID"}
+  // {"en":"vm id","zh_CN":"云主机ID"}
   Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
-  // {"en":"Image ID", "zh_CN":"镜像ID（指定了镜像ID则使用指定的镜像重装，否则使用原镜像重装）"}
+  // {"en":"Image ID","zh_CN":"镜像ID（指定了镜像ID则使用指定的镜像重装，否则使用原镜像重装）"}
   ImageId *string `json:"imageId,omitempty" xml:"imageId,omitempty"`
-  // {"en":"password", "zh_CN":"密码（使用公共镜像重装必须指定密码，使用自定义镜像可不指定）"}
+  // {"en":"password","zh_CN":"密码（使用公共镜像重装必须指定密码，使用自定义镜像可不指定）"}
   Password *string `json:"password,omitempty" xml:"password,omitempty"`
-  // {"en":"Retain Data Disk", "zh_CN":"是否保留数据盘（1：是；-1：否）"}
+  // {"en":"Retain Data Disk","zh_CN":"是否保留数据盘（1：是；-1：否）"}
   RetainDataDisk *int `json:"retainDataDisk,omitempty" xml:"retainDataDisk,omitempty"`
 }
 
@@ -241,14 +345,14 @@ func (s *InstanceRebuildRequest) SetRetainDataDisk(v int) *InstanceRebuildReques
   return s
 }
 
-type InstanceRebuildResponse struct {
+type InstanceRebuildRequestHeader struct {
 }
 
-func (s InstanceRebuildResponse) String() string {
+func (s InstanceRebuildRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s InstanceRebuildResponse) GoString() string {
+func (s InstanceRebuildRequestHeader) GoString() string {
   return s.String()
 }
 
@@ -274,15 +378,29 @@ func (s InstanceRebuildParameters) GoString() string {
   return s.String()
 }
 
-type InstanceRebuildRequestHeader struct {
+type InstanceRebuildResponse struct {
+  // {"en":"Response code","zh_CN":"响应码，0为成功"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Error message","zh_CN":"错误信息"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
 }
 
-func (s InstanceRebuildRequestHeader) String() string {
+func (s InstanceRebuildResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s InstanceRebuildRequestHeader) GoString() string {
+func (s InstanceRebuildResponse) GoString() string {
   return s.String()
+}
+
+func (s *InstanceRebuildResponse) SetCode(v string) *InstanceRebuildResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *InstanceRebuildResponse) SetMessage(v string) *InstanceRebuildResponse {
+  s.Message = &v
+  return s
 }
 
 type InstanceRebuildResponseHeader struct {
@@ -916,101 +1034,129 @@ func (s VMPQueryInstanceResponseHeader) GoString() string {
 
 
 
-type InstanceIPV6ManagementRequest struct {
-  // {"en":"Operation:
-  // ALLOCATION - ipv6 application
-  // REMOVE - ipv6 is removed", "zh_CN":"操作：
-  // ALLOCATION-ipv6申请 
-  // REMOVE-ipv6移除"}
+type InstanceIpv6ManagementRequest struct {
+  // {"en":"Operation:\nALLOCATION - ipv6 application\nREMOVE - ipv6 is removed","zh_CN":"操作：\nALLOCATION-ipv6申请\nREMOVE-ipv6移除"}
   Action *string `json:"action,omitempty" xml:"action,omitempty" require:"true"`
-  // {"en":"Instance ID (single only)", "zh_CN":"实例id（只支持单个）"}
+  // {"en":"Instance ID (single only)","zh_CN":"实例id（只支持单个）"}
   InstanceId *string `json:"instanceId,omitempty" xml:"instanceId,omitempty" require:"true"`
 }
 
-func (s InstanceIPV6ManagementRequest) String() string {
+func (s InstanceIpv6ManagementRequest) String() string {
   return tea.Prettify(s)
 }
 
-func (s InstanceIPV6ManagementRequest) GoString() string {
+func (s InstanceIpv6ManagementRequest) GoString() string {
   return s.String()
 }
 
-func (s *InstanceIPV6ManagementRequest) SetAction(v string) *InstanceIPV6ManagementRequest {
+func (s *InstanceIpv6ManagementRequest) SetAction(v string) *InstanceIpv6ManagementRequest {
   s.Action = &v
   return s
 }
 
-func (s *InstanceIPV6ManagementRequest) SetInstanceId(v string) *InstanceIPV6ManagementRequest {
+func (s *InstanceIpv6ManagementRequest) SetInstanceId(v string) *InstanceIpv6ManagementRequest {
   s.InstanceId = &v
   return s
 }
 
-type InstanceIPV6ManagementResponse struct {
-  // {"en":"none", "zh_CN":"实例id"}
-  InstanceId *string `json:"instanceId,omitempty" xml:"instanceId,omitempty" require:"true"`
-  // {"en":"Instance IPv6 addresses, one for each operator if it is a multi-line node", "zh_CN":"实例ipv6地址，如果是多线节点，每个运营商各分配一个地址"}
-  AccessIPv6 []*string `json:"accessIPv6,omitempty" xml:"accessIPv6,omitempty" require:"true" type:"Repeated"`
+type InstanceIpv6ManagementRequestHeader struct {
 }
 
-func (s InstanceIPV6ManagementResponse) String() string {
+func (s InstanceIpv6ManagementRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s InstanceIPV6ManagementResponse) GoString() string {
+func (s InstanceIpv6ManagementRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *InstanceIPV6ManagementResponse) SetInstanceId(v string) *InstanceIPV6ManagementResponse {
+type InstanceIpv6ManagementPaths struct {
+}
+
+func (s InstanceIpv6ManagementPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s InstanceIpv6ManagementPaths) GoString() string {
+  return s.String()
+}
+
+type InstanceIpv6ManagementParameters struct {
+}
+
+func (s InstanceIpv6ManagementParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s InstanceIpv6ManagementParameters) GoString() string {
+  return s.String()
+}
+
+type InstanceIpv6ManagementResponse struct {
+  // {"en":"Response code","zh_CN":"响应码，0为成功"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Error message","zh_CN":"错误信息"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+  // {"en":"Response data","zh_CN":"响应数据"}
+  Data *InstanceIpv6ManagementResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
+}
+
+func (s InstanceIpv6ManagementResponse) String() string {
+  return tea.Prettify(s)
+}
+
+func (s InstanceIpv6ManagementResponse) GoString() string {
+  return s.String()
+}
+
+func (s *InstanceIpv6ManagementResponse) SetCode(v string) *InstanceIpv6ManagementResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *InstanceIpv6ManagementResponse) SetMessage(v string) *InstanceIpv6ManagementResponse {
+  s.Message = &v
+  return s
+}
+
+func (s *InstanceIpv6ManagementResponse) SetData(v *InstanceIpv6ManagementResponseData) *InstanceIpv6ManagementResponse {
+  s.Data = v
+  return s
+}
+
+type InstanceIpv6ManagementResponseData struct {
+  // {"en":"Instance ID","zh_CN":"实例ID"}
+  InstanceId *string `json:"instanceId,omitempty" xml:"instanceId,omitempty" require:"true"`
+  // {"en":"IPv6","zh_CN":"IPv6"}
+  AccessIPv6 []*string `json:"accessIPv6,omitempty" xml:"accessIPv6,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s InstanceIpv6ManagementResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s InstanceIpv6ManagementResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *InstanceIpv6ManagementResponseData) SetInstanceId(v string) *InstanceIpv6ManagementResponseData {
   s.InstanceId = &v
   return s
 }
 
-func (s *InstanceIPV6ManagementResponse) SetAccessIPv6(v []*string) *InstanceIPV6ManagementResponse {
+func (s *InstanceIpv6ManagementResponseData) SetAccessIPv6(v []*string) *InstanceIpv6ManagementResponseData {
   s.AccessIPv6 = v
   return s
 }
 
-type InstanceIPV6ManagementPaths struct {
+type InstanceIpv6ManagementResponseHeader struct {
 }
 
-func (s InstanceIPV6ManagementPaths) String() string {
+func (s InstanceIpv6ManagementResponseHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s InstanceIPV6ManagementPaths) GoString() string {
-  return s.String()
-}
-
-type InstanceIPV6ManagementParameters struct {
-}
-
-func (s InstanceIPV6ManagementParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s InstanceIPV6ManagementParameters) GoString() string {
-  return s.String()
-}
-
-type InstanceIPV6ManagementRequestHeader struct {
-}
-
-func (s InstanceIPV6ManagementRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s InstanceIPV6ManagementRequestHeader) GoString() string {
-  return s.String()
-}
-
-type InstanceIPV6ManagementResponseHeader struct {
-}
-
-func (s InstanceIPV6ManagementResponseHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s InstanceIPV6ManagementResponseHeader) GoString() string {
+func (s InstanceIpv6ManagementResponseHeader) GoString() string {
   return s.String()
 }
 
@@ -1018,8 +1164,8 @@ func (s InstanceIPV6ManagementResponseHeader) GoString() string {
 
 
 type VMPCreateInstanceRequest struct {
-  // {"en":"Creating array objects for virtual machines", "zh_CN":"创建实例的数组对象"}
-  Servers []*VMPCreateInstanceServer `json:"servers,omitempty" xml:"servers,omitempty" require:"true" type:"Repeated"`
+  // {"en":"Creating array objects for virtual machines","zh_CN":"创建实例的数组对象"}
+  Servers []*VMPCreateInstanceRequestServers `json:"servers,omitempty" xml:"servers,omitempty" require:"true" type:"Repeated"`
 }
 
 func (s VMPCreateInstanceRequest) String() string {
@@ -1030,375 +1176,383 @@ func (s VMPCreateInstanceRequest) GoString() string {
   return s.String()
 }
 
-func (s *VMPCreateInstanceRequest) SetServers(v []*VMPCreateInstanceServer) *VMPCreateInstanceRequest {
+func (s *VMPCreateInstanceRequest) SetServers(v []*VMPCreateInstanceRequestServers) *VMPCreateInstanceRequest {
   s.Servers = v
   return s
 }
 
-type VMPCreateInstanceServer struct {
-  // {"en":"Virtual machine area (see Appendix for details)", "zh_CN":"实例所属区域（节点名称nodeName和区域regionName至少需要上传一个。
-  //     区域列表详见附录1：https://www.wangsu.com/document/18204/areas-list?rsr=ws）"}
+type VMPCreateInstanceRequestServers struct     {
+  // {"en":"Virtual machine area (see Appendix for details)","zh_CN":"实例所属区域（节点名称nodeName和区域regionName至少需要上传一个。\n区域列表详见附录1：https://www.wangsu.com/document/18204/areas-list?rsr=ws）"}
   RegionName *string `json:"regionName,omitempty" xml:"regionName,omitempty"`
-  // {"en":"Province of virtual machine (see Appendix for details)", "zh_CN":"实例所属省份（详见附录2：https://www.wangsu.com/document/18204/isp-list?rsr=ws）"}
+  // {"en":"Province of virtual machine (see Appendix for details)","zh_CN":"实例所属省份（详见附录2：https://www.wangsu.com/document/18204/isp-list?rsr=ws）"}
   Province *string `json:"province,omitempty" xml:"province,omitempty"`
-  // {"en":"If the operator of the virtual machine (see the appendix for details) carries this parameter, please keep it consistent with the carrier returned from the '3.4 node list query' interface.", "zh_CN":"实例所属运营商（dx-电信；wt-网通；yd-移动）如果携带了该参数，请与'3.4节点列表查询'接口返回的carrier保持一致"}
+  // {"en":"If the operator of the virtual machine (see the appendix for details) carries this parameter, please keep it consistent with the carrier returned from the '3.4 node list query' interface.","zh_CN":"实例所属运营商（dx-电信；wt-网通；yd-移动）如果携带了该参数，请与'3.4节点列表查询'接口返回的carrier保持一致"}
   Carrier *string `json:"carrier,omitempty" xml:"carrier,omitempty"`
-  // {"en":"Node name, indicating that the specified node creates a virtual machine (the node name returned by interface 3.4)", "zh_CN":"节点名称，表示指定节点创建实例（节点名称可通过资源管理-节点列表查询接口获取）"}
+  // {"en":"Node name, indicating that the specified node creates a virtual machine (the node name returned by interface 3.4)","zh_CN":"节点名称，表示指定节点创建实例（节点名称可通过资源管理-节点列表查询接口获取）"}
   NodeName *string `json:"nodeName,omitempty" xml:"nodeName,omitempty"`
-  // {"en":"Virtual machine image identity", "zh_CN":"实例镜像标识"}
+  // {"en":"Virtual machine image identity","zh_CN":"实例镜像标识"}
   ImageId *string `json:"imageId,omitempty" xml:"imageId,omitempty" require:"true"`
-  // {"en":"Virtual machine specification ID", "zh_CN":"实例规格标识"}
+  // {"en":"Virtual machine specification ID","zh_CN":"实例规格标识"}
   FlavorId *string `json:"flavorId,omitempty" xml:"flavorId,omitempty" require:"true"`
-  // {"en":"Virtual machine name. If the created quantity is greater than 1, the real name is spliced with 3 digits after the parameter. For example, instance 0001, instance 0002", "zh_CN":"实例名称，如果创建数量大于1，则真实名称是在该参数后拼接3位数字。如instance_0001，instance_0002"}
+  // {"en":"Virtual machine name. If the created quantity is greater than 1, the real name is spliced with 3 digits after the parameter. For example, instance 0001, instance 0002","zh_CN":"实例名称，如果创建数量大于1，则真实名称是在该参数后拼接3位数字。如instance_0001，instance_0002"}
   Name *string `json:"name,omitempty" xml:"name,omitempty"`
-  // {"en":"Inject user data, support to inject text, text file or gzip file. The maximum length of injected content is 32KB. For content injection, Base64 format encoding is required.", "zh_CN":"注入用户数据，支持注入文本、文本文件或gzip文件。注入内容最大长度32KB。注入内容，需要进行base64格式编码。"}
+  // {"en":"Inject user data, support to inject text, text file or gzip file. The maximum length of injected content is 32KB. For content injection, Base64 format encoding is required.","zh_CN":"注入用户数据，支持注入文本、文本文件或gzip文件。注入内容最大长度32KB。注入内容，需要进行base64格式编码。"}
   UserData *string `json:"userData,omitempty" xml:"userData,omitempty"`
-  // {"en":"Number of virtual machines applied", "zh_CN":"申请实例数量"}
+  // {"en":"Number of virtual machines applied","zh_CN":"申请实例数量"}
   Count *int `json:"count,omitempty" xml:"count,omitempty"`
-  // {"en":"Virtual machine root login password", "zh_CN":"实例root用户登录密码（如果选择的是公共镜像，则密码password必填）"}
+  // {"en":"Virtual machine root login password","zh_CN":"实例root用户登录密码（如果选择的是公共镜像，则密码password必填）。\n密码规则：大写字母 小写字母 数字 特殊字符，四种包括三种，长度8~30"}
   Password *string `json:"password,omitempty" xml:"password,omitempty"`
-  // {"en":"The name of the SSH secret key pair for virtual machine login. If this parameter is specified, the password login mode is disabled by default, and the password parameter is invalid at the same time.", "zh_CN":"实例登录SSH秘钥对名称，如果指定该参数，默认禁用密码登录方式，password参数同时失效"}
+  // {"en":"The name of the SSH secret key pair for virtual machine login. If this parameter is specified, the password login mode is disabled by default, and the password parameter is invalid at the same time.","zh_CN":"实例登录SSH秘钥对名称，如果指定该参数，默认禁用密码登录方式，password参数同时失效"}
   KeyName *string `json:"keyName,omitempty" xml:"keyName,omitempty"`
-  // {"en":"Whether the virtual machine needs intranet, value:
-  // Yes: intranet required
-  // No: no intranet is required, default value'", "zh_CN":"实例是否需要内网网络，取值：
-  // YES：需要内网
-  // NO：不需要内网，默认值"}
+  // {"en":"Whether the virtual machine needs intranet, value:\nYes: intranet required\nNo: no intranet is required, default value'","zh_CN":"实例是否需要内网网络，取值：\nYES：需要内网\nNO：不需要内网，默认值"}
   InnerNet *string `json:"innerNet,omitempty" xml:"innerNet,omitempty"`
-  // {"en":"CIDR of virtual machine intranet is meaningful only when innernet = yes", "zh_CN":"实例内网的cidr，只有innerNet=YES时才有意义"}
+  // {"en":"CIDR of virtual machine intranet is meaningful only when innernet = yes","zh_CN":"实例内网的cidr，只有innerNet=YES时才有意义"}
   Cidr *string `json:"cidr,omitempty" xml:"cidr,omitempty"`
-  // {"en":"If IP address is specified, it must be within the scope of CIDR, otherwise creation fails.", "zh_CN":"实例内网ip地址，如果指定了ip，必须在cidr的范围内，否则创建失败"}
+  // {"en":"If IP address is specified, it must be within the scope of CIDR, otherwise creation fails.","zh_CN":"实例内网ip地址，如果指定了ip，必须在cidr的范围内，否则创建失败"}
   PrivateIPv4 *string `json:"privateIPv4,omitempty" xml:"privateIPv4,omitempty"`
-  // {"en":"Whether the virtual machine needs intranet2, value:
-  // Yes: intranet2 required
-  // No: no intranet2 is required, default value'", "zh_CN":"实例是否需要内网2网络，取值：
-  // YES：需要内网2
-  // NO：不需要内网2，默认值"}
+  // {"en":"Whether the virtual machine needs intranet2, value:\nYes: intranet2 required\nNo: no intranet2 is required, default value'","zh_CN":"实例是否需要内网2网络，取值：\nYES：需要内网2\nNO：不需要内网2，默认值"}
   InnerNet2 *string `json:"innerNet2,omitempty" xml:"innerNet2,omitempty"`
-  // {"en":"CIDR of virtual machine intranet2 is meaningful only when innernet = yes", "zh_CN":"实例内网2的cidr，只有innerNet2=YES时才有意义"}
+  // {"en":"CIDR of virtual machine intranet2 is meaningful only when innernet = yes","zh_CN":"实例内网2的cidr，只有innerNet2=YES时才有意义"}
   Cidr2 *string `json:"cidr2,omitempty" xml:"cidr2,omitempty"`
-  // {"en":"If IP address is specified, it must be within the scope of CIDR2, otherwise creation fails.", "zh_CN":"实例内网2ip地址，如果指定了ip，必须在cidr2的范围内，否则创建失败"}
+  // {"en":"If IP address is specified, it must be within the scope of CIDR2, otherwise creation fails.","zh_CN":"实例内网2ip地址，如果指定了ip，必须在cidr2的范围内，否则创建失败"}
   PrivateIPv42 *string `json:"privateIPv42,omitempty" xml:"privateIPv42,omitempty"`
-  // {"en":"Inner ipv6 info", "zh_CN":"内网IPv6信息"}
-  PrivateIpv6Info []*VMPCreateInstancePivateIpv6Info `json:"privateIpv6Info,omitempty" xml:"privateIpv6Info,omitempty" type:"Repeated"`
-  // {"en":"Whether multiple IP protocol addresses are required
-  // 
-  // 4: only IPv4 address is required, default value
-  // 
-  // 0: both IPv4 and IPv6 need'", "zh_CN":"是否需要多ip协议地址
-  // 4：只需要ipv4地址，默认值
-  // 0：ipv4、ipv6都需要"}
+  // {"en":"Inner ipv6 info","zh_CN":"内网IPv6信息"}
+  PrivateIpv6Info []*VMPCreateInstanceRequestServersPrivateIpv6Info `json:"privateIpv6Info,omitempty" xml:"privateIpv6Info,omitempty" type:"Repeated"`
+  // {"en":"Whether multiple IP protocol addresses are required\n\n4: only IPv4 address is required, default value\n\n0: both IPv4 and IPv6 need'","zh_CN":"是否需要多ip协议地址\n4：只需要ipv4地址，默认值\n0：ipv4、ipv6都需要"}
   Protocols *int `json:"protocols,omitempty" xml:"protocols,omitempty"`
-  // {"en":"IPv4 native attribute, 1: non-native;-1: native;", "zh_CN":"IPv4原生属性，1：非原生；-1：原生；不指定默认随机分配原生属性"}
+  // {"en":"IPv4 native attribute, 1: non-native;-1: native;","zh_CN":"IPv4原生属性，1：非原生；-1：原生；不指定默认随机分配原生属性"}
   Ipv4NativeAttribute *string `json:"ipv4NativeAttribute,omitempty" xml:"ipv4NativeAttribute,omitempty"`
-  // {"en":"IPv6 native attribute, 1: non-native;-1: native;", "zh_CN":"IPv6原生属性，1：非原生；-1：原生；不指定默认随机分配原生属性"}
+  // {"en":"IPv6 native attribute, 1: non-native;-1: native;","zh_CN":"IPv6原生属性，1：非原生；-1：原生；不指定默认随机分配原生属性"}
   Ipv6NativeAttribute *string `json:"ipv6NativeAttribute,omitempty" xml:"ipv6NativeAttribute,omitempty"`
-  // {"en":"Whether the instance is free or not, the default billing instance, and the bare machine instance cannot be free, values are as follows:
-  // Yes: Free instances
-  // No: Billing instance
-  // If you are using a free instance, you need to configure permissions in advance", "zh_CN":"是否免费实例，默认计费实例，裸机实例不能免费，取值：
-  // YES：免费实例
-  // NO：计费实例
-  // 如果使用免费实例，需要提前配置权限"}
+  // {"en":"Whether the instance is free or not, the default billing instance, and the bare machine instance cannot be free, values are as follows:\nYes: Free instances\nNo: Billing instance\nIf you are using a free instance, you need to configure permissions in advance","zh_CN":"是否免费实例，默认计费实例，裸机实例不能免费，取值：\nYES：免费实例\nNO：计费实例\n如果使用免费实例，需要提前配置权限"}
   IsFree *string `json:"isFree,omitempty" xml:"isFree,omitempty"`
-  // {"en":"Specify a security group ID to create multiple security groups separated by commas, up to 5
-  // If you are creating a bare machine, you cannot specify a security group", "zh_CN":"指定安全组id进行创建，多个安全组以逗号分隔，最多指定5个
-  // 如果是创建裸机，不能指定安全组"}
+  // {"en":"Specify a security group ID to create multiple security groups separated by commas, up to 5\nIf you are creating a bare machine, you cannot specify a security group","zh_CN":"指定安全组id进行创建，多个安全组以逗号分隔，最多指定5个\n如果是创建裸机，不能指定安全组"}
   SecurityGroupIds []*string `json:"securityGroupIds,omitempty" xml:"securityGroupIds,omitempty" type:"Repeated"`
-  // {"en":"VMPCreateInstanceDisk information
-  // If this information is carried, the disk definition on the template will be ignored and the instance disk will be created with this information, not for bare-metal instance creation", "zh_CN":"磁盘信息
-  // 如果携带该信息，将忽略模板上的磁盘定义，以该信息创建实例磁盘，不适用于裸机实例创建"}
-  DiskInfo []*VMPCreateInstanceDisk `json:"diskInfo,omitempty" xml:"diskInfo,omitempty" type:"Repeated"`
-  // {"en":"Anti-affinity group name
-  // Virtual machines with the same ServerGroup are created on different hosts", "zh_CN":"反亲和性组名称
-  // 拥有相同serverGroup的虚拟机会被创建在不同的宿主机上"}
+  // {"en":"Disk information\nIf this information is carried, the disk definition on the template will be ignored and the instance disk will be created with this information, not for bare-metal instance creation","zh_CN":"磁盘信息\n如果携带该信息，将忽略模板上的磁盘定义，以该信息创建实例磁盘，不适用于裸机实例创建"}
+  DiskInfo []*VMPCreateInstanceRequestServersDiskInfo `json:"diskInfo,omitempty" xml:"diskInfo,omitempty" type:"Repeated"`
+  // {"en":"Anti-affinity group name\nVirtual machines with the same ServerGroup are created on different hosts","zh_CN":"反亲和性组名称\n拥有相同serverGroup的虚拟机会被创建在不同的宿主机上"}
   ServerGroup *string `json:"serverGroup,omitempty" xml:"serverGroup,omitempty"`
-  // {"en":"Instance Tag", "zh_CN":"实例标签"}
+  // {"en":"Instance Tag","zh_CN":"实例标签"}
   Tag *string `json:"tag,omitempty" xml:"tag,omitempty"`
-  // {"en":"Use  unique ip segment", "zh_CN":"是否使用唯一网段
-  // 1：是
-  // -1：否"}
+  // {"en":"Use  unique ip segment","zh_CN":"是否使用唯一网段\n1：是\n-1：否"}
   UseUniqueIpSegment *int `json:"useUniqueIpSegment,omitempty" xml:"useUniqueIpSegment,omitempty"`
-  // {"en":"Allocate IP randomly", "zh_CN":"是否需要随机分配IPv4
-  // 1：是
-  // -1：否"}
+  // {"en":"Allocate IP randomly","zh_CN":"是否需要随机分配IPv4\n1：是\n-1：否"}
   RandomAllocateIp *int `json:"randomAllocateIp,omitempty" xml:"randomAllocateIp,omitempty"`
-  // {"en":"Default Gateway", "zh_CN":"默认网关运营商如：dx-电信；yd-移动；wt-网通"}
+  // {"en":"Default Gateway","zh_CN":"默认网关运营商如：dx-电信；yd-移动；wt-网通"}
   DefaultGateway *string `json:"defaultGateway,omitempty" xml:"defaultGateway,omitempty"`
-  // {"en":"Policy routing type", "zh_CN":"策略路由类型：0-目的地址策略路由（默认）；1-源地址策略路由；"}
+  // {"en":"Policy routing type","zh_CN":"策略路由类型：0-目的地址策略路由（默认）；1-源地址策略路由"}
   PolicyRoutingType *int `json:"policyRoutingType,omitempty" xml:"policyRoutingType,omitempty"`
-  // {"en":"Private gateway flag", "zh_CN":"内网网关标识：1-分配内网网关"}
+  // {"en":"Private gateway flag","zh_CN":"内网网关标识：1-分配内网网关"}
   PrivateGatewayFlag *int `json:"privateGatewayFlag,omitempty" xml:"privateGatewayFlag,omitempty"`
-  // {"en":"Nic allocate type", "zh_CN":"实例网卡分配方式：0-多个ip共用一张网卡（默认）；1-每个ip独立一张网卡；2-V4V6混合，同协议IP同网卡，不同线路IP不同网卡"}
+  // {"en":"Nic allocate type","zh_CN":"实例网卡分配方式：0-多个ip共用一张网卡（默认）；1-每个ip独立一张网卡；2-V4V6混合，同协议IP同网卡，不同线路IP不同网卡"}
   NicAllocateType *int `json:"nicAllocateType,omitempty" xml:"nicAllocateType,omitempty"`
-  // {"en":"Ipv4 cidr", "zh_CN":"指定外网IPv4网段CIDR(不支持多线)"}
+  // {"en":"Ipv4 cidr","zh_CN":"指定外网IPv4网段CIDR(不支持多线)"}
   SinglePublicIpv4Cidr *string `json:"singlePublicIpv4Cidr,omitempty" xml:"singlePublicIpv4Cidr,omitempty"`
+  // {"en":"Specify certain public IPv4 ISPs; effective for multi-line nodes; if not specified, an instance with IPs from all carriers is created by default.","zh_CN":"指定部分公网ipv4运营商, 仅多线节点生效。多线节点未指定该参数时，默认创建包含所有运营商IP的实例"}
+  PublicIpv4Info []*VMPCreateInstanceRequestServersPublicIpv4Info `json:"publicIpv4Info,omitempty" xml:"publicIpv4Info,omitempty" type:"Repeated"`
+  // {"en":"Specify certain public IPv6 ISPs; effective for multi-line nodes; if not specified, an instance with IPs from all carriers is created by default.","zh_CN":"指定部分公网ipv6运营商, 仅多线节点生效。多线节点指定需要ipv6未指定该参数时，默认创建包含所有运营商IP的实例"}
+  PublicIpv6Info []*VMPCreateInstanceRequestServersPublicIpv6Info `json:"publicIpv6Info,omitempty" xml:"publicIpv6Info,omitempty" type:"Repeated"`
 }
 
-func (s VMPCreateInstanceServer) String() string {
+func (s VMPCreateInstanceRequestServers) String() string {
   return tea.Prettify(s)
 }
 
-func (s VMPCreateInstanceServer) GoString() string {
+func (s VMPCreateInstanceRequestServers) GoString() string {
   return s.String()
 }
 
-func (s *VMPCreateInstanceServer) SetRegionName(v string) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetRegionName(v string) *VMPCreateInstanceRequestServers {
   s.RegionName = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetProvince(v string) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetProvince(v string) *VMPCreateInstanceRequestServers {
   s.Province = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetCarrier(v string) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetCarrier(v string) *VMPCreateInstanceRequestServers {
   s.Carrier = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetNodeName(v string) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetNodeName(v string) *VMPCreateInstanceRequestServers {
   s.NodeName = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetImageId(v string) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetImageId(v string) *VMPCreateInstanceRequestServers {
   s.ImageId = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetFlavorId(v string) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetFlavorId(v string) *VMPCreateInstanceRequestServers {
   s.FlavorId = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetName(v string) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetName(v string) *VMPCreateInstanceRequestServers {
   s.Name = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetUserData(v string) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetUserData(v string) *VMPCreateInstanceRequestServers {
   s.UserData = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetCount(v int) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetCount(v int) *VMPCreateInstanceRequestServers {
   s.Count = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetPassword(v string) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetPassword(v string) *VMPCreateInstanceRequestServers {
   s.Password = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetKeyName(v string) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetKeyName(v string) *VMPCreateInstanceRequestServers {
   s.KeyName = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetInnerNet(v string) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetInnerNet(v string) *VMPCreateInstanceRequestServers {
   s.InnerNet = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetCidr(v string) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetCidr(v string) *VMPCreateInstanceRequestServers {
   s.Cidr = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetPrivateIPv4(v string) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetPrivateIPv4(v string) *VMPCreateInstanceRequestServers {
   s.PrivateIPv4 = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetInnerNet2(v string) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetInnerNet2(v string) *VMPCreateInstanceRequestServers {
   s.InnerNet2 = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetCidr2(v string) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetCidr2(v string) *VMPCreateInstanceRequestServers {
   s.Cidr2 = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetPrivateIPv42(v string) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetPrivateIPv42(v string) *VMPCreateInstanceRequestServers {
   s.PrivateIPv42 = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetPrivateIpv6Info(v []*VMPCreateInstancePivateIpv6Info) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetPrivateIpv6Info(v []*VMPCreateInstanceRequestServersPrivateIpv6Info) *VMPCreateInstanceRequestServers {
   s.PrivateIpv6Info = v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetProtocols(v int) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetProtocols(v int) *VMPCreateInstanceRequestServers {
   s.Protocols = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetIpv4NativeAttribute(v string) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetIpv4NativeAttribute(v string) *VMPCreateInstanceRequestServers {
   s.Ipv4NativeAttribute = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetIpv6NativeAttribute(v string) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetIpv6NativeAttribute(v string) *VMPCreateInstanceRequestServers {
   s.Ipv6NativeAttribute = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetIsFree(v string) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetIsFree(v string) *VMPCreateInstanceRequestServers {
   s.IsFree = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetSecurityGroupIds(v []*string) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetSecurityGroupIds(v []*string) *VMPCreateInstanceRequestServers {
   s.SecurityGroupIds = v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetDiskInfo(v []*VMPCreateInstanceDisk) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetDiskInfo(v []*VMPCreateInstanceRequestServersDiskInfo) *VMPCreateInstanceRequestServers {
   s.DiskInfo = v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetServerGroup(v string) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetServerGroup(v string) *VMPCreateInstanceRequestServers {
   s.ServerGroup = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetTag(v string) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetTag(v string) *VMPCreateInstanceRequestServers {
   s.Tag = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetUseUniqueIpSegment(v int) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetUseUniqueIpSegment(v int) *VMPCreateInstanceRequestServers {
   s.UseUniqueIpSegment = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetRandomAllocateIp(v int) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetRandomAllocateIp(v int) *VMPCreateInstanceRequestServers {
   s.RandomAllocateIp = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetDefaultGateway(v string) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetDefaultGateway(v string) *VMPCreateInstanceRequestServers {
   s.DefaultGateway = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetPolicyRoutingType(v int) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetPolicyRoutingType(v int) *VMPCreateInstanceRequestServers {
   s.PolicyRoutingType = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetPrivateGatewayFlag(v int) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetPrivateGatewayFlag(v int) *VMPCreateInstanceRequestServers {
   s.PrivateGatewayFlag = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetNicAllocateType(v int) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetNicAllocateType(v int) *VMPCreateInstanceRequestServers {
   s.NicAllocateType = &v
   return s
 }
 
-func (s *VMPCreateInstanceServer) SetSinglePublicIpv4Cidr(v string) *VMPCreateInstanceServer {
+func (s *VMPCreateInstanceRequestServers) SetSinglePublicIpv4Cidr(v string) *VMPCreateInstanceRequestServers {
   s.SinglePublicIpv4Cidr = &v
   return s
 }
 
-type VMPCreateInstancePivateIpv6Info struct {
-  // {"en":"Inner network number", "zh_CN":"内网编号（1-对应v4的内网1；2-对应v4的内网2）"}
-  NetNo *int32 `json:"netNo,omitempty" xml:"netNo,omitempty"`
-  // {"en":"Inner network ipv6 cidr", "zh_CN":"指定内网IPv6 CIDR"}
+func (s *VMPCreateInstanceRequestServers) SetPublicIpv4Info(v []*VMPCreateInstanceRequestServersPublicIpv4Info) *VMPCreateInstanceRequestServers {
+  s.PublicIpv4Info = v
+  return s
+}
+
+func (s *VMPCreateInstanceRequestServers) SetPublicIpv6Info(v []*VMPCreateInstanceRequestServersPublicIpv6Info) *VMPCreateInstanceRequestServers {
+  s.PublicIpv6Info = v
+  return s
+}
+
+type VMPCreateInstanceRequestServersPrivateIpv6Info struct     {
+  // {"en":"Inner network number","zh_CN":"内网编号（1-对应v4的内网1；2-对应v4的内网2）"}
+  NetNo *int `json:"netNo,omitempty" xml:"netNo,omitempty"`
+  // {"en":"Inner network ipv6 cidr","zh_CN":"指定内网IPv6 CIDR"}
   PrivateCidr *string `json:"privateCidr,omitempty" xml:"privateCidr,omitempty"`
-  // {"en":"Inner network ipv6 address:", "zh_CN":"指定内网IPv6地址"}
+  // {"en":"Inner network ipv6 address:","zh_CN":"指定内网IPv6地址"}
   PrivateIp *string `json:"privateIp,omitempty" xml:"privateIp,omitempty"`
 }
 
-func (s VMPCreateInstancePivateIpv6Info) String() string {
+func (s VMPCreateInstanceRequestServersPrivateIpv6Info) String() string {
   return tea.Prettify(s)
 }
 
-func (s VMPCreateInstancePivateIpv6Info) GoString() string {
+func (s VMPCreateInstanceRequestServersPrivateIpv6Info) GoString() string {
   return s.String()
 }
 
-func (s *VMPCreateInstancePivateIpv6Info) SetNetNo(v int32) *VMPCreateInstancePivateIpv6Info {
+func (s *VMPCreateInstanceRequestServersPrivateIpv6Info) SetNetNo(v int) *VMPCreateInstanceRequestServersPrivateIpv6Info {
   s.NetNo = &v
   return s
 }
 
-func (s *VMPCreateInstancePivateIpv6Info) SetPrivateCidr(v string) *VMPCreateInstancePivateIpv6Info {
+func (s *VMPCreateInstanceRequestServersPrivateIpv6Info) SetPrivateCidr(v string) *VMPCreateInstanceRequestServersPrivateIpv6Info {
   s.PrivateCidr = &v
   return s
 }
 
-func (s *VMPCreateInstancePivateIpv6Info) SetPrivateIp(v string) *VMPCreateInstancePivateIpv6Info {
+func (s *VMPCreateInstanceRequestServersPrivateIpv6Info) SetPrivateIp(v string) *VMPCreateInstanceRequestServersPrivateIpv6Info {
   s.PrivateIp = &v
   return s
 }
 
-type VMPCreateInstanceDisk struct {
-  // {"en":"VMPCreateInstanceDisk size (GB)", "zh_CN":"磁盘大小（GB）"}
-  Size *int32 `json:"size,omitempty" xml:"size,omitempty"`
-  // {"en":"VMPCreateInstanceDisk Purpose: 
-  // System - System disk;
-  // DATA - DATA plate", "zh_CN":"磁盘用途：
-  // SYSTEM-系统盘；
-  // DATA-数据盘"}
+type VMPCreateInstanceRequestServersDiskInfo struct     {
+  // {"en":"Disk size (GB)","zh_CN":"磁盘大小（GB）"}
+  Size *int `json:"size,omitempty" xml:"size,omitempty"`
+  // {"en":"Disk Purpose:\nSystem - System disk;\nDATA - DATA plate","zh_CN":"磁盘用途：\nSYSTEM-系统盘；\nDATA-数据盘"}
   Type *string `json:"type,omitempty" xml:"type,omitempty"`
-  // {"en":"VMPCreateInstanceDisk type: HDD/SSD", "zh_CN":"磁盘类型：HDD/SSD"}
+  // {"en":"Disk type: HDD/SSD","zh_CN":"磁盘类型：HDD/SSD"}
   Category *string `json:"category,omitempty" xml:"category,omitempty"`
-  // {"en":"Is isolate: 1(Yes) / -1(No)", "zh_CN":"是否独立盘：1(是) / -1(否)"}
+  // {"en":"Is isolate: 1(Yes) / -1(No)","zh_CN":"是否独立盘：1(是) / -1(否)"}
   IsIndependent *string `json:"isIndependent,omitempty" xml:"isIndependent,omitempty"`
 }
 
-func (s VMPCreateInstanceDisk) String() string {
+func (s VMPCreateInstanceRequestServersDiskInfo) String() string {
   return tea.Prettify(s)
 }
 
-func (s VMPCreateInstanceDisk) GoString() string {
+func (s VMPCreateInstanceRequestServersDiskInfo) GoString() string {
   return s.String()
 }
 
-func (s *VMPCreateInstanceDisk) SetSize(v int32) *VMPCreateInstanceDisk {
+func (s *VMPCreateInstanceRequestServersDiskInfo) SetSize(v int) *VMPCreateInstanceRequestServersDiskInfo {
   s.Size = &v
   return s
 }
 
-func (s *VMPCreateInstanceDisk) SetType(v string) *VMPCreateInstanceDisk {
+func (s *VMPCreateInstanceRequestServersDiskInfo) SetType(v string) *VMPCreateInstanceRequestServersDiskInfo {
   s.Type = &v
   return s
 }
 
-func (s *VMPCreateInstanceDisk) SetCategory(v string) *VMPCreateInstanceDisk {
+func (s *VMPCreateInstanceRequestServersDiskInfo) SetCategory(v string) *VMPCreateInstanceRequestServersDiskInfo {
   s.Category = &v
   return s
 }
 
-func (s *VMPCreateInstanceDisk) SetIsIndependent(v string) *VMPCreateInstanceDisk {
+func (s *VMPCreateInstanceRequestServersDiskInfo) SetIsIndependent(v string) *VMPCreateInstanceRequestServersDiskInfo {
   s.IsIndependent = &v
   return s
 }
 
-type VMPCreateInstanceResponse struct {
-  // {"en":"Virtual machine identity list", "zh_CN":"实例标识列表"}
-  Servers []*string `json:"servers,omitempty" xml:"servers,omitempty" require:"true" type:"Repeated"`
+type VMPCreateInstanceRequestServersPublicIpv4Info struct     {
+  // {"en":"ISP abbreviation format, eg: dx,wt,yd","zh_CN":"运营商缩写格式：dx-电信；yd-移动；wt-网通"}
+  Carrier *string `json:"carrier,omitempty" xml:"carrier,omitempty" require:"true"`
 }
 
-func (s VMPCreateInstanceResponse) String() string {
+func (s VMPCreateInstanceRequestServersPublicIpv4Info) String() string {
   return tea.Prettify(s)
 }
 
-func (s VMPCreateInstanceResponse) GoString() string {
+func (s VMPCreateInstanceRequestServersPublicIpv4Info) GoString() string {
   return s.String()
 }
 
-func (s *VMPCreateInstanceResponse) SetServers(v []*string) *VMPCreateInstanceResponse {
-  s.Servers = v
+func (s *VMPCreateInstanceRequestServersPublicIpv4Info) SetCarrier(v string) *VMPCreateInstanceRequestServersPublicIpv4Info {
+  s.Carrier = &v
   return s
+}
+
+type VMPCreateInstanceRequestServersPublicIpv6Info struct     {
+  // {"en":"ISP abbreviation format, eg: dx,wt,yd","zh_CN":"运营商缩写格式：dx-电信；yd-移动；wt-网通"}
+  Carrier *string `json:"carrier,omitempty" xml:"carrier,omitempty" require:"true"`
+}
+
+func (s VMPCreateInstanceRequestServersPublicIpv6Info) String() string {
+  return tea.Prettify(s)
+}
+
+func (s VMPCreateInstanceRequestServersPublicIpv6Info) GoString() string {
+  return s.String()
+}
+
+func (s *VMPCreateInstanceRequestServersPublicIpv6Info) SetCarrier(v string) *VMPCreateInstanceRequestServersPublicIpv6Info {
+  s.Carrier = &v
+  return s
+}
+
+type VMPCreateInstanceRequestHeader struct {
+}
+
+func (s VMPCreateInstanceRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s VMPCreateInstanceRequestHeader) GoString() string {
+  return s.String()
 }
 
 type VMPCreateInstancePaths struct {
@@ -1423,15 +1577,22 @@ func (s VMPCreateInstanceParameters) GoString() string {
   return s.String()
 }
 
-type VMPCreateInstanceRequestHeader struct {
+type VMPCreateInstanceResponse struct {
+  // {"en":"Virtual machine identity list","zh_CN":"实例id"}
+  Id []*string `json:"id,omitempty" xml:"id,omitempty" require:"true" type:"Repeated"`
 }
 
-func (s VMPCreateInstanceRequestHeader) String() string {
+func (s VMPCreateInstanceResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s VMPCreateInstanceRequestHeader) GoString() string {
+func (s VMPCreateInstanceResponse) GoString() string {
   return s.String()
+}
+
+func (s *VMPCreateInstanceResponse) SetId(v []*string) *VMPCreateInstanceResponse {
+  s.Id = v
+  return s
 }
 
 type VMPCreateInstanceResponseHeader struct {
@@ -1449,9 +1610,10 @@ func (s VMPCreateInstanceResponseHeader) GoString() string {
 
 
 type InstanceDiskScalingRequest struct {
-  // {"en":"instance id", "zh_CN":"实例id"}
+  // {"en":"instance id","zh_CN":"实例id"}
   Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
-  DiskInfo []*InstanceDiskScalingDiskParam `json:"diskInfo,omitempty" xml:"diskInfo,omitempty" require:"true" type:"Repeated"`
+  // {"en":"","zh_CN":""}
+  DiskInfo []*InstanceDiskScalingRequestDiskInfo `json:"diskInfo,omitempty" xml:"diskInfo,omitempty" require:"true" type:"Repeated"`
 }
 
 func (s InstanceDiskScalingRequest) String() string {
@@ -1467,110 +1629,45 @@ func (s *InstanceDiskScalingRequest) SetId(v string) *InstanceDiskScalingRequest
   return s
 }
 
-func (s *InstanceDiskScalingRequest) SetDiskInfo(v []*InstanceDiskScalingDiskParam) *InstanceDiskScalingRequest {
+func (s *InstanceDiskScalingRequest) SetDiskInfo(v []*InstanceDiskScalingRequestDiskInfo) *InstanceDiskScalingRequest {
   s.DiskInfo = v
   return s
 }
 
-type InstanceDiskScalingDiskParam struct {
-  // {"en":"disk size GB", "zh_CN":"磁盘大小，单位GB"}
+type InstanceDiskScalingRequestDiskInfo struct     {
+  // {"en":"disk size GB","zh_CN":"磁盘大小，单位GB"}
   Size *int `json:"size,omitempty" xml:"size,omitempty" require:"true"`
-  // {"en":"disk type ,HDD/SDD", "zh_CN":"磁盘类型，取值：
-  // HDD：普通硬盘
-  // SSD：固态硬盘"}
+  // {"en":"disk type ,HDD/SDD","zh_CN":"磁盘类型，取值：\nHDD：普通硬盘\nSSD：固态硬盘"}
   Category *string `json:"category,omitempty" xml:"category,omitempty" require:"true"`
 }
 
-func (s InstanceDiskScalingDiskParam) String() string {
+func (s InstanceDiskScalingRequestDiskInfo) String() string {
   return tea.Prettify(s)
 }
 
-func (s InstanceDiskScalingDiskParam) GoString() string {
+func (s InstanceDiskScalingRequestDiskInfo) GoString() string {
   return s.String()
 }
 
-func (s *InstanceDiskScalingDiskParam) SetSize(v int) *InstanceDiskScalingDiskParam {
+func (s *InstanceDiskScalingRequestDiskInfo) SetSize(v int) *InstanceDiskScalingRequestDiskInfo {
   s.Size = &v
   return s
 }
 
-func (s *InstanceDiskScalingDiskParam) SetCategory(v string) *InstanceDiskScalingDiskParam {
+func (s *InstanceDiskScalingRequestDiskInfo) SetCategory(v string) *InstanceDiskScalingRequestDiskInfo {
   s.Category = &v
   return s
 }
 
-type InstanceDiskScalingResponse struct {
-  // {"en":"instance info", "zh_CN":"实例信息"}
-  InstanceDiskScalingServer *InstanceDiskScalingServer `json:"server,omitempty" xml:"server,omitempty" require:"true"`
+type InstanceDiskScalingRequestHeader struct {
 }
 
-func (s InstanceDiskScalingResponse) String() string {
+func (s InstanceDiskScalingRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s InstanceDiskScalingResponse) GoString() string {
+func (s InstanceDiskScalingRequestHeader) GoString() string {
   return s.String()
-}
-
-func (s *InstanceDiskScalingResponse) SetServer(v *InstanceDiskScalingServer) *InstanceDiskScalingResponse {
-  s.InstanceDiskScalingServer = v
-  return s
-}
-
-type InstanceDiskScalingServer struct {
-  // {"en":"server id", "zh_CN":"实例id"}
-  Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
-  DiskInfo []*InstanceDiskScalingDisk `json:"diskInfo,omitempty" xml:"diskInfo,omitempty" require:"true" type:"Repeated"`
-}
-
-func (s InstanceDiskScalingServer) String() string {
-  return tea.Prettify(s)
-}
-
-func (s InstanceDiskScalingServer) GoString() string {
-  return s.String()
-}
-
-func (s *InstanceDiskScalingServer) SetId(v string) *InstanceDiskScalingServer {
-  s.Id = &v
-  return s
-}
-
-func (s *InstanceDiskScalingServer) SetDiskInfo(v []*InstanceDiskScalingDisk) *InstanceDiskScalingServer {
-  s.DiskInfo = v
-  return s
-}
-
-type InstanceDiskScalingDisk struct {
-  // {"en":"disk category，HDD/SDD", "zh_CN":"磁盘类型，HDD/SDD"}
-  Category *string `json:"category,omitempty" xml:"category,omitempty" require:"true"`
-  // {"en":"disk type ,DATA：data disk, SYSTEM：system disk", "zh_CN":"磁盘类型,DATA：数据盘, SYSTEM：系统盘"}
-  Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
-  // {"en":"disk size GB", "zh_CN":"磁盘大小，单位GB"}
-  Size *int `json:"size,omitempty" xml:"size,omitempty" require:"true"`
-}
-
-func (s InstanceDiskScalingDisk) String() string {
-  return tea.Prettify(s)
-}
-
-func (s InstanceDiskScalingDisk) GoString() string {
-  return s.String()
-}
-
-func (s *InstanceDiskScalingDisk) SetCategory(v string) *InstanceDiskScalingDisk {
-  s.Category = &v
-  return s
-}
-
-func (s *InstanceDiskScalingDisk) SetType(v string) *InstanceDiskScalingDisk {
-  s.Type = &v
-  return s
-}
-
-func (s *InstanceDiskScalingDisk) SetSize(v int) *InstanceDiskScalingDisk {
-  s.Size = &v
-  return s
 }
 
 type InstanceDiskScalingPaths struct {
@@ -1595,15 +1692,111 @@ func (s InstanceDiskScalingParameters) GoString() string {
   return s.String()
 }
 
-type InstanceDiskScalingRequestHeader struct {
+type InstanceDiskScalingResponse struct {
+  // {"en":"Response code","zh_CN":"响应码，0为成功"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Error message","zh_CN":"错误信息"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+  // {"en":"Response data","zh_CN":"响应数据"}
+  Data *InstanceDiskScalingResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
 }
 
-func (s InstanceDiskScalingRequestHeader) String() string {
+func (s InstanceDiskScalingResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s InstanceDiskScalingRequestHeader) GoString() string {
+func (s InstanceDiskScalingResponse) GoString() string {
   return s.String()
+}
+
+func (s *InstanceDiskScalingResponse) SetCode(v string) *InstanceDiskScalingResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *InstanceDiskScalingResponse) SetMessage(v string) *InstanceDiskScalingResponse {
+  s.Message = &v
+  return s
+}
+
+func (s *InstanceDiskScalingResponse) SetData(v *InstanceDiskScalingResponseData) *InstanceDiskScalingResponse {
+  s.Data = v
+  return s
+}
+
+type InstanceDiskScalingResponseData struct {
+  // {"en":"Instance info","zh_CN":"实例信息"}
+  Server *InstanceDiskScalingResponseDataServer `json:"server,omitempty" xml:"server,omitempty" require:"true" type:"Struct"`
+}
+
+func (s InstanceDiskScalingResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s InstanceDiskScalingResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *InstanceDiskScalingResponseData) SetServer(v *InstanceDiskScalingResponseDataServer) *InstanceDiskScalingResponseData {
+  s.Server = v
+  return s
+}
+
+type InstanceDiskScalingResponseDataServer struct {
+  // {"en":"Instance ID","zh_CN":"实例id"}
+  Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
+  // {"en":"Disk info","zh_CN":"磁盘信息"}
+  DiskInfo []*InstanceDiskScalingResponseDataServerDiskInfo `json:"diskInfo,omitempty" xml:"diskInfo,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s InstanceDiskScalingResponseDataServer) String() string {
+  return tea.Prettify(s)
+}
+
+func (s InstanceDiskScalingResponseDataServer) GoString() string {
+  return s.String()
+}
+
+func (s *InstanceDiskScalingResponseDataServer) SetId(v string) *InstanceDiskScalingResponseDataServer {
+  s.Id = &v
+  return s
+}
+
+func (s *InstanceDiskScalingResponseDataServer) SetDiskInfo(v []*InstanceDiskScalingResponseDataServerDiskInfo) *InstanceDiskScalingResponseDataServer {
+  s.DiskInfo = v
+  return s
+}
+
+type InstanceDiskScalingResponseDataServerDiskInfo struct     {
+  // {"en":"Disk size","zh_CN":"磁盘大小，单位GB"}
+  Size *int `json:"size,omitempty" xml:"size,omitempty" require:"true"`
+  // {"en":"Disk type","zh_CN":"磁盘类型,DATA：数据盘, SYSTEM：系统盘"}
+  Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
+  // {"en":"Disk category","zh_CN":"磁盘类型，HDD/SDD"}
+  Category *string `json:"category,omitempty" xml:"category,omitempty" require:"true"`
+}
+
+func (s InstanceDiskScalingResponseDataServerDiskInfo) String() string {
+  return tea.Prettify(s)
+}
+
+func (s InstanceDiskScalingResponseDataServerDiskInfo) GoString() string {
+  return s.String()
+}
+
+func (s *InstanceDiskScalingResponseDataServerDiskInfo) SetSize(v int) *InstanceDiskScalingResponseDataServerDiskInfo {
+  s.Size = &v
+  return s
+}
+
+func (s *InstanceDiskScalingResponseDataServerDiskInfo) SetType(v string) *InstanceDiskScalingResponseDataServerDiskInfo {
+  s.Type = &v
+  return s
+}
+
+func (s *InstanceDiskScalingResponseDataServerDiskInfo) SetCategory(v string) *InstanceDiskScalingResponseDataServerDiskInfo {
+  s.Category = &v
+  return s
 }
 
 type InstanceDiskScalingResponseHeader struct {
@@ -1621,8 +1814,8 @@ func (s InstanceDiskScalingResponseHeader) GoString() string {
 
 
 type EditInstanceRequest struct {
-  // {"en":"server", "zh_CN":"实例信息对象"}
-  EditInstanceServer []*EditInstanceServer `json:"server,omitempty" xml:"server,omitempty" require:"true" type:"Repeated"`
+  // {"en":"server","zh_CN":"实例信息对象"}
+  Server *EditInstanceRequestServer `json:"server,omitempty" xml:"server,omitempty" require:"true" type:"Struct"`
 }
 
 func (s EditInstanceRequest) String() string {
@@ -1633,50 +1826,44 @@ func (s EditInstanceRequest) GoString() string {
   return s.String()
 }
 
-func (s *EditInstanceRequest) SetServer(v []*EditInstanceServer) *EditInstanceRequest {
-  s.EditInstanceServer = v
+func (s *EditInstanceRequest) SetServer(v *EditInstanceRequestServer) *EditInstanceRequest {
+  s.Server = v
   return s
 }
 
-type EditInstanceServer struct {
-  // {"en":"EditInstanceServer id", "zh_CN":"要更新的实例id"}
+type EditInstanceRequestServer struct {
+  // {"en":"Instance ID","zh_CN":"实例ID"}
   Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
-  // {"en":"New instance name
-  // Constraints:
-  // 1. Length of 2-128 characters
-  // 2. Must start with a letter, and can only contain letters, numbers, underlines, lines, and dots", "zh_CN":"新的实例名称
-  // 约束：
-  // 1. 长度2-128个字符
-  // 2. 必须以字母开头，且只能包含字母、数字、下划线、横线、点号"}
+  // {"en":"Instance Name","zh_CN":"实例名称"}
   Name *string `json:"name,omitempty" xml:"name,omitempty" require:"true"`
 }
 
-func (s EditInstanceServer) String() string {
+func (s EditInstanceRequestServer) String() string {
   return tea.Prettify(s)
 }
 
-func (s EditInstanceServer) GoString() string {
+func (s EditInstanceRequestServer) GoString() string {
   return s.String()
 }
 
-func (s *EditInstanceServer) SetId(v string) *EditInstanceServer {
+func (s *EditInstanceRequestServer) SetId(v string) *EditInstanceRequestServer {
   s.Id = &v
   return s
 }
 
-func (s *EditInstanceServer) SetName(v string) *EditInstanceServer {
+func (s *EditInstanceRequestServer) SetName(v string) *EditInstanceRequestServer {
   s.Name = &v
   return s
 }
 
-type EditInstanceResponse struct {
+type EditInstanceRequestHeader struct {
 }
 
-func (s EditInstanceResponse) String() string {
+func (s EditInstanceRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s EditInstanceResponse) GoString() string {
+func (s EditInstanceRequestHeader) GoString() string {
   return s.String()
 }
 
@@ -1702,14 +1889,14 @@ func (s EditInstanceParameters) GoString() string {
   return s.String()
 }
 
-type EditInstanceRequestHeader struct {
+type EditInstanceResponse struct {
 }
 
-func (s EditInstanceRequestHeader) String() string {
+func (s EditInstanceResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s EditInstanceRequestHeader) GoString() string {
+func (s EditInstanceResponse) GoString() string {
   return s.String()
 }
 

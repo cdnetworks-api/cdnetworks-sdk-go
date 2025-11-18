@@ -90,16 +90,21 @@ For detailed API documentation and available methods, please refer to the [offic
 | Queryappapiexceptionlist | Query APP/API exception list. | POST | /api/v1/dms/service-feature/get-list |
 | Deleteappapiexceptionfeature | Delete APP/API exception feature. | POST | /api/v1/dms/service-feature/delete |
 | Queryappapiexceptionfeaturedetail | Query APP/API exception feature details(Share Configurations). | POST | /api/v1/dms/service-feature/get-detail |
-| Queryappapiexceptionfeaturereferencedhostnames | Query APP/APIException Feature Referenced Hostnames(Share Configurations). | POST | /api/v1/dms/service-feature/get-relate-domain-list |
+| Queryappapiexceptionfeaturereferenceddomains | Query APP/APIException Feature Referenced Domains(Share Configurations). | POST | /api/v1/dms/service-feature/get-relate-domain-list |
 | Updateshareconfigurationsappapiexceptionfeature | Modify App/API exceptions(ShareConfigurations). | POST | /api/v1/dms/service-feature/update |
-| Listsharedcustomrules | Return a list of  custom rules for shared configurations. | POST | /api/v1/share-customize-rule/get-list |
-| Disassociateshareratelimit | Disassociate shared configuration rate limit rule from Hostname. | POST | /api/v1/common/share-rate-limit/disassociate |
-| Associateshareratelimit | Associate shared configuration rate limit rule from Hostname. | POST | /api/v1/common/share-rate-limit/associate |
-| Associatesharecustomizerule | Associate shared configuration custom rule from Hostname. | POST | /api/v1/common/share-customize-rule/associate |
-| Disassociatesharecustomizerule | Disassociate shared configuration custom rule from Hostname. | POST | /api/v1/common/share-customize-rule/disassociate |
+| Listsharecustomizebots | Query share custom Bots list. | POST | /api/v1/share-customize-bots/get-list |
+| Deletesharecustomizebots | Delete share custom Bots. | POST | /api/v1/share-customize-bots/delete |
+| Createsharedcustomrule | Create a Custom rule for shared configurations. | POST | /api/v1/share-customize-rule/add |
+| Updatesharedcustomrules | Update the custom rule of the sharing configuration. | POST | /api/v1/share-customize-rule/update |
+| Listsharedcustomrules | Get a list of  custom rules for shared configurations. | POST | /api/v1/share-customize-rule/get-list |
+| Deletesharedcustomrules | Delete custom rule for shared configuration. | POST | /api/v1/share-customize-rule/delete |
+| Disassociateshareratelimit | Disassociate shared configuration rate limiting rule from domain. | POST | /api/v1/common/share-rate-limit/disassociate |
+| Associateshareratelimit | Associate shared configuration Rate limiting rule from Domain. | POST | /api/v1/common/share-rate-limit/associate |
+| Associatesharecustomizerule | Associate the custom rules of shared configuration with the domain. | POST | /api/v1/common/share-customize-rule/associate |
+| Disassociatesharecustomizerule | Dissociate custom rules from shared configuration with domain. | POST | /api/v1/common/share-customize-rule/disassociate |
 | Associatesharecustomizebots | Associate shared configuration custom Bots from Hostname. | POST | /api/v1/common/share-customize-bots/associate |
 | Disassociatesharecustomizebots | Disassociate shared configuration custom Bots from Hostname. | POST | /api/v1/common/share-customize-bots/disassociate |
-| Associatesharedwhitelistrule | Associate shared configuration Whitelist rule from Hostname. | POST | /api/v1/common/share-whitelist/associate |
-| Disassociatesharedwhitelistrule | Disssociate shared configuration Whitelist rule from Hostname. | POST | /api/v1/common/share-whitelist/disassociate |
-| Associatedmsshareservicefeature | Associate the shared configuration APP/API exception with the domain name. | POST | /api/v1/dms/service-feature/relateDomains |
-| Disassociatedmsshareservicefeature | Disassociate the shared configuration app/API exception from the domain name. | POST | /api/v1/dms/service-feature/disRelateDomains |
+| Associatesharedwhitelistrule | Associate shared configuration Whitelist rule from Domain. | POST | /api/v1/common/share-whitelist/associate |
+| Disassociatesharedwhitelistrule | Disssociate shared configuration Whitelist rule from Domain. | POST | /api/v1/common/share-whitelist/disassociate |
+| Associatedmsshareservicefeature | Associate the shared configuration APP/API exception with the domain. | POST | /api/v1/dms/service-feature/relateDomains |
+| Disassociatedmsshareservicefeature | Disassociate the shared configuration app/API exception from the domain. | POST | /api/v1/dms/service-feature/disRelateDomains |

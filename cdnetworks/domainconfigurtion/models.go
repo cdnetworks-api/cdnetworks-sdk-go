@@ -311,14 +311,10 @@ func (s EnableOrDisableDMSprotectionResponseHeader) GoString() string {
 
 
 type EditHttpHeaderConfigRequest struct {
-  // {"en":"Http header settings
-  // note:
-  // 1. When you need to cancel the http header setting, you can pass in the empty node <header-modify-rules></header-modify-rules>.
-  // 2. indicating that you need to set the http header, this field is required", "zh_CN":"http头设置
-  // 注意：
-  // 1. 需要取消http头设置时，可以传入空节点<header-modify-rules></header-modify-rules>。
-  // 2. 表示需要设置http头，此项必填"}
+  // {"en":"Http header settings\nnote:\n1. When you need to cancel the http header setting, you can pass in the empty node <header-modify-rules></header-modify-rules>.\n2. indicating that you need to set the http header, this field is required","zh_CN":"http头设置\n注意：\n1. 需要取消http头设置时，可以传入空节点<header-modify-rules></header-modify-rules>。\n2. 表示需要设置http头，此项必填"}
   HeaderModifyRules []*EditHttpHeaderConfigEditHttpHeaderConfigRequestHeaderModifyRules `json:"header-modify-rules,omitempty" xml:"header-modify-rules,omitempty" require:"true" type:"Repeated"`
+  // {"en":"description","zh_CN":"描述"}
+  Description *string `json:"description,omitempty" xml:"description,omitempty"`
 }
 
 func (s EditHttpHeaderConfigRequest) String() string {
@@ -334,122 +330,53 @@ func (s *EditHttpHeaderConfigRequest) SetHeaderModifyRules(v []*EditHttpHeaderCo
   return s
 }
 
+func (s *EditHttpHeaderConfigRequest) SetDescription(v string) *EditHttpHeaderConfigRequest {
+  s.Description = &v
+  return s
+}
+
 type EditHttpHeaderConfigEditHttpHeaderConfigRequestHeaderModifyRules struct     {
-  // {"en":"Add a grid type identifier to indicate a specific group configuration when the client has multiple groups of configurations.", "zh_CN":"添加grid类型标识，表示客户多组配置时，具体某组配置。
-  // data-id可以通过查询接口获取。
-  // 注意：添加grid类型标识：data-id，每一组配置对应一个data-id：
-  // a、如果客户有传data-id，说明指定修改其中一组配置项内容，不需求修改其他组配置内容不需要入参；
-  // b、如果客户入参多组配置，其中有些组配置有传data-id，有些没有传，则有传data-id的表示修改具体某组配置，没有传data-id的表示在原来基础上新增一组配置；
-  // c、如果客户入参都没有传data-id,表示用本次的配置全量覆盖原先配置；
-  // d、如果客户入参没有传任何配置项参数，只传了域名和二级标签，表示清空这个接口对应域名二级服务所有配置。（c、d内容和当前方案实现一致）；
-  // e、一个gird标签下的入参不能为空，如果，没有具体的配置项，则data-id必填，且值为实际存在的data-id,表示清空这个data-id对应配置项的值；"}
+  // {"en":"Add a grid type identifier to indicate a specific group configuration when the client has multiple groups of configurations.","zh_CN":"添加grid类型标识，表示客户多组配置时，具体某组配置。\ndata-id可以通过查询接口获取。\n注意：添加grid类型标识：data-id，每一组配置对应一个data-id：\na、如果客户有传data-id，说明指定修改其中一组配置项内容，不需求修改其他组配置内容不需要入参；\nb、如果客户入参多组配置，其中有些组配置有传data-id，有些没有传，则有传data-id的表示修改具体某组配置，没有传data-id的表示在原来基础上新增一组配置；\nc、如果客户入参都没有传data-id,表示用本次的配置全量覆盖原先配置；\nd、如果客户入参没有传任何配置项参数，只传了域名和二级标签，表示清空这个接口对应域名二级服务所有配置。（c、d内容和当前方案实现一致）；\ne、一个gird标签下的入参不能为空，如果，没有具体的配置项，则data-id必填，且值为实际存在的data-id,表示清空这个data-id对应配置项的值；"}
   DataId *int64 `json:"data-id,omitempty" xml:"data-id,omitempty"`
-  // {"en":"The url matching mode supports fuzzy regularization. If all matches, the input parameters can be configured as: *", "zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*"}
+  // {"en":"The url matching mode supports fuzzy regularization. If all matches, the input parameters can be configured as:","zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*"}
   PathPattern *string `json:"path-pattern,omitempty" xml:"path-pattern,omitempty"`
-  // {"en":"Exception url matching pattern, support regular. Example: ", "zh_CN":"例外的url匹配模式，支持正则。 入参参考："}
+  // {"en":"Exception url matching pattern, support regular. Example:","zh_CN":"例外的url匹配模式，支持正则。 入参参考："}
   ExceptPathPattern *string `json:"except-path-pattern,omitempty" xml:"except-path-pattern,omitempty"`
-  // {"en":"Matching conditions: specify common types, optional values are all or homepage. 1. all: all files 2. homepage: home page", "zh_CN":"匹配条件：指定常用类型，可选值为all或homepage 1. all：全部文件 2. homepage：首页"}
+  // {"en":"Matching conditions: specify common types, optional values are all or homepage. 1. all: all files 2. homepage: home page","zh_CN":"匹配条件：指定常用类型，可选值为all或homepage 1. all：全部文件 2. homepage：首页"}
   CustomPattern *string `json:"custom-pattern,omitempty" xml:"custom-pattern,omitempty"`
-  // {"en":"Matching conditions: file type, please separate by semicolon, optional values: gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf m3u8 xml f4m bootstarp ts.", "zh_CN":"匹配条件：文件类型，多个请以英文;分隔，可选值：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf m3u8 xml f4m bootstarp ts"}
+  // {"en":"Matching conditions: file type, please separate by semicolon, optional values: gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf m3u8 xml f4m bootstarp ts.","zh_CN":"匹配条件：文件类型，多个请以英文;分隔，可选值：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf m3u8 xml f4m bootstarp ts"}
   FileType *string `json:"file-type,omitempty" xml:"file-type,omitempty"`
-  // {"en":"Matching condition: Custom file type, separate by semicolon.", "zh_CN":"匹配条件：自定义文件类型，多个请以英文分号分隔。"}
+  // {"en":"Matching condition: Custom file type, separate by semicolon.","zh_CN":"匹配条件：自定义文件类型，多个请以英文分号分隔。"}
   CustomFileType *string `json:"custom-file-type,omitempty" xml:"custom-file-type,omitempty"`
-  // {"en":"Directory", "zh_CN":"目录"}
+  // {"en":"Directory","zh_CN":"目录"}
   Directory *string `json:"directory,omitempty" xml:"directory,omitempty"`
-  // {"en":"Matching Condition: Specify URL.
-  // The input parameter does not support the URI format starting with http(s)://", "zh_CN":"匹配条件：指定URL
-  // 入参不支持含http(s):// 开头的URI格式"}
+  // {"en":"Matching Condition: Specify URL.\nThe input parameter does not support the URI format starting with http(s)://","zh_CN":"匹配条件：指定URL\n入参不支持含http(s):// 开头的URI格式"}
   SpecifyUrl *string `json:"specify-url,omitempty" xml:"specify-url,omitempty"`
-  // {"en":"The matching request method, the optional values are: GET, POST, PUT, HEAD, DELETE, OPTIONS, separate by semicolons.", "zh_CN":"匹配的请求方式，可选值为：GET、POST、PUT、HEAD、DELETE、OPTIONS，多个请以英文分号分隔"}
+  // {"en":"The matching request method, the optional values are: GET, POST, PUT, HEAD, DELETE, OPTIONS, separate by semicolons.","zh_CN":"匹配的请求方式，可选值为：GET、POST、PUT、HEAD、DELETE、OPTIONS，多个请以英文分号分隔"}
   RequestMethod *string `json:"request-method,omitempty" xml:"request-method,omitempty"`
-  // {"en":"The control direction of the http header, the optional value is cache2visitor/cache2origin/visitor2cache/origin2cache, single-select.
-  // Cache2origin refers to the source direction---corresponding to the configuration item return source request;
-  // Cache2visitor refers to the direction of the client back - the corresponding configuration item returns to the client response;
-  // Visitor2cache refers to receiving client requests
-  // Origin2cache refers to the receiving source response", "zh_CN":"http头的控制方向，可选值为cache2visitor/cache2origin/visitor2cache/origin2cache，单选。
-  // cache2origin是指回源方向---对应配置项回源请求；
-  // cache2visitor是指回客户端方向—对应配置项回客户端应答；
-  // visitor2cache是指接收客户端请求
-  // origin2cache是指接收源应答
-  // 配置接收源应答方向，添加非CACHE control头，无法传递给客户端"}
+  // {"en":"The control direction of the http header, the optional value is cache2visitor/cache2origin/visitor2cache/origin2cache, single-select.\nCache2origin refers to the source direction---corresponding to the configuration item return source request;\nCache2visitor refers to the direction of the client back - the corresponding configuration item returns to the client response;\nVisitor2cache refers to receiving client requests\nOrigin2cache refers to the receiving source response","zh_CN":"http头的控制方向，可选值为cache2visitor/cache2origin/visitor2cache/origin2cache，单选。\ncache2origin是指回源方向---对应配置项回源请求；\ncache2visitor是指回客户端方向—对应配置项回客户端应答；\nvisitor2cache是指接收客户端请求\norigin2cache是指接收源应答\n配置接收源应答方向，添加非CACHE control头，无法传递给客户端"}
   HeaderDirection *string `json:"header-direction,omitempty" xml:"header-direction,omitempty"`
-  // {"en":"The control type of the http header supports the addition and deletion of the http header value. The optional value is add|set|delete, which is single-selected. Corresponding to the header-name and header-value parameters.
-  // 1. Add: add a header
-  // 2. Set: modify the header value
-  // 3. Delete: delete the header
-  // Note: priority is delete > set > add", "zh_CN":"http头的控制类型，支持http头部的增删改，可选值为add|set|delete，单选。对应header-name、header-value参数
-  // 1. add：表示新增一个头部，头部名称为header-name，头部值为header-value
-  // 2. set：表示修改指定头部header-name的值为header-value
-  // 3. delete：表示删除头部，header-name可同时配置多个
-  // 注意：优先级delete>set>add。当源站有对应响应头，则按源站响应的头部响应给客户端，此处新增的无效。"}
+  // {"en":"The control type of the http header supports the addition and deletion of the http header value. The optional value is add|set|delete, which is single-selected. Corresponding to the header-name and header-value parameters.\n1. Add: add a header\n2. Set: modify the header value\n3. Delete: delete the header\nNote: priority is delete > set > add","zh_CN":"http头的控制类型，支持http头部的增删改，可选值为add|set|delete，单选。对应header-name、header-value参数\n1. add：表示新增一个头部，头部名称为header-name，头部值为header-value\n2. set：表示修改指定头部header-name的值为header-value\n3. delete：表示删除头部，header-name可同时配置多个\n注意：优先级delete>set>add。当源站有对应响应头，则按源站响应的头部响应给客户端，此处新增的无效。"}
   Action *string `json:"action,omitempty" xml:"action,omitempty"`
-  // {"en":"Http header regular match, optional value: true / false.
-  // True: indicates that the value of the header-name is handled as a regular match.
-  // False: indicates that the value of the header-name is processed according to the actual parameters, and no regular match is made.
-  // Do not pass the default is false", "zh_CN":"http头正则匹配，可选值：true/false。
-  // true：表示对header-name的值按正则匹配方式处理
-  // false:表示对header-name的值按实际入参处理，不做正则匹配。
-  // 不传默认是false"}
+  // {"en":"Http header regular match, optional value: true / false.\nTrue: indicates that the value of the header-name is handled as a regular match.\nFalse: indicates that the value of the header-name is processed according to the actual parameters, and no regular match is made.\nDo not pass the default is false","zh_CN":"http头正则匹配，可选值：true/false。\ntrue：表示对header-name的值按正则匹配方式处理\nfalse:表示对header-name的值按实际入参处理，不做正则匹配。\n不传默认是false"}
   AllowRegexp *string `json:"allow-regexp,omitempty" xml:"allow-regexp,omitempty"`
-  // {"en":"Http header name, add or modify the http header, only one is allowed; delete the http header to allow multiple entries, separated by a semicolon ';'.
-  // Note: The operation of the special http header is limited, and the http header and operation type of the operation are allowed.
-  // This item is required and cannot be empty
-  // When the action is add: indicates that the header-name header is added.
-  // When the action is set: modify the header-name header
-  // When the action is delete: delete the header-name header", "zh_CN":"http头名称，新增或修改http头，只允许输入一个；删除http头允许输入多个，以分号“;”隔开。
-  // 1.当action为add：表示新增这个header-name头部
-  // 2.当action为set：修改这个header-name头部的值
-  // 3.当action为delete：删除这个header-name头部
-  //   
-  // 注意：对特殊http头的操作是受限的，允许操作的http头及操作类型请参看【概览】-【附件2： header操作】"}
+  // {"en":"Http header name, add or modify the http header, only one is allowed; delete the http header to allow multiple entries, separated by a semicolon ';'.\nNote: The operation of the special http header is limited, and the http header and operation type of the operation are allowed.\nThis item is required and cannot be empty\nWhen the action is add: indicates that the header-name header is added.\nWhen the action is set: modify the header-name header\nWhen the action is delete: delete the header-name header","zh_CN":"http头名称，新增或修改http头，只允许输入一个；删除http头允许输入多个，以分号“;”隔开。\n1.当action为add：表示新增这个header-name头部\n2.当action为set：修改这个header-name头部的值\n3.当action为delete：删除这个header-name头部\n\n注意：对特殊http头的操作是受限的，允许操作的http头及操作类型请参看【概览】-【附件2： header操作】"}
   HeaderName *string `json:"header-name,omitempty" xml:"header-name,omitempty"`
-  // {"en":"The value corresponding to the HTTP header field, for example: mytest.example.com
-  // Note:
-  // 1. When the action is add or set, the input parameter must be passed a value
-  // 2. When the action is delete, the input parameter is not passed
-  // Support to get the value of specified variable by keyword, such as client IP, including:
-  // Key words: meaning
-  // #timestamp: current time, timestamp as 1559124945
-  // #request-host: host in the request header
-  // #request-url: request url, which contains the full path of the protocol domain name, etc., such as http://aaa.aa.com/a.html
-  // #request-uri: request uri, relative path format, such as /index.html
-  // #origin- IP: return source IP
-  // #cache-ip: edge node IP
-  // #server-ip: external service IP
-  // #client-ip: client IP, or visitor IP
-  // #response-header{XXX} : get the value in the response header, such as #response-header{etag}, get the etag value in response-header 
-  // #header{XXX} : to get the value in the HTTP header of the request, such as #header{user-agent}, is to get the user-agent value in the header
-  // #cookie{XXX} : get the value in the cookie, such as #cookie{account}, is to get the value of the account set in the cookie", "zh_CN":"http头域对应的值，例如：mytest.example.com 
-  // 注意：
-  // 1. 当action为add或set时，该入参必须传值
-  // 2. 当action为delete时，该入参不用传
-  // 支持通过关键字获取指定变量值，如客户端ip，包含如下：
-  // 关键字：含义
-  // #timestamp：当前时间，时间戳如1559124945
-  // #request-host：请求头中的HOST
-  // #request-url：请求url，包含协议域名等的全路径，如http://aaa.aa.com/a.html
-  // #request-uri：请求uri，相对路径格式，如/index.html
-  // #origin-ip：回源IP
-  // #cache-ip：边缘节点IP
-  // #server-ip：对外服务IP
-  // #client-ip：客户端IP，即访客IP
-  // #response-header{xxx}：获取响应头中的值，如#response-header{etag}，获取response-header中的etag值
-  // #header{xxx}：获取请求的http header中的值，如#header{User-Agent}，是获取header中的User-Agent值
-  // #cookie{xxx}：获取cookie中的值，如#cookie{account}，是获取cookie中设置的account的值  "}
+  // {"en":"The value corresponding to the HTTP header field, for example: mytest.example.com\nNote:\n1. When the action is add or set, the input parameter must be passed a value\n2. When the action is delete, the input parameter is not passed\nSupport to get the value of specified variable by keyword, such as client IP, including:\nKey words: meaning\n#timestamp: current time, timestamp as 1559124945\n#request-host: host in the request header\n#request-url: request url, which contains the full path of the protocol domain name, etc., such as http://aaa.aa.com/a.html\n#request-uri: request uri, relative path format, such as /index.html\n#origin- IP: return source IP\n#cache-ip: edge node IP\n#server-ip: external service IP\n#client-ip: client IP, or visitor IP\n#response-header{XXX} : get the value in the response header, such as #response-header{etag}, get the etag value in response-header\n#header{XXX} : to get the value in the HTTP header of the request, such as #header{user-agent}, is to get the user-agent value in the header\n#cookie{XXX} : get the value in the cookie, such as #cookie{account}, is to get the value of the account set in the cookie","zh_CN":"http头域对应的值，例如：mytest.example.com\n注意：\n1. 当action为add或set时，该入参必须传值\n2. 当action为delete时，该入参不用传\n支持通过关键字获取指定变量值，如客户端ip，包含如下：\n关键字：含义\n#timestamp：当前时间，时间戳如1559124945\n#request-host：请求头中的HOST\n#request-url：请求url，包含协议域名等的全路径，如http://aaa.aa.com/a.html\n#request-uri：请求uri，相对路径格式，如/index.html\n#origin-ip：回源IP\n#cache-ip：边缘节点IP\n#server-ip：对外服务IP\n#client-ip：客户端IP，即访客IP\n#response-header{xxx}：获取响应头中的值，如#response-header{etag}，获取response-header中的etag值\n#header{xxx}：获取请求的http header中的值，如#header{User-Agent}，是获取header中的User-Agent值\n#cookie{xxx}：获取cookie中的值，如#cookie{account}，是获取cookie中设置的account的值"}
   HeaderValue *string `json:"header-value,omitempty" xml:"header-value,omitempty"`
   // {"en":"The original value corresponding to the HTTP header field","zh_CN":"http头域对应的原始值"}
   HeaderValueOld *string `json:"header-value-old,omitempty" xml:"header-value-old,omitempty"`
-  // {"en":"Match request header, header values support regular, header and header values separated by Spaces, e.g. : Range bytes=[0-9]{9,}", "zh_CN":"2匹配请求头，头部值支持正则，头和头部值用空格隔开，如：Range bytes=[0-9]{9,}"}
+  // {"en":"Match request header, header values support regular, header and header values separated by Spaces, e.g. : Range bytes=[0-9]{9,}","zh_CN":"2匹配请求头，头部值支持正则，头和头部值用空格隔开，如：Range bytes=[0-9]{9,}"}
   EditHttpHeaderConfigRequestHeader *string `json:"request-header,omitempty" xml:"request-header,omitempty"`
-  // {"en":"Indicates the priority of execution order for multiple sets of configurations. A higher number indicates higher priority. If no parameters are passed, the default value is 10 and cannot be cleared.", "zh_CN":"表示客户多组配置的优先执行顺序。数字越大，优先级越高。 不传参默认为10，不可清空"}
+  // {"en":"Indicates the priority of execution order for multiple sets of configurations. A higher number indicates higher priority. If no parameters are passed, the default value is 10 and cannot be cleared.","zh_CN":"表示客户多组配置的优先执行顺序。数字越大，优先级越高。 不传参默认为10，不可清空"}
   Priority *string `json:"priority,omitempty" xml:"priority,omitempty"`
-  // {"en":"Exception file type.", "zh_CN":"例外的文件类型"}
+  // {"en":"Exception file type.","zh_CN":"例外的文件类型"}
   ExceptFileType *string `json:"except-file-type,omitempty" xml:"except-file-type,omitempty"`
-  // {"en":"Exception directory.", "zh_CN":"例外的目录"}
+  // {"en":"Exception directory.","zh_CN":"例外的目录"}
   ExceptDirectory *string `json:"except-directory,omitempty" xml:"except-directory,omitempty"`
-  // {"en":"Exception request method.", "zh_CN":"例外的请求方式"}
+  // {"en":"Exception request method.","zh_CN":"例外的请求方式"}
   ExceptRequestMethod *string `json:"except-request-method,omitempty" xml:"except-request-method,omitempty"`
-  // {"en":"Exception request header.", "zh_CN":"例外的请求头"}
+  // {"en":"Exception request header.","zh_CN":"例外的请求头"}
   ExceptEditHttpHeaderConfigRequestHeader *string `json:"except-request-header,omitempty" xml:"except-request-header,omitempty"`
 }
 
@@ -566,16 +493,56 @@ func (s *EditHttpHeaderConfigEditHttpHeaderConfigRequestHeaderModifyRules) SetEx
   return s
 }
 
+type EditHttpHeaderConfigRequestHeader struct {
+}
+
+func (s EditHttpHeaderConfigRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s EditHttpHeaderConfigRequestHeader) GoString() string {
+  return s.String()
+}
+
+type EditHttpHeaderConfigPaths struct {
+  // {"en":"the domain whoes need query config","zh_CN":"需要查询配置的域名或域名id"}
+  DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
+}
+
+func (s EditHttpHeaderConfigPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s EditHttpHeaderConfigPaths) GoString() string {
+  return s.String()
+}
+
+func (s *EditHttpHeaderConfigPaths) SetDomainName(v string) *EditHttpHeaderConfigPaths {
+  s.DomainName = &v
+  return s
+}
+
+type EditHttpHeaderConfigParameters struct {
+}
+
+func (s EditHttpHeaderConfigParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s EditHttpHeaderConfigParameters) GoString() string {
+  return s.String()
+}
+
 type EditHttpHeaderConfigResponse struct {
-  // {"en":"httpstatus=202; Indicates that the new domain API was successfully invoked, and the current deployment of the new domain can be viewed using x-cnc-request-id in the header", "zh_CN":"httpstatus=202;   表示成功调用新增域名接口，可使用header中的x-cnc-request-id查看当前新增域名的部署情况"}
-  HttpStatus *int `json:"http status code,omitempty" xml:"http status code,omitempty" require:"true"`
-  // {"en":"Uniquely identified id for querying tasks per request (for all API)", "zh_CN":"唯一标示的id，用于查询每次请求的任务 （适用全部接口）"}
+  // {"en":"httpstatus=202; Indicates that the new domain API was successfully invoked, and the current deployment of the new domain can be viewed using x-cnc-request-id in the header","zh_CN":"httpstatus=202;   表示成功调用新增域名接口，可使用header中的x-cnc-request-id查看当前新增域名的部署情况"}
+  HttpStatus *int `json:"httpStatus,omitempty" xml:"httpStatus,omitempty" require:"true"`
+  // {"en":"Uniquely identified id for querying tasks per request (for all API)","zh_CN":"唯一标示的id，用于查询每次请求的任务 （适用全部接口）"}
   XCncRequestId *string `json:"x-cnc-request-id,omitempty" xml:"x-cnc-request-id,omitempty" require:"true"`
-  // {"en":"The URL used to access the domain information, where domain-id is the unique token generated by our cloud platform for the domain name and whose value is a string.", "zh_CN":"用于访问该域名信息的URL，其中domain-id为我司云平台为该域名生成的唯一标示，其值为字符串。"}
+  // {"en":"The URL used to access the domain information, where domain-id is the unique token generated by our cloud platform for the domain name and whose value is a string.","zh_CN":"用于访问该域名信息的URL，其中domain-id为我司云平台为该域名生成的唯一标示，其值为字符串。"}
   Location *string `json:"location,omitempty" xml:"location,omitempty" require:"true"`
-  // {"en":"Error code, which appears when HTTPStatus is not 202, represents the error type of the current request call", "zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
+  // {"en":"Error code, which appears when HTTPStatus is not 202, represents the error type of the current request call","zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
   Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Response information, success when successful", "zh_CN":"响应信息，成功时为success"}
+  // {"en":"Response information, success when successful","zh_CN":"响应信息，成功时为success"}
   Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
 }
 
@@ -610,46 +577,6 @@ func (s *EditHttpHeaderConfigResponse) SetCode(v string) *EditHttpHeaderConfigRe
 func (s *EditHttpHeaderConfigResponse) SetMessage(v string) *EditHttpHeaderConfigResponse {
   s.Message = &v
   return s
-}
-
-type EditHttpHeaderConfigPaths struct {
-  // {"en":"the domain whoes need query config", "zh_CN":"需要查询配置的域名或域名id"}
-  DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
-}
-
-func (s EditHttpHeaderConfigPaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s EditHttpHeaderConfigPaths) GoString() string {
-  return s.String()
-}
-
-func (s *EditHttpHeaderConfigPaths) SetDomainName(v string) *EditHttpHeaderConfigPaths {
-  s.DomainName = &v
-  return s
-}
-
-type EditHttpHeaderConfigParameters struct {
-}
-
-func (s EditHttpHeaderConfigParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s EditHttpHeaderConfigParameters) GoString() string {
-  return s.String()
-}
-
-type EditHttpHeaderConfigRequestHeader struct {
-}
-
-func (s EditHttpHeaderConfigRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s EditHttpHeaderConfigRequestHeader) GoString() string {
-  return s.String()
 }
 
 type EditHttpHeaderConfigResponseHeader struct {
@@ -1108,12 +1035,10 @@ func (s QueryHttpHeaderConfigResponseHeader) GoString() string {
 
 
 type UpdateCacheKeyConfigurationRequest struct {
-  // {"en":"Custom Cachekey Configuration, parent node
-  // 1. When you need to configure the cachekey rules,this must be filled in.
-  // 2. Configuration of clearing for <cacheKeyRules/>.", "zh_CN":"配置自定义缓存key功能。
-  // 1. 需要设置自定义缓存key配置时，此项必填
-  // 2. 为<cacheKeyRules/>时清空自定义缓存key配置"}
+  // {"en":"Custom Cachekey Configuration, parent node\n1. When you need to configure the cachekey rules,this must be filled in.\n2. Configuration of clearing for <cacheKeyRules/>.","zh_CN":"配置自定义缓存key功能。\n1. 需要设置自定义缓存key配置时，此项必填\n2. 为<cacheKeyRules/>时清空自定义缓存key配置"}
   CacheKeyRules []*UpdateCacheKeyConfigurationRequestCacheKeyRules `json:"cacheKeyRules,omitempty" xml:"cacheKeyRules,omitempty" require:"true" type:"Repeated"`
+  // {"en":"description","zh_CN":"描述"}
+  Description *string `json:"description,omitempty" xml:"description,omitempty"`
 }
 
 func (s UpdateCacheKeyConfigurationRequest) String() string {
@@ -1129,44 +1054,35 @@ func (s *UpdateCacheKeyConfigurationRequest) SetCacheKeyRules(v []*UpdateCacheKe
   return s
 }
 
+func (s *UpdateCacheKeyConfigurationRequest) SetDescription(v string) *UpdateCacheKeyConfigurationRequest {
+  s.Description = &v
+  return s
+}
+
 type UpdateCacheKeyConfigurationRequestCacheKeyRules struct     {
-  // {"en":"The url matching mode supports fuzzy regularization. If all matches, the input parameters can be configured as: *", "zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*"}
+  // {"en":"The url matching mode supports fuzzy regularization. If all matches, the input parameters can be configured as: *","zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*"}
   PathPattern *string `json:"pathPattern,omitempty" xml:"pathPattern,omitempty"`
-  // {"en":"Specify a uri, such as /test/specifyurl", "zh_CN":"指定具体的uri，如/test/specifyurl"}
+  // {"en":"Specify a uri, such as /test/specifyurl","zh_CN":"指定具体的uri，如/test/specifyurl"}
   SpecifyUrl *string `json:"specifyUrl,omitempty" xml:"specifyUrl,omitempty"`
-  // {"en":"Whether to match specifyUrl exactly or not, you can select true and false.
-  // True:means match exactly. False: means fuzzy match, such as specifyUrl='/test/uri', and  request for /test/uri?p=1 will be matched.", "zh_CN":"是否完全匹配specifyUrl，可选择为true和false。
-  // 为true则完全匹配；为false则模糊匹配，如指定/test/uri，请求/test/uri?p=1也会匹配"}
+  // {"en":"Whether to match specifyUrl exactly or not, you can select true and false.\nTrue:means match exactly. False: means fuzzy match, such as specifyUrl='/test/uri', and  request for /test/uri?p=1 will be matched.","zh_CN":"是否完全匹配specifyUrl，可选择为true和false。\n为true则完全匹配；为false则模糊匹配，如指定/test/uri，请求/test/uri?p=1也会匹配"}
   FullMatch4SpecifyUrl *string `json:"fullMatch4SpecifyUrl,omitempty" xml:"fullMatch4SpecifyUrl,omitempty"`
-  // {"en":"Specify common types: Select the domain name that requires the cache to be all files or the home page. :
-  // E.g:
-  // All: all files
-  // Homepage: homepage", "zh_CN":"指定常用类型：选择缓存域名的是全部文件还是首页。入参参考值： all：全部文件 homepage：首页"}
+  // {"en":"Specify common types: Select the domain name that requires the cache to be all files or the home page. :\nE.g:\nAll: all files\nHomepage: homepage","zh_CN":"指定常用类型：选择缓存域名的是全部文件还是首页。入参参考值： all：全部文件 homepage：首页"}
   CustomPattern *string `json:"customPattern,omitempty" xml:"customPattern,omitempty"`
-  // {"en":"File Type: Specify the file type for cache settings.
-  // File types include: gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf
-  // If you need all types, pass all directly. Multiples are separated by semicolons, and all and specific file types cannot be configured at the same time.", "zh_CN":"文件类型：指定需要缓存的文件类型。 文件类型包括：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf 如果需要全部类型，则直接传all。多个以分号隔开，all和具体文件类型不能同时配置。"}
+  // {"en":"File Type: Specify the file type for cache settings.\nFile types include: gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf\nIf you need all types, pass all directly. Multiples are separated by semicolons, and all and specific file types cannot be configured at the same time.","zh_CN":"文件类型：指定需要缓存的文件类型。 文件类型包括：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf 如果需要全部类型，则直接传all。多个以分号隔开，all和具体文件类型不能同时配置。"}
   FileType *string `json:"fileType,omitempty" xml:"fileType,omitempty"`
-  // {"en":"Custom file type: Fill in the appropriate identifiable file type according to your needs outside of the specified file type. Can be used with file-type. If the file-type is also configured, the actual file type is the sum of the two parameters.", "zh_CN":"自定义文件类型：在指定文件类型外根据自身需求，填写适当的可识别文件类型。可以搭配file-type使用。如果file-type也有配置，实际生效的文件类型是两个入参的总和"}
+  // {"en":"Custom file type: Fill in the appropriate identifiable file type according to your needs outside of the specified file type. Can be used with file-type. If the file-type is also configured, the actual file type is the sum of the two parameters.","zh_CN":"自定义文件类型：在指定文件类型外根据自身需求，填写适当的可识别文件类型。可以搭配file-type使用。如果file-type也有配置，实际生效的文件类型是两个入参的总和"}
   CustomFileType *string `json:"customFileType,omitempty" xml:"customFileType,omitempty"`
-  // {"en":"Directory: Specify the directory cache.
-  // Enter a legal directory format. Multiple separated by semicolons", "zh_CN":"目录：指定目录缓存。 输入合法的目录格式。多个以英文分号隔开"}
+  // {"en":"Directory: Specify the directory cache.\nEnter a legal directory format. Multiple separated by semicolons","zh_CN":"目录：指定目录缓存。 输入合法的目录格式。多个以英文分号隔开"}
   Directory *string `json:"directory,omitempty" xml:"directory,omitempty"`
-  // {"en":"Ignore case, the optional value is true or false, true means to ignore case; false means not to ignore case;
-  // When adding a new configuration item, the default is true", "zh_CN":"是否忽略大小写：允许值为true和false，默认为忽略"}
+  // {"en":"Ignore case, the optional value is true or false, true means to ignore case; false means not to ignore case;\nWhen adding a new configuration item, the default is true","zh_CN":"是否忽略大小写：允许值为true和false，默认为忽略"}
   IgnoreCase *string `json:"ignoreCase,omitempty" xml:"ignoreCase,omitempty"`
-  // {"en":"Header name.
-  // Example: If you specify a header as &lsquo;lang', Then, if the value of Lang is consistent, one copy will be cached", "zh_CN":"头部名称
-  // 例如：指定头部lang，lang的值一致则缓存一份"}
+  // {"en":"Header name.\nExample: If you specify a header as &lsquo;lang', Then, if the value of Lang is consistent, one copy will be cached","zh_CN":"头部名称\n例如：指定头部lang，lang的值一致则缓存一份"}
   HeaderName *string `json:"headerName,omitempty" xml:"headerName,omitempty"`
-  // {"en":"Parameter Of the specified Header，
-  // Example: Specifies the header as 'cookie', parameterOfHeader as 'name'. Then, if the value of name is consistent, one copy will be cached.", "zh_CN":"头部值的参数名，
-  // 例如：指定头部Cookie，头部值的参数名为name。则name的值一致则缓存一份。"}
+  // {"en":"Parameter Of the specified Header,Example: Specifies the header as 'cookie', parameterOfHeader as 'name'. Then, if the value of name is consistent, one copy will be cached.","zh_CN":"头部值的参数名，\n例如：指定头部Cookie，头部值的参数名为name。则name的值一致则缓存一份。"}
   ParameterOfHeader *string `json:"parameterOfHeader,omitempty" xml:"parameterOfHeader,omitempty"`
-  // {"en":"Indicates the priority execution order of multiple sets of redirected content by the customer. The higher the number, the higher the priority.
-  // When adding a new configuration item, the default is 10", "zh_CN":"优先级，表示客户多组配置的优先执行顺序。数字越大，优先级越高。不传默认为10，不可清空。"}
+  // {"en":"Indicates the priority execution order of multiple sets of redirected content by the customer. The higher the number, the higher the priority.\nWhen adding a new configuration item, the default is 10","zh_CN":"优先级，表示客户多组配置的优先执行顺序。数字越大，优先级越高。不传默认为10，不可清空。"}
   Priority *string `json:"priority,omitempty" xml:"priority,omitempty"`
-  // {"en":"DataId is to indicate a specific group configuration when the client has multiple groups of configurations. dataId can be retrieved through a query interface. Note: A. If dataId is passed, it means that one group of configuration items is specified to be modified, and no other group configuration items need to be modified. B. If multiple groups of configurations are included, some of them are configured with dataId and others are not, then the expression of dataId is used to modify a specific group of configurations, and a new group of configurations is added on the original basis without the expression of dataId. C. If the dataId is not transmitted, it means that the original configuration will be fully covered by this configuration. D. If no configuration parameter is passed, only domain name and secondary label are passed, which means that all configuration of domain name secondary service corresponding to this interface is cleared. E. If there is no specific configuration item in a set of configurations, the dataId must be filled in, and the value is the actual dataId, which means clearing the value of the corresponding dataId configuration item; it is not allowed that there is no specific configuration item or dataId in a set of configurations.", "zh_CN":"配置多组配置时，具体某组配置的id。本功能只支持一组配置。dataId可以通过查询接口获取。 注意： a、如果有传dataId，说明指定修改该组配置项内容； b、如果入参都没有传dataId,表示用本次的配置全量覆盖原先配置； c、如果一组配置没有具体的配置项，则dataId必填，且值为实际存在的dataId，表示清空这个dataId对应配置项的值；不允许一组配置没有具体的配置项也没有dataId。"}
+  // {"en":"DataId is to indicate a specific group configuration when the client has multiple groups of configurations. dataId can be retrieved through a query interface. Note: A. If dataId is passed, it means that one group of configuration items is specified to be modified, and no other group configuration items need to be modified. B. If multiple groups of configurations are included, some of them are configured with dataId and others are not, then the expression of dataId is used to modify a specific group of configurations, and a new group of configurations is added on the original basis without the expression of dataId. C. If the dataId is not transmitted, it means that the original configuration will be fully covered by this configuration. D. If no configuration parameter is passed, only domain name and secondary label are passed, which means that all configuration of domain name secondary service corresponding to this interface is cleared. E. If there is no specific configuration item in a set of configurations, the dataId must be filled in, and the value is the actual dataId, which means clearing the value of the corresponding dataId configuration item; it is not allowed that there is no specific configuration item or dataId in a set of configurations.","zh_CN":"配置多组配置时，具体某组配置的id。本功能只支持一组配置。dataId可以通过查询接口获取。 注意： a、如果有传dataId，说明指定修改该组配置项内容； b、如果入参都没有传dataId,表示用本次的配置全量覆盖原先配置； c、如果一组配置没有具体的配置项，则dataId必填，且值为实际存在的dataId，表示清空这个dataId对应配置项的值；不允许一组配置没有具体的配置项也没有dataId。"}
   DataId *int64 `json:"dataId,omitempty" xml:"dataId,omitempty"`
 }
 
@@ -1238,40 +1154,19 @@ func (s *UpdateCacheKeyConfigurationRequestCacheKeyRules) SetDataId(v int64) *Up
   return s
 }
 
-type UpdateCacheKeyConfigurationResponse struct {
-  // {"en":"Error code. Appeared when http status is not 200 or 202.", "zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Reponse message.", "zh_CN":"响应信息，成功时为success"}
-  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
-  // {"en":"Response data", "zh_CN":"响应数据"}
-  Data *string `json:"data,omitempty" xml:"data,omitempty" require:"true"`
+type UpdateCacheKeyConfigurationRequestHeader struct {
 }
 
-func (s UpdateCacheKeyConfigurationResponse) String() string {
+func (s UpdateCacheKeyConfigurationRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateCacheKeyConfigurationResponse) GoString() string {
+func (s UpdateCacheKeyConfigurationRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *UpdateCacheKeyConfigurationResponse) SetCode(v string) *UpdateCacheKeyConfigurationResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *UpdateCacheKeyConfigurationResponse) SetMessage(v string) *UpdateCacheKeyConfigurationResponse {
-  s.Message = &v
-  return s
-}
-
-func (s *UpdateCacheKeyConfigurationResponse) SetData(v string) *UpdateCacheKeyConfigurationResponse {
-  s.Data = &v
-  return s
-}
-
 type UpdateCacheKeyConfigurationPaths struct {
-  // {"en":"the domain whoes need query config", "zh_CN":"需要查询配置的域名或域名id"}
+  // {"en":"the domain whoes need query config","zh_CN":"需要查询配置的域名或域名id"}
   DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
 }
 
@@ -1299,15 +1194,36 @@ func (s UpdateCacheKeyConfigurationParameters) GoString() string {
   return s.String()
 }
 
-type UpdateCacheKeyConfigurationRequestHeader struct {
+type UpdateCacheKeyConfigurationResponse struct {
+  // {"en":"Error code. Appeared when http status is not 200 or 202.","zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Reponse message.","zh_CN":"响应信息，成功时为success"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+  // {"en":"Response data","zh_CN":"响应数据"}
+  Data *string `json:"data,omitempty" xml:"data,omitempty" require:"true"`
 }
 
-func (s UpdateCacheKeyConfigurationRequestHeader) String() string {
+func (s UpdateCacheKeyConfigurationResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateCacheKeyConfigurationRequestHeader) GoString() string {
+func (s UpdateCacheKeyConfigurationResponse) GoString() string {
   return s.String()
+}
+
+func (s *UpdateCacheKeyConfigurationResponse) SetCode(v string) *UpdateCacheKeyConfigurationResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *UpdateCacheKeyConfigurationResponse) SetMessage(v string) *UpdateCacheKeyConfigurationResponse {
+  s.Message = &v
+  return s
+}
+
+func (s *UpdateCacheKeyConfigurationResponse) SetData(v string) *UpdateCacheKeyConfigurationResponse {
+  s.Data = &v
+  return s
 }
 
 type UpdateCacheKeyConfigurationResponseHeader struct {
@@ -2340,95 +2256,19 @@ func (s QueryCompressionConfigRequest) GoString() string {
   return s.String()
 }
 
-type QueryCompressionConfigResponse struct {
-  // {"en":"The domain id you are query.", "zh_CN":"需要查询配置的域名id"}
-  DomainId *string `json:"domain-id,omitempty" xml:"domain-id,omitempty" require:"true"`
-  // {"en":"The domain name you are query.", "zh_CN":"需要查询配置的域名"}
-  DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
-  // {"en":"Compress setting config", "zh_CN":"压缩响应功能配置
-  // 1.需要设置压缩响应配置时，此项必填
-  // 2.为<compression-settings/>空时清空压缩响应配置"}
-  CompressionSettings *QueryCompressionConfigResponseCompressionSettings `json:"compression-settings,omitempty" xml:"compression-settings,omitempty" require:"true" type:"Struct"`
+type QueryCompressionConfigRequestHeader struct {
 }
 
-func (s QueryCompressionConfigResponse) String() string {
+func (s QueryCompressionConfigRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryCompressionConfigResponse) GoString() string {
+func (s QueryCompressionConfigRequestHeader) GoString() string {
   return s.String()
-}
-
-func (s *QueryCompressionConfigResponse) SetDomainId(v string) *QueryCompressionConfigResponse {
-  s.DomainId = &v
-  return s
-}
-
-func (s *QueryCompressionConfigResponse) SetDomainName(v string) *QueryCompressionConfigResponse {
-  s.DomainName = &v
-  return s
-}
-
-func (s *QueryCompressionConfigResponse) SetCompressionSettings(v *QueryCompressionConfigResponseCompressionSettings) *QueryCompressionConfigResponse {
-  s.CompressionSettings = v
-  return s
-}
-
-type QueryCompressionConfigResponseCompressionSettings struct {
-  // {"en":"To enable compress setting, allowed true or false.", "zh_CN":"开启压缩响应功能：允许值为true和false"}
-  CompressionEnabled *string `json:"compression-enabled,omitempty" xml:"compression-enabled,omitempty" require:"true"`
-  // {"en":"The url matching mode. If all matches, the input parameters can be configured as: .*", "zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*"}
-  PathPattern *string `json:"path-pattern,omitempty" xml:"path-pattern,omitempty" require:"true"`
-  // {"en":"Whether to ignore letter case.", "zh_CN":"是否忽略大小写：允许值为true和false"}
-  IgnoreLetterCase *string `json:"ignore-letter-case,omitempty" xml:"ignore-letter-case,omitempty" require:"true"`
-  // {"en":"Define the file types to be compressed. 'text/' will be compressed by default.", "zh_CN":"配置需要压缩的文件类型，默认只对'text'文件类型压缩，配置为*时压缩任意文件类型"}
-  FileTypes []*string `json:"file-types,omitempty" xml:"file-types,omitempty" require:"true" type:"Repeated"`
-  // {"en":"Another way to specify the file type to open the compressed response, <file-types-other/> can be cleared and the configuration is the parent tag of file-type-other", "zh_CN":"指定文件类型开启压缩响应的另一种方式，<file-types-other/>可清空配置，是file-type-other的父标签"}
-  FileTypeOthers []*string `json:"file-type-others,omitempty" xml:"file-type-others,omitempty" require:"true" type:"Repeated"`
-  // {"en":"Use br compression.The allowed values are true and false.", "zh_CN":"是否使用br压缩：允许值为true和false"}
-  BrTypes *string `json:"br-types,omitempty" xml:"br-types,omitempty"`
-}
-
-func (s QueryCompressionConfigResponseCompressionSettings) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryCompressionConfigResponseCompressionSettings) GoString() string {
-  return s.String()
-}
-
-func (s *QueryCompressionConfigResponseCompressionSettings) SetCompressionEnabled(v string) *QueryCompressionConfigResponseCompressionSettings {
-  s.CompressionEnabled = &v
-  return s
-}
-
-func (s *QueryCompressionConfigResponseCompressionSettings) SetPathPattern(v string) *QueryCompressionConfigResponseCompressionSettings {
-  s.PathPattern = &v
-  return s
-}
-
-func (s *QueryCompressionConfigResponseCompressionSettings) SetIgnoreLetterCase(v string) *QueryCompressionConfigResponseCompressionSettings {
-  s.IgnoreLetterCase = &v
-  return s
-}
-
-func (s *QueryCompressionConfigResponseCompressionSettings) SetFileTypes(v []*string) *QueryCompressionConfigResponseCompressionSettings {
-  s.FileTypes = v
-  return s
-}
-
-func (s *QueryCompressionConfigResponseCompressionSettings) SetFileTypeOthers(v []*string) *QueryCompressionConfigResponseCompressionSettings {
-  s.FileTypeOthers = v
-  return s
-}
-
-func (s *QueryCompressionConfigResponseCompressionSettings) SetBrTypes(v string) *QueryCompressionConfigResponseCompressionSettings {
-  s.BrTypes = &v
-  return s
 }
 
 type QueryCompressionConfigPaths struct {
-  // {"en":"The domain you want to query, support domain id and domain name.", "zh_CN":"需要查询配置的域名或域名id"}
+  // {"en":"The domain you want to query, support domain id and domain name.","zh_CN":"需要查询配置的域名或域名id"}
   DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty"`
 }
 
@@ -2456,15 +2296,124 @@ func (s QueryCompressionConfigParameters) GoString() string {
   return s.String()
 }
 
-type QueryCompressionConfigRequestHeader struct {
+type QueryCompressionConfigResponse struct {
+  // {"en":"The domain name you are query.","zh_CN":"需要查询配置的域名"}
+  DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
+  // {"en":"The domain id you are query.","zh_CN":"需要查询配置的域名id"}
+  DomainId *string `json:"domain-id,omitempty" xml:"domain-id,omitempty" require:"true"`
+  // {"en":"Compress setting config","zh_CN":"压缩响应功能配置\n1.需要设置压缩响应配置时，此项必填\n2.为<compression-settings/>空时清空压缩响应配置"}
+  CompressionSettings *QueryCompressionConfigResponseCompressionSettings `json:"compression-settings,omitempty" xml:"compression-settings,omitempty" require:"true" type:"Struct"`
 }
 
-func (s QueryCompressionConfigRequestHeader) String() string {
+func (s QueryCompressionConfigResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryCompressionConfigRequestHeader) GoString() string {
+func (s QueryCompressionConfigResponse) GoString() string {
   return s.String()
+}
+
+func (s *QueryCompressionConfigResponse) SetDomainName(v string) *QueryCompressionConfigResponse {
+  s.DomainName = &v
+  return s
+}
+
+func (s *QueryCompressionConfigResponse) SetDomainId(v string) *QueryCompressionConfigResponse {
+  s.DomainId = &v
+  return s
+}
+
+func (s *QueryCompressionConfigResponse) SetCompressionSettings(v *QueryCompressionConfigResponseCompressionSettings) *QueryCompressionConfigResponse {
+  s.CompressionSettings = v
+  return s
+}
+
+type QueryCompressionConfigResponseCompressionSettings struct {
+  // {"en":"To enable compress setting, allowed true or false.","zh_CN":"开启压缩响应功能：允许值为true和false"}
+  CompressionEnabled *string `json:"compression-enabled,omitempty" xml:"compression-enabled,omitempty" require:"true"`
+  // {"en":"Use br compression.The allowed values are true and false.","zh_CN":"是否使用br压缩：允许值为true和false"}
+  BrTypes *string `json:"br-types,omitempty" xml:"br-types,omitempty" require:"true"`
+  // {"en":"Specify URI","zh_CN":"指定URI"}
+  SpecifyUrlPattern *string `json:"specify-url-pattern,omitempty" xml:"specify-url-pattern,omitempty" require:"true"`
+  // {"en":"Custom file type: In addition to the specified file type, fill in the appropriate recognizable file type according to your own needs. It can be used in conjunction with uri-file-types. If uri-file-types is also configured, the actual effective file type is the sum of the two input parameters.","zh_CN":"自定义文件类型：在指定文件类型外根据自身需求，填写适当的可识别文件类型。可以搭配uri-file-types使用。如果uri-file-types也有配置，实际生效的文件类型是两个入参的总和"}
+  CustomFileTypes []*string `json:"custom-file-types,omitempty" xml:"custom-file-types,omitempty" require:"true" type:"Repeated"`
+  // {"en":"Define the MIME file types to be compressed. 'text/' will be compressed by default.","zh_CN":"MIME类型配置需要压缩的文件类型，默认只对'text'文件类型压缩，配置为*时压缩任意文件类型"}
+  FileTypes []*string `json:"file-types,omitempty" xml:"file-types,omitempty" require:"true" type:"Repeated"`
+  // {"en":"Whether to ignore letter case.","zh_CN":"是否忽略大小写：允许值为true和false"}
+  IgnoreLetterCase *string `json:"ignore-letter-case,omitempty" xml:"ignore-letter-case,omitempty" require:"true"`
+  // {"en":"The url matching mode. If all matches, the input parameters can be configured as: .*","zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*"}
+  PathPattern *string `json:"path-pattern,omitempty" xml:"path-pattern,omitempty" require:"true"`
+  // {"en":"Specify Regular Pattern.The allowed values are homepage and all.","zh_CN":"指定常用类型：允许值为homepage和all"}
+  CustomPattern *string `json:"custom-pattern,omitempty" xml:"custom-pattern,omitempty" require:"true"`
+  // {"en":"Another way to specify the file type to open the compressed response, <file-types-other/> can be cleared and the configuration is the parent tag of file-type-other","zh_CN":"指定文件类型开启压缩响应的另一种方式，<file-types-other/>可清空配置，是file-type-other的父标签"}
+  FileTypeOthers []*string `json:"file-type-others,omitempty" xml:"file-type-others,omitempty" require:"true" type:"Repeated"`
+  // {"en":"File type: Specifies the type of file to cache. File types include: gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf If you need all types, simply pass all. Multiple types are separated by semicolons; all and specific file types cannot be configured at the same time.","zh_CN":"文件类型：指定需要缓存的文件类型。 文件类型包括：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf 如果需要全部类型，则直接传all。多个以分号隔开，all和具体文件类型不能同时配置。"}
+  UriFileTypes []*string `json:"uri-file-types,omitempty" xml:"uri-file-types,omitempty" require:"true" type:"Repeated"`
+  // {"en":"Directory","zh_CN":"目录"}
+  Directory *string `json:"directory,omitempty" xml:"directory,omitempty" require:"true"`
+}
+
+func (s QueryCompressionConfigResponseCompressionSettings) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryCompressionConfigResponseCompressionSettings) GoString() string {
+  return s.String()
+}
+
+func (s *QueryCompressionConfigResponseCompressionSettings) SetCompressionEnabled(v string) *QueryCompressionConfigResponseCompressionSettings {
+  s.CompressionEnabled = &v
+  return s
+}
+
+func (s *QueryCompressionConfigResponseCompressionSettings) SetBrTypes(v string) *QueryCompressionConfigResponseCompressionSettings {
+  s.BrTypes = &v
+  return s
+}
+
+func (s *QueryCompressionConfigResponseCompressionSettings) SetSpecifyUrlPattern(v string) *QueryCompressionConfigResponseCompressionSettings {
+  s.SpecifyUrlPattern = &v
+  return s
+}
+
+func (s *QueryCompressionConfigResponseCompressionSettings) SetCustomFileTypes(v []*string) *QueryCompressionConfigResponseCompressionSettings {
+  s.CustomFileTypes = v
+  return s
+}
+
+func (s *QueryCompressionConfigResponseCompressionSettings) SetFileTypes(v []*string) *QueryCompressionConfigResponseCompressionSettings {
+  s.FileTypes = v
+  return s
+}
+
+func (s *QueryCompressionConfigResponseCompressionSettings) SetIgnoreLetterCase(v string) *QueryCompressionConfigResponseCompressionSettings {
+  s.IgnoreLetterCase = &v
+  return s
+}
+
+func (s *QueryCompressionConfigResponseCompressionSettings) SetPathPattern(v string) *QueryCompressionConfigResponseCompressionSettings {
+  s.PathPattern = &v
+  return s
+}
+
+func (s *QueryCompressionConfigResponseCompressionSettings) SetCustomPattern(v string) *QueryCompressionConfigResponseCompressionSettings {
+  s.CustomPattern = &v
+  return s
+}
+
+func (s *QueryCompressionConfigResponseCompressionSettings) SetFileTypeOthers(v []*string) *QueryCompressionConfigResponseCompressionSettings {
+  s.FileTypeOthers = v
+  return s
+}
+
+func (s *QueryCompressionConfigResponseCompressionSettings) SetUriFileTypes(v []*string) *QueryCompressionConfigResponseCompressionSettings {
+  s.UriFileTypes = v
+  return s
+}
+
+func (s *QueryCompressionConfigResponseCompressionSettings) SetDirectory(v string) *QueryCompressionConfigResponseCompressionSettings {
+  s.Directory = &v
+  return s
 }
 
 type QueryCompressionConfigResponseHeader struct {
@@ -2475,6 +2424,124 @@ func (s QueryCompressionConfigResponseHeader) String() string {
 }
 
 func (s QueryCompressionConfigResponseHeader) GoString() string {
+  return s.String()
+}
+
+
+
+
+type AntiHijackIPAddRequest struct {
+  // {"en":"Area, 1: Mainland, 2: Global","zh_CN":"区域，1：大陆，2：全球"}
+  Area *int `json:"area,omitempty" xml:"area,omitempty" require:"true"`
+  // {"en":"Hijack Mitigation IP","zh_CN":"劫持缓解IP"}
+  AntiHijackIp *string `json:"antiHijackIp,omitempty" xml:"antiHijackIp,omitempty" require:"true"`
+  // {"en":"Related Business Domain","zh_CN":"关联业务域名"}
+  RelateDomain *string `json:"relateDomain,omitempty" xml:"relateDomain,omitempty" require:"true"`
+  // {"en":"Must be provided when using the csec platform, and must be \"csec-cs-new\"","zh_CN":"csec平台时，必须传，且传\"csec-cs-new\""}
+  OfferCode *string `json:"offerCode,omitempty" xml:"offerCode,omitempty"`
+  // {"en":"Remark, maximum length 200","zh_CN":"备注，最大长度200"}
+  Remark *string `json:"remark,omitempty" xml:"remark,omitempty"`
+}
+
+func (s AntiHijackIPAddRequest) String() string {
+  return tea.Prettify(s)
+}
+
+func (s AntiHijackIPAddRequest) GoString() string {
+  return s.String()
+}
+
+func (s *AntiHijackIPAddRequest) SetArea(v int) *AntiHijackIPAddRequest {
+  s.Area = &v
+  return s
+}
+
+func (s *AntiHijackIPAddRequest) SetAntiHijackIp(v string) *AntiHijackIPAddRequest {
+  s.AntiHijackIp = &v
+  return s
+}
+
+func (s *AntiHijackIPAddRequest) SetRelateDomain(v string) *AntiHijackIPAddRequest {
+  s.RelateDomain = &v
+  return s
+}
+
+func (s *AntiHijackIPAddRequest) SetOfferCode(v string) *AntiHijackIPAddRequest {
+  s.OfferCode = &v
+  return s
+}
+
+func (s *AntiHijackIPAddRequest) SetRemark(v string) *AntiHijackIPAddRequest {
+  s.Remark = &v
+  return s
+}
+
+type AntiHijackIPAddRequestHeader struct {
+}
+
+func (s AntiHijackIPAddRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s AntiHijackIPAddRequestHeader) GoString() string {
+  return s.String()
+}
+
+type AntiHijackIPAddPaths struct {
+}
+
+func (s AntiHijackIPAddPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s AntiHijackIPAddPaths) GoString() string {
+  return s.String()
+}
+
+type AntiHijackIPAddParameters struct {
+}
+
+func (s AntiHijackIPAddParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s AntiHijackIPAddParameters) GoString() string {
+  return s.String()
+}
+
+type AntiHijackIPAddResponse struct {
+  // {"en":"200: Success, others: Failure","zh_CN":"200:成功，其他失败"}
+  Code *int `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description Message","zh_CN":"描述信息"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+}
+
+func (s AntiHijackIPAddResponse) String() string {
+  return tea.Prettify(s)
+}
+
+func (s AntiHijackIPAddResponse) GoString() string {
+  return s.String()
+}
+
+func (s *AntiHijackIPAddResponse) SetCode(v int) *AntiHijackIPAddResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *AntiHijackIPAddResponse) SetMsg(v string) *AntiHijackIPAddResponse {
+  s.Msg = &v
+  return s
+}
+
+type AntiHijackIPAddResponseHeader struct {
+}
+
+func (s AntiHijackIPAddResponseHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s AntiHijackIPAddResponseHeader) GoString() string {
   return s.String()
 }
 
@@ -3161,12 +3228,10 @@ func (s EditIgnoreProtocolResponseHeader) GoString() string {
 
 
 type EditHttpCodeCacheRequest struct {
-  // {"en":"Status Code Caching Rule Configuration, parent node
-  // 1. When you need to set status code caching rules, this must be filled in.
-  // 2. Configuration of Clear Status Code Caching Rules for <http-code-cache-rules/>.", "zh_CN":"状态码缓存规则配置，父标签
-  // 1.需要设置状态码缓存规则时，此项必填
-  // 2.为<http-code-cache-rules/>时清空状态码缓存规则配置"}
+  // {"en":"Status Code Caching Rule Configuration, parent node\n1. When you need to set status code caching rules, this must be filled in.\n2. Configuration of Clear Status Code Caching Rules for <http-code-cache-rules/>.","zh_CN":"状态码缓存规则配置，父标签\n1.需要设置状态码缓存规则时，此项必填\n2.为<http-code-cache-rules/>时清空状态码缓存规则配置"}
   HttpCodeCacheRules []*EditHttpCodeCacheRequestHttpCodeCacheRules `json:"http-code-cache-rules,omitempty" xml:"http-code-cache-rules,omitempty" require:"true" type:"Repeated"`
+  // {"en":"description","zh_CN":"描述"}
+  Description *string `json:"description,omitempty" xml:"description,omitempty"`
 }
 
 func (s EditHttpCodeCacheRequest) String() string {
@@ -3182,22 +3247,17 @@ func (s *EditHttpCodeCacheRequest) SetHttpCodeCacheRules(v []*EditHttpCodeCacheR
   return s
 }
 
+func (s *EditHttpCodeCacheRequest) SetDescription(v string) *EditHttpCodeCacheRequest {
+  s.Description = &v
+  return s
+}
+
 type EditHttpCodeCacheRequestHttpCodeCacheRules struct     {
-  // {"en":"Configure HTTP status code, parent node", "zh_CN":"配置http状态码，父标签"}
+  // {"en":"Configure HTTP status code, parent node","zh_CN":"配置http状态码，父标签"}
   HttpCodes []*string `json:"http-codes,omitempty" xml:"http-codes,omitempty" require:"true" type:"Repeated"`
-  // {"en":"Define the caching time of the specified status code in units s, 0 to indicate no caching", "zh_CN":"配置指定的状态码的缓存时间，单位s，0表示不缓存"}
+  // {"en":"Define the caching time of the specified status code in units s, 0 to indicate no caching","zh_CN":"配置指定的状态码的缓存时间，单位s，0表示不缓存"}
   CacheTtl *string `json:"cache-ttl,omitempty" xml:"cache-ttl,omitempty" require:"true"`
-  // {"en":"Data-id is to indicate a specific group configuration when the client has multiple groups of configurations. Data-id can be retrieved through a query interface. Note:
-  // A. If data-id is passed, it means that one group of configuration items is specified to be modified, and no other group configuration items need to be modified.
-  // B. If multiple groups of configurations are included, some of them are configured with data-id and others are not, then the expression of data-id is used to modify a specific group of configurations, and a new group of configurations is added on the original basis without the expression of data-id.
-  // C. If the data-id is not transmitted, it means that the original configuration will be fully covered by this configuration.
-  // D. If no configuration parameter is passed, only domain name and secondary label are passed, which means that all configuration of domain name secondary service corresponding to this interface is cleared.
-  // E. If there is no specific configuration item in a set of configurations, the data-id must be filled in, and the value is the actual data-id, which means clearing the value of the corresponding data-id configuration item; it is not allowed that there is no specific configuration item or data-id in a set of configurations.", "zh_CN":"配置多组配置时，具体某组配置的id。data-id可以通过查询接口获取。 注意：
-  // a、如果有传data-id，说明指定修改其中一组配置项内容，不需求修改其他组配置内容不需要入参； 
-  // b、如果入参多组配置，其中有些组配置有传data-id，有些没有传，则有传data-id的表示修改具体某组配置，没有传data-id的表示在原来基础上新增一组配置； 
-  // c、如果入参都没有传data-id,表示用本次的配置全量覆盖原先配置； 
-  // d、如果入参没有传任何配置项参数，只传了域名和二级标签，表示清空这个接口对应域名二级服务所有配置； 
-  // e、如果一组配置没有具体的配置项，则data-id必填，且值为实际存在的data-id，表示清空这个data-id对应配置项的值；不允许一组配置没有具体的配置项也没有data-id。"}
+  // {"en":"Data-id is to indicate a specific group configuration when the client has multiple groups of configurations. Data-id can be retrieved through a query interface. Note:\nA. If data-id is passed, it means that one group of configuration items is specified to be modified, and no other group configuration items need to be modified.\nB. If multiple groups of configurations are included, some of them are configured with data-id and others are not, then the expression of data-id is used to modify a specific group of configurations, and a new group of configurations is added on the original basis without the expression of data-id.\nC. If the data-id is not transmitted, it means that the original configuration will be fully covered by this configuration.\nD. If no configuration parameter is passed, only domain name and secondary label are passed, which means that all configuration of domain name secondary service corresponding to this interface is cleared.\nE. If there is no specific configuration item in a set of configurations, the data-id must be filled in, and the value is the actual data-id, which means clearing the value of the corresponding data-id configuration item; it is not allowed that there is no specific configuration item or data-id in a set of configurations.","zh_CN":"配置多组配置时，具体某组配置的id。data-id可以通过查询接口获取。 注意：\na、如果有传data-id，说明指定修改其中一组配置项内容，不需求修改其他组配置内容不需要入参；\nb、如果入参多组配置，其中有些组配置有传data-id，有些没有传，则有传data-id的表示修改具体某组配置，没有传data-id的表示在原来基础上新增一组配置；\nc、如果入参都没有传data-id,表示用本次的配置全量覆盖原先配置；\nd、如果入参没有传任何配置项参数，只传了域名和二级标签，表示清空这个接口对应域名二级服务所有配置；\ne、如果一组配置没有具体的配置项，则data-id必填，且值为实际存在的data-id，表示清空这个data-id对应配置项的值；不允许一组配置没有具体的配置项也没有data-id。"}
   DataId *int64 `json:"data-id,omitempty" xml:"data-id,omitempty"`
 }
 
@@ -3224,33 +3284,19 @@ func (s *EditHttpCodeCacheRequestHttpCodeCacheRules) SetDataId(v int64) *EditHtt
   return s
 }
 
-type EditHttpCodeCacheResponse struct {
-  // {"en":"The error code, when HTTPStatus is not 202, indicates the type of error the current request is calling.", "zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Response information, when success is successful", "zh_CN":"响应信息，成功时为success"}
-  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+type EditHttpCodeCacheRequestHeader struct {
 }
 
-func (s EditHttpCodeCacheResponse) String() string {
+func (s EditHttpCodeCacheRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s EditHttpCodeCacheResponse) GoString() string {
+func (s EditHttpCodeCacheRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *EditHttpCodeCacheResponse) SetCode(v string) *EditHttpCodeCacheResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *EditHttpCodeCacheResponse) SetMessage(v string) *EditHttpCodeCacheResponse {
-  s.Message = &v
-  return s
-}
-
 type EditHttpCodeCachePaths struct {
-  // {"en":"the domain whoes need query config", "zh_CN":"需要查询配置的域名或域名id"}
+  // {"en":"the domain whose config needs to be queried","zh_CN":"需要查询配置的域名或域名id"}
   DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
 }
 
@@ -3278,15 +3324,29 @@ func (s EditHttpCodeCacheParameters) GoString() string {
   return s.String()
 }
 
-type EditHttpCodeCacheRequestHeader struct {
+type EditHttpCodeCacheResponse struct {
+  // {"en":"The error code, when HTTPStatus is not 202, indicates the type of error the current request is calling.","zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Response information, when successful","zh_CN":"响应信息，成功时为success"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
 }
 
-func (s EditHttpCodeCacheRequestHeader) String() string {
+func (s EditHttpCodeCacheResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s EditHttpCodeCacheRequestHeader) GoString() string {
+func (s EditHttpCodeCacheResponse) GoString() string {
   return s.String()
+}
+
+func (s *EditHttpCodeCacheResponse) SetCode(v string) *EditHttpCodeCacheResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *EditHttpCodeCacheResponse) SetMessage(v string) *EditHttpCodeCacheResponse {
+  s.Message = &v
+  return s
 }
 
 type EditHttpCodeCacheResponseHeader struct {
@@ -3854,12 +3914,10 @@ func (s DeleteBanURLsResponseHeader) GoString() string {
 
 
 type EditQueryStringUrlConfigRequest struct {
-  // {"en":"Query String Settings Configuration, parent node
-  // 1. When you need to configure the query string, this must be filled in.
-  // 2. Configuration of clearing query string settings for <query-string-settings/>.", "zh_CN":"查询串设置配置，父标签
-  // 1.需要设置查询串配置时，此项必填
-  // 2.为<query-string-settings/>时清空查询串设置的配置"}
+  // {"en":"Query String Settings Configuration, parent node\n1. When you need to configure the query string, this must be filled in.\n2. Configuration of clearing query string settings for <query-string-settings/>.","zh_CN":"查询串设置配置，父标签\n1.需要设置查询串配置时，此项必填\n2.为<query-string-settings/>时清空查询串设置的配置"}
   QueryStringSettings []*EditQueryStringUrlConfigRequestQueryStringSettings `json:"query-string-settings,omitempty" xml:"query-string-settings,omitempty" require:"true" type:"Repeated"`
+  // {"en":"description","zh_CN":"描述"}
+  Description *string `json:"description,omitempty" xml:"description,omitempty"`
 }
 
 func (s EditQueryStringUrlConfigRequest) String() string {
@@ -3875,66 +3933,41 @@ func (s *EditQueryStringUrlConfigRequest) SetQueryStringSettings(v []*EditQueryS
   return s
 }
 
+func (s *EditQueryStringUrlConfigRequest) SetDescription(v string) *EditQueryStringUrlConfigRequest {
+  s.Description = &v
+  return s
+}
+
 type EditQueryStringUrlConfigRequestQueryStringSettings struct     {
-  // {"en":"The url matching mode. If all matches, the input parameters can be configured as: .*", "zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*
-  // 注：url匹配模式、文件类型（自定义文件类型）、常用类型、指定url、目录，有且仅有一项必填"}
+  // {"en":"The url matching mode. If all matches, the input parameters can be configured as: .*","zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*\n注：url匹配模式、文件类型（自定义文件类型）、常用类型、指定url、目录，有且仅有一项必填"}
   PathPattern *string `json:"path-pattern,omitempty" xml:"path-pattern,omitempty"`
-  // {"en":"File Type: Specify the file type for anti-theft chain settings.
-  // File types include: gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf
-  // If you need all types, pass all directly. Multiples are separated by semicolons, and all and specific file types cannot be configured at the same time.", "zh_CN":"文件类型：指定文件类型进行防盗链设置。可选文件类型包括：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf m3u8 xml f4m bootstarp ts 如果需要全部类型，则直接传all。多个以分号隔开，all和具体文件类型不能同时配置"}
+  // {"en":"File Type: Specify the file type to update string url config.File types include: gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swfIf you need all types, pass all directly. Multiples are separated by semicolons, and all and specific file types cannot be configured at the same time.","zh_CN":"文件类型：指定文件类型进行去问号缓存配置。可选文件类型包括：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf m3u8 xml f4m bootstarp ts 如果需要全部类型，则直接传all。多个以分号隔开，all和具体文件类型不能同时配置"}
   FileTypes *string `json:"file-types,omitempty" xml:"file-types,omitempty"`
-  // {"en":"Custom file type: Fill in the appropriate identifiable file type according to your needs outside of the specified file type. Can be used with file-type. If the file-type is also configured, the actual file type is the sum of the two parameters.", "zh_CN":"自定义文件类型：在指定文件类型外根据自身需求，填写适当的可识别文件类型。可以搭配file-type使用。如果file-type也有配置，实际生效的文件类型是两个入参的总和"}
+  // {"en":"Custom file type: Fill in the appropriate identifiable file type according to your needs outside of the specified file type. Can be used with file-type. If the file-type is also configured, the actual file type is the sum of the two parameters.","zh_CN":"自定义文件类型：在指定文件类型外根据自身需求，填写适当的可识别文件类型。可以搭配file-type使用。如果file-type也有配置，实际生效的文件类型是两个入参的总和"}
   CustomFileTypes *string `json:"custom-file-types,omitempty" xml:"custom-file-types,omitempty"`
-  // {"en":"Specify common types: Select the domain name that requires the anti-theft chain to be all files or the home page. :
-  // E.g:
-  // All: all files
-  // Homepage: homepage", "zh_CN":"常用类型：可选值为homepage和all
-  // all：全部文件
-  // homepage：首页"}
+  // {"en":"Specify common types: Select the domain name that requires the anti-theft chain to be all files or the home page. :\nE.g:\nAll: all files\nHomepage: homepage","zh_CN":"常用类型：可选值为homepage和all\nall：全部文件\nhomepage：首页"}
   CustomPattern *string `json:"custom-pattern,omitempty" xml:"custom-pattern,omitempty"`
-  // {"en":"Specify URL cache: Specify url according to requirements for anti-theft chain setting
-  // INS format does not support URI format with http(s)://", "zh_CN":"指定url，非http(s):// 开头，多个以换行分隔"}
+  // {"en":"Specify URL cache: Specify url according to requirements for anti-theft chain setting\nINS format does not support URI format with http(s)://","zh_CN":"指定url，非http(s):// 开头，多个以换行分隔"}
   SpecifyUrlPattern *string `json:"specify-url-pattern,omitempty" xml:"specify-url-pattern,omitempty"`
-  // {"en":"Directory: Specify the directory for anti-theft chain settings
-  // Enter a legal directory format. Multiple separated by semicolons", "zh_CN":"目录，可输入合法的目录格式。以/开头和结尾，多个以分号隔开。"}
+  // {"en":"Directory: Specify the directory for anti-theft chain settings\nEnter a legal directory format. Multiple separated by semicolons","zh_CN":"目录，可输入合法的目录格式。以/开头和结尾，多个以分号隔开。"}
   Directories *string `json:"directories,omitempty" xml:"directories,omitempty"`
-  // {"en":"Indicates the priority execution order of multiple sets of redirected content by the customer. The higher the number, the higher the priority.
-  // When adding a new configuration item, the default is 10", "zh_CN":"优先级，表示客户多组配置的优先执行顺序。数字越大，优先级越高。不传默认为10，不可清空。"}
+  // {"en":"Indicates the priority execution order of multiple sets of redirected content by the customer. The higher the number, the higher the priority.\nWhen adding a new configuration item, the default is 10","zh_CN":"优先级，表示客户多组配置的优先执行顺序。数字越大，优先级越高。不传默认为10，不可清空。"}
   Priority *string `json:"priority,omitempty" xml:"priority,omitempty"`
-  // {"en":"Whether to ignore letter case.", "zh_CN":"是否忽略大小写：允许值为true和false，默认为忽略"}
+  // {"en":"Whether to ignore letter case.","zh_CN":"是否忽略大小写：允许值为true和false，默认为忽略"}
   IgnoreLetterCase *string `json:"ignore-letter-case,omitempty" xml:"ignore-letter-case,omitempty"`
-  // {"en":"Define whether to cache with query strings, 'true' means ignore query strings, while 'false' means cache with all query strings.", "zh_CN":"缓存是否忽略查询串，允许值为true和false。
-  // true表示忽略查询串，相同拷贝；false表示不忽略，分别缓存，即带全部参数缓存。"}
+  // {"en":"Define whether to cache with query strings, 'true' means ignore query strings, while 'false' means cache with all query strings.","zh_CN":"缓存是否忽略查询串，允许值为true和false。\ntrue表示忽略查询串，相同拷贝；false表示不忽略，分别缓存，即带全部参数缓存。"}
   IgnoreQueryString *string `json:"ignore-query-string,omitempty" xml:"ignore-query-string,omitempty"`
-  // {"en":"Cache with the specified query string parameters. If the kept parameter values are the same, one copy will be cached.
-  // Note:
-  // 1. query-string-kept and query-string-removed are mutually exclusive, and only one of them has a value.
-  // 2. query-string-kept and ignore-query-string are mutually exclusive, and only one has a value.", "zh_CN":"缓存保留参数，指定保留的参数值相同，则缓存一份。
-  // 注：
-  // 1.query-string-kept和query-string-removed两者互斥，只能一个有值。
-  // 2.query-string-kept和ignore-query-string两者互斥，只能一个有值。"}
+  // {"en":"Cache with the specified query string parameters. Multiple values separated by semicolons. If the kept parameter values are the same, one copy will be cached.\nNote:\n1. query-string-kept and query-string-removed are mutually exclusive, and only one of them has a value.\n2. query-string-kept and ignore-query-string are mutually exclusive, and only one has a value.","zh_CN":"缓存保留参数。指定保留的参数值相同，则缓存一份。多个请以英文分号分隔。\n注：\n1.query-string-kept和query-string-removed两者互斥，只能一个有值。\n2.query-string-kept和ignore-query-string两者互斥，只能一个有值。"}
   QueryStringKept *string `json:"query-string-kept,omitempty" xml:"query-string-kept,omitempty"`
-  // {"en":"Cache without the specified query string parameters. After deleting the specified parameter, if the other parameter values are the same, one copy will be cached.
-  // 1. query-string-kept and query string removed are mutually exclusive, and only one has a value.
-  // 2. query-string-removed and ignore-query-string are mutually exclusive.", "zh_CN":"缓存删除参数，删除指定的参数后，其余参数值相同，则缓存一份。
-  // 1.query-string-kept和query-string-removed两者互斥，只能一个有值。
-  // 2.query-string-removed和ignore-query-string两者互斥，只能一个有值。"}
+  // {"en":"Cache without the specified query string parameters. Multiple values separated by semicolons. After deleting the specified parameter, if the other parameter values are the same, one copy will be cached.\n1. query-string-kept and query string removed are mutually exclusive, and only one has a value.\n2. query-string-removed and ignore-query-string are mutually exclusive.","zh_CN":"缓存删除参数。删除指定的参数后，其余参数值相同，则缓存一份。多个请以英文分号分隔。\n1.query-string-kept和query-string-removed两者互斥，只能一个有值。\n2.query-string-removed和ignore-query-string两者互斥，只能一个有值。"}
   QueryStringRemoved *string `json:"query-string-removed,omitempty" xml:"query-string-removed,omitempty"`
-  // {"en":"Whether to use the original URL back source, the allowable values are true and false.
-  // When ignore-query-string is true or not set, source-with-query is true to indicate that the source is returned according to the original request, and false to indicate that the question mark is returned.
-  // When ignore-query-string is false, this default setting is empty (input is invalid)", "zh_CN":"是否用原始url回源，允许值为true和false。
-  // ignore-query-string为true或未设置时，source-with-query为true表示按原始请求回源；为false表示去问号回源。
-  // ignore-query-string为false时，此项默认设置为空（输入无效）。"}
+  // {"en":"Whether to use the original URL back source, the allowable values are true and false.\nWhen ignore-query-string is true or not set, source-with-query is true to indicate that the source is returned according to the original request, and false to indicate that the question mark is returned.\nWhen ignore-query-string is false, this default setting is empty (input is invalid)","zh_CN":"是否用原始url回源，允许值为true和false。\nignore-query-string为true或未设置时，source-with-query为true表示按原始请求回源；为false表示去问号回源。\nignore-query-string为false时，此项默认设置为空（输入无效）。"}
   SourceWithQuery *string `json:"source-with-query,omitempty" xml:"source-with-query,omitempty"`
-  // {"en":"Return to the source after specifying the reserved parameter value. Please separate them with semicolons, if no parameters reserved, please fill in:- . 1. Source-key-kept and ignore-query-string are mutually exclusive, and only one of them has a value. 2. Source-key-kept and source-key-removed are mutually exclusive, and only one of them has a value.
-  // ", "zh_CN":"回源保留参数，指定保留的参数值后回源。多个请以英文分号分隔，任何参数都不保留请填：- 1、source-key-kept和ignore-query-string两者互斥，只能一个有值。 2、source-key-kept和source-key-removed两者互斥，只能一个有值。
-  // "}
+  // {"en":"Return to the source after specifying the reserved parameter value. Please separate them with semicolons, if no parameters reserved, please fill in:- . 1. Source-key-kept and ignore-query-string are mutually exclusive, and only one of them has a value. 2. Source-key-kept and source-key-removed are mutually exclusive, and only one of them has a value.","zh_CN":"回源保留参数，指定保留的参数值后回源。多个请以英文分号分隔，任何参数都不保留请填：- 1、source-key-kept和ignore-query-string两者互斥，只能一个有值。 2、source-key-kept和source-key-removed两者互斥，只能一个有值。"}
   SourceKeyKept *string `json:"source-key-kept,omitempty" xml:"source-key-kept,omitempty"`
-  // {"en":"Return to the source after specifying the deleted parameter value. Please separate them with semicolons, and if you do not delete any parameters, please fill in:- . 1. Source-key-removed and ignore-query-string are mutually exclusive, and only one of them has a value. 2. Source-key-kept and source-key-removed are mutually exclusive, and only one of them has a value.
-  // ", "zh_CN":"回源删除参数，指定删除的参数值后回源。多个请以英文分号分隔，任何参数都不删除请填：- 1、source-key-removed和ignore-query-string两者互斥，只能一个有值。 2、source-key-kept和source-key-removed两者互斥，只能一个有值。
-  // "}
+  // {"en":"Return to the source after specifying the deleted parameter value. Please separate them with semicolons, and if you do not delete any parameters, please fill in:- . 1. Source-key-removed and ignore-query-string are mutually exclusive, and only one of them has a value. 2. Source-key-kept and source-key-removed are mutually exclusive, and only one of them has a value.","zh_CN":"回源删除参数，指定删除的参数值后回源。多个请以英文分号分隔，任何参数都不删除请填：- 1、source-key-removed和ignore-query-string两者互斥，只能一个有值。 2、source-key-kept和source-key-removed两者互斥，只能一个有值。"}
   SourceKeyRemoved *string `json:"source-key-removed,omitempty" xml:"source-key-removed,omitempty"`
-  // {"en":"Data-id is to indicate a specific group configuration when the client has multiple groups of configurations. Data-id can be retrieved through a query interface. Note: A. If data-id is passed, it means that one group of configuration items is specified to be modified, and no other group configuration items need to be modified. B. If multiple groups of configurations are included, some of them are configured with data-id and others are not, then the expression of data-id is used to modify a specific group of configurations, and a new group of configurations is added on the original basis without the expression of data-id. C. If the data-id is not transmitted, it means that the original configuration will be fully covered by this configuration. D. If no configuration parameter is passed, only domain name and secondary label are passed, which means that all configuration of domain name secondary service corresponding to this interface is cleared. E. If there is no specific configuration item in a set of configurations, the data-id must be filled in, and the value is the actual data-id, which means clearing the value of the corresponding data-id configuration item; it is not allowed that there is no specific configuration item or data-id in a set of configurations.", "zh_CN":"配置多组配置时，具体某组配置的id。data-id可以通过查询接口获取。 注意： a、如果有传data-id，说明指定修改其中一组配置项内容，不需求修改其他组配置内容不需要入参；  b、如果入参多组配置，其中有些组配置有传data-id，有些没有传，则有传data-id的表示修改具体某组配置，没有传data-id的表示在原来基础上新增一组配置；  c、如果入参都没有传data-id,表示用本次的配置全量覆盖原先配置；  d、如果入参没有传任何配置项参数，只传了域名和二级标签，表示清空这个接口对应域名二级服务所有配置；  e、如果一组配置没有具体的配置项，则data-id必填，且值为实际存在的data-id，表示清空这个data-id对应配置项的值；不允许一组配置没有具体的配置项也没有data-id。"}
+  // {"en":"Data-id is to indicate a specific group configuration when the client has multiple groups of configurations. Data-id can be retrieved through a query interface. Note: A. If data-id is passed, it means that one group of configuration items is specified to be modified, and no other group configuration items need to be modified. B. If multiple groups of configurations are included, some of them are configured with data-id and others are not, then the expression of data-id is used to modify a specific group of configurations, and a new group of configurations is added on the original basis without the expression of data-id. C. If the data-id is not transmitted, it means that the original configuration will be fully covered by this configuration. D. If no configuration parameter is passed, only domain name and secondary label are passed, which means that all configuration of domain name secondary service corresponding to this interface is cleared. E. If there is no specific configuration item in a set of configurations, the data-id must be filled in, and the value is the actual data-id, which means clearing the value of the corresponding data-id configuration item; it is not allowed that there is no specific configuration item or data-id in a set of configurations.","zh_CN":"配置多组配置时，具体某组配置的id。data-id可以通过查询接口获取。 注意： a、如果有传data-id，说明指定修改其中一组配置项内容，不需求修改其他组配置内容不需要入参；  b、如果入参多组配置，其中有些组配置有传data-id，有些没有传，则有传data-id的表示修改具体某组配置，没有传data-id的表示在原来基础上新增一组配置；  c、如果入参都没有传data-id,表示用本次的配置全量覆盖原先配置；  d、如果入参没有传任何配置项参数，只传了域名和二级标签，表示清空这个接口对应域名二级服务所有配置；  e、如果一组配置没有具体的配置项，则data-id必填，且值为实际存在的data-id，表示清空这个data-id对应配置项的值；不允许一组配置没有具体的配置项也没有data-id。"}
   DataId *int64 `json:"data-id,omitempty" xml:"data-id,omitempty"`
 }
 
@@ -4021,33 +4054,19 @@ func (s *EditQueryStringUrlConfigRequestQueryStringSettings) SetDataId(v int64) 
   return s
 }
 
-type EditQueryStringUrlConfigResponse struct {
-  // {"en":"The error code, when HTTPStatus is not 202, indicates the type of error the current request is calling.", "zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Response information, when success is successful", "zh_CN":"响应信息，成功时为success"}
-  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+type EditQueryStringUrlConfigRequestHeader struct {
 }
 
-func (s EditQueryStringUrlConfigResponse) String() string {
+func (s EditQueryStringUrlConfigRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s EditQueryStringUrlConfigResponse) GoString() string {
+func (s EditQueryStringUrlConfigRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *EditQueryStringUrlConfigResponse) SetCode(v string) *EditQueryStringUrlConfigResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *EditQueryStringUrlConfigResponse) SetMessage(v string) *EditQueryStringUrlConfigResponse {
-  s.Message = &v
-  return s
-}
-
 type EditQueryStringUrlConfigPaths struct {
-  // {"en":"the domain whoes need query config", "zh_CN":"需要查询配置的域名或域名id"}
+  // {"en":"the domain whoes need query config","zh_CN":"需要查询配置的域名或域名id"}
   DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
 }
 
@@ -4075,15 +4094,29 @@ func (s EditQueryStringUrlConfigParameters) GoString() string {
   return s.String()
 }
 
-type EditQueryStringUrlConfigRequestHeader struct {
+type EditQueryStringUrlConfigResponse struct {
+  // {"en":"The error code, when HTTPStatus is not 202, indicates the type of error the current request is calling.","zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Response information, when success is successful","zh_CN":"响应信息，成功时为success"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
 }
 
-func (s EditQueryStringUrlConfigRequestHeader) String() string {
+func (s EditQueryStringUrlConfigResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s EditQueryStringUrlConfigRequestHeader) GoString() string {
+func (s EditQueryStringUrlConfigResponse) GoString() string {
   return s.String()
+}
+
+func (s *EditQueryStringUrlConfigResponse) SetCode(v string) *EditQueryStringUrlConfigResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *EditQueryStringUrlConfigResponse) SetMessage(v string) *EditQueryStringUrlConfigResponse {
+  s.Message = &v
+  return s
 }
 
 type EditQueryStringUrlConfigResponseHeader struct {
@@ -4542,54 +4575,32 @@ func (s *GetBasicConfigurationOfDomainResponseHeader) SetXCncDeployVersion(v str
 
 
 type EditDomainConfigRequest struct {
-  // {"en":"Version, the current version is 1.0.0", "zh_CN":"版本号，当前版本号1.0.0"}
+  // {"en":"Version, the current version is 1.0.0","zh_CN":"版本号，当前版本号1.0.0"}
   Version *string `json:"version,omitempty" xml:"version,omitempty"`
-  // {"en":"Remarks, up to 1000 characters.", "zh_CN":"备注信息，最大限制1000个字符"}
+  // {"en":"Remarks, up to 1000 characters.","zh_CN":"备注信息，最大限制1000个字符"}
   Comment *string `json:"comment,omitempty" xml:"comment,omitempty"`
-  // {"en":"The acceleration area of the acceleration domain, if the resource coverage needs to be limited according to the area, the acceleration area needs to be specified. When no acceleration area is specified, we will provide acceleration services with optimal resource coverage according to the service area opened by the customer. Multiple regions are separated by semicolons, and the supported regions are as follows: cn (Mainland China), am (Americas), emea (Europe, Middle East, Africa), apac (Asia-Pacific region).", 
-  //     "zh_CN":"加速域名的加速区域，如果有需要根据区域限定资源覆盖时，才需要指定加速区域。未指定加速区域时，我们将按照客户开通的服务区域，以最优的资源覆盖提供加速服务。多个区域以分号分隔，支持配置的区域如下：cn（中国大陆）、am（美洲）、emea（欧洲、中东、非洲）、apac（亚太地区）"}
+  // {"en":"The acceleration area of the acceleration domain, if the resource coverage needs to be limited according to the area, the acceleration area needs to be specified. When no acceleration area is specified, we will provide acceleration services with optimal resource coverage according to the service area opened by the customer. Multiple regions are separated by semicolons, and the supported regions are as follows: cn (Mainland China), am (Americas), emea (Europe, Middle East, Africa), apac (Asia-Pacific region).","zh_CN":"加速域名的加速区域，如果有需要根据区域限定资源覆盖时，才需要指定加速区域。未指定加速区域时，我们将按照客户开通的服务区域，以最优的资源覆盖提供加速服务。多个区域以分号分隔，支持配置的区域如下：cn（中国大陆）、am（美洲）、emea（欧洲、中东、非洲）、apac（亚太地区）"}
   ServiceAreas *string `json:"service-areas,omitempty" xml:"service-areas,omitempty"`
-  // {"en":"If you need to share a CNAME between domains, you can use this parameter. This parameter is a unique label for a public CNAME. Domains with the same cname-label will have the same CNAME. 
-  // Note:
-  // 1. Domains with the same cname-label have the same coverage.
-  // 2. Constraints of sharing a CNAME: consistent service-type, consistent certificate-id (if there is a certificate), consistent service-areas
-  // 3. Multiple http domains can share a CNAME, multiple sni https domains can share a CNAME too.
-  // 4. When a cname-label is used by a single domain, then the domain can be canceled acceleration. While a cname-label using by more then one domains, they can not be canceled acceleration.
-  // 5. Support the purpose of modifying cname by modifying cname-label. )", 
-  // "zh_CN":"共用一级标签，若有多个加速域名需要共用一级域名，则可以使用该参数。即拥有相同cname-label的一组域名，共用一级cname。
-  // 注意：
-  // 1、拥有相同cname-label的域名共用一级cname，且有完全一致的dns覆盖
-  // 2、共用一级的约束：加速类型一致(service-type)、证书id一致（certificate-id,如果有证书）、加速区域一致(service-areas)
-  // 3、多个http域名可共用一级，多个sni https域名可共用一级
-  // 4、单个域名使用cname-label时，域名可cancel；多个域名共用一级时，不允许cancel这些域名
-  // 5、支持通过修改cname-label达到修改cname的目的。"}
+  // {"en":"If you need to share a CNAME between domains, you can use this parameter. This parameter is a unique label for a public CNAME. Domains with the same cname-label will have the same CNAME.\nNote:\n1. Domains with the same cname-label have the same coverage.\n2. Constraints of sharing a CNAME: consistent service-type, consistent certificate-id (if there is a certificate), consistent service-areas\n3. Multiple http domains can share a CNAME, multiple sni https domains can share a CNAME too.\n4. When a cname-label is used by a single domain, then the domain can be canceled acceleration. While a cname-label using by more then one domains, they can not be canceled acceleration.\n5. Support the purpose of modifying cname by modifying cname-label. )","zh_CN":"共用一级标签，若有多个加速域名需要共用一级域名，则可以使用该参数。即拥有相同cname-label的一组域名，共用一级cname。\n注意：\n1、拥有相同cname-label的域名共用一级cname，且有完全一致的dns覆盖\n2、共用一级的约束：加速类型一致(service-type)、证书id一致（certificate-id,如果有证书）、加速区域一致(service-areas)\n3、多个http域名可共用一级，多个sni https域名可共用一级\n4、单个域名使用cname-label时，域名可cancel；多个域名共用一级时，不允许cancel这些域名\n5、支持通过修改cname-label达到修改cname的目的。"}
   CnameLabel *string `json:"cname-label,omitempty" xml:"cname-label,omitempty"`
-  // {"en":"Back to origin policy settings for setting source site information and return source policies for accelerated domain names", "zh_CN":"回源策略设置，用于设置加速域名的源站信息和回源策略"}
+  // {"en":"Back to origin policy settings for setting source site information and return source policies for accelerated domain names","zh_CN":"回源策略设置，用于设置加速域名的源站信息和回源策略"}
   OriginConfig *EditDomainConfigRequestOriginConfig `json:"origin-config,omitempty" xml:"origin-config,omitempty" type:"Struct"`
-  // {"en":"SSL settings, to bind a certificate with the accelerated domain. You can use the interface [AddCertificate] to upload your  certificates. If you want to modify a certificate, please use the interface: [UpdateCertificate]", "zh_CN":"ssl证书设置，用于设置加速域名的ssl证书配置。上传证书请使用接口：【新增证书V2】；若要修改证书，请使用接口：【修改证书V2】"}
+  // {"en":"SSL settings, to bind a certificate with the accelerated domain. You can use the interface [CreateCertificateV2] to upload your  certificates. If you want to modify a certificate, please use the interface: [UpdateCertificateV2]","zh_CN":"ssl证书设置，用于设置加速域名的ssl证书配置。上传证书请使用接口：【新增证书V2】；若要修改证书，请使用接口：【修改证书V2】"}
   Ssl *EditDomainConfigRequestSsl `json:"ssl,omitempty" xml:"ssl,omitempty" type:"Struct"`
-  // {"en":"Cache file HOST.
-  // Cache rules for caching HOST domain names and accelerated domain names must be consistent.", "zh_CN":"缓存文件HOST。缓存HOST域名和加速域名的缓存规则必须一致。"}
+  // {"en":"Cache file HOST.\nCache rules for caching HOST domain names and accelerated domain names must be consistent.","zh_CN":"缓存文件HOST。缓存HOST域名和加速域名的缓存规则必须一致。"}
   CacheHost *string `json:"cache-host,omitempty" xml:"cache-host,omitempty"`
-  // {"en":"Enable httpdns settings.
-  // The optional values are true and false, true means enabled; false means off. This function is not enabled by default. If you need it, please contact the technical support to apply for this feature.", "zh_CN":"启用httpdns设置（使用需申请）
-  // 可选值为true和false，true表示启用；false表示关闭
-  // 注意：该功能默认不开启，若您有需要，请联系专属客服申请开通。"}
+  // {"en":"Enable httpdns settings.\nThe optional values are true and false, true means enabled; false means off. This function is not enabled by default. If you need it, please contact the technical support to apply for this feature.","zh_CN":"启用httpdns设置（使用需申请）\n可选值为true和false，true表示启用；false表示关闭\n注意：该功能默认不开启，若您有需要，请联系专属客服申请开通。"}
   EnableHttpdns *string `json:"enable-httpdns,omitempty" xml:"enable-httpdns,omitempty"`
-  // {"en":"Pass the response header of client IP. The optional values are Cdn-Src-Ip and X-Forwarded-For. The default value is Cdn-Src-Ip.", "zh_CN":"传递客户端ip的响应头部，可选值为Cdn-Src-Ip和X-Forwarded-For，默认值为Cdn-Src-Ip"}
+  // {"en":"Pass the response header of client IP. The optional values are Cdn-Src-Ip, X-Forwarded-For and ori_X-Forwarded-For. The default value is Cdn-Src-Ip.","zh_CN":"传递客户端ip的响应头部，可选值为Cdn-Src-Ip和X-Forwarded-For，默认值为Cdn-Src-Ip"}
   HeaderOfClientip *string `json:"header-of-clientip,omitempty" xml:"header-of-clientip,omitempty"`
-  // {"en":"Live domain name configuration, used to set the push flow of live acceleration domain name", "zh_CN":"直播域名配置，用于设置直播加速域名的推拉流"}
+  // {"en":"Live domain name configuration, used to set the push flow of live acceleration domain name","zh_CN":"直播域名配置，用于设置直播加速域名的推拉流"}
   LiveConfig *EditDomainConfigRequestLiveConfig `json:"live-config,omitempty" xml:"live-config,omitempty" type:"Struct"`
-  // {"en":"Set the publishing point of the live push-pull domain.
-  // Note:
-  // 1. The pull stream and the corresponding push stream domain must be configured with the same publishing point.
-  // 2. If you are not going to modify the publishing point, please do not pass this param.
-  // 3. The publishing point adopts the overlay update. Each time you modify, you need to submit all the publishing points. You cannot submit only the parts that need to be modified.", "zh_CN":"设置直播推拉流域名的发布点
-  // 注意：
-  // 1、拉流和对应的推流域名，必须配置相同的发布点；
-  // 2、不想修改发布点时，不要传入该节点及以下入参；
-  // 3、发布点采用覆盖式更新，每次修改时，需要提交全部发布点，不能仅提交需要修改的部分。"}
+  // {"en":"Set the publishing point of the live push-pull domain.\nNote:\n1. The pull stream and the corresponding push stream domain must be configured with the same publishing point.\n2. If you are not going to modify the publishing point, please do not pass this param.\n3. The publishing point adopts the overlay update. Each time you modify, you need to submit all the publishing points. You cannot submit only the parts that need to be modified.","zh_CN":"设置直播推拉流域名的发布点\n注意：\n1、拉流和对应的推流域名，必须配置相同的发布点；\n2、不想修改发布点时，不要传入该节点及以下入参；\n3、发布点采用覆盖式更新，每次修改时，需要提交全部发布点，不能仅提交需要修改的部分。"}
   PublishPoints []*EditDomainConfigRequestPublishPoints `json:"publish-points,omitempty" xml:"publish-points,omitempty" type:"Repeated"`
+  // {"en":"Back to origin rewrite rule.","zh_CN":"修改回源协议和端口；若要按原始请求回源，则可清空该对象，示例\"back-to-origin-rewrite-rule\":{}"}
+  BackToOriginRewriteRule *EditDomainConfigRequestBackToOriginRewriteRule `json:"back-to-origin-rewrite-rule,omitempty" xml:"back-to-origin-rewrite-rule,omitempty" type:"Struct"`
+  // {"en":"description","zh_CN":"描述"}
+  Description *string `json:"description,omitempty" xml:"description,omitempty"`
 }
 
 func (s EditDomainConfigRequest) String() string {
@@ -4655,23 +4666,20 @@ func (s *EditDomainConfigRequest) SetPublishPoints(v []*EditDomainConfigRequestP
   return s
 }
 
+func (s *EditDomainConfigRequest) SetBackToOriginRewriteRule(v *EditDomainConfigRequestBackToOriginRewriteRule) *EditDomainConfigRequest {
+  s.BackToOriginRewriteRule = v
+  return s
+}
+
+func (s *EditDomainConfigRequest) SetDescription(v string) *EditDomainConfigRequest {
+  s.Description = &v
+  return s
+}
+
 type EditDomainConfigRequestOriginConfig struct {
-  // {"en":"Origin address, which can be an IP or domain name.
-  // 1. Multiple IPs are supported, separated by semicolons.
-  // 2. Only one domain name is allowed. IP and domain name cannot exist at the same time.
-  // 3. The length cannot exceed 500 characters.
-  // 4. The number of IPs cannot exceed 15.
-  // ", "zh_CN":"回源地址，可以是IP或域名。
-  // 1、IP以分号分隔，支持多个。
-  // 2、域名只能输入一个。IP与域名不能同时输入。
-  // 3、限制最大不能超过500个字符长度。
-  // 4、IP最多15个。"}
+  // {"en":"Origin address, which can be an IP or domain name.\n1. Multiple IPs are supported, separated by semicolons.\n2. Only one domain name is allowed. IP and domain name cannot exist at the same time.\n3. The length cannot exceed 500 characters.\n4. The number of IPs cannot exceed 15.","zh_CN":"回源地址，可以是IP或域名。\n1、IP以分号分隔，支持多个。\n2、域名只能输入一个。IP与域名不能同时输入。\n3、限制最大不能超过500个字符长度。\n4、IP最多15个。"}
   OriginIps *string `json:"origin-ips,omitempty" xml:"origin-ips,omitempty"`
-  // {"en":"Back-to-origin HOST, used to change the HOST field in the back-to-origin HTTP request header. The supported formats are: ① domain name ③ ip 
-  // Note:
-  // 1. Must comply with the ip/domain name format specification. If it is a domain name, the length of the domain name must be less than or equal to 128 characters.", "zh_CN":"回源HOST，用于更改回源HTTP请求头中的HOST字段。支持格式为: ①域名；②ip；
-  // 注意：
-  // 1、必须符合ip/域名格式规范。如果是域名，则域名长度小于等于128。"}
+  // {"en":"Back-to-origin HOST, used to change the HOST field in the back-to-origin HTTP request header. The supported formats are: ① domain name ③ ip\nNote:\n1. Must comply with the ip/domain name format specification. If it is a domain name, the length of the domain name must be less than or equal to 128 characters.","zh_CN":"回源HOST，用于更改回源HTTP请求头中的HOST字段。支持格式为: ①域名；②ip；\n注意：\n1、必须符合ip/域名格式规范。如果是域名，则域名长度小于等于128。"}
   DefaultOriginHostHeader *string `json:"default-origin-host-header,omitempty" xml:"default-origin-host-header,omitempty"`
 }
 
@@ -4694,12 +4702,11 @@ func (s *EditDomainConfigRequestOriginConfig) SetDefaultOriginHostHeader(v strin
 }
 
 type EditDomainConfigRequestSsl struct {
-  // {"en":"Use a certificate, the optional values are true and false, true means to use the certificate, false means not to use the certificate", "zh_CN":"使用证书，可选值为true和false，true表示使用证书，false表示不使用证书"}
+  // {"en":"Use a certificate, true means to use the certificate, false means not to use the certificate","zh_CN":"使用证书，true表示使用证书，false表示不使用证书","exampleValue":"true,false"}
   UseSsl *string `json:"use-ssl,omitempty" xml:"use-ssl,omitempty"`
-  // {"en":"Use sni certificate, the optional values are true and false, true means use sni certificate, false means use shared certificate (not supported)", "zh_CN":"使用sni证书，可选值为true和false，true表示使用sni证书，false表示使用合用证书（暂不支持）"}
+  // {"en":"Use sni certificate, true means use sni certificate, false means use shared certificate (not supported)","zh_CN":"使用sni证书，true表示使用sni证书，false表示使用合用证书（暂不支持）","exampleValue":"true,false"}
   UseForSni *string `json:"use-for-sni,omitempty" xml:"use-for-sni,omitempty"`
-  // {"en":"Use sni certificate, the optional values are true and false, true means use sni certificate, false means use shared certificate (not supported)", "zh_CN":"证书ID，新增证书成功后，系统返回的证书ID
-  // use-ssl为true时，才能传ssl-certificate-id。"}
+  // {"en":"Certificate ID: The certificate ID returned by the system after successfully adding a new certificate.  \nssl-certificate-id can only be passed when use-ssl is true.","zh_CN":"证书ID，新增证书成功后，系统返回的证书ID。\nuse-ssl为true时，才能传ssl-certificate-id。"}
   SslCertificateId *int `json:"ssl-certificate-id,omitempty" xml:"ssl-certificate-id,omitempty"`
 }
 
@@ -4727,14 +4734,9 @@ func (s *EditDomainConfigRequestSsl) SetSslCertificateId(v int) *EditDomainConfi
 }
 
 type EditDomainConfigRequestLiveConfig struct {
-  // {"en":"Source station IP. When the stream-type is pull, at least one of the source station IP and the companion push stream domain name is not empty.
-  // 1. If it is a push-pull flow package, fill in 127.0.0.1, and the system will also default to 127.0.0.1.
-  // 2. If it is directly returning to the source, fill in the source IP of the source pull stream.
-  // ", "zh_CN":"源站IP，当stream-type为pull时，源站IP和配套推流域名至少一个不为空。
-  // 1、如果是推拉流配套，则填写127.0.0.1，不传系统也默认为127.0.0.1
-  // 2、如果是直接回源拉流，则填写回源拉流的源站IP"}
-  LiveConfigOriginIps *string `json:"origin-ips,omitempty" xml:"origin-ips,omitempty"`
-  // {"en":"A matching push domain name is used to set up a current domain name corresponding to the live streaming domain name. When the stream-type is pull, the source station IP and the supporting current domain name are at least one empty; when stream-type is push, it does not need to be introduced.", "zh_CN":"配套推流域名，用于设置直播拉流域名对应的推流域名，当stream-type为pull时，源站IP和配套推流域名至少一个不为空；当stream-type为push时，无需传入。"}
+  // {"en":"Source station IP. When the stream-type is pull, at least one of the source station IP and the companion push stream domain name is not empty.\n1. If it is a push-pull flow package, fill in 127.0.0.1, and the system will also default to 127.0.0.1.\n2. If it is directly returning to the source, fill in the source IP of the source pull stream.","zh_CN":"源站IP，当stream-type为pull时，源站IP和配套推流域名至少一个不为空。\n1、如果是推拉流配套，则填写127.0.0.1，不传系统也默认为127.0.0.1\n2、如果是直接回源拉流，则填写回源拉流的源站IP"}
+  OriginIps *string `json:"origin-ips,omitempty" xml:"origin-ips,omitempty"`
+  // {"en":"A matching push domain name is used to set up a current domain name corresponding to the live streaming domain name. When the stream-type is pull, the source station IP and the supporting current domain name are at least one empty; when stream-type is push, it does not need to be introduced.","zh_CN":"配套推流域名，用于设置直播拉流域名对应的推流域名，当stream-type为pull时，源站IP和配套推流域名至少一个不为空；当stream-type为push时，无需传入。"}
   OriginPushHost *string `json:"origin-push-host,omitempty" xml:"origin-push-host,omitempty"`
 }
 
@@ -4746,8 +4748,8 @@ func (s EditDomainConfigRequestLiveConfig) GoString() string {
   return s.String()
 }
 
-func (s *EditDomainConfigRequestLiveConfig) SetLiveConfigOriginIps(v string) *EditDomainConfigRequestLiveConfig {
-  s.LiveConfigOriginIps = &v
+func (s *EditDomainConfigRequestLiveConfig) SetOriginIps(v string) *EditDomainConfigRequestLiveConfig {
+  s.OriginIps = &v
   return s
 }
 
@@ -4757,7 +4759,7 @@ func (s *EditDomainConfigRequestLiveConfig) SetOriginPushHost(v string) *EditDom
 }
 
 type EditDomainConfigRequestPublishPoints struct     {
-  // {"en":"Livestream domain settings. Publish point, support multiple, do not pass the system by default to generate a publishing point uri for [/]", "zh_CN":"发布点，支持多个，不传系统默认生成一条发布点uri为“/”"}
+  // {"en":"Livestream domain settings. Publish point, support multiple, do not pass the system by default to generate a publishing point uri for [/]","zh_CN":"发布点，支持多个，不传系统默认生成一条发布点uri为“/”"}
   Uri *string `json:"uri,omitempty" xml:"uri,omitempty"`
 }
 
@@ -4774,16 +4776,81 @@ func (s *EditDomainConfigRequestPublishPoints) SetUri(v string) *EditDomainConfi
   return s
 }
 
+type EditDomainConfigRequestBackToOriginRewriteRule struct {
+  // {"en":"The specified protocol is either http or https.","zh_CN":"改写后的回源协议，可选值：http、https"}
+  Protocol *string `json:"protocol,omitempty" xml:"protocol,omitempty"`
+  // {"en":"If the protocol is http, the default is 80. If the protocol is https, the default is 443","zh_CN":"改写后的回源端口，若protocol为http时，默认为80，若protocol为https时，默认为443"}
+  Port *string `json:"port,omitempty" xml:"port,omitempty"`
+}
+
+func (s EditDomainConfigRequestBackToOriginRewriteRule) String() string {
+  return tea.Prettify(s)
+}
+
+func (s EditDomainConfigRequestBackToOriginRewriteRule) GoString() string {
+  return s.String()
+}
+
+func (s *EditDomainConfigRequestBackToOriginRewriteRule) SetProtocol(v string) *EditDomainConfigRequestBackToOriginRewriteRule {
+  s.Protocol = &v
+  return s
+}
+
+func (s *EditDomainConfigRequestBackToOriginRewriteRule) SetPort(v string) *EditDomainConfigRequestBackToOriginRewriteRule {
+  s.Port = &v
+  return s
+}
+
+type EditDomainConfigRequestHeader struct {
+}
+
+func (s EditDomainConfigRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s EditDomainConfigRequestHeader) GoString() string {
+  return s.String()
+}
+
+type EditDomainConfigPaths struct {
+  // {"en":"The domain you are going to modify, it can be domain id or domain name.","zh_CN":"需要修改的域名，可以是域名名称或域名id。"}
+  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
+}
+
+func (s EditDomainConfigPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s EditDomainConfigPaths) GoString() string {
+  return s.String()
+}
+
+func (s *EditDomainConfigPaths) SetDomain(v string) *EditDomainConfigPaths {
+  s.Domain = &v
+  return s
+}
+
+type EditDomainConfigParameters struct {
+}
+
+func (s EditDomainConfigParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s EditDomainConfigParameters) GoString() string {
+  return s.String()
+}
+
 type EditDomainConfigResponse struct {
-  // {"en":"If httpstatus=202, the interface is successfully invoked. You can use the x-cnc-request-id in the header to check the deployment of domain.", "zh_CN":"httpstatus=202;   表示成功调用接口，可使用header中的x-cnc-request-id查看域名的部署情况"}
-  HttpStatusCode *int `json:"http status code,omitempty" xml:"http status code,omitempty" require:"true"`
-  // {"en":"Uniquely labeled id for querying each requested task (for all interfaces)", "zh_CN":"唯一标示的id，用于查询每次请求的任务 （适用全部接口）"}
+  // {"en":"If httpstatus=202, the interface is successfully invoked. You can use the x-cnc-request-id in the header to check the deployment of domain.","zh_CN":"httpstatus=202;   表示成功调用接口，可使用header中的x-cnc-request-id查看域名的部署情况"}
+  HttpStatusCode *int `json:"httpStatusCode,omitempty" xml:"httpStatusCode,omitempty" require:"true"`
+  // {"en":"Uniquely labeled id for querying each requested task (for all interfaces)","zh_CN":"唯一标示的id，用于查询每次请求的任务 （适用全部接口）"}
   XCncRequestId *string `json:"x-cnc-request-id,omitempty" xml:"x-cnc-request-id,omitempty" require:"true"`
-  // {"en":"The corresponding deployment version number of this modification", "zh_CN":"本次修改对应的部署版本号"}
+  // {"en":"The corresponding deployment version number of this modification","zh_CN":"本次修改对应的部署版本号"}
   XCncDeployVersion *string `json:"x-cnc-deploy-version,omitempty" xml:"x-cnc-deploy-version,omitempty" require:"true"`
-  // {"en":"Error code, which appears when HTTPStatus is not 202, represents the error type of the current request call", "zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
+  // {"en":"Error code, which appears when HTTPStatus is not 202, represents the error type of the current request call","zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
   Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Response information, success when successful", "zh_CN":"响应信息，成功时为success"}
+  // {"en":"Response information, success when successful","zh_CN":"响应信息，成功时为success"}
   Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
 }
 
@@ -4820,46 +4887,6 @@ func (s *EditDomainConfigResponse) SetMessage(v string) *EditDomainConfigRespons
   return s
 }
 
-type EditDomainConfigPaths struct {
-  // {"en":"The domain you are going to modify, it can be domain id or domain name.", "zh_CN":"需要修改的域名，可以是域名名称或域名id。"}
-  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
-}
-
-func (s EditDomainConfigPaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s EditDomainConfigPaths) GoString() string {
-  return s.String()
-}
-
-func (s *EditDomainConfigPaths) SetDomain(v string) *EditDomainConfigPaths {
-  s.Domain = &v
-  return s
-}
-
-type EditDomainConfigParameters struct {
-}
-
-func (s EditDomainConfigParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s EditDomainConfigParameters) GoString() string {
-  return s.String()
-}
-
-type EditDomainConfigRequestHeader struct {
-}
-
-func (s EditDomainConfigRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s EditDomainConfigRequestHeader) GoString() string {
-  return s.String()
-}
-
 type EditDomainConfigResponseHeader struct {
 }
 
@@ -4885,168 +4912,19 @@ func (s QueryInnerRedirectRequest) GoString() string {
   return s.String()
 }
 
-type QueryInnerRedirectResponse struct {
-  // {"en":"the domain whoes need query config", "zh_CN":"需要查询配置的域名id"}
-  DomainId *string `json:"domain-id,omitempty" xml:"domain-id,omitempty" require:"true"`
-  // {"en":"the domain whoes need query config", "zh_CN":"需要查询配置的域名"}
-  DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
-  RewriteRuleSettings []*QueryInnerRedirectResponseRewriteRuleSettings `json:"rewrite-rule-settings,omitempty" xml:"rewrite-rule-settings,omitempty" require:"true" type:"Repeated"`
+type QueryInnerRedirectRequestHeader struct {
 }
 
-func (s QueryInnerRedirectResponse) String() string {
+func (s QueryInnerRedirectRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryInnerRedirectResponse) GoString() string {
+func (s QueryInnerRedirectRequestHeader) GoString() string {
   return s.String()
-}
-
-func (s *QueryInnerRedirectResponse) SetDomainId(v string) *QueryInnerRedirectResponse {
-  s.DomainId = &v
-  return s
-}
-
-func (s *QueryInnerRedirectResponse) SetDomainName(v string) *QueryInnerRedirectResponse {
-  s.DomainName = &v
-  return s
-}
-
-func (s *QueryInnerRedirectResponse) SetRewriteRuleSettings(v []*QueryInnerRedirectResponseRewriteRuleSettings) *QueryInnerRedirectResponse {
-  s.RewriteRuleSettings = v
-  return s
-}
-
-type QueryInnerRedirectResponseRewriteRuleSettings struct     {
-  // {"en":"Add a grid type identifier to indicate a specific group configuration when the client has multiple groups of configurations.", "zh_CN":"添加grid类型标识，表示客户多组配置时，具体某组配置；data-id重复，已入参同个id最后一组为准生效"}
-  DataId *string `json:"data-id,omitempty" xml:"data-id,omitempty" require:"true"`
-  // {"en":"The url matching mode supports fuzzy regularization. If all matches, the input parameters can be configured as: *", "zh_CN":"url匹配模式，支持正则,  .*：匹配所有文件
-  // 客户入参参考：.*
-  // 对于匹配到的URL进行内容重定向"}
-  PathPattern *string `json:"path-pattern,omitempty" xml:"path-pattern,omitempty" require:"true"`
-  // {"en":"Exceptional url matching mode, except for certain URLs: such as abc.jpg, no content redirection
-  // Customer reference: ^https?://[^/]+/.*\.m3u8", "zh_CN":"例外的url匹配模式，某些URL除外：如abc.jpg，不做内容重定向
-  // 客户入参参考：^https?://[^/]+/.*\.m3u8"}
-  ExceptPathPattern *string `json:"except-path-pattern,omitempty" xml:"except-path-pattern,omitempty" require:"true"`
-  // {"en":"Matching conditions: specify common types, optional values are all or homepage 1. all: all files 2. homepage: home page", "zh_CN":"匹配条件：指定常用类型，可选值为all或homepage 1、all：全部文件 2、homepage：首页"}
-  CustomPattern *string `json:"custom-pattern,omitempty" xml:"custom-pattern,omitempty" require:"true"`
-  // {"en":"directory", "zh_CN":"目录"}
-  Directory *string `json:"directory,omitempty" xml:"directory,omitempty" require:"true"`
-  // {"en":"gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf m3u8 xml f4m bootstarp ts", "zh_CN":"匹配条件：文件类型，多个请以英文;分隔，可选值：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf m3u8 xml f4m bootstarp ts"}
-  FileType *string `json:"file-type,omitempty" xml:"file-type,omitempty" require:"true"`
-  // {"en":"Ignore case, the optional value is true or false, true means to ignore case; false means not to ignore case;
-  // When adding a new configuration item, the default is not true.
-  // If the client passes a null value: such as <ignore-letter-case></ignore-letter-case>, the configuration is cleared.", "zh_CN":"忽略大小写，可选值为true或false，true表示忽略大小写；false表示不忽略大小写；
-  // 新增配置项时，不传默认为 true
-  // 如果客户传了空值：如<ignore-letter-case></ignore-letter-case>，则表示清空配置"}
-  IgnoreLetterCase *string `json:"ignore-letter-case,omitempty" xml:"ignore-letter-case,omitempty" require:"true"`
-  // {"en":"Rewrite the location where the content is generated. The input value is: Cache indicates the node;
-  // Other input formats are not supported at this time", "zh_CN":"改写内容的生成位置。可输入值为：Cache表示节点；
-  // 暂不支持其他入参格式"}
-  PublishType *string `json:"publish-type,omitempty" xml:"publish-type,omitempty" require:"true"`
-  // {"en":"Indicates the priority execution order of multiple sets of redirected content by the customer. The higher the number, the higher the priority.
-  // When adding a new configuration item, the default is 10", "zh_CN":"表示客户多组重定向内容的优先执行顺序。数字越大，优先级越高。
-  // 新增配置项时，不传默认为 10"}
-  Priority *int `json:"priority,omitempty" xml:"priority,omitempty" require:"true"`
-  // {"en":"Configuration item: old url
-  // Indicates the protocol mode before rewriting (that is, the object that needs to be rewritten), such as: ^https://([^/]+/.*)", "zh_CN":"配置项：旧url
-  // 表示改写前的协议方式（即需要改写的对象），如：^https://([^/]+/.*)"}
-  BeforeValue *string `json:"before-value,omitempty" xml:"before-value,omitempty" require:"true"`
-  // {"en":"Configuration item: new url
-  // Indicates the protocol method after rewriting, such as: http://$1", "zh_CN":"配置项：新url
-  // 表示改写后的协议方式，如：http://$1"}
-  AfterValue *string `json:"after-value,omitempty" xml:"after-value,omitempty" require:"true"`
-  // {"en":"Redirection type; support for input:
-  // before: before the anti-theft chain
-  // after: after the anti-theft chain", "zh_CN":"重定向类型；支持入参：
-  // before：防盗链之前
-  // after：防盗链之后"}
-  RewriteType *string `json:"rewrite-type,omitempty" xml:"rewrite-type,omitempty" require:"true"`
-  // {"en":"Matching condition: Request header", "zh_CN":"匹配条件：请求头"}
-  QueryInnerRedirectRequestHeader *string `json:"request-header,omitempty" xml:"request-header,omitempty" require:"true"`
-  // {"en":"Matching condition: Exception request header", "zh_CN":"匹配条件：例外的请求头"}
-  ExceptionQueryInnerRedirectRequestHeader *string `json:"exception-request-header,omitempty" xml:"exception-request-header,omitempty" require:"true"`
-}
-
-func (s QueryInnerRedirectResponseRewriteRuleSettings) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryInnerRedirectResponseRewriteRuleSettings) GoString() string {
-  return s.String()
-}
-
-func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetDataId(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
-  s.DataId = &v
-  return s
-}
-
-func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetPathPattern(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
-  s.PathPattern = &v
-  return s
-}
-
-func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetExceptPathPattern(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
-  s.ExceptPathPattern = &v
-  return s
-}
-
-func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetCustomPattern(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
-  s.CustomPattern = &v
-  return s
-}
-
-func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetDirectory(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
-  s.Directory = &v
-  return s
-}
-
-func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetFileType(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
-  s.FileType = &v
-  return s
-}
-
-func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetIgnoreLetterCase(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
-  s.IgnoreLetterCase = &v
-  return s
-}
-
-func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetPublishType(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
-  s.PublishType = &v
-  return s
-}
-
-func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetPriority(v int) *QueryInnerRedirectResponseRewriteRuleSettings {
-  s.Priority = &v
-  return s
-}
-
-func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetBeforeValue(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
-  s.BeforeValue = &v
-  return s
-}
-
-func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetAfterValue(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
-  s.AfterValue = &v
-  return s
-}
-
-func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetRewriteType(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
-  s.RewriteType = &v
-  return s
-}
-
-func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetQueryInnerRedirectRequestHeader(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
-  s.QueryInnerRedirectRequestHeader = &v
-  return s
-}
-
-func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetExceptionQueryInnerRedirectRequestHeader(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
-  s.ExceptionQueryInnerRedirectRequestHeader = &v
-  return s
 }
 
 type QueryInnerRedirectPaths struct {
-  // {"en":"the domain whoes need query config", "zh_CN":"需要查询配置的域名或域名id"}
+  // {"en":"the domain whoes need query config","zh_CN":"需要查询配置的域名或域名id"}
   DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
 }
 
@@ -5074,15 +4952,187 @@ func (s QueryInnerRedirectParameters) GoString() string {
   return s.String()
 }
 
-type QueryInnerRedirectRequestHeader struct {
+type QueryInnerRedirectResponse struct {
+  // {"en":"the domain whoes need query config","zh_CN":"需要查询配置的域名"}
+  DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
+  // {"en":"the domain whoes need query config","zh_CN":"需要查询配置的域名id"}
+  DomainId *string `json:"domain-id,omitempty" xml:"domain-id,omitempty" require:"true"`
+  // {"en":"","zh_CN":""}
+  RewriteRuleSettings []*QueryInnerRedirectResponseRewriteRuleSettings `json:"rewrite-rule-settings,omitempty" xml:"rewrite-rule-settings,omitempty" require:"true" type:"Repeated"`
 }
 
-func (s QueryInnerRedirectRequestHeader) String() string {
+func (s QueryInnerRedirectResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryInnerRedirectRequestHeader) GoString() string {
+func (s QueryInnerRedirectResponse) GoString() string {
   return s.String()
+}
+
+func (s *QueryInnerRedirectResponse) SetDomainName(v string) *QueryInnerRedirectResponse {
+  s.DomainName = &v
+  return s
+}
+
+func (s *QueryInnerRedirectResponse) SetDomainId(v string) *QueryInnerRedirectResponse {
+  s.DomainId = &v
+  return s
+}
+
+func (s *QueryInnerRedirectResponse) SetRewriteRuleSettings(v []*QueryInnerRedirectResponseRewriteRuleSettings) *QueryInnerRedirectResponse {
+  s.RewriteRuleSettings = v
+  return s
+}
+
+type QueryInnerRedirectResponseRewriteRuleSettings struct     {
+  // {"en":"Configuration item: new url\nIndicates the protocol method after rewriting, such as: http://$1","zh_CN":"配置项：新url\n表示改写后的协议方式，如：http://$1"}
+  AfterValue *string `json:"after-value,omitempty" xml:"after-value,omitempty" require:"true"`
+  // {"en":"gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf m3u8 xml f4m bootstarp ts","zh_CN":"匹配条件：文件类型，多个请以英文;分隔，可选值：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf m3u8 xml f4m bootstarp ts"}
+  FileType *string `json:"file-type,omitempty" xml:"file-type,omitempty" require:"true"`
+  // {"en":"Region","zh_CN":"用户区域"}
+  OperatorsArea *string `json:"operators-area,omitempty" xml:"operators-area,omitempty" require:"true"`
+  // {"en":"Ignore case, the optional value is true or false, true means to ignore case; false means not to ignore case;\nWhen adding a new configuration item, the default is not true.\nIf the client passes a null value: such as <ignore-letter-case></ignore-letter-case>, the configuration is cleared.","zh_CN":"忽略大小写，可选值为true或false，true表示忽略大小写；false表示不忽略大小写；\n新增配置项时，不传默认为 true\n如果客户传了空值：如<ignore-letter-case></ignore-letter-case>，则表示清空配置"}
+  IgnoreLetterCase *string `json:"ignore-letter-case,omitempty" xml:"ignore-letter-case,omitempty" require:"true"`
+  // {"en":"Exceptional region","zh_CN":"例外的用户区域"}
+  ExceptionalOperatorsArea *string `json:"exceptional-operators-area,omitempty" xml:"exceptional-operators-area,omitempty" require:"true"`
+  // {"en":"Exceptional Request Method","zh_CN":"例外的请求方式"}
+  ExceptionalRequest *string `json:"exceptional-request,omitempty" xml:"exceptional-request,omitempty" require:"true"`
+  // {"en":"The url matching mode supports fuzzy regularization. If all matches, the input parameters can be configured as:","zh_CN":"url匹配模式，支持正则,  .*：匹配所有文件\n客户入参参考：.*\n对于匹配到的URL进行内容重定向"}
+  PathPattern *string `json:"path-pattern,omitempty" xml:"path-pattern,omitempty" require:"true"`
+  // {"en":"Matching conditions: specify common types, optional values are all or homepage 1. all: all files 2. homepage: home page","zh_CN":"匹配条件：指定常用类型，可选值为all或homepage 1、all：全部文件 2、homepage：首页"}
+  CustomPattern *string `json:"custom-pattern,omitempty" xml:"custom-pattern,omitempty" require:"true"`
+  // {"en":"Request Method","zh_CN":"请求方式"}
+  RequestWay *string `json:"request-way,omitempty" xml:"request-way,omitempty" require:"true"`
+  // {"en":"Indicates the priority execution order of multiple sets of redirected content by the customer. The higher the number, the higher the priority.\nWhen adding a new configuration item, the default is 10","zh_CN":"表示客户多组重定向内容的优先执行顺序。数字越大，优先级越高。\n新增配置项时，不传默认为 10"}
+  Priority *string `json:"priority,omitempty" xml:"priority,omitempty" require:"true"`
+  // {"en":"UA","zh_CN":"UA"}
+  Ua *string `json:"ua,omitempty" xml:"ua,omitempty" require:"true"`
+  // {"en":"directory","zh_CN":"目录"}
+  Directory *string `json:"directory,omitempty" xml:"directory,omitempty" require:"true"`
+  // {"en":"Redirection type; support for input:\nbefore: before the anti-theft chain\nafter: after the anti-theft chain","zh_CN":"重定向类型；支持入参：\nbefore：防盗链之前\nafter：防盗链之后"}
+  RewriteType *string `json:"rewrite-type,omitempty" xml:"rewrite-type,omitempty" require:"true"`
+  // {"en":"Rewrite the location where the content is generated. The input value is: Cache indicates the node;\nOther input formats are not supported at this time","zh_CN":"改写内容的生成位置。可输入值为：Cache表示节点；\n暂不支持其他入参格式"}
+  PublishType *string `json:"publish-type,omitempty" xml:"publish-type,omitempty" require:"true"`
+  // {"en":"Matching condition: Exception request header","zh_CN":"匹配条件：例外的请求头"}
+  ExceptionQueryInnerRedirectRequestHeader *string `json:"exception-request-header,omitempty" xml:"exception-request-header,omitempty" require:"true"`
+  // {"en":"Exceptional UA","zh_CN":"例外的UA"}
+  ExceptionalUa *string `json:"exceptional-ua,omitempty" xml:"exceptional-ua,omitempty" require:"true"`
+  // {"en":"Matching condition: Request header","zh_CN":"匹配条件：请求头"}
+  QueryInnerRedirectRequestHeader *string `json:"request-header,omitempty" xml:"request-header,omitempty" require:"true"`
+  // {"en":"Add a grid type identifier to indicate a specific group configuration when the client has multiple groups of configurations.","zh_CN":"添加grid类型标识，表示客户多组配置时，具体某组配置；data-id重复，已入参同个id最后一组为准生效"}
+  DataId *string `json:"data-id,omitempty" xml:"data-id,omitempty" require:"true"`
+  // {"en":"Exceptional url matching mode, except for certain URLs: such as abc.jpg, no content redirection\nCustomer reference: ^https?://[^/]+/.*\.m3u8","zh_CN":"例外的url匹配模式，某些URL除外：如abc.jpg，不做内容重定向\n客户入参参考：^https?://[^/]+/.*\.m3u8"}
+  ExceptPathPattern *string `json:"except-path-pattern,omitempty" xml:"except-path-pattern,omitempty" require:"true"`
+  // {"en":"Configuration item: old url\nIndicates the protocol mode before rewriting (that is, the object that needs to be rewritten), such as: ^https://([^/]+/.*)","zh_CN":"配置项：旧url\n表示改写前的协议方式（即需要改写的对象），如：^https://([^/]+/.*)"}
+  BeforeValue *string `json:"before-value,omitempty" xml:"before-value,omitempty" require:"true"`
+}
+
+func (s QueryInnerRedirectResponseRewriteRuleSettings) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryInnerRedirectResponseRewriteRuleSettings) GoString() string {
+  return s.String()
+}
+
+func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetAfterValue(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
+  s.AfterValue = &v
+  return s
+}
+
+func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetFileType(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
+  s.FileType = &v
+  return s
+}
+
+func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetOperatorsArea(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
+  s.OperatorsArea = &v
+  return s
+}
+
+func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetIgnoreLetterCase(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
+  s.IgnoreLetterCase = &v
+  return s
+}
+
+func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetExceptionalOperatorsArea(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
+  s.ExceptionalOperatorsArea = &v
+  return s
+}
+
+func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetExceptionalRequest(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
+  s.ExceptionalRequest = &v
+  return s
+}
+
+func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetPathPattern(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
+  s.PathPattern = &v
+  return s
+}
+
+func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetCustomPattern(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
+  s.CustomPattern = &v
+  return s
+}
+
+func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetRequestWay(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
+  s.RequestWay = &v
+  return s
+}
+
+func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetPriority(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
+  s.Priority = &v
+  return s
+}
+
+func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetUa(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
+  s.Ua = &v
+  return s
+}
+
+func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetDirectory(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
+  s.Directory = &v
+  return s
+}
+
+func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetRewriteType(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
+  s.RewriteType = &v
+  return s
+}
+
+func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetPublishType(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
+  s.PublishType = &v
+  return s
+}
+
+func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetExceptionQueryInnerRedirectRequestHeader(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
+  s.ExceptionQueryInnerRedirectRequestHeader = &v
+  return s
+}
+
+func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetExceptionalUa(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
+  s.ExceptionalUa = &v
+  return s
+}
+
+func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetQueryInnerRedirectRequestHeader(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
+  s.QueryInnerRedirectRequestHeader = &v
+  return s
+}
+
+func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetDataId(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
+  s.DataId = &v
+  return s
+}
+
+func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetExceptPathPattern(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
+  s.ExceptPathPattern = &v
+  return s
+}
+
+func (s *QueryInnerRedirectResponseRewriteRuleSettings) SetBeforeValue(v string) *QueryInnerRedirectResponseRewriteRuleSettings {
+  s.BeforeValue = &v
+  return s
 }
 
 type QueryInnerRedirectResponseHeader struct {
@@ -5100,15 +5150,10 @@ func (s QueryInnerRedirectResponseHeader) GoString() string {
 
 
 type EditDomainRedirectConfigRequest struct {
-  // {"en":"redirection function
-  // note:
-  // 1. Define a set of internal redirected content. If there is internal redirected content, this field is required.
-  // 2. need to clear the content redirection content under the domain name, you can pass the empty node <rewrite-rule-settings></rewrite-rule-settings>", "zh_CN":"一级服务改写替换&mdash;二级服务 内部重定向
-  // 注意：
-  // 1. 定义一组内部重定向内容，，如果有使用内部重定向内容，此项必填
-  // 2. 需要清空域名下的内容重定向内容，可以传入空节点<rewrite-rule-settings></rewrite-rule-settings>
-  // 3. 如果有开启其他高级配置（如防盗链配置），有些配置可能会有配置冲突，建议先与技术支持人员确认"}
+  // {"en":"redirection function\nnote:\n1. Define a set of internal redirected content. If there is internal redirected content, this field is required.\n2. need to clear the content redirection content under the domain name, you can pass the empty node <rewrite-rule-settings></rewrite-rule-settings>","zh_CN":"一级服务改写替换&mdash;二级服务 内部重定向\n注意：\n1. 定义一组内部重定向内容，，如果有使用内部重定向内容，此项必填\n2. 需要清空域名下的内容重定向内容，可以传入空节点<rewrite-rule-settings></rewrite-rule-settings>\n3. 如果有开启其他高级配置（如防盗链配置），有些配置可能会有配置冲突，建议先与技术支持人员确认"}
   RewriteRuleSettings []*EditDomainRedirectConfigRequestRewriteRuleSettings `json:"rewrite-rule-settings,omitempty" xml:"rewrite-rule-settings,omitempty" require:"true" type:"Repeated"`
+  // {"en":"description","zh_CN":"描述"}
+  Description *string `json:"description,omitempty" xml:"description,omitempty"`
 }
 
 func (s EditDomainRedirectConfigRequest) String() string {
@@ -5124,66 +5169,54 @@ func (s *EditDomainRedirectConfigRequest) SetRewriteRuleSettings(v []*EditDomain
   return s
 }
 
+func (s *EditDomainRedirectConfigRequest) SetDescription(v string) *EditDomainRedirectConfigRequest {
+  s.Description = &v
+  return s
+}
+
 type EditDomainRedirectConfigRequestRewriteRuleSettings struct     {
-  // {"en":"Add a grid type identifier to indicate a specific group configuration when the client has multiple groups of configurations.", "zh_CN":"添加grid类型标识，表示客户多组配置时，具体某组配置；data-id重复，以入参同个id最后一组为准生效
-  // data-id可以通过查询接口获取。
-  // 注意：添加grid类型标识：data-id，每一组配置对应一个data-id：
-  // a、如果客户有传data-id，说明指定修改其中一组配置项内容，不需求修改其他组配置内容不需要入参；
-  // b、如果客户入参多组配置，其中有些组配置有传data-id，有些没有传，则有传data-id的表示修改具体某组配置，没有传data-id的表示在原来基础上新增一组配置；
-  // c、如果客户入参都没有传data-id,表示用本次的配置全量覆盖原先配置；
-  // d、如果客户入参没有传任何配置项参数，只传了域名和二级标签，表示清空这个接口对应域名二级服务所有配置。（c、d内容和当前方案实现一致）；
-  // e、一个gird标签下的入参不能为空，如果，没有具体的配置项，则data-id必填，且值为实际存在的data-id,表示清空这个data-id对应配置项的值；"}
-  DataId *int64 `json:"data-id,omitempty" xml:"data-id,omitempty"`
-  // {"en":"The url matching mode supports fuzzy regularization. If all matches, the input parameters can be configured as: *", "zh_CN":"url匹配模式，支持正则，客户入参参考：.*
-  // 对于匹配到的URL进行内容重定向"}
-  PathPattern *string `json:"path-pattern,omitempty" xml:"path-pattern,omitempty"`
-  // {"en":"Matching conditions: specify common types, optional values are all or homepage 1. all: all files 2. homepage: home page", "zh_CN":"匹配条件：指定常用类型，可选值为all或homepage 1. all：全部文件 2. homepage：首页"}
-  CustomPattern *string `json:"custom-pattern,omitempty" xml:"custom-pattern,omitempty"`
-  // {"en":"directory", "zh_CN":"目录"}
-  Directory *string `json:"directory,omitempty" xml:"directory,omitempty"`
-  // {"en":"gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf m3u8 xml f4m bootstarp ts", "zh_CN":"匹配条件：文件类型，多个请以英文;分隔，可选值：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf m3u8 xml f4m bootstarp ts"}
+  // {"en":"Configuration item: new url\nIndicates the protocol method after rewriting, such as: http://$1","zh_CN":"配置项：新url\n表示改写后的协议方式，如：http://$1\n如果请求重定向带状态码则参考入参：301:https://$1\n注：如果url含域名，则域名需要是本身。"}
+  AfterValue *string `json:"after-value,omitempty" xml:"after-value,omitempty"`
+  // {"en":"gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf m3u8 xml f4m bootstarp ts","zh_CN":"匹配条件：文件类型，多个请以英文;分隔，可选值：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf m3u8 xml f4m bootstarp ts"}
   FileType *string `json:"file-type,omitempty" xml:"file-type,omitempty"`
-  // {"en":"Matching condition: Custom file type, please separate them by semicolon.", "zh_CN":"匹配条件：自定义文件类型，多个请以英文;分隔。"}
+  // {"en":"Matching condition: Custom file type, please separate them by semicolon.","zh_CN":"匹配条件：自定义文件类型，多个请以英文;分隔。"}
   CustomFileType *string `json:"custom-file-type,omitempty" xml:"custom-file-type,omitempty"`
-  // {"en":"Exceptional url matching mode, except for certain URLs: such as abc.jpg, no content redirection
-  // Customer reference: ^https?://[^/]+/.*\.m3u8", "zh_CN":"例外的url匹配模式，某些URL除外：如abc.jpg，不做内容重定向
-  // 客户入参参考：^https?://[^/]+/.*\.m3u8"}
-  ExceptPathPattern *string `json:"except-path-pattern,omitempty" xml:"except-path-pattern,omitempty"`
-  // {"en":"Ignore case, the optional value is true or false, true means to ignore case; false means not to ignore case;
-  // When adding a new configuration item, the default is not true.
-  // If the client passes a null value: such as <ignore-letter-case></ignore-letter-case>, the configuration is cleared.", "zh_CN":"忽略大小写，可选值为true或false，true表示忽略大小写；false表示不忽略大小写；
-  // 新增配置项时，不传默认为 true
-  // 如果客户传了空值：如<ignore-letter-case></ignore-letter-case>，则表示清空配置"}
+  // {"en":"Region","zh_CN":"用户区域"}
+  OperatorsArea *string `json:"operators-area,omitempty" xml:"operators-area,omitempty"`
+  // {"en":"Ignore case, the optional value is true or false, true means to ignore case; false means not to ignore case;\nWhen adding a new configuration item, the default is not true.\nIf the client passes a null value: such as <ignore-letter-case></ignore-letter-case>, the configuration is cleared.","zh_CN":"忽略大小写，可选值为true或false，true表示忽略大小写；false表示不忽略大小写；\n新增配置项时，不传默认为 true\n如果客户传了空值：如<ignore-letter-case></ignore-letter-case>，则表示清空配置"}
   IgnoreLetterCase *string `json:"ignore-letter-case,omitempty" xml:"ignore-letter-case,omitempty"`
-  // {"en":"Rewrite the location where the content is generated. The input value is: Cache indicates the node;
-  // Other input formats are not supported at this time", "zh_CN":"改写内容的生成位置。可输入值为：Cache表示节点；
-  // 暂不支持其他入参格式"}
-  PublishType *string `json:"publish-type,omitempty" xml:"publish-type,omitempty" require:"true"`
-  // {"en":"Indicates the priority execution order of multiple sets of redirected content by the customer. The higher the number, the higher the priority.
-  // When adding a new configuration item, the default is 10", "zh_CN":"表示客户多组重定向内容的优先执行顺序。数字越大，优先级越高。
-  // 新增配置项时，不传默认为 10"}
+  // {"en":"Exceptional region","zh_CN":"例外的用户区域"}
+  ExceptionalOperatorsArea *string `json:"exceptional-operators-area,omitempty" xml:"exceptional-operators-area,omitempty"`
+  // {"en":"Exceptional Request Method","zh_CN":"例外的请求方式"}
+  ExceptionalRequest *string `json:"exceptional-request,omitempty" xml:"exceptional-request,omitempty"`
+  // {"en":"The url matching mode supports fuzzy regularization. If all matches, the input parameters can be configured as:","zh_CN":"url匹配模式，支持正则，客户入参参考：.*\n对于匹配到的URL进行内容重定向"}
+  PathPattern *string `json:"path-pattern,omitempty" xml:"path-pattern,omitempty"`
+  // {"en":"Matching conditions: specify common types, optional values are all or homepage 1. all: all files 2. homepage: home page","zh_CN":"匹配条件：指定常用类型，可选值为all或homepage 1. all：全部文件 2. homepage：首页"}
+  CustomPattern *string `json:"custom-pattern,omitempty" xml:"custom-pattern,omitempty"`
+  // {"en":"Request Method","zh_CN":"请求方式"}
+  RequestWay *string `json:"request-way,omitempty" xml:"request-way,omitempty"`
+  // {"en":"Indicates the priority execution order of multiple sets of redirected content by the customer. The higher the number, the higher the priority.\nWhen adding a new configuration item, the default is 10","zh_CN":"表示客户多组重定向内容的优先执行顺序。数字越大，优先级越高。\n新增配置项时，不传默认为 10"}
   Priority *string `json:"priority,omitempty" xml:"priority,omitempty"`
-  // {"en":"Configuration item: old url
-  // Indicates the protocol mode before rewriting (that is, the object that needs to be rewritten), such as: ^https://([^/]+/.*)", "zh_CN":"配置项：旧url
-  // 表示改写前的协议方式（即需要改写的对象），如：^https://([^/]+/.*)
-  // 如果是回源协议改写，则表示客户请求的原始url，配套的参数after-value，表示客户请求需要转换的回源请求。"}
-  BeforeValue *string `json:"before-value,omitempty" xml:"before-value,omitempty" require:"true"`
-  // {"en":"Configuration item: new url
-  // Indicates the protocol method after rewriting, such as: http://$1", "zh_CN":"配置项：新url
-  // 表示改写后的协议方式，如：http://$1
-  // 如果请求重定向带状态码则参考入参：301:https://$1
-  // 注：如果url含域名，则域名需要是本身。"}
-  AfterValue *string `json:"after-value,omitempty" xml:"after-value,omitempty" require:"true"`
-  // {"en":"Redirection type; support for input:
-  // before: before the anti-theft chain
-  // after: after the anti-theft chain", "zh_CN":"重定向类型；支持入参：
-  // before：防盗链之前
-  // after：防盗链之后"}
-  RewriteType *string `json:"rewrite-type,omitempty" xml:"rewrite-type,omitempty" require:"true"`
-  // {"en":"Matching condition: Request header", "zh_CN":"匹配条件：请求头"}
-  EditDomainRedirectConfigRequestHeader *string `json:"request-header,omitempty" xml:"request-header,omitempty"`
-  // {"en":"Matching condition: Exception request header", "zh_CN":"匹配条件：例外的请求头"}
+  // {"en":"UA","zh_CN":"UA"}
+  Ua *string `json:"ua,omitempty" xml:"ua,omitempty"`
+  // {"en":"directory","zh_CN":"目录"}
+  Directory *string `json:"directory,omitempty" xml:"directory,omitempty"`
+  // {"en":"Redirection type; support for input:\nbefore: before the anti-theft chain\nafter: after the anti-theft chain","zh_CN":"重定向类型；支持入参：\nbefore：防盗链之前\nafter：防盗链之后"}
+  RewriteType *string `json:"rewrite-type,omitempty" xml:"rewrite-type,omitempty"`
+  // {"en":"Rewrite the location where the content is generated. The input value is: Cache indicates the node;\nOther input formats are not supported at this time","zh_CN":"改写内容的生成位置。可输入值为：Cache表示节点；\n暂不支持其他入参格式"}
+  PublishType *string `json:"publish-type,omitempty" xml:"publish-type,omitempty"`
+  // {"en":"Matching condition: Exception request header","zh_CN":"匹配条件：例外的请求头"}
   ExceptionEditDomainRedirectConfigRequestHeader *string `json:"exception-request-header,omitempty" xml:"exception-request-header,omitempty"`
+  // {"en":"Exceptional UA","zh_CN":"例外的UA"}
+  ExceptionalUa *string `json:"exceptional-ua,omitempty" xml:"exceptional-ua,omitempty"`
+  // {"en":"Matching condition: Request header","zh_CN":"匹配条件：请求头"}
+  EditDomainRedirectConfigRequestHeader *string `json:"request-header,omitempty" xml:"request-header,omitempty"`
+  // {"en":"Add a grid type identifier to indicate a specific group configuration when the client has multiple groups of configurations.","zh_CN":"添加grid类型标识，表示客户多组配置时，具体某组配置；data-id重复，已入参同个id最后一组为准生效\ndata-id可以通过查询接口获取。\n注意：添加grid类型标识：data-id，每一组配置对应一个data-id：\na、如果客户有传data-id，说明指定修改其中一组配置项内容，不需求修改其他组配置内容不需要入参；\nb、如果客户入参多组配置，其中有些组配置有传data-id，有些没有传，则有传data-id的表示修改具体某组配置，没有传data-id的表示在原来基础上新增一组配置；\nc、如果客户入参都没有传data-id,表示用本次的配置全量覆盖原先配置；\nd、如果客户入参没有传任何配置项参数，只传了域名和二级标签，表示清空这个接口对应域名二级服务所有配置。（c、d内容和当前方案实现一致）；\ne、一个gird标签下的入参不能为空，如果，没有具体的配置项，则data-id必填，且值为实际存在的data-id,表示清空这个data-id对应配置项的值；"}
+  DataId *int64 `json:"data-id,omitempty" xml:"data-id,omitempty"`
+  // {"en":"Exceptional url matching mode, except for certain URLs: such as abc.jpg, no content redirection\nCustomer reference: ^https?://[^/]+/.*\.m3u8","zh_CN":"例外的url匹配模式，某些URL除外：如abc.jpg，不做内容重定向\n客户入参参考：^https?://[^/]+/.*\.m3u8"}
+  ExceptPathPattern *string `json:"except-path-pattern,omitempty" xml:"except-path-pattern,omitempty"`
+  // {"en":"Configuration item: old url\nIndicates the protocol mode before rewriting (that is, the object that needs to be rewritten), such as: ^https://([^/]+/.*)","zh_CN":"配置项：旧url\n表示改写前的协议方式（即需要改写的对象），如：^https://([^/]+/.*)\n如果是回源协议改写，则表示客户请求的原始url，配套的参数after-value，表示客户请求需要转换的回源请求。"}
+  BeforeValue *string `json:"before-value,omitempty" xml:"before-value,omitempty"`
 }
 
 func (s EditDomainRedirectConfigRequestRewriteRuleSettings) String() string {
@@ -5194,23 +5227,8 @@ func (s EditDomainRedirectConfigRequestRewriteRuleSettings) GoString() string {
   return s.String()
 }
 
-func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetDataId(v int64) *EditDomainRedirectConfigRequestRewriteRuleSettings {
-  s.DataId = &v
-  return s
-}
-
-func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetPathPattern(v string) *EditDomainRedirectConfigRequestRewriteRuleSettings {
-  s.PathPattern = &v
-  return s
-}
-
-func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetCustomPattern(v string) *EditDomainRedirectConfigRequestRewriteRuleSettings {
-  s.CustomPattern = &v
-  return s
-}
-
-func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetDirectory(v string) *EditDomainRedirectConfigRequestRewriteRuleSettings {
-  s.Directory = &v
+func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetAfterValue(v string) *EditDomainRedirectConfigRequestRewriteRuleSettings {
+  s.AfterValue = &v
   return s
 }
 
@@ -5224,8 +5242,8 @@ func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetCustomFileType(v
   return s
 }
 
-func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetExceptPathPattern(v string) *EditDomainRedirectConfigRequestRewriteRuleSettings {
-  s.ExceptPathPattern = &v
+func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetOperatorsArea(v string) *EditDomainRedirectConfigRequestRewriteRuleSettings {
+  s.OperatorsArea = &v
   return s
 }
 
@@ -5234,8 +5252,28 @@ func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetIgnoreLetterCase
   return s
 }
 
-func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetPublishType(v string) *EditDomainRedirectConfigRequestRewriteRuleSettings {
-  s.PublishType = &v
+func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetExceptionalOperatorsArea(v string) *EditDomainRedirectConfigRequestRewriteRuleSettings {
+  s.ExceptionalOperatorsArea = &v
+  return s
+}
+
+func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetExceptionalRequest(v string) *EditDomainRedirectConfigRequestRewriteRuleSettings {
+  s.ExceptionalRequest = &v
+  return s
+}
+
+func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetPathPattern(v string) *EditDomainRedirectConfigRequestRewriteRuleSettings {
+  s.PathPattern = &v
+  return s
+}
+
+func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetCustomPattern(v string) *EditDomainRedirectConfigRequestRewriteRuleSettings {
+  s.CustomPattern = &v
+  return s
+}
+
+func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetRequestWay(v string) *EditDomainRedirectConfigRequestRewriteRuleSettings {
+  s.RequestWay = &v
   return s
 }
 
@@ -5244,13 +5282,13 @@ func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetPriority(v strin
   return s
 }
 
-func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetBeforeValue(v string) *EditDomainRedirectConfigRequestRewriteRuleSettings {
-  s.BeforeValue = &v
+func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetUa(v string) *EditDomainRedirectConfigRequestRewriteRuleSettings {
+  s.Ua = &v
   return s
 }
 
-func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetAfterValue(v string) *EditDomainRedirectConfigRequestRewriteRuleSettings {
-  s.AfterValue = &v
+func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetDirectory(v string) *EditDomainRedirectConfigRequestRewriteRuleSettings {
+  s.Directory = &v
   return s
 }
 
@@ -5259,8 +5297,8 @@ func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetRewriteType(v st
   return s
 }
 
-func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetEditDomainRedirectConfigRequestHeader(v string) *EditDomainRedirectConfigRequestRewriteRuleSettings {
-  s.EditDomainRedirectConfigRequestHeader = &v
+func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetPublishType(v string) *EditDomainRedirectConfigRequestRewriteRuleSettings {
+  s.PublishType = &v
   return s
 }
 
@@ -5269,47 +5307,44 @@ func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetExceptionEditDom
   return s
 }
 
-type EditDomainRedirectConfigResponse struct {
-  // {"en":"httpstatus=202; Indicates that the new domain API was successfully invoked, and the current deployment of the new domain can be viewed using x-cnc-request-id in the header", "zh_CN":"httpstatus=202;   表示成功调用新增域名接口，可使用header中的x-cnc-request-id查看当前新增域名的部署情况"}
-  HttpStatus *int `json:"http status code,omitempty" xml:"http status code,omitempty" require:"true"`
-  // {"en":"Uniquely identified id for querying tasks per request (for all API)", "zh_CN":"唯一标示的id，用于查询每次请求的任务 （适用全部接口）"}
-  XCncRequestId *string `json:"x-cnc-request-id,omitempty" xml:"x-cnc-request-id,omitempty" require:"true"`
-  // {"en":"The error code, when HTTPStatus is not 202, indicates the type of error the current request is calling.", "zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Response information, when success is successful", "zh_CN":"响应信息，成功时为success"}
-  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetExceptionalUa(v string) *EditDomainRedirectConfigRequestRewriteRuleSettings {
+  s.ExceptionalUa = &v
+  return s
 }
 
-func (s EditDomainRedirectConfigResponse) String() string {
+func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetEditDomainRedirectConfigRequestHeader(v string) *EditDomainRedirectConfigRequestRewriteRuleSettings {
+  s.EditDomainRedirectConfigRequestHeader = &v
+  return s
+}
+
+func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetDataId(v int64) *EditDomainRedirectConfigRequestRewriteRuleSettings {
+  s.DataId = &v
+  return s
+}
+
+func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetExceptPathPattern(v string) *EditDomainRedirectConfigRequestRewriteRuleSettings {
+  s.ExceptPathPattern = &v
+  return s
+}
+
+func (s *EditDomainRedirectConfigRequestRewriteRuleSettings) SetBeforeValue(v string) *EditDomainRedirectConfigRequestRewriteRuleSettings {
+  s.BeforeValue = &v
+  return s
+}
+
+type EditDomainRedirectConfigRequestHeader struct {
+}
+
+func (s EditDomainRedirectConfigRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s EditDomainRedirectConfigResponse) GoString() string {
+func (s EditDomainRedirectConfigRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *EditDomainRedirectConfigResponse) SetHttpStatus(v int) *EditDomainRedirectConfigResponse {
-  s.HttpStatus = &v
-  return s
-}
-
-func (s *EditDomainRedirectConfigResponse) SetXCncRequestId(v string) *EditDomainRedirectConfigResponse {
-  s.XCncRequestId = &v
-  return s
-}
-
-func (s *EditDomainRedirectConfigResponse) SetCode(v string) *EditDomainRedirectConfigResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *EditDomainRedirectConfigResponse) SetMessage(v string) *EditDomainRedirectConfigResponse {
-  s.Message = &v
-  return s
-}
-
 type EditDomainRedirectConfigPaths struct {
-  // {"en":"the domain whoes need query config", "zh_CN":"需要查询配置的域名或域名id"}
+  // {"en":"the domain whoes need query config","zh_CN":"需要查询配置的域名或域名id"}
   DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
 }
 
@@ -5337,15 +5372,43 @@ func (s EditDomainRedirectConfigParameters) GoString() string {
   return s.String()
 }
 
-type EditDomainRedirectConfigRequestHeader struct {
+type EditDomainRedirectConfigResponse struct {
+  // {"en":"The error code, when HTTPStatus is not 202, indicates the type of error the current request is calling.","zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"httpstatus=202; Indicates that the new domain API was successfully invoked, and the current deployment of the new domain can be viewed using x-cnc-request-id in the header","zh_CN":"httpstatus=202;   表示成功调用新增域名接口，可使用header中的x-cnc-request-id查看当前新增域名的部署情况"}
+  HttpStatus *int `json:"httpStatus,omitempty" xml:"httpStatus,omitempty" require:"true"`
+  // {"en":"Uniquely identified id for querying tasks per request (for all API)","zh_CN":"唯一标示的id，用于查询每次请求的任务 （适用全部接口）"}
+  XCncRequestId *string `json:"x-cnc-request-id,omitempty" xml:"x-cnc-request-id,omitempty" require:"true"`
+  // {"en":"Response information, when success is successful","zh_CN":"响应信息，成功时为success"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
 }
 
-func (s EditDomainRedirectConfigRequestHeader) String() string {
+func (s EditDomainRedirectConfigResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s EditDomainRedirectConfigRequestHeader) GoString() string {
+func (s EditDomainRedirectConfigResponse) GoString() string {
   return s.String()
+}
+
+func (s *EditDomainRedirectConfigResponse) SetCode(v string) *EditDomainRedirectConfigResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *EditDomainRedirectConfigResponse) SetHttpStatus(v int) *EditDomainRedirectConfigResponse {
+  s.HttpStatus = &v
+  return s
+}
+
+func (s *EditDomainRedirectConfigResponse) SetXCncRequestId(v string) *EditDomainRedirectConfigResponse {
+  s.XCncRequestId = &v
+  return s
+}
+
+func (s *EditDomainRedirectConfigResponse) SetMessage(v string) *EditDomainRedirectConfigResponse {
+  s.Message = &v
+  return s
 }
 
 type EditDomainRedirectConfigResponseHeader struct {
@@ -5657,6 +5720,254 @@ func (s QueryAmazonS3AuthorizationConfigResponseHeader) String() string {
 }
 
 func (s QueryAmazonS3AuthorizationConfigResponseHeader) GoString() string {
+  return s.String()
+}
+
+
+
+
+type QueryBanUrlUnderDomianRequest struct {
+}
+
+func (s QueryBanUrlUnderDomianRequest) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryBanUrlUnderDomianRequest) GoString() string {
+  return s.String()
+}
+
+type QueryBanUrlUnderDomianResponse struct {
+  // {"en":"Domain name.", "zh_CN":"在CNC系统中生效的域名。返回这个域名下所有的url屏蔽内容"}
+  DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
+  // {"en":"Domain ID.", "zh_CN":"在CNC系统中生效的域名。返回这个域名下所有的url屏蔽内容"}
+  DomainId *string `json:"domain-id,omitempty" xml:"domain-id,omitempty" require:"true"`
+  // {"en":"Customer code.", "zh_CN":"客户在我司设置的英文名，如Nicole"}
+  CustomerCode *string `json:"customer-code,omitempty" xml:"customer-code,omitempty" require:"true"`
+  // {"en":"Ban url details.", "zh_CN":"封禁url详情"}
+  IllegalInformations []*QueryBanUrlUnderDomianResponseIllegalInformations `json:"illegal-informations,omitempty" xml:"illegal-informations,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s QueryBanUrlUnderDomianResponse) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryBanUrlUnderDomianResponse) GoString() string {
+  return s.String()
+}
+
+func (s *QueryBanUrlUnderDomianResponse) SetDomainName(v string) *QueryBanUrlUnderDomianResponse {
+  s.DomainName = &v
+  return s
+}
+
+func (s *QueryBanUrlUnderDomianResponse) SetDomainId(v string) *QueryBanUrlUnderDomianResponse {
+  s.DomainId = &v
+  return s
+}
+
+func (s *QueryBanUrlUnderDomianResponse) SetCustomerCode(v string) *QueryBanUrlUnderDomianResponse {
+  s.CustomerCode = &v
+  return s
+}
+
+func (s *QueryBanUrlUnderDomianResponse) SetIllegalInformations(v []*QueryBanUrlUnderDomianResponseIllegalInformations) *QueryBanUrlUnderDomianResponse {
+  s.IllegalInformations = v
+  return s
+}
+
+type QueryBanUrlUnderDomianResponseIllegalInformations struct     {
+  // {"en":"Ban url", "zh_CN":"屏蔽的url信息"}
+  Url *string `json:"url,omitempty" xml:"url,omitempty" require:"true"`
+  // {"en":"Ban regions, default is global.", "zh_CN":"屏蔽区域，未设置则默认为全球。"}
+  Areas []*string `json:"areas,omitempty" xml:"areas,omitempty" require:"true" type:"Repeated"`
+  // {"en":"Match method, support: exact, fuzzy. Default: exact.", "zh_CN":"匹配方式，支持模糊和精确；模糊入参为：fuzzy;精确匹配：exact
+  // 如果没有传默认是精确"}
+  Method *string `json:"method,omitempty" xml:"method,omitempty" require:"true"`
+}
+
+func (s QueryBanUrlUnderDomianResponseIllegalInformations) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryBanUrlUnderDomianResponseIllegalInformations) GoString() string {
+  return s.String()
+}
+
+func (s *QueryBanUrlUnderDomianResponseIllegalInformations) SetUrl(v string) *QueryBanUrlUnderDomianResponseIllegalInformations {
+  s.Url = &v
+  return s
+}
+
+func (s *QueryBanUrlUnderDomianResponseIllegalInformations) SetAreas(v []*string) *QueryBanUrlUnderDomianResponseIllegalInformations {
+  s.Areas = v
+  return s
+}
+
+func (s *QueryBanUrlUnderDomianResponseIllegalInformations) SetMethod(v string) *QueryBanUrlUnderDomianResponseIllegalInformations {
+  s.Method = &v
+  return s
+}
+
+type QueryBanUrlUnderDomianPaths struct {
+  // {"en":"The domain whoes need query config.", "zh_CN":"需要查询配置的域名或域名id"}
+  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
+}
+
+func (s QueryBanUrlUnderDomianPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryBanUrlUnderDomianPaths) GoString() string {
+  return s.String()
+}
+
+func (s *QueryBanUrlUnderDomianPaths) SetDomain(v string) *QueryBanUrlUnderDomianPaths {
+  s.Domain = &v
+  return s
+}
+
+type QueryBanUrlUnderDomianParameters struct {
+}
+
+func (s QueryBanUrlUnderDomianParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryBanUrlUnderDomianParameters) GoString() string {
+  return s.String()
+}
+
+type QueryBanUrlUnderDomianRequestHeader struct {
+}
+
+func (s QueryBanUrlUnderDomianRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryBanUrlUnderDomianRequestHeader) GoString() string {
+  return s.String()
+}
+
+type QueryBanUrlUnderDomianResponseHeader struct {
+}
+
+func (s QueryBanUrlUnderDomianResponseHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryBanUrlUnderDomianResponseHeader) GoString() string {
+  return s.String()
+}
+
+
+
+
+type AntiHijackIPUpdateRequest struct {
+  // {"en":"Anti-Hijack IP id","zh_CN":"劫持缓解IP id"}
+  Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
+  // {"en":"Associated business domain","zh_CN":"关联业务域名"}
+  RelateDomain *string `json:"relateDomain,omitempty" xml:"relateDomain,omitempty"`
+  // {"en":"When on the csec platform, it must be passed, and \"csec-cs-new\" must be passed","zh_CN":"csec平台时，必须传，且传\"csec-cs-new\""}
+  OfferCode *string `json:"offerCode,omitempty" xml:"offerCode,omitempty"`
+  // {"en":"Remark, maximum length 200","zh_CN":"备注，长度最大200"}
+  Remark *string `json:"remark,omitempty" xml:"remark,omitempty"`
+}
+
+func (s AntiHijackIPUpdateRequest) String() string {
+  return tea.Prettify(s)
+}
+
+func (s AntiHijackIPUpdateRequest) GoString() string {
+  return s.String()
+}
+
+func (s *AntiHijackIPUpdateRequest) SetId(v string) *AntiHijackIPUpdateRequest {
+  s.Id = &v
+  return s
+}
+
+func (s *AntiHijackIPUpdateRequest) SetRelateDomain(v string) *AntiHijackIPUpdateRequest {
+  s.RelateDomain = &v
+  return s
+}
+
+func (s *AntiHijackIPUpdateRequest) SetOfferCode(v string) *AntiHijackIPUpdateRequest {
+  s.OfferCode = &v
+  return s
+}
+
+func (s *AntiHijackIPUpdateRequest) SetRemark(v string) *AntiHijackIPUpdateRequest {
+  s.Remark = &v
+  return s
+}
+
+type AntiHijackIPUpdateRequestHeader struct {
+}
+
+func (s AntiHijackIPUpdateRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s AntiHijackIPUpdateRequestHeader) GoString() string {
+  return s.String()
+}
+
+type AntiHijackIPUpdatePaths struct {
+}
+
+func (s AntiHijackIPUpdatePaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s AntiHijackIPUpdatePaths) GoString() string {
+  return s.String()
+}
+
+type AntiHijackIPUpdateParameters struct {
+}
+
+func (s AntiHijackIPUpdateParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s AntiHijackIPUpdateParameters) GoString() string {
+  return s.String()
+}
+
+type AntiHijackIPUpdateResponse struct {
+  // {"en":"Success: 200, others fail","zh_CN":"成功：200，其他失败"}
+  Code *int `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Return description message","zh_CN":"返回描述信息"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+}
+
+func (s AntiHijackIPUpdateResponse) String() string {
+  return tea.Prettify(s)
+}
+
+func (s AntiHijackIPUpdateResponse) GoString() string {
+  return s.String()
+}
+
+func (s *AntiHijackIPUpdateResponse) SetCode(v int) *AntiHijackIPUpdateResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *AntiHijackIPUpdateResponse) SetMsg(v string) *AntiHijackIPUpdateResponse {
+  s.Msg = &v
+  return s
+}
+
+type AntiHijackIPUpdateResponseHeader struct {
+}
+
+func (s AntiHijackIPUpdateResponseHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s AntiHijackIPUpdateResponseHeader) GoString() string {
   return s.String()
 }
 
@@ -6456,208 +6767,19 @@ func (s QueryCacheTimeRequest) GoString() string {
   return s.String()
 }
 
-type QueryCacheTimeResponse struct {
-  // {"en":"Domain name or domain name id to query configuration", "zh_CN":"需要查询配置的域名"}
-  DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
-  // {"en":"Domain name or domain name id to query configuration", "zh_CN":"需要查询配置的域名id"}
-  DomainId *string `json:"domain-id,omitempty" xml:"domain-id,omitempty" require:"true"`
-  CacheTimeBehaviors []*QueryCacheTimeResponseCacheTimeBehaviors `json:"cache-time-behaviors,omitempty" xml:"cache-time-behaviors,omitempty" require:"true" type:"Repeated"`
+type QueryCacheTimeRequestHeader struct {
 }
 
-func (s QueryCacheTimeResponse) String() string {
+func (s QueryCacheTimeRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryCacheTimeResponse) GoString() string {
+func (s QueryCacheTimeRequestHeader) GoString() string {
   return s.String()
-}
-
-func (s *QueryCacheTimeResponse) SetDomainName(v string) *QueryCacheTimeResponse {
-  s.DomainName = &v
-  return s
-}
-
-func (s *QueryCacheTimeResponse) SetDomainId(v string) *QueryCacheTimeResponse {
-  s.DomainId = &v
-  return s
-}
-
-func (s *QueryCacheTimeResponse) SetCacheTimeBehaviors(v []*QueryCacheTimeResponseCacheTimeBehaviors) *QueryCacheTimeResponse {
-  s.CacheTimeBehaviors = v
-  return s
-}
-
-type QueryCacheTimeResponseCacheTimeBehaviors struct     {
-  // {"en":"Add a grid type identifier to indicate a specific group configuration when the client has multiple groups of configurations.", "zh_CN":"添加grid类型标识，表示客户多组配置时，具体某组配置"}
-  DataId *int32 `json:"data-id,omitempty" xml:"data-id,omitempty" require:"true"`
-  // {"en":"The url matching mode supports fuzzy regularization. If all matches, the input parameters can be configured as: *", "zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*"}
-  PathPattern *string `json:"path-pattern,omitempty" xml:"path-pattern,omitempty" require:"true"`
-  // {"en":"Exceptional url matching mode, except for some URLs: such as abc.jpg, do not do anti-theft chain function
-  // E.g: ^https?://[^/]+/.*\.m3u8", "zh_CN":"例外的url匹配模式，某些URL除外：如abc.jpg，不做内容重定向
-  // 客户入参参考：^https?://[^/]+/.*\.m3u8"}
-  ExceptPathPattern *string `json:"except-path-pattern,omitempty" xml:"except-path-pattern,omitempty" require:"true"`
-  // {"en":"Specify common types: Select the domain name that requires the cache  to be all files or the home page. :
-  // E.g:
-  // All: all files
-  // Homepage: homepage", "zh_CN":"指定常用类型：选择缓存域名的是全部文件还是首页。入参参考值：
-  // all：全部文件
-  // homepage：首页"}
-  CustomPattern *string `json:"custom-pattern,omitempty" xml:"custom-pattern,omitempty" require:"true"`
-  // {"en":"File Type: Specify the file type for cache settings.
-  // File types include: gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf
-  // If you need all types, pass all directly. Multiples are separated by semicolons, and all and specific file types cannot be configured at the same time.", "zh_CN":"文件类型：指定需要缓存的文件类型。
-  // 文件类型包括：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf
-  // 如果需要全部类型，则直接传all。多个以分号隔开，all和具体文件类型不能同时配置。"}
-  FileType *string `json:"file-type,omitempty" xml:"file-type,omitempty" require:"true"`
-  // {"en":"Custom file type: Fill in the appropriate identifiable file type according to your needs outside of the specified file type. Can be used with file-type. If the file-type is also configured, the actual file type is the sum of the two parameters.", "zh_CN":"自定义文件类型：在指定文件类型外根据自身需求，填写适当的可识别文件类型。可以搭配file-type使用。如果file-type也有配置，实际生效的文件类型是两个入参的总和"}
-  CustomFileType *string `json:"custom-file-type,omitempty" xml:"custom-file-type,omitempty" require:"true"`
-  // {"en":"Specify URL cache: Specify url according to requirements for cache
-  // INS format does not support URI format with http(s)://", "zh_CN":"指定URL缓存：根据需求指定url进行缓存
-  // 入参不支持含http(s):// 开头的URI格式"}
-  SpecifyUrlPattern *string `json:"specify-url-pattern,omitempty" xml:"specify-url-pattern,omitempty" require:"true"`
-  // {"en":"Directory: Specify the directory cache.
-  // Enter a legal directory format. Multiple separated by semicolons", "zh_CN":"目录：指定目录缓存。
-  // 输入合法的目录格式。多个以英文分号隔开"}
-  Directory *string `json:"directory,omitempty" xml:"directory,omitempty" require:"true"`
-  // {"en":"Cache time: set the time corresponding to the cache object
-  // Input format: integer plus unit, such as 20s, 30m, 1h, 2d, no cache is set to 0. Do not enter the unit default is seconds
-  // There is no upper limit on the cache time theory. This time is set according to the customer's own needs. If the customer feels that some of the files are not changed frequently, then the setting is longer. For example, the text class js, css, html, etc. can be set shorter, the picture, video and audio classes can be set longer (because the cache time will be replaced by the new file due to the file heat algorithm, the longest suggestion Do not exceed one month)", "zh_CN":"缓存时间：设置缓存对象对应的时间
-  // 入参格式：整数加单位，比如20s、30m、1h、2d，不缓存设置为0。不输入单位默认是秒
-  // 缓存时间理论上没有上限限制，这个时间根据客户自身的需求设定，如果客户觉得其中一些文件，变更不频繁，那么就设置长一点。例如，文本类的js，css，html等可以设置得短一些，图片、视频音频类的可以设置的长一点（因为缓存时间会因文件热度算法，旧文件会被新文件替换掉，最长建议不要超过一个月）"}
-  CacheTtl *int32 `json:"cache-ttl,omitempty" xml:"cache-ttl,omitempty" require:"true"`
-  // {"en":"Ignore the source station does not cache the header. The optional values are true and false, which are used to ignore the two configurations of cache-control in the request header (private, no-cache) and the Authorization set by the client.
-  // The ture indicates that the source station's settings for the three are ignored. Enables resources to be cached on the service node in the form of cache-control: public, and then our nodes can cache this type of resource and provide acceleration services.
-  // False means that when the source station sets cache-control: private, cache-control: no-cache for a resource or specifies to cache according to authorization, our service node will not cache such files.", "zh_CN":"忽略源站不缓存头。可选值为true和false，用于忽略请求头中cache-control的两种配置（private，no-cache）和客户端设置的Authorization。
-  // ture表示会忽略掉源站对于这三者的设定。使得资源能够以cache-control: public的方式缓存在服务节点上，然后我们的节点才能缓存这种类型的资源，提供加速服务。
-  // false表示当源站对某种资源设定了cache-control: private,cache-control:no-cache或指定根据authorization进行缓存时，我们的服务节点将不会对此类文件进行缓存。"}
-  IgnoreCacheControl *string `json:"ignore-cache-control,omitempty" xml:"ignore-cache-control,omitempty" require:"true"`
-  // {"en":"Respect the server: Accelerate whether to prioritize the source cache time.
-  // Optional values: true and false
-  // True: indicates that the server is time-first
-  // False: The cache time of the CDN configuration takes precedence.", "zh_CN":"尊重服务端：加速是否要按源站缓存时间优先。
-  // 可选值：true和false
-  // true：表示重服务端时间优先
-  // false:CDN配置的缓存时间优先"}
-  IsRespectServer *string `json:"is-respect-server,omitempty" xml:"is-respect-server,omitempty" require:"true"`
-  // {"en":"Ignore case, the optional value is true or false, true means to ignore case; false means not to ignore case;
-  // When adding a new configuration item, the default is not true.", "zh_CN":"忽略大小写，可选值为true或false，true表示忽略大小写；false表示不忽略大小写；
-  // 新增配置项时，不传默认为 true"}
-  IgnoreLetterCase *string `json:"ignore-letter-case,omitempty" xml:"ignore-letter-case,omitempty" require:"true"`
-  // {"en":"Reload processing rules, optional: ignore or if-modified-since
-  // If-modified-since: indicates that you want to convert to if-modified-since
-  // Ignore: means to ignore client refresh", "zh_CN":"reload处理规则，可选项：ignore或者if-modified-since
-  // if-modified-since：表示要转成if-modified-since
-  // ignore:表示忽略客户端刷新"}
-  ReloadManage *string `json:"reload-manage,omitempty" xml:"reload-manage,omitempty" require:"true"`
-  // {"en":"Indicates the priority execution order of multiple sets of redirected content by the customer. The higher the number, the higher the priority.
-  // When adding a new configuration item, the default is 10", "zh_CN":"表示客户多组重定向内容的优先执行顺序。数字越大，优先级越高。
-  // 新增配置项时，不传默认为 10
-  // 如果传了值，不能为空"}
-  Priority *int32 `json:"priority,omitempty" xml:"priority,omitempty" require:"true"`
-  // {"en":"Request Header", "zh_CN":"请求头域"}
-  QueryCacheTimeRequestHeaderField *string `json:"request-header-field,omitempty" xml:"request-header-field,omitempty" require:"true"`
-  // {"en":"Request Header Value", "zh_CN":"请求头的值"}
-  ValueQueryCacheTimeRequestHeader *string `json:"value-request-header,omitempty" xml:"value-request-header,omitempty" require:"true"`
-  // {"en":"You can set it 'true' to cache
-  // ignoring the http header 'Authentication'.  If it is empty, the header is not ignored by default.", "zh_CN":"忽略鉴权头部Authentication，可选值为true和false。为空默认为不忽略。"}
-  IgnoreAuthenticationHeader *bool `json:"ignore-authentication-header,omitempty" xml:"ignore-authentication-header,omitempty" require:"true"`
-}
-
-func (s QueryCacheTimeResponseCacheTimeBehaviors) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryCacheTimeResponseCacheTimeBehaviors) GoString() string {
-  return s.String()
-}
-
-func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetDataId(v int32) *QueryCacheTimeResponseCacheTimeBehaviors {
-  s.DataId = &v
-  return s
-}
-
-func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetPathPattern(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
-  s.PathPattern = &v
-  return s
-}
-
-func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetExceptPathPattern(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
-  s.ExceptPathPattern = &v
-  return s
-}
-
-func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetCustomPattern(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
-  s.CustomPattern = &v
-  return s
-}
-
-func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetFileType(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
-  s.FileType = &v
-  return s
-}
-
-func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetCustomFileType(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
-  s.CustomFileType = &v
-  return s
-}
-
-func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetSpecifyUrlPattern(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
-  s.SpecifyUrlPattern = &v
-  return s
-}
-
-func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetDirectory(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
-  s.Directory = &v
-  return s
-}
-
-func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetCacheTtl(v int32) *QueryCacheTimeResponseCacheTimeBehaviors {
-  s.CacheTtl = &v
-  return s
-}
-
-func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetIgnoreCacheControl(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
-  s.IgnoreCacheControl = &v
-  return s
-}
-
-func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetIsRespectServer(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
-  s.IsRespectServer = &v
-  return s
-}
-
-func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetIgnoreLetterCase(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
-  s.IgnoreLetterCase = &v
-  return s
-}
-
-func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetReloadManage(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
-  s.ReloadManage = &v
-  return s
-}
-
-func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetPriority(v int32) *QueryCacheTimeResponseCacheTimeBehaviors {
-  s.Priority = &v
-  return s
-}
-
-func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetQueryCacheTimeRequestHeaderField(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
-  s.QueryCacheTimeRequestHeaderField = &v
-  return s
-}
-
-func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetValueQueryCacheTimeRequestHeader(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
-  s.ValueQueryCacheTimeRequestHeader = &v
-  return s
-}
-
-func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetIgnoreAuthenticationHeader(v bool) *QueryCacheTimeResponseCacheTimeBehaviors {
-  s.IgnoreAuthenticationHeader = &v
-  return s
 }
 
 type QueryCacheTimePaths struct {
-  // {"en":"Domain name or domain name id to query configuration", "zh_CN":"需要查询配置的域名或域名id"}
+  // {"en":"Domain name or domain name id to query configuration","zh_CN":"需要查询配置的域名或域名id"}
   DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
 }
 
@@ -6685,15 +6807,173 @@ func (s QueryCacheTimeParameters) GoString() string {
   return s.String()
 }
 
-type QueryCacheTimeRequestHeader struct {
+type QueryCacheTimeResponse struct {
+  // {"en":"Domain name or domain name id to query configuration","zh_CN":"需要查询配置的域名"}
+  DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
+  // {"en":"Domain name or domain name id to query configuration","zh_CN":"需要查询配置的域名id"}
+  DomainId *string `json:"domain-id,omitempty" xml:"domain-id,omitempty" require:"true"`
+  // {"en":"","zh_CN":""}
+  CacheTimeBehaviors []*QueryCacheTimeResponseCacheTimeBehaviors `json:"cache-time-behaviors,omitempty" xml:"cache-time-behaviors,omitempty" require:"true" type:"Repeated"`
 }
 
-func (s QueryCacheTimeRequestHeader) String() string {
+func (s QueryCacheTimeResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryCacheTimeRequestHeader) GoString() string {
+func (s QueryCacheTimeResponse) GoString() string {
   return s.String()
+}
+
+func (s *QueryCacheTimeResponse) SetDomainName(v string) *QueryCacheTimeResponse {
+  s.DomainName = &v
+  return s
+}
+
+func (s *QueryCacheTimeResponse) SetDomainId(v string) *QueryCacheTimeResponse {
+  s.DomainId = &v
+  return s
+}
+
+func (s *QueryCacheTimeResponse) SetCacheTimeBehaviors(v []*QueryCacheTimeResponseCacheTimeBehaviors) *QueryCacheTimeResponse {
+  s.CacheTimeBehaviors = v
+  return s
+}
+
+type QueryCacheTimeResponseCacheTimeBehaviors struct     {
+  // {"en":"File Type: Specify the file type for cache settings.\nFile types include: gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf\nIf you need all types, pass all directly. Multiples are separated by semicolons, and all and specific file types cannot be configured at the same time.","zh_CN":"文件类型：指定需要缓存的文件类型。\n文件类型包括：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf\n如果需要全部类型，则直接传all。多个以分号隔开，all和具体文件类型不能同时配置。"}
+  FileType *string `json:"file-type,omitempty" xml:"file-type,omitempty" require:"true"`
+  // {"en":"Ignore the source station does not cache the header. The optional values are true and false, which are used to ignore the two configurations of cache-control in the request header (private, no-cache) and the Authorization set by the client.\nThe ture indicates that the source station's settings for the three are ignored. Enables resources to be cached on the service node in the form of cache-control: public, and then our nodes can cache this type of resource and provide acceleration services.\nFalse means that when the source station sets cache-control: private, cache-control: no-cache for a resource or specifies to cache according to authorization, our service node will not cache such files.","zh_CN":"忽略源站不缓存头。可选值为true和false，用于忽略请求头中cache-control的两种配置（private，no-cache）和客户端设置的Authorization。\nture表示会忽略掉源站对于这三者的设定。使得资源能够以cache-control: public的方式缓存在服务节点上，然后我们的节点才能缓存这种类型的资源，提供加速服务。\nfalse表示当源站对某种资源设定了cache-control: private,cache-control:no-cache或指定根据authorization进行缓存时，我们的服务节点将不会对此类文件进行缓存。"}
+  IgnoreCacheControl *string `json:"ignore-cache-control,omitempty" xml:"ignore-cache-control,omitempty" require:"true"`
+  // {"en":"Custom file type: Fill in the appropriate identifiable file type according to your needs outside of the specified file type. Can be used with file-type. If the file-type is also configured, the actual file type is the sum of the two parameters.","zh_CN":"自定义文件类型：在指定文件类型外根据自身需求，填写适当的可识别文件类型。可以搭配file-type使用。如果file-type也有配置，实际生效的文件类型是两个入参的总和"}
+  CustomFileType *string `json:"custom-file-type,omitempty" xml:"custom-file-type,omitempty" require:"true"`
+  // {"en":"Respect the server: Accelerate whether to prioritize the source cache time.\nOptional values: true and false\nTrue: indicates that the server is time-first\nFalse: The cache time of the CDN configuration takes precedence.","zh_CN":"尊重服务端：加速是否要按源站缓存时间优先。\n可选值：true和false\ntrue：表示重服务端时间优先\nfalse:CDN配置的缓存时间优先"}
+  IsRespectServer *string `json:"is-respect-server,omitempty" xml:"is-respect-server,omitempty" require:"true"`
+  // {"en":"You can set it 'true' to cache\nignoring the http header 'Authentication'.  If it is empty, the header is not ignored by default.","zh_CN":"忽略鉴权头部Authentication，可选值为true和false。为空默认为不忽略。"}
+  IgnoreAuthenticationHeader *bool `json:"ignore-authentication-header,omitempty" xml:"ignore-authentication-header,omitempty" require:"true"`
+  // {"en":"Ignore case, the optional value is true or false, true means to ignore case; false means not to ignore case;\nWhen adding a new configuration item, the default is not true.","zh_CN":"忽略大小写，可选值为true或false，true表示忽略大小写；false表示不忽略大小写；\n新增配置项时，不传默认为 true"}
+  IgnoreLetterCase *string `json:"ignore-letter-case,omitempty" xml:"ignore-letter-case,omitempty" require:"true"`
+  // {"en":"Exceptional UA","zh_CN":"例外的ua"}
+  ExceptionUa *string `json:"exception-ua,omitempty" xml:"exception-ua,omitempty" require:"true"`
+  // {"en":"The url matching mode supports fuzzy regularization. If all matches, the input parameters can be configured as:","zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*"}
+  PathPattern *string `json:"path-pattern,omitempty" xml:"path-pattern,omitempty" require:"true"`
+  // {"en":"Specify common types: Select the domain name that requires the cache  to be all files or the home page. :\nE.g:\nAll: all files\nHomepage: homepage","zh_CN":"指定常用类型：选择缓存域名的是全部文件还是首页。入参参考值：\nall：全部文件\nhomepage：首页"}
+  CustomPattern *string `json:"custom-pattern,omitempty" xml:"custom-pattern,omitempty" require:"true"`
+  // {"en":"Indicates the priority execution order of multiple sets of redirected content by the customer. The higher the number, the higher the priority.\nWhen adding a new configuration item, the default is 10","zh_CN":"表示客户多组重定向内容的优先执行顺序。数字越大，优先级越高。\n新增配置项时，不传默认为 10\n如果传了值，不能为空"}
+  Priority *int `json:"priority,omitempty" xml:"priority,omitempty" require:"true"`
+  // {"en":"UA","zh_CN":"UA"}
+  Ua *string `json:"ua,omitempty" xml:"ua,omitempty" require:"true"`
+  // {"en":"Directory: Specify the directory cache.\nEnter a legal directory format. Multiple separated by semicolons","zh_CN":"目录：指定目录缓存。\n输入合法的目录格式。多个以英文分号隔开"}
+  Directory *string `json:"directory,omitempty" xml:"directory,omitempty" require:"true"`
+  // {"en":"Cache time: set the time corresponding to the cache object\nInput format: integer plus unit, such as 20s, 30m, 1h, 2d, no cache is set to 0. Do not enter the unit default is seconds\nThere is no upper limit on the cache time theory. This time is set according to the customer's own needs. If the customer feels that some of the files are not changed frequently, then the setting is longer. For example, the text class js, css, html, etc. can be set shorter, the picture, video and audio classes can be set longer (because the cache time will be replaced by the new file due to the file heat algorithm, the longest suggestion Do not exceed one month)","zh_CN":"缓存时间：设置缓存对象对应的时间\n入参格式：整数加单位，比如20s、30m、1h、2d，不缓存设置为0。不输入单位默认是秒\n缓存时间理论上没有上限限制，这个时间根据客户自身的需求设定，如果客户觉得其中一些文件，变更不频繁，那么就设置长一点。例如，文本类的js，css，html等可以设置得短一些，图片、视频音频类的可以设置的长一点（因为缓存时间会因文件热度算法，旧文件会被新文件替换掉，最长建议不要超过一个月）"}
+  CacheTtl *int `json:"cache-ttl,omitempty" xml:"cache-ttl,omitempty" require:"true"`
+  // {"en":"Reload processing rules, optional: ignore or if-modified-since\nIf-modified-since: indicates that you want to convert to if-modified-since\nIgnore: means to ignore client refresh","zh_CN":"reload处理规则，可选项：ignore或者if-modified-since\nif-modified-since：表示要转成if-modified-since\nignore:表示忽略客户端刷新"}
+  ReloadManage *string `json:"reload-manage,omitempty" xml:"reload-manage,omitempty" require:"true"`
+  // {"en":"Specify URL cache: Specify url according to requirements for cache\nINS format does not support URI format with http(s)://","zh_CN":"指定URL缓存：根据需求指定url进行缓存\n入参不支持含http(s):// 开头的URI格式"}
+  SpecifyUrlPattern *string `json:"specify-url-pattern,omitempty" xml:"specify-url-pattern,omitempty" require:"true"`
+  // {"en":"Add a grid type identifier to indicate a specific group configuration when the client has multiple groups of configurations.","zh_CN":"添加grid类型标识，表示客户多组配置时，具体某组配置"}
+  DataId *int `json:"data-id,omitempty" xml:"data-id,omitempty" require:"true"`
+  // {"en":"Exceptional url matching mode, except for some URLs: such as abc.jpg, do not do anti-theft chain function\nE.g: ^https?://[^/]+/.*\.m3u8","zh_CN":"例外的url匹配模式，某些URL除外：如abc.jpg，不做内容重定向\n客户入参参考：^https?://[^/]+/.*\.m3u8"}
+  ExceptPathPattern *string `json:"except-path-pattern,omitempty" xml:"except-path-pattern,omitempty" require:"true"`
+  // {"en":"Specify URI match pattern.\nE.g:\nexact: exact match\nparameter-ignoring: parameter ignoring match","zh_CN":"指定URI匹配模式，可选值：exact：精准匹配、parameter-ignoring：忽略参数匹配"}
+  UriMatchPattern *string `json:"uri-match-pattern,omitempty" xml:"uri-match-pattern,omitempty" require:"true"`
+}
+
+func (s QueryCacheTimeResponseCacheTimeBehaviors) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryCacheTimeResponseCacheTimeBehaviors) GoString() string {
+  return s.String()
+}
+
+func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetFileType(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
+  s.FileType = &v
+  return s
+}
+
+func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetIgnoreCacheControl(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
+  s.IgnoreCacheControl = &v
+  return s
+}
+
+func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetCustomFileType(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
+  s.CustomFileType = &v
+  return s
+}
+
+func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetIsRespectServer(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
+  s.IsRespectServer = &v
+  return s
+}
+
+func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetIgnoreAuthenticationHeader(v bool) *QueryCacheTimeResponseCacheTimeBehaviors {
+  s.IgnoreAuthenticationHeader = &v
+  return s
+}
+
+func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetIgnoreLetterCase(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
+  s.IgnoreLetterCase = &v
+  return s
+}
+
+func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetExceptionUa(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
+  s.ExceptionUa = &v
+  return s
+}
+
+func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetPathPattern(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
+  s.PathPattern = &v
+  return s
+}
+
+func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetCustomPattern(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
+  s.CustomPattern = &v
+  return s
+}
+
+func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetPriority(v int) *QueryCacheTimeResponseCacheTimeBehaviors {
+  s.Priority = &v
+  return s
+}
+
+func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetUa(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
+  s.Ua = &v
+  return s
+}
+
+func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetDirectory(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
+  s.Directory = &v
+  return s
+}
+
+func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetCacheTtl(v int) *QueryCacheTimeResponseCacheTimeBehaviors {
+  s.CacheTtl = &v
+  return s
+}
+
+func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetReloadManage(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
+  s.ReloadManage = &v
+  return s
+}
+
+func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetSpecifyUrlPattern(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
+  s.SpecifyUrlPattern = &v
+  return s
+}
+
+func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetDataId(v int) *QueryCacheTimeResponseCacheTimeBehaviors {
+  s.DataId = &v
+  return s
+}
+
+func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetExceptPathPattern(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
+  s.ExceptPathPattern = &v
+  return s
+}
+
+func (s *QueryCacheTimeResponseCacheTimeBehaviors) SetUriMatchPattern(v string) *QueryCacheTimeResponseCacheTimeBehaviors {
+  s.UriMatchPattern = &v
+  return s
 }
 
 type QueryCacheTimeResponseHeader struct {
@@ -7092,10 +7372,9 @@ func (s QueryLivestreamingTimestampAntihotlinkingConfigResponseHeader) GoString(
 
 
 type AddBanUrltoDomianRequest struct {
-  // {"en":"Customer code", "zh_CN":"需要非法屏蔽的客户在我司设置的英文名"}
+  // {"en":"Customer code","zh_CN":"需要非法屏蔽的客户在我司设置的英文名"}
   CustomerCode *string `json:"customer-code,omitempty" xml:"customer-code,omitempty"`
-  // {"en":"illegal information", "zh_CN":"非法信息屏蔽配置标签
-  // 注意：表示需要设置非法信息屏蔽配置时，此项必填"}
+  // {"en":"illegal information","zh_CN":"非法信息屏蔽配置标签\n注意：表示需要设置非法信息屏蔽配置时，此项必填"}
   IllegalInformation []*AddBanUrltoDomianRequestIllegalInformation `json:"illegal-information,omitempty" xml:"illegal-information,omitempty" require:"true" type:"Repeated"`
 }
 
@@ -7118,12 +7397,11 @@ func (s *AddBanUrltoDomianRequest) SetIllegalInformation(v []*AddBanUrltoDomianR
 }
 
 type AddBanUrltoDomianRequestIllegalInformation struct     {
-  // {"en":"Area code, mandatory field, like Global.", "zh_CN":"需要设置非法信息屏蔽的区域。则此项必填.支持多个。如设置全球，则输入 Global"}
+  // {"en":"Area code, mandatory field, like Global.","zh_CN":"需要设置非法信息屏蔽的区域。则此项必填.支持多个。如设置全球，则输入 Global"}
   Areas []*string `json:"areas,omitempty" xml:"areas,omitempty" require:"true" type:"Repeated"`
-  // {"en":"URL", "zh_CN":"一个区域下配置需要非法信息屏蔽的url，如果某些区域有多个屏蔽url则有多组"}
+  // {"en":"URL","zh_CN":"一个区域下配置需要非法信息屏蔽的url，如果某些区域有多个屏蔽url则有多组"}
   BanUrls []*string `json:"ban-urls,omitempty" xml:"ban-urls,omitempty" require:"true" type:"Repeated"`
-  // {"en":"Matching method, support fuzzy and precise, fuzzy match: fuzzy, precise match: exact.", "zh_CN":"匹配方式，支持模糊和精确；模糊入参为：fuzzy;精确匹配：exact
-  // 如果没有传默认是exact"}
+  // {"en":"Matching method, support fuzzy and precise, fuzzy match: fuzzy, precise match: exact.","zh_CN":"匹配方式，支持模糊和精确；模糊入参为：fuzzy;精确匹配：exact\n如果没有传默认是exact"}
   Method *string `json:"method,omitempty" xml:"method,omitempty"`
 }
 
@@ -7150,18 +7428,51 @@ func (s *AddBanUrltoDomianRequestIllegalInformation) SetMethod(v string) *AddBan
   return s
 }
 
+type AddBanUrltoDomianRequestHeader struct {
+}
+
+func (s AddBanUrltoDomianRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s AddBanUrltoDomianRequestHeader) GoString() string {
+  return s.String()
+}
+
+type AddBanUrltoDomianPaths struct {
+}
+
+func (s AddBanUrltoDomianPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s AddBanUrltoDomianPaths) GoString() string {
+  return s.String()
+}
+
+type AddBanUrltoDomianParameters struct {
+}
+
+func (s AddBanUrltoDomianParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s AddBanUrltoDomianParameters) GoString() string {
+  return s.String()
+}
+
 type AddBanUrltoDomianResponse struct {
-  // {"en":"httpstatus=202; Indicates that the new domain API was successfully invoked, and the current deployment of the new domain can be viewed using x-cnc-request-id in the header", "zh_CN":"httpstatus=202;   表示成功调用新增域名接口，可使用header中的x-cnc-request-id查看当前新增域名的部署情况"}
-  HttpStatus *int `json:"http status code,omitempty" xml:"http status code,omitempty" require:"true"`
-  // {"en":"Uniquely identified id for querying tasks per request (for all API)", "zh_CN":"唯一标示的id，用于查询每次请求的任务 （适用全部接口）"}
+  // {"en":"httpstatus=202; Indicates that the new domain API was successfully invoked, and the current deployment of the new domain can be viewed using x-cnc-request-id in the header","zh_CN":"httpstatus=202;   表示成功调用新增域名接口，可使用header中的x-cnc-request-id查看当前新增域名的部署情况"}
+  HttpStatus *int `json:"httpStatus,omitempty" xml:"httpStatus,omitempty" require:"true"`
+  // {"en":"Uniquely identified id for querying tasks per request (for all API)","zh_CN":"唯一标示的id，用于查询每次请求的任务 （适用全部接口）"}
   XCncRequestId *string `json:"x-cnc-request-id,omitempty" xml:"x-cnc-request-id,omitempty" require:"true"`
-  // {"en":"The URL used to access the domain information, where domain-id is the unique token generated by our cloud platform for the domain name and whose value is a string.", "zh_CN":"响应信用于访问该域名信息的URL，其中domain-id为我司云平台为该域名生成的唯一标示，其值为字符串。"}
+  // {"en":"The URL used to access the domain information, where domain-id is the unique token generated by our cloud platform for the domain name and whose value is a string.","zh_CN":"响应信用于访问该域名信息的URL，其中domain-id为我司云平台为该域名生成的唯一标示，其值为字符串。"}
   Location *string `json:"location,omitempty" xml:"location,omitempty" require:"true"`
-  // {"en":"Service Domain assigned by the system, e.g. xxxx.cdn30.com", "zh_CN":"由自动生成的服务域名名称，例如：xxxx.cdn30.com"}
+  // {"en":"Service Domain assigned by the system, e.g. xxxx.cdn30.com","zh_CN":"由自动生成的服务域名名称，例如：xxxx.cdn30.com"}
   Cname *string `json:"cname,omitempty" xml:"cname,omitempty" require:"true"`
-  // {"en":"Error code. It will only have a value when the HTTP Status of response is not 202. ", "zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
+  // {"en":"Error code. It will only have a value when the HTTP Status of response is not 202.","zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
   Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Response message. When the request is successful, the response message is success.", "zh_CN":"响应信息，成功时为success"}
+  // {"en":"Response message. When the request is successful, the response message is success.","zh_CN":"响应信息，成功时为success"}
   Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
 }
 
@@ -7203,39 +7514,6 @@ func (s *AddBanUrltoDomianResponse) SetMessage(v string) *AddBanUrltoDomianRespo
   return s
 }
 
-type AddBanUrltoDomianPaths struct {
-}
-
-func (s AddBanUrltoDomianPaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s AddBanUrltoDomianPaths) GoString() string {
-  return s.String()
-}
-
-type AddBanUrltoDomianParameters struct {
-}
-
-func (s AddBanUrltoDomianParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s AddBanUrltoDomianParameters) GoString() string {
-  return s.String()
-}
-
-type AddBanUrltoDomianRequestHeader struct {
-}
-
-func (s AddBanUrltoDomianRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s AddBanUrltoDomianRequestHeader) GoString() string {
-  return s.String()
-}
-
 type AddBanUrltoDomianResponseHeader struct {
 }
 
@@ -7251,8 +7529,10 @@ func (s AddBanUrltoDomianResponseHeader) GoString() string {
 
 
 type EditDomainPropertyRequest struct {
-  // {"en":"Origin config.", "zh_CN":"回源配置"}
+  // {"en":"Origin config.","zh_CN":"回源配置"}
   OriginConfig *EditDomainPropertyRequestOriginConfig `json:"origin-config,omitempty" xml:"origin-config,omitempty" require:"true" type:"Struct"`
+  // {"en":"description","zh_CN":"描述"}
+  Description *string `json:"description,omitempty" xml:"description,omitempty"`
 }
 
 func (s EditDomainPropertyRequest) String() string {
@@ -7268,19 +7548,17 @@ func (s *EditDomainPropertyRequest) SetOriginConfig(v *EditDomainPropertyRequest
   return s
 }
 
+func (s *EditDomainPropertyRequest) SetDescription(v string) *EditDomainPropertyRequest {
+  s.Description = &v
+  return s
+}
+
 type EditDomainPropertyRequestOriginConfig struct {
-  // {"en":"Back to source host, not required", "zh_CN":"回源host，非必填"}
+  // {"en":"Back to source host, not required","zh_CN":"回源host，非必填"}
   OriginHost *string `json:"origin-host,omitempty" xml:"origin-host,omitempty"`
-  // {"en":"Source IP or domain name. 
-  // 1. Support IPV4,IPV6.
-  // 2. Multiple IPs are separated by semicolons, such as:1.1.1.1;2.2.2.2.
-  // 3. Support single domain name.", "zh_CN":"源站Ip或者域名，非必填。
-  // 1.支持IPV4,IPV6
-  // 2.多个IP用分号隔开，如1.1.1.1;2.2.2.2
-  // 3.支持单个域名"}
+  // {"en":"Source IP or domain name.\n1. Support IPV4,IPV6.\n2. Multiple IPs are separated by semicolons, such as:1.1.1.1;2.2.2.2.\n3. Support single domain name.","zh_CN":"源站Ip或者域名，非必填。\n1.支持IPV4,IPV6\n2.多个IP用分号隔开，如1.1.1.1;2.2.2.2\n3.支持单个域名"}
   OriginIps *string `json:"origin-ips,omitempty" xml:"origin-ips,omitempty"`
-  // {"en":"Origin port. Port range:(0-65535].", "zh_CN":"回源端口，非必填
-  // 端口范围：(0-65535]"}
+  // {"en":"Origin port. Port range:(0-65535].","zh_CN":"回源端口，非必填\n端口范围：(0-65535]"}
   OriginPort *string `json:"origin-port,omitempty" xml:"origin-port,omitempty"`
 }
 
@@ -7307,33 +7585,19 @@ func (s *EditDomainPropertyRequestOriginConfig) SetOriginPort(v string) *EditDom
   return s
 }
 
-type EditDomainPropertyResponse struct {
-  // {"en":"The error code, which appears when HTTPStatus is not 202, indicates the error type of the current request invocation", "zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Response information, when success is successful", "zh_CN":"响应信息，成功时为success"}
-  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+type EditDomainPropertyRequestHeader struct {
 }
 
-func (s EditDomainPropertyResponse) String() string {
+func (s EditDomainPropertyRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s EditDomainPropertyResponse) GoString() string {
+func (s EditDomainPropertyRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *EditDomainPropertyResponse) SetCode(v string) *EditDomainPropertyResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *EditDomainPropertyResponse) SetMessage(v string) *EditDomainPropertyResponse {
-  s.Message = &v
-  return s
-}
-
 type EditDomainPropertyPaths struct {
-  // {"en":"the domain whoes need query config", "zh_CN":"需要查询配置的域名或域名id"}
+  // {"en":"the domain whoes need query config","zh_CN":"需要查询配置的域名或域名id"}
   DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
 }
 
@@ -7361,15 +7625,29 @@ func (s EditDomainPropertyParameters) GoString() string {
   return s.String()
 }
 
-type EditDomainPropertyRequestHeader struct {
+type EditDomainPropertyResponse struct {
+  // {"en":"The error code, which appears when HTTPStatus is not 202, indicates the error type of the current request invocation","zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Response information, when success is successful","zh_CN":"响应信息，成功时为success"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
 }
 
-func (s EditDomainPropertyRequestHeader) String() string {
+func (s EditDomainPropertyResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s EditDomainPropertyRequestHeader) GoString() string {
+func (s EditDomainPropertyResponse) GoString() string {
   return s.String()
+}
+
+func (s *EditDomainPropertyResponse) SetCode(v string) *EditDomainPropertyResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *EditDomainPropertyResponse) SetMessage(v string) *EditDomainPropertyResponse {
+  s.Message = &v
+  return s
 }
 
 type EditDomainPropertyResponseHeader struct {
@@ -7596,14 +7874,98 @@ func (s QueryCacheKeyConfigurationResponseHeader) GoString() string {
 
 
 
+type AntiHijackIPDeleteRequest struct {
+  // {"en":"anti domain id list","zh_CN":"劫持缓解IP id列表"}
+  IdList []*string `json:"idList,omitempty" xml:"idList,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s AntiHijackIPDeleteRequest) String() string {
+  return tea.Prettify(s)
+}
+
+func (s AntiHijackIPDeleteRequest) GoString() string {
+  return s.String()
+}
+
+func (s *AntiHijackIPDeleteRequest) SetIdList(v []*string) *AntiHijackIPDeleteRequest {
+  s.IdList = v
+  return s
+}
+
+type AntiHijackIPDeleteRequestHeader struct {
+}
+
+func (s AntiHijackIPDeleteRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s AntiHijackIPDeleteRequestHeader) GoString() string {
+  return s.String()
+}
+
+type AntiHijackIPDeletePaths struct {
+}
+
+func (s AntiHijackIPDeletePaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s AntiHijackIPDeletePaths) GoString() string {
+  return s.String()
+}
+
+type AntiHijackIPDeleteParameters struct {
+}
+
+func (s AntiHijackIPDeleteParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s AntiHijackIPDeleteParameters) GoString() string {
+  return s.String()
+}
+
+type AntiHijackIPDeleteResponse struct {
+  // {"en":"Please refer to the error code for exceptions.","zh_CN":"成功：200，其他失败"}
+  Code *int `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"返回描述信息"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+}
+
+func (s AntiHijackIPDeleteResponse) String() string {
+  return tea.Prettify(s)
+}
+
+func (s AntiHijackIPDeleteResponse) GoString() string {
+  return s.String()
+}
+
+func (s *AntiHijackIPDeleteResponse) SetCode(v int) *AntiHijackIPDeleteResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *AntiHijackIPDeleteResponse) SetMsg(v string) *AntiHijackIPDeleteResponse {
+  s.Msg = &v
+  return s
+}
+
+type AntiHijackIPDeleteResponseHeader struct {
+}
+
+func (s AntiHijackIPDeleteResponseHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s AntiHijackIPDeleteResponseHeader) GoString() string {
+  return s.String()
+}
+
+
+
+
 type UpdatetimecontrolServiceRequest struct {
-  // {"en":"", "zh_CN":"时间戳防盗链设置
-  // 注意：
-  // 1、时间戳防盗链分为两部分，一部分是防盗链校验，一部分是时间有效性校验。二者都有效，则防盗链通过，否则不通过。
-  // 2、防盗链校验：加密算法为md5sum，按照参与MD5计算的参数及组合顺序进行防盗链加密串的计算，对匹配目录下所有文件的url进行防盗链校验，未匹配到的url，则拒绝访问。
-  // 3、时间有效性检验：按照年月日时分秒换算的当前时间，与请求url中所带的名文时间相减，判断是否超过设置的上下限（即前后60s内），时间差小于设置上下限的，系统才会给予正常的响应，否则拒绝请求，返回403
-  // 4、日志记录没有带加密串的url
-  // 6、需要清空时间戳防盗链规则时，可以只传入节点<timestamp-visit-control-rule></timestamp-visit-control-rule>"}
+  // {"en":"","zh_CN":"时间戳防盗链设置\n注意：\n1、时间戳防盗链分为两部分，一部分是防盗链校验，一部分是时间有效性校验。二者都有效，则防盗链通过，否则不通过。\n2、防盗链校验：加密算法为md5sum，按照参与MD5计算的参数及组合顺序进行防盗链加密串的计算，对匹配目录下所有文件的url进行防盗链校验，未匹配到的url，则拒绝访问。\n3、时间有效性检验：按照年月日时分秒换算的当前时间，与请求url中所带的名文时间相减，判断是否超过设置的上下限（即前后60s内），时间差小于设置上下限的，系统才会给予正常的响应，否则拒绝请求，返回403\n4、日志记录没有带加密串的url\n6、需要清空时间戳防盗链规则时，可以只传入节点<timestamp-visit-control-rule></timestamp-visit-control-rule>"}
   TimestampVisitControlRule *UpdatetimecontrolServiceRequestTimestampVisitControlRule `json:"timestamp-visit-control-rule,omitempty" xml:"timestamp-visit-control-rule,omitempty" require:"true" type:"Struct"`
 }
 
@@ -7621,139 +7983,50 @@ func (s *UpdatetimecontrolServiceRequest) SetTimestampVisitControlRule(v *Update
 }
 
 type UpdatetimecontrolServiceRequestTimestampVisitControlRule struct {
-  // {"en":"The url matching mode supports fuzzy regularization. If all matches, the input parameters can be configured as: *.
-  // Verify the time stamp of the matched URL for anti-leeching; reject URLs that are not matched.", "zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*
-  // 对匹配到的URL进行时间戳防盗链验证；未匹配到的URL，则拒绝。"}
+  // {"en":"The url matching mode supports fuzzy regularization. If all matches, the input parameters can be configured as:.\nVerify the time stamp of the matched URL for anti-leeching; reject URLs that are not matched.","zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*\n对匹配到的URL进行时间戳防盗链验证；未匹配到的URL，则拒绝。"}
   PathPattern *string `json:"path-pattern,omitempty" xml:"path-pattern,omitempty"`
-  // {"en":"Exceptional url matching mode, except for some URLs: such as abc.jpg, do not do anti-theft chain function
-  // ", "zh_CN":"例外的url匹配模式，某些URL除外：如abc.jpg，不做防盗链"}
+  // {"en":"Exceptional url matching mode, except for some URLs: such as abc.jpg, do not do anti-theft chain function","zh_CN":"例外的url匹配模式，某些URL除外：如abc.jpg，不做防盗链"}
   ExceptPathPattern *string `json:"except-path-pattern,omitempty" xml:"except-path-pattern,omitempty"`
-  // {"en":"Optional values are: http, https, http;https, noprefix, empty. If it is empty, it defaults to \"http;https\"; if it is noprefix, it means that the protocol prefix of url is not specified, and it only matches according to the regularity of path-pattern. This configuration item only matches with path-pattern. example: 1. Specify protocol-of-path-pattern=https and path-pattern=.* to match all https requests, but not http requests. 2. Specify protocol-of-path-pattern=http;https, path-pattern=.* to match all http and https requests. 3. Specify protocol-of-path-pattern=noprefix and path-pattern=^http://[^/]+/.* to match all http requests but not https requests.",
-  //                               "zh_CN":"可选值为: http、https、http;https、noprefix、空。为空默认为\"http;https\"；为noprefix表示不指定url的协议前缀，仅按path-pattern的正则匹配。本配置项只与path-pattern（url匹配模式）结合匹配。 例子： 1、指定protocol-of-path-pattern=https，path-pattern=.*，则匹配所有https的请求，不匹配http的请求。 2、指定protocol-of-path-pattern=http;https，path-pattern=.*，则匹配所有http和https的请求。 3、指定protocol-of-path-pattern=noprefix，path-pattern=^http://[^/]+/.*，则匹配所有http的请求，不匹配https的请求。"}
+  // {"en":"Optional values are: http, https, http;https, noprefix, empty. If it is empty, it defaults to \"http;https\"; if it is noprefix, it means that the protocol prefix of url is not specified, and it only matches according to the regularity of path-pattern. This configuration item only matches with path-pattern. example: 1. Specify protocol-of-path-pattern=https and path-pattern=.* to match all https requests, but not http requests. 2. Specify protocol-of-path-pattern=http;https, path-pattern=.* to match all http and https requests. 3. Specify protocol-of-path-pattern=noprefix and path-pattern=^http://[^/]+/.* to match all http requests but not https requests.","zh_CN":"可选值为: http、https、http;https、noprefix、空。为空默认为\"http;https\"；为noprefix表示不指定url的协议前缀，仅按path-pattern的正则匹配。本配置项只与path-pattern（url匹配模式）结合匹配。 例子： 1、指定protocol-of-path-pattern=https，path-pattern=.*，则匹配所有https的请求，不匹配http的请求。 2、指定protocol-of-path-pattern=http;https，path-pattern=.*，则匹配所有http和https的请求。 3、指定protocol-of-path-pattern=noprefix，path-pattern=^http://[^/]+/.*，则匹配所有http的请求，不匹配https的请求。"}
   ProtocolOfPathPattern *string `json:"protocol-of-path-pattern,omitempty" xml:"protocol-of-path-pattern,omitempty"`
-  // {"en":"Directory, multiple separated by English semicolons. Perform timestamp anti-leech verification for the matched directory; reject the unmatched directory. mutually exclusive with path-pattern.", "zh_CN":"目录，多个以英文分号隔开。对于匹配到的目录进行时间戳防盗链验证；未匹配到的则拒绝。和path-pattern互斥。"}
+  // {"en":"Directory, multiple separated by English semicolons. Perform timestamp anti-leech verification for the matched directory; reject the unmatched directory. mutually exclusive with path-pattern.","zh_CN":"目录，多个以英文分号隔开。对于匹配到的目录进行时间戳防盗链验证；未匹配到的则拒绝。和path-pattern互斥。"}
   Directory *string `json:"directory,omitempty" xml:"directory,omitempty"`
-  // {"en":"Exceptional IP, supports input of IP or IP range, separate IP ranges with semicolons (;), such as 1.1.1.0/24;2.2.2.2, some IP exceptions, no anti-leeching.
-  // ", "zh_CN":"例外的IP，支持输入IP或IP段，IP段之间用分号(;)隔开，如1.1.1.0/24;2.2.2.2，某些IP例外，不做防盗链"}
+  // {"en":"Exceptional IP, supports input of IP or IP range, separate IP ranges with semicolons (;), such as 1.1.1.0/24;2.2.2.2, some IP exceptions, no anti-leeching.","zh_CN":"例外的IP，支持输入IP或IP段，IP段之间用分号(;)隔开，如1.1.1.0/24;2.2.2.2，某些IP例外，不做防盗链"}
   AllowedIps *string `json:"allowed-ips,omitempty" xml:"allowed-ips,omitempty"`
-  // {"en":"Whether to remove / from $uri in anti-leech, the optional values are true or false, and the default is false, that is, it contains /. For example: http://www.test.com/1.flv, then $uri is /1.flv by default, if ignore-uri-slash is true, then $uri is 1.flv", "zh_CN":"防盗链中的$uri是否去掉/，可选值为true、false，默认为false，即包含/。 例如： http://www.test.com/1.flv，则$uri默认为/1.flv,若ignore-uri-slash为true，则$uri为1.flv"}
+  // {"en":"Whether to remove / from $uri in anti-leech, the optional values are true or false, and the default is false, that is, it contains /. For example: http://www.test.com/1.flv, then $uri is /1.flv by default, if ignore-uri-slash is true, then $uri is 1.flv","zh_CN":"防盗链中的$uri是否去掉/，可选值为true、false，默认为false，即包含/。 例如： http://www.test.com/1.flv，则$uri默认为/1.flv,若ignore-uri-slash为true，则$uri为1.flv"}
   IgnoreUriSlash *string `json:"ignore-uri-slash,omitempty" xml:"ignore-uri-slash,omitempty"`
-  // {"en":"Whether key and time are allowed to be interchanged, the optional values are true and false, true is allowed, false is not allowed. By default, the order of key parameters and time parameters must strictly follow the order required by the authentication mode, that is, the default key and time cannot be interchanged. If true is selected, the key and time positions can be interchanged and the authentication succeeds.", "zh_CN":"key与time是否允许互换，可选值为true和false，true则允许，false则不允许。默认情况下，密钥参数和时间参数的顺序，必须严格参照鉴权模式要求的顺序，即，默认key和time不能互换位置。如选择true，key和time位置可以互换并鉴权成功。"}
+  // {"en":"Whether key and time are allowed to be interchanged, the optional values are true and false, true is allowed, false is not allowed. By default, the order of key parameters and time parameters must strictly follow the order required by the authentication mode, that is, the default key and time cannot be interchanged. If true is selected, the key and time positions can be interchanged and the authentication succeeds.","zh_CN":"key与time是否允许互换，可选值为true和false，true则允许，false则不允许。默认情况下，密钥参数和时间参数的顺序，必须严格参照鉴权模式要求的顺序，即，默认key和time不能互换位置。如选择true，key和time位置可以互换并鉴权成功。"}
   IgnoreKeyAndTimePosition *string `json:"ignore-key-and-time-position,omitempty" xml:"ignore-key-and-time-position,omitempty"`
-  // {"en":"Encryption Algorithm. Support value: md5sum
-  // ", "zh_CN":"加密算法
-  // 当前支持入参：md5sum"}
+  // {"en":"Encryption Algorithm. Support value: md5sum","zh_CN":"加密算法\n当前支持入参：md5sum"}
   EncryptMethod *string `json:"encrypt-method,omitempty" xml:"encrypt-method,omitempty"`
-  // {"en":"The anti-leech chain generation method, the parameters involved in the MD5 calculation and the combination sequence only support the following parameters: $uri: A string between domain and question mark, special values are configured in the input parameter <uri-select> For example http://cdn.example.com/v0/test.dat?k=v, the URI is /v0/test.dat $ourkey: secret key, the actual secret key is configured in the input parameter <secret-key> $time: time string $spec_name: file name For example: http://cdn.example.com/v0/test.dat?k=v, the file name is test.dat $args: the value of a specific key in QUERY_STRING Example: <cipher-combination>$uri$ourkey$time$args{k}</cipher-combination> Notice: 1. K in $args{k} only allows A-Z uppercase and lowercase letters, numbers, underscores, and bars 2. Except for $args, other parameters are only allowed to appear once 3. Each parameter can be spliced according to any combination order
-  // ", "zh_CN":"防盗链生成方式，参与MD5计算的参数及组合顺序，仅支持传入以下参数：
-  // $uri：介于domain和问号之间的字符串
-  // 例如http://cdn.example.com/v0/test.dat?k=v，则URI为/v0/test.dat
-  // $ourkey：秘钥，实际秘钥在入参<secret-key>中配置
-  // $time：时间串
-  // $spec_name：文件名
-  // 例如：http://cdn.example.com/v0/test.dat?k=v，文件名为 test.dat
-  // $args：QUERY_STRING中的某个具体key的值
-  // 示例：<cipher-combination>$uri$ourkey$time$args{k}</cipher-combination>
-  // 注意：
-  // 1、$args{k}中的K只允许A-Z大小写字母、数字、下划线、横杠
-  // 2、除了$args外，其它参数只允许出现1次
-  // 3、可以按照任意组合顺序，拼接各个参数"}
+  // {"en":"The anti-leech chain generation method, the parameters involved in the MD5 calculation and the combination sequence only support the following parameters: $uri: A string between domain and question mark, special values are configured in the input parameter <uri-select> For example http://cdn.example.com/v0/test.dat?k=v, the URI is /v0/test.dat $ourkey: secret key, the actual secret key is configured in the input parameter <secret-key> $time: time string $spec_name: file name For example: http://cdn.example.com/v0/test.dat?k=v, the file name is test.dat $args: the value of a specific key in QUERY_STRING Example: <cipher-combination>$uri$ourkey$time$args{k}</cipher-combination> Notice: 1. K in $args{k} only allows A-Z uppercase and lowercase letters, numbers, underscores, and bars 2. Except for $args, other parameters are only allowed to appear once 3. Each parameter can be spliced according to any combination order","zh_CN":"防盗链生成方式，参与MD5计算的参数及组合顺序，仅支持传入以下参数：\n$uri：介于domain和问号之间的字符串\n例如http://cdn.example.com/v0/test.dat?k=v，则URI为/v0/test.dat\n$ourkey：秘钥，实际秘钥在入参<secret-key>中配置\n$time：时间串\n$spec_name：文件名\n例如：http://cdn.example.com/v0/test.dat?k=v，文件名为 test.dat\n$args：QUERY_STRING中的某个具体key的值\n示例：<cipher-combination>$uri$ourkey$time$args{k}</cipher-combination>\n注意：\n1、$args{k}中的K只允许A-Z大小写字母、数字、下划线、横杠\n2、除了$args外，其它参数只允许出现1次\n3、可以按照任意组合顺序，拼接各个参数"}
   CipherCombination *string `json:"cipher-combination,omitempty" xml:"cipher-combination,omitempty"`
-  // {"en":"The key of the anti-leech encryption string, only one key is allowed to be passed in Example: <secret-key>abcdef</secret-key> Notice: 1. For the secret key agreed with the customer, a value in <multiple-secret-keys> can be equal to the corresponding value of <secret-key> 2. The value of $ourkey mainly comes from the configuration of <secret-key> a) If <secret-key> is not a value in multiple-secret-keys>, the value of $ourkey is <multiple-secret-keys> b) <secret-key> is a value in multiple-secret-keys>, then the value of $ourkey is <secret-key> c) If <secret-key> is not passed or is empty, then the value of $ourkey is <multiple-secret-keys>
-  // ", "zh_CN":"防盗链加密串的秘钥，只允许传入一个秘钥
-  // 示例：<secret-key>abcdef</secret-key>
-  // 注意：
-  // 1、与客户约定好的秘钥，入参<multiple-secret-keys>中的某个值可以等于<secret-key>对应的值
-  // 2、$ourkey值主要是来自<secret-key>的配置
-  // a)如果<secret-key>不是multiple-secret-keys>中的某个值，则$ourkey值取<multiple-secret-keys>
-  // b）<secret-key>是multiple-secret-keys>中的某个值，则$ourkey值取<secret-key>
-  // c）如果<secret-key>没有传或者空值，则$ourkey值取<multiple-secret-keys>"}
+  // {"en":"The key of the anti-leech encryption string, only one key is allowed to be passed in Example: <secret-key>abcdef</secret-key> Notice: 1. For the secret key agreed with the customer, a value in <multiple-secret-keys> can be equal to the corresponding value of <secret-key> 2. The value of $ourkey mainly comes from the configuration of <secret-key> a) If <secret-key> is not a value in multiple-secret-keys>, the value of $ourkey is <multiple-secret-keys> b) <secret-key> is a value in multiple-secret-keys>, then the value of $ourkey is <secret-key> c) If <secret-key> is not passed or is empty, then the value of $ourkey is <multiple-secret-keys>","zh_CN":"防盗链加密串的秘钥，只允许传入一个秘钥\n示例：<secret-key>abcdef</secret-key>\n注意：\n1、与客户约定好的秘钥，入参<multiple-secret-keys>中的某个值可以等于<secret-key>对应的值\n2、$ourkey值主要是来自<secret-key>的配置\na)如果<secret-key>不是multiple-secret-keys>中的某个值，则$ourkey值取<multiple-secret-keys>\nb）<secret-key>是multiple-secret-keys>中的某个值，则$ourkey值取<secret-key>\nc）如果<secret-key>没有传或者空值，则$ourkey值取<multiple-secret-keys>"}
   SecretKey *string `json:"secret-key,omitempty" xml:"secret-key,omitempty"`
-  // {"en":"Parameter name of the anti-leech string Example: <cipher-param>keyname</cipher-param> Notice: 1. If the anti-leech encryption string is in the parameter after the question mark in the url, the parameter name of the anti-leech encryption string is determined by the configuration of <cipher-param>; 2. If <cipher-param> is empty, the key is used as the parameter name in the URL of the default request
-  // ", "zh_CN":"防盗链串的参数名称
-  // 示例：<cipher-param>keyname</cipher-param>
-  // 注意：
-  // 1、如果防盗链加密串是在url问号后的参数中，则防盗链加密串的参数名由<cipher-param>的配置决定；
-  // 2、如果<cipher-param>为空，则默认请求的url中使用key作为参数名"}
+  // {"en":"Parameter name of the anti-leech string Example: <cipher-param>keyname</cipher-param> Notice: 1. If the anti-leech encryption string is in the parameter after the question mark in the url, the parameter name of the anti-leech encryption string is determined by the configuration of <cipher-param>; 2. If <cipher-param> is empty, the key is used as the parameter name in the URL of the default request","zh_CN":"防盗链串的参数名称\n示例：<cipher-param>keyname</cipher-param>\n注意：\n1、如果防盗链加密串是在url问号后的参数中，则防盗链加密串的参数名由<cipher-param>的配置决定；\n2、如果<cipher-param>为空，则默认请求的url中使用key作为参数名"}
   CipherParam *string `json:"cipher-param,omitempty" xml:"cipher-param,omitempty"`
-  // {"en":"Parameter name for time string Example: <time-param>tname</time-param> Notice: 1. If the anti-leech time string is placed in the parameter after the url question mark, the parameter name of the anti-leech time string is determined by the configuration of <time-param>; 2. If <time-param> is empty, time is used as the parameter name in the URL of the default request
-  // ", "zh_CN":"时间串的参数名称
-  // 示例：<time-param>tname</time-param>
-  // 注意：
-  // 1、如果防盗链时间串是放在url问号后面的参数中，则防盗链时间串的参数名由<time-param>的配置决定；
-  // 2、如果<time-param>为空，则默认请求的url中使用time作为参数名"}
+  // {"en":"Parameter name for time string Example: <time-param>tname</time-param> Notice: 1. If the anti-leech time string is placed in the parameter after the url question mark, the parameter name of the anti-leech time string is determined by the configuration of <time-param>; 2. If <time-param> is empty, time is used as the parameter name in the URL of the default request","zh_CN":"时间串的参数名称\n示例：<time-param>tname</time-param>\n注意：\n1、如果防盗链时间串是放在url问号后面的参数中，则防盗链时间串的参数名由<time-param>的配置决定；\n2、如果<time-param>为空，则默认请求的url中使用time作为参数名"}
   TimeParam *string `json:"time-param,omitempty" xml:"time-param,omitempty"`
-  // {"en":"The lower limit of the expiration time of the anti-leech chain Example: <lower-limit-expiry-time>200</lower-limit-expiry-time> The configuration methods corresponding to various scenarios are as follows: Notice: 1. If the timestamp carried in the request URL is the generation time of the URL, the expiration time needs to be added with the effective duration, that is, <lower-limit-expiry-time> and <upper-limit-expiry-time> are configured as the effective duration . 2. If the timestamp carried in the URL is the expiration time, it can be set to zero.
-  // ", "zh_CN":"防盗链串的过期时间下限
-  // 示例：
-  // <lower-limit-expiry-time>200</lower-limit-expiry-time>
-  // 对应各种场景的配置方式如下：
-  // 注意：
-  // 1、请求URL中携带的时间戳如果是URL的生成时间，需要加上有效时长才是过期时间，即<lower-limit-expiry-time>和<upper-limit-expiry-time>配置为有效时长。
-  // 2、如果URL携带的时间戳是过期时间，则可以配成零。"}
+  // {"en":"The lower limit of the expiration time of the anti-leech chain Example: <lower-limit-expiry-time>200</lower-limit-expiry-time> The configuration methods corresponding to various scenarios are as follows: Notice: 1. If the timestamp carried in the request URL is the generation time of the URL, the expiration time needs to be added with the effective duration, that is, <lower-limit-expiry-time> and <upper-limit-expiry-time> are configured as the effective duration . 2. If the timestamp carried in the URL is the expiration time, it can be set to zero.","zh_CN":"防盗链串的过期时间下限\n示例：\n<lower-limit-expiry-time>200</lower-limit-expiry-time>\n对应各种场景的配置方式如下：\n注意：\n1、请求URL中携带的时间戳如果是URL的生成时间，需要加上有效时长才是过期时间，即<lower-limit-expiry-time>和<upper-limit-expiry-time>配置为有效时长。\n2、如果URL携带的时间戳是过期时间，则可以配成零。"}
   LowerLimitExpiryTime *int `json:"lower-limit-expiry-time,omitempty" xml:"lower-limit-expiry-time,omitempty"`
-  // {"en":"The upper limit of the expiration time of the anti-leech chain Example: <upper-limit-expiry-time>5000</upper-limit-expiry-time> The configuration methods corresponding to various scenarios are as follows: Notice: 1. If the timestamp carried in the request URL is the generation time of the URL, the expiration time needs to be added with the effective duration, that is, <lower-limit-expiry-time> and <upper-limit-expiry-time> are configured as the effective duration . 2. If the timestamp carried in the URL is the expiration time, it can be set to zero.
-  // ", "zh_CN":"防盗链串的过期时间上限
-  // 示例：
-  // <upper-limit-expiry-time>5000</upper-limit-expiry-time>
-  // 对应各种场景的配置方式如下：
-  // 注意：
-  // 1、请求URL中携带的时间戳如果是URL的生成时间，需要加上有效时长才是过期时间，即<lower-limit-expiry-time>和<upper-limit-expiry-time>配置为有效时长。
-  // 2、如果URL携带的时间戳是过期时间，则可以配成零。"}
+  // {"en":"The upper limit of the expiration time of the anti-leech chain Example: <upper-limit-expiry-time>5000</upper-limit-expiry-time> The configuration methods corresponding to various scenarios are as follows: Notice: 1. If the timestamp carried in the request URL is the generation time of the URL, the expiration time needs to be added with the effective duration, that is, <lower-limit-expiry-time> and <upper-limit-expiry-time> are configured as the effective duration . 2. If the timestamp carried in the URL is the expiration time, it can be set to zero.","zh_CN":"防盗链串的过期时间上限\n示例：\n<upper-limit-expiry-time>5000</upper-limit-expiry-time>\n对应各种场景的配置方式如下：\n注意：\n1、请求URL中携带的时间戳如果是URL的生成时间，需要加上有效时长才是过期时间，即<lower-limit-expiry-time>和<upper-limit-expiry-time>配置为有效时长。\n2、如果URL携带的时间戳是过期时间，则可以配成零。"}
   UpperLimitExpiryTime *int `json:"upper-limit-expiry-time,omitempty" xml:"upper-limit-expiry-time,omitempty"`
-  // {"en":"Anti-leech encrypted string, multiple encrypted strings are supported, and multiple encrypted strings are separated by semicolons (;) Example: <multiple-secret-keys>abcdef;uvwxyz</multiple-secret-keys> Notice: 1. Support setting multiple keys for url anti-leech. Support customers to modify the key at will, and achieve seamless switching. The anti-theft chain level is higher. 2. As long as the key of the requested url is consistent with the key calculated from any of the encrypted strings, the verification will pass
-  // ", "zh_CN":"防盗链加密串，支持多个加密串，多个加密串以分号(;)隔开
-  // 示例：<multiple-secret-keys>abcdef;uvwxyz</multiple-secret-keys>
-  // 注意：
-  // 1、支持对url 防盗链设置多个密钥。支持客户任意修改密钥，并做到无缝切换。防盗链等级更高。
-  // 2、请求url的key只要跟其中任意一个加密串算出来的key一致就验证通过"}
+  // {"en":"Anti-leech encrypted string, multiple encrypted strings are supported, and multiple encrypted strings are separated by semicolons (;) Example: <multiple-secret-keys>abcdef;uvwxyz</multiple-secret-keys> Notice: 1. Support setting multiple keys for url anti-leech. Support customers to modify the key at will, and achieve seamless switching. The anti-theft chain level is higher. 2. As long as the key of the requested url is consistent with the key calculated from any of the encrypted strings, the verification will pass","zh_CN":"防盗链加密串，支持多个加密串，多个加密串以分号(;)隔开\n示例：<multiple-secret-keys>abcdef;uvwxyz</multiple-secret-keys>\n注意：\n1、支持对url 防盗链设置多个密钥。支持客户任意修改密钥，并做到无缝切换。防盗链等级更高。\n2、请求url的key只要跟其中任意一个加密串算出来的key一致就验证通过"}
   MultipleSecretKeys *string `json:"multiple-secret-keys,omitempty" xml:"multiple-secret-keys,omitempty"`
-  // {"en":"The time format of the anti-leech encryption string, multiple choices can be selected, separated by semicolons (;) Year|Month|Day|Hour|Minute|Second|UNIX timestamp|Hexadecimal timestamp|Timestamp in milliseconds: 1Y;2m;3d;4H;5M;6S;7s;8x Example: <time-format>1Y;2m;3d;4H;5M;6S;7s;8x</time-format> or <time-format>1Y;2m;3d;4H;5M;7s</time-format > Notice: 1. Must be English letters and numbers 2. Each value can only appear once
-  // ", "zh_CN":"防盗链加密串时间格式，可多选，以分号(;)分隔
-  // 年|月|日|时|分|秒|UNIX时间戳|16进制时间戳：1Y;2m;3d;4H;5M;6S;7s;8x
-  // 示例：<time-format>1Y;2m;3d;4H;5M;6S;7s;8x</time-format> 或 <time-format>1Y;2m;3d;4H;5M;7s</time-format>
-  // 注意：
-  // 1、必须是英文字母和数字
-  // 2、每个值只能出现1次
-  // 3、如果配置的是16进制时间戳，则需要同时入参：UNIX时间戳|16进制时间戳"}
+  // {"en":"The time format of the anti-leech encryption string, multiple choices can be selected, separated by semicolons (;) Year|Month|Day|Hour|Minute|Second|UNIX timestamp|Hexadecimal timestamp|Timestamp in milliseconds: 1Y;2m;3d;4H;5M;6S;7s;8x Example: <time-format>1Y;2m;3d;4H;5M;6S;7s;8x</time-format> or <time-format>1Y;2m;3d;4H;5M;7s</time-format > Notice: 1. Must be English letters and numbers 2. Each value can only appear once","zh_CN":"防盗链加密串时间格式，可多选，以分号(;)分隔\n年|月|日|时|分|秒|UNIX时间戳|16进制时间戳：1Y;2m;3d;4H;5M;6S;7s;8x\n示例：<time-format>1Y;2m;3d;4H;5M;6S;7s;8x</time-format> 或 <time-format>1Y;2m;3d;4H;5M;7s</time-format>\n注意：\n1、必须是英文字母和数字\n2、每个值只能出现1次\n3、如果配置的是16进制时间戳，则需要同时入参：UNIX时间戳|16进制时间戳"}
   TimeFormat *string `json:"time-format,omitempty" xml:"time-format,omitempty"`
-  // {"en":"The anti-leech request url format supports two anti-leech methods, that is, the encrypted string and timestamp are placed after \"?\" or the encrypted string and timestamp are placed after \"host\". The parameters supported by the url format are as follows: $domain: domain name $uri: the url part that does not contain the domain name $key: MD5 value of anti-leech encrypted string $time: Anti-leech time string $args: the QUERY_STRING parameter after the question mark Example: The following request url format is supported, which can be replaced with https://. The url request protocol is based on actual use. If you don't know how to configure it correctly, please ask customer technical support for assistance; the parameter name carrying two values of encrypted string and time string\" keyname\" and \"tname\", which can be replaced by the actual parameter names used <request-url-style>http://$domain/$key/$time/$uri?$args</request-url-style> <request-url-style>http://$domain/$time/$key/$uri?$args</request-url-style> http://$domain/$uri?auth_key=$key <request-url-style>http://$domain/$uri?keyname=$key&tname=$time</request-url-style> <request-url-style>http://$domain/$uri?$args&keyname=$key&tname=$time</request-url-style> <request-url-style>http://$domain/$uri?keyname=$key&tname=$time&$args</request-url-style> <request-url-style>http://$domain/$uri?$args&keyname=$key&tname=$time&$args</request-url-style> <request-url-style>http://$domain/$uri?tname=$time&keyname=$key</request-url-style> <request-url-style>http://$domain/$uri?$args&tname=$time&keyname=$key</request-url-style> <request-url-style>http://$domain/$uri?tname=$time&keyname=$key&$args</request-url-style> <request-url-style>http://$domain/$uri?$args&tname=$time&keyname=$key&$args</request-url-style> Notice: 1. The input url must start with \"http/https\" 2. If the encrypted string and timestamp are placed after \"?\", the keyname and tname must be consistent with the configured values of <cipher-param> and <time-param> 3. If there is no configuration value for <cipher-param> and <time-param>, the parameter name corresponding to $key defaults to key, and the parameter name corresponding to $time defaults to time 4. If the anti-leech encryption string and time string are in the parameters behind the question mark in the url, the \"keyname\" and \"tname\" in the url correspond to the anti-leech string and time string parameter names configured in cipher-param and time-param.", "zh_CN":"防盗链请求url格式，支持两种防盗链方式，即加密串和时间戳放到“?”后面或者是加密串和时间戳放到“host”后面，url格式支持的参数如下：
-  // $domain：域名
-  // $uri：不包含域名的url部分
-  // $key：防盗链加密串的MD5值
-  // $time：防盗链时间串
-  // $args：问号后的QUERY_STRING参数
-  // 示例：支持以下请求url格式，可替换为https://，url请求协议根据实际使用，如不知道如何正确配置，请找客户技术支持协助；携带加密串和时间串两个值的参数名“keyname”和“tname”，可替换为实际使用的参数名
-  // <request-url-style>http://$domain/$key/$time/$uri?$args</request-url-style>
-  // <request-url-style>http://$domain/$time/$key/$uri?$args</request-url-style>
-  //  http://$domain/$uri?auth_key=$key 
-  // <request-url-style>http://$domain/$uri?keyname=$key&tname=$time</request-url-style>
-  // <request-url-style>http://$domain/$uri?$args&keyname=$key&tname=$time</request-url-style>
-  // <request-url-style>http://$domain/$uri?keyname=$key&tname=$time&$args</request-url-style>
-  // <request-url-style>http://$domain/$uri?$args&keyname=$key&tname=$time&$args</request-url-style>
-  // <request-url-style>http://$domain/$uri?tname=$time&keyname=$key</request-url-style>
-  // <request-url-style>http://$domain/$uri?$args&tname=$time&keyname=$key</request-url-style>
-  // <request-url-style>http://$domain/$uri?tname=$time&keyname=$key&$args</request-url-style>
-  // <request-url-style>http://$domain/$uri?$args&tname=$time&keyname=$key&$args</request-url-style>
-  // 注意：
-  // 1、输入的url必须以“http/https”开头
-  // 2、如果加密串和时间戳是放到“?”后面时，keyname和tname必须跟<cipher-param>和<time-param>配置的值一致
-  // 3、如果<cipher-param>和<time-param>没有配置值，则$key对应的参数名默认为key，$time对应的参数名默认为time
-  // 4、如果防盗链加密串和时间串在url问号后面的参数中，url中的“keyname”和“tname”，对应的是cipher-param和 time-param配置的防盗链串和时间串参数名称。"}
+  // {"en":"The anti-leech request url format supports two anti-leech methods, that is, the encrypted string and timestamp are placed after \"?\" or the encrypted string and timestamp are placed after \"host\". The parameters supported by the url format are as follows: $domain: domain name $uri: the url part that does not contain the domain name $key: MD5 value of anti-leech encrypted string $time: Anti-leech time string $args: the QUERY_STRING parameter after the question mark Example: The following request url format is supported, which can be replaced with https://. The url request protocol is based on actual use. If you don't know how to configure it correctly, please ask customer technical support for assistance; the parameter name carrying two values of encrypted string and time string\" keyname\" and \"tname\", which can be replaced by the actual parameter names used <request-url-style>http://$domain/$key/$time/$uri?$args</request-url-style> <request-url-style>http://$domain/$time/$key/$uri?$args</request-url-style> http://$domain/$uri?auth_key=$key <request-url-style>http://$domain/$uri?keyname=$key&tname=$time</request-url-style> <request-url-style>http://$domain/$uri?$args&keyname=$key&tname=$time</request-url-style> <request-url-style>http://$domain/$uri?keyname=$key&tname=$time&$args</request-url-style> <request-url-style>http://$domain/$uri?$args&keyname=$key&tname=$time&$args</request-url-style> <request-url-style>http://$domain/$uri?tname=$time&keyname=$key</request-url-style> <request-url-style>http://$domain/$uri?$args&tname=$time&keyname=$key</request-url-style> <request-url-style>http://$domain/$uri?tname=$time&keyname=$key&$args</request-url-style> <request-url-style>http://$domain/$uri?$args&tname=$time&keyname=$key&$args</request-url-style> Notice: 1. The input url must start with \"http/https\" 2. If the encrypted string and timestamp are placed after \"?\", the keyname and tname must be consistent with the configured values of <cipher-param> and <time-param> 3. If there is no configuration value for <cipher-param> and <time-param>, the parameter name corresponding to $key defaults to key, and the parameter name corresponding to $time defaults to time 4. If the anti-leech encryption string and time string are in the parameters behind the question mark in the url, the \"keyname\" and \"tname\" in the url correspond to the anti-leech string and time string parameter names configured in cipher-param and time-param.","zh_CN":"防盗链请求url格式，支持两种防盗链方式，即加密串和时间戳放到“?”后面或者是加密串和时间戳放到“host”后面，url格式支持的参数如下：\n$domain：域名\n$uri：不包含域名的url部分\n$key：防盗链加密串的MD5值\n$time：防盗链时间串\n$args：问号后的QUERY_STRING参数\n示例：支持以下请求url格式，可替换为https://，url请求协议根据实际使用，如不知道如何正确配置，请找客户技术支持协助；携带加密串和时间串两个值的参数名“keyname”和“tname”，可替换为实际使用的参数名\n<request-url-style>http://$domain/$key/$time/$uri?$args</request-url-style>\n<request-url-style>http://$domain/$time/$key/$uri?$args</request-url-style>\nhttp://$domain/$uri?auth_key=$key\n<request-url-style>http://$domain/$uri?keyname=$key&tname=$time</request-url-style>\n<request-url-style>http://$domain/$uri?$args&keyname=$key&tname=$time</request-url-style>\n<request-url-style>http://$domain/$uri?keyname=$key&tname=$time&$args</request-url-style>\n<request-url-style>http://$domain/$uri?$args&keyname=$key&tname=$time&$args</request-url-style>\n<request-url-style>http://$domain/$uri?tname=$time&keyname=$key</request-url-style>\n<request-url-style>http://$domain/$uri?$args&tname=$time&keyname=$key</request-url-style>\n<request-url-style>http://$domain/$uri?tname=$time&keyname=$key&$args</request-url-style>\n<request-url-style>http://$domain/$uri?$args&tname=$time&keyname=$key&$args</request-url-style>\n注意：\n1、输入的url必须以“http/https”开头\n2、如果加密串和时间戳是放到“?”后面时，keyname和tname必须跟<cipher-param>和<time-param>配置的值一致\n3、如果<cipher-param>和<time-param>没有配置值，则$key对应的参数名默认为key，$time对应的参数名默认为time\n4、如果防盗链加密串和时间串在url问号后面的参数中，url中的“keyname”和“tname”，对应的是cipher-param和 time-param配置的防盗链串和时间串参数名称。"}
   RequestUrlStyle *string `json:"request-url-style,omitempty" xml:"request-url-style,omitempty"`
-  // {"en":"Anti-leech back-to-source method, optional values: 1 (use unencrypted url to go back to the source), 2 (use the customer request to return to the source with encrypted string url) Example: <dst-style>1<dst-style> Notice: 1. If the URL format is: http://www.xxx.com/md5/time/uri? parameter, please contact your technical support.
-  // ", "zh_CN":"防盗链回源方式，可选值：1（使用未加密url回源）、2（使用客户请求带加密串url回源）
-  // 示例：<dst-style>1<dst-style>
-  // 注意：
-  // 1、如果URL格式是：http://www.xxx.com/md5/time/uri?参数，则需要下工单给对应客服，让客服在父配置去掉时间戳格式再缓存。"}
+  // {"en":"Anti-leech back-to-source method, optional values: 1 (use unencrypted url to go back to the source), 2 (use the customer request to return to the source with encrypted string url) Example: <dst-style>1<dst-style> Notice: 1. If the URL format is: http://www.xxx.com/md5/time/uri? parameter, please contact your technical support.","zh_CN":"防盗链回源方式，可选值：1（使用未加密url回源）、2（使用客户请求带加密串url回源）\n示例：<dst-style>1<dst-style>\n注意：\n1、如果URL格式是：http://www.xxx.com/md5/time/uri?参数，则需要下工单给对应客服，让客服在父配置去掉时间戳格式再缓存。"}
   DstStyle *int `json:"dst-style,omitempty" xml:"dst-style,omitempty"`
-  // {"en":"Logging original url, optional values: true (logging original url), false (do not enable logging original url)
-  // ", "zh_CN":" 日志记录原始url，可选值：true（日志记录原始url）、false（不开启日志记录原始url）"}
+  // {"en":"Logging original url, optional values: true (logging original url), false (do not enable logging original url)","zh_CN":" 日志记录原始url，可选值：true（日志记录原始url）、false（不开启日志记录原始url）"}
   LogFormat *string `json:"log-format,omitempty" xml:"log-format,omitempty"`
-  // {"en":"Used to configure the name of the key in the url Example: <url-key>auth_key</url-key>
-  // ", "zh_CN":"用于配置获取url中的key的名称
-  // 示例： <url-key>auth_key</url-key>"}
+  // {"en":"Used to configure the name of the key in the url Example: <url-key>auth_key</url-key>","zh_CN":"用于配置获取url中的key的名称\n示例： <url-key>auth_key</url-key>"}
   UrlKey *string `json:"url-key,omitempty" xml:"url-key,omitempty"`
+  // {"en":"Special encryption, values: 1 to enable, or leave blank","zh_CN":"特殊加密生成方式，可选值：1-特殊加密方式"}
+  SpecialEncryption *string `json:"special-encryption,omitempty" xml:"special-encryption,omitempty"`
+  // {"en":"Effective time, unit:s","zh_CN":"有效时间，单位s"}
+  EffectiveTime *string `json:"effective-time,omitempty" xml:"effective-time,omitempty"`
 }
 
 func (s UpdatetimecontrolServiceRequestTimestampVisitControlRule) String() string {
@@ -7864,14 +8137,64 @@ func (s *UpdatetimecontrolServiceRequestTimestampVisitControlRule) SetUrlKey(v s
   return s
 }
 
+func (s *UpdatetimecontrolServiceRequestTimestampVisitControlRule) SetSpecialEncryption(v string) *UpdatetimecontrolServiceRequestTimestampVisitControlRule {
+  s.SpecialEncryption = &v
+  return s
+}
+
+func (s *UpdatetimecontrolServiceRequestTimestampVisitControlRule) SetEffectiveTime(v string) *UpdatetimecontrolServiceRequestTimestampVisitControlRule {
+  s.EffectiveTime = &v
+  return s
+}
+
+type UpdatetimecontrolServiceRequestHeader struct {
+}
+
+func (s UpdatetimecontrolServiceRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdatetimecontrolServiceRequestHeader) GoString() string {
+  return s.String()
+}
+
+type UpdatetimecontrolServicePaths struct {
+  // {"en":"The domain whose config needs to be queried.","zh_CN":"需要查询配置的域名或域名id"}
+  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
+}
+
+func (s UpdatetimecontrolServicePaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdatetimecontrolServicePaths) GoString() string {
+  return s.String()
+}
+
+func (s *UpdatetimecontrolServicePaths) SetDomain(v string) *UpdatetimecontrolServicePaths {
+  s.Domain = &v
+  return s
+}
+
+type UpdatetimecontrolServiceParameters struct {
+}
+
+func (s UpdatetimecontrolServiceParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdatetimecontrolServiceParameters) GoString() string {
+  return s.String()
+}
+
 type UpdatetimecontrolServiceResponse struct {
-  // {"en":"httpstatus=202; Indicates that the new domain API was successfully invoked, and the current deployment of the new domain can be viewed using x-cnc-request-id in the header", "zh_CN":"httpstatus=202;   表示成功调用新增域名接口，可使用header中的x-cnc-request-id查看当前新增域名的部署情况"}
-  HttpStatus *int `json:"http status code,omitempty" xml:"http status code,omitempty" require:"true"`
-  // {"en":"Uniquely identified id for querying tasks per request (for all API)", "zh_CN":"唯一标示的id，用于查询每次请求的任务 （适用全部接口）"}
+  // {"en":"httpstatus=202; Indicates that the new domain API was successfully invoked, and the current deployment of the new domain can be viewed using x-cnc-request-id in the header","zh_CN":"httpstatus=202;   表示成功调用新增域名接口，可使用header中的x-cnc-request-id查看当前新增域名的部署情况"}
+  HttpStatus *int `json:"httpStatus,omitempty" xml:"httpStatus,omitempty" require:"true"`
+  // {"en":"Uniquely identified id for querying tasks per request (for all API)","zh_CN":"唯一标示的id，用于查询每次请求的任务 （适用全部接口）"}
   XCncRequestId *string `json:"x-cnc-request-id,omitempty" xml:"x-cnc-request-id,omitempty" require:"true"`
-  // {"en":"Error code. It pops up when the HTTPStatus is not 202, and shows the revoking error type of the current request.", "zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
+  // {"en":"Error code. It pops up when the HTTPStatus is not 202, and shows the revoking error type of the current request.","zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
   Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Response message, and shows as success when it succeeds.", "zh_CN":"响应信息，成功时为success"}
+  // {"en":"Response message, and shows as success when it succeeds.","zh_CN":"响应信息，成功时为success"}
   Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
 }
 
@@ -7901,46 +8224,6 @@ func (s *UpdatetimecontrolServiceResponse) SetCode(v string) *UpdatetimecontrolS
 func (s *UpdatetimecontrolServiceResponse) SetMessage(v string) *UpdatetimecontrolServiceResponse {
   s.Message = &v
   return s
-}
-
-type UpdatetimecontrolServicePaths struct {
-  // {"en":"The domain whoes need query config.", "zh_CN":"需要查询配置的域名或域名id"}
-  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
-}
-
-func (s UpdatetimecontrolServicePaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s UpdatetimecontrolServicePaths) GoString() string {
-  return s.String()
-}
-
-func (s *UpdatetimecontrolServicePaths) SetDomain(v string) *UpdatetimecontrolServicePaths {
-  s.Domain = &v
-  return s
-}
-
-type UpdatetimecontrolServiceParameters struct {
-}
-
-func (s UpdatetimecontrolServiceParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s UpdatetimecontrolServiceParameters) GoString() string {
-  return s.String()
-}
-
-type UpdatetimecontrolServiceRequestHeader struct {
-}
-
-func (s UpdatetimecontrolServiceRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s UpdatetimecontrolServiceRequestHeader) GoString() string {
-  return s.String()
 }
 
 type UpdatetimecontrolServiceResponseHeader struct {
@@ -8883,16 +9166,52 @@ func (s QueryQueryStringUrlConfigRequest) GoString() string {
   return s.String()
 }
 
+type QueryQueryStringUrlConfigRequestHeader struct {
+}
+
+func (s QueryQueryStringUrlConfigRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryQueryStringUrlConfigRequestHeader) GoString() string {
+  return s.String()
+}
+
+type QueryQueryStringUrlConfigPaths struct {
+  // {"en":"Domain name or domain ID that needs to be queried for configuration.","zh_CN":"需要查询配置的域名或域名id"}
+  DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty"`
+}
+
+func (s QueryQueryStringUrlConfigPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryQueryStringUrlConfigPaths) GoString() string {
+  return s.String()
+}
+
+func (s *QueryQueryStringUrlConfigPaths) SetDomainName(v string) *QueryQueryStringUrlConfigPaths {
+  s.DomainName = &v
+  return s
+}
+
+type QueryQueryStringUrlConfigParameters struct {
+}
+
+func (s QueryQueryStringUrlConfigParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryQueryStringUrlConfigParameters) GoString() string {
+  return s.String()
+}
+
 type QueryQueryStringUrlConfigResponse struct {
-  // {"en":"Domain name or domain ID that needs to be queried for configuration.", "zh_CN":"需要查询配置的域名"}
+  // {"en":"Domain name or domain ID that needs to be queried for configuration.","zh_CN":"需要查询配置的域名"}
   DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
-  // {"en":"Domain name or domain ID that needs to be queried for configuration.", "zh_CN":"需要查询配置的域名id"}
+  // {"en":"Domain name or domain ID that needs to be queried for configuration.","zh_CN":"需要查询配置的域名id"}
   DomainId *string `json:"domain-id,omitempty" xml:"domain-id,omitempty" require:"true"`
-  // {"en":"Query String Settings Configuration, parent node
-  // 1. When you need to configure the query string, this must be filled in.
-  // 2. Configuration of clearing query string settings for <query-string-settings/>.", "zh_CN":"查询串设置配置，父标签
-  // 1.需要设置查询串配置时，此项必填
-  // 2.为<query-string-settings/>时清空查询串设置的配置"}
+  // {"en":"Query String Settings Configuration, parent node\n1. When you need to configure the query string, this must be filled in.\n2. Configuration of clearing query string settings for <query-string-settings/>.","zh_CN":"查询串设置配置，父标签\n1.需要设置查询串配置时，此项必填\n2.为<query-string-settings/>时清空查询串设置的配置"}
   QueryStringSettings []*QueryQueryStringUrlConfigResponseQueryStringSettings `json:"query-string-settings,omitempty" xml:"query-string-settings,omitempty" require:"true" type:"Repeated"`
 }
 
@@ -8920,61 +9239,36 @@ func (s *QueryQueryStringUrlConfigResponse) SetQueryStringSettings(v []*QueryQue
 }
 
 type QueryQueryStringUrlConfigResponseQueryStringSettings struct     {
-  // {"en":"The url matching mode. If all matches, the input parameters can be configured as: .*
-  // Note: URL matching mode, file type (custom file type), commonly used type, specified url, directory, with and only one required", "zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*
-  // 注：url匹配模式、文件类型（自定义文件类型）、常用类型、指定url、目录，有且仅有一项必填"}
+  // {"en":"The url matching mode. If all matches, the input parameters can be configured as: .*\nNote: URL matching mode, file type (custom file type), commonly used type, specified url, directory, with and only one required","zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*\n注：url匹配模式、文件类型（自定义文件类型）、常用类型、指定url、目录，有且仅有一项必填"}
   PathPattern *string `json:"path-pattern,omitempty" xml:"path-pattern,omitempty" require:"true"`
-  // {"en":"File Type: Specify the file types to set the anti-theft chain. Optional file types include: GIF PNG BMP JPEG JPG HTML HTM shtml MP3 WMA flv MP4 WMV zip exe rar CSS TXT ICO JS SWF m3u8 XML f4m bootstarps if all types are required. Multiple separated by semicolons, all and specific file types cannot be configured at the same time", "zh_CN":"文件类型：指定文件类型进行防盗链设置。可选文件类型包括：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf m3u8 xml f4m bootstarp ts 如果需要全部类型，则直接传all。多个以分号隔开，all和具体文件类型不能同时配置"}
+  // {"en":"File Type: Specify the file types to query the string url config. Optional file types include: GIF PNG BMP JPEG JPG HTML HTM shtml MP3 WMA flv MP4 WMV zip exe rar CSS TXT ICO JS SWF m3u8 XML f4m bootstarps if all types are required. Multiple separated by semicolons, all and specific file types cannot be configured at the same time","zh_CN":"文件类型：指定文件类型查询去问号缓存配置。可选文件类型包括：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf m3u8 xml f4m bootstarp ts 如果需要全部类型，则直接传all。多个以分号隔开，all和具体文件类型不能同时配置"}
   FileTypes *string `json:"file-types,omitempty" xml:"file-types,omitempty" require:"true"`
-  // {"en":"Custom file type: Fill in the appropriate identifiable file type according to your own needs outside the specified file type. It can be used with file-type. If file-type is also configured, the actual file type in effect is the sum of the two entries.", "zh_CN":"自定义文件类型：在指定文件类型外根据自身需求，填写适当的可识别文件类型。可以搭配file-type使用。如果file-type也有配置，实际生效的文件类型是两个入参的总和"}
+  // {"en":"Custom file type: Fill in the appropriate identifiable file type according to your own needs outside the specified file type. It can be used with file-type. If file-type is also configured, the actual file type in effect is the sum of the two entries.","zh_CN":"自定义文件类型：在指定文件类型外根据自身需求，填写适当的可识别文件类型。可以搭配file-type使用。如果file-type也有配置，实际生效的文件类型是两个入参的总和"}
   CustomFileTypes *string `json:"custom-file-types,omitempty" xml:"custom-file-types,omitempty" require:"true"`
-  // {"en":"Common types: optional values are home page and all
-  // All: All files types
-  // Homepage: home page", "zh_CN":"常用类型：可选值为homepage和all
-  // all：全部文件
-  // homepage：首页"}
+  // {"en":"Common types: optional values are home page and all\nAll: All files types\nHomepage: home page","zh_CN":"常用类型：可选值为homepage和all\nall：全部文件\nhomepage：首页"}
   CustomPattern *string `json:"custom-pattern,omitempty" xml:"custom-pattern,omitempty" require:"true"`
-  // {"en":"Specify url, not http (s): // start, multiple separated by newline", "zh_CN":"指定url，非http(s):// 开头，多个以换行分隔"}
+  // {"en":"Specify url, not http (s): // start, multiple separated by newline","zh_CN":"指定url，非http(s):// 开头，多个以换行分隔"}
   SpecifyUrlPattern *string `json:"specify-url-pattern,omitempty" xml:"specify-url-pattern,omitempty" require:"true"`
-  // {"en":"directories, you can enter a legitimate directory format. Start and end with / and multiple separated by semicolons.", "zh_CN":"目录，可输入合法的目录格式。以/开头和结尾，多个以分号隔开。"}
+  // {"en":"directories, you can enter a legitimate directory format. Start and end with / and multiple separated by semicolons.","zh_CN":"目录，可输入合法的目录格式。以/开头和结尾，多个以分号隔开。"}
   Directories *string `json:"directories,omitempty" xml:"directories,omitempty" require:"true"`
-  // {"en":"Priority, which represents the priority execution order of the customer's multi-group configuration. The bigger the number, the higher the priority. No transmission defaults to 10, not empty.", "zh_CN":"优先级，表示客户多组配置的优先执行顺序。数字越大，优先级越高。不传默认为10，不可清空。"}
+  // {"en":"Priority, which represents the priority execution order of the customer's multi-group configuration. The bigger the number, the higher the priority. No transmission defaults to 10, not empty.","zh_CN":"优先级，表示客户多组配置的优先执行顺序。数字越大，优先级越高。不传默认为10，不可清空。"}
   Priority *int `json:"priority,omitempty" xml:"priority,omitempty" require:"true"`
-  // {"en":"Whether to ignore letter case.", "zh_CN":"是否忽略大小写：允许值为true和false，默认为忽略"}
+  // {"en":"Whether to ignore letter case.","zh_CN":"是否忽略大小写：允许值为true和false，默认为忽略"}
   IgnoreLetterCase *string `json:"ignore-letter-case,omitempty" xml:"ignore-letter-case,omitempty" require:"true"`
-  // {"en":"Define the file types to be compressed.  'text/' will be compressed by default.", "zh_CN":"缓存是否忽略查询串，允许值为true和false。
-  // true表示忽略查询串，相同拷贝；false表示不忽略，分别缓存；当存在缓存保留参数或缓存删除参数时返回空。"}
+  // {"en":"Define the file types to be compressed.  'text/' will be compressed by default.","zh_CN":"缓存是否忽略查询串，允许值为true和false。\ntrue表示忽略查询串，相同拷贝；false表示不忽略，分别缓存；当存在缓存保留参数或缓存删除参数时返回空。"}
   IgnoreQueryString *string `json:"ignore-query-string,omitempty" xml:"ignore-query-string,omitempty" require:"true"`
-  // {"en":"Cache with the specified query string parameters. If the kept parameter values are the same, one copy will be cached.
-  // Note:
-  // 1. query-string-kept and query-string-removed are mutually exclusive, and only one of them has a value.
-  // 2. query-string-kept and ignore-query-string are mutually exclusive, and only one has a value.", "zh_CN":"缓存保留参数，指定保留的参数值相同，则缓存一份。
-  // 注：
-  // 1.query-string-kept和query-string-removed两者互斥，只能一个有值。
-  // 2.query-string-kept和ignore-query-string两者互斥，只能一个有值。"}
+  // {"en":"Cache with the specified query string parameters. If the kept parameter values are the same, one copy will be cached.\nNote:\n1. query-string-kept and query-string-removed are mutually exclusive, and only one of them has a value.\n2. query-string-kept and ignore-query-string are mutually exclusive, and only one has a value.","zh_CN":"缓存保留参数，指定保留的参数值相同，则缓存一份。\n注：\n1.query-string-kept和query-string-removed两者互斥，只能一个有值。\n2.query-string-kept和ignore-query-string两者互斥，只能一个有值。"}
   QueryStringKept *string `json:"query-string-kept,omitempty" xml:"query-string-kept,omitempty" require:"true"`
-  // {"en":"Cache without the specified query string parameters. After deleting the specified parameter, if the other parameter values are the same, one copy will be cached.
-  // 1. query-string-kept and query string removed are mutually exclusive, and only one has a value.
-  // 2. query-string-removed and ignore-query-string are mutually exclusive.", "zh_CN":"缓存删除参数，删除指定的参数后，其余参数值相同，则缓存一份。
-  // 1.query-string-kept和query-string-removed两者互斥，只能一个有值。
-  // 2.query-string-removed和ignore-query-string两者互斥，只能一个有值。"}
+  // {"en":"Cache without the specified query string parameters. After deleting the specified parameter, if the other parameter values are the same, one copy will be cached.\n1. query-string-kept and query string removed are mutually exclusive, and only one has a value.\n2. query-string-removed and ignore-query-string are mutually exclusive.","zh_CN":"缓存删除参数，删除指定的参数后，其余参数值相同，则缓存一份。\n1.query-string-kept和query-string-removed两者互斥，只能一个有值。\n2.query-string-removed和ignore-query-string两者互斥，只能一个有值。"}
   QueryStringRemoved *string `json:"query-string-removed,omitempty" xml:"query-string-removed,omitempty" require:"true"`
-  // {"en":"Whether to use the original URL back source, the allowable values are true and false.
-  // When ignore-query-string is true or not set, source-with-query is true to indicate that the source is returned according to the original request, and false to indicate that the question mark is returned.
-  // When ignore-query-string is false, this default setting is empty (input is invalid)", "zh_CN":"是否用原始url回源，允许值为true和false。
-  // ignore-query-string为true或未设置时，source-with-query为true表示按原始请求回源；为false表示去问号回源。
-  // ignore-query-string为false时，此项默认设置为空（输入无效）。"}
+  // {"en":"Whether to use the original URL back source, the allowable values are true and false.\nWhen ignore-query-string is true or not set, source-with-query is true to indicate that the source is returned according to the original request, and false to indicate that the question mark is returned.\nWhen ignore-query-string is false, this default setting is empty (input is invalid)","zh_CN":"是否用原始url回源，允许值为true和false。\nignore-query-string为true或未设置时，source-with-query为true表示按原始请求回源；为false表示去问号回源。\nignore-query-string为false时，此项默认设置为空（输入无效）。"}
   SourceWithQuery *string `json:"source-with-query,omitempty" xml:"source-with-query,omitempty" require:"true"`
-  // {"en":"Return to the source after specifying the reserved parameter value. Please separate them with semicolons, if no parameters reserved, please fill in:- . 1. Source-key-kept and ignore-query-string are mutually exclusive, and only one of them has a value. 2. Source-key-kept and source-key-removed are mutually exclusive, and only one of them has a value.
-  // ", "zh_CN":"回源保留参数，指定保留的参数值后回源。多个请以英文分号分隔，任何参数都不保留请填：- 1、source-key-kept和ignore-query-string两者互斥，只能一个有值。 2、source-key-kept和source-key-removed两者互斥，只能一个有值。
-  // "}
+  // {"en":"Return to the source after specifying the reserved parameter value. Please separate them with semicolons, if no parameters reserved, please fill in:- . 1. Source-key-kept and ignore-query-string are mutually exclusive, and only one of them has a value. 2. Source-key-kept and source-key-removed are mutually exclusive, and only one of them has a value.","zh_CN":"回源保留参数，指定保留的参数值后回源。多个请以英文分号分隔，任何参数都不保留请填：- 1、source-key-kept和ignore-query-string两者互斥，只能一个有值。 2、source-key-kept和source-key-removed两者互斥，只能一个有值。"}
   SourceKeyKept *string `json:"source-key-kept,omitempty" xml:"source-key-kept,omitempty" require:"true"`
-  // {"en":"Return to the source after specifying the deleted parameter value. Please separate them with semicolons, and if you do not delete any parameters, please fill in:- . 1. Source-key-removed and ignore-query-string are mutually exclusive, and only one of them has a value. 2. Source-key-kept and source-key-removed are mutually exclusive, and only one of them has a value.
-  // ", "zh_CN":"回源删除参数，指定删除的参数值后回源。多个请以英文分号分隔，任何参数都不删除请填：- 1、source-key-removed和ignore-query-string两者互斥，只能一个有值。 2、source-key-kept和source-key-removed两者互斥，只能一个有值。
-  // "}
+  // {"en":"Return to the source after specifying the deleted parameter value. Please separate them with semicolons, and if you do not delete any parameters, please fill in:- . 1. Source-key-removed and ignore-query-string are mutually exclusive, and only one of them has a value. 2. Source-key-kept and source-key-removed are mutually exclusive, and only one of them has a value.","zh_CN":"回源删除参数，指定删除的参数值后回源。多个请以英文分号分隔，任何参数都不删除请填：- 1、source-key-removed和ignore-query-string两者互斥，只能一个有值。 2、source-key-kept和source-key-removed两者互斥，只能一个有值。"}
   SourceKeyRemoved *string `json:"source-key-removed,omitempty" xml:"source-key-removed,omitempty" require:"true"`
-  // {"en":"When configuring multiple configurations, the ID of a specific group of configurations", "zh_CN":"配置多组配置时，具体某组配置的id"}
-  DataId *int32 `json:"data-id,omitempty" xml:"data-id,omitempty" require:"true"`
+  // {"en":"When configuring multiple configurations, the ID of a specific group of configurations","zh_CN":"配置多组配置时，具体某组配置的id"}
+  DataId *int `json:"data-id,omitempty" xml:"data-id,omitempty" require:"true"`
 }
 
 func (s QueryQueryStringUrlConfigResponseQueryStringSettings) String() string {
@@ -9055,49 +9349,9 @@ func (s *QueryQueryStringUrlConfigResponseQueryStringSettings) SetSourceKeyRemov
   return s
 }
 
-func (s *QueryQueryStringUrlConfigResponseQueryStringSettings) SetDataId(v int32) *QueryQueryStringUrlConfigResponseQueryStringSettings {
+func (s *QueryQueryStringUrlConfigResponseQueryStringSettings) SetDataId(v int) *QueryQueryStringUrlConfigResponseQueryStringSettings {
   s.DataId = &v
   return s
-}
-
-type QueryQueryStringUrlConfigPaths struct {
-  // {"en":"Domain name or domain ID that needs to be queried for configuration.", "zh_CN":"需要查询配置的域名或域名id"}
-  DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty"`
-}
-
-func (s QueryQueryStringUrlConfigPaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryQueryStringUrlConfigPaths) GoString() string {
-  return s.String()
-}
-
-func (s *QueryQueryStringUrlConfigPaths) SetDomainName(v string) *QueryQueryStringUrlConfigPaths {
-  s.DomainName = &v
-  return s
-}
-
-type QueryQueryStringUrlConfigParameters struct {
-}
-
-func (s QueryQueryStringUrlConfigParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryQueryStringUrlConfigParameters) GoString() string {
-  return s.String()
-}
-
-type QueryQueryStringUrlConfigRequestHeader struct {
-}
-
-func (s QueryQueryStringUrlConfigRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryQueryStringUrlConfigRequestHeader) GoString() string {
-  return s.String()
 }
 
 type QueryQueryStringUrlConfigResponseHeader struct {
@@ -9311,6 +9565,110 @@ func (s QueryDomainBillingareaResponseHeader) String() string {
 
 func (s QueryDomainBillingareaResponseHeader) GoString() string {
   return s.String()
+}
+
+
+
+
+type BatchUpdateDomainCertConfigRequest struct {
+  // {"en":"Certificate ID","zh_CN":"证书ID"}
+  CertificateId *int `json:"certificateId,omitempty" xml:"certificateId,omitempty" require:"true"`
+  // {"en":"Domain name list","zh_CN":"域名列表"}
+  DomainNames []*string `json:"domainNames,omitempty" xml:"domainNames,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s BatchUpdateDomainCertConfigRequest) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchUpdateDomainCertConfigRequest) GoString() string {
+  return s.String()
+}
+
+func (s *BatchUpdateDomainCertConfigRequest) SetCertificateId(v int) *BatchUpdateDomainCertConfigRequest {
+  s.CertificateId = &v
+  return s
+}
+
+func (s *BatchUpdateDomainCertConfigRequest) SetDomainNames(v []*string) *BatchUpdateDomainCertConfigRequest {
+  s.DomainNames = v
+  return s
+}
+
+type BatchUpdateDomainCertConfigRequestHeader struct {
+}
+
+func (s BatchUpdateDomainCertConfigRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchUpdateDomainCertConfigRequestHeader) GoString() string {
+  return s.String()
+}
+
+type BatchUpdateDomainCertConfigPaths struct {
+}
+
+func (s BatchUpdateDomainCertConfigPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchUpdateDomainCertConfigPaths) GoString() string {
+  return s.String()
+}
+
+type BatchUpdateDomainCertConfigParameters struct {
+}
+
+func (s BatchUpdateDomainCertConfigParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchUpdateDomainCertConfigParameters) GoString() string {
+  return s.String()
+}
+
+type BatchUpdateDomainCertConfigResponse struct {
+  // {"en":"Error code, which appears when HTTPStatus is not 202, represents the error type of the current request call","zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Response information, success when successful","zh_CN":"响应信息，成功时为success"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+}
+
+func (s BatchUpdateDomainCertConfigResponse) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchUpdateDomainCertConfigResponse) GoString() string {
+  return s.String()
+}
+
+func (s *BatchUpdateDomainCertConfigResponse) SetCode(v string) *BatchUpdateDomainCertConfigResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *BatchUpdateDomainCertConfigResponse) SetMessage(v string) *BatchUpdateDomainCertConfigResponse {
+  s.Message = &v
+  return s
+}
+
+type BatchUpdateDomainCertConfigResponseHeader struct {
+  // {"en":"","zh_CN":""}
+  XCncRequestId *string `json:"x-cnc-request-id,omitempty" xml:"x-cnc-request-id,omitempty" require:"true"`
+}
+
+func (s BatchUpdateDomainCertConfigResponseHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchUpdateDomainCertConfigResponseHeader) GoString() string {
+  return s.String()
+}
+
+func (s *BatchUpdateDomainCertConfigResponseHeader) SetXCncRequestId(v string) *BatchUpdateDomainCertConfigResponseHeader {
+  s.XCncRequestId = &v
+  return s
 }
 
 
@@ -10130,9 +10488,7 @@ func (s QueryOriginUriAndHostResponseHeader) GoString() string {
 
 
 type UpdateCompressionConfigRequest struct {
-  // {"en":"Compress setting config", "zh_CN":"压缩响应功能配置
-  // 1.需要设置压缩响应配置时，此项必填
-  // 2.为空<compression-settings/>时清空压缩响应配置"}
+  // {"en":"Compress setting config","zh_CN":"压缩响应功能配置\n1.需要设置压缩响应配置时，此项必填\n2.为空<compression-settings/>时清空压缩响应配置"}
   CompressionSettings *UpdateCompressionConfigRequestCompressionSettings `json:"compression-settings,omitempty" xml:"compression-settings,omitempty" require:"true" type:"Struct"`
 }
 
@@ -10150,16 +10506,28 @@ func (s *UpdateCompressionConfigRequest) SetCompressionSettings(v *UpdateCompres
 }
 
 type UpdateCompressionConfigRequestCompressionSettings struct {
-  // {"en":"To enable compress setting, allowed true or false.", "zh_CN":"开启压缩响应功能：允许值为true和false"}
-  CompressionEnabled *string `json:"compression-enabled,omitempty" xml:"compression-enabled,omitempty" require:"true"`
-  // {"en":"The url matching mode. If all matches, the input parameters can be configured as: .*", "zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*"}
-  PathPattern *string `json:"path-pattern,omitempty" xml:"path-pattern,omitempty" require:"true"`
-  // {"en":"Whether to ignore letter case.", "zh_CN":"是否忽略大小写：允许值为true和false"}
-  IgnoreLetterCase *string `json:"ignore-letter-case,omitempty" xml:"ignore-letter-case,omitempty"`
-  // {"en":"Define the file types to be compressed. 'text/' will be compressed by default.", "zh_CN":"配置需要压缩的文件类型，默认只对'text'文件类型压缩，配置为*时压缩任意文件类型"}
-  FileTypes []*string `json:"file-types,omitempty" xml:"file-types,omitempty" type:"Repeated"`
-  // {"en":"Use br compression.The allowed values are true and false.", "zh_CN":"是否使用br压缩：允许值为true和false"}
+  // {"en":"To enable compress setting, allowed true or false.","zh_CN":"开启压缩响应功能：允许值为true和false"}
+  CompressionEnabled *string `json:"compression-enabled,omitempty" xml:"compression-enabled,omitempty"`
+  // {"en":"Use br compression.The allowed values are true and false.","zh_CN":"是否使用br压缩：允许值为true和false"}
   BrTypes *string `json:"br-types,omitempty" xml:"br-types,omitempty"`
+  // {"en":"Specify URI","zh_CN":"指定URI"}
+  SpecifyUrlPattern *string `json:"specify-url-pattern,omitempty" xml:"specify-url-pattern,omitempty"`
+  // {"en":"Custom file type: In addition to the specified file type, fill in the appropriate recognizable file type according to your own needs. It can be used in conjunction with uri-file-types. If uri-file-types is also configured, the actual effective file type is the sum of the two input parameters.","zh_CN":"自定义文件类型：在指定文件类型外根据自身需求，填写适当的可识别文件类型。可以搭配uri-file-types使用。如果uri-file-types也有配置，实际生效的文件类型是两个入参的总和"}
+  CustomFileTypes []*string `json:"custom-file-types,omitempty" xml:"custom-file-types,omitempty" type:"Repeated"`
+  // {"en":"Define the MIME file types to be compressed. 'text/' will be compressed by default.","zh_CN":"MIME类型配置需要压缩的文件类型，默认只对'text'文件类型压缩，配置为*时压缩任意文件类型"}
+  FileTypes []*string `json:"file-types,omitempty" xml:"file-types,omitempty" type:"Repeated"`
+  // {"en":"Whether to ignore letter case.","zh_CN":"是否忽略大小写：允许值为true和false"}
+  IgnoreLetterCase *string `json:"ignore-letter-case,omitempty" xml:"ignore-letter-case,omitempty"`
+  // {"en":"The url matching mode. If all matches, the input parameters can be configured as: .*","zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*"}
+  PathPattern *string `json:"path-pattern,omitempty" xml:"path-pattern,omitempty"`
+  // {"en":"Specify Regular Pattern.The allowed values are homepage and all.","zh_CN":"指定常用类型：允许值为homepage和all"}
+  CustomPattern *string `json:"custom-pattern,omitempty" xml:"custom-pattern,omitempty"`
+  // {"en":"File type: Specifies the type of file to cache. File types include: gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf If you need all types, simply pass all. Multiple types are separated by semicolons; all and specific file types cannot be configured at the same time.","zh_CN":"文件类型：指定需要缓存的文件类型。 文件类型包括：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf 如果需要全部类型，则直接传all。多个以分号隔开，all和具体文件类型不能同时配置。"}
+  UriFileTypes []*string `json:"uri-file-types,omitempty" xml:"uri-file-types,omitempty" type:"Repeated"`
+  // {"en":"Directory","zh_CN":"目录"}
+  Directory *string `json:"directory,omitempty" xml:"directory,omitempty"`
+  // {"en":"Another way to specify the file type to open the compressed response, and configuration will be cleared when input empty.","zh_CN":"指定文件类型开启压缩响应的另一种方式，为空可清空配置"}
+  FileTypeOthers []*string `json:"file-type-others,omitempty" xml:"file-type-others,omitempty" type:"Repeated"`
 }
 
 func (s UpdateCompressionConfigRequestCompressionSettings) String() string {
@@ -10175,13 +10543,18 @@ func (s *UpdateCompressionConfigRequestCompressionSettings) SetCompressionEnable
   return s
 }
 
-func (s *UpdateCompressionConfigRequestCompressionSettings) SetPathPattern(v string) *UpdateCompressionConfigRequestCompressionSettings {
-  s.PathPattern = &v
+func (s *UpdateCompressionConfigRequestCompressionSettings) SetBrTypes(v string) *UpdateCompressionConfigRequestCompressionSettings {
+  s.BrTypes = &v
   return s
 }
 
-func (s *UpdateCompressionConfigRequestCompressionSettings) SetIgnoreLetterCase(v string) *UpdateCompressionConfigRequestCompressionSettings {
-  s.IgnoreLetterCase = &v
+func (s *UpdateCompressionConfigRequestCompressionSettings) SetSpecifyUrlPattern(v string) *UpdateCompressionConfigRequestCompressionSettings {
+  s.SpecifyUrlPattern = &v
+  return s
+}
+
+func (s *UpdateCompressionConfigRequestCompressionSettings) SetCustomFileTypes(v []*string) *UpdateCompressionConfigRequestCompressionSettings {
+  s.CustomFileTypes = v
   return s
 }
 
@@ -10190,52 +10563,49 @@ func (s *UpdateCompressionConfigRequestCompressionSettings) SetFileTypes(v []*st
   return s
 }
 
-func (s *UpdateCompressionConfigRequestCompressionSettings) SetBrTypes(v string) *UpdateCompressionConfigRequestCompressionSettings {
-  s.BrTypes = &v
+func (s *UpdateCompressionConfigRequestCompressionSettings) SetIgnoreLetterCase(v string) *UpdateCompressionConfigRequestCompressionSettings {
+  s.IgnoreLetterCase = &v
   return s
 }
 
-type UpdateCompressionConfigResponse struct {
-  // {"en":"httpstatus=202; Indicates that the new domain API was successfully invoked, and the current deployment of the new domain can be viewed using x-cnc-request-id in the header", "zh_CN":"httpstatus=202;   表示成功调用新增域名接口，可使用header中的x-cnc-request-id查看当前新增域名的部署情况"}
-  HttpStatus *int `json:"http status code,omitempty" xml:"http status code,omitempty" require:"true"`
-  // {"en":"Uniquely labeled id for querying each requested task (for all interfaces)", "zh_CN":"唯一标示的id，用于查询每次请求的任务 （适用全部接口）"}
-  XCncRequestId *string `json:"x-cnc-request-id,omitempty" xml:"x-cnc-request-id,omitempty" require:"true"`
-  // {"en":"The error code, when HTTPStatus is not 202, indicates the type of error the current request is calling.", "zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Response information, when success is successful", "zh_CN":"响应信息，成功时为success"}
-  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+func (s *UpdateCompressionConfigRequestCompressionSettings) SetPathPattern(v string) *UpdateCompressionConfigRequestCompressionSettings {
+  s.PathPattern = &v
+  return s
 }
 
-func (s UpdateCompressionConfigResponse) String() string {
+func (s *UpdateCompressionConfigRequestCompressionSettings) SetCustomPattern(v string) *UpdateCompressionConfigRequestCompressionSettings {
+  s.CustomPattern = &v
+  return s
+}
+
+func (s *UpdateCompressionConfigRequestCompressionSettings) SetUriFileTypes(v []*string) *UpdateCompressionConfigRequestCompressionSettings {
+  s.UriFileTypes = v
+  return s
+}
+
+func (s *UpdateCompressionConfigRequestCompressionSettings) SetDirectory(v string) *UpdateCompressionConfigRequestCompressionSettings {
+  s.Directory = &v
+  return s
+}
+
+func (s *UpdateCompressionConfigRequestCompressionSettings) SetFileTypeOthers(v []*string) *UpdateCompressionConfigRequestCompressionSettings {
+  s.FileTypeOthers = v
+  return s
+}
+
+type UpdateCompressionConfigRequestHeader struct {
+}
+
+func (s UpdateCompressionConfigRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateCompressionConfigResponse) GoString() string {
+func (s UpdateCompressionConfigRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *UpdateCompressionConfigResponse) SetHttpStatus(v int) *UpdateCompressionConfigResponse {
-  s.HttpStatus = &v
-  return s
-}
-
-func (s *UpdateCompressionConfigResponse) SetXCncRequestId(v string) *UpdateCompressionConfigResponse {
-  s.XCncRequestId = &v
-  return s
-}
-
-func (s *UpdateCompressionConfigResponse) SetCode(v string) *UpdateCompressionConfigResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *UpdateCompressionConfigResponse) SetMessage(v string) *UpdateCompressionConfigResponse {
-  s.Message = &v
-  return s
-}
-
 type UpdateCompressionConfigPaths struct {
-  // {"en":"The domain whoes need query config.", "zh_CN":"需要查询配置的域名或域名id"}
+  // {"en":"The domain whoes need query config.","zh_CN":"需要查询配置的域名或域名id"}
   DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty"`
 }
 
@@ -10263,15 +10633,43 @@ func (s UpdateCompressionConfigParameters) GoString() string {
   return s.String()
 }
 
-type UpdateCompressionConfigRequestHeader struct {
+type UpdateCompressionConfigResponse struct {
+  // {"en":"The error code, when HTTPStatus is not 202, indicates the type of error the current request is calling.","zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"httpstatus=202; Indicates that the new domain API was successfully invoked, and the current deployment of the new domain can be viewed using x-cnc-request-id in the header","zh_CN":"httpstatus=202;   表示成功调用新增域名接口，可使用header中的x-cnc-request-id查看当前新增域名的部署情况"}
+  HttpStatus *int `json:"httpStatus,omitempty" xml:"httpStatus,omitempty" require:"true"`
+  // {"en":"Uniquely labeled id for querying each requested task (for all interfaces)","zh_CN":"唯一标示的id，用于查询每次请求的任务 （适用全部接口）"}
+  XCncRequestId *string `json:"x-cnc-request-id,omitempty" xml:"x-cnc-request-id,omitempty" require:"true"`
+  // {"en":"Response information, when success is successful","zh_CN":"响应信息，成功时为success"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
 }
 
-func (s UpdateCompressionConfigRequestHeader) String() string {
+func (s UpdateCompressionConfigResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateCompressionConfigRequestHeader) GoString() string {
+func (s UpdateCompressionConfigResponse) GoString() string {
   return s.String()
+}
+
+func (s *UpdateCompressionConfigResponse) SetCode(v string) *UpdateCompressionConfigResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *UpdateCompressionConfigResponse) SetHttpStatus(v int) *UpdateCompressionConfigResponse {
+  s.HttpStatus = &v
+  return s
+}
+
+func (s *UpdateCompressionConfigResponse) SetXCncRequestId(v string) *UpdateCompressionConfigResponse {
+  s.XCncRequestId = &v
+  return s
+}
+
+func (s *UpdateCompressionConfigResponse) SetMessage(v string) *UpdateCompressionConfigResponse {
+  s.Message = &v
+  return s
 }
 
 type UpdateCompressionConfigResponseHeader struct {
@@ -10299,22 +10697,56 @@ func (s QuerytimecontrolServiceRequest) GoString() string {
   return s.String()
 }
 
-type QuerytimecontrolServiceResponse struct {
-  // {"en":"httpstatus=202; Indicates that the new domain API was successfully invoked, and the current deployment of the new domain can be viewed using x-cnc-request-id in the header", "zh_CN":"httpstatus=202;   表示成功调用新增域名接口，可使用header中的x-cnc-request-id查看当前新增域名的部署情况"}
-  HttpStatus *int `json:"http status code,omitempty" xml:"http status code,omitempty" require:"true"`
-  // {"en":"Uniquely identified id for querying tasks per request (for all API)", "zh_CN":"唯一标示的id，用于查询每次请求的任务 （适用全部接口）"}
-  XCncRequestId *string `json:"x-cnc-request-id,omitempty" xml:"x-cnc-request-id,omitempty" require:"true"`
-  // {"en":"Accelerated domain name ID", "zh_CN":"加速域名ID"}
-  DomainId *string `json:"domain-id,omitempty" xml:"domain-id,omitempty" require:"true"`
-  // {"en":"Name of accelerated domain name", "zh_CN":"加速域名的名称"}
+type QuerytimecontrolServiceRequestHeader struct {
+}
+
+func (s QuerytimecontrolServiceRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QuerytimecontrolServiceRequestHeader) GoString() string {
+  return s.String()
+}
+
+type QuerytimecontrolServicePaths struct {
+  // {"en":"domainId or domainName","zh_CN":"域名名称或域名id，在请求的url后面"}
   DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
-  // {"en":"", "zh_CN":"时间戳防盗链设置
-  // 注意：
-  // 1、时间戳防盗链分为两部分，一部分是防盗链校验，一部分是时间有效性校验。二者都有效，则防盗链通过，否则不通过。
-  // 2、防盗链校验：加密算法为md5sum，按照参与MD5计算的参数及组合顺序进行防盗链加密串的计算，对匹配目录下所有文件的url进行防盗链校验，未匹配到的url，则拒绝访问。
-  // 3、时间有效性检验：按照年月日时分秒换算的当前时间，与请求url中所带的名文时间相减，判断是否超过设置的上下限（即前后60s内），时间差小于设置上下限的，系统才会给予正常的响应，否则拒绝请求，返回403
-  // 4、日志记录没有带加密串的url
-  // 6、需要清空时间戳防盗链规则时，可以只传入节点<timestamp-visit-control-rule></timestamp-visit-control-rule>"}
+}
+
+func (s QuerytimecontrolServicePaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QuerytimecontrolServicePaths) GoString() string {
+  return s.String()
+}
+
+func (s *QuerytimecontrolServicePaths) SetDomainName(v string) *QuerytimecontrolServicePaths {
+  s.DomainName = &v
+  return s
+}
+
+type QuerytimecontrolServiceParameters struct {
+}
+
+func (s QuerytimecontrolServiceParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QuerytimecontrolServiceParameters) GoString() string {
+  return s.String()
+}
+
+type QuerytimecontrolServiceResponse struct {
+  // {"en":"httpstatus=202; Indicates that the new domain API was successfully invoked, and the current deployment of the new domain can be viewed using x-cnc-request-id in the header","zh_CN":"httpstatus=202;   表示成功调用新增域名接口，可使用header中的x-cnc-request-id查看当前新增域名的部署情况"}
+  HttpStatus *int `json:"httpStatus,omitempty" xml:"httpStatus,omitempty" require:"true"`
+  // {"en":"Uniquely identified id for querying tasks per request (for all API)","zh_CN":"唯一标示的id，用于查询每次请求的任务 （适用全部接口）"}
+  XCncRequestId *string `json:"x-cnc-request-id,omitempty" xml:"x-cnc-request-id,omitempty" require:"true"`
+  // {"en":"Accelerated domain name ID","zh_CN":"加速域名ID"}
+  DomainId *string `json:"domain-id,omitempty" xml:"domain-id,omitempty" require:"true"`
+  // {"en":"Name of accelerated domain name","zh_CN":"加速域名的名称"}
+  DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
+  // {"en":"Timestamp-based Hotlink Protection Configuration\nImportant Notes:\n1. Composition & Workflow: The protection consists of two sequential validations:\nHotlink Validation\nTime Validity Check\nAccess is granted only if both checks pass. Otherwise, the request is denied.\n2. Hotlink Validation:\nAlgorithm: md5sum\nProcess: A secure hash is calculated using the specified parameters and their combination sequence.\nScope: Applies to all URLs under the matched directory(s).\nFailure Action: Requests to unmatched URLs or with failed validation are denied.\n3. Time Validity Check:\nProcess: The system calculates the difference between the current time (converted to YYYYMMDDHHMMSS format) and the plain-text timestamp in the request URL.\nTolerance Window: The request is allowed only if the time difference falls within the configured limit (default is ±60 seconds).\nFailure Action: Requests outside the tolerance window are rejected with a 403 error.\n4. Logging: URLs that lack the encrypted authentication string will be logged.\n5.Clearing Rules: To clear all timestamp hotlink protection rules, submit the empty node: <timestamp-visit-control-rule></timestamp-visit-control-rule>","zh_CN":"时间戳防盗链设置\n注意：\n1、时间戳防盗链分为两部分，一部分是防盗链校验，一部分是时间有效性校验。二者都有效，则防盗链通过，否则不通过。\n2、防盗链校验：加密算法为md5sum，按照参与MD5计算的参数及组合顺序进行防盗链加密串的计算，对匹配目录下所有文件的url进行防盗链校验，未匹配到的url，则拒绝访问。\n3、时间有效性检验：按照年月日时分秒换算的当前时间，与请求url中所带的名文时间相减，判断是否超过设置的上下限（即前后60s内），时间差小于设置上下限的，系统才会给予正常的响应，否则拒绝请求，返回403\n4、日志记录没有带加密串的url\n6、需要清空时间戳防盗链规则时，可以只传入节点<timestamp-visit-control-rule></timestamp-visit-control-rule>"}
   TimestampVisitControlRule *QuerytimecontrolServiceResponseTimestampVisitControlRule `json:"timestamp-visit-control-rule,omitempty" xml:"timestamp-visit-control-rule,omitempty" require:"true" type:"Struct"`
 }
 
@@ -10352,63 +10784,44 @@ func (s *QuerytimecontrolServiceResponse) SetTimestampVisitControlRule(v *Queryt
 }
 
 type QuerytimecontrolServiceResponseTimestampVisitControlRule struct {
-  // {"en":"", "zh_CN":"同缓存规则设置中的&ldquo;path-pattern&rdquo;，用于URL匹配。对于匹配到的URL进行时间戳防盗链验证；未匹配到的URL，则拒绝。
-  // 同缓存规则设置中的&ldquo;path-pattern&rdquo;，用于URL匹配。对于匹配到的URL进行时间戳防盗链验证；未匹配到的URL，则拒绝。"}
+  // {"en":"The url matching mode supports fuzzy regularization. If all matches, the input parameters can be configured as: *.Verify the time stamp of the matched URL for anti-leeching; reject URLs that are not matched.","zh_CN":"同缓存规则设置中的&ldquo;path-pattern&rdquo;，用于URL匹配。对于匹配到的URL进行时间戳防盗链验证；未匹配到的URL，则拒绝。\n同缓存规则设置中的&ldquo;path-pattern&rdquo;，用于URL匹配。对于匹配到的URL进行时间戳防盗链验证；未匹配到的URL，则拒绝。"}
   PathPattern *string `json:"path-pattern,omitempty" xml:"path-pattern,omitempty" require:"true"`
-  // {"en":"Optional values are: http, https, http;https, noprefix, empty. If it is empty, it defaults to "http;https"; if it is noprefix, it means that the protocol prefix of url is not specified, and it only matches according to the regularity of path-pattern. This configuration item only matches with path-pattern. example: 1. Specify protocol-of-path-pattern=https and path-pattern=.* to match all https requests, but not http requests. 2. Specify protocol-of-path-pattern=http;https, path-pattern=.* to match all http and https requests. 3. Specify protocol-of-path-pattern=noprefix and path-pattern=^http://[^/]+/.* to match all http requests but not https requests.",
-  // "zh_CN":"可选值为: http、https、http;https、noprefix、空。为空默认为“http;https”；为noprefix表示不指定url的协议前缀，仅按path-pattern的正则匹配。本配置项只与path-pattern（url匹配模式）结合匹配。 例子： 1、指定protocol-of-path-pattern=https，path-pattern=.*，则匹配所有https的请求，不匹配http的请求。 2、指定protocol-of-path-pattern=http;https，path-pattern=.*，则匹配所有http和https的请求。 3、指定protocol-of-path-pattern=noprefix，path-pattern=^http://[^/]+/.*，则匹配所有http的请求，不匹配https的请求。"}
-  ProtocolOfPathPattern *string `json:"protocol-of-path-pattern,omitempty" xml:"protocol-of-path-pattern,omitempty"`
-  // {"en":"Directory, multiple separated by English semicolons. Perform timestamp anti-leech verification for the matched directory; reject the unmatched directory. mutually exclusive with path-pattern.", "zh_CN":"目录，多个以英文分号隔开。对于匹配到的目录进行时间戳防盗链验证；未匹配到的则拒绝。和path-pattern互斥。"}
-  Directory *string `json:"directory,omitempty" xml:"directory,omitempty"`
-  // {"en":"Whether to remove / from $uri in anti-leech, the optional values are true or false, and the default is false, that is, it contains /. For example: http://www.test.com/1.flv, then $uri is /1.flv by default, if ignore-uri-slash is true, then $uri is 1.flv", "zh_CN":"防盗链中的$uri是否去掉/，可选值为true、false，默认为false，即包含/。 例如： http://www.test.com/1.flv，则$uri默认为/1.flv,若ignore-uri-slash为true，则$uri为1.flv"}
-  IgnoreUriSlash *string `json:"ignore-uri-slash,omitempty" xml:"ignore-uri-slash,omitempty"`
-  // {"en":"Whether key and time are allowed to be interchanged, the optional values are true and false, true is allowed, false is not allowed. By default, the order of key parameters and time parameters must strictly follow the order required by the authentication mode, that is, the default key and time cannot be interchanged. If "true" is selected, the key and time positions can be interchanged and the authentication succeeds.", "zh_CN":"key与time是否允许互换，可选值为true和false，true则允许，false则不允许。默认情况下，密钥参数和时间参数的顺序，必须严格参照鉴权模式要求的顺序，即，默认key和time不能互换位置。如选择“true”，key和time位置可以互换并鉴权成功。"}
-  IgnoreKeyAndTimePosition *string `json:"ignore-key-and-time-position,omitempty" xml:"ignore-key-and-time-position,omitempty"`
-  // {"en":"", "zh_CN":"例外的url匹配模式，某些URL除外：如abc.jpg，不做防盗链
-  // 例外的url匹配模式，某些URL除外：如abc.jpg，不做防盗链"}
+  // {"en":"Optional values are: http, https, http;https, noprefix, empty. If it is empty, it defaults to \"http;https\"; if it is noprefix, it means that the protocol prefix of url is not specified, and it only matches according to the regularity of path-pattern. This configuration item only matches with path-pattern. example: 1. Specify protocol-of-path-pattern=https and path-pattern=.* to match all https requests, but not http requests. 2. Specify protocol-of-path-pattern=http;https, path-pattern=.* to match all http and https requests. 3. Specify protocol-of-path-pattern=noprefix and path-pattern=^http://[^/]+/.* to match all http requests but not https requests.","zh_CN":"可选值为: http、https、http;https、noprefix、空。为空默认为“http;https”；为noprefix表示不指定url的协议前缀，仅按path-pattern的正则匹配。本配置项只与path-pattern（url匹配模式）结合匹配。 例子： 1、指定protocol-of-path-pattern=https，path-pattern=.*，则匹配所有https的请求，不匹配http的请求。 2、指定protocol-of-path-pattern=http;https，path-pattern=.*，则匹配所有http和https的请求。 3、指定protocol-of-path-pattern=noprefix，path-pattern=^http://[^/]+/.*，则匹配所有http的请求，不匹配https的请求。"}
+  ProtocolOfPathPattern *string `json:"protocol-of-path-pattern,omitempty" xml:"protocol-of-path-pattern,omitempty" require:"true"`
+  // {"en":"Directory, multiple separated by English semicolons. Perform timestamp anti-leech verification for the matched directory; reject the unmatched directory. mutually exclusive with path-pattern.","zh_CN":"目录，多个以英文分号隔开。对于匹配到的目录进行时间戳防盗链验证；未匹配到的则拒绝。和path-pattern互斥。"}
+  Directory *string `json:"directory,omitempty" xml:"directory,omitempty" require:"true"`
+  // {"en":"Whether to remove / from $uri in anti-leech, the optional values are true or false, and the default is false, that is, it contains /. For example: http://www.test.com/1.flv, then $uri is /1.flv by default, if ignore-uri-slash is true, then $uri is 1.flv","zh_CN":"防盗链中的$uri是否去掉/，可选值为true、false，默认为false，即包含/。 例如： http://www.test.com/1.flv，则$uri默认为/1.flv,若ignore-uri-slash为true，则$uri为1.flv"}
+  IgnoreUriSlash *string `json:"ignore-uri-slash,omitempty" xml:"ignore-uri-slash,omitempty" require:"true"`
+  // {"en":"Whether key and time are allowed to be interchanged, the optional values are true and false, true is allowed, false is not allowed. By default, the order of key parameters and time parameters must strictly follow the order required by the authentication mode, that is, the default key and time cannot be interchanged. If \"true\" is selected, the key and time positions can be interchanged and the authentication succeeds.","zh_CN":"key与time是否允许互换，可选值为true和false，true则允许，false则不允许。默认情况下，密钥参数和时间参数的顺序，必须严格参照鉴权模式要求的顺序，即，默认key和time不能互换位置。如选择“true”，key和time位置可以互换并鉴权成功。"}
+  IgnoreKeyAndTimePosition *string `json:"ignore-key-and-time-position,omitempty" xml:"ignore-key-and-time-position,omitempty" require:"true"`
+  // {"en":"Exceptional url matching mode, except for some URLs: such as abc.jpg, do not do anti-theft chain function","zh_CN":"例外的url匹配模式，某些URL除外：如abc.jpg，不做防盗链\n例外的url匹配模式，某些URL除外：如abc.jpg，不做防盗链"}
   ExceptPathPattern *string `json:"except-path-pattern,omitempty" xml:"except-path-pattern,omitempty" require:"true"`
-  // {"en":"", "zh_CN":"例外的IP，支持输入IP或IP段，IP段之间用分号(;)隔开，如1.1.1.0/24;2.2.2.2，某些IP例外，不做防盗链"}
+  // {"en":"Exceptional IP, supports input of IP or IP range, separate IP ranges with semicolons (;), such as 1.1.1.0/24;2.2.2.2, some IP exceptions, no anti-leeching.","zh_CN":"例外的IP，支持输入IP或IP段，IP段之间用分号(;)隔开，如1.1.1.0/24;2.2.2.2，某些IP例外，不做防盗链"}
   AllowedIps *string `json:"allowed-ips,omitempty" xml:"allowed-ips,omitempty" require:"true"`
-  // {"en":"", "zh_CN":"加密算法
-  // 当前支持入参：md5sum"}
+  // {"en":"Encryption Algorithm. Support value: md5sum","zh_CN":"加密算法\n当前支持入参：md5sum"}
   EncryptMethod *string `json:"encrypt-method,omitempty" xml:"encrypt-method,omitempty" require:"true"`
-  // {"en":"", "zh_CN":"防盗链加密串，支持多个加密串，多个加密串以分号(;)隔开
-  // 示例：<multiple-secret-keys>abcdef;uvwxyz</multiple-secret-keys>
-  // 注意：
-  // 1、支持对url 防盗链设置多个密钥。支持客户任意修改密钥，并做到无缝切换。防盗链等级更高。
-  // 2、请求url的key只要跟其中任意一个加密串算出来的key一致就验证通过"}
+  // {"en":"Anti-leech encrypted string, multiple encrypted strings are supported, and multiple encrypted strings are separated by semicolons (;) Example: <multiple-secret-keys>abcdef;uvwxyz</multiple-secret-keys> Notice: 1. Support setting multiple keys for url anti-leech. Support customers to modify the key at will, and achieve seamless switching. The anti-theft chain level is higher. 2. As long as the key of the requested url is consistent with the key calculated from any of the encrypted strings, the verification will pass","zh_CN":"防盗链加密串，支持多个加密串，多个加密串以分号(;)隔开\n示例：<multiple-secret-keys>abcdef;uvwxyz</multiple-secret-keys>\n注意：\n1、支持对url 防盗链设置多个密钥。支持客户任意修改密钥，并做到无缝切换。防盗链等级更高。\n2、请求url的key只要跟其中任意一个加密串算出来的key一致就验证通过"}
   MultipleSecretKeys *string `json:"multiple-secret-keys,omitempty" xml:"multiple-secret-keys,omitempty" require:"true"`
-  // {"en":"", "zh_CN":"防盗链加密串时间格式，可多选，以分号(;)分隔
-  // 年|月|日|时|分|秒|UNIX时间戳|16进制时间戳：1Y;2m;3d;4H;5M;6S;7s;8x
-  // 示例：<time-format>1Y;2m;3d;4H;5M;6S;7s;8x</time-format> 或 <time-format>1Y;2m;3d;4H;5M;7s</time-format>
-  // 注意：
-  // 1、必须是英文字母和数字
-  // 2、每个值只能出现1次"}
+  // {"en":"The time format of the anti-leech encryption string, multiple choices can be selected, separated by semicolons (;) Year|Month|Day|Hour|Minute|Second|UNIX timestamp|Hexadecimal timestamp|Timestamp in milliseconds: 1Y;2m;3d;4H;5M;6S;7s;8x Example: <time-format>1Y;2m;3d;4H;5M;6S;7s;8x</time-format> or <time-format>1Y;2m;3d;4H;5M;7s</time-format > Notice: 1. Must be English letters and numbers 2. Each value can only appear once","zh_CN":"防盗链加密串时间格式，可多选，以分号(;)分隔\n年|月|日|时|分|秒|UNIX时间戳|16进制时间戳：1Y;2m;3d;4H;5M;6S;7s;8x\n示例：<time-format>1Y;2m;3d;4H;5M;6S;7s;8x</time-format> 或 <time-format>1Y;2m;3d;4H;5M;7s</time-format>\n注意：\n1、必须是英文字母和数字\n2、每个值只能出现1次"}
   TimeFormat *string `json:"time-format,omitempty" xml:"time-format,omitempty" require:"true"`
-  // {"en":"", "zh_CN":"防盗链回源方式，可选值：1（使用未加密url回源）、2（使用客户请求带加密串url回源）
-  // 示例：<dst-style>1<dst-style>
-  // 注意：
-  // 1、如果URL格式是：http://www.xxx.com/md5/time/uri?参数，则需要下工单给对应客服，让客服在父配置去掉时间戳格式再缓存。"}
+  // {"en":"Anti-leech back-to-source method, optional values: 1 (use unencrypted url to go back to the source), 2 (use the customer request to return to the source with encrypted string url) Example: <dst-style>1<dst-style> Notice: 1. If the URL format is: http://www.xxx.com/md5/time/uri? parameter, please contact your technical support.","zh_CN":"防盗链回源方式，可选值：1（使用未加密url回源）、2（使用客户请求带加密串url回源）示例：<dst-style>1<dst-style>注意：1、如果URL格式是：http://www.xxx.com/md5/time/uri?参数，则需要下工单给对应客服，让客服在父配置去掉时间戳格式再缓存。"}
   DstStyle *string `json:"dst-style,omitempty" xml:"dst-style,omitempty" require:"true"`
-  // {"en":"", "zh_CN":"&nbsp;日志记录原始url，可选值：true（日志记录原始url）、false（不开启日志记录原始url）"}
+  // {"en":"Logging original url, optional values: true (logging original url), false (do not enable logging original url)","zh_CN":"&nbsp;日志记录原始url，可选值：true（日志记录原始url）、false（不开启日志记录原始url）"}
   LogFormat *string `json:"log-format,omitempty" xml:"log-format,omitempty" require:"true"`
-  // {"en":"", "zh_CN":"该配置项用于通过匹配的才进行m3u8改写，可选值：false（不进行m3u8改写）、true(进行m3u8改写）
-  // 示例：<m3u8>true</m3u8>"}
+  // {"en":"Used to configure m3u8 Example: <m3u8>true</m3u8>","zh_CN":"该配置项用于通过匹配的才进行m3u8改写，可选值：false（不进行m3u8改写）、true(进行m3u8改写）\n示例：<m3u8>true</m3u8>"}
   M3u8 *string `json:"m3u8,omitempty" xml:"m3u8,omitempty" require:"true"`
-  // {"en":"", "zh_CN":"用于配置获取url中的key的名称
-  // 示例： <url-key>auth_key</url-key>"}
+  // {"en":"Used to configure the name of the key in the url Example: <url-key>auth_key</url-key>","zh_CN":"用于配置获取url中的key的名称\n示例： <url-key>auth_key</url-key>"}
   UrlKey *string `json:"url-key,omitempty" xml:"url-key,omitempty" require:"true"`
-  // {"en":"", "zh_CN":"时间戳防盗链多条匹配模式
-  // 注意：多条配置项如下：
-  // 1、url匹配模式的协议：
-  // 2、url匹配模式
-  // 3、例外url匹配模式的协议
-  // 4、例外url匹配模式
-  // 5、防盗链生成方式
-  // 6、请求url格式
-  // 7、通用防盗链取uri对应第几个&ldquo;/&rdquo;
-  // 8、清空多条配置只传入节点：<timestamp-control-rules></timestamp-control-rules>"}
+  // {"en":"Timestamp-based hotlink protection - Multiple match patterns\n\nNote: The configuration items for multiple rules are as follows:\n\n1. Protocol for URL matching pattern\n2. URL matching pattern\n3. Protocol for exception URL matching pattern\n4. Exception URL matching pattern\n5. Hotlink protection generation method\n6. Request URL format\n7. For generic hotlink protection: which occurrence of \"/\" in the URI to use\n8. To clear all configurations: pass only the node <timestamp-control-rules></timestamp-control-rules>","zh_CN":"时间戳防盗链多条匹配模式\n注意：多条配置项如下：\n1、url匹配模式的协议：\n2、url匹配模式\n3、例外url匹配模式的协议\n4、例外url匹配模式\n5、防盗链生成方式\n6、请求url格式\n7、通用防盗链取uri对应第几个&ldquo;/&rdquo;\n8、清空多条配置只传入节点：<timestamp-control-rules></timestamp-control-rules>"}
   TimestampControlRules []*QuerytimecontrolServiceResponseTimestampVisitControlRuleTimestampControlRules `json:"timestamp-control-rules,omitempty" xml:"timestamp-control-rules,omitempty" require:"true" type:"Repeated"`
+  // {"en":"Special encryption, values: 1 to enable, or leave blank","zh_CN":"特殊加密生成方式，可选值：1-特殊加密方式"}
+  SpecialEncryption *string `json:"special-encryption,omitempty" xml:"special-encryption,omitempty" require:"true"`
+  // {"en":"Effective time, unit:s","zh_CN":"有效时间，单位s"}
+  EffectiveTime *string `json:"effective-time,omitempty" xml:"effective-time,omitempty" require:"true"`
+  // {"en":"The file type","zh_CN":"文件类型"}
+  FileType *string `json:"file-type,omitempty" xml:"file-type,omitempty" require:"true"`
+  // {"en":"The custom file type","zh_CN":"自定义文件类型"}
+  CustomFileType *string `json:"custom-file-type,omitempty" xml:"custom-file-type,omitempty" require:"true"`
 }
 
 func (s QuerytimecontrolServiceResponseTimestampVisitControlRule) String() string {
@@ -10494,127 +10907,52 @@ func (s *QuerytimecontrolServiceResponseTimestampVisitControlRule) SetTimestampC
   return s
 }
 
+func (s *QuerytimecontrolServiceResponseTimestampVisitControlRule) SetSpecialEncryption(v string) *QuerytimecontrolServiceResponseTimestampVisitControlRule {
+  s.SpecialEncryption = &v
+  return s
+}
+
+func (s *QuerytimecontrolServiceResponseTimestampVisitControlRule) SetEffectiveTime(v string) *QuerytimecontrolServiceResponseTimestampVisitControlRule {
+  s.EffectiveTime = &v
+  return s
+}
+
+func (s *QuerytimecontrolServiceResponseTimestampVisitControlRule) SetFileType(v string) *QuerytimecontrolServiceResponseTimestampVisitControlRule {
+  s.FileType = &v
+  return s
+}
+
+func (s *QuerytimecontrolServiceResponseTimestampVisitControlRule) SetCustomFileType(v string) *QuerytimecontrolServiceResponseTimestampVisitControlRule {
+  s.CustomFileType = &v
+  return s
+}
+
 type QuerytimecontrolServiceResponseTimestampVisitControlRuleTimestampControlRules struct     {
-  // {"en":"", "zh_CN":"添加grid类型标识，表示客户多组配置时，具体某组配置
-  // 注意：添加grid类型标识：data-id，每一组配置对应一个data-id：a、如果客户有传data-id，说明指定修改其中一组配置项内容，不需求修改其他组配置内容不需要入参；b、如果客户入参多组配置，其中有些组配置有传data-id，有些没有传，则有传data-id的表示修改具体某组配置，没有传data-id的表示在原来基础上新增一组配置；c、如果客户入参都没有传data-id,表示用本次的配置全量覆盖原先配置；d、如果客户入参没有传任何配置项参数，只传了域名和二级标签，表示清空这个接口对应域名二级服务所有配置。（c、d内容和当前方案实现一致）；e、一个gird标签下的入参不能为空，如果，没有具体的配置项，则data-id必填，且值为实际存在的data-id,表示清空这个data-id对应配置项的值；"}
+  // {"en":"dataId is to indicate a specific group configuration when the client has multiple groups of configurations.","zh_CN":"添加grid类型标识，表示客户多组配置时，具体某组配置\n注意：添加grid类型标识：data-id，每一组配置对应一个data-id：a、如果客户有传data-id，说明指定修改其中一组配置项内容，不需求修改其他组配置内容不需要入参；b、如果客户入参多组配置，其中有些组配置有传data-id，有些没有传，则有传data-id的表示修改具体某组配置，没有传data-id的表示在原来基础上新增一组配置；c、如果客户入参都没有传data-id,表示用本次的配置全量覆盖原先配置；d、如果客户入参没有传任何配置项参数，只传了域名和二级标签，表示清空这个接口对应域名二级服务所有配置。（c、d内容和当前方案实现一致）；e、一个gird标签下的入参不能为空，如果，没有具体的配置项，则data-id必填，且值为实际存在的data-id,表示清空这个data-id对应配置项的值；"}
   DataId *int64 `json:"data-id,omitempty" xml:"data-id,omitempty" require:"true"`
+  // {"en":"The url matching mode supports fuzzy regularization. If all matches, the input parameters can be configured as: *.Verify the time stamp of the matched URL for anti-leeching; reject URLs that are not matched.","zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*对匹配到的URL进行时间戳防盗链验证；未匹配到的URL，则拒绝。"}
   PathPattern *string `json:"path-pattern,omitempty" xml:"path-pattern,omitempty" require:"true"`
+  // {"en":"Exceptional url matching mode, except for some URLs: such as abc.jpg, do not do anti-theft chain function","zh_CN":"例外的url匹配模式，某些URL除外：如abc.jpg，不做防盗链"}
   ExceptPathPattern *string `json:"except-path-pattern,omitempty" xml:"except-path-pattern,omitempty" require:"true"`
-  // {"en":"", "zh_CN":"协议，可选值：http|https|http;https|noprefix
-  // http:http协议
-  // https:http协议
-  // http;https:http和https协议
-  // noprefix:不加前缀，按path-pattern设置的规则
-  // 用法示例：
-  // path-pattern：输入.*\jpg$     
-  // path-pattern-protocol：选择http，则表示^http://[^/]+/.*\jpg$  ；
-  // 选择https，则表示 ^https://[^/]+/ .*\jpg$；
-  // 选择http;https，则表示^https?://[^/]+/.*\jpg$；
-  // 选择noprefix，则表示.*\jpg$
-  // 注意：
-  // 1、为空时，则默认&ldquo;http和https协议&rdquo;
-  // 2、只与url匹配模式匹配（path-pattern）
-  // 3、协议必须跟模式一起，但是模式可以单独存在"}
+  // {"en":"Protocol, optional values: http|https|http;https|noprefixhttp: http protocolhttps: http protocolhttp;https: http and https protocolsnoprefix: no prefix, according to the rules set by path-patternUsage example:path-pattern: input .*\jpg$path-pattern-protocol: select http, it means ^http://[^/]+/.*\jpg$;If https is selected, it means ^https://[^/]+/ .*\jpg$;Select http;https, it means ^https?://[^/]+/.*\jpg$;If noprefix is selected, it means .*\jpg$Notice:1. When it is empty, the default \"http and https protocol\"2. Only match the url matching pattern (path-pattern)3. The protocol must be with the mode, but the mode can exist alone","zh_CN":"协议，可选值：http|https|http;https|noprefix\nhttp:http协议\nhttps:http协议\nhttp;https:http和https协议\nnoprefix:不加前缀，按path-pattern设置的规则\n用法示例：\npath-pattern：输入.*\jpg$\npath-pattern-protocol：选择http，则表示^http://[^/]+/.*\jpg$  ；\n选择https，则表示 ^https://[^/]+/ .*\jpg$；\n选择http;https，则表示^https?://[^/]+/.*\jpg$；\n选择noprefix，则表示.*\jpg$\n注意：\n1、为空时，则默认http和https协议;\n2、只与url匹配模式匹配（path-pattern）\n3、协议必须跟模式一起，但是模式可以单独存在"}
   PathPatternProtocol *string `json:"path-pattern-protocol,omitempty" xml:"path-pattern-protocol,omitempty" require:"true"`
-  // {"en":"", "zh_CN":"协议，可选值：http|https|http;https|noprefix
-  // http:http协议
-  // https:http协议
-  // http;https:http和https协议
-  // noprefix:不加前缀
-  // 用法示例：
-  // except-path-pattern：输入.*\jpg$     
-  // except-path-pattern-protocol：选择http，则表示^http://[^/]+/.*\jpg$  ；
-  // 选择https，则表示 ^https://[^/]+/ .*\jpg$；
-  // 选择http;https，则表示^https?://[^/]+/.*\jpg$；
-  // 选择noprefix，则表示.*\jpg$
-  // 注意：
-  // 1、为空时，则默认&ldquo;http和https协议&rdquo;
-  // 2、只与例外url匹配模式匹配（except-path-pattern）
-  // 3、协议必须跟模式一起，但是模式可以单独存在"}
+  // {"en":"Protocol, optional values: http|https|http;https|noprefixhttp: http protocolhttps: http protocolhttp;https: http and https protocolsnoprefix: no prefixUsage example:except-path-pattern: input .*\jpg$except-path-pattern-protocol: select http, it means ^http://[^/]+/.*\jpg$;If https is selected, it means ^https://[^/]+/ .*\jpg$;Select http;https, it means ^https?://[^/]+/.*\jpg$;If noprefix is selected, it means .*\jpg$Notice:1. When it is empty, the default \"http and https protocol\"2. Only match the exception url matching pattern (except-path-pattern)3. The protocol must be with the mode, but the mode can exist alone","zh_CN":"协议，可选值：http|https|http;https|noprefix\nhttp:http协议\nhttps:http协议\nhttp;https:http和https协议\nnoprefix:不加前缀\n用法示例：\nexcept-path-pattern：输入.*\jpg$\nexcept-path-pattern-protocol：选择http，则表示^http://[^/]+/.*\jpg$  ；\n选择https，则表示 ^https://[^/]+/ .*\jpg$；\n选择http;https，则表示^https?://[^/]+/.*\jpg$；\n选择noprefix，则表示.*\jpg$\n注意：\n1、为空时，则默认 http和https协议;\n2、只与例外url匹配模式匹配（except-path-pattern）\n3、协议必须跟模式一起，但是模式可以单独存在"}
   ExceptPathPatternProtocol *string `json:"except-path-pattern-protocol,omitempty" xml:"except-path-pattern-protocol,omitempty" require:"true"`
-  // {"en":"", "zh_CN":"防盗链生成方式，参与MD5计算的参数及组合顺序，仅支持传入以下参数：
-  // $uri：介于domain和问号之间的字符串，特殊取值在入参<uri-select>中配置
-  // 例如http://cdn.example.com/v0/test.dat?k=v，则URI为/v0/test.dat
-  // $ourkey：秘钥，实际秘钥在入参<secret-key>中配置
-  // $time：时间串
-  // $spec_name：文件名
-  // 例如：http://cdn.example.com/v0/test.dat?k=v，文件名为 test.dat
-  // $args：QUERY_STRING中的某个具体key的值
-  // 示例：<cipher-combination>$uri$ourkey$time$args{k}</cipher-combination>
-  // 注意：
-  // 1、$args{k}中的K只允许A-Z大小写字母、数字、下划线、横杠
-  // 2、除了$args外，其它参数只允许出现1次
-  // 3、可以按照任意组合顺序，拼接各个参数"}
+  // {"en":"The anti-leech chain generation method, the parameters involved in the MD5 calculation and the combination sequence only support the following parameters:$uri: A string between domain and question mark, special values are configured in the input parameter <uri-select>For example http://cdn.example.com/v0/test.dat?k=v, the URI is /v0/test.dat$ourkey: secret key, the actual secret key is configured in the input parameter <secret-key>$time: time string$spec_name: file nameFor example: http://cdn.example.com/v0/test.dat?k=v, the file name is test.dat$args: the value of a specific key in QUERY_STRINGExample: <cipher-combination>$uri$ourkey$time$args{k}</cipher-combination>Notice:1. K in $args{k} only allows A-Z uppercase and lowercase letters, numbers, underscores, and bars2. Except for $args, other parameters are only allowed to appear once3. Each parameter can be spliced according to any combination order","zh_CN":"防盗链生成方式，参与MD5计算的参数及组合顺序，仅支持传入以下参数：\n$uri：介于domain和问号之间的字符串，特殊取值在入参<uri-select>中配置\n例如http://cdn.example.com/v0/test.dat?k=v，则URI为/v0/test.dat\n$ourkey：秘钥，实际秘钥在入参<secret-key>中配置\n$time：时间串\n$spec_name：文件名\n例如：http://cdn.example.com/v0/test.dat?k=v，文件名为 test.dat\n$args：QUERY_STRING中的某个具体key的值\n示例：<cipher-combination>$uri$ourkey$time$args{k}</cipher-combination>\n注意：\n1、$args{k}中的K只允许A-Z大小写字母、数字、下划线、横杠\n2、除了$args外，其它参数只允许出现1次\n3、可以按照任意组合顺序，拼接各个参数"}
   CipherCombination *string `json:"cipher-combination,omitempty" xml:"cipher-combination,omitempty" require:"true"`
-  // {"en":"", "zh_CN":"防盗链加密串的秘钥，只允许传入一个秘钥
-  // 示例：<secret-key>abcdef</secret-key>
-  // 注意：
-  // 1、与客户约定好的秘钥，入参<multiple-secret-keys>中的某个值可以等于<secret-key>对应的值
-  // 2、$ourkey值主要是来自<secret-key>的配置"}
+  // {"en":"The key of the anti-leech encryption string, only one key is allowed to be passed inExample: <secret-key>abcdef</secret-key>Notice:1. For the secret key agreed with the customer, a value in <multiple-secret-keys> can be equal to the corresponding value of <secret-key>2. The value of $ourkey mainly comes from the configuration of <secret-key>a) If <secret-key> is not a value in multiple-secret-keys>, the value of $ourkey is <multiple-secret-keys>b) <secret-key> is a value in multiple-secret-keys>, then the value of $ourkey is <secret-key>c) If <secret-key> is not passed or is empty, then the value of $ourkey is <multiple-secret-keys>","zh_CN":"防盗链加密串的秘钥，只允许传入一个秘钥\n示例：<secret-key>abcdef</secret-key>\n注意：\n1、与客户约定好的秘钥，入参<multiple-secret-keys>中的某个值可以等于<secret-key>对应的值\n2、$ourkey值主要是来自<secret-key>的配置"}
   SecretKey *string `json:"secret-key,omitempty" xml:"secret-key,omitempty" require:"true"`
-  // {"en":"", "zh_CN":"防盗链串的参数名称
-  // 示例：<cipher-param>keyname</cipher-param>
-  // 注意：
-  // 1、如果防盗链加密串是在url问号后的参数中，则防盗链加密串的参数名由<cipher-param>的配置决定；
-  // 2、如果<cipher-param>为空，则默认请求的url中使用key作为参数名"}
+  // {"en":"Parameter name of the anti-leech stringExample: <cipher-param>keyname</cipher-param>Notice:1. If the anti-leech encryption string is in the parameter after the question mark in the url, the parameter name of the anti-leech encryption string is determined by the configuration of <cipher-param>;2. If <cipher-param> is empty, the key is used as the parameter name in the URL of the default request","zh_CN":"防盗链串的参数名称\n示例：<cipher-param>keyname</cipher-param>\n注意：\n1、如果防盗链加密串是在url问号后的参数中，则防盗链加密串的参数名由<cipher-param>的配置决定；\n2、如果<cipher-param>为空，则默认请求的url中使用key作为参数名"}
   CipherParam *string `json:"cipher-param,omitempty" xml:"cipher-param,omitempty" require:"true"`
-  // {"en":"", "zh_CN":"时间串的参数名称
-  // 示例：<time-param>tname</time-param>
-  // 注意：
-  // 1、如果防盗链时间串是放在url问号后面的参数中，则防盗链时间串的参数名由<time-param>的配置决定；
-  // 2、如果<time-param>为空，则默认请求的url中使用time作为参数名"}
+  // {"en":"Parameter name for time stringExample: <time-param>tname</time-param>Notice:1. If the anti-leech time string is placed in the parameter after the url question mark, the parameter name of the anti-leech time string is determined by the configuration of <time-param>;2. If <time-param> is empty, time is used as the parameter name in the URL of the default request","zh_CN":"时间串的参数名称\n示例：<time-param>tname</time-param>\n注意：\n1、如果防盗链时间串是放在url问号后面的参数中，则防盗链时间串的参数名由<time-param>的配置决定；\n2、如果<time-param>为空，则默认请求的url中使用time作为参数名"}
   TimeParam *string `json:"time-param,omitempty" xml:"time-param,omitempty" require:"true"`
-  // {"en":"", "zh_CN":"防盗链串的过期时间下限
-  // 示例：
-  // <lower-limit-expiry-time>200</lower-limit-expiry-time>
-  // 对应各种场景的配置方式如下：
-  // 注意：
-  // 1、请求URL中携带的时间戳如果是URL的生成时间，需要加上有效时长才是过期时间，即<lower-limit-expiry-time>和<upper-limit-expiry-time>配置为有效时长。
-  // 2、如果URL携带的时间戳是过期时间，则可以配成零。"}
+  // {"en":"The lower limit of the expiration time of the anti-leech chainExample:<lower-limit-expiry-time>200</lower-limit-expiry-time>The configuration methods corresponding to various scenarios are as follows:Notice:1. If the timestamp carried in the request URL is the generation time of the URL, the expiration time needs to be added with the effective duration, that is, <lower-limit-expiry-time> and <upper-limit-expiry-time> are configured as the effective duration .2. If the timestamp carried in the URL is the expiration time, it can be set to zero.","zh_CN":"防盗链串的过期时间下限\n示例：\n<lower-limit-expiry-time>200</lower-limit-expiry-time>\n对应各种场景的配置方式如下：\n注意：\n1、请求URL中携带的时间戳如果是URL的生成时间，需要加上有效时长才是过期时间，即<lower-limit-expiry-time>和<upper-limit-expiry-time>配置为有效时长。\n2、如果URL携带的时间戳是过期时间，则可以配成零。"}
   LowerLimitExpiryTime *string `json:"lower-limit-expiry-time,omitempty" xml:"lower-limit-expiry-time,omitempty" require:"true"`
-  // {"en":"", "zh_CN":"防盗链串的过期时间上限
-  // 示例：
-  // <upper-limit-expiry-time>5000</upper-limit-expiry-time>
-  // 对应各种场景的配置方式如下：
-  // 注意：
-  // 1、请求URL中携带的时间戳如果是URL的生成时间，需要加上有效时长才是过期时间，即<lower-limit-expiry-time>和<upper-limit-expiry-time>配置为有效时长。
-  // 2、如果URL携带的时间戳是过期时间，则可以配成零。"}
+  // {"en":"The upper limit of the expiration time of the anti-leech chainExample:<upper-limit-expiry-time>5000</upper-limit-expiry-time>The configuration methods corresponding to various scenarios are as follows:Notice:1. If the timestamp carried in the request URL is the generation time of the URL, the expiration time needs to be added with the effective duration, that is, <lower-limit-expiry-time> and <upper-limit-expiry-time> are configured as the effective duration .2. If the timestamp carried in the URL is the expiration time, it can be set to zero.","zh_CN":"防盗链串的过期时间上限\n示例：\n<upper-limit-expiry-time>5000</upper-limit-expiry-time>\n对应各种场景的配置方式如下：\n注意：\n1、请求URL中携带的时间戳如果是URL的生成时间，需要加上有效时长才是过期时间，即<lower-limit-expiry-time>和<upper-limit-expiry-time>配置为有效时长。\n2、如果URL携带的时间戳是过期时间，则可以配成零。"}
   UpperLimitExpiryTime *string `json:"upper-limit-expiry-time,omitempty" xml:"upper-limit-expiry-time,omitempty" require:"true"`
-  // {"en":"", "zh_CN":"防盗链请求url格式，支持两种防盗链方式，即加密串和时间戳放到&ldquo;?&rdquo;后面或者是加密串和时间戳放到&ldquo;host&rdquo;后面，url格式支持的参数如下：
-  // $domain：域名
-  // $uri：不包含域名的url部分
-  // $key：防盗链加密串的MD5值
-  // $time：防盗链时间串
-  // $args：问号后的QUERY_STRING参数
-  // 示例：支持以下请求url格式，可替换为https://，url请求协议根据实际使用，如不知道如何正确配置，请找客户技术支持协助；携带加密串和时间串两个值的参数名&ldquo;keyname&rdquo;和&ldquo;tname&rdquo;，可替换为实际使用的参数名
-  // <request-url-style>http://$domain/$key/$time/$uri?$args</request-url-style>
-  // <request-url-style>http://$domain/$time/$key/$uri?$args</request-url-style>
-  //  http://$domain/$uri?auth_key=$key 
-  // <request-url-style>http://$domain/$uri?keyname=$key&tname=$time</request-url-style>
-  // <request-url-style>http://$domain/$uri?$args&keyname=$key&tname=$time</request-url-style>
-  // <request-url-style>http://$domain/$uri?keyname=$key&tname=$time&$args</request-url-style>
-  // <request-url-style>http://$domain/$uri?$args&keyname=$key&tname=$time&$args</request-url-style>
-  // <request-url-style>http://$domain/$uri?tname=$time&keyname=$key</request-url-style>
-  // <request-url-style>http://$domain/$uri?$args&tname=$time&keyname=$key</request-url-style>
-  // <request-url-style>http://$domain/$uri?tname=$time&keyname=$key&$args</request-url-style>
-  // <request-url-style>http://$domain/$uri?$args&tname=$time&keyname=$key&$args</request-url-style>
-  // 注意：
-  // 1、输入的url必须以&ldquo;http/https&rdquo;开头
-  // 2、如果加密串和时间戳是放到&ldquo;?&rdquo;后面时，keyname和tname必须跟<cipher-param>和<time-param>配置的值一致
-  // 3、如果<cipher-param>和<time-param>没有配置值，则$key对应的参数名默认为key，$time对应的参数名默认为time
-  // 4、如果防盗链加密串和时间串在url问号后面的参数中，url中的&ldquo;keyname&rdquo;和&ldquo;tname&rdquo;，对应的是cipher-param和 time-param配置的防盗链串和时间串参数名称。"}
+  // {"en":"The anti-leech request url format supports two anti-leech methods, that is, the encrypted string and timestamp are placed after \"?\" or the encrypted string and timestamp are placed after \"host\". The parameters supported by the url format are as follows:$domain: domain name$uri: the url part that does not contain the domain name$key: MD5 value of anti-leech encrypted string$time: Anti-leech time string$args: the QUERY_STRING parameter after the question markExample: The following request url format is supported, which can be replaced with https://. The url request protocol is based on actual use. If you don't know how to configure it correctly, please ask customer technical support for assistance; the parameter name carrying two values of encrypted string and time string\" keyname\" and \"tname\", which can be replaced by the actual parameter names used<request-url-style>http://$domain/$key/$time/$uri?$args</request-url-style><request-url-style>http://$domain/$time/$key/$uri?$args</request-url-style>  http://$domain/$uri?auth_key=$key<request-url-style>http://$domain/$uri?keyname=$key&tname=$time</request-url-style><request-url-style>http://$domain/$uri?$args&keyname=$key&tname=$time</request-url-style><request-url-style>http://$domain/$uri?keyname=$key&tname=$time&$args</request-url-style><request-url-style>http://$domain/$uri?$args&keyname=$key&tname=$time&$args</request-url-style><request-url-style>http://$domain/$uri?tname=$time&keyname=$key</request-url-style><request-url-style>http://$domain/$uri?$args&tname=$time&keyname=$key</request-url-style><request-url-style>http://$domain/$uri?tname=$time&keyname=$key&$args</request-url-style><request-url-style>http://$domain/$uri?$args&tname=$time&keyname=$key&$args</request-url-style>Notice:1. The input url must start with \"http/https\"2. If the encrypted string and timestamp are placed after \"?\", the keyname and tname must be consistent with the configured values of <cipher-param> and <time-param>3. If there is no configuration value for <cipher-param> and <time-param>, the parameter name corresponding to $key defaults to key, and the parameter name corresponding to $time defaults to time4. If the anti-leech encryption string and time string are in the parameters behind the question mark in the url, the \"keyname\" and \"tname\" in the url correspond to the anti-leech string and time string parameter names configured in cipher-param and time-param.","zh_CN":"防盗链请求url格式，支持两种防盗链方式，即加密串和时间戳放到&ldquo;?&rdquo;后面或者是加密串和时间戳放到&ldquo;host&rdquo;后面，url格式支持的参数如下：\n$domain：域名\n$uri：不包含域名的url部分\n$key：防盗链加密串的MD5值\n$time：防盗链时间串\n$args：问号后的QUERY_STRING参数\n示例：支持以下请求url格式，可替换为https://，url请求协议根据实际使用，如不知道如何正确配置，请找客户技术支持协助；携带加密串和时间串两个值的参数名&ldquo;keyname&rdquo;和&ldquo;tname&rdquo;，可替换为实际使用的参数名\n<request-url-style>http://$domain/$key/$time/$uri?$args</request-url-style>\n<request-url-style>http://$domain/$time/$key/$uri?$args</request-url-style>\nhttp://$domain/$uri?auth_key=$key\n<request-url-style>http://$domain/$uri?keyname=$key&tname=$time</request-url-style>\n<request-url-style>http://$domain/$uri?$args&keyname=$key&tname=$time</request-url-style>\n<request-url-style>http://$domain/$uri?keyname=$key&tname=$time&$args</request-url-style>\n<request-url-style>http://$domain/$uri?$args&keyname=$key&tname=$time&$args</request-url-style>\n<request-url-style>http://$domain/$uri?tname=$time&keyname=$key</request-url-style>\n<request-url-style>http://$domain/$uri?$args&tname=$time&keyname=$key</request-url-style>\n<request-url-style>http://$domain/$uri?tname=$time&keyname=$key&$args</request-url-style>\n<request-url-style>http://$domain/$uri?$args&tname=$time&keyname=$key&$args</request-url-style>\n注意：\n1、输入的url必须以&ldquo;http/https&rdquo;开头\n2、如果加密串和时间戳是放到&ldquo;?&rdquo;后面时，keyname和tname必须跟<cipher-param>和<time-param>配置的值一致\n3、如果<cipher-param>和<time-param>没有配置值，则$key对应的参数名默认为key，$time对应的参数名默认为time\n4、如果防盗链加密串和时间串在url问号后面的参数中，url中的&ldquo;keyname&rdquo;和&ldquo;tname&rdquo;，对应的是cipher-param和 time-param配置的防盗链串和时间串参数名称。"}
   RequestUrlStyle *string `json:"request-url-style,omitempty" xml:"request-url-style,omitempty" require:"true"`
-  // {"en":"", "zh_CN":"通用防盗链取uri对应第几个&ldquo;/&rdquo;，值为数字，多个值，以分号隔开。
-  // 配置通用防盗链取uri对应第几个&ldquo;/&rdquo;,从配置为0则为正向第一个，-1为逆向第一个，可分频道配置，默认空值。
-  // 比如http://a.com/b/c/d/e/f/1.html
-  // 那么0;3; 4;-1 就是取/b/e/f/1.html
-  // 注意：
-  // 1、取值范围：[-100,+100]
-  // 2、重复配置生效规则（建议不要配重复）
-  // 重复的将会跳过解析：
-  // 如http://cdn.example.com/e/0/e2/test.dat?k=v
-  // 可以配<uri-select> 2;2;3;3</uri-select>，但只取2;3
-  // URI则为/e2/test.dat；"}
+  // {"en":"The general anti-leech takes the number \"/\" corresponding to the uri, the value is a number, and multiple values are separated by semicolons.Configure the general anti-leech link to get the number of \"/\" corresponding to the uri. If the configuration is 0, it is the first one in the forward direction, and -1 is the first one in the reverse direction. It can be configured by channel, and the default value is empty.For example http://a.com/b/c/d/e/f/1.htmlThen 0;3; 4;-1 is to take /b/e/f/1.htmlNotice:1. Value range: [-100,+100]2. Repeat configuration effective rules (it is recommended not to configure duplicates)Duplicates will skip parsing:Such as http://cdn.example.com/e/0/e2/test.dat?k=v<uri-select> 2;2;3;3</uri-select> can be configured, but only 2;3The URI is /e2/test.dat;","zh_CN":"通用防盗链取uri对应第几个&ldquo;/&rdquo;，值为数字，多个值，以分号隔开。\n配置通用防盗链取uri对应第几个&ldquo;/&rdquo;,从配置为0则为正向第一个，-1为逆向第一个，可分频道配置，默认空值。\n比如http://a.com/b/c/d/e/f/1.html\n那么0;3; 4;-1 就是取/b/e/f/1.html\n注意：\n1、取值范围：[-100,+100]\n2、重复配置生效规则（建议不要配重复）\n重复的将会跳过解析：\n如http://cdn.example.com/e/0/e2/test.dat?k=v\n可以配<uri-select> 2;2;3;3</uri-select>，但只取2;3\nURI则为/e2/test.dat；"}
   UriSelect *string `json:"uri-select,omitempty" xml:"uri-select,omitempty" require:"true"`
 }
 
@@ -10691,46 +11029,6 @@ func (s *QuerytimecontrolServiceResponseTimestampVisitControlRuleTimestampContro
   return s
 }
 
-type QuerytimecontrolServicePaths struct {
-  // {"en":"", "zh_CN":"域名名称或域名id，在请求的url后面"}
-  DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
-}
-
-func (s QuerytimecontrolServicePaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QuerytimecontrolServicePaths) GoString() string {
-  return s.String()
-}
-
-func (s *QuerytimecontrolServicePaths) SetDomainName(v string) *QuerytimecontrolServicePaths {
-  s.DomainName = &v
-  return s
-}
-
-type QuerytimecontrolServiceParameters struct {
-}
-
-func (s QuerytimecontrolServiceParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QuerytimecontrolServiceParameters) GoString() string {
-  return s.String()
-}
-
-type QuerytimecontrolServiceRequestHeader struct {
-}
-
-func (s QuerytimecontrolServiceRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QuerytimecontrolServiceRequestHeader) GoString() string {
-  return s.String()
-}
-
 type QuerytimecontrolServiceResponseHeader struct {
 }
 
@@ -10746,14 +11044,10 @@ func (s QuerytimecontrolServiceResponseHeader) GoString() string {
 
 
 type EditCacheTimeConfigRequest struct {
-  // {"en":"Cache time configuration
-  // note:
-  // 1. When you need to cancel the cache time configuration setting, you can pass in the empty node <cache-time-behaviors></cache-time-behaviors>.
-  // 2. When it is required to set the cache time configuration, this item is required.", "zh_CN":"缓存时间配置
-  // 注意：
-  // 1. 需要取消缓存时间配置设置时，可以传入空节点<cache-time-behaviors></cache-time-behaviors>。
-  // 2. 表示需要设置缓存时间配置时，此项必填"}
+  // {"en":"Cache time configuration\nnote:\n1. When you need to cancel the cache time configuration setting, you can pass in the empty node <cache-time-behaviors></cache-time-behaviors>.\n2. When it is required to set the cache time configuration, this item is required.","zh_CN":"缓存时间配置\n注意：\n1. 需要取消缓存时间配置设置时，可以传入空节点<cache-time-behaviors></cache-time-behaviors>。\n2. 表示需要设置缓存时间配置时，此项必填"}
   CacheTimeBehaviors []*EditCacheTimeConfigRequestCacheTimeBehaviors `json:"cache-time-behaviors,omitempty" xml:"cache-time-behaviors,omitempty" require:"true" type:"Repeated"`
+  // {"en":"description","zh_CN":"描述"}
+  Description *string `json:"description,omitempty" xml:"description,omitempty"`
 }
 
 func (s EditCacheTimeConfigRequest) String() string {
@@ -10769,95 +11063,48 @@ func (s *EditCacheTimeConfigRequest) SetCacheTimeBehaviors(v []*EditCacheTimeCon
   return s
 }
 
+func (s *EditCacheTimeConfigRequest) SetDescription(v string) *EditCacheTimeConfigRequest {
+  s.Description = &v
+  return s
+}
+
 type EditCacheTimeConfigRequestCacheTimeBehaviors struct     {
-  // {"en":"dataId is to indicate a specific group configuration when the client has multiple groups of configurations. dataId can be retrieved through a query interface.
-  // Note:
-  // 1. If dataId is passed, it means that one group of configuration items is specified to be modified, and no other group configuration items need to be modified.
-  // 2. If multiple groups of configurations are included, some of them are configured with dataId and others are not, then the expression of dataId is used to modify a specific group of configurations, and a new group of configurations is added on the original basis without the expression of dataId.
-  // 3. If the dataId is not passed, it means that the original configuration will be fully covered by this configuration.
-  // 4. If no configuration parameter is passed, only domain name and secondary label are passed. It means that all configuration corresponding to this interface is cleared.
-  // 5. If there is no specific configuration item in a set of configurations, the dataId must be filled in, and the value should be the actual dataId, which means clearing the value of the corresponding dataId configuration item.
-  // 6. Tt is not allowed when neither configuration item nor dataId is specified in a set of configurations.", 
-  //     "zh_CN":"中文：配置多组配置时，具体某组配置的id。dataId可以通过查询接口获取。
-  // 注意：
-  // 1、如果有传dataId，说明指定修改其中一组配置项内容，不需求修改其他组配置内容不需要入参；
-  // 2、如果入参多组配置，其中有些组配置有传dataId，有些没有传，则有传dataId的表示修改具体某组配置，没有传dataId的表示在原来基础上新增一组配置；
-  // 3、如果入参都没有传dataId,表示用本次的配置全量覆盖原先配置；
-  // 4、如果入参没有传任何配置项参数，只传了域名和二级标签，表示清空这个该接口对应的域名配置；
-  // 5、如果一组配置没有具体的配置项，则dataId必填，且值要为实际存在的dataId，此时表示清空这个dataId对应的一组配置；
-  // 6、不允许一组配置没有指定具体的配置项也没有dataId。"}
+  // {"en":"dataId is to indicate a specific group configuration when the client has multiple groups of configurations. dataId can be retrieved through a query interface.\nNote:\n1. If dataId is passed, it means that one group of configuration items is specified to be modified, and no other group configuration items need to be modified.\n2. If multiple groups of configurations are included, some of them are configured with dataId and others are not, then the expression of dataId is used to modify a specific group of configurations, and a new group of configurations is added on the original basis without the expression of dataId.\n3. If the dataId is not passed, it means that the original configuration will be fully covered by this configuration.\n4. If no configuration parameter is passed, only domain name and secondary label are passed. It means that all configuration corresponding to this interface is cleared.\n5. If there is no specific configuration item in a set of configurations, the dataId must be filled in, and the value should be the actual dataId, which means clearing the value of the corresponding dataId configuration item.\n6. Tt is not allowed when neither configuration item nor dataId is specified in a set of configurations.","zh_CN":"中文：配置多组配置时，具体某组配置的id。dataId可以通过查询接口获取。\n注意：\n1、如果有传dataId，说明指定修改其中一组配置项内容，不需求修改其他组配置内容不需要入参；\n2、如果入参多组配置，其中有些组配置有传dataId，有些没有传，则有传dataId的表示修改具体某组配置，没有传dataId的表示在原来基础上新增一组配置；\n3、如果入参都没有传dataId,表示用本次的配置全量覆盖原先配置；\n4、如果入参没有传任何配置项参数，只传了域名和二级标签，表示清空这个该接口对应的域名配置；\n5、如果一组配置没有具体的配置项，则dataId必填，且值要为实际存在的dataId，此时表示清空这个dataId对应的一组配置；\n6、不允许一组配置没有指定具体的配置项也没有dataId。"}
   DataId *int64 `json:"data-id,omitempty" xml:"data-id,omitempty"`
-  // {"en":"The url matching mode supports fuzzy regularization. If all matches, the input parameters can be configured as: *", "zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：*"}
+  // {"en":"The url matching mode supports fuzzy regularization. If all matches, the input parameters can be configured as: .*","zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*"}
   PathPattern *string `json:"path-pattern,omitempty" xml:"path-pattern,omitempty"`
-  // {"en":"Exceptional url matching mode, except for some URLs: such as abc.jpg, do not do anti-theft chain function
-  // E.g: ^https?://[^/]+/.*\.m3u8", "zh_CN":"例外的url匹配模式，某些URL除外：如abc.jpg，不做内容重定向
-  // 客户入参参考：^https?://[^/]+/.*\.m3u8"}
+  // {"en":"Exceptional url matching mode, except for some URLs: such as abc.jpg, do not do anti-theft chain function\nE.g: ^https?://[^/]+/.*\.m3u8","zh_CN":"例外的url匹配模式，某些URL除外：如abc.jpg，不做内容重定向\n客户入参参考：^https?://[^/]+/.*\.m3u8"}
   ExceptPathPattern *string `json:"except-path-pattern,omitempty" xml:"except-path-pattern,omitempty"`
-  // {"en":"Specify common types: Select the domain name that requires the cache  to be all files or the home page. :
-  // E.g:
-  // All: all files
-  // Homepage: homepage", "zh_CN":"指定常用类型：选择缓存域名的是全部文件还是首页。入参参考值：
-  // all：全部文件
-  // homepage：首页"}
+  // {"en":"Specify common types: Select the domain name that requires the cache  to be all files or the home page. :\nE.g:\nAll: all files\nHomepage: homepage","zh_CN":"指定常用类型：选择缓存域名的是全部文件还是首页。入参参考值：\nall：全部文件\nhomepage：首页"}
   CustomPattern *string `json:"custom-pattern,omitempty" xml:"custom-pattern,omitempty"`
-  // {"en":"File Type: Specify the file type for cache settings.
-  // File types include: gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf
-  // If you need all types, pass all directly. Multiples are separated by semicolons, and all and specific file types cannot be configured at the same time.", "zh_CN":"文件类型：指定需要缓存的文件类型。
-  // 文件类型包括：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf
-  // 如果需要全部类型，则直接传all。多个以分号隔开，all和具体文件类型不能同时配置。"}
+  // {"en":"File Type: Specify the file type for cache settings.\nFile types include: gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf\nIf you need all types, pass all directly. Multiples are separated by semicolons, and all and specific file types cannot be configured at the same time.","zh_CN":"文件类型：指定需要缓存的文件类型。\n文件类型包括：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf\n如果需要全部类型，则直接传all。多个以分号隔开，all和具体文件类型不能同时配置。"}
   FileType *string `json:"file-type,omitempty" xml:"file-type,omitempty"`
-  // {"en":"Custom file type: Fill in the appropriate identifiable file type according to your needs outside of the specified file type. Can be used with file-type. If the file-type is also configured, the actual file type is the sum of the two parameters.", "zh_CN":"自定义文件类型：在指定文件类型外根据自身需求，填写适当的可识别文件类型。可以搭配file-type使用。如果file-type也有配置，实际生效的文件类型是两个入参的总和"}
+  // {"en":"Custom file type: Fill in the appropriate identifiable file type according to your needs outside of the specified file type. Can be used with file-type. If the file-type is also configured, the actual file type is the sum of the two parameters.","zh_CN":"自定义文件类型：在指定文件类型外根据自身需求，填写适当的可识别文件类型。可以搭配file-type使用。如果file-type也有配置，实际生效的文件类型是两个入参的总和"}
   CustomFileType *string `json:"custom-file-type,omitempty" xml:"custom-file-type,omitempty"`
-  // {"en":"Specify URL cache: Specify url according to requirements for cache
-  // INS format does not support URI format with http(s)://", "zh_CN":"指定URL缓存：根据需求指定url进行缓存
-  // 入参不支持含http(s):// 开头的URI格式"}
+  // {"en":"Specify URL cache: Specify url according to requirements for cache\nINS format does not support URI format with http(s)://","zh_CN":"指定URL缓存：根据需求指定url进行缓存\n入参不支持含http(s):// 开头的URI格式"}
   SpecifyUrlPattern *string `json:"specify-url-pattern,omitempty" xml:"specify-url-pattern,omitempty"`
-  // {"en":"Directory: Specify the directory cache.
-  // Enter a legal directory format. Multiple separated by semicolons", "zh_CN":"目录：指定目录缓存。
-  // 输入合法的目录格式。多个以英文分号隔开"}
+  // {"en":"Directory: Specify the directory cache.\nEnter a legal directory format. Multiple separated by semicolons","zh_CN":"目录：指定目录缓存。\n输入合法的目录格式。多个以英文分号隔开"}
   Directory *string `json:"directory,omitempty" xml:"directory,omitempty"`
-  // {"en":"Cache time: set the time corresponding to the cache object
-  // Input format: integer plus unit, such as 20s, 30m, 1h, 2d, no cache is set to 0. Do not enter the unit default is seconds
-  // There is no upper limit on the cache time theory. This time is set according to the customer's own needs. If the customer feels that some of the files are not changed frequently, then the setting is longer. For example, the text class js, css, html, etc. can be set shorter, the picture, video and audio classes can be set longer (because the cache time will be replaced by the new file due to the file heat algorithm, the longest suggestion Do not exceed one month)", "zh_CN":"缓存时间：设置缓存对象对应的时间
-  // 入参格式：整数加单位，比如20s、30m、1h、2d，不缓存设置为0。不输入单位默认是秒
-  // 缓存时间理论上没有上限限制，这个时间根据客户自身的需求设定，如果客户觉得其中一些文件，变更不频繁，那么就设置长一点。例如，文本类的js，css，html等可以设置得短一些，图片、视频音频类的可以设置的长一点（因为缓存时间会因文件热度算法，旧文件会被新文件替换掉，最长建议不要超过一个月）"}
+  // {"en":"Cache time: set the time corresponding to the cache object\nInput format: integer plus unit, such as 20s, 30m, 1h, 2d, no cache is set to 0. Do not enter the unit default is seconds\nThere is no upper limit on the cache time theory. This time is set according to the customer's own needs. If the customer feels that some of the files are not changed frequently, then the setting is longer. For example, the text class js, css, html, etc. can be set shorter, the picture, video and audio classes can be set longer (because the cache time will be replaced by the new file due to the file heat algorithm, the longest suggestion Do not exceed one month)","zh_CN":"缓存时间：设置缓存对象对应的时间\n入参格式：整数加单位，比如20s、30m、1h、2d，不缓存设置为0。不输入单位默认是秒\n缓存时间理论上没有上限限制，这个时间根据客户自身的需求设定，如果客户觉得其中一些文件，变更不频繁，那么就设置长一点。例如，文本类的js，css，html等可以设置得短一些，图片、视频音频类的可以设置的长一点（因为缓存时间会因文件热度算法，旧文件会被新文件替换掉，最长建议不要超过一个月）"}
   CacheTtl *string `json:"cache-ttl,omitempty" xml:"cache-ttl,omitempty"`
-  // {"en":"Ignore the source station does not cache the header. The optional values are true and false, which are used to ignore the two configurations of cache-control in the request header (private, no-cache) and the Authorization set by the client.
-  // The ture indicates that the source station's settings for the three are ignored. Enables resources to be cached on the service node in the form of cache-control: public, and then our nodes can cache this type of resource and provide acceleration services.
-  // False means that when the source station sets cache-control: private, cache-control: no-cache for a resource or specifies to cache according to authorization, our service node will not cache such files.", "zh_CN":"忽略源站不缓存头。可选值为true和false，用于忽略请求头中cache-control的两种配置（private，no-cache）和客户端设置的Authorization。
-  // ture表示会忽略掉源站对于这三者的设定。使得资源能够以cache-control: public的方式缓存在服务节点上，然后我们的节点才能缓存这种类型的资源，提供加速服务。
-  // false表示当源站对某种资源设定了cache-control: private,cache-control:no-cache或指定根据authorization进行缓存时，我们的服务节点将不会对此类文件进行缓存。"}
+  // {"en":"Ignore the source station does not cache the header. The optional values are true and false, which are used to ignore the two configurations of cache-control in the request header (private, no-cache) and the Authorization set by the client.\nThe ture indicates that the source station's settings for the three are ignored. Enables resources to be cached on the service node in the form of cache-control: public, and then our nodes can cache this type of resource and provide acceleration services.\nFalse means that when the source station sets cache-control: private, cache-control: no-cache for a resource or specifies to cache according to authorization, our service node will not cache such files.","zh_CN":"忽略源站不缓存头。可选值为true和false，用于忽略请求头中cache-control的两种配置（private，no-cache）和客户端设置的Authorization。\nture表示会忽略掉源站对于这三者的设定。使得资源能够以cache-control: public的方式缓存在服务节点上，然后我们的节点才能缓存这种类型的资源，提供加速服务。\nfalse表示当源站对某种资源设定了cache-control: private,cache-control:no-cache或指定根据authorization进行缓存时，我们的服务节点将不会对此类文件进行缓存。"}
   IgnoreCacheControl *string `json:"ignore-cache-control,omitempty" xml:"ignore-cache-control,omitempty"`
-  // {"en":"Respect the server: Accelerate whether to prioritize the source cache time.
-  // Optional values: true and false
-  // True: indicates that the server is time-first
-  // False: The cache time of the CDN configuration takes precedence.", "zh_CN":"尊重服务端：加速是否要按源站缓存时间优先。
-  // 可选值：true和false
-  // true：表示重服务端时间优先
-  // false:CDN配置的缓存时间优先"}
+  // {"en":"Respect the server: Accelerate whether to prioritize the source cache time.\nOptional values: true and false\nTrue: indicates that the server is time-first\nFalse: The cache time of the CDN configuration takes precedence.","zh_CN":"尊重服务端：加速是否要按源站缓存时间优先。\n可选值：true和false\ntrue：表示重服务端时间优先\nfalse:CDN配置的缓存时间优先"}
   IsRespectServer *string `json:"is-respect-server,omitempty" xml:"is-respect-server,omitempty"`
-  // {"en":"Ignore case, the optional value is true or false, true means to ignore case; false means not to ignore case;
-  // When adding a new configuration item, the default is not true.", "zh_CN":"忽略大小写，可选值为true或false，true表示忽略大小写；false表示不忽略大小写；
-  // 新增配置项时，不传默认为 true"}
+  // {"en":"Ignore case, the optional value is true or false, true means to ignore case; false means not to ignore case;\nWhen adding a new configuration item, the default is not true.","zh_CN":"忽略大小写，可选值为true或false，true表示忽略大小写；false表示不忽略大小写；\n新增配置项时，不传默认为 true"}
   IgnoreLetterCase *string `json:"ignore-letter-case,omitempty" xml:"ignore-letter-case,omitempty"`
-  // {"en":"Reload processing rules, optional: ignore or if-modified-since
-  // If-modified-since: indicates that you want to convert to if-modified-since
-  // Ignore: means to ignore client refresh", "zh_CN":"reload处理规则，可选项：ignore或者if-modified-since
-  // if-modified-since：表示要转成if-modified-since
-  // ignore:表示忽略客户端刷新"}
+  // {"en":"Reload processing rules, optional: ignore or if-modified-since\nIf-modified-since: indicates that you want to convert to if-modified-since\nIgnore: means to ignore client refresh","zh_CN":"reload处理规则，可选项：ignore或者if-modified-since\nif-modified-since：表示要转成if-modified-since\nignore:表示忽略客户端刷新"}
   ReloadManage *string `json:"reload-manage,omitempty" xml:"reload-manage,omitempty"`
-  // {"en":"Indicates the priority execution order of multiple sets of redirected content by the customer. The higher the number, the higher the priority.
-  // When adding a new configuration item, the default is 10", "zh_CN":"表示客户多组重定向内容的优先执行顺序。数字越大，优先级越高。
-  // 新增配置项时，不传默认为 10
-  // 如果传了值，不能为空"}
+  // {"en":"Indicates the priority execution order of multiple sets of redirected content by the customer. The higher the number, the higher the priority.\nWhen adding a new configuration item, the default is 10","zh_CN":"表示客户多组重定向内容的优先执行顺序。数字越大，优先级越高。\n新增配置项时，不传默认为 10\n如果传了值，不能为空"}
   Priority *string `json:"priority,omitempty" xml:"priority,omitempty"`
-  // {"en":"Request Header", "zh_CN":"请求头域"}
-  EditCacheTimeConfigRequestHeaderField *string `json:"request-header-field,omitempty" xml:"request-header-field,omitempty"`
-  // {"en":"Request Header Value", "zh_CN":"请求头的值"}
-  ValueEditCacheTimeConfigRequestHeader *string `json:"value-request-header,omitempty" xml:"value-request-header,omitempty"`
-  // {"en":"You can set it 'true' to cache
-  // ignoring the http header 'Authentication'.  If it is empty, the header is not ignored by default.", "zh_CN":"忽略鉴权头部Authentication，可选值为true和false。默认为不忽略。"}
+  // {"en":"You can set it 'true' to cache\nignoring the http header 'Authentication'.  If it is empty, the header is not ignored by default.","zh_CN":"忽略鉴权头部Authentication，可选值为true和false。默认为不忽略。"}
   IgnoreAuthenticationHeader *string `json:"ignore-authentication-header,omitempty" xml:"ignore-authentication-header,omitempty"`
+  // {"en":"UA","zh_CN":"UA"}
+  Ua *string `json:"ua,omitempty" xml:"ua,omitempty"`
+  // {"en":"Exceptional UA","zh_CN":"例外的ua"}
+  ExceptionUa *string `json:"exception-ua,omitempty" xml:"exception-ua,omitempty"`
+  // {"en":"Specify URI match pattern.\nE.g:\nexact: exact match\nparameter-ignoring: parameter ignoring match","zh_CN":"指定URI匹配模式，可选值：exact：精准匹配、parameter-ignoring：忽略参数匹配"}
+  UriMatchPattern *string `json:"uri-match-pattern,omitempty" xml:"uri-match-pattern,omitempty"`
 }
 
 func (s EditCacheTimeConfigRequestCacheTimeBehaviors) String() string {
@@ -10938,48 +11185,39 @@ func (s *EditCacheTimeConfigRequestCacheTimeBehaviors) SetPriority(v string) *Ed
   return s
 }
 
-func (s *EditCacheTimeConfigRequestCacheTimeBehaviors) SetEditCacheTimeConfigRequestHeaderField(v string) *EditCacheTimeConfigRequestCacheTimeBehaviors {
-  s.EditCacheTimeConfigRequestHeaderField = &v
-  return s
-}
-
-func (s *EditCacheTimeConfigRequestCacheTimeBehaviors) SetValueEditCacheTimeConfigRequestHeader(v string) *EditCacheTimeConfigRequestCacheTimeBehaviors {
-  s.ValueEditCacheTimeConfigRequestHeader = &v
-  return s
-}
-
 func (s *EditCacheTimeConfigRequestCacheTimeBehaviors) SetIgnoreAuthenticationHeader(v string) *EditCacheTimeConfigRequestCacheTimeBehaviors {
   s.IgnoreAuthenticationHeader = &v
   return s
 }
 
-type EditCacheTimeConfigResponse struct {
-  // {"en":"Error code, which appears when HTTPStatus is not 202, represents the error type of the current request call", "zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Response message, and shows as success when it is successful.", "zh_CN":"响应信息，成功时为success"}
-  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+func (s *EditCacheTimeConfigRequestCacheTimeBehaviors) SetUa(v string) *EditCacheTimeConfigRequestCacheTimeBehaviors {
+  s.Ua = &v
+  return s
 }
 
-func (s EditCacheTimeConfigResponse) String() string {
+func (s *EditCacheTimeConfigRequestCacheTimeBehaviors) SetExceptionUa(v string) *EditCacheTimeConfigRequestCacheTimeBehaviors {
+  s.ExceptionUa = &v
+  return s
+}
+
+func (s *EditCacheTimeConfigRequestCacheTimeBehaviors) SetUriMatchPattern(v string) *EditCacheTimeConfigRequestCacheTimeBehaviors {
+  s.UriMatchPattern = &v
+  return s
+}
+
+type EditCacheTimeConfigRequestHeader struct {
+}
+
+func (s EditCacheTimeConfigRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s EditCacheTimeConfigResponse) GoString() string {
+func (s EditCacheTimeConfigRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *EditCacheTimeConfigResponse) SetCode(v string) *EditCacheTimeConfigResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *EditCacheTimeConfigResponse) SetMessage(v string) *EditCacheTimeConfigResponse {
-  s.Message = &v
-  return s
-}
-
 type EditCacheTimeConfigPaths struct {
-  // {"en":"the domain whoes need query config", "zh_CN":"需要查询配置的域名或域名id"}
+  // {"en":"the domain whoes need query config","zh_CN":"需要查询配置的域名或域名id"}
   DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
 }
 
@@ -11007,15 +11245,29 @@ func (s EditCacheTimeConfigParameters) GoString() string {
   return s.String()
 }
 
-type EditCacheTimeConfigRequestHeader struct {
+type EditCacheTimeConfigResponse struct {
+  // {"en":"Error code, which appears when HTTPStatus is not 202, represents the error type of the current request call","zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Response message, and shows as success when it is successful.","zh_CN":"响应信息，成功时为success"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
 }
 
-func (s EditCacheTimeConfigRequestHeader) String() string {
+func (s EditCacheTimeConfigResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s EditCacheTimeConfigRequestHeader) GoString() string {
+func (s EditCacheTimeConfigResponse) GoString() string {
   return s.String()
+}
+
+func (s *EditCacheTimeConfigResponse) SetCode(v string) *EditCacheTimeConfigResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *EditCacheTimeConfigResponse) SetMessage(v string) *EditCacheTimeConfigResponse {
+  s.Message = &v
+  return s
 }
 
 type EditCacheTimeConfigResponseHeader struct {

@@ -682,169 +682,55 @@ func (s QueryAttackLogDetailsResponseHeader) GoString() string {
 
 
 type GetWAFAttackLogRequest struct {
-  // {"en":"Domain, array.", "zh_CN":"域名，数组。"}
+  // {"en":"Domain, array.","zh_CN":"域名，数组。"}
   Domains []*string `json:"domains,omitempty" xml:"domains,omitempty" require:"true" type:"Repeated"`
-  // {"en":"Start time, yyyy-MM-dd HH:mm:ss.", "zh_CN":"开始时间，yyyy-MM-dd HH:mm:ss。"}
+  // {"en":"Start time, yyyy-MM-dd HH:mm:ss.The time range cannot exceed 31 days.","zh_CN":"开始时间，yyyy-MM-dd HH:mm:ss。时间跨度不能超过31天。"}
   StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {"en":"End time, yyyy-MM-dd HH:mm:ss.", "zh_CN":"结束时间，yyyy-MM-dd HH:mm:ss。"}
+  // {"en":"End time, yyyy-MM-dd HH:mm:ss.The time range cannot exceed 31 days.","zh_CN":"结束时间，yyyy-MM-dd HH:mm:ss。时间跨度不能超过31天。"}
   EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
-  // {"en":"Time zone, GMT+8 by default.", "zh_CN":"时区，默认GMT+8，即“GMT+8”。"}
+  // {"en":"Time zone, GMT+8 by default.","zh_CN":"时区，默认GMT+8，即“GMT+8”。"}
   TimeZone *string `json:"timeZone,omitempty" xml:"timeZone,omitempty"`
-  // {"en":"Action,default value: 1 and 2.
-  //     1: Block
-  //     2: GetWAFAttackLogLog", "zh_CN":"处理动作，默认值：1和2。
-  //     1：拦截
-  //     2：监控"}
+  // {"en":"Action,default value: 1 and 2.\n1: Block\n2: Log","zh_CN":"处理动作，默认值：1和2。\n1：拦截\n2：监控"}
   Acts []*string `json:"acts,omitempty" xml:"acts,omitempty" type:"Repeated"`
-  // {"en":"Attack type, array. [SQL Injection: WAF_SQLI,
-  // X-Site Scripting: WAF_XSS,
-  // File Inclusion: WAF_RFI,
-  // File Uploading: WAF_FILE_UPLOAD,
-  // Command Injection: WAF_CMDI,
-  // Directory Traversal: WAF_DIR_TRAVERSAL,
-  // 3rd Party Component Exploit: WAF_THIRDCOMP,
-  // XPATH/LDAP/SSI Injection: WAF_XPATH_LDAP_SSI,
-  // Malicious Scanning: WAF_SCANNER,
-  // Webshell Uploading: WAF_SHELL_BACKDOOR,
-  // Unauthorized Download: WAF_FILE_DOWNLOAD,
-  // Illegal Access(RFC): WAF_ILLEGAL,
-  // Illegal HTTP Method(RFC): WAF_INVALID_METHOD,
-  // Illegal HTTP Version(RFC): WAF_INVALID_PROTOCOL,
-  // HTTP Buffer Overflow(RFC): WAF_BUF_OVERFLOW,
-  // Server Sensitive Info Leakage[remarks:combination]: WAF_SERVER_ERROR_LEAKAGE,WAF_SENS_DATA_LEAKAGE,
-  // XML Injection: WAF_XXE,
-  // Custom Rules: WAF_CUSTOM_RULE,
-  // Cookie Protection: WAF_COOKIE_PROTECT,
-  // CSRF: WAF_CSRF,
-  // Adware Insertion Prevention: WAF_UAD,
-  // Webshell Access Detection: WAF_WEBSHELL,
-  // Threat Intelligence: WAF_THREAT_INTELLIGENCE,
-  // Credential Stuffing: WAF_HIT_LIB,
-  // Server-side Request Forge: WAF_SSRF,
-  // Malicious Dig: WAF_COIN,
-  // Access Control[remarks:combination]: WAF_BLACK_IP,WAF_BLACK_URL,WAF_BLACK_UA,WAF_BLACK_HEADER,WAF_ACCESS_CONTROL,
-  // Rate Limiting: WAF_FORCE_CRACKING,
-  // Response Code Rate Limiting: WAF_BLACK_STATUS,
-  // IP Repeated Violations: WAF_DYNAMIC_BLACK_IP]", "zh_CN":"攻击类型，数组。[SQL注入：WAF_SQLI,
-  // XSS跨站：WAF_XSS,
-  // 文件包含：WAF_RFI,
-  // 文件上传：WAF_FILE_UPLOAD,
-  // 命令注入：WAF_CMDI,
-  // 目录遍历：WAF_DIR_TRAVERSAL,
-  // 第三方组件漏洞：WAF_THIRDCOMP,
-  // XPATH/LDAP/SSI注入：WAF_XPATH_LDAP_SSI,
-  // 扫描器：WAF_SCANNER,
-  // 木马后门：WAF_SHELL_BACKDOOR,
-  // 非法下载：WAF_FILE_DOWNLOAD,
-  // 非法请求(合规)：WAF_ILLEGAL,
-  // 非法请求方法(合规)：WAF_INVALID_METHOD,
-  // 非法请求协议(合规)：WAF_INVALID_PROTOCOL,
-  // 缓冲区溢出(合规)：WAF_BUF_OVERFLOW,
-  // 服务器信息泄露[备:多个组合]：WAF_SERVER_ERROR_LEAKAGE,WAF_SENS_DATA_LEAKAGE,
-  // XML注入：WAF_XXE,
-  // 自定义规则：WAF_CUSTOM_RULE,
-  // Cookie防护：WAF_COOKIE_PROTECT,
-  // CSRF：WAF_CSRF,
-  // 恶意广告检测：WAF_UAD,
-  // 后门识别：WAF_WEBSHELL,
-  // 威胁情报：WAF_THREAT_INTELLIGENCE,
-  // 撞库：WAF_HIT_LIB,
-  // 服务端请求伪造：WAF_SSRF,
-  // 恶意挖矿：WAF_COIN,
-  // 访问控制[备:多个组合]：WAF_BLACK_IP,WAF_BLACK_URL,WAF_BLACK_UA,WAF_BLACK_HEADER,WAF_ACCESS_CONTROL,
-  // 频率限制：WAF_FORCE_CRACKING,
-  // 状态码限速：WAF_BLACK_STATUS,
-  // 攻击IP惩罚：WAF_DYNAMIC_BLACK_IP]"}
+  // {"en":"Attack type, array. [SQL Injection: WAF_SQLI,\nX-Site Scripting: WAF_XSS,\nFile Inclusion: WAF_RFI,\nFile Uploading: WAF_FILE_UPLOAD,\nCommand Injection: WAF_CMDI,\nDirectory Traversal: WAF_DIR_TRAVERSAL,\n3rd Party Component Exploit: WAF_THIRDCOMP,\nXPATH/LDAP/SSI Injection: WAF_XPATH_LDAP_SSI,\nMalicious Scanning: WAF_SCANNER,\nWebshell Uploading: WAF_SHELL_BACKDOOR,\nUnauthorized Download: WAF_FILE_DOWNLOAD,\nIllegal Access(RFC): WAF_ILLEGAL,\nIllegal HTTP Method(RFC): WAF_INVALID_METHOD,\nIllegal HTTP Version(RFC): WAF_INVALID_PROTOCOL,\nHTTP Buffer Overflow(RFC): WAF_BUF_OVERFLOW,\nServer Sensitive Info Leakage[remarks:combination]: WAF_SERVER_ERROR_LEAKAGE,WAF_SENS_DATA_LEAKAGE,\nXML Injection: WAF_XXE,\nCustom Rules: WAF_CUSTOM_RULE,\nCookie Protection: WAF_COOKIE_PROTECT,\nCSRF: WAF_CSRF,\nAdware Insertion Prevention: WAF_UAD,\nWebshell Access Detection: WAF_WEBSHELL,\nThreat Intelligence: WAF_THREAT_INTELLIGENCE,\nCredential Stuffing: WAF_HIT_LIB,\nServer-side Request Forge: WAF_SSRF,\nMalicious Dig: WAF_COIN,\nAccess Control[remarks:combination]: WAF_BLACK_IP,WAF_BLACK_URL,WAF_BLACK_UA,WAF_BLACK_HEADER,WAF_ACCESS_CONTROL,\nRate Limiting: WAF_FORCE_CRACKING,\nResponse Code Rate Limiting: WAF_BLACK_STATUS,\nIP Repeated Violations: WAF_DYNAMIC_BLACK_IP]","zh_CN":"攻击类型，数组。[SQL注入：WAF_SQLI,\nXSS跨站：WAF_XSS,\n文件包含：WAF_RFI,\n文件上传：WAF_FILE_UPLOAD,\n命令注入：WAF_CMDI,\n目录遍历：WAF_DIR_TRAVERSAL,\n第三方组件漏洞：WAF_THIRDCOMP,\nXPATH/LDAP/SSI注入：WAF_XPATH_LDAP_SSI,\n扫描器：WAF_SCANNER,\n木马后门：WAF_SHELL_BACKDOOR,\n非法下载：WAF_FILE_DOWNLOAD,\n非法请求(合规)：WAF_ILLEGAL,\n非法请求方法(合规)：WAF_INVALID_METHOD,\n非法请求协议(合规)：WAF_INVALID_PROTOCOL,\n缓冲区溢出(合规)：WAF_BUF_OVERFLOW,\n服务器信息泄露[备:多个组合]：WAF_SERVER_ERROR_LEAKAGE,WAF_SENS_DATA_LEAKAGE,\nXML注入：WAF_XXE,\n自定义规则：WAF_CUSTOM_RULE,\nCookie防护：WAF_COOKIE_PROTECT,\nCSRF：WAF_CSRF,\n恶意广告检测：WAF_UAD,\n后门识别：WAF_WEBSHELL,\n威胁情报：WAF_THREAT_INTELLIGENCE,\n撞库：WAF_HIT_LIB,\n服务端请求伪造：WAF_SSRF,\n恶意挖矿：WAF_COIN,\n访问控制[备:多个组合]：WAF_BLACK_IP,WAF_BLACK_URL,WAF_BLACK_UA,WAF_BLACK_HEADER,WAF_ACCESS_CONTROL,\n频率限制：WAF_FORCE_CRACKING,\n状态码限速：WAF_BLACK_STATUS,\n攻击IP惩罚：WAF_DYNAMIC_BLACK_IP]"}
   AttackTypes []*string `json:"attackTypes,omitempty" xml:"attackTypes,omitempty" type:"Repeated"`
-  // {"en":"Client IP.", "zh_CN":"客户端IP。"}
+  // {"en":"Client IP.","zh_CN":"客户端IP。"}
   Ips []*string `json:"ips,omitempty" xml:"ips,omitempty" type:"Repeated"`
-  // {"en":"The logic of ip match conditions, default value 3.
-  //     1: Equal
-  //     2: Not Equal
-  //     3: Included
-  //     4: Excluded", "zh_CN":"IP条件匹配逻辑，默认值3。
-  //     1：等于
-  //     2：不等于
-  //     3：包含
-  //     4：不包含"}
+  // {"en":"The logic of ip match conditions, default value 3.\n1: Equal\n2: Not Equal\n3: Included\n4: Excluded","zh_CN":"IP条件匹配逻辑，默认值3。\n1：等于\n2：不等于\n3：包含\n4：不包含"}
   IpCondition *int `json:"ipCondition,omitempty" xml:"ipCondition,omitempty"`
-  // {"en":"The geographical location of IP.", "zh_CN":"IP地理位置。"}
+  // {"en":"The geographical location of IP.","zh_CN":"IP地理位置。"}
   IpLocation *string `json:"ipLocation,omitempty" xml:"ipLocation,omitempty"`
-  // {"en":"Request Path.", "zh_CN":"请求路径。"}
+  // {"en":"Request Path.","zh_CN":"请求路径。"}
   Urls []*string `json:"urls,omitempty" xml:"urls,omitempty" type:"Repeated"`
-  // {"en":"The logic of path match conditions, default value 3.
-  //     1: Equal
-  //     2: Not Equal
-  //     3: Included
-  //     4: Excluded", "zh_CN":"路径条件匹配逻辑，默认值3。
-  //     1：等于
-  //     2：不等于
-  //     3：包含
-  //     4：不包含"}
+  // {"en":"The logic of path match conditions, default value 3.\n1: Equal\n2: Not Equal\n3: Included\n4: Excluded","zh_CN":"路径条件匹配逻辑，默认值3。\n1：等于\n2：不等于\n3：包含\n4：不包含"}
   UrlCondition *int `json:"urlCondition,omitempty" xml:"urlCondition,omitempty"`
-  // {"en":"HTTP request header: Referer.", "zh_CN":"请求Referer。"}
+  // {"en":"HTTP request header: Referer.","zh_CN":"请求Referer。"}
   Referer *string `json:"referer,omitempty" xml:"referer,omitempty"`
-  // {"en":"The logic of referer match conditions, default value 3.
-  //     1: Equal
-  //     2: Not Equal
-  //     3: Included
-  //     4: Excluded", "zh_CN":"Referer条件匹配逻辑，默认值3。
-  //     1：等于
-  //     2：不等于
-  //     3：包含
-  //     4：不包含"}
+  // {"en":"The logic of referer match conditions, default value 3.\n1: Equal\n2: Not Equal\n3: Included\n4: Excluded","zh_CN":"Referer条件匹配逻辑，默认值3。\n1：等于\n2：不等于\n3：包含\n4：不包含"}
   RefererCondition *int `json:"refererCondition,omitempty" xml:"refererCondition,omitempty"`
-  // {"en":"HTTP request header: User-Agent.", "zh_CN":"请求User-Agent。"}
+  // {"en":"HTTP request header: User-Agent.","zh_CN":"请求User-Agent。"}
   UserAgent *string `json:"userAgent,omitempty" xml:"userAgent,omitempty"`
-  // {"en":"The logic of user-agent match conditions, default value 3.
-  //     1: Equal
-  //     2: Not Equal
-  //     3: Included
-  //     4: Excluded", "zh_CN":"User-Agent条件匹配逻辑，默认值3。
-  //     1：等于
-  //     2：不等于
-  //     3：包含
-  //     4：不包含"}
+  // {"en":"The logic of user-agent match conditions, default value 3.\n1: Equal\n2: Not Equal\n3: Included\n4: Excluded","zh_CN":"User-Agent条件匹配逻辑，默认值3。\n1：等于\n2：不等于\n3：包含\n4：不包含"}
   UserAgentCondition *int `json:"userAgentCondition,omitempty" xml:"userAgentCondition,omitempty"`
-  // {"en":"HTTP version, such as:[HTTP/1.1].", "zh_CN":"HTTP版本，比如:[HTTP/1.1]。"}
+  // {"en":"HTTP version, such as:[HTTP/1.1].","zh_CN":"HTTP版本，比如:[HTTP/1.1]。"}
   HttpVerisions []*string `json:"httpVerisions,omitempty" xml:"httpVerisions,omitempty" type:"Repeated"`
-  // {"en":"HTTP response status code.", "zh_CN":"HTTP响应状态码。"}
+  // {"en":"HTTP response status code.","zh_CN":"HTTP响应状态码。"}
   StatusCodes []*string `json:"statusCodes,omitempty" xml:"statusCodes,omitempty" type:"Repeated"`
-  // {"en":"The logic of status code match conditions, default value 3.
-  //     1: Equal
-  //     2: Not Equal
-  //     3: Included
-  //     4: Excluded", "zh_CN":"HTTP状态码条件匹配逻辑，默认值3。
-  //     1：等于
-  //     2：不等于
-  //     3：包含
-  //     4：不包含"}
+  // {"en":"The logic of status code match conditions, default value 3.\n1: Equal\n2: Not Equal\n3: Included\n4: Excluded","zh_CN":"HTTP状态码条件匹配逻辑，默认值3。\n1：等于\n2：不等于\n3：包含\n4：不包含"}
   StatusCodeCondition *int `json:"statusCodeCondition,omitempty" xml:"statusCodeCondition,omitempty"`
-  // {"en":"Event ID.", "zh_CN":"事件ID。"}
+  // {"en":"Event ID.","zh_CN":"事件ID。"}
   EventId *string `json:"eventId,omitempty" xml:"eventId,omitempty"`
-  // {"en":"Rule ID.", "zh_CN":"规则ID。"}
+  // {"en":"Rule ID.","zh_CN":"规则ID。"}
   RuleIds []*string `json:"ruleIds,omitempty" xml:"ruleIds,omitempty" type:"Repeated"`
-  // {"en":"The logic of rule id match conditions, default value 3.
-  //     1: Equal
-  //     2: Not Equal
-  //     3: Included
-  //     4: Excluded", "zh_CN":"规则ID条件匹配逻辑，默认值3。
-  //     1：等于
-  //     2：不等于
-  //     3：包含
-  //     4：不包含"}
+  // {"en":"The logic of rule id match conditions, default value 3.\n1: Equal\n2: Not Equal\n3: Included\n4: Excluded","zh_CN":"规则ID条件匹配逻辑，默认值3。\n1：等于\n2：不等于\n3：包含\n4：不包含"}
   RuleIdCondition *int `json:"ruleIdCondition,omitempty" xml:"ruleIdCondition,omitempty"`
-  // {"en":"Rule name.", "zh_CN":"规则名称。"}
+  // {"en":"Rule name.","zh_CN":"规则名称。"}
   RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty"`
-  // {"en":"The language of response data, default value: cn.
-  //     cn: Chinese
-  //     en: English", "zh_CN":"返回内容的语言版本，默认值：cn。
-  //     cn：中文
-  //     en：英文"}
+  // {"en":"The language of response data, default value: cn.\ncn: Chinese\nen: English","zh_CN":"返回内容的语言版本，默认值：cn。\ncn：中文\nen：英文"}
   Lang *string `json:"lang,omitempty" xml:"lang,omitempty"`
-  // {"en":"Current page.", "zh_CN":"当前页码。"}
+  // {"en":"Current page.","zh_CN":"当前页码。"}
   PageNum *int `json:"pageNum,omitempty" xml:"pageNum,omitempty" require:"true"`
-  // {"en":"Records per page, max 1000 records.", "zh_CN":"每页日志条数, 最大1000。"}
+  // {"en":"Records per page, max 1000 records.","zh_CN":"每页日志条数, 最大1000。"}
   PageSize *int `json:"pageSize,omitempty" xml:"pageSize,omitempty" require:"true"`
 }
 
@@ -981,237 +867,15 @@ func (s *GetWAFAttackLogRequest) SetPageSize(v int) *GetWAFAttackLogRequest {
   return s
 }
 
-type GetWAFAttackLogResponse struct {
-  // {"en":"Return 0 means success, please see <Error code> to check other status code.", "zh_CN":"0状态码表示请求成功，其他状态码说明请参见《错误码》。"}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Error message or Success.", "zh_CN":"错误信息或Success。"}
-  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
-  // {"en":"Return data.", "zh_CN":"返回值。"}
-  Data *GetWAFAttackLogLogList `json:"data,omitempty" xml:"data,omitempty" require:"true"`
+type GetWAFAttackLogRequestHeader struct {
 }
 
-func (s GetWAFAttackLogResponse) String() string {
+func (s GetWAFAttackLogRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetWAFAttackLogResponse) GoString() string {
+func (s GetWAFAttackLogRequestHeader) GoString() string {
   return s.String()
-}
-
-func (s *GetWAFAttackLogResponse) SetCode(v string) *GetWAFAttackLogResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *GetWAFAttackLogResponse) SetMessage(v string) *GetWAFAttackLogResponse {
-  s.Message = &v
-  return s
-}
-
-func (s *GetWAFAttackLogResponse) SetData(v *GetWAFAttackLogLogList) *GetWAFAttackLogResponse {
-  s.Data = v
-  return s
-}
-
-type GetWAFAttackLogLogList struct {
-  // {'en':'Current page.', 'zh_CN':'当前页码。'}
-  CurrentPage *int `json:"currentPage,omitempty" xml:"currentPage,omitempty" require:"true"`
-  // {'en':'Records per page.', 'zh_CN':'每页日志条数。'}
-  PageSize *int `json:"pageSize,omitempty" xml:"pageSize,omitempty" require:"true"`
-  // {'en':'Total number of records.', 'zh_CN':'总记录数量。'}
-  TotalRecords *int `json:"totalRecords,omitempty" xml:"totalRecords,omitempty" require:"true"`
-  // {'en':'Total pages.', 'zh_CN':'合计页数。'}
-  TotalPages *int `json:"totalPages,omitempty" xml:"totalPages,omitempty" require:"true"`
-  // {'en':'GetWAFAttackLogLog list.', 'zh_CN':'日志列表。'}
-  GetWAFAttackLogLog []*GetWAFAttackLogLog `json:"log,omitempty" xml:"log,omitempty" require:"true" type:"Repeated"`
-}
-
-func (s GetWAFAttackLogLogList) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetWAFAttackLogLogList) GoString() string {
-  return s.String()
-}
-
-func (s *GetWAFAttackLogLogList) SetCurrentPage(v int) *GetWAFAttackLogLogList {
-  s.CurrentPage = &v
-  return s
-}
-
-func (s *GetWAFAttackLogLogList) SetPageSize(v int) *GetWAFAttackLogLogList {
-  s.PageSize = &v
-  return s
-}
-
-func (s *GetWAFAttackLogLogList) SetTotalRecords(v int) *GetWAFAttackLogLogList {
-  s.TotalRecords = &v
-  return s
-}
-
-func (s *GetWAFAttackLogLogList) SetTotalPages(v int) *GetWAFAttackLogLogList {
-  s.TotalPages = &v
-  return s
-}
-
-func (s *GetWAFAttackLogLogList) SetLog(v []*GetWAFAttackLogLog) *GetWAFAttackLogLogList {
-  s.GetWAFAttackLogLog = v
-  return s
-}
-
-type GetWAFAttackLogLog struct {
-  // {'en':'Request referer.', 'zh_CN':'请求Referer。'}
-  Referer *string `json:"referer,omitempty" xml:"referer,omitempty" require:"true"`
-  // {'en':'HTTP request method.', 'zh_CN':'HTTP请求方式。'}
-  Method *string `json:"method,omitempty" xml:"method,omitempty" require:"true"`
-  // {'en':'HTTP response status code.', 'zh_CN':'HTTP响应状态码。'}
-  ResponseCode *string `json:"responseCode,omitempty" xml:"responseCode,omitempty" require:"true"`
-  // {'en':'Attack type.', 'zh_CN':'攻击类型。'}
-  AttackType *string `json:"attackType,omitempty" xml:"attackType,omitempty" require:"true"`
-  // {'en':'Rule name.', 'zh_CN':'规则名称。'}
-  RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
-  // {'en':'Client IP.', 'zh_CN':'客户端IP。'}
-  Ip *string `json:"ip,omitempty" xml:"ip,omitempty" require:"true"`
-  // {'en':'Event ID.', 'zh_CN':'事件ID。'}
-  Uuid *string `json:"uuid,omitempty" xml:"uuid,omitempty" require:"true"`
-  // {'en':'Request Path.', 'zh_CN':'请求路径。'}
-  Url *string `json:"url,omitempty" xml:"url,omitempty" require:"true"`
-  // {'en':'Client ID.', 'zh_CN':'客户端ID。'}
-  ClientId *string `json:"clientId,omitempty" xml:"clientId,omitempty" require:"true"`
-  // {'en':'Detail information.', 'zh_CN':'详细信息。'}
-  Content *string `json:"content,omitempty" xml:"content,omitempty" require:"true"`
-  // {'en':'Rule ID.', 'zh_CN':'规则ID。'}
-  RuleId *string `json:"ruleId,omitempty" xml:"ruleId,omitempty" require:"true"`
-  // {'en':'Event ID.', 'zh_CN':'事件ID。'}
-  EventId *string `json:"eventId,omitempty" xml:"eventId,omitempty" require:"true"`
-  // {'en':'HTTP version.', 'zh_CN':'HTTP版本。'}
-  HttpVersion *string `json:"httpVersion,omitempty" xml:"httpVersion,omitempty" require:"true"`
-  // {'en':'Match area.', 'zh_CN':'匹配区域。'}
-  Zone *string `json:"zone,omitempty" xml:"zone,omitempty" require:"true"`
-  // {'en':'Domain.', 'zh_CN':'域名。'}
-  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
-  // {'en':'Action.
-  //         1: Block
-  //         2: GetWAFAttackLogLog', 'zh_CN':'处理动作。
-  //         1：拦截
-  //         2：监控'}
-  Action *string `json:"action,omitempty" xml:"action,omitempty" require:"true"`
-  // {'en':'The geographical location of IP.', 'zh_CN':'IP地理位置。'}
-  Location *string `json:"location,omitempty" xml:"location,omitempty" require:"true"`
-  // {'en':'Time.', 'zh_CN':'时间。'}
-  Time *string `json:"time,omitempty" xml:"time,omitempty" require:"true"`
-  // {'en':'Request User-Agent.', 'zh_CN':'请求User-Agent。'}
-  UserAgent *string `json:"userAgent,omitempty" xml:"userAgent,omitempty" require:"true"`
-  // {'en':'Domain.', 'zh_CN':'域名。'}
-  DetailDomain *string `json:"detailDomain,omitempty" xml:"detailDomain,omitempty" require:"true"`
-}
-
-func (s GetWAFAttackLogLog) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetWAFAttackLogLog) GoString() string {
-  return s.String()
-}
-
-func (s *GetWAFAttackLogLog) SetReferer(v string) *GetWAFAttackLogLog {
-  s.Referer = &v
-  return s
-}
-
-func (s *GetWAFAttackLogLog) SetMethod(v string) *GetWAFAttackLogLog {
-  s.Method = &v
-  return s
-}
-
-func (s *GetWAFAttackLogLog) SetResponseCode(v string) *GetWAFAttackLogLog {
-  s.ResponseCode = &v
-  return s
-}
-
-func (s *GetWAFAttackLogLog) SetAttackType(v string) *GetWAFAttackLogLog {
-  s.AttackType = &v
-  return s
-}
-
-func (s *GetWAFAttackLogLog) SetRuleName(v string) *GetWAFAttackLogLog {
-  s.RuleName = &v
-  return s
-}
-
-func (s *GetWAFAttackLogLog) SetIp(v string) *GetWAFAttackLogLog {
-  s.Ip = &v
-  return s
-}
-
-func (s *GetWAFAttackLogLog) SetUuid(v string) *GetWAFAttackLogLog {
-  s.Uuid = &v
-  return s
-}
-
-func (s *GetWAFAttackLogLog) SetUrl(v string) *GetWAFAttackLogLog {
-  s.Url = &v
-  return s
-}
-
-func (s *GetWAFAttackLogLog) SetClientId(v string) *GetWAFAttackLogLog {
-  s.ClientId = &v
-  return s
-}
-
-func (s *GetWAFAttackLogLog) SetContent(v string) *GetWAFAttackLogLog {
-  s.Content = &v
-  return s
-}
-
-func (s *GetWAFAttackLogLog) SetRuleId(v string) *GetWAFAttackLogLog {
-  s.RuleId = &v
-  return s
-}
-
-func (s *GetWAFAttackLogLog) SetEventId(v string) *GetWAFAttackLogLog {
-  s.EventId = &v
-  return s
-}
-
-func (s *GetWAFAttackLogLog) SetHttpVersion(v string) *GetWAFAttackLogLog {
-  s.HttpVersion = &v
-  return s
-}
-
-func (s *GetWAFAttackLogLog) SetZone(v string) *GetWAFAttackLogLog {
-  s.Zone = &v
-  return s
-}
-
-func (s *GetWAFAttackLogLog) SetDomain(v string) *GetWAFAttackLogLog {
-  s.Domain = &v
-  return s
-}
-
-func (s *GetWAFAttackLogLog) SetAction(v string) *GetWAFAttackLogLog {
-  s.Action = &v
-  return s
-}
-
-func (s *GetWAFAttackLogLog) SetLocation(v string) *GetWAFAttackLogLog {
-  s.Location = &v
-  return s
-}
-
-func (s *GetWAFAttackLogLog) SetTime(v string) *GetWAFAttackLogLog {
-  s.Time = &v
-  return s
-}
-
-func (s *GetWAFAttackLogLog) SetUserAgent(v string) *GetWAFAttackLogLog {
-  s.UserAgent = &v
-  return s
-}
-
-func (s *GetWAFAttackLogLog) SetDetailDomain(v string) *GetWAFAttackLogLog {
-  s.DetailDomain = &v
-  return s
 }
 
 type GetWAFAttackLogPaths struct {
@@ -1236,15 +900,233 @@ func (s GetWAFAttackLogParameters) GoString() string {
   return s.String()
 }
 
-type GetWAFAttackLogRequestHeader struct {
+type GetWAFAttackLogResponse struct {
+  // {"en":"Return 0 means success, please see <Error code> to check other status code.","zh_CN":"0状态码表示请求成功，其他状态码说明请参见《错误码》。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Error message or Success.","zh_CN":"错误信息或Success。"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+  // {"en":"Return data.","zh_CN":"返回值。"}
+  Data *GetWAFAttackLogResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
 }
 
-func (s GetWAFAttackLogRequestHeader) String() string {
+func (s GetWAFAttackLogResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetWAFAttackLogRequestHeader) GoString() string {
+func (s GetWAFAttackLogResponse) GoString() string {
   return s.String()
+}
+
+func (s *GetWAFAttackLogResponse) SetCode(v string) *GetWAFAttackLogResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponse) SetMessage(v string) *GetWAFAttackLogResponse {
+  s.Message = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponse) SetData(v *GetWAFAttackLogResponseData) *GetWAFAttackLogResponse {
+  s.Data = v
+  return s
+}
+
+type GetWAFAttackLogResponseData struct {
+  // {"en":"Current page.","zh_CN":"当前页码。"}
+  CurrentPage *int `json:"currentPage,omitempty" xml:"currentPage,omitempty" require:"true"`
+  // {"en":"Records per page.","zh_CN":"每页日志条数。"}
+  PageSize *int `json:"pageSize,omitempty" xml:"pageSize,omitempty" require:"true"`
+  // {"en":"Total number of records.","zh_CN":"总记录数量。"}
+  TotalRecords *int `json:"totalRecords,omitempty" xml:"totalRecords,omitempty" require:"true"`
+  // {"en":"Total pages.","zh_CN":"合计页数。"}
+  TotalPages *int `json:"totalPages,omitempty" xml:"totalPages,omitempty" require:"true"`
+  // {"en":"Log list.","zh_CN":"日志列表。"}
+  Log []*GetWAFAttackLogResponseDataLog `json:"log,omitempty" xml:"log,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s GetWAFAttackLogResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetWAFAttackLogResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *GetWAFAttackLogResponseData) SetCurrentPage(v int) *GetWAFAttackLogResponseData {
+  s.CurrentPage = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponseData) SetPageSize(v int) *GetWAFAttackLogResponseData {
+  s.PageSize = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponseData) SetTotalRecords(v int) *GetWAFAttackLogResponseData {
+  s.TotalRecords = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponseData) SetTotalPages(v int) *GetWAFAttackLogResponseData {
+  s.TotalPages = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponseData) SetLog(v []*GetWAFAttackLogResponseDataLog) *GetWAFAttackLogResponseData {
+  s.Log = v
+  return s
+}
+
+type GetWAFAttackLogResponseDataLog struct     {
+  // {"en":"Request referer.","zh_CN":"请求Referer。"}
+  Referer *string `json:"referer,omitempty" xml:"referer,omitempty" require:"true"`
+  // {"en":"HTTP request method.","zh_CN":"HTTP请求方式。"}
+  Method *string `json:"method,omitempty" xml:"method,omitempty" require:"true"`
+  // {"en":"HTTP response status code.","zh_CN":"HTTP响应状态码。"}
+  ResponseCode *string `json:"responseCode,omitempty" xml:"responseCode,omitempty" require:"true"`
+  // {"en":"Attack type.","zh_CN":"攻击类型。"}
+  AttackType *string `json:"attackType,omitempty" xml:"attackType,omitempty" require:"true"`
+  // {"en":"Rule name.","zh_CN":"规则名称。"}
+  RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
+  // {"en":"Client IP.","zh_CN":"客户端IP。"}
+  Ip *string `json:"ip,omitempty" xml:"ip,omitempty" require:"true"`
+  // {"en":"Event ID.","zh_CN":"事件ID。"}
+  Uuid *string `json:"uuid,omitempty" xml:"uuid,omitempty" require:"true"`
+  // {"en":"Request Path.","zh_CN":"请求路径。"}
+  Url *string `json:"url,omitempty" xml:"url,omitempty" require:"true"`
+  // {"en":"Client ID.","zh_CN":"客户端ID。"}
+  ClientId *string `json:"clientId,omitempty" xml:"clientId,omitempty" require:"true"`
+  // {"en":"Detail information.","zh_CN":"详细信息。"}
+  Content *string `json:"content,omitempty" xml:"content,omitempty" require:"true"`
+  // {"en":"Rule ID.","zh_CN":"规则ID。"}
+  RuleId *string `json:"ruleId,omitempty" xml:"ruleId,omitempty" require:"true"`
+  // {"en":"Event ID.","zh_CN":"事件ID。"}
+  EventId *string `json:"eventId,omitempty" xml:"eventId,omitempty" require:"true"`
+  // {"en":"HTTP version.","zh_CN":"HTTP版本。"}
+  HttpVersion *string `json:"httpVersion,omitempty" xml:"httpVersion,omitempty" require:"true"`
+  // {"en":"Match area.","zh_CN":"匹配区域。"}
+  Zone *string `json:"zone,omitempty" xml:"zone,omitempty" require:"true"`
+  // {"en":"Domain.","zh_CN":"域名。"}
+  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
+  // {"en":"Action.\n1: Block\n2: Log","zh_CN":"处理动作。\n1：拦截\n2：监控"}
+  Action *string `json:"action,omitempty" xml:"action,omitempty" require:"true"`
+  // {"en":"The geographical location of IP.","zh_CN":"IP地理位置。"}
+  Location *string `json:"location,omitempty" xml:"location,omitempty" require:"true"`
+  // {"en":"Time.","zh_CN":"时间。"}
+  Time *string `json:"time,omitempty" xml:"time,omitempty" require:"true"`
+  // {"en":"Request User-Agent.","zh_CN":"请求User-Agent。"}
+  UserAgent *string `json:"userAgent,omitempty" xml:"userAgent,omitempty" require:"true"`
+  // {"en":"Domain.","zh_CN":"域名。"}
+  DetailDomain *string `json:"detailDomain,omitempty" xml:"detailDomain,omitempty" require:"true"`
+}
+
+func (s GetWAFAttackLogResponseDataLog) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetWAFAttackLogResponseDataLog) GoString() string {
+  return s.String()
+}
+
+func (s *GetWAFAttackLogResponseDataLog) SetReferer(v string) *GetWAFAttackLogResponseDataLog {
+  s.Referer = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponseDataLog) SetMethod(v string) *GetWAFAttackLogResponseDataLog {
+  s.Method = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponseDataLog) SetResponseCode(v string) *GetWAFAttackLogResponseDataLog {
+  s.ResponseCode = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponseDataLog) SetAttackType(v string) *GetWAFAttackLogResponseDataLog {
+  s.AttackType = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponseDataLog) SetRuleName(v string) *GetWAFAttackLogResponseDataLog {
+  s.RuleName = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponseDataLog) SetIp(v string) *GetWAFAttackLogResponseDataLog {
+  s.Ip = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponseDataLog) SetUuid(v string) *GetWAFAttackLogResponseDataLog {
+  s.Uuid = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponseDataLog) SetUrl(v string) *GetWAFAttackLogResponseDataLog {
+  s.Url = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponseDataLog) SetClientId(v string) *GetWAFAttackLogResponseDataLog {
+  s.ClientId = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponseDataLog) SetContent(v string) *GetWAFAttackLogResponseDataLog {
+  s.Content = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponseDataLog) SetRuleId(v string) *GetWAFAttackLogResponseDataLog {
+  s.RuleId = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponseDataLog) SetEventId(v string) *GetWAFAttackLogResponseDataLog {
+  s.EventId = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponseDataLog) SetHttpVersion(v string) *GetWAFAttackLogResponseDataLog {
+  s.HttpVersion = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponseDataLog) SetZone(v string) *GetWAFAttackLogResponseDataLog {
+  s.Zone = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponseDataLog) SetDomain(v string) *GetWAFAttackLogResponseDataLog {
+  s.Domain = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponseDataLog) SetAction(v string) *GetWAFAttackLogResponseDataLog {
+  s.Action = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponseDataLog) SetLocation(v string) *GetWAFAttackLogResponseDataLog {
+  s.Location = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponseDataLog) SetTime(v string) *GetWAFAttackLogResponseDataLog {
+  s.Time = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponseDataLog) SetUserAgent(v string) *GetWAFAttackLogResponseDataLog {
+  s.UserAgent = &v
+  return s
+}
+
+func (s *GetWAFAttackLogResponseDataLog) SetDetailDomain(v string) *GetWAFAttackLogResponseDataLog {
+  s.DetailDomain = &v
+  return s
 }
 
 type GetWAFAttackLogResponseHeader struct {

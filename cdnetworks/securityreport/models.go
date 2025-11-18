@@ -5,234 +5,6 @@ import (
   "github.com/alibabacloud-go/tea/tea"
 )
 
-type L7DdosTrendRequest struct {
-  // {"en":"Start time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 30 days.", "zh_CN":"开始时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过30天。"}
-  StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {"en":"End time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 30 days)", "zh_CN":"结束时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过30天。"}
-  EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
-  // {"en":"Hostname list.", "zh_CN":"域名数组。"}
-  Domains []*string `json:"domains,omitempty" xml:"domains,omitempty" require:"true" type:"Repeated"`
-}
-
-func (s L7DdosTrendRequest) String() string {
-  return tea.Prettify(s)
-}
-
-func (s L7DdosTrendRequest) GoString() string {
-  return s.String()
-}
-
-func (s *L7DdosTrendRequest) SetStartTime(v string) *L7DdosTrendRequest {
-  s.StartTime = &v
-  return s
-}
-
-func (s *L7DdosTrendRequest) SetEndTime(v string) *L7DdosTrendRequest {
-  s.EndTime = &v
-  return s
-}
-
-func (s *L7DdosTrendRequest) SetDomains(v []*string) *L7DdosTrendRequest {
-  s.Domains = v
-  return s
-}
-
-type L7DdosTrendResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Description.", "zh_CN":"描述信息。"}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {"en":"Data.", "zh_CN":"出参数据。"}
-  Data []*L7DdosTrendAttackedUrl `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
-  // {"en":"L7DdosTrendPeak Attack QPS", "zh_CN":"CC攻击QPS峰值"}
-  Peak_qps []*L7DdosTrendPeak `json:"peak_qps,omitempty" xml:"peak_qps,omitempty" require:"true" type:"Repeated"`
-}
-
-func (s L7DdosTrendResponse) String() string {
-  return tea.Prettify(s)
-}
-
-func (s L7DdosTrendResponse) GoString() string {
-  return s.String()
-}
-
-func (s *L7DdosTrendResponse) SetCode(v string) *L7DdosTrendResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *L7DdosTrendResponse) SetMsg(v string) *L7DdosTrendResponse {
-  s.Msg = &v
-  return s
-}
-
-func (s *L7DdosTrendResponse) SetData(v []*L7DdosTrendAttackedUrl) *L7DdosTrendResponse {
-  s.Data = v
-  return s
-}
-
-func (s *L7DdosTrendResponse) SetPeak_qps(v []*L7DdosTrendPeak) *L7DdosTrendResponse {
-  s.Peak_qps = v
-  return s
-}
-
-type L7DdosTrendAttackedUrl struct {
-  // {"en":"All Requests(QPS)", "zh_CN":"所有请求（QPS）"}
-  All_count *int64 `json:"all_count,omitempty" xml:"all_count,omitempty" require:"true"`
-  // {"en":"L7 DDoS Attack(QPS)", "zh_CN":"CC攻击（QPS）"}
-  Attack_count *int64 `json:"attack_count,omitempty" xml:"attack_count,omitempty" require:"true"`
-  // {"en":"Managed Ruleset Protection(QPS)", "zh_CN":"内置规则防护（QPS）"}
-  Def_count *int64 `json:"def_count,omitempty" xml:"def_count,omitempty" require:"true"`
-  // {"en":"Adaptive DDoS Protection(QPS)", "zh_CN":"AI智能防护（QPS）"}
-  Ai_count *int64 `json:"ai_count,omitempty" xml:"ai_count,omitempty" require:"true"`
-  // {"en":"IP Block(QPS)", "zh_CN":"IP封禁（QPS）"}
-  Ip_count *int64 `json:"ip_count,omitempty" xml:"ip_count,omitempty" require:"true"`
-  // {"en":"Geo Block(QPS)", "zh_CN":"区域封禁（QPS）"}
-  Area_count *int64 `json:"area_count,omitempty" xml:"area_count,omitempty" require:"true"`
-  // {"en":"Custom Rules(QPS)", "zh_CN":"自定义规则（QPS）"}
-  Rule_count *int64 `json:"rule_count,omitempty" xml:"rule_count,omitempty" require:"true"`
-  // {"en":"Rate Limit(QPS)", "zh_CN":"频率限制（QPS）"}
-  Limit_count *int64 `json:"limit_count,omitempty" xml:"limit_count,omitempty" require:"true"`
-  // {"en":"Time.", "zh_CN":"时间。"}
-  Time *string `json:"time,omitempty" xml:"time,omitempty" require:"true"`
-}
-
-func (s L7DdosTrendAttackedUrl) String() string {
-  return tea.Prettify(s)
-}
-
-func (s L7DdosTrendAttackedUrl) GoString() string {
-  return s.String()
-}
-
-func (s *L7DdosTrendAttackedUrl) SetAll_count(v int64) *L7DdosTrendAttackedUrl {
-  s.All_count = &v
-  return s
-}
-
-func (s *L7DdosTrendAttackedUrl) SetAttack_count(v int64) *L7DdosTrendAttackedUrl {
-  s.Attack_count = &v
-  return s
-}
-
-func (s *L7DdosTrendAttackedUrl) SetDef_count(v int64) *L7DdosTrendAttackedUrl {
-  s.Def_count = &v
-  return s
-}
-
-func (s *L7DdosTrendAttackedUrl) SetAi_count(v int64) *L7DdosTrendAttackedUrl {
-  s.Ai_count = &v
-  return s
-}
-
-func (s *L7DdosTrendAttackedUrl) SetIp_count(v int64) *L7DdosTrendAttackedUrl {
-  s.Ip_count = &v
-  return s
-}
-
-func (s *L7DdosTrendAttackedUrl) SetArea_count(v int64) *L7DdosTrendAttackedUrl {
-  s.Area_count = &v
-  return s
-}
-
-func (s *L7DdosTrendAttackedUrl) SetRule_count(v int64) *L7DdosTrendAttackedUrl {
-  s.Rule_count = &v
-  return s
-}
-
-func (s *L7DdosTrendAttackedUrl) SetLimit_count(v int64) *L7DdosTrendAttackedUrl {
-  s.Limit_count = &v
-  return s
-}
-
-func (s *L7DdosTrendAttackedUrl) SetTime(v string) *L7DdosTrendAttackedUrl {
-  s.Time = &v
-  return s
-}
-
-type L7DdosTrendPeak struct {
-  // {"en":"L7DdosTrendPeak Attack Value", "zh_CN":"峰值（QPS）"}
-  Peak_value *int64 `json:"peak_value,omitempty" xml:"peak_value,omitempty" require:"true"`
-  // {"en":"L7DdosTrendPeak Attack Time", "zh_CN":"峰值时间"}
-  Peak_time *string `json:"peak_time,omitempty" xml:"peak_time,omitempty" require:"true"`
-}
-
-func (s L7DdosTrendPeak) String() string {
-  return tea.Prettify(s)
-}
-
-func (s L7DdosTrendPeak) GoString() string {
-  return s.String()
-}
-
-func (s *L7DdosTrendPeak) SetPeak_value(v int64) *L7DdosTrendPeak {
-  s.Peak_value = &v
-  return s
-}
-
-func (s *L7DdosTrendPeak) SetPeak_time(v string) *L7DdosTrendPeak {
-  s.Peak_time = &v
-  return s
-}
-
-type L7DdosTrendPaths struct {
-}
-
-func (s L7DdosTrendPaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s L7DdosTrendPaths) GoString() string {
-  return s.String()
-}
-
-type L7DdosTrendParameters struct {
-}
-
-func (s L7DdosTrendParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s L7DdosTrendParameters) GoString() string {
-  return s.String()
-}
-
-type L7DdosTrendRequestHeader struct {
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
-}
-
-func (s L7DdosTrendRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s L7DdosTrendRequestHeader) GoString() string {
-  return s.String()
-}
-
-func (s *L7DdosTrendRequestHeader) SetServiceType(v string) *L7DdosTrendRequestHeader {
-  s.ServiceType = &v
-  return s
-}
-
-type L7DdosTrendResponseHeader struct {
-}
-
-func (s L7DdosTrendResponseHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s L7DdosTrendResponseHeader) GoString() string {
-  return s.String()
-}
-
-
-
-
 type GetbotrequestuseragentTopdataRequest struct {
   // {"en":"Domain.Separate by ';'.", "zh_CN":"域名。多个以;隔开"}
   Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
@@ -384,23 +156,15 @@ func (s GetbotrequestuseragentTopdataResponseHeader) GoString() string {
 
 
 type GetTriggeredCustomRulesRequest struct {
-  // {'en':'Top rankings, default value: 10, max: 1000.', 'zh_CN':'取前几排名，默认：10，上限：1000。'}
-  Top *int32 `json:"top,omitempty" xml:"top,omitempty"`
-  // {'en':'Multiple choice. Disposal result, default value: all results.
-  //  mitigated: Mitegaed requests.
-  //  monitored: monitored requests.', 'zh_CN':'多选。处置结果，默认：展示所有结果。
-  //  mitigated：已抵御请求数。
-  //  monitored：观察请求数。'}
+  // {"defaultValue":"10","en":"Top rankings, default value: 10, max: 1000.","zh_CN":"取前几排名，默认：10，上限：1000。"}
+  Top *int `json:"top,omitempty" xml:"top,omitempty"`
+  // {"en":"Multiple selection. Handling results, default: display all results.\nmitigated: Number of mitigated requests.\nmonitored: Number of observed requests.","zh_CN":"多选。处置结果，默认：展示所有结果。\nmitigated：已抵御请求数。\nmonitored：观察请求数。","exampleValue":"mitigated,monitored"}
   ActType []*string `json:"actType,omitempty" xml:"actType,omitempty" type:"Repeated"`
-  // {'en':'Start time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'起始时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"Start time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"起始时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {'en':'End time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'截止时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"End time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"截止时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
-  // {'en':'Hostname list, if not specified, it means all the hostnames of the account.', 'zh_CN':'域名列表，未指定时查询账号下的所有域名。'}
+  // {"en":"Domain list. Queries all domains under the account when not specified.","zh_CN":"域名列表，未指定时查询账号下的所有域名。"}
   Domains []*string `json:"domains,omitempty" xml:"domains,omitempty" type:"Repeated"`
 }
 
@@ -412,7 +176,7 @@ func (s GetTriggeredCustomRulesRequest) GoString() string {
   return s.String()
 }
 
-func (s *GetTriggeredCustomRulesRequest) SetTop(v int32) *GetTriggeredCustomRulesRequest {
+func (s *GetTriggeredCustomRulesRequest) SetTop(v int) *GetTriggeredCustomRulesRequest {
   s.Top = &v
   return s
 }
@@ -437,99 +201,35 @@ func (s *GetTriggeredCustomRulesRequest) SetDomains(v []*string) *GetTriggeredCu
   return s
 }
 
-type GetTriggeredCustomRulesResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'描述信息。'}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {'en':'Data.', 'zh_CN':'出参数据。'}
-  Data []*GetTriggeredCustomRulesRuleTopDTO `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
+type GetTriggeredCustomRulesRequestHeader struct {
+  // {"defaultValue":"en","en":"The language of response data, default value: en.\nzh_CN: Chinese\nen: English","zh_CN":"返回内容的语言版本，默认值: en。\nzh_CN：中文\nen：英文","exampleValue":"zh_CN,en"}
+  Language *string `json:"language,omitempty" xml:"language,omitempty"`
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+  // {"defaultValue":"GMT+8","en":"Report Data Timezone:1. Indicates the timezone for the report data. lt must be relative to GMT andspecified in the format GMT+n where -12<=n <= 12. For example,timezone=GMT-7 and timezone=GMT+8.2. If the parameter is unspecified,results will be in the GMT+8 timezone.","zh_CN":"报表数据时区：1.请传递GMT时区。示例格式：GMT+N（其中12<=N <= 12），示例：timezone=GMT-7或timezone=GMT+8.2.若参数为传递，将默认按GMT+8时区查询"}
+  Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty"`
 }
 
-func (s GetTriggeredCustomRulesResponse) String() string {
+func (s GetTriggeredCustomRulesRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetTriggeredCustomRulesResponse) GoString() string {
+func (s GetTriggeredCustomRulesRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *GetTriggeredCustomRulesResponse) SetCode(v string) *GetTriggeredCustomRulesResponse {
-  s.Code = &v
+func (s *GetTriggeredCustomRulesRequestHeader) SetLanguage(v string) *GetTriggeredCustomRulesRequestHeader {
+  s.Language = &v
   return s
 }
 
-func (s *GetTriggeredCustomRulesResponse) SetMsg(v string) *GetTriggeredCustomRulesResponse {
-  s.Msg = &v
+func (s *GetTriggeredCustomRulesRequestHeader) SetServiceType(v string) *GetTriggeredCustomRulesRequestHeader {
+  s.ServiceType = &v
   return s
 }
 
-func (s *GetTriggeredCustomRulesResponse) SetData(v []*GetTriggeredCustomRulesRuleTopDTO) *GetTriggeredCustomRulesResponse {
-  s.Data = v
-  return s
-}
-
-type GetTriggeredCustomRulesRuleHitDTO struct {
-  // {'en':'Action.', 'zh_CN':'采取动作。'}
-  Act *string `json:"act,omitempty" xml:"act,omitempty" require:"true"`
-  // {'en':'Hit times.', 'zh_CN':'命中数。'}
-  Value *int64 `json:"value,omitempty" xml:"value,omitempty" require:"true"`
-}
-
-func (s GetTriggeredCustomRulesRuleHitDTO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetTriggeredCustomRulesRuleHitDTO) GoString() string {
-  return s.String()
-}
-
-func (s *GetTriggeredCustomRulesRuleHitDTO) SetAct(v string) *GetTriggeredCustomRulesRuleHitDTO {
-  s.Act = &v
-  return s
-}
-
-func (s *GetTriggeredCustomRulesRuleHitDTO) SetValue(v int64) *GetTriggeredCustomRulesRuleHitDTO {
-  s.Value = &v
-  return s
-}
-
-type GetTriggeredCustomRulesRuleTopDTO struct {
-  // {'en':'Rule ID.', 'zh_CN':'规则ID。'}
-  RuleId *string `json:"ruleId,omitempty" xml:"ruleId,omitempty" require:"true"`
-  // {'en':'Rule name.', 'zh_CN':'规则名称。'}
-  RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
-  // {'en':'Protected target.', 'zh_CN':'业务场景。'}
-  Scene *string `json:"scene,omitempty" xml:"scene,omitempty" require:"true"`
-  // {'en':'Trigger times, sort by times.', 'zh_CN':'触发次数，按次数排序。'}
-  Hits []*GetTriggeredCustomRulesRuleHitDTO `json:"hits,omitempty" xml:"hits,omitempty" require:"true" type:"Repeated"`
-}
-
-func (s GetTriggeredCustomRulesRuleTopDTO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetTriggeredCustomRulesRuleTopDTO) GoString() string {
-  return s.String()
-}
-
-func (s *GetTriggeredCustomRulesRuleTopDTO) SetRuleId(v string) *GetTriggeredCustomRulesRuleTopDTO {
-  s.RuleId = &v
-  return s
-}
-
-func (s *GetTriggeredCustomRulesRuleTopDTO) SetRuleName(v string) *GetTriggeredCustomRulesRuleTopDTO {
-  s.RuleName = &v
-  return s
-}
-
-func (s *GetTriggeredCustomRulesRuleTopDTO) SetScene(v string) *GetTriggeredCustomRulesRuleTopDTO {
-  s.Scene = &v
-  return s
-}
-
-func (s *GetTriggeredCustomRulesRuleTopDTO) SetHits(v []*GetTriggeredCustomRulesRuleHitDTO) *GetTriggeredCustomRulesRuleTopDTO {
-  s.Hits = v
+func (s *GetTriggeredCustomRulesRequestHeader) SetTimezone(v string) *GetTriggeredCustomRulesRequestHeader {
+  s.Timezone = &v
   return s
 }
 
@@ -555,32 +255,99 @@ func (s GetTriggeredCustomRulesParameters) GoString() string {
   return s.String()
 }
 
-type GetTriggeredCustomRulesRequestHeader struct {
-  // {'en':'The language of response data, default value: en.
-  // zh_CN: Chinese
-  // en: English', 'zh_CN':'返回内容的语言版本，默认值: en。
-  // zh_CN：中文
-  // en：英文'}
-  Language *string `json:"language,omitempty" xml:"language,omitempty"`
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+type GetTriggeredCustomRulesResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"Data.","zh_CN":"出参数据。"}
+  Data []*GetTriggeredCustomRulesResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
 }
 
-func (s GetTriggeredCustomRulesRequestHeader) String() string {
+func (s GetTriggeredCustomRulesResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetTriggeredCustomRulesRequestHeader) GoString() string {
+func (s GetTriggeredCustomRulesResponse) GoString() string {
   return s.String()
 }
 
-func (s *GetTriggeredCustomRulesRequestHeader) SetLanguage(v string) *GetTriggeredCustomRulesRequestHeader {
-  s.Language = &v
+func (s *GetTriggeredCustomRulesResponse) SetCode(v string) *GetTriggeredCustomRulesResponse {
+  s.Code = &v
   return s
 }
 
-func (s *GetTriggeredCustomRulesRequestHeader) SetServiceType(v string) *GetTriggeredCustomRulesRequestHeader {
-  s.ServiceType = &v
+func (s *GetTriggeredCustomRulesResponse) SetMsg(v string) *GetTriggeredCustomRulesResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *GetTriggeredCustomRulesResponse) SetData(v []*GetTriggeredCustomRulesResponseData) *GetTriggeredCustomRulesResponse {
+  s.Data = v
+  return s
+}
+
+type GetTriggeredCustomRulesResponseData struct     {
+  // {"en":"Rule ID.","zh_CN":"规则ID。"}
+  RuleId *string `json:"ruleId,omitempty" xml:"ruleId,omitempty" require:"true"`
+  // {"en":"Rule name.","zh_CN":"规则名称。"}
+  RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
+  // {"en":"Protected target.","zh_CN":"业务场景。"}
+  Scene *string `json:"scene,omitempty" xml:"scene,omitempty" require:"true"`
+  // {"en":"Trigger times, sort by times.","zh_CN":"触发次数，按次数排序。"}
+  Hits []*GetTriggeredCustomRulesResponseDataHits `json:"hits,omitempty" xml:"hits,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s GetTriggeredCustomRulesResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetTriggeredCustomRulesResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *GetTriggeredCustomRulesResponseData) SetRuleId(v string) *GetTriggeredCustomRulesResponseData {
+  s.RuleId = &v
+  return s
+}
+
+func (s *GetTriggeredCustomRulesResponseData) SetRuleName(v string) *GetTriggeredCustomRulesResponseData {
+  s.RuleName = &v
+  return s
+}
+
+func (s *GetTriggeredCustomRulesResponseData) SetScene(v string) *GetTriggeredCustomRulesResponseData {
+  s.Scene = &v
+  return s
+}
+
+func (s *GetTriggeredCustomRulesResponseData) SetHits(v []*GetTriggeredCustomRulesResponseDataHits) *GetTriggeredCustomRulesResponseData {
+  s.Hits = v
+  return s
+}
+
+type GetTriggeredCustomRulesResponseDataHits struct     {
+  // {"en":"Action.","zh_CN":"采取动作。"}
+  Act *string `json:"act,omitempty" xml:"act,omitempty" require:"true"`
+  // {"en":"Hit times.","zh_CN":"命中数。"}
+  Value *int64 `json:"value,omitempty" xml:"value,omitempty" require:"true"`
+}
+
+func (s GetTriggeredCustomRulesResponseDataHits) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetTriggeredCustomRulesResponseDataHits) GoString() string {
+  return s.String()
+}
+
+func (s *GetTriggeredCustomRulesResponseDataHits) SetAct(v string) *GetTriggeredCustomRulesResponseDataHits {
+  s.Act = &v
+  return s
+}
+
+func (s *GetTriggeredCustomRulesResponseDataHits) SetValue(v int64) *GetTriggeredCustomRulesResponseDataHits {
+  s.Value = &v
   return s
 }
 
@@ -599,13 +366,9 @@ func (s GetTriggeredCustomRulesResponseHeader) GoString() string {
 
 
 type L4DdosEventRequest struct {
-  // {"en":"Start time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 30 days.", "zh_CN":"开始时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过30天。"}
+  // {"en":"Start time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"开始时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过30天。"}
   StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {"en":"End time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 30 days)", "zh_CN":"结束时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过30天。"}
+  // {"en":"End time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"结束时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过30天。"}
   EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
 }
 
@@ -627,95 +390,28 @@ func (s *L4DdosEventRequest) SetEndTime(v string) *L4DdosEventRequest {
   return s
 }
 
-type L4DdosEventResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Description.", "zh_CN":"描述信息。"}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {"en":"Data.", "zh_CN":"出参数据。"}
-  Data []*L4DdosEventAttackedUrl `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
+type L4DdosEventRequestHeader struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+  // {"defaultValue":"GMT+8","en":"Report Data Timezone:1. Indicates the timezone for the report data. lt must be relative to GMT andspecified in the format GMT+n where -12<=n <= 12. For example,timezone=GMT-7 and timezone=GMT+8.2. If the parameter is unspecified,results will be in the GMT+8 timezone.","zh_CN":"报表数据时区：1.请传递GMT时区。示例格式：GMT+N（其中12<=N <= 12），示例：timezone=GMT-7或timezone=GMT+8.2.若参数为传递，将默认按GMT+8时区查询"}
+  Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty"`
 }
 
-func (s L4DdosEventResponse) String() string {
+func (s L4DdosEventRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s L4DdosEventResponse) GoString() string {
+func (s L4DdosEventRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *L4DdosEventResponse) SetCode(v string) *L4DdosEventResponse {
-  s.Code = &v
+func (s *L4DdosEventRequestHeader) SetServiceType(v string) *L4DdosEventRequestHeader {
+  s.ServiceType = &v
   return s
 }
 
-func (s *L4DdosEventResponse) SetMsg(v string) *L4DdosEventResponse {
-  s.Msg = &v
-  return s
-}
-
-func (s *L4DdosEventResponse) SetData(v []*L4DdosEventAttackedUrl) *L4DdosEventResponse {
-  s.Data = v
-  return s
-}
-
-type L4DdosEventAttackedUrl struct {
-  // {"en":"Duration.", "zh_CN":"持续时间。"}
-  Duration *string `json:"duration,omitempty" xml:"duration,omitempty" require:"true"`
-  // {"en":"Start time.", "zh_CN":"开始时间。"}
-  Start_time *string `json:"start_time,omitempty" xml:"start_time,omitempty" require:"true"`
-  // {"en":"Attack type.", "zh_CN":"攻击类型。"}
-  Attack_type []*string `json:"attack_type,omitempty" xml:"attack_type,omitempty" require:"true" type:"Repeated"`
-  // {"en":"End time.", "zh_CN":"结束时间。"}
-  End_time *string `json:"end_time,omitempty" xml:"end_time,omitempty" require:"true"`
-  // {"en":"Max time.", "zh_CN":"峰值时间。"}
-  Max_time *string `json:"max_time,omitempty" xml:"max_time,omitempty" require:"true"`
-  // {"en":"Status.", "zh_CN":"状态 1.清洗结束 0.清洗中。"}
-  Status *string `json:"status,omitempty" xml:"status,omitempty" require:"true"`
-  // {"en":"Peak bandwidth.", "zh_CN":"峰值（Mbps）。"}
-  Max_value *string `json:"max_value,omitempty" xml:"max_value,omitempty" require:"true"`
-}
-
-func (s L4DdosEventAttackedUrl) String() string {
-  return tea.Prettify(s)
-}
-
-func (s L4DdosEventAttackedUrl) GoString() string {
-  return s.String()
-}
-
-func (s *L4DdosEventAttackedUrl) SetDuration(v string) *L4DdosEventAttackedUrl {
-  s.Duration = &v
-  return s
-}
-
-func (s *L4DdosEventAttackedUrl) SetStart_time(v string) *L4DdosEventAttackedUrl {
-  s.Start_time = &v
-  return s
-}
-
-func (s *L4DdosEventAttackedUrl) SetAttack_type(v []*string) *L4DdosEventAttackedUrl {
-  s.Attack_type = v
-  return s
-}
-
-func (s *L4DdosEventAttackedUrl) SetEnd_time(v string) *L4DdosEventAttackedUrl {
-  s.End_time = &v
-  return s
-}
-
-func (s *L4DdosEventAttackedUrl) SetMax_time(v string) *L4DdosEventAttackedUrl {
-  s.Max_time = &v
-  return s
-}
-
-func (s *L4DdosEventAttackedUrl) SetStatus(v string) *L4DdosEventAttackedUrl {
-  s.Status = &v
-  return s
-}
-
-func (s *L4DdosEventAttackedUrl) SetMax_value(v string) *L4DdosEventAttackedUrl {
-  s.Max_value = &v
+func (s *L4DdosEventRequestHeader) SetTimezone(v string) *L4DdosEventRequestHeader {
+  s.Timezone = &v
   return s
 }
 
@@ -741,21 +437,95 @@ func (s L4DdosEventParameters) GoString() string {
   return s.String()
 }
 
-type L4DdosEventRequestHeader struct {
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+type L4DdosEventResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"Data.","zh_CN":"出参数据。"}
+  Data []*L4DdosEventResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
 }
 
-func (s L4DdosEventRequestHeader) String() string {
+func (s L4DdosEventResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s L4DdosEventRequestHeader) GoString() string {
+func (s L4DdosEventResponse) GoString() string {
   return s.String()
 }
 
-func (s *L4DdosEventRequestHeader) SetServiceType(v string) *L4DdosEventRequestHeader {
-  s.ServiceType = &v
+func (s *L4DdosEventResponse) SetCode(v string) *L4DdosEventResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *L4DdosEventResponse) SetMsg(v string) *L4DdosEventResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *L4DdosEventResponse) SetData(v []*L4DdosEventResponseData) *L4DdosEventResponse {
+  s.Data = v
+  return s
+}
+
+type L4DdosEventResponseData struct     {
+  // {"en":"Duration.","zh_CN":"持续时间。"}
+  Duration *string `json:"duration,omitempty" xml:"duration,omitempty" require:"true"`
+  // {"en":"Start time.","zh_CN":"开始时间。"}
+  StartTime *string `json:"start_time,omitempty" xml:"start_time,omitempty" require:"true"`
+  // {"en":"Attack type.","zh_CN":"攻击类型。"}
+  AttackType []*string `json:"attack_type,omitempty" xml:"attack_type,omitempty" require:"true" type:"Repeated"`
+  // {"en":"End time.","zh_CN":"结束时间。"}
+  EndTime *string `json:"end_time,omitempty" xml:"end_time,omitempty" require:"true"`
+  // {"en":"Peak Attack Time.","zh_CN":"峰值时间。"}
+  MaxTime *string `json:"max_time,omitempty" xml:"max_time,omitempty" require:"true"`
+  // {"en":"Status.1:DDoS Mitigation Completed; 0:DDoS Mitigation Active","zh_CN":"状态 1.清洗结束 0.清洗中。","exampleValue":"1,0"}
+  Status *string `json:"status,omitempty" xml:"status,omitempty" require:"true"`
+  // {"en":"Peak bandwidth.","zh_CN":"峰值（Mbps）。"}
+  MaxValue *string `json:"max_value,omitempty" xml:"max_value,omitempty" require:"true"`
+}
+
+func (s L4DdosEventResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s L4DdosEventResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *L4DdosEventResponseData) SetDuration(v string) *L4DdosEventResponseData {
+  s.Duration = &v
+  return s
+}
+
+func (s *L4DdosEventResponseData) SetStartTime(v string) *L4DdosEventResponseData {
+  s.StartTime = &v
+  return s
+}
+
+func (s *L4DdosEventResponseData) SetAttackType(v []*string) *L4DdosEventResponseData {
+  s.AttackType = v
+  return s
+}
+
+func (s *L4DdosEventResponseData) SetEndTime(v string) *L4DdosEventResponseData {
+  s.EndTime = &v
+  return s
+}
+
+func (s *L4DdosEventResponseData) SetMaxTime(v string) *L4DdosEventResponseData {
+  s.MaxTime = &v
+  return s
+}
+
+func (s *L4DdosEventResponseData) SetStatus(v string) *L4DdosEventResponseData {
+  s.Status = &v
+  return s
+}
+
+func (s *L4DdosEventResponseData) SetMaxValue(v string) *L4DdosEventResponseData {
+  s.MaxValue = &v
   return s
 }
 
@@ -1098,188 +868,6 @@ func (s GetRuleStatusStatisticsResponseHeader) String() string {
 }
 
 func (s GetRuleStatusStatisticsResponseHeader) GoString() string {
-  return s.String()
-}
-
-
-
-
-type L7DdosEventsRequest struct {
-  // {"en":"Start time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 30 days.", "zh_CN":"开始时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过30天。"}
-  StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {"en":"End time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 30 days)", "zh_CN":"结束时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过30天。"}
-  EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
-  // {"en":"Hostname list.", "zh_CN":"域名数组。"}
-  Hostnames []*string `json:"Hostnames,omitempty" xml:"Hostnames,omitempty" require:"true" type:"Repeated"`
-}
-
-func (s L7DdosEventsRequest) String() string {
-  return tea.Prettify(s)
-}
-
-func (s L7DdosEventsRequest) GoString() string {
-  return s.String()
-}
-
-func (s *L7DdosEventsRequest) SetStartTime(v string) *L7DdosEventsRequest {
-  s.StartTime = &v
-  return s
-}
-
-func (s *L7DdosEventsRequest) SetEndTime(v string) *L7DdosEventsRequest {
-  s.EndTime = &v
-  return s
-}
-
-func (s *L7DdosEventsRequest) SetHostnames(v []*string) *L7DdosEventsRequest {
-  s.Hostnames = v
-  return s
-}
-
-type L7DdosEventsResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Description.", "zh_CN":"描述信息。"}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {"en":"Data.", "zh_CN":"出参数据。"}
-  Data []*L7DdosEventsAttackedUrl `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
-}
-
-func (s L7DdosEventsResponse) String() string {
-  return tea.Prettify(s)
-}
-
-func (s L7DdosEventsResponse) GoString() string {
-  return s.String()
-}
-
-func (s *L7DdosEventsResponse) SetCode(v string) *L7DdosEventsResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *L7DdosEventsResponse) SetMsg(v string) *L7DdosEventsResponse {
-  s.Msg = &v
-  return s
-}
-
-func (s *L7DdosEventsResponse) SetData(v []*L7DdosEventsAttackedUrl) *L7DdosEventsResponse {
-  s.Data = v
-  return s
-}
-
-type L7DdosEventsAttackedUrl struct {
-  // {"en":"Duration(minutes)", "zh_CN":"持续时间。"}
-  Duration *string `json:"duration,omitempty" xml:"duration,omitempty" require:"true"`
-  // {"en":"Start Time", "zh_CN":"开始时间。"}
-  Start_time *string `json:"start_time,omitempty" xml:"start_time,omitempty" require:"true"`
-  // {"en":"Attacked Requests", "zh_CN":"攻击次数。"}
-  Total_count *string `json:"total_count,omitempty" xml:"total_count,omitempty" require:"true"`
-  // {"en":"End time", "zh_CN":"结束时间。"}
-  End_time *string `json:"end_time,omitempty" xml:"end_time,omitempty" require:"true"`
-  // {"en":"Attacked Hostnames", "zh_CN":"被攻击域名。"}
-  Channel *string `json:"channel,omitempty" xml:"channel,omitempty" require:"true"`
-  // {"en":"Peak Time", "zh_CN":"峰值时间。"}
-  Max_time *string `json:"max_time,omitempty" xml:"max_time,omitempty" require:"true"`
-  // {"en":"Status.(1. Mitigated 0. Mitigating)", "zh_CN":"状态。（ 1.清洗结束 0.清洗中）"}
-  Status *string `json:"status,omitempty" xml:"status,omitempty" require:"true"`
-}
-
-func (s L7DdosEventsAttackedUrl) String() string {
-  return tea.Prettify(s)
-}
-
-func (s L7DdosEventsAttackedUrl) GoString() string {
-  return s.String()
-}
-
-func (s *L7DdosEventsAttackedUrl) SetDuration(v string) *L7DdosEventsAttackedUrl {
-  s.Duration = &v
-  return s
-}
-
-func (s *L7DdosEventsAttackedUrl) SetStart_time(v string) *L7DdosEventsAttackedUrl {
-  s.Start_time = &v
-  return s
-}
-
-func (s *L7DdosEventsAttackedUrl) SetTotal_count(v string) *L7DdosEventsAttackedUrl {
-  s.Total_count = &v
-  return s
-}
-
-func (s *L7DdosEventsAttackedUrl) SetEnd_time(v string) *L7DdosEventsAttackedUrl {
-  s.End_time = &v
-  return s
-}
-
-func (s *L7DdosEventsAttackedUrl) SetChannel(v string) *L7DdosEventsAttackedUrl {
-  s.Channel = &v
-  return s
-}
-
-func (s *L7DdosEventsAttackedUrl) SetMax_time(v string) *L7DdosEventsAttackedUrl {
-  s.Max_time = &v
-  return s
-}
-
-func (s *L7DdosEventsAttackedUrl) SetStatus(v string) *L7DdosEventsAttackedUrl {
-  s.Status = &v
-  return s
-}
-
-type L7DdosEventsPaths struct {
-}
-
-func (s L7DdosEventsPaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s L7DdosEventsPaths) GoString() string {
-  return s.String()
-}
-
-type L7DdosEventsParameters struct {
-}
-
-func (s L7DdosEventsParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s L7DdosEventsParameters) GoString() string {
-  return s.String()
-}
-
-type L7DdosEventsRequestHeader struct {
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
-}
-
-func (s L7DdosEventsRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s L7DdosEventsRequestHeader) GoString() string {
-  return s.String()
-}
-
-func (s *L7DdosEventsRequestHeader) SetServiceType(v string) *L7DdosEventsRequestHeader {
-  s.ServiceType = &v
-  return s
-}
-
-type L7DdosEventsResponseHeader struct {
-}
-
-func (s L7DdosEventsResponseHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s L7DdosEventsResponseHeader) GoString() string {
   return s.String()
 }
 
@@ -1830,23 +1418,15 @@ func (s GetWAFAttackIPResponseHeader) GoString() string {
 
 
 type GetTopAttackSourcesForGlobalRequest struct {
-  // {'en':'Top rankings, default value: 10, max: 1000.', 'zh_CN':'取前几排名，默认：10，上限：1000。'}
-  Top *int32 `json:"top,omitempty" xml:"top,omitempty"`
-  // {'en':'Multiple choice. Disposal result, default value: all results.
-  //  mitigated: Mitegaed requests.
-  //  monitored: monitored requests.', 'zh_CN':'多选。处置结果，默认：展示所有结果。
-  //  mitigated：已抵御请求数。
-  //  monitored：观察请求数。'}
+  // {"defaultValue":"10","en":"Top N rankings to retrieve, default: 10, maximum: 1000.","zh_CN":"取前几排名，默认：10，上限：1000。"}
+  Top *int `json:"top,omitempty" xml:"top,omitempty"`
+  // {"en":"Multiple selection. Handling results, default: display all results. mitigated: Number of mitigated requests. monitored: Number of observed requests.","zh_CN":"多选。处置结果，默认：展示所有结果。\nmitigated：已抵御请求数。\nmonitored：观察请求数。","exampleValue":"mitigated,monitored"}
   ActType []*string `json:"actType,omitempty" xml:"actType,omitempty" type:"Repeated"`
-  // {'en':'Start time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'起始时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"Start time, format: yyyy-MM-dd HH:mm:ss. The time range should not exceed 31 days.","zh_CN":"起始时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {'en':'End time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'截止时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"End time, format: yyyy-MM-dd HH:mm:ss. The time range should not exceed 31 days.","zh_CN":"截止时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
-  // {'en':'Hostname list, if not specified, it means all the hostnames of the account.', 'zh_CN':'域名列表，未指定时查询账号下的所有域名。'}
+  // {"en":"List of domains. If not specified, all domains under the account are queried.","zh_CN":"域名列表，未指定时查询账号下的所有域名。"}
   Domains []*string `json:"domains,omitempty" xml:"domains,omitempty" type:"Repeated"`
 }
 
@@ -1858,7 +1438,7 @@ func (s GetTopAttackSourcesForGlobalRequest) GoString() string {
   return s.String()
 }
 
-func (s *GetTopAttackSourcesForGlobalRequest) SetTop(v int32) *GetTopAttackSourcesForGlobalRequest {
+func (s *GetTopAttackSourcesForGlobalRequest) SetTop(v int) *GetTopAttackSourcesForGlobalRequest {
   s.Top = &v
   return s
 }
@@ -1883,60 +1463,35 @@ func (s *GetTopAttackSourcesForGlobalRequest) SetDomains(v []*string) *GetTopAtt
   return s
 }
 
-type GetTopAttackSourcesForGlobalResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'描述信息。'}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {'en':'Data.', 'zh_CN':'出参数据。'}
-  Data []*GetTopAttackSourcesForGlobalAreaTopDTO `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
+type GetTopAttackSourcesForGlobalRequestHeader struct {
+  // {"defaultValue":"en","en":"The language of response data, default value: en.\nzh_CN: Chinese\nen: English","zh_CN":"返回内容的语言版本，默认值: en。\nzh_CN：中文\nen：英文","exampleValue":"zh_CN,en"}
+  Language *string `json:"language,omitempty" xml:"language,omitempty"`
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+  // {"defaultValue":"GMT+8","en":"Report Data Timezone:1. Indicates the timezone for the report data. lt must be relative to GMT andspecified in the format GMT+n where -12<=n <= 12. For example,timezone=GMT-7 and timezone=GMT+8.2. If the parameter is unspecified,results will be in the GMT+8 timezone.","zh_CN":"报表数据时区：1.请传递GMT时区。示例格式：GMT+N（其中12<=N <= 12），示例：timezone=GMT-7或timezone=GMT+8.2.若参数为传递，将默认按GMT+8时区查询"}
+  Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty"`
 }
 
-func (s GetTopAttackSourcesForGlobalResponse) String() string {
+func (s GetTopAttackSourcesForGlobalRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetTopAttackSourcesForGlobalResponse) GoString() string {
+func (s GetTopAttackSourcesForGlobalRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *GetTopAttackSourcesForGlobalResponse) SetCode(v string) *GetTopAttackSourcesForGlobalResponse {
-  s.Code = &v
+func (s *GetTopAttackSourcesForGlobalRequestHeader) SetLanguage(v string) *GetTopAttackSourcesForGlobalRequestHeader {
+  s.Language = &v
   return s
 }
 
-func (s *GetTopAttackSourcesForGlobalResponse) SetMsg(v string) *GetTopAttackSourcesForGlobalResponse {
-  s.Msg = &v
+func (s *GetTopAttackSourcesForGlobalRequestHeader) SetServiceType(v string) *GetTopAttackSourcesForGlobalRequestHeader {
+  s.ServiceType = &v
   return s
 }
 
-func (s *GetTopAttackSourcesForGlobalResponse) SetData(v []*GetTopAttackSourcesForGlobalAreaTopDTO) *GetTopAttackSourcesForGlobalResponse {
-  s.Data = v
-  return s
-}
-
-type GetTopAttackSourcesForGlobalAreaTopDTO struct {
-  // {'en':'Source country or area.', 'zh_CN':'来源国家或地区。'}
-  Area *string `json:"area,omitempty" xml:"area,omitempty" require:"true"`
-  // {'en':'Attack requests.', 'zh_CN':'攻击请求数。'}
-  Value *int64 `json:"value,omitempty" xml:"value,omitempty" require:"true"`
-}
-
-func (s GetTopAttackSourcesForGlobalAreaTopDTO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetTopAttackSourcesForGlobalAreaTopDTO) GoString() string {
-  return s.String()
-}
-
-func (s *GetTopAttackSourcesForGlobalAreaTopDTO) SetArea(v string) *GetTopAttackSourcesForGlobalAreaTopDTO {
-  s.Area = &v
-  return s
-}
-
-func (s *GetTopAttackSourcesForGlobalAreaTopDTO) SetValue(v int64) *GetTopAttackSourcesForGlobalAreaTopDTO {
-  s.Value = &v
+func (s *GetTopAttackSourcesForGlobalRequestHeader) SetTimezone(v string) *GetTopAttackSourcesForGlobalRequestHeader {
+  s.Timezone = &v
   return s
 }
 
@@ -1962,32 +1517,60 @@ func (s GetTopAttackSourcesForGlobalParameters) GoString() string {
   return s.String()
 }
 
-type GetTopAttackSourcesForGlobalRequestHeader struct {
-  // {'en':'The language of response data, default value: en.
-  // zh_CN: Chinese
-  // en: English', 'zh_CN':'返回内容的语言版本，默认值: en。
-  // zh_CN：中文
-  // en：英文'}
-  Language *string `json:"language,omitempty" xml:"language,omitempty"`
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+type GetTopAttackSourcesForGlobalResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"Data.","zh_CN":"出参数据。"}
+  Data []*GetTopAttackSourcesForGlobalResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
 }
 
-func (s GetTopAttackSourcesForGlobalRequestHeader) String() string {
+func (s GetTopAttackSourcesForGlobalResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetTopAttackSourcesForGlobalRequestHeader) GoString() string {
+func (s GetTopAttackSourcesForGlobalResponse) GoString() string {
   return s.String()
 }
 
-func (s *GetTopAttackSourcesForGlobalRequestHeader) SetLanguage(v string) *GetTopAttackSourcesForGlobalRequestHeader {
-  s.Language = &v
+func (s *GetTopAttackSourcesForGlobalResponse) SetCode(v string) *GetTopAttackSourcesForGlobalResponse {
+  s.Code = &v
   return s
 }
 
-func (s *GetTopAttackSourcesForGlobalRequestHeader) SetServiceType(v string) *GetTopAttackSourcesForGlobalRequestHeader {
-  s.ServiceType = &v
+func (s *GetTopAttackSourcesForGlobalResponse) SetMsg(v string) *GetTopAttackSourcesForGlobalResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *GetTopAttackSourcesForGlobalResponse) SetData(v []*GetTopAttackSourcesForGlobalResponseData) *GetTopAttackSourcesForGlobalResponse {
+  s.Data = v
+  return s
+}
+
+type GetTopAttackSourcesForGlobalResponseData struct     {
+  // {"en":"Source country or area.","zh_CN":"来源国家或地区。"}
+  Area *string `json:"area,omitempty" xml:"area,omitempty" require:"true"`
+  // {"en":"Attack requests.","zh_CN":"攻击请求数。"}
+  Value *int64 `json:"value,omitempty" xml:"value,omitempty" require:"true"`
+}
+
+func (s GetTopAttackSourcesForGlobalResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetTopAttackSourcesForGlobalResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *GetTopAttackSourcesForGlobalResponseData) SetArea(v string) *GetTopAttackSourcesForGlobalResponseData {
+  s.Area = &v
+  return s
+}
+
+func (s *GetTopAttackSourcesForGlobalResponseData) SetValue(v int64) *GetTopAttackSourcesForGlobalResponseData {
+  s.Value = &v
   return s
 }
 
@@ -2880,21 +2463,13 @@ func (s GetWAFPolicyDetailsResponseHeader) GoString() string {
 
 
 type GetTrendsByrpsRequest struct {
-  // {'en':'Start time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'开始时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"Start time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"开始时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {'en':'End time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'结束时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"End time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"结束时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
-  // {'en':'Multiple choice. Disposal result, default value: all results.
-  //  mitigated: Mitegaed requests.
-  //  monitored: monitored requests.', 'zh_CN':'多选。处置结果，默认：展示所有结果。
-  //  mitigated：已抵御请求数。
-  //  monitored：观察请求数。'}
+  // {"en":"Multiple selection. Handling results, default: display all results. \nmitigated: Number of mitigated requests. \nmonitored: Number of observed requests.","zh_CN":"多选。处置结果，默认：展示所有结果。\nmitigated：已抵御请求数。\nmonitored：观察请求数。","exampleValue":"mitigated,monitored"}
   ActType []*string `json:"actType,omitempty" xml:"actType,omitempty" type:"Repeated"`
-  // {'en':'Hostname list, if not specified, it means all the hostnames of the account.', 'zh_CN':'域名列表，未指定时查询账号下的所有域名。'}
+  // {"en":"Domain list. Queries all domains under the account when not specified.","zh_CN":"域名列表，未指定时查询账号下的所有域名。"}
   Domains []*string `json:"domains,omitempty" xml:"domains,omitempty" type:"Repeated"`
 }
 
@@ -2926,136 +2501,28 @@ func (s *GetTrendsByrpsRequest) SetDomains(v []*string) *GetTrendsByrpsRequest {
   return s
 }
 
-type GetTrendsByrpsResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'描述信息。'}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {'en':'Data.', 'zh_CN':'出参数据。'}
-  Data []*GetTrendsByrpsEventTrendDTO `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
+type GetTrendsByrpsRequestHeader struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+  // {"defaultValue":"GMT+8","en":"Report Data Timezone:1. Indicates the timezone for the report data. lt must be relative to GMT andspecified in the format GMT+n where -12<=n <= 12. For example,timezone=GMT-7 and timezone=GMT+8.2. If the parameter is unspecified,results will be in the GMT+8 timezone.","zh_CN":"报表数据时区：1.请传递GMT时区。示例格式：GMT+N（其中12<=N <= 12），示例：timezone=GMT-7或timezone=GMT+8.2.若参数为传递，将默认按GMT+8时区查询"}
+  Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty"`
 }
 
-func (s GetTrendsByrpsResponse) String() string {
+func (s GetTrendsByrpsRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetTrendsByrpsResponse) GoString() string {
+func (s GetTrendsByrpsRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *GetTrendsByrpsResponse) SetCode(v string) *GetTrendsByrpsResponse {
-  s.Code = &v
+func (s *GetTrendsByrpsRequestHeader) SetServiceType(v string) *GetTrendsByrpsRequestHeader {
+  s.ServiceType = &v
   return s
 }
 
-func (s *GetTrendsByrpsResponse) SetMsg(v string) *GetTrendsByrpsResponse {
-  s.Msg = &v
-  return s
-}
-
-func (s *GetTrendsByrpsResponse) SetData(v []*GetTrendsByrpsEventTrendDTO) *GetTrendsByrpsResponse {
-  s.Data = v
-  return s
-}
-
-type GetTrendsByrpsEventTypeDTO struct {
-  // {'en':'Attack type.
-  //  BLOCK: IP/Geo Block
-  //  DMS_DEFEND: DDoS Protection
-  //  WAF_DEFEND: WAF
-  //  BOT_MANAGE: Bot Management
-  //  API_DEFEND: API Security
-  //  INTELLIGENCE: Threat Intelligence
-  //  RATE_LIMIT: Rate Limiting
-  //  CUSTOMIZE_RULE: Custom Rules', 'zh_CN':'攻击类型。
-  //  BLOCK：IP/区域封禁
-  //  DMS_DEFEND：DDoS防护
-  //  WAF_DEFEND：WAF
-  //  BOT_MANAGE：Bot管理
-  //  API_DEFEND：API安全
-  //  INTELLIGENCE：威胁情报
-  //  RATE_LIMIT：频率限制
-  //  CUSTOMIZE_RULE：自定义规则'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Number of attack requests of this type(per second).', 'zh_CN':'该类型攻击请求数（每秒均值）。'}
-  Value *int64 `json:"value,omitempty" xml:"value,omitempty" require:"true"`
-}
-
-func (s GetTrendsByrpsEventTypeDTO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetTrendsByrpsEventTypeDTO) GoString() string {
-  return s.String()
-}
-
-func (s *GetTrendsByrpsEventTypeDTO) SetCode(v string) *GetTrendsByrpsEventTypeDTO {
-  s.Code = &v
-  return s
-}
-
-func (s *GetTrendsByrpsEventTypeDTO) SetValue(v int64) *GetTrendsByrpsEventTypeDTO {
-  s.Value = &v
-  return s
-}
-
-type GetTrendsByrpsEventTrendDTO struct {
-  // {'en':'Time point(yyyy-MM-dd HH-mm-ss).', 'zh_CN':'时间点（yyyy-MM-dd HH-mm-ss）。'}
-  TimePoint *string `json:"timePoint,omitempty" xml:"timePoint,omitempty" require:"true"`
-  // {'en':'Total requests(per second).', 'zh_CN':'总请求数（每秒均值）。'}
-  Total *int64 `json:"total,omitempty" xml:"total,omitempty" require:"true"`
-  // {'en':'Attack requests(per second).', 'zh_CN':'攻击请求数（每秒均值）。'}
-  Attack *int64 `json:"attack,omitempty" xml:"attack,omitempty" require:"true"`
-  // {'en':'Mitigated requests.', 'zh_CN':'已抵御请求数。'}
-  Mitigated *int64 `json:"mitigated,omitempty" xml:"mitigated,omitempty" require:"true"`
-  // {'en':'Monitored requests.', 'zh_CN':'观察请求数。'}
-  Monitored *int64 `json:"monitored,omitempty" xml:"monitored,omitempty" require:"true"`
-  // {'en':'Whitelist requests(per second).', 'zh_CN':'白名单请求数（每秒均值）。'}
-  Whitelist *int64 `json:"whitelist,omitempty" xml:"whitelist,omitempty" require:"true"`
-  // {'en':'Attack type classification requests(per second).', 'zh_CN':'攻击类型分类请求数（每秒均值）。'}
-  Distribution []*GetTrendsByrpsEventTypeDTO `json:"distribution,omitempty" xml:"distribution,omitempty" require:"true" type:"Repeated"`
-}
-
-func (s GetTrendsByrpsEventTrendDTO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetTrendsByrpsEventTrendDTO) GoString() string {
-  return s.String()
-}
-
-func (s *GetTrendsByrpsEventTrendDTO) SetTimePoint(v string) *GetTrendsByrpsEventTrendDTO {
-  s.TimePoint = &v
-  return s
-}
-
-func (s *GetTrendsByrpsEventTrendDTO) SetTotal(v int64) *GetTrendsByrpsEventTrendDTO {
-  s.Total = &v
-  return s
-}
-
-func (s *GetTrendsByrpsEventTrendDTO) SetAttack(v int64) *GetTrendsByrpsEventTrendDTO {
-  s.Attack = &v
-  return s
-}
-
-func (s *GetTrendsByrpsEventTrendDTO) SetMitigated(v int64) *GetTrendsByrpsEventTrendDTO {
-  s.Mitigated = &v
-  return s
-}
-
-func (s *GetTrendsByrpsEventTrendDTO) SetMonitored(v int64) *GetTrendsByrpsEventTrendDTO {
-  s.Monitored = &v
-  return s
-}
-
-func (s *GetTrendsByrpsEventTrendDTO) SetWhitelist(v int64) *GetTrendsByrpsEventTrendDTO {
-  s.Whitelist = &v
-  return s
-}
-
-func (s *GetTrendsByrpsEventTrendDTO) SetDistribution(v []*GetTrendsByrpsEventTypeDTO) *GetTrendsByrpsEventTrendDTO {
-  s.Distribution = v
+func (s *GetTrendsByrpsRequestHeader) SetTimezone(v string) *GetTrendsByrpsRequestHeader {
+  s.Timezone = &v
   return s
 }
 
@@ -3081,21 +2548,120 @@ func (s GetTrendsByrpsParameters) GoString() string {
   return s.String()
 }
 
-type GetTrendsByrpsRequestHeader struct {
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+type GetTrendsByrpsResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"Data.","zh_CN":"出参数据。"}
+  Data []*GetTrendsByrpsResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
 }
 
-func (s GetTrendsByrpsRequestHeader) String() string {
+func (s GetTrendsByrpsResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetTrendsByrpsRequestHeader) GoString() string {
+func (s GetTrendsByrpsResponse) GoString() string {
   return s.String()
 }
 
-func (s *GetTrendsByrpsRequestHeader) SetServiceType(v string) *GetTrendsByrpsRequestHeader {
-  s.ServiceType = &v
+func (s *GetTrendsByrpsResponse) SetCode(v string) *GetTrendsByrpsResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *GetTrendsByrpsResponse) SetMsg(v string) *GetTrendsByrpsResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *GetTrendsByrpsResponse) SetData(v []*GetTrendsByrpsResponseData) *GetTrendsByrpsResponse {
+  s.Data = v
+  return s
+}
+
+type GetTrendsByrpsResponseData struct     {
+  // {"en":"Time point(yyyy-MM-dd HH-mm-ss).","zh_CN":"时间点（yyyy-MM-dd HH-mm-ss）。"}
+  TimePoint *string `json:"timePoint,omitempty" xml:"timePoint,omitempty" require:"true"`
+  // {"en":"Total requests(per second).","zh_CN":"总请求数（每秒均值）。"}
+  Total *int64 `json:"total,omitempty" xml:"total,omitempty" require:"true"`
+  // {"en":"Attack requests(per second).","zh_CN":"攻击请求数（每秒均值）。"}
+  Attack *int64 `json:"attack,omitempty" xml:"attack,omitempty" require:"true"`
+  // {"en":"Mitigated requests.","zh_CN":"已抵御请求数。"}
+  Mitigated *int64 `json:"mitigated,omitempty" xml:"mitigated,omitempty" require:"true"`
+  // {"en":"Monitored requests.","zh_CN":"观察请求数。"}
+  Monitored *int64 `json:"monitored,omitempty" xml:"monitored,omitempty" require:"true"`
+  // {"en":"Whitelist requests(per second).","zh_CN":"白名单请求数（每秒均值）。"}
+  Whitelist *int64 `json:"whitelist,omitempty" xml:"whitelist,omitempty" require:"true"`
+  // {"en":"Attack type classification requests(per second).","zh_CN":"攻击类型分类请求数（每秒均值）。"}
+  Distribution []*GetTrendsByrpsResponseDataDistribution `json:"distribution,omitempty" xml:"distribution,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s GetTrendsByrpsResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetTrendsByrpsResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *GetTrendsByrpsResponseData) SetTimePoint(v string) *GetTrendsByrpsResponseData {
+  s.TimePoint = &v
+  return s
+}
+
+func (s *GetTrendsByrpsResponseData) SetTotal(v int64) *GetTrendsByrpsResponseData {
+  s.Total = &v
+  return s
+}
+
+func (s *GetTrendsByrpsResponseData) SetAttack(v int64) *GetTrendsByrpsResponseData {
+  s.Attack = &v
+  return s
+}
+
+func (s *GetTrendsByrpsResponseData) SetMitigated(v int64) *GetTrendsByrpsResponseData {
+  s.Mitigated = &v
+  return s
+}
+
+func (s *GetTrendsByrpsResponseData) SetMonitored(v int64) *GetTrendsByrpsResponseData {
+  s.Monitored = &v
+  return s
+}
+
+func (s *GetTrendsByrpsResponseData) SetWhitelist(v int64) *GetTrendsByrpsResponseData {
+  s.Whitelist = &v
+  return s
+}
+
+func (s *GetTrendsByrpsResponseData) SetDistribution(v []*GetTrendsByrpsResponseDataDistribution) *GetTrendsByrpsResponseData {
+  s.Distribution = v
+  return s
+}
+
+type GetTrendsByrpsResponseDataDistribution struct     {
+  // {"en":"Attack type.\nBLOCK: IP/Geo Block\nDMS_DEFEND: DDoS Protection\nWAF_DEFEND: WAF\nBOT_MANAGE: Bot Management\nAPI_DEFEND: API Security\nINTELLIGENCE: Threat Intelligence\nRATE_LIMIT: Rate Limiting\nCUSTOMIZE_RULE: Custom Rules","zh_CN":"攻击类型。\nBLOCK：IP/区域封禁\nDMS_DEFEND：DDoS防护\nWAF_DEFEND：WAF\nBOT_MANAGE：Bot管理\nAPI_DEFEND：API安全\nINTELLIGENCE：威胁情报\nRATE_LIMIT：频率限制\nCUSTOMIZE_RULE：自定义规则","exampleValue":"BLOCK,DMS_DEFEND,WAF_DEFEND,BOT_MANAGE,API_DEFEND,INTELLIGENCE,RATE_LIMIT,CUSTOMIZE_RULE"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Number of attack requests of this type(per second).","zh_CN":"该类型攻击请求数（每秒均值）。"}
+  Value *int64 `json:"value,omitempty" xml:"value,omitempty" require:"true"`
+}
+
+func (s GetTrendsByrpsResponseDataDistribution) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetTrendsByrpsResponseDataDistribution) GoString() string {
+  return s.String()
+}
+
+func (s *GetTrendsByrpsResponseDataDistribution) SetCode(v string) *GetTrendsByrpsResponseDataDistribution {
+  s.Code = &v
+  return s
+}
+
+func (s *GetTrendsByrpsResponseDataDistribution) SetValue(v int64) *GetTrendsByrpsResponseDataDistribution {
+  s.Value = &v
   return s
 }
 
@@ -3334,223 +2900,6 @@ func (s GetRequestTrendResponseHeader) String() string {
 }
 
 func (s GetRequestTrendResponseHeader) GoString() string {
-  return s.String()
-}
-
-
-
-
-type GetL7DdosAnalysisAttackIpListV2Request struct {
-  // {"en":"Start time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 30 days.", "zh_CN":"开始时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过30天。"}
-  StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {"en":"End time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 30 days)", "zh_CN":"结束时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过30天。"}
-  EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
-  // {"en":"domains list.", "zh_CN":"域名数组。"}
-  Domains []*string `json:"domains,omitempty" xml:"domains,omitempty" require:"true" type:"Repeated"`
-  // {"en":"Top num.", "zh_CN":"默认10条。"}
-  TopNum *int `json:"topNum,omitempty" xml:"topNum,omitempty"`
-}
-
-func (s GetL7DdosAnalysisAttackIpListV2Request) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetL7DdosAnalysisAttackIpListV2Request) GoString() string {
-  return s.String()
-}
-
-func (s *GetL7DdosAnalysisAttackIpListV2Request) SetStartTime(v string) *GetL7DdosAnalysisAttackIpListV2Request {
-  s.StartTime = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackIpListV2Request) SetEndTime(v string) *GetL7DdosAnalysisAttackIpListV2Request {
-  s.EndTime = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackIpListV2Request) SetDomains(v []*string) *GetL7DdosAnalysisAttackIpListV2Request {
-  s.Domains = v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackIpListV2Request) SetTopNum(v int) *GetL7DdosAnalysisAttackIpListV2Request {
-  s.TopNum = &v
-  return s
-}
-
-type GetL7DdosAnalysisAttackIpListV2Response struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Description.", "zh_CN":"描述信息。"}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {"en":"Data.", "zh_CN":"出参数据。"}
-  Data []*GetL7DdosAnalysisAttackIpListV2AttackIp `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
-}
-
-func (s GetL7DdosAnalysisAttackIpListV2Response) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetL7DdosAnalysisAttackIpListV2Response) GoString() string {
-  return s.String()
-}
-
-func (s *GetL7DdosAnalysisAttackIpListV2Response) SetCode(v string) *GetL7DdosAnalysisAttackIpListV2Response {
-  s.Code = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackIpListV2Response) SetMsg(v string) *GetL7DdosAnalysisAttackIpListV2Response {
-  s.Msg = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackIpListV2Response) SetData(v []*GetL7DdosAnalysisAttackIpListV2AttackIp) *GetL7DdosAnalysisAttackIpListV2Response {
-  s.Data = v
-  return s
-}
-
-type GetL7DdosAnalysisAttackIpListV2AttackIp struct {
-  // {"en":"ip.", "zh_CN":"攻击ip。"}
-  Ip *string `json:"ip,omitempty" xml:"ip,omitempty" require:"true"`
-  // {"en":"All count.", "zh_CN":"总请求数。"}
-  All_count *int64 `json:"all_count,omitempty" xml:"all_count,omitempty" require:"true"`
-  // {"en":"Observed Requests.", "zh_CN":"观察请求数。"}
-  AlarmCount *int64 `json:"alarmCount,omitempty" xml:"alarmCount,omitempty" require:"true"`
-  // {"en":"Observed Ratio.", "zh_CN":"观察请求占比。"}
-  AlarmRatio *float64 `json:"alarmRatio,omitempty" xml:"alarmRatio,omitempty" require:"true"`
-  // {"en":"Resisted Requests.", "zh_CN":"已抵御请求数。"}
-  Count *int64 `json:"count,omitempty" xml:"count,omitempty" require:"true"`
-  // {"en":"Resisted Ratio.", "zh_CN":"已抵御请求占比。"}
-  Ratio *float64 `json:"ratio,omitempty" xml:"ratio,omitempty" require:"true"`
-  // {"en":"Country - Chinese.", "zh_CN":"国家——中文。"}
-  Ip_country_cn *string `json:"ip_country_cn,omitempty" xml:"ip_country_cn,omitempty" require:"true"`
-  // {"en":"Province -  Chinese.", "zh_CN":"省份——中文。"}
-  Ip_province_cn *string `json:"ip_province_cn,omitempty" xml:"ip_province_cn,omitempty" require:"true"`
-  // {"en":"city - English.", "zh_CN":"城市——英文。"}
-  Ip_city_en *string `json:"ip_city_en,omitempty" xml:"ip_city_en,omitempty" require:"true"`
-  // {"en":"Country - English.", "zh_CN":"国家——英文。"}
-  Ip_country_en *string `json:"ip_country_en,omitempty" xml:"ip_country_en,omitempty" require:"true"`
-  // {"en":"Province - English.", "zh_CN":"省份——英文。"}
-  Ip_province_en *string `json:"ip_province_en,omitempty" xml:"ip_province_en,omitempty" require:"true"`
-}
-
-func (s GetL7DdosAnalysisAttackIpListV2AttackIp) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetL7DdosAnalysisAttackIpListV2AttackIp) GoString() string {
-  return s.String()
-}
-
-func (s *GetL7DdosAnalysisAttackIpListV2AttackIp) SetIp(v string) *GetL7DdosAnalysisAttackIpListV2AttackIp {
-  s.Ip = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackIpListV2AttackIp) SetAll_count(v int64) *GetL7DdosAnalysisAttackIpListV2AttackIp {
-  s.All_count = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackIpListV2AttackIp) SetAlarmCount(v int64) *GetL7DdosAnalysisAttackIpListV2AttackIp {
-  s.AlarmCount = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackIpListV2AttackIp) SetAlarmRatio(v float64) *GetL7DdosAnalysisAttackIpListV2AttackIp {
-  s.AlarmRatio = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackIpListV2AttackIp) SetCount(v int64) *GetL7DdosAnalysisAttackIpListV2AttackIp {
-  s.Count = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackIpListV2AttackIp) SetRatio(v float64) *GetL7DdosAnalysisAttackIpListV2AttackIp {
-  s.Ratio = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackIpListV2AttackIp) SetIp_country_cn(v string) *GetL7DdosAnalysisAttackIpListV2AttackIp {
-  s.Ip_country_cn = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackIpListV2AttackIp) SetIp_province_cn(v string) *GetL7DdosAnalysisAttackIpListV2AttackIp {
-  s.Ip_province_cn = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackIpListV2AttackIp) SetIp_city_en(v string) *GetL7DdosAnalysisAttackIpListV2AttackIp {
-  s.Ip_city_en = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackIpListV2AttackIp) SetIp_country_en(v string) *GetL7DdosAnalysisAttackIpListV2AttackIp {
-  s.Ip_country_en = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackIpListV2AttackIp) SetIp_province_en(v string) *GetL7DdosAnalysisAttackIpListV2AttackIp {
-  s.Ip_province_en = &v
-  return s
-}
-
-type GetL7DdosAnalysisAttackIpListV2Paths struct {
-}
-
-func (s GetL7DdosAnalysisAttackIpListV2Paths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetL7DdosAnalysisAttackIpListV2Paths) GoString() string {
-  return s.String()
-}
-
-type GetL7DdosAnalysisAttackIpListV2Parameters struct {
-}
-
-func (s GetL7DdosAnalysisAttackIpListV2Parameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetL7DdosAnalysisAttackIpListV2Parameters) GoString() string {
-  return s.String()
-}
-
-type GetL7DdosAnalysisAttackIpListV2RequestHeader struct {
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
-}
-
-func (s GetL7DdosAnalysisAttackIpListV2RequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetL7DdosAnalysisAttackIpListV2RequestHeader) GoString() string {
-  return s.String()
-}
-
-func (s *GetL7DdosAnalysisAttackIpListV2RequestHeader) SetServiceType(v string) *GetL7DdosAnalysisAttackIpListV2RequestHeader {
-  s.ServiceType = &v
-  return s
-}
-
-type GetL7DdosAnalysisAttackIpListV2ResponseHeader struct {
-}
-
-func (s GetL7DdosAnalysisAttackIpListV2ResponseHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetL7DdosAnalysisAttackIpListV2ResponseHeader) GoString() string {
   return s.String()
 }
 
@@ -4079,23 +3428,15 @@ func (s GetRiskEventTop5ResponseHeader) GoString() string {
 
 
 type GetTriggeredDDoSManagedRulesRequest struct {
-  // {'en':'Top rankings, default value: 10, max: 1000.', 'zh_CN':'取前几排名，默认：10，上限：1000。'}
-  Top *int32 `json:"top,omitempty" xml:"top,omitempty"`
-  // {'en':'Multiple choice. Disposal result, default value: all results.
-  //  mitigated: Mitegaed requests.
-  //  monitored: monitored requests.', 'zh_CN':'多选。处置结果，默认：展示所有结果。
-  //  mitigated：已抵御请求数。
-  //  monitored：观察请求数。'}
+  // {"defaultValue":"10","en":"Top rankings, default value: 10, max: 1000.","zh_CN":"取前几排名，默认：10，上限：1000。"}
+  Top *int `json:"top,omitempty" xml:"top,omitempty"`
+  // {"en":"Multiple selection. Handling results, default: display all results.\nmitigated: Number of mitigated requests.\nmonitored: Number of observed requests.","zh_CN":"多选。处置结果，默认：展示所有结果。\nmitigated：已抵御请求数。\nmonitored：观察请求数。","exampleValue":"mitigated,monitored"}
   ActType []*string `json:"actType,omitempty" xml:"actType,omitempty" type:"Repeated"`
-  // {'en':'Start time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'起始时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"Start time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"起始时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {'en':'End time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'截止时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"End time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"截止时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
-  // {'en':'Hostname list, if not specified, it means all the hostnames of the account.', 'zh_CN':'域名列表，未指定时查询账号下的所有域名。'}
+  // {"en":"Domain list. Queries all domains under the account when not specified.","zh_CN":"域名列表，未指定时查询账号下的所有域名。"}
   Domains []*string `json:"domains,omitempty" xml:"domains,omitempty" type:"Repeated"`
 }
 
@@ -4107,7 +3448,7 @@ func (s GetTriggeredDDoSManagedRulesRequest) GoString() string {
   return s.String()
 }
 
-func (s *GetTriggeredDDoSManagedRulesRequest) SetTop(v int32) *GetTriggeredDDoSManagedRulesRequest {
+func (s *GetTriggeredDDoSManagedRulesRequest) SetTop(v int) *GetTriggeredDDoSManagedRulesRequest {
   s.Top = &v
   return s
 }
@@ -4132,106 +3473,35 @@ func (s *GetTriggeredDDoSManagedRulesRequest) SetDomains(v []*string) *GetTrigge
   return s
 }
 
-type GetTriggeredDDoSManagedRulesResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'描述信息。'}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {'en':'Data.', 'zh_CN':'出参数据。'}
-  Data []*GetTriggeredDDoSManagedRulesRuleTopDTO `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
+type GetTriggeredDDoSManagedRulesRequestHeader struct {
+  // {"defaultValue":"en","en":"The language of response data, default value: en.\nzh_CN: Chinese\nen: English","zh_CN":"返回内容的语言版本，默认值: en。\nzh_CN：中文\nen：英文","exampleValue":"zh_CN,en"}
+  Language *string `json:"language,omitempty" xml:"language,omitempty"`
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+  // {"defaultValue":"GMT+8","en":"Report Data Timezone:1. Indicates the timezone for the report data. lt must be relative to GMT andspecified in the format GMT+n where -12<=n <= 12. For example,timezone=GMT-7 and timezone=GMT+8.2. If the parameter is unspecified,results will be in the GMT+8 timezone.","zh_CN":"报表数据时区：1.请传递GMT时区。示例格式：GMT+N（其中12<=N <= 12），示例：timezone=GMT-7或timezone=GMT+8.2.若参数为传递，将默认按GMT+8时区查询"}
+  Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty"`
 }
 
-func (s GetTriggeredDDoSManagedRulesResponse) String() string {
+func (s GetTriggeredDDoSManagedRulesRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetTriggeredDDoSManagedRulesResponse) GoString() string {
+func (s GetTriggeredDDoSManagedRulesRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *GetTriggeredDDoSManagedRulesResponse) SetCode(v string) *GetTriggeredDDoSManagedRulesResponse {
-  s.Code = &v
+func (s *GetTriggeredDDoSManagedRulesRequestHeader) SetLanguage(v string) *GetTriggeredDDoSManagedRulesRequestHeader {
+  s.Language = &v
   return s
 }
 
-func (s *GetTriggeredDDoSManagedRulesResponse) SetMsg(v string) *GetTriggeredDDoSManagedRulesResponse {
-  s.Msg = &v
+func (s *GetTriggeredDDoSManagedRulesRequestHeader) SetServiceType(v string) *GetTriggeredDDoSManagedRulesRequestHeader {
+  s.ServiceType = &v
   return s
 }
 
-func (s *GetTriggeredDDoSManagedRulesResponse) SetData(v []*GetTriggeredDDoSManagedRulesRuleTopDTO) *GetTriggeredDDoSManagedRulesResponse {
-  s.Data = v
-  return s
-}
-
-type GetTriggeredDDoSManagedRulesRuleHitDTO struct {
-  // {'en':'Action.', 'zh_CN':'采取动作。'}
-  Act *string `json:"act,omitempty" xml:"act,omitempty" require:"true"`
-  // {'en':'Hit times.', 'zh_CN':'命中数。'}
-  Value *int64 `json:"value,omitempty" xml:"value,omitempty" require:"true"`
-}
-
-func (s GetTriggeredDDoSManagedRulesRuleHitDTO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetTriggeredDDoSManagedRulesRuleHitDTO) GoString() string {
-  return s.String()
-}
-
-func (s *GetTriggeredDDoSManagedRulesRuleHitDTO) SetAct(v string) *GetTriggeredDDoSManagedRulesRuleHitDTO {
-  s.Act = &v
-  return s
-}
-
-func (s *GetTriggeredDDoSManagedRulesRuleHitDTO) SetValue(v int64) *GetTriggeredDDoSManagedRulesRuleHitDTO {
-  s.Value = &v
-  return s
-}
-
-type GetTriggeredDDoSManagedRulesRuleTopDTO struct {
-  // {'en':'Rule ID.', 'zh_CN':'规则ID。'}
-  RuleId *string `json:"ruleId,omitempty" xml:"ruleId,omitempty" require:"true"`
-  // {'en':'Rule name.', 'zh_CN':'规则名称。'}
-  RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
-  // {'en':'Rule type.', 'zh_CN':'规则类型。'}
-  RuleType *string `json:"ruleType,omitempty" xml:"ruleType,omitempty" require:"true"`
-  // {'en':'System recommended action.', 'zh_CN':'系统推荐动作。'}
-  Action *string `json:"action,omitempty" xml:"action,omitempty" require:"true"`
-  // {'en':'Trigger times, sort by times.', 'zh_CN':'触发次数，按次数排序。'}
-  Hits []*GetTriggeredDDoSManagedRulesRuleHitDTO `json:"hits,omitempty" xml:"hits,omitempty" require:"true" type:"Repeated"`
-}
-
-func (s GetTriggeredDDoSManagedRulesRuleTopDTO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetTriggeredDDoSManagedRulesRuleTopDTO) GoString() string {
-  return s.String()
-}
-
-func (s *GetTriggeredDDoSManagedRulesRuleTopDTO) SetRuleId(v string) *GetTriggeredDDoSManagedRulesRuleTopDTO {
-  s.RuleId = &v
-  return s
-}
-
-func (s *GetTriggeredDDoSManagedRulesRuleTopDTO) SetRuleName(v string) *GetTriggeredDDoSManagedRulesRuleTopDTO {
-  s.RuleName = &v
-  return s
-}
-
-func (s *GetTriggeredDDoSManagedRulesRuleTopDTO) SetRuleType(v string) *GetTriggeredDDoSManagedRulesRuleTopDTO {
-  s.RuleType = &v
-  return s
-}
-
-func (s *GetTriggeredDDoSManagedRulesRuleTopDTO) SetAction(v string) *GetTriggeredDDoSManagedRulesRuleTopDTO {
-  s.Action = &v
-  return s
-}
-
-func (s *GetTriggeredDDoSManagedRulesRuleTopDTO) SetHits(v []*GetTriggeredDDoSManagedRulesRuleHitDTO) *GetTriggeredDDoSManagedRulesRuleTopDTO {
-  s.Hits = v
+func (s *GetTriggeredDDoSManagedRulesRequestHeader) SetTimezone(v string) *GetTriggeredDDoSManagedRulesRequestHeader {
+  s.Timezone = &v
   return s
 }
 
@@ -4257,32 +3527,106 @@ func (s GetTriggeredDDoSManagedRulesParameters) GoString() string {
   return s.String()
 }
 
-type GetTriggeredDDoSManagedRulesRequestHeader struct {
-  // {'en':'The language of response data, default value: en.
-  // zh_CN: Chinese
-  // en: English', 'zh_CN':'返回内容的语言版本，默认值: en。
-  // zh_CN：中文
-  // en：英文'}
-  Language *string `json:"language,omitempty" xml:"language,omitempty"`
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+type GetTriggeredDDoSManagedRulesResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"Data.","zh_CN":"出参数据。"}
+  Data []*GetTriggeredDDoSManagedRulesResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
 }
 
-func (s GetTriggeredDDoSManagedRulesRequestHeader) String() string {
+func (s GetTriggeredDDoSManagedRulesResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetTriggeredDDoSManagedRulesRequestHeader) GoString() string {
+func (s GetTriggeredDDoSManagedRulesResponse) GoString() string {
   return s.String()
 }
 
-func (s *GetTriggeredDDoSManagedRulesRequestHeader) SetLanguage(v string) *GetTriggeredDDoSManagedRulesRequestHeader {
-  s.Language = &v
+func (s *GetTriggeredDDoSManagedRulesResponse) SetCode(v string) *GetTriggeredDDoSManagedRulesResponse {
+  s.Code = &v
   return s
 }
 
-func (s *GetTriggeredDDoSManagedRulesRequestHeader) SetServiceType(v string) *GetTriggeredDDoSManagedRulesRequestHeader {
-  s.ServiceType = &v
+func (s *GetTriggeredDDoSManagedRulesResponse) SetMsg(v string) *GetTriggeredDDoSManagedRulesResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *GetTriggeredDDoSManagedRulesResponse) SetData(v []*GetTriggeredDDoSManagedRulesResponseData) *GetTriggeredDDoSManagedRulesResponse {
+  s.Data = v
+  return s
+}
+
+type GetTriggeredDDoSManagedRulesResponseData struct     {
+  // {"en":"Rule ID.","zh_CN":"规则ID。"}
+  RuleId *string `json:"ruleId,omitempty" xml:"ruleId,omitempty" require:"true"`
+  // {"en":"Rule name.","zh_CN":"规则名称。"}
+  RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
+  // {"en":"Rule type.","zh_CN":"规则类型。"}
+  RuleType *string `json:"ruleType,omitempty" xml:"ruleType,omitempty" require:"true"`
+  // {"en":"System recommended action.","zh_CN":"系统推荐动作。"}
+  Action *string `json:"action,omitempty" xml:"action,omitempty" require:"true"`
+  // {"en":"Trigger times, sort by times.","zh_CN":"触发次数，按次数排序。"}
+  Hits []*GetTriggeredDDoSManagedRulesResponseDataHits `json:"hits,omitempty" xml:"hits,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s GetTriggeredDDoSManagedRulesResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetTriggeredDDoSManagedRulesResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *GetTriggeredDDoSManagedRulesResponseData) SetRuleId(v string) *GetTriggeredDDoSManagedRulesResponseData {
+  s.RuleId = &v
+  return s
+}
+
+func (s *GetTriggeredDDoSManagedRulesResponseData) SetRuleName(v string) *GetTriggeredDDoSManagedRulesResponseData {
+  s.RuleName = &v
+  return s
+}
+
+func (s *GetTriggeredDDoSManagedRulesResponseData) SetRuleType(v string) *GetTriggeredDDoSManagedRulesResponseData {
+  s.RuleType = &v
+  return s
+}
+
+func (s *GetTriggeredDDoSManagedRulesResponseData) SetAction(v string) *GetTriggeredDDoSManagedRulesResponseData {
+  s.Action = &v
+  return s
+}
+
+func (s *GetTriggeredDDoSManagedRulesResponseData) SetHits(v []*GetTriggeredDDoSManagedRulesResponseDataHits) *GetTriggeredDDoSManagedRulesResponseData {
+  s.Hits = v
+  return s
+}
+
+type GetTriggeredDDoSManagedRulesResponseDataHits struct     {
+  // {"en":"Action.","zh_CN":"采取动作。"}
+  Act *string `json:"act,omitempty" xml:"act,omitempty" require:"true"`
+  // {"en":"Hit times.","zh_CN":"命中数。"}
+  Value *int64 `json:"value,omitempty" xml:"value,omitempty" require:"true"`
+}
+
+func (s GetTriggeredDDoSManagedRulesResponseDataHits) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetTriggeredDDoSManagedRulesResponseDataHits) GoString() string {
+  return s.String()
+}
+
+func (s *GetTriggeredDDoSManagedRulesResponseDataHits) SetAct(v string) *GetTriggeredDDoSManagedRulesResponseDataHits {
+  s.Act = &v
+  return s
+}
+
+func (s *GetTriggeredDDoSManagedRulesResponseDataHits) SetValue(v int64) *GetTriggeredDDoSManagedRulesResponseDataHits {
+  s.Value = &v
   return s
 }
 
@@ -4301,23 +3645,15 @@ func (s GetTriggeredDDoSManagedRulesResponseHeader) GoString() string {
 
 
 type GetTopAttackSourcesForChinaMainlandRequest struct {
-  // {'en':'Top rankings, default value: 10, max: 1000.', 'zh_CN':'取前几排名，默认：10，上限：1000。'}
-  Top *int32 `json:"top,omitempty" xml:"top,omitempty"`
-  // {'en':'Multiple choice. Disposal result, default value: all results.
-  //  mitigated: Mitegaed requests.
-  //  monitored: monitored requests.', 'zh_CN':'多选。处置结果，默认：展示所有结果。
-  //  mitigated：已抵御请求数。
-  //  monitored：观察请求数。'}
+  // {"defaultValue":"10","en":"Top rankings, default value: 10, max: 1000.","zh_CN":"取前几排名，默认：10，上限：1000。"}
+  Top *int `json:"top,omitempty" xml:"top,omitempty"`
+  // {"en":"Multiple selection. Handling results, default: display all results.\nmitigated: Number of mitigated requests.\nmonitored: Number of observed requests.","zh_CN":"多选。处置结果，默认：展示所有结果。\nmitigated：已抵御请求数。\nmonitored：观察请求数。","exampleValue":"mitigated,monitored"}
   ActType []*string `json:"actType,omitempty" xml:"actType,omitempty" type:"Repeated"`
-  // {'en':'Start time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'起始时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"Start time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"起始时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {'en':'End time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'截止时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"End time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"截止时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
-  // {'en':'Hostname list, if not specified, it means all the hostnames of the account.', 'zh_CN':'域名列表，未指定时查询账号下的所有域名。'}
+  // {"en":"Domain list. Queries all domains under the account when not specified.","zh_CN":"域名列表，未指定时查询账号下的所有域名。"}
   Domains []*string `json:"domains,omitempty" xml:"domains,omitempty" type:"Repeated"`
 }
 
@@ -4329,7 +3665,7 @@ func (s GetTopAttackSourcesForChinaMainlandRequest) GoString() string {
   return s.String()
 }
 
-func (s *GetTopAttackSourcesForChinaMainlandRequest) SetTop(v int32) *GetTopAttackSourcesForChinaMainlandRequest {
+func (s *GetTopAttackSourcesForChinaMainlandRequest) SetTop(v int) *GetTopAttackSourcesForChinaMainlandRequest {
   s.Top = &v
   return s
 }
@@ -4354,67 +3690,35 @@ func (s *GetTopAttackSourcesForChinaMainlandRequest) SetDomains(v []*string) *Ge
   return s
 }
 
-type GetTopAttackSourcesForChinaMainlandResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'描述信息。'}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {'en':'Data.', 'zh_CN':'出参数据。'}
-  Data []*GetTopAttackSourcesForChinaMainlandAreaTopDTO `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
+type GetTopAttackSourcesForChinaMainlandRequestHeader struct {
+  // {"defaultValue":"en","en":"The language of response data, default value: en.\nzh_CN: Chinese\nen: English","zh_CN":"返回内容的语言版本，默认值: en。\nzh_CN：中文\nen：英文","exampleValue":"zh_CN,en"}
+  Language *string `json:"language,omitempty" xml:"language,omitempty"`
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+  // {"defaultValue":"GMT+8","en":"Report Data Timezone:1. Indicates the timezone for the report data. lt must be relative to GMT andspecified in the format GMT+n where -12<=n <= 12. For example,timezone=GMT-7 and timezone=GMT+8.2. If the parameter is unspecified,results will be in the GMT+8 timezone.","zh_CN":"报表数据时区：1.请传递GMT时区。示例格式：GMT+N（其中12<=N <= 12），示例：timezone=GMT-7或timezone=GMT+8.2.若参数为传递，将默认按GMT+8时区查询"}
+  Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty"`
 }
 
-func (s GetTopAttackSourcesForChinaMainlandResponse) String() string {
+func (s GetTopAttackSourcesForChinaMainlandRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetTopAttackSourcesForChinaMainlandResponse) GoString() string {
+func (s GetTopAttackSourcesForChinaMainlandRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *GetTopAttackSourcesForChinaMainlandResponse) SetCode(v string) *GetTopAttackSourcesForChinaMainlandResponse {
-  s.Code = &v
+func (s *GetTopAttackSourcesForChinaMainlandRequestHeader) SetLanguage(v string) *GetTopAttackSourcesForChinaMainlandRequestHeader {
+  s.Language = &v
   return s
 }
 
-func (s *GetTopAttackSourcesForChinaMainlandResponse) SetMsg(v string) *GetTopAttackSourcesForChinaMainlandResponse {
-  s.Msg = &v
+func (s *GetTopAttackSourcesForChinaMainlandRequestHeader) SetServiceType(v string) *GetTopAttackSourcesForChinaMainlandRequestHeader {
+  s.ServiceType = &v
   return s
 }
 
-func (s *GetTopAttackSourcesForChinaMainlandResponse) SetData(v []*GetTopAttackSourcesForChinaMainlandAreaTopDTO) *GetTopAttackSourcesForChinaMainlandResponse {
-  s.Data = v
-  return s
-}
-
-type GetTopAttackSourcesForChinaMainlandAreaTopDTO struct {
-  // {'en':'Source area(domestic province).', 'zh_CN':'来源地区（国内省份）。'}
-  Area *string `json:"area,omitempty" xml:"area,omitempty" require:"true"`
-  // {'en':'Source city.', 'zh_CN':'来源城市。'}
-  City *string `json:"city,omitempty" xml:"city,omitempty" require:"true"`
-  // {'en':'Attack requests.', 'zh_CN':'攻击请求数。'}
-  Value *int64 `json:"value,omitempty" xml:"value,omitempty" require:"true"`
-}
-
-func (s GetTopAttackSourcesForChinaMainlandAreaTopDTO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetTopAttackSourcesForChinaMainlandAreaTopDTO) GoString() string {
-  return s.String()
-}
-
-func (s *GetTopAttackSourcesForChinaMainlandAreaTopDTO) SetArea(v string) *GetTopAttackSourcesForChinaMainlandAreaTopDTO {
-  s.Area = &v
-  return s
-}
-
-func (s *GetTopAttackSourcesForChinaMainlandAreaTopDTO) SetCity(v string) *GetTopAttackSourcesForChinaMainlandAreaTopDTO {
-  s.City = &v
-  return s
-}
-
-func (s *GetTopAttackSourcesForChinaMainlandAreaTopDTO) SetValue(v int64) *GetTopAttackSourcesForChinaMainlandAreaTopDTO {
-  s.Value = &v
+func (s *GetTopAttackSourcesForChinaMainlandRequestHeader) SetTimezone(v string) *GetTopAttackSourcesForChinaMainlandRequestHeader {
+  s.Timezone = &v
   return s
 }
 
@@ -4440,32 +3744,67 @@ func (s GetTopAttackSourcesForChinaMainlandParameters) GoString() string {
   return s.String()
 }
 
-type GetTopAttackSourcesForChinaMainlandRequestHeader struct {
-  // {'en':'The language of response data, default value: en.
-  // zh_CN: Chinese
-  // en: English', 'zh_CN':'返回内容的语言版本，默认值: en。
-  // zh_CN：中文
-  // en：英文'}
-  Language *string `json:"language,omitempty" xml:"language,omitempty"`
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+type GetTopAttackSourcesForChinaMainlandResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"Data.","zh_CN":"出参数据。"}
+  Data []*GetTopAttackSourcesForChinaMainlandResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
 }
 
-func (s GetTopAttackSourcesForChinaMainlandRequestHeader) String() string {
+func (s GetTopAttackSourcesForChinaMainlandResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetTopAttackSourcesForChinaMainlandRequestHeader) GoString() string {
+func (s GetTopAttackSourcesForChinaMainlandResponse) GoString() string {
   return s.String()
 }
 
-func (s *GetTopAttackSourcesForChinaMainlandRequestHeader) SetLanguage(v string) *GetTopAttackSourcesForChinaMainlandRequestHeader {
-  s.Language = &v
+func (s *GetTopAttackSourcesForChinaMainlandResponse) SetCode(v string) *GetTopAttackSourcesForChinaMainlandResponse {
+  s.Code = &v
   return s
 }
 
-func (s *GetTopAttackSourcesForChinaMainlandRequestHeader) SetServiceType(v string) *GetTopAttackSourcesForChinaMainlandRequestHeader {
-  s.ServiceType = &v
+func (s *GetTopAttackSourcesForChinaMainlandResponse) SetMsg(v string) *GetTopAttackSourcesForChinaMainlandResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *GetTopAttackSourcesForChinaMainlandResponse) SetData(v []*GetTopAttackSourcesForChinaMainlandResponseData) *GetTopAttackSourcesForChinaMainlandResponse {
+  s.Data = v
+  return s
+}
+
+type GetTopAttackSourcesForChinaMainlandResponseData struct     {
+  // {"en":"Source area(domestic province).","zh_CN":"来源地区（国内省份）。"}
+  Area *string `json:"area,omitempty" xml:"area,omitempty" require:"true"`
+  // {"en":"Source city.","zh_CN":"来源城市。"}
+  City *string `json:"city,omitempty" xml:"city,omitempty" require:"true"`
+  // {"en":"Attack requests.","zh_CN":"攻击请求数。"}
+  Value *int64 `json:"value,omitempty" xml:"value,omitempty" require:"true"`
+}
+
+func (s GetTopAttackSourcesForChinaMainlandResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetTopAttackSourcesForChinaMainlandResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *GetTopAttackSourcesForChinaMainlandResponseData) SetArea(v string) *GetTopAttackSourcesForChinaMainlandResponseData {
+  s.Area = &v
+  return s
+}
+
+func (s *GetTopAttackSourcesForChinaMainlandResponseData) SetCity(v string) *GetTopAttackSourcesForChinaMainlandResponseData {
+  s.City = &v
+  return s
+}
+
+func (s *GetTopAttackSourcesForChinaMainlandResponseData) SetValue(v int64) *GetTopAttackSourcesForChinaMainlandResponseData {
+  s.Value = &v
   return s
 }
 
@@ -5115,152 +4454,6 @@ func (s GetWAFAttackedDomainResponseHeader) GoString() string {
 
 
 
-type DmsThreatenAnalysisAttackedUrlsRequest struct {
-  // {"en":"start time", "zh_CN":"开始时间"}
-  StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {"en":"end time", "zh_CN":"结束时间"}
-  EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
-  // {"en":"hostname", "zh_CN":"域名，多个用;分隔"}
-  Hostname *string `json:"hostname,omitempty" xml:"hostname,omitempty" require:"true"`
-  // {"en":"top num", "zh_CN":"默认10条"}
-  TopNum *int `json:"topNum,omitempty" xml:"topNum,omitempty"`
-}
-
-func (s DmsThreatenAnalysisAttackedUrlsRequest) String() string {
-  return tea.Prettify(s)
-}
-
-func (s DmsThreatenAnalysisAttackedUrlsRequest) GoString() string {
-  return s.String()
-}
-
-func (s *DmsThreatenAnalysisAttackedUrlsRequest) SetStartTime(v string) *DmsThreatenAnalysisAttackedUrlsRequest {
-  s.StartTime = &v
-  return s
-}
-
-func (s *DmsThreatenAnalysisAttackedUrlsRequest) SetEndTime(v string) *DmsThreatenAnalysisAttackedUrlsRequest {
-  s.EndTime = &v
-  return s
-}
-
-func (s *DmsThreatenAnalysisAttackedUrlsRequest) SetHostname(v string) *DmsThreatenAnalysisAttackedUrlsRequest {
-  s.Hostname = &v
-  return s
-}
-
-func (s *DmsThreatenAnalysisAttackedUrlsRequest) SetTopNum(v int) *DmsThreatenAnalysisAttackedUrlsRequest {
-  s.TopNum = &v
-  return s
-}
-
-type DmsThreatenAnalysisAttackedUrlsResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Description.", "zh_CN":"描述信息。"}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {"en":"Data.", "zh_CN":"出参数据。"}
-  Data map[string]interface{} `json:"data,omitempty" xml:"data,omitempty" require:"true"`
-  // {"en":"url", "zh_CN":"url"}
-  Url *string `json:"url,omitempty" xml:"url,omitempty" require:"true"`
-  // {"en":"alarm count", "zh_CN":"告警数"}
-  AlarmCount *int64 `json:"alarmCount,omitempty" xml:"alarmCount,omitempty" require:"true"`
-  // {"en":"all count", "zh_CN":"总数"}
-  Count *int64 `json:"count,omitempty" xml:"count,omitempty" require:"true"`
-}
-
-func (s DmsThreatenAnalysisAttackedUrlsResponse) String() string {
-  return tea.Prettify(s)
-}
-
-func (s DmsThreatenAnalysisAttackedUrlsResponse) GoString() string {
-  return s.String()
-}
-
-func (s *DmsThreatenAnalysisAttackedUrlsResponse) SetCode(v string) *DmsThreatenAnalysisAttackedUrlsResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *DmsThreatenAnalysisAttackedUrlsResponse) SetMsg(v string) *DmsThreatenAnalysisAttackedUrlsResponse {
-  s.Msg = &v
-  return s
-}
-
-func (s *DmsThreatenAnalysisAttackedUrlsResponse) SetData(v map[string]interface{}) *DmsThreatenAnalysisAttackedUrlsResponse {
-  s.Data = v
-  return s
-}
-
-func (s *DmsThreatenAnalysisAttackedUrlsResponse) SetUrl(v string) *DmsThreatenAnalysisAttackedUrlsResponse {
-  s.Url = &v
-  return s
-}
-
-func (s *DmsThreatenAnalysisAttackedUrlsResponse) SetAlarmCount(v int64) *DmsThreatenAnalysisAttackedUrlsResponse {
-  s.AlarmCount = &v
-  return s
-}
-
-func (s *DmsThreatenAnalysisAttackedUrlsResponse) SetCount(v int64) *DmsThreatenAnalysisAttackedUrlsResponse {
-  s.Count = &v
-  return s
-}
-
-type DmsThreatenAnalysisAttackedUrlsPaths struct {
-}
-
-func (s DmsThreatenAnalysisAttackedUrlsPaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s DmsThreatenAnalysisAttackedUrlsPaths) GoString() string {
-  return s.String()
-}
-
-type DmsThreatenAnalysisAttackedUrlsParameters struct {
-}
-
-func (s DmsThreatenAnalysisAttackedUrlsParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s DmsThreatenAnalysisAttackedUrlsParameters) GoString() string {
-  return s.String()
-}
-
-type DmsThreatenAnalysisAttackedUrlsRequestHeader struct {
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
-}
-
-func (s DmsThreatenAnalysisAttackedUrlsRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s DmsThreatenAnalysisAttackedUrlsRequestHeader) GoString() string {
-  return s.String()
-}
-
-func (s *DmsThreatenAnalysisAttackedUrlsRequestHeader) SetServiceType(v string) *DmsThreatenAnalysisAttackedUrlsRequestHeader {
-  s.ServiceType = &v
-  return s
-}
-
-type DmsThreatenAnalysisAttackedUrlsResponseHeader struct {
-}
-
-func (s DmsThreatenAnalysisAttackedUrlsResponseHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s DmsThreatenAnalysisAttackedUrlsResponseHeader) GoString() string {
-  return s.String()
-}
-
-
-
-
 type GetBotRequestOverviewDataRequest struct {
   // {"en":"Domain.Separate by ';'.", "zh_CN":"域名。多个以;隔开"}
   Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
@@ -5419,23 +4612,15 @@ func (s GetBotRequestOverviewDataResponseHeader) GoString() string {
 
 
 type GetTopAttackTargetsByPathRequest struct {
-  // {'en':'Top rankings, default: 100, max: 1000.', 'zh_CN':'取前几排名，默认100，上限1000。'}
-  Top *int32 `json:"top,omitempty" xml:"top,omitempty"`
-  // {'en':'Multiple choice. Disposal result, default value: all results.
-  //  mitigated: Mitegaed requests.
-  //  monitored: monitored requests.', 'zh_CN':'多选。处置结果，默认：展示所有结果。
-  //  mitigated：已抵御请求数。
-  //  monitored：观察请求数。'}
+  // {"defaultValue":"100","en":"Top rankings, default: 100, max: 1000.","zh_CN":"取前几排名，默认100，上限1000。"}
+  Top *int `json:"top,omitempty" xml:"top,omitempty"`
+  // {"en":"Multiple selection. Handling results, default: display all results.\nmitigated: Number of mitigated requests.\nmonitored: Number of observed requests.","zh_CN":"多选。处置结果，默认：展示所有结果。\nmitigated：已抵御请求数。\nmonitored：观察请求数。","exampleValue":"mitigated,monitored"}
   ActType []*string `json:"actType,omitempty" xml:"actType,omitempty" type:"Repeated"`
-  // {'en':'Start time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'起始时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"Start time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"起始时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {'en':'End time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'截止时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"End time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"截止时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
-  // {'en':'Hostname list, if not specified, it means all the hostnames of the account.', 'zh_CN':'域名列表，未指定时查询账号下的所有域名。'}
+  // {"en":"Domain list. Queries all domains under the account when not specified.","zh_CN":"域名列表，未指定时查询账号下的所有域名。"}
   Domains []*string `json:"domains,omitempty" xml:"domains,omitempty" type:"Repeated"`
 }
 
@@ -5447,7 +4632,7 @@ func (s GetTopAttackTargetsByPathRequest) GoString() string {
   return s.String()
 }
 
-func (s *GetTopAttackTargetsByPathRequest) SetTop(v int32) *GetTopAttackTargetsByPathRequest {
+func (s *GetTopAttackTargetsByPathRequest) SetTop(v int) *GetTopAttackTargetsByPathRequest {
   s.Top = &v
   return s
 }
@@ -5472,60 +4657,28 @@ func (s *GetTopAttackTargetsByPathRequest) SetDomains(v []*string) *GetTopAttack
   return s
 }
 
-type GetTopAttackTargetsByPathResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'描述信息。'}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {'en':'Data.', 'zh_CN':'出参数据。'}
-  Data []*GetTopAttackTargetsByPathUrlTopDTO `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
+type GetTopAttackTargetsByPathRequestHeader struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+  // {"defaultValue":"GMT+8","en":"Report Data Timezone:1. Indicates the timezone for the report data. lt must be relative to GMT andspecified in the format GMT+n where -12<=n <= 12. For example,timezone=GMT-7 and timezone=GMT+8.2. If the parameter is unspecified,results will be in the GMT+8 timezone.","zh_CN":"报表数据时区：1.请传递GMT时区。示例格式：GMT+N（其中12<=N <= 12），示例：timezone=GMT-7或timezone=GMT+8.2.若参数为传递，将默认按GMT+8时区查询"}
+  Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty"`
 }
 
-func (s GetTopAttackTargetsByPathResponse) String() string {
+func (s GetTopAttackTargetsByPathRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetTopAttackTargetsByPathResponse) GoString() string {
+func (s GetTopAttackTargetsByPathRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *GetTopAttackTargetsByPathResponse) SetCode(v string) *GetTopAttackTargetsByPathResponse {
-  s.Code = &v
+func (s *GetTopAttackTargetsByPathRequestHeader) SetServiceType(v string) *GetTopAttackTargetsByPathRequestHeader {
+  s.ServiceType = &v
   return s
 }
 
-func (s *GetTopAttackTargetsByPathResponse) SetMsg(v string) *GetTopAttackTargetsByPathResponse {
-  s.Msg = &v
-  return s
-}
-
-func (s *GetTopAttackTargetsByPathResponse) SetData(v []*GetTopAttackTargetsByPathUrlTopDTO) *GetTopAttackTargetsByPathResponse {
-  s.Data = v
-  return s
-}
-
-type GetTopAttackTargetsByPathUrlTopDTO struct {
-  // {'en':'URL.', 'zh_CN':'URL。'}
-  Url *string `json:"url,omitempty" xml:"url,omitempty" require:"true"`
-  // {'en':'Attack requests.', 'zh_CN':'攻击请求数。'}
-  Attack *int64 `json:"attack,omitempty" xml:"attack,omitempty" require:"true"`
-}
-
-func (s GetTopAttackTargetsByPathUrlTopDTO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetTopAttackTargetsByPathUrlTopDTO) GoString() string {
-  return s.String()
-}
-
-func (s *GetTopAttackTargetsByPathUrlTopDTO) SetUrl(v string) *GetTopAttackTargetsByPathUrlTopDTO {
-  s.Url = &v
-  return s
-}
-
-func (s *GetTopAttackTargetsByPathUrlTopDTO) SetAttack(v int64) *GetTopAttackTargetsByPathUrlTopDTO {
-  s.Attack = &v
+func (s *GetTopAttackTargetsByPathRequestHeader) SetTimezone(v string) *GetTopAttackTargetsByPathRequestHeader {
+  s.Timezone = &v
   return s
 }
 
@@ -5551,21 +4704,60 @@ func (s GetTopAttackTargetsByPathParameters) GoString() string {
   return s.String()
 }
 
-type GetTopAttackTargetsByPathRequestHeader struct {
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+type GetTopAttackTargetsByPathResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"Data.","zh_CN":"出参数据。"}
+  Data []*GetTopAttackTargetsByPathResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
 }
 
-func (s GetTopAttackTargetsByPathRequestHeader) String() string {
+func (s GetTopAttackTargetsByPathResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetTopAttackTargetsByPathRequestHeader) GoString() string {
+func (s GetTopAttackTargetsByPathResponse) GoString() string {
   return s.String()
 }
 
-func (s *GetTopAttackTargetsByPathRequestHeader) SetServiceType(v string) *GetTopAttackTargetsByPathRequestHeader {
-  s.ServiceType = &v
+func (s *GetTopAttackTargetsByPathResponse) SetCode(v string) *GetTopAttackTargetsByPathResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *GetTopAttackTargetsByPathResponse) SetMsg(v string) *GetTopAttackTargetsByPathResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *GetTopAttackTargetsByPathResponse) SetData(v []*GetTopAttackTargetsByPathResponseData) *GetTopAttackTargetsByPathResponse {
+  s.Data = v
+  return s
+}
+
+type GetTopAttackTargetsByPathResponseData struct     {
+  // {"en":"URL.","zh_CN":"URL。"}
+  Url *string `json:"url,omitempty" xml:"url,omitempty" require:"true"`
+  // {"en":"Attack requests.","zh_CN":"攻击请求数。"}
+  Attack *int64 `json:"attack,omitempty" xml:"attack,omitempty" require:"true"`
+}
+
+func (s GetTopAttackTargetsByPathResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetTopAttackTargetsByPathResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *GetTopAttackTargetsByPathResponseData) SetUrl(v string) *GetTopAttackTargetsByPathResponseData {
+  s.Url = &v
+  return s
+}
+
+func (s *GetTopAttackTargetsByPathResponseData) SetAttack(v int64) *GetTopAttackTargetsByPathResponseData {
+  s.Attack = &v
   return s
 }
 
@@ -6070,38 +5262,18 @@ func (s CcAttackQpsForQueryResponseHeader) GoString() string {
 
 
 type ListAttackLogsRequest struct {
-  // {'en':'Start time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days. ', 'zh_CN':'开始时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"Start time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"开始时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {'en':'End time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days. ', 'zh_CN':'结束时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"End time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"结束时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
-  // {'en':'Hostname list, if  not specified, it means all the hostnames of the account.', 'zh_CN':'域名列表，未指定时查询账号下的所有域名。'}
+  // {"en":"Domain list. Queries all domains under the account when not specified.","zh_CN":"域名列表，未指定时查询账号下的所有域名。"}
   DomainList []*string `json:"domainList,omitempty" xml:"domainList,omitempty" type:"Repeated"`
-  // {'en':'Policy type list. 
-  //  DMS_DEFEND: DDoS Protection
-  //  BOT_MANAGE: Bot Management
-  //  API_DEFEND: API Security
-  //  WAF_DEFEND: WAF
-  //  BLOCK: IP/Geo Block
-  //  CUSTOMIZE_RULE: Custom Rules
-  //  RATE_LIMIT: Rate Limiting
-  //  INTELLIGENCE: Threat Intelligence', 'zh_CN':'策略类型列表。
-  // DMS_DEFEND：DDoS防护
-  //  BOT_MANAGE：Bot管理
-  //  API_DEFEND：API安全
-  //  WAF_DEFEND：WAF
-  //  BLOCK：IP/区域封禁
-  //  CUSTOMIZE_RULE：自定义规则
-  //  RATE_LIMIT：频率限制
-  //  INTELLIGENCE：威胁情报'}
+  // {"en":"Policy type list.\nDMS_DEFEND: DDoS Protection\nBOT_MANAGE: Bot Management\nAPI_DEFEND: API Security\nWAF_DEFEND: WAF\nBLOCK: IP/Geo Block\nCUSTOMIZE_RULE: Custom Rules\nRATE_LIMIT: Rate Limiting\nINTELLIGENCE: Threat Intelligence","zh_CN":"策略类型列表。\nDMS_DEFEND：DDoS防护\nBOT_MANAGE：Bot管理\nAPI_DEFEND：API安全\nWAF_DEFEND：WAF\nBLOCK：IP/区域封禁\nCUSTOMIZE_RULE：自定义规则\nRATE_LIMIT：频率限制\nINTELLIGENCE：威胁情报","exampleValue":"BLOCK,DMS_DEFEND,WAF_DEFEND,BOT_MANAGE,API_DEFEND,INTELLIGENCE,RATE_LIMIT,CUSTOMIZE_RULE"}
   PolicyTypeList []*string `json:"policyTypeList,omitempty" xml:"policyTypeList,omitempty" type:"Repeated"`
-  // {'en':'The number of records per page, default value:10, maximum value 2000.', 'zh_CN':'每页显示的条目数，默认：10，最大：2000。'}
-  PageSize *int32 `json:"pageSize,omitempty" xml:"pageSize,omitempty"`
-  // {'en':'The current page, default value: 1.', 'zh_CN':'当前第几页，默认：1。'}
-  CurrentPage *int32 `json:"currentPage,omitempty" xml:"currentPage,omitempty"`
+  // {"en":"The number of records per page, default value:10, maximum value 2000.","zh_CN":"每页显示的条目数，默认：10，最大：2000。"}
+  PageSize *int `json:"pageSize,omitempty" xml:"pageSize,omitempty"`
+  // {"defaultValue":"1","en":"The current page, default value: 1.","zh_CN":"当前第几页，默认：1。"}
+  CurrentPage *int `json:"currentPage,omitempty" xml:"currentPage,omitempty"`
 }
 
 func (s ListAttackLogsRequest) String() string {
@@ -6132,181 +5304,45 @@ func (s *ListAttackLogsRequest) SetPolicyTypeList(v []*string) *ListAttackLogsRe
   return s
 }
 
-func (s *ListAttackLogsRequest) SetPageSize(v int32) *ListAttackLogsRequest {
+func (s *ListAttackLogsRequest) SetPageSize(v int) *ListAttackLogsRequest {
   s.PageSize = &v
   return s
 }
 
-func (s *ListAttackLogsRequest) SetCurrentPage(v int32) *ListAttackLogsRequest {
+func (s *ListAttackLogsRequest) SetCurrentPage(v int) *ListAttackLogsRequest {
   s.CurrentPage = &v
   return s
 }
 
-type ListAttackLogsResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'描述信息。'}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {'en':'Data.', 'zh_CN':'出参数据。'}
-  Data *ListAttackLogsPageBean `json:"data,omitempty" xml:"data,omitempty" require:"true"`
+type ListAttackLogsRequestHeader struct {
+  // {"defaultValue":"en","en":"The language of response data, default value: en.\nzh_CN: Chinese\nen: English","zh_CN":"返回内容的语言版本，默认值: en。\nzh_CN：中文\nen：英文","exampleValue":"zh_CN,en"}
+  Language *string `json:"language,omitempty" xml:"language,omitempty"`
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+  // {"defaultValue":"GMT+8","en":"Report Data Timezone:\r\n\r\n1. Indicates the timezone for the report data. lt must be relative to GMT and\r\nspecified in the format GMT+n where -12<=n <= 12. For example,timezone=GMT-7 and timezone=GMT+8.\r\n\r\n2. If the parameter is unspecified,results will be in the GMT timezone.","zh_CN":"报表数据时区：1.请传递GMT时区。示例格式：GMT+N（其中12<=N <= 12），示例：timezone=GMT-7或timezone=GMT+8.2.若参数为传递，将默认按GMT+8时区查询"}
+  Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty"`
 }
 
-func (s ListAttackLogsResponse) String() string {
+func (s ListAttackLogsRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s ListAttackLogsResponse) GoString() string {
+func (s ListAttackLogsRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *ListAttackLogsResponse) SetCode(v string) *ListAttackLogsResponse {
-  s.Code = &v
+func (s *ListAttackLogsRequestHeader) SetLanguage(v string) *ListAttackLogsRequestHeader {
+  s.Language = &v
   return s
 }
 
-func (s *ListAttackLogsResponse) SetMsg(v string) *ListAttackLogsResponse {
-  s.Msg = &v
+func (s *ListAttackLogsRequestHeader) SetServiceType(v string) *ListAttackLogsRequestHeader {
+  s.ServiceType = &v
   return s
 }
 
-func (s *ListAttackLogsResponse) SetData(v *ListAttackLogsPageBean) *ListAttackLogsResponse {
-  s.Data = v
-  return s
-}
-
-type ListAttackLogsAttackLogSimpleDto struct {
-  // {'en':'Attack time, format: yyyy-MM-dd HH:mm:ss.', 'zh_CN':'攻击时间，格式：yyyy-MM-dd HH:mm:ss。'}
-  AttackTime *string `json:"attackTime,omitempty" xml:"attackTime,omitempty" require:"true"`
-  // {'en':'Client IP location.', 'zh_CN':'客户端IP。'}
-  ClientIp *string `json:"clientIp,omitempty" xml:"clientIp,omitempty" require:"true"`
-  // {'en':'Hostname.', 'zh_CN':'域名。'}
-  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
-  // {'en':'Event ID.', 'zh_CN':'事件ID。'}
-  Uuid *string `json:"uuid,omitempty" xml:"uuid,omitempty" require:"true"`
-  // {'en':'Requeset ID.', 'zh_CN':'请求ID。'}
-  RequestId *string `json:"requestId,omitempty" xml:"requestId,omitempty" require:"true"`
-  // {'en':'Policy type. 
-  //  DMS_DEFEND: DDoS Protection
-  //  BOT_MANAGE: Bot Management
-  //  API_DEFEND: API Security
-  //  WAF_DEFEND: WAF
-  //  BLOCK: IP/Geo Block
-  //  CUSTOMIZE_RULE: Custom Rules
-  //  RATE_LIMIT: Rate Limiting
-  //  INTELLIGENCE: Threat Intelligence', 'zh_CN':'策略类型。
-  //  DMS_DEFEND：DDoS防护
-  //  BOT_MANAGE：Bot管理
-  //  API_DEFEND：API安全
-  //  WAF_DEFEND：WAF
-  //  BLOCK：IP/区域封禁
-  //  CUSTOMIZE_RULE：自定义规则
-  //  RATE_LIMIT：频率限制
-  //  INTELLIGENCE：威胁情报'}
-  PolicyType *string `json:"policyType,omitempty" xml:"policyType,omitempty" require:"true"`
-  // {'en':'Path.', 'zh_CN':'路径。'}
-  Path *string `json:"path,omitempty" xml:"path,omitempty" require:"true"`
-  // {'en':'Status code.', 'zh_CN':'状态码。'}
-  StatusCode *string `json:"statusCode,omitempty" xml:"statusCode,omitempty" require:"true"`
-  // {'en':'Action.', 'zh_CN':'处理动作。'}
-  Action *string `json:"action,omitempty" xml:"action,omitempty" require:"true"`
-}
-
-func (s ListAttackLogsAttackLogSimpleDto) String() string {
-  return tea.Prettify(s)
-}
-
-func (s ListAttackLogsAttackLogSimpleDto) GoString() string {
-  return s.String()
-}
-
-func (s *ListAttackLogsAttackLogSimpleDto) SetAttackTime(v string) *ListAttackLogsAttackLogSimpleDto {
-  s.AttackTime = &v
-  return s
-}
-
-func (s *ListAttackLogsAttackLogSimpleDto) SetClientIp(v string) *ListAttackLogsAttackLogSimpleDto {
-  s.ClientIp = &v
-  return s
-}
-
-func (s *ListAttackLogsAttackLogSimpleDto) SetDomain(v string) *ListAttackLogsAttackLogSimpleDto {
-  s.Domain = &v
-  return s
-}
-
-func (s *ListAttackLogsAttackLogSimpleDto) SetUuid(v string) *ListAttackLogsAttackLogSimpleDto {
-  s.Uuid = &v
-  return s
-}
-
-func (s *ListAttackLogsAttackLogSimpleDto) SetRequestId(v string) *ListAttackLogsAttackLogSimpleDto {
-  s.RequestId = &v
-  return s
-}
-
-func (s *ListAttackLogsAttackLogSimpleDto) SetPolicyType(v string) *ListAttackLogsAttackLogSimpleDto {
-  s.PolicyType = &v
-  return s
-}
-
-func (s *ListAttackLogsAttackLogSimpleDto) SetPath(v string) *ListAttackLogsAttackLogSimpleDto {
-  s.Path = &v
-  return s
-}
-
-func (s *ListAttackLogsAttackLogSimpleDto) SetStatusCode(v string) *ListAttackLogsAttackLogSimpleDto {
-  s.StatusCode = &v
-  return s
-}
-
-func (s *ListAttackLogsAttackLogSimpleDto) SetAction(v string) *ListAttackLogsAttackLogSimpleDto {
-  s.Action = &v
-  return s
-}
-
-type ListAttackLogsPageBean struct {
-  // {'en':'Return content.', 'zh_CN':'返回内容。'}
-  List *ListAttackLogsAttackLogSimpleDto `json:"list,omitempty" xml:"list,omitempty" require:"true"`
-  // {'en':'The current page number.', 'zh_CN':'当前页码。'}
-  PageNum *int64 `json:"pageNum,omitempty" xml:"pageNum,omitempty" require:"true"`
-  // {'en':'The number of records per page.', 'zh_CN':'每页显示的条目数。'}
-  PageSize *int64 `json:"pageSize,omitempty" xml:"pageSize,omitempty" require:"true"`
-  // {'en':'The total number of records.', 'zh_CN':'总记录数。'}
-  TotalCount *int64 `json:"totalCount,omitempty" xml:"totalCount,omitempty" require:"true"`
-  // {'en':'The total number of pages.', 'zh_CN':'总页数。'}
-  TotalPageCount *int64 `json:"totalPageCount,omitempty" xml:"totalPageCount,omitempty" require:"true"`
-}
-
-func (s ListAttackLogsPageBean) String() string {
-  return tea.Prettify(s)
-}
-
-func (s ListAttackLogsPageBean) GoString() string {
-  return s.String()
-}
-
-func (s *ListAttackLogsPageBean) SetList(v *ListAttackLogsAttackLogSimpleDto) *ListAttackLogsPageBean {
-  s.List = v
-  return s
-}
-
-func (s *ListAttackLogsPageBean) SetPageNum(v int64) *ListAttackLogsPageBean {
-  s.PageNum = &v
-  return s
-}
-
-func (s *ListAttackLogsPageBean) SetPageSize(v int64) *ListAttackLogsPageBean {
-  s.PageSize = &v
-  return s
-}
-
-func (s *ListAttackLogsPageBean) SetTotalCount(v int64) *ListAttackLogsPageBean {
-  s.TotalCount = &v
-  return s
-}
-
-func (s *ListAttackLogsPageBean) SetTotalPageCount(v int64) *ListAttackLogsPageBean {
-  s.TotalPageCount = &v
+func (s *ListAttackLogsRequestHeader) SetTimezone(v string) *ListAttackLogsRequestHeader {
+  s.Timezone = &v
   return s
 }
 
@@ -6332,32 +5368,155 @@ func (s ListAttackLogsParameters) GoString() string {
   return s.String()
 }
 
-type ListAttackLogsRequestHeader struct {
-  // {'en':'The language of response data, default value: en.
-  // zh_CN: Chinese
-  // en: English', 'zh_CN':'返回内容的语言版本，默认值: en。
-  // zh_CN：中文
-  // en：英文'}
-  Language *string `json:"language,omitempty" xml:"language,omitempty"`
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+type ListAttackLogsResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"Data.","zh_CN":"出参数据。"}
+  Data *ListAttackLogsResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
 }
 
-func (s ListAttackLogsRequestHeader) String() string {
+func (s ListAttackLogsResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s ListAttackLogsRequestHeader) GoString() string {
+func (s ListAttackLogsResponse) GoString() string {
   return s.String()
 }
 
-func (s *ListAttackLogsRequestHeader) SetLanguage(v string) *ListAttackLogsRequestHeader {
-  s.Language = &v
+func (s *ListAttackLogsResponse) SetCode(v string) *ListAttackLogsResponse {
+  s.Code = &v
   return s
 }
 
-func (s *ListAttackLogsRequestHeader) SetServiceType(v string) *ListAttackLogsRequestHeader {
-  s.ServiceType = &v
+func (s *ListAttackLogsResponse) SetMsg(v string) *ListAttackLogsResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *ListAttackLogsResponse) SetData(v *ListAttackLogsResponseData) *ListAttackLogsResponse {
+  s.Data = v
+  return s
+}
+
+type ListAttackLogsResponseData struct {
+  // {"en":"Return content.","zh_CN":"返回内容。"}
+  List *ListAttackLogsResponseDataList `json:"list,omitempty" xml:"list,omitempty" require:"true" type:"Struct"`
+  // {"en":"The current page number.","zh_CN":"当前页码。"}
+  PageNum *int64 `json:"pageNum,omitempty" xml:"pageNum,omitempty" require:"true"`
+  // {"en":"The number of records per page.","zh_CN":"每页显示的条目数。"}
+  PageSize *int64 `json:"pageSize,omitempty" xml:"pageSize,omitempty" require:"true"`
+  // {"en":"The total number of records.","zh_CN":"总记录数。"}
+  TotalCount *int64 `json:"totalCount,omitempty" xml:"totalCount,omitempty" require:"true"`
+  // {"en":"The total number of pages.","zh_CN":"总页数。"}
+  TotalPageCount *int64 `json:"totalPageCount,omitempty" xml:"totalPageCount,omitempty" require:"true"`
+}
+
+func (s ListAttackLogsResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s ListAttackLogsResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *ListAttackLogsResponseData) SetList(v *ListAttackLogsResponseDataList) *ListAttackLogsResponseData {
+  s.List = v
+  return s
+}
+
+func (s *ListAttackLogsResponseData) SetPageNum(v int64) *ListAttackLogsResponseData {
+  s.PageNum = &v
+  return s
+}
+
+func (s *ListAttackLogsResponseData) SetPageSize(v int64) *ListAttackLogsResponseData {
+  s.PageSize = &v
+  return s
+}
+
+func (s *ListAttackLogsResponseData) SetTotalCount(v int64) *ListAttackLogsResponseData {
+  s.TotalCount = &v
+  return s
+}
+
+func (s *ListAttackLogsResponseData) SetTotalPageCount(v int64) *ListAttackLogsResponseData {
+  s.TotalPageCount = &v
+  return s
+}
+
+type ListAttackLogsResponseDataList struct {
+  // {"en":"Attack time, format: yyyy-MM-dd HH:mm:ss.","zh_CN":"攻击时间，格式：yyyy-MM-dd HH:mm:ss。"}
+  AttackTime *string `json:"attackTime,omitempty" xml:"attackTime,omitempty" require:"true"`
+  // {"en":"Client IP.","zh_CN":"客户端IP。"}
+  ClientIp *string `json:"clientIp,omitempty" xml:"clientIp,omitempty" require:"true"`
+  // {"en":"Domain.","zh_CN":"域名。"}
+  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
+  // {"en":"Event ID.","zh_CN":"事件ID。"}
+  Uuid *string `json:"uuid,omitempty" xml:"uuid,omitempty" require:"true"`
+  // {"en":"Request ID.","zh_CN":"请求ID。"}
+  RequestId *string `json:"requestId,omitempty" xml:"requestId,omitempty" require:"true"`
+  // {"en":"Policy type.\nDMS_DEFEND: DDoS Protection\nBOT_MANAGE: Bot Management\nAPI_DEFEND: API Security\nWAF_DEFEND: WAF\nBLOCK: IP/Geo Block\nCUSTOMIZE_RULE: Custom Rules\nRATE_LIMIT: Rate Limiting\nINTELLIGENCE: Threat Intelligence","zh_CN":"策略类型。\nDMS_DEFEND：DDoS防护\nBOT_MANAGE：Bot管理\nAPI_DEFEND：API安全\nWAF_DEFEND：WAF\nBLOCK：IP/区域封禁\nCUSTOMIZE_RULE：自定义规则\nRATE_LIMIT：频率限制\nINTELLIGENCE：威胁情报","exampleValue":"BLOCK,DMS_DEFEND,WAF_DEFEND,BOT_MANAGE,API_DEFEND,INTELLIGENCE,RATE_LIMIT,CUSTOMIZE_RULE"}
+  PolicyType *string `json:"policyType,omitempty" xml:"policyType,omitempty" require:"true"`
+  // {"en":"Path.","zh_CN":"路径。"}
+  Path *string `json:"path,omitempty" xml:"path,omitempty" require:"true"`
+  // {"en":"Status code.","zh_CN":"状态码。"}
+  StatusCode *string `json:"statusCode,omitempty" xml:"statusCode,omitempty" require:"true"`
+  // {"en":"Action.","zh_CN":"处理动作。"}
+  Action *string `json:"action,omitempty" xml:"action,omitempty" require:"true"`
+}
+
+func (s ListAttackLogsResponseDataList) String() string {
+  return tea.Prettify(s)
+}
+
+func (s ListAttackLogsResponseDataList) GoString() string {
+  return s.String()
+}
+
+func (s *ListAttackLogsResponseDataList) SetAttackTime(v string) *ListAttackLogsResponseDataList {
+  s.AttackTime = &v
+  return s
+}
+
+func (s *ListAttackLogsResponseDataList) SetClientIp(v string) *ListAttackLogsResponseDataList {
+  s.ClientIp = &v
+  return s
+}
+
+func (s *ListAttackLogsResponseDataList) SetDomain(v string) *ListAttackLogsResponseDataList {
+  s.Domain = &v
+  return s
+}
+
+func (s *ListAttackLogsResponseDataList) SetUuid(v string) *ListAttackLogsResponseDataList {
+  s.Uuid = &v
+  return s
+}
+
+func (s *ListAttackLogsResponseDataList) SetRequestId(v string) *ListAttackLogsResponseDataList {
+  s.RequestId = &v
+  return s
+}
+
+func (s *ListAttackLogsResponseDataList) SetPolicyType(v string) *ListAttackLogsResponseDataList {
+  s.PolicyType = &v
+  return s
+}
+
+func (s *ListAttackLogsResponseDataList) SetPath(v string) *ListAttackLogsResponseDataList {
+  s.Path = &v
+  return s
+}
+
+func (s *ListAttackLogsResponseDataList) SetStatusCode(v string) *ListAttackLogsResponseDataList {
+  s.StatusCode = &v
+  return s
+}
+
+func (s *ListAttackLogsResponseDataList) SetAction(v string) *ListAttackLogsResponseDataList {
+  s.Action = &v
   return s
 }
 
@@ -6376,23 +5535,15 @@ func (s ListAttackLogsResponseHeader) GoString() string {
 
 
 type GetTopAttackSourcesForClientIPsRequest struct {
-  // {'en':'Top rankings, default value: 10, max: 1000.', 'zh_CN':'取前几排名，默认：10，上限：1000。'}
-  Top *int32 `json:"top,omitempty" xml:"top,omitempty"`
-  // {'en':'Multiple choice. Disposal result, default value: all results.
-  //  mitigated: Mitegaed requests.
-  //  monitored: monitored requests.', 'zh_CN':'多选。处置结果，默认：展示所有结果。
-  //  mitigated：已抵御请求数。
-  //  monitored：观察请求数。'}
+  // {"defaultValue":"10","en":"Top rankings, default value: 10, max: 1000.","zh_CN":"取前几排名，默认：10，上限：1000。"}
+  Top *int `json:"top,omitempty" xml:"top,omitempty"`
+  // {"en":"Multiple selection. Handling results, default: display all results.\nmitigated: Number of mitigated requests.\nmonitored: Number of observed requests.","zh_CN":"多选。处置结果，默认：展示所有结果。\nmitigated：已抵御请求数。\nmonitored：观察请求数。","exampleValue":"mitigated,monitored"}
   ActType []*string `json:"actType,omitempty" xml:"actType,omitempty" type:"Repeated"`
-  // {'en':'Start time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'起始时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"Start time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"起始时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {'en':'End time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'截止时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"End time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"截止时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
-  // {'en':'Hostname list, if not specified, it means all the hostnames of the account.', 'zh_CN':'域名列表，未指定时查询账号下的所有域名。'}
+  // {"en":"Domain list. Queries all domains under the account when not specified.","zh_CN":"域名列表，未指定时查询账号下的所有域名。"}
   Domains []*string `json:"domains,omitempty" xml:"domains,omitempty" type:"Repeated"`
 }
 
@@ -6404,7 +5555,7 @@ func (s GetTopAttackSourcesForClientIPsRequest) GoString() string {
   return s.String()
 }
 
-func (s *GetTopAttackSourcesForClientIPsRequest) SetTop(v int32) *GetTopAttackSourcesForClientIPsRequest {
+func (s *GetTopAttackSourcesForClientIPsRequest) SetTop(v int) *GetTopAttackSourcesForClientIPsRequest {
   s.Top = &v
   return s
 }
@@ -6429,67 +5580,35 @@ func (s *GetTopAttackSourcesForClientIPsRequest) SetDomains(v []*string) *GetTop
   return s
 }
 
-type GetTopAttackSourcesForClientIPsResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'描述信息。'}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {'en':'Data.', 'zh_CN':'出参数据。'}
-  Data []*GetTopAttackSourcesForClientIPsAreaTopDTO `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
+type GetTopAttackSourcesForClientIPsRequestHeader struct {
+  // {"defaultValue":"en","en":"The language of response data, default value: en.\nzh_CN: Chinese\nen: English","zh_CN":"返回内容的语言版本，默认值: en。\nzh_CN：中文\nen：英文","exampleValue":"zh_CN,en"}
+  Language *string `json:"language,omitempty" xml:"language,omitempty"`
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+  // {"defaultValue":"GMT+8","en":"Report Data Timezone:1. Indicates the timezone for the report data. lt must be relative to GMT andspecified in the format GMT+n where -12<=n <= 12. For example,timezone=GMT-7 and timezone=GMT+8.2. If the parameter is unspecified,results will be in the GMT+8 timezone.","zh_CN":"报表数据时区：1.请传递GMT时区。示例格式：GMT+N（其中12<=N <= 12），示例：timezone=GMT-7或timezone=GMT+8.2.若参数为传递，将默认按GMT+8时区查询"}
+  Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty"`
 }
 
-func (s GetTopAttackSourcesForClientIPsResponse) String() string {
+func (s GetTopAttackSourcesForClientIPsRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetTopAttackSourcesForClientIPsResponse) GoString() string {
+func (s GetTopAttackSourcesForClientIPsRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *GetTopAttackSourcesForClientIPsResponse) SetCode(v string) *GetTopAttackSourcesForClientIPsResponse {
-  s.Code = &v
+func (s *GetTopAttackSourcesForClientIPsRequestHeader) SetLanguage(v string) *GetTopAttackSourcesForClientIPsRequestHeader {
+  s.Language = &v
   return s
 }
 
-func (s *GetTopAttackSourcesForClientIPsResponse) SetMsg(v string) *GetTopAttackSourcesForClientIPsResponse {
-  s.Msg = &v
+func (s *GetTopAttackSourcesForClientIPsRequestHeader) SetServiceType(v string) *GetTopAttackSourcesForClientIPsRequestHeader {
+  s.ServiceType = &v
   return s
 }
 
-func (s *GetTopAttackSourcesForClientIPsResponse) SetData(v []*GetTopAttackSourcesForClientIPsAreaTopDTO) *GetTopAttackSourcesForClientIPsResponse {
-  s.Data = v
-  return s
-}
-
-type GetTopAttackSourcesForClientIPsAreaTopDTO struct {
-  // {'en':'Source area(country or area, province).', 'zh_CN':'来源地区（国家或地区、省份）。'}
-  Area *string `json:"area,omitempty" xml:"area,omitempty" require:"true"`
-  // {'en':'Attack requests.', 'zh_CN':'攻击请求数。'}
-  Value *int64 `json:"value,omitempty" xml:"value,omitempty" require:"true"`
-  // {'en':'Source IP.', 'zh_CN':'来源IP。'}
-  Ip *string `json:"ip,omitempty" xml:"ip,omitempty" require:"true"`
-}
-
-func (s GetTopAttackSourcesForClientIPsAreaTopDTO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetTopAttackSourcesForClientIPsAreaTopDTO) GoString() string {
-  return s.String()
-}
-
-func (s *GetTopAttackSourcesForClientIPsAreaTopDTO) SetArea(v string) *GetTopAttackSourcesForClientIPsAreaTopDTO {
-  s.Area = &v
-  return s
-}
-
-func (s *GetTopAttackSourcesForClientIPsAreaTopDTO) SetValue(v int64) *GetTopAttackSourcesForClientIPsAreaTopDTO {
-  s.Value = &v
-  return s
-}
-
-func (s *GetTopAttackSourcesForClientIPsAreaTopDTO) SetIp(v string) *GetTopAttackSourcesForClientIPsAreaTopDTO {
-  s.Ip = &v
+func (s *GetTopAttackSourcesForClientIPsRequestHeader) SetTimezone(v string) *GetTopAttackSourcesForClientIPsRequestHeader {
+  s.Timezone = &v
   return s
 }
 
@@ -6515,32 +5634,67 @@ func (s GetTopAttackSourcesForClientIPsParameters) GoString() string {
   return s.String()
 }
 
-type GetTopAttackSourcesForClientIPsRequestHeader struct {
-  // {'en':'The language of response data, default value: en.
-  // zh_CN: Chinese
-  // en: English', 'zh_CN':'返回内容的语言版本，默认值: en。
-  // zh_CN：中文
-  // en：英文'}
-  Language *string `json:"language,omitempty" xml:"language,omitempty"`
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+type GetTopAttackSourcesForClientIPsResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"Data.","zh_CN":"出参数据。"}
+  Data []*GetTopAttackSourcesForClientIPsResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
 }
 
-func (s GetTopAttackSourcesForClientIPsRequestHeader) String() string {
+func (s GetTopAttackSourcesForClientIPsResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetTopAttackSourcesForClientIPsRequestHeader) GoString() string {
+func (s GetTopAttackSourcesForClientIPsResponse) GoString() string {
   return s.String()
 }
 
-func (s *GetTopAttackSourcesForClientIPsRequestHeader) SetLanguage(v string) *GetTopAttackSourcesForClientIPsRequestHeader {
-  s.Language = &v
+func (s *GetTopAttackSourcesForClientIPsResponse) SetCode(v string) *GetTopAttackSourcesForClientIPsResponse {
+  s.Code = &v
   return s
 }
 
-func (s *GetTopAttackSourcesForClientIPsRequestHeader) SetServiceType(v string) *GetTopAttackSourcesForClientIPsRequestHeader {
-  s.ServiceType = &v
+func (s *GetTopAttackSourcesForClientIPsResponse) SetMsg(v string) *GetTopAttackSourcesForClientIPsResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *GetTopAttackSourcesForClientIPsResponse) SetData(v []*GetTopAttackSourcesForClientIPsResponseData) *GetTopAttackSourcesForClientIPsResponse {
+  s.Data = v
+  return s
+}
+
+type GetTopAttackSourcesForClientIPsResponseData struct     {
+  // {"en":"Source area(country or area, province).","zh_CN":"来源地区（国家或地区、省份）。"}
+  Area *string `json:"area,omitempty" xml:"area,omitempty" require:"true"`
+  // {"en":"Attack requests.","zh_CN":"攻击请求数。"}
+  Value *int64 `json:"value,omitempty" xml:"value,omitempty" require:"true"`
+  // {"en":"Client IP.","zh_CN":"来源IP。"}
+  Ip *string `json:"ip,omitempty" xml:"ip,omitempty" require:"true"`
+}
+
+func (s GetTopAttackSourcesForClientIPsResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetTopAttackSourcesForClientIPsResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *GetTopAttackSourcesForClientIPsResponseData) SetArea(v string) *GetTopAttackSourcesForClientIPsResponseData {
+  s.Area = &v
+  return s
+}
+
+func (s *GetTopAttackSourcesForClientIPsResponseData) SetValue(v int64) *GetTopAttackSourcesForClientIPsResponseData {
+  s.Value = &v
+  return s
+}
+
+func (s *GetTopAttackSourcesForClientIPsResponseData) SetIp(v string) *GetTopAttackSourcesForClientIPsResponseData {
+  s.Ip = &v
   return s
 }
 
@@ -6559,15 +5713,11 @@ func (s GetTopAttackSourcesForClientIPsResponseHeader) GoString() string {
 
 
 type GetSummaryRequestsRequest struct {
-  // {'en':'Start time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'起始时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"Start time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"起始时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {'en':'End time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'截止时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"End time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"截止时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
-  // {'en':'Hostname list, if not specified, it means all the hostnames of the account.', 'zh_CN':'域名列表，未指定时查询账号下的所有域名。'}
+  // {"en":"Domain list. Queries all domains under the account when not specified.","zh_CN":"域名列表，未指定时查询账号下的所有域名。"}
   Domains []*string `json:"domains,omitempty" xml:"domains,omitempty" type:"Repeated"`
 }
 
@@ -6594,81 +5744,28 @@ func (s *GetSummaryRequestsRequest) SetDomains(v []*string) *GetSummaryRequestsR
   return s
 }
 
-type GetSummaryRequestsResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'描述信息。'}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {'en':'Data.', 'zh_CN':'出参数据。'}
-  Data *GetSummaryRequestsEventDTO `json:"data,omitempty" xml:"data,omitempty" require:"true"`
+type GetSummaryRequestsRequestHeader struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+  // {"defaultValue":"GMT+8","en":"Report Data Timezone:1. Indicates the timezone for the report data. lt must be relative to GMT andspecified in the format GMT+n where -12<=n <= 12. For example,timezone=GMT-7 and timezone=GMT+8.2. If the parameter is unspecified,results will be in the GMT+8 timezone.","zh_CN":"报表数据时区：1.请传递GMT时区。示例格式：GMT+N（其中12<=N <= 12），示例：timezone=GMT-7或timezone=GMT+8.2.若参数为传递，将默认按GMT+8时区查询"}
+  Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty"`
 }
 
-func (s GetSummaryRequestsResponse) String() string {
+func (s GetSummaryRequestsRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetSummaryRequestsResponse) GoString() string {
+func (s GetSummaryRequestsRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *GetSummaryRequestsResponse) SetCode(v string) *GetSummaryRequestsResponse {
-  s.Code = &v
+func (s *GetSummaryRequestsRequestHeader) SetServiceType(v string) *GetSummaryRequestsRequestHeader {
+  s.ServiceType = &v
   return s
 }
 
-func (s *GetSummaryRequestsResponse) SetMsg(v string) *GetSummaryRequestsResponse {
-  s.Msg = &v
-  return s
-}
-
-func (s *GetSummaryRequestsResponse) SetData(v *GetSummaryRequestsEventDTO) *GetSummaryRequestsResponse {
-  s.Data = v
-  return s
-}
-
-type GetSummaryRequestsEventDTO struct {
-  // {'en':'Total requests.', 'zh_CN':'总请求数。'}
-  Total *int64 `json:"total,omitempty" xml:"total,omitempty" require:"true"`
-  // {'en':'Attack requests,sum of resisted requests and observed requests.', 'zh_CN':'攻击请求数，已抵御请求数与观察请求数之和。'}
-  Attack *int64 `json:"attack,omitempty" xml:"attack,omitempty" require:"true"`
-  // {'en':'Whitelist requests.', 'zh_CN':'白名单请求数。'}
-  Whitelist *int64 `json:"whitelist,omitempty" xml:"whitelist,omitempty" require:"true"`
-  // {'en':'Resisted requests.', 'zh_CN':'已抵御请求数。'}
-  Resisted *int64 `json:"resisted,omitempty" xml:"resisted,omitempty" require:"true"`
-  // {'en':'Observed requests.', 'zh_CN':'观察请求数。'}
-  Observed *int64 `json:"observed,omitempty" xml:"observed,omitempty" require:"true"`
-}
-
-func (s GetSummaryRequestsEventDTO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetSummaryRequestsEventDTO) GoString() string {
-  return s.String()
-}
-
-func (s *GetSummaryRequestsEventDTO) SetTotal(v int64) *GetSummaryRequestsEventDTO {
-  s.Total = &v
-  return s
-}
-
-func (s *GetSummaryRequestsEventDTO) SetAttack(v int64) *GetSummaryRequestsEventDTO {
-  s.Attack = &v
-  return s
-}
-
-func (s *GetSummaryRequestsEventDTO) SetWhitelist(v int64) *GetSummaryRequestsEventDTO {
-  s.Whitelist = &v
-  return s
-}
-
-func (s *GetSummaryRequestsEventDTO) SetResisted(v int64) *GetSummaryRequestsEventDTO {
-  s.Resisted = &v
-  return s
-}
-
-func (s *GetSummaryRequestsEventDTO) SetObserved(v int64) *GetSummaryRequestsEventDTO {
-  s.Observed = &v
+func (s *GetSummaryRequestsRequestHeader) SetTimezone(v string) *GetSummaryRequestsRequestHeader {
+  s.Timezone = &v
   return s
 }
 
@@ -6694,21 +5791,81 @@ func (s GetSummaryRequestsParameters) GoString() string {
   return s.String()
 }
 
-type GetSummaryRequestsRequestHeader struct {
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+type GetSummaryRequestsResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"Data.","zh_CN":"出参数据。"}
+  Data *GetSummaryRequestsResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
 }
 
-func (s GetSummaryRequestsRequestHeader) String() string {
+func (s GetSummaryRequestsResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetSummaryRequestsRequestHeader) GoString() string {
+func (s GetSummaryRequestsResponse) GoString() string {
   return s.String()
 }
 
-func (s *GetSummaryRequestsRequestHeader) SetServiceType(v string) *GetSummaryRequestsRequestHeader {
-  s.ServiceType = &v
+func (s *GetSummaryRequestsResponse) SetCode(v string) *GetSummaryRequestsResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *GetSummaryRequestsResponse) SetMsg(v string) *GetSummaryRequestsResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *GetSummaryRequestsResponse) SetData(v *GetSummaryRequestsResponseData) *GetSummaryRequestsResponse {
+  s.Data = v
+  return s
+}
+
+type GetSummaryRequestsResponseData struct {
+  // {"en":"Total requests.","zh_CN":"总请求数。"}
+  Total *int64 `json:"total,omitempty" xml:"total,omitempty" require:"true"`
+  // {"en":"Attack requests,sum of resisted requests and observed requests.","zh_CN":"攻击请求数，已抵御请求数与观察请求数之和。"}
+  Attack *int64 `json:"attack,omitempty" xml:"attack,omitempty" require:"true"`
+  // {"en":"Whitelist requests.","zh_CN":"白名单请求数。"}
+  Whitelist *int64 `json:"whitelist,omitempty" xml:"whitelist,omitempty" require:"true"`
+  // {"en":"Resisted requests.","zh_CN":"已抵御请求数。"}
+  Resisted *int64 `json:"resisted,omitempty" xml:"resisted,omitempty" require:"true"`
+  // {"en":"Observed requests.","zh_CN":"观察请求数。"}
+  Observed *int64 `json:"observed,omitempty" xml:"observed,omitempty" require:"true"`
+}
+
+func (s GetSummaryRequestsResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetSummaryRequestsResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *GetSummaryRequestsResponseData) SetTotal(v int64) *GetSummaryRequestsResponseData {
+  s.Total = &v
+  return s
+}
+
+func (s *GetSummaryRequestsResponseData) SetAttack(v int64) *GetSummaryRequestsResponseData {
+  s.Attack = &v
+  return s
+}
+
+func (s *GetSummaryRequestsResponseData) SetWhitelist(v int64) *GetSummaryRequestsResponseData {
+  s.Whitelist = &v
+  return s
+}
+
+func (s *GetSummaryRequestsResponseData) SetResisted(v int64) *GetSummaryRequestsResponseData {
+  s.Resisted = &v
+  return s
+}
+
+func (s *GetSummaryRequestsResponseData) SetObserved(v int64) *GetSummaryRequestsResponseData {
+  s.Observed = &v
   return s
 }
 
@@ -7401,13 +6558,13 @@ func (s GetWAFAttackTrendResponseHeader) GoString() string {
 
 
 type QueryDDoSAttackDetailsRequest struct {
-  // {"en":"Start date format yyyy-MM-dd HH:mm:ss", "zh_CN":"起始日期 格式 yyyy-MM-dd HH:mm:ss"}
+  // {"en":"Start date format yyyy-MM-dd HH:mm:ss","zh_CN":"起始日期 格式 yyyy-MM-dd HH:mm:ss"}
   Startdate *string `json:"startdate,omitempty" xml:"startdate,omitempty" require:"true"`
-  // {"en":"End date format yyyy-MM-dd HH:mm:ss", "zh_CN":"结束日期 格式 yyyy-MM-dd HH:mm:ss"}
+  // {"en":"End date format yyyy-MM-dd HH:mm:ss","zh_CN":"结束日期 格式 yyyy-MM-dd HH:mm:ss"}
   Enddate *string `json:"enddate,omitempty" xml:"enddate,omitempty" require:"true"`
-  // {"en":"Time zone, such as 28800000. The default is 28800000", "zh_CN":"时区，如：28800000 默认为：28800000"}
+  // {"en":"Time zone, such as 28800000. The default is 28800000","zh_CN":"时区，如：28800000 默认为：28800000"}
   Msec *string `json:"msec,omitempty" xml:"msec,omitempty"`
-  // {"en":"Business type: dms by default", "zh_CN":"业务类型,默认为dms"}
+  // {"en":"Business type: dms by default","zh_CN":"业务类型,默认为dms"}
   AcceType *string `json:"acceType,omitempty" xml:"acceType,omitempty"`
 }
 
@@ -7439,14 +6596,47 @@ func (s *QueryDDoSAttackDetailsRequest) SetAcceType(v string) *QueryDDoSAttackDe
   return s
 }
 
+type QueryDDoSAttackDetailsRequestHeader struct {
+}
+
+func (s QueryDDoSAttackDetailsRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryDDoSAttackDetailsRequestHeader) GoString() string {
+  return s.String()
+}
+
+type QueryDDoSAttackDetailsPaths struct {
+}
+
+func (s QueryDDoSAttackDetailsPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryDDoSAttackDetailsPaths) GoString() string {
+  return s.String()
+}
+
+type QueryDDoSAttackDetailsParameters struct {
+}
+
+func (s QueryDDoSAttackDetailsParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryDDoSAttackDetailsParameters) GoString() string {
+  return s.String()
+}
+
 type QueryDDoSAttackDetailsResponse struct {
-  // {"en":"error response message", "zh_CN":"错误响应信息"}
+  // {"en":"error response message","zh_CN":"错误响应信息"}
   ErrorMessage *string `json:"errorMessage,omitempty" xml:"errorMessage,omitempty" require:"true"`
-  // {'en':'result', 'zh_CN':'结果'}
+  // {"en":"result","zh_CN":"结果"}
   Data []*QueryDDoSAttackDetailsResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
-  // {"en":"error response code", "zh_CN":"错误响应码"}
+  // {"en":"error response code","zh_CN":"错误响应码"}
   ErrorCode *string `json:"errorCode,omitempty" xml:"errorCode,omitempty" require:"true"`
-  // {"en":"response code", "zh_CN":"响应码"}
+  // {"en":"response code","zh_CN":"响应码"}
   Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
 }
 
@@ -7479,13 +6669,13 @@ func (s *QueryDDoSAttackDetailsResponse) SetCode(v string) *QueryDDoSAttackDetai
 }
 
 type QueryDDoSAttackDetailsResponseData struct     {
-  // {'en':'attack peak value', 'zh_CN':'攻击峰值'}
+  // {"en":"attack peak value","zh_CN":"攻击峰值"}
   TotalFlow *string `json:"totalFlow,omitempty" xml:"totalFlow,omitempty" require:"true"`
-  // {'en':'IP', 'zh_CN':'IP'}
+  // {"en":"IP","zh_CN":"IP"}
   Ip *string `json:"ip,omitempty" xml:"ip,omitempty" require:"true"`
-  // {'en':'attack time', 'zh_CN':'攻击时间'}
+  // {"en":"attack time","zh_CN":"攻击时间"}
   Time *string `json:"time,omitempty" xml:"time,omitempty" require:"true"`
-  // {'en':'attack type', 'zh_CN':'攻击类型'}
+  // {"en":"attack type","zh_CN":"攻击类型"}
   Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
 }
 
@@ -7515,39 +6705,6 @@ func (s *QueryDDoSAttackDetailsResponseData) SetTime(v string) *QueryDDoSAttackD
 func (s *QueryDDoSAttackDetailsResponseData) SetType(v string) *QueryDDoSAttackDetailsResponseData {
   s.Type = &v
   return s
-}
-
-type QueryDDoSAttackDetailsPaths struct {
-}
-
-func (s QueryDDoSAttackDetailsPaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryDDoSAttackDetailsPaths) GoString() string {
-  return s.String()
-}
-
-type QueryDDoSAttackDetailsParameters struct {
-}
-
-func (s QueryDDoSAttackDetailsParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryDDoSAttackDetailsParameters) GoString() string {
-  return s.String()
-}
-
-type QueryDDoSAttackDetailsRequestHeader struct {
-}
-
-func (s QueryDDoSAttackDetailsRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryDDoSAttackDetailsRequestHeader) GoString() string {
-  return s.String()
 }
 
 type QueryDDoSAttackDetailsResponseHeader struct {
@@ -7736,11 +6893,11 @@ func (s GetWAFRequestAndAttackEventResponseHeader) GoString() string {
 
 
 type GetOriginalRequestInformationRequest struct {
-  // {'en':'Event ID.', 'zh_CN':'事件ID。'}
+  // {"en":"Event ID.","zh_CN":"事件ID。"}
   Uuid *string `json:"uuid,omitempty" xml:"uuid,omitempty" require:"true"`
-  // {'en':'Hostname.', 'zh_CN':'域名。'}
+  // {"en":"Domain.","zh_CN":"域名。"}
   Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
-  // {'en':'Attack time, format: yyyy-MM-dd HH:mm:ss.', 'zh_CN':'攻击时间，格式：yyyy-MM-dd HH:mm:ss。'}
+  // {"en":"Attack time, format: yyyy-MM-dd HH:mm:ss.","zh_CN":"攻击时间，格式：yyyy-MM-dd HH:mm:ss。"}
   AttackTime *string `json:"attackTime,omitempty" xml:"attackTime,omitempty" require:"true"`
 }
 
@@ -7767,53 +6924,35 @@ func (s *GetOriginalRequestInformationRequest) SetAttackTime(v string) *GetOrigi
   return s
 }
 
-type GetOriginalRequestInformationResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'描述信息。'}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {'en':'Data.', 'zh_CN':'出参数据。'}
-  Data *GetOriginalRequestInformationAttackLogSeniorInfoDto `json:"data,omitempty" xml:"data,omitempty" require:"true"`
+type GetOriginalRequestInformationRequestHeader struct {
+  // {"defaultValue":"en","en":"The language of response data, default value: en.\nzh_CN: Chinese\nen: English","zh_CN":"返回内容的语言版本，默认值: en。\nzh_CN：中文\nen：英文","exampleValue":"zh_CN,en"}
+  Language *string `json:"language,omitempty" xml:"language,omitempty"`
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+  // {"defaultValue":"GMT+8","en":"Report Data Timezone:1. Indicates the timezone for the report data. lt must be relative to GMT andspecified in the format GMT+n where -12<=n <= 12. For example,timezone=GMT-7 and timezone=GMT+8.2. If the parameter is unspecified,results will be in the GMT+8 timezone.","zh_CN":"报表数据时区：1.请传递GMT时区。示例格式：GMT+N（其中12<=N <= 12），示例：timezone=GMT-7或timezone=GMT+8.2.若参数为传递，将默认按GMT+8时区查询"}
+  Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty"`
 }
 
-func (s GetOriginalRequestInformationResponse) String() string {
+func (s GetOriginalRequestInformationRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetOriginalRequestInformationResponse) GoString() string {
+func (s GetOriginalRequestInformationRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *GetOriginalRequestInformationResponse) SetCode(v string) *GetOriginalRequestInformationResponse {
-  s.Code = &v
+func (s *GetOriginalRequestInformationRequestHeader) SetLanguage(v string) *GetOriginalRequestInformationRequestHeader {
+  s.Language = &v
   return s
 }
 
-func (s *GetOriginalRequestInformationResponse) SetMsg(v string) *GetOriginalRequestInformationResponse {
-  s.Msg = &v
+func (s *GetOriginalRequestInformationRequestHeader) SetServiceType(v string) *GetOriginalRequestInformationRequestHeader {
+  s.ServiceType = &v
   return s
 }
 
-func (s *GetOriginalRequestInformationResponse) SetData(v *GetOriginalRequestInformationAttackLogSeniorInfoDto) *GetOriginalRequestInformationResponse {
-  s.Data = v
-  return s
-}
-
-type GetOriginalRequestInformationAttackLogSeniorInfoDto struct {
-  // {'en':'Request header information.', 'zh_CN':'请求头信息。'}
-  RequestHead *string `json:"requestHead,omitempty" xml:"requestHead,omitempty" require:"true"`
-}
-
-func (s GetOriginalRequestInformationAttackLogSeniorInfoDto) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetOriginalRequestInformationAttackLogSeniorInfoDto) GoString() string {
-  return s.String()
-}
-
-func (s *GetOriginalRequestInformationAttackLogSeniorInfoDto) SetRequestHead(v string) *GetOriginalRequestInformationAttackLogSeniorInfoDto {
-  s.RequestHead = &v
+func (s *GetOriginalRequestInformationRequestHeader) SetTimezone(v string) *GetOriginalRequestInformationRequestHeader {
+  s.Timezone = &v
   return s
 }
 
@@ -7839,32 +6978,53 @@ func (s GetOriginalRequestInformationParameters) GoString() string {
   return s.String()
 }
 
-type GetOriginalRequestInformationRequestHeader struct {
-  // {'en':'The language of response data, default value: en.
-  // zh_CN: Chinese
-  // en: English', 'zh_CN':'返回内容的语言版本，默认值: en。
-  // zh_CN：中文
-  // en：英文'}
-  Language *string `json:"language,omitempty" xml:"language,omitempty"`
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+type GetOriginalRequestInformationResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"Data.","zh_CN":"出参数据。"}
+  Data *GetOriginalRequestInformationResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
 }
 
-func (s GetOriginalRequestInformationRequestHeader) String() string {
+func (s GetOriginalRequestInformationResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetOriginalRequestInformationRequestHeader) GoString() string {
+func (s GetOriginalRequestInformationResponse) GoString() string {
   return s.String()
 }
 
-func (s *GetOriginalRequestInformationRequestHeader) SetLanguage(v string) *GetOriginalRequestInformationRequestHeader {
-  s.Language = &v
+func (s *GetOriginalRequestInformationResponse) SetCode(v string) *GetOriginalRequestInformationResponse {
+  s.Code = &v
   return s
 }
 
-func (s *GetOriginalRequestInformationRequestHeader) SetServiceType(v string) *GetOriginalRequestInformationRequestHeader {
-  s.ServiceType = &v
+func (s *GetOriginalRequestInformationResponse) SetMsg(v string) *GetOriginalRequestInformationResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *GetOriginalRequestInformationResponse) SetData(v *GetOriginalRequestInformationResponseData) *GetOriginalRequestInformationResponse {
+  s.Data = v
+  return s
+}
+
+type GetOriginalRequestInformationResponseData struct {
+  // {"en":"Request header information.","zh_CN":"请求头信息。"}
+  RequestHead *string `json:"requestHead,omitempty" xml:"requestHead,omitempty" require:"true"`
+}
+
+func (s GetOriginalRequestInformationResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetOriginalRequestInformationResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *GetOriginalRequestInformationResponseData) SetRequestHead(v string) *GetOriginalRequestInformationResponseData {
+  s.RequestHead = &v
   return s
 }
 
@@ -8065,13 +7225,9 @@ func (s GetDomainBotVisitDetailsResponseHeader) GoString() string {
 
 
 type L4DdosTrendRequest struct {
-  // {"en":"Start time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 30 days.", "zh_CN":"开始时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过30天。"}
+  // {"en":"Start time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"开始时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过30天。"}
   StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {"en":"End time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 30 days)", "zh_CN":"结束时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过30天。"}
+  // {"en":"End time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"结束时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过30天。"}
   EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
 }
 
@@ -8093,190 +7249,28 @@ func (s *L4DdosTrendRequest) SetEndTime(v string) *L4DdosTrendRequest {
   return s
 }
 
-type L4DdosTrendResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Description.", "zh_CN":"描述信息。"}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {"en":"Data.", "zh_CN":"出参数据。"}
-  Data []*L4DdosTrendAttackedUrl `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
-  // {"en":"Maximum attack bps.", "zh_CN":"DDoS攻击带宽峰值"}
-  Peak_bps []*L4DdosTrendPeak `json:"peak_bps,omitempty" xml:"peak_bps,omitempty" require:"true" type:"Repeated"`
-  // {"en":"Maximum attack qps.", "zh_CN":"DDoS攻击包速峰值"}
-  Peak_pps []*L4DdosTrendPeak `json:"peak_pps,omitempty" xml:"peak_pps,omitempty" require:"true" type:"Repeated"`
+type L4DdosTrendRequestHeader struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+  // {"defaultValue":"GMT+8","en":"Report Data Timezone:1. Indicates the timezone for the report data. lt must be relative to GMT andspecified in the format GMT+n where -12<=n <= 12. For example,timezone=GMT-7 and timezone=GMT+8.2. If the parameter is unspecified,results will be in the GMT+8 timezone.","zh_CN":"报表数据时区：1.请传递GMT时区。示例格式：GMT+N（其中12<=N <= 12），示例：timezone=GMT-7或timezone=GMT+8.2.若参数为传递，将默认按GMT+8时区查询"}
+  Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty"`
 }
 
-func (s L4DdosTrendResponse) String() string {
+func (s L4DdosTrendRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s L4DdosTrendResponse) GoString() string {
+func (s L4DdosTrendRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *L4DdosTrendResponse) SetCode(v string) *L4DdosTrendResponse {
-  s.Code = &v
+func (s *L4DdosTrendRequestHeader) SetServiceType(v string) *L4DdosTrendRequestHeader {
+  s.ServiceType = &v
   return s
 }
 
-func (s *L4DdosTrendResponse) SetMsg(v string) *L4DdosTrendResponse {
-  s.Msg = &v
-  return s
-}
-
-func (s *L4DdosTrendResponse) SetData(v []*L4DdosTrendAttackedUrl) *L4DdosTrendResponse {
-  s.Data = v
-  return s
-}
-
-func (s *L4DdosTrendResponse) SetPeak_bps(v []*L4DdosTrendPeak) *L4DdosTrendResponse {
-  s.Peak_bps = v
-  return s
-}
-
-func (s *L4DdosTrendResponse) SetPeak_pps(v []*L4DdosTrendPeak) *L4DdosTrendResponse {
-  s.Peak_pps = v
-  return s
-}
-
-type L4DdosTrendAttackedUrl struct {
-  // {"en":"Normal bandwidth.(bps)", "zh_CN":"正常带宽。（bps）"}
-  Normal_bps *string `json:"normal_bps,omitempty" xml:"normal_bps,omitempty" require:"true"`
-  // {"en":"Total cleaning bandwidth.", "zh_CN":"总清洗带宽。"}
-  Attack_bps *string `json:"attack_bps,omitempty" xml:"attack_bps,omitempty" require:"true"`
-  // {"en":"Normal packages.(pps)", "zh_CN":"正常包数。（pps）"}
-  Normal_pps *string `json:"normal_pps,omitempty" xml:"normal_pps,omitempty" require:"true"`
-  // {"en":"Total  packages.", "zh_CN":"总清洗包数。"}
-  Attack_pps *string `json:"attack_pps,omitempty" xml:"attack_pps,omitempty" require:"true"`
-  // {"en":"SYN Flood.(bps)", "zh_CN":"SYN Flood。（bps）"}
-  Syn_bps *string `json:"syn_bps,omitempty" xml:"syn_bps,omitempty" require:"true"`
-  // {"en":"SYN Flood.(pps)", "zh_CN":"SYN Flood。（pps）"}
-  Syn_pps *string `json:"syn_pps,omitempty" xml:"syn_pps,omitempty" require:"true"`
-  // {"en":"ACK Flood.(bps)", "zh_CN":"ACK Flood。（bps）"}
-  Ack_bps *string `json:"ack_bps,omitempty" xml:"ack_bps,omitempty" require:"true"`
-  // {"en":"ACK Flood.(pps)", "zh_CN":"ACK Flood。（pps）"}
-  Ack_pps *string `json:"ack_pps,omitempty" xml:"ack_pps,omitempty" require:"true"`
-  // {"en":"UDP Flood. (bps)", "zh_CN":"UDP Flood。 (bps)"}
-  Udp_bps *string `json:"udp_bps,omitempty" xml:"udp_bps,omitempty" require:"true"`
-  // {"en":"UDP Flood. (pps)", "zh_CN":"UDP Flood。 (pps)"}
-  Udp_pps *string `json:"udp_pps,omitempty" xml:"udp_pps,omitempty" require:"true"`
-  // {"en":"ICMP Flood. (bps)", "zh_CN":"ICMP Flood。 (bps)"}
-  Icmp_bps *string `json:"icmp_bps,omitempty" xml:"icmp_bps,omitempty" require:"true"`
-  // {"en":"ICMP Flood. (pps)", "zh_CN":"ICMP Flood。 (pps)"}
-  Icmp_pps *string `json:"icmp_pps,omitempty" xml:"icmp_pps,omitempty" require:"true"`
-  // {"en":"Other Flood. (pps)", "zh_CN":"Other Flood。 (pps)"}
-  Other_pps *string `json:"other_pps,omitempty" xml:"other_pps,omitempty" require:"true"`
-  // {"en":"Other Flood.(bps)", "zh_CN":"Other Flood。(bps)"}
-  Other_bps *string `json:"other_bps,omitempty" xml:"other_bps,omitempty" require:"true"`
-  // {"en":"Time.", "zh_CN":"时间。"}
-  Time *string `json:"time,omitempty" xml:"time,omitempty" require:"true"`
-}
-
-func (s L4DdosTrendAttackedUrl) String() string {
-  return tea.Prettify(s)
-}
-
-func (s L4DdosTrendAttackedUrl) GoString() string {
-  return s.String()
-}
-
-func (s *L4DdosTrendAttackedUrl) SetNormal_bps(v string) *L4DdosTrendAttackedUrl {
-  s.Normal_bps = &v
-  return s
-}
-
-func (s *L4DdosTrendAttackedUrl) SetAttack_bps(v string) *L4DdosTrendAttackedUrl {
-  s.Attack_bps = &v
-  return s
-}
-
-func (s *L4DdosTrendAttackedUrl) SetNormal_pps(v string) *L4DdosTrendAttackedUrl {
-  s.Normal_pps = &v
-  return s
-}
-
-func (s *L4DdosTrendAttackedUrl) SetAttack_pps(v string) *L4DdosTrendAttackedUrl {
-  s.Attack_pps = &v
-  return s
-}
-
-func (s *L4DdosTrendAttackedUrl) SetSyn_bps(v string) *L4DdosTrendAttackedUrl {
-  s.Syn_bps = &v
-  return s
-}
-
-func (s *L4DdosTrendAttackedUrl) SetSyn_pps(v string) *L4DdosTrendAttackedUrl {
-  s.Syn_pps = &v
-  return s
-}
-
-func (s *L4DdosTrendAttackedUrl) SetAck_bps(v string) *L4DdosTrendAttackedUrl {
-  s.Ack_bps = &v
-  return s
-}
-
-func (s *L4DdosTrendAttackedUrl) SetAck_pps(v string) *L4DdosTrendAttackedUrl {
-  s.Ack_pps = &v
-  return s
-}
-
-func (s *L4DdosTrendAttackedUrl) SetUdp_bps(v string) *L4DdosTrendAttackedUrl {
-  s.Udp_bps = &v
-  return s
-}
-
-func (s *L4DdosTrendAttackedUrl) SetUdp_pps(v string) *L4DdosTrendAttackedUrl {
-  s.Udp_pps = &v
-  return s
-}
-
-func (s *L4DdosTrendAttackedUrl) SetIcmp_bps(v string) *L4DdosTrendAttackedUrl {
-  s.Icmp_bps = &v
-  return s
-}
-
-func (s *L4DdosTrendAttackedUrl) SetIcmp_pps(v string) *L4DdosTrendAttackedUrl {
-  s.Icmp_pps = &v
-  return s
-}
-
-func (s *L4DdosTrendAttackedUrl) SetOther_pps(v string) *L4DdosTrendAttackedUrl {
-  s.Other_pps = &v
-  return s
-}
-
-func (s *L4DdosTrendAttackedUrl) SetOther_bps(v string) *L4DdosTrendAttackedUrl {
-  s.Other_bps = &v
-  return s
-}
-
-func (s *L4DdosTrendAttackedUrl) SetTime(v string) *L4DdosTrendAttackedUrl {
-  s.Time = &v
-  return s
-}
-
-type L4DdosTrendPeak struct {
-  // {"en":"Maximum attack time.", "zh_CN":"峰值时间"}
-  Peak_time *string `json:"peak_time,omitempty" xml:"peak_time,omitempty" require:"true"`
-  // {"en":"Maximum attack value.", "zh_CN":"峰值"}
-  Peak_value *int64 `json:"peak_value,omitempty" xml:"peak_value,omitempty" require:"true"`
-}
-
-func (s L4DdosTrendPeak) String() string {
-  return tea.Prettify(s)
-}
-
-func (s L4DdosTrendPeak) GoString() string {
-  return s.String()
-}
-
-func (s *L4DdosTrendPeak) SetPeak_time(v string) *L4DdosTrendPeak {
-  s.Peak_time = &v
-  return s
-}
-
-func (s *L4DdosTrendPeak) SetPeak_value(v int64) *L4DdosTrendPeak {
-  s.Peak_value = &v
+func (s *L4DdosTrendRequestHeader) SetTimezone(v string) *L4DdosTrendRequestHeader {
+  s.Timezone = &v
   return s
 }
 
@@ -8302,21 +7296,215 @@ func (s L4DdosTrendParameters) GoString() string {
   return s.String()
 }
 
-type L4DdosTrendRequestHeader struct {
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+type L4DdosTrendResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"Data.","zh_CN":"出参数据。"}
+  Data []*L4DdosTrendResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
+  // {"en":"Maximum attack bps.","zh_CN":"DDoS攻击带宽峰值"}
+  PeakBps []*L4DdosTrendResponsePeakBps `json:"peak_bps,omitempty" xml:"peak_bps,omitempty" require:"true" type:"Repeated"`
+  // {"en":"Maximum attack qps.","zh_CN":"DDoS攻击包速峰值"}
+  PeakPps []*L4DdosTrendResponsePeakPps `json:"peak_pps,omitempty" xml:"peak_pps,omitempty" require:"true" type:"Repeated"`
 }
 
-func (s L4DdosTrendRequestHeader) String() string {
+func (s L4DdosTrendResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s L4DdosTrendRequestHeader) GoString() string {
+func (s L4DdosTrendResponse) GoString() string {
   return s.String()
 }
 
-func (s *L4DdosTrendRequestHeader) SetServiceType(v string) *L4DdosTrendRequestHeader {
-  s.ServiceType = &v
+func (s *L4DdosTrendResponse) SetCode(v string) *L4DdosTrendResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *L4DdosTrendResponse) SetMsg(v string) *L4DdosTrendResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *L4DdosTrendResponse) SetData(v []*L4DdosTrendResponseData) *L4DdosTrendResponse {
+  s.Data = v
+  return s
+}
+
+func (s *L4DdosTrendResponse) SetPeakBps(v []*L4DdosTrendResponsePeakBps) *L4DdosTrendResponse {
+  s.PeakBps = v
+  return s
+}
+
+func (s *L4DdosTrendResponse) SetPeakPps(v []*L4DdosTrendResponsePeakPps) *L4DdosTrendResponse {
+  s.PeakPps = v
+  return s
+}
+
+type L4DdosTrendResponseData struct     {
+  // {"en":"Normal bandwidth.(bps)","zh_CN":"正常带宽。（bps）"}
+  NormalBps *string `json:"normal_bps,omitempty" xml:"normal_bps,omitempty" require:"true"`
+  // {"en":"Total cleaning bandwidth.","zh_CN":"总清洗带宽。"}
+  AttackBps *string `json:"attack_bps,omitempty" xml:"attack_bps,omitempty" require:"true"`
+  // {"en":"Normal packages.(pps)","zh_CN":"正常包数。（pps）"}
+  NormalPps *string `json:"normal_pps,omitempty" xml:"normal_pps,omitempty" require:"true"`
+  // {"en":"Total  packages.","zh_CN":"总清洗包数。"}
+  AttackPps *string `json:"attack_pps,omitempty" xml:"attack_pps,omitempty" require:"true"`
+  // {"en":"SYN Flood.(bps)","zh_CN":"SYN Flood。（bps）"}
+  SynBps *string `json:"syn_bps,omitempty" xml:"syn_bps,omitempty" require:"true"`
+  // {"en":"SYN Flood.(pps)","zh_CN":"SYN Flood。（pps）"}
+  SynPps *string `json:"syn_pps,omitempty" xml:"syn_pps,omitempty" require:"true"`
+  // {"en":"ACK Flood.(bps)","zh_CN":"ACK Flood。（bps）"}
+  AckBps *string `json:"ack_bps,omitempty" xml:"ack_bps,omitempty" require:"true"`
+  // {"en":"ACK Flood.(pps)","zh_CN":"ACK Flood。（pps）"}
+  AckPps *string `json:"ack_pps,omitempty" xml:"ack_pps,omitempty" require:"true"`
+  // {"en":"UDP Flood. (bps)","zh_CN":"UDP Flood。 (bps)"}
+  UdpBps *string `json:"udp_bps,omitempty" xml:"udp_bps,omitempty" require:"true"`
+  // {"en":"UDP Flood. (pps)","zh_CN":"UDP Flood。 (pps)"}
+  UdpPps *string `json:"udp_pps,omitempty" xml:"udp_pps,omitempty" require:"true"`
+  // {"en":"ICMP Flood. (bps)","zh_CN":"ICMP Flood。 (bps)"}
+  IcmpBps *string `json:"icmp_bps,omitempty" xml:"icmp_bps,omitempty" require:"true"`
+  // {"en":"ICMP Flood. (pps)","zh_CN":"ICMP Flood。 (pps)"}
+  IcmpPps *string `json:"icmp_pps,omitempty" xml:"icmp_pps,omitempty" require:"true"`
+  // {"en":"Other Flood. (pps)","zh_CN":"Other Flood。 (pps)"}
+  OtherPps *string `json:"other_pps,omitempty" xml:"other_pps,omitempty" require:"true"`
+  // {"en":"Other Flood.(bps)","zh_CN":"Other Flood。(bps)"}
+  OtherBps *string `json:"other_bps,omitempty" xml:"other_bps,omitempty" require:"true"`
+  // {"en":"Time.","zh_CN":"时间。"}
+  Time *string `json:"time,omitempty" xml:"time,omitempty" require:"true"`
+}
+
+func (s L4DdosTrendResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s L4DdosTrendResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *L4DdosTrendResponseData) SetNormalBps(v string) *L4DdosTrendResponseData {
+  s.NormalBps = &v
+  return s
+}
+
+func (s *L4DdosTrendResponseData) SetAttackBps(v string) *L4DdosTrendResponseData {
+  s.AttackBps = &v
+  return s
+}
+
+func (s *L4DdosTrendResponseData) SetNormalPps(v string) *L4DdosTrendResponseData {
+  s.NormalPps = &v
+  return s
+}
+
+func (s *L4DdosTrendResponseData) SetAttackPps(v string) *L4DdosTrendResponseData {
+  s.AttackPps = &v
+  return s
+}
+
+func (s *L4DdosTrendResponseData) SetSynBps(v string) *L4DdosTrendResponseData {
+  s.SynBps = &v
+  return s
+}
+
+func (s *L4DdosTrendResponseData) SetSynPps(v string) *L4DdosTrendResponseData {
+  s.SynPps = &v
+  return s
+}
+
+func (s *L4DdosTrendResponseData) SetAckBps(v string) *L4DdosTrendResponseData {
+  s.AckBps = &v
+  return s
+}
+
+func (s *L4DdosTrendResponseData) SetAckPps(v string) *L4DdosTrendResponseData {
+  s.AckPps = &v
+  return s
+}
+
+func (s *L4DdosTrendResponseData) SetUdpBps(v string) *L4DdosTrendResponseData {
+  s.UdpBps = &v
+  return s
+}
+
+func (s *L4DdosTrendResponseData) SetUdpPps(v string) *L4DdosTrendResponseData {
+  s.UdpPps = &v
+  return s
+}
+
+func (s *L4DdosTrendResponseData) SetIcmpBps(v string) *L4DdosTrendResponseData {
+  s.IcmpBps = &v
+  return s
+}
+
+func (s *L4DdosTrendResponseData) SetIcmpPps(v string) *L4DdosTrendResponseData {
+  s.IcmpPps = &v
+  return s
+}
+
+func (s *L4DdosTrendResponseData) SetOtherPps(v string) *L4DdosTrendResponseData {
+  s.OtherPps = &v
+  return s
+}
+
+func (s *L4DdosTrendResponseData) SetOtherBps(v string) *L4DdosTrendResponseData {
+  s.OtherBps = &v
+  return s
+}
+
+func (s *L4DdosTrendResponseData) SetTime(v string) *L4DdosTrendResponseData {
+  s.Time = &v
+  return s
+}
+
+type L4DdosTrendResponsePeakBps struct     {
+  // {"en":"Maximum attack time.","zh_CN":"峰值时间"}
+  PeakTime *string `json:"peak_time,omitempty" xml:"peak_time,omitempty" require:"true"`
+  // {"en":"Maximum attack value.","zh_CN":"峰值"}
+  PeakValue *int64 `json:"peak_value,omitempty" xml:"peak_value,omitempty" require:"true"`
+}
+
+func (s L4DdosTrendResponsePeakBps) String() string {
+  return tea.Prettify(s)
+}
+
+func (s L4DdosTrendResponsePeakBps) GoString() string {
+  return s.String()
+}
+
+func (s *L4DdosTrendResponsePeakBps) SetPeakTime(v string) *L4DdosTrendResponsePeakBps {
+  s.PeakTime = &v
+  return s
+}
+
+func (s *L4DdosTrendResponsePeakBps) SetPeakValue(v int64) *L4DdosTrendResponsePeakBps {
+  s.PeakValue = &v
+  return s
+}
+
+type L4DdosTrendResponsePeakPps struct     {
+  // {"en":"Maximum attack time.","zh_CN":"峰值时间"}
+  PeakTime *string `json:"peak_time,omitempty" xml:"peak_time,omitempty" require:"true"`
+  // {"en":"Maximum attack value.","zh_CN":"峰值"}
+  PeakValue *int64 `json:"peak_value,omitempty" xml:"peak_value,omitempty" require:"true"`
+}
+
+func (s L4DdosTrendResponsePeakPps) String() string {
+  return tea.Prettify(s)
+}
+
+func (s L4DdosTrendResponsePeakPps) GoString() string {
+  return s.String()
+}
+
+func (s *L4DdosTrendResponsePeakPps) SetPeakTime(v string) *L4DdosTrendResponsePeakPps {
+  s.PeakTime = &v
+  return s
+}
+
+func (s *L4DdosTrendResponsePeakPps) SetPeakValue(v int64) *L4DdosTrendResponsePeakPps {
+  s.PeakValue = &v
   return s
 }
 
@@ -8780,176 +7968,171 @@ func (s GetBotRequestTypeDistributeDataResponseHeader) GoString() string {
 
 
 
-type GetTopAttackTargetsByHostnameRequest struct {
-  // {'en':'Top rankings, default value: 100, max: 1000.', 'zh_CN':'取前几排名，默认：100，上限：1000。'}
-  Top *int32 `json:"top,omitempty" xml:"top,omitempty"`
-  // {'en':'Multiple choice. Disposal result, default value: all results.
-  //  mitigated: Mitegaed requests.
-  //  monitored: monitored requests.', 'zh_CN':'多选。处置结果，默认：展示所有结果。
-  //  mitigated：已抵御请求数。
-  //  monitored：观察请求数。'}
+type GetTopAttackTargetsByDomainRequest struct {
+  // {"defaultValue":"100","en":"Top rankings, default value: 100, max: 1000.","zh_CN":"取前几排名，默认：100，上限：1000。"}
+  Top *int `json:"top,omitempty" xml:"top,omitempty"`
+  // {"en":"Multiple selection. Handling results, default: display all results.\nmitigated: Number of mitigated requests.\nmonitored: Number of observed requests.","zh_CN":"多选。处置结果，默认：展示所有结果。\nmitigated：已抵御请求数。\nmonitored：观察请求数。","exampleValue":"mitigated,monitored"}
   ActType []*string `json:"actType,omitempty" xml:"actType,omitempty" type:"Repeated"`
-  // {'en':'Start time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'起始时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"Start time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"起始时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {'en':'End time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'截止时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"End time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"截止时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
-  // {'en':'Hostname list, if not specified, it means all the hostnames of the account.', 'zh_CN':'域名列表，未指定时查询账号下的所有域名。'}
+  // {"en":"Domain list. Queries all domains under the account when not specified.","zh_CN":"域名列表，未指定时查询账号下的所有域名。"}
   Domains []*string `json:"domains,omitempty" xml:"domains,omitempty" type:"Repeated"`
 }
 
-func (s GetTopAttackTargetsByHostnameRequest) String() string {
+func (s GetTopAttackTargetsByDomainRequest) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetTopAttackTargetsByHostnameRequest) GoString() string {
+func (s GetTopAttackTargetsByDomainRequest) GoString() string {
   return s.String()
 }
 
-func (s *GetTopAttackTargetsByHostnameRequest) SetTop(v int32) *GetTopAttackTargetsByHostnameRequest {
+func (s *GetTopAttackTargetsByDomainRequest) SetTop(v int) *GetTopAttackTargetsByDomainRequest {
   s.Top = &v
   return s
 }
 
-func (s *GetTopAttackTargetsByHostnameRequest) SetActType(v []*string) *GetTopAttackTargetsByHostnameRequest {
+func (s *GetTopAttackTargetsByDomainRequest) SetActType(v []*string) *GetTopAttackTargetsByDomainRequest {
   s.ActType = v
   return s
 }
 
-func (s *GetTopAttackTargetsByHostnameRequest) SetStartTime(v string) *GetTopAttackTargetsByHostnameRequest {
+func (s *GetTopAttackTargetsByDomainRequest) SetStartTime(v string) *GetTopAttackTargetsByDomainRequest {
   s.StartTime = &v
   return s
 }
 
-func (s *GetTopAttackTargetsByHostnameRequest) SetEndTime(v string) *GetTopAttackTargetsByHostnameRequest {
+func (s *GetTopAttackTargetsByDomainRequest) SetEndTime(v string) *GetTopAttackTargetsByDomainRequest {
   s.EndTime = &v
   return s
 }
 
-func (s *GetTopAttackTargetsByHostnameRequest) SetDomains(v []*string) *GetTopAttackTargetsByHostnameRequest {
+func (s *GetTopAttackTargetsByDomainRequest) SetDomains(v []*string) *GetTopAttackTargetsByDomainRequest {
   s.Domains = v
   return s
 }
 
-type GetTopAttackTargetsByHostnameResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'描述信息。'}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {'en':'Data.', 'zh_CN':'出参数据。'}
-  Data []*GetTopAttackTargetsByHostnameDomainTopDTO `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
-}
-
-func (s GetTopAttackTargetsByHostnameResponse) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetTopAttackTargetsByHostnameResponse) GoString() string {
-  return s.String()
-}
-
-func (s *GetTopAttackTargetsByHostnameResponse) SetCode(v string) *GetTopAttackTargetsByHostnameResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *GetTopAttackTargetsByHostnameResponse) SetMsg(v string) *GetTopAttackTargetsByHostnameResponse {
-  s.Msg = &v
-  return s
-}
-
-func (s *GetTopAttackTargetsByHostnameResponse) SetData(v []*GetTopAttackTargetsByHostnameDomainTopDTO) *GetTopAttackTargetsByHostnameResponse {
-  s.Data = v
-  return s
-}
-
-type GetTopAttackTargetsByHostnameDomainTopDTO struct {
-  // {'en':'Hostname.', 'zh_CN':'域名。'}
-  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
-  // {'en':'Attack requests.', 'zh_CN':'攻击请求数。'}
-  Attack *int64 `json:"attack,omitempty" xml:"attack,omitempty" require:"true"`
-}
-
-func (s GetTopAttackTargetsByHostnameDomainTopDTO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetTopAttackTargetsByHostnameDomainTopDTO) GoString() string {
-  return s.String()
-}
-
-func (s *GetTopAttackTargetsByHostnameDomainTopDTO) SetDomain(v string) *GetTopAttackTargetsByHostnameDomainTopDTO {
-  s.Domain = &v
-  return s
-}
-
-func (s *GetTopAttackTargetsByHostnameDomainTopDTO) SetAttack(v int64) *GetTopAttackTargetsByHostnameDomainTopDTO {
-  s.Attack = &v
-  return s
-}
-
-type GetTopAttackTargetsByHostnamePaths struct {
-}
-
-func (s GetTopAttackTargetsByHostnamePaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetTopAttackTargetsByHostnamePaths) GoString() string {
-  return s.String()
-}
-
-type GetTopAttackTargetsByHostnameParameters struct {
-}
-
-func (s GetTopAttackTargetsByHostnameParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetTopAttackTargetsByHostnameParameters) GoString() string {
-  return s.String()
-}
-
-type GetTopAttackTargetsByHostnameRequestHeader struct {
-  // {'en':'The language of response data, default value: en.
-  // zh_CN: Chinese
-  // en: English', 'zh_CN':'返回内容的语言版本，默认值: en。
-  // zh_CN：中文
-  // en：英文'}
+type GetTopAttackTargetsByDomainRequestHeader struct {
+  // {"defaultValue":"en","en":"The language of response data, default value: en.\nzh_CN: Chinese\nen: English","zh_CN":"返回内容的语言版本，默认值: en。\nzh_CN：中文\nen：英文","exampleValue":"zh_CN,en"}
   Language *string `json:"language,omitempty" xml:"language,omitempty"`
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
   ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+  // {"defaultValue":"GMT+8","en":"Report Data Timezone:1. Indicates the timezone for the report data. lt must be relative to GMT andspecified in the format GMT+n where -12<=n <= 12. For example,timezone=GMT-7 and timezone=GMT+8.2. If the parameter is unspecified,results will be in the GMT+8 timezone.","zh_CN":"报表数据时区：1.请传递GMT时区。示例格式：GMT+N（其中12<=N <= 12），示例：timezone=GMT-7或timezone=GMT+8.2.若参数为传递，将默认按GMT+8时区查询"}
+  Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty"`
 }
 
-func (s GetTopAttackTargetsByHostnameRequestHeader) String() string {
+func (s GetTopAttackTargetsByDomainRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetTopAttackTargetsByHostnameRequestHeader) GoString() string {
+func (s GetTopAttackTargetsByDomainRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *GetTopAttackTargetsByHostnameRequestHeader) SetLanguage(v string) *GetTopAttackTargetsByHostnameRequestHeader {
+func (s *GetTopAttackTargetsByDomainRequestHeader) SetLanguage(v string) *GetTopAttackTargetsByDomainRequestHeader {
   s.Language = &v
   return s
 }
 
-func (s *GetTopAttackTargetsByHostnameRequestHeader) SetServiceType(v string) *GetTopAttackTargetsByHostnameRequestHeader {
+func (s *GetTopAttackTargetsByDomainRequestHeader) SetServiceType(v string) *GetTopAttackTargetsByDomainRequestHeader {
   s.ServiceType = &v
   return s
 }
 
-type GetTopAttackTargetsByHostnameResponseHeader struct {
+func (s *GetTopAttackTargetsByDomainRequestHeader) SetTimezone(v string) *GetTopAttackTargetsByDomainRequestHeader {
+  s.Timezone = &v
+  return s
 }
 
-func (s GetTopAttackTargetsByHostnameResponseHeader) String() string {
+type GetTopAttackTargetsByDomainPaths struct {
+}
+
+func (s GetTopAttackTargetsByDomainPaths) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetTopAttackTargetsByHostnameResponseHeader) GoString() string {
+func (s GetTopAttackTargetsByDomainPaths) GoString() string {
+  return s.String()
+}
+
+type GetTopAttackTargetsByDomainParameters struct {
+}
+
+func (s GetTopAttackTargetsByDomainParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetTopAttackTargetsByDomainParameters) GoString() string {
+  return s.String()
+}
+
+type GetTopAttackTargetsByDomainResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"Data.","zh_CN":"出参数据。"}
+  Data []*GetTopAttackTargetsByDomainResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s GetTopAttackTargetsByDomainResponse) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetTopAttackTargetsByDomainResponse) GoString() string {
+  return s.String()
+}
+
+func (s *GetTopAttackTargetsByDomainResponse) SetCode(v string) *GetTopAttackTargetsByDomainResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *GetTopAttackTargetsByDomainResponse) SetMsg(v string) *GetTopAttackTargetsByDomainResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *GetTopAttackTargetsByDomainResponse) SetData(v []*GetTopAttackTargetsByDomainResponseData) *GetTopAttackTargetsByDomainResponse {
+  s.Data = v
+  return s
+}
+
+type GetTopAttackTargetsByDomainResponseData struct     {
+  // {"en":"Domain.","zh_CN":"域名。"}
+  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
+  // {"en":"Attack requests.","zh_CN":"攻击请求数。"}
+  Attack *int64 `json:"attack,omitempty" xml:"attack,omitempty" require:"true"`
+}
+
+func (s GetTopAttackTargetsByDomainResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetTopAttackTargetsByDomainResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *GetTopAttackTargetsByDomainResponseData) SetDomain(v string) *GetTopAttackTargetsByDomainResponseData {
+  s.Domain = &v
+  return s
+}
+
+func (s *GetTopAttackTargetsByDomainResponseData) SetAttack(v int64) *GetTopAttackTargetsByDomainResponseData {
+  s.Attack = &v
+  return s
+}
+
+type GetTopAttackTargetsByDomainResponseHeader struct {
+}
+
+func (s GetTopAttackTargetsByDomainResponseHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetTopAttackTargetsByDomainResponseHeader) GoString() string {
   return s.String()
 }
 
@@ -8957,21 +8140,13 @@ func (s GetTopAttackTargetsByHostnameResponseHeader) GoString() string {
 
 
 type GetTopPoliciesTriggeredRequest struct {
-  // {'en':'Start time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'起始时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"Start time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"起始时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {'en':'End time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'截止时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"End time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"截止时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
-  // {'en':'Hostname list, if not specified, it means all the hostnames of the account.', 'zh_CN':'域名列表，未指定时查询账号下的所有域名。'}
+  // {"en":"Domain list. Queries all domains under the account when not specified.","zh_CN":"域名列表，未指定时查询账号下的所有域名。"}
   Domains []*string `json:"domains,omitempty" xml:"domains,omitempty" type:"Repeated"`
-  // {'en':'Multiple choice. Disposal result, default value: all results.
-  //  mitigated: Mitegaed requests.
-  //  monitored: monitored requests.', 'zh_CN':'多选。处置结果，默认：展示所有结果。
-  //  mitigated：已抵御请求数。
-  //  monitored：观察请求数。'}
+  // {"en":"Multiple selection. Handling results, default: display all results.\nmitigated: Number of mitigated requests.\nmonitored: Number of observed requests.","zh_CN":"多选。处置结果，默认：展示所有结果。\nmitigated：已抵御请求数。\nmonitored：观察请求数。","exampleValue":"mitigated,monitored"}
   ActType []*string `json:"actType,omitempty" xml:"actType,omitempty" type:"Repeated"`
 }
 
@@ -9003,76 +8178,28 @@ func (s *GetTopPoliciesTriggeredRequest) SetActType(v []*string) *GetTopPolicies
   return s
 }
 
-type GetTopPoliciesTriggeredResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'描述信息。'}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {'en':'Data.', 'zh_CN':'出参数据。'}
-  Data []*GetTopPoliciesTriggeredEventTypeDTO `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
+type GetTopPoliciesTriggeredRequestHeader struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+  // {"defaultValue":"GMT+8","en":"Report Data Timezone:1. Indicates the timezone for the report data. lt must be relative to GMT andspecified in the format GMT+n where -12<=n <= 12. For example,timezone=GMT-7 and timezone=GMT+8.2. If the parameter is unspecified,results will be in the GMT+8 timezone.","zh_CN":"报表数据时区：1.请传递GMT时区。示例格式：GMT+N（其中12<=N <= 12），示例：timezone=GMT-7或timezone=GMT+8.2.若参数为传递，将默认按GMT+8时区查询"}
+  Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty"`
 }
 
-func (s GetTopPoliciesTriggeredResponse) String() string {
+func (s GetTopPoliciesTriggeredRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetTopPoliciesTriggeredResponse) GoString() string {
+func (s GetTopPoliciesTriggeredRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *GetTopPoliciesTriggeredResponse) SetCode(v string) *GetTopPoliciesTriggeredResponse {
-  s.Code = &v
+func (s *GetTopPoliciesTriggeredRequestHeader) SetServiceType(v string) *GetTopPoliciesTriggeredRequestHeader {
+  s.ServiceType = &v
   return s
 }
 
-func (s *GetTopPoliciesTriggeredResponse) SetMsg(v string) *GetTopPoliciesTriggeredResponse {
-  s.Msg = &v
-  return s
-}
-
-func (s *GetTopPoliciesTriggeredResponse) SetData(v []*GetTopPoliciesTriggeredEventTypeDTO) *GetTopPoliciesTriggeredResponse {
-  s.Data = v
-  return s
-}
-
-type GetTopPoliciesTriggeredEventTypeDTO struct {
-  // {'en':'Attack type.
-  //  BLOCK: IP/Geo Block
-  //  DMS_DEFEND: DDoS Protection
-  //  WAF_DEFEND: WAF
-  //  BOT_MANAGE: Bot Management
-  //  API_DEFEND: API Security
-  //  INTELLIGENCE: Threat Intelligence
-  //  RATE_LIMIT: Rate Limiting
-  //  CUSTOMIZE_RULE: Custom Rules', 'zh_CN':'攻击类型。
-  //  BLOCK：IP/区域封禁
-  //  DMS_DEFEND：DDoS防护
-  //  WAF_DEFEND：WAF
-  //  BOT_MANAGE：Bot管理
-  //  API_DEFEND：API安全
-  //  INTELLIGENCE：威胁情报
-  //  RATE_LIMIT：频率限制
-  //  CUSTOMIZE_RULE：自定义规则'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Number of requests that triggered the policy type.', 'zh_CN':'触发该策略类型的请求数。'}
-  Value *int64 `json:"value,omitempty" xml:"value,omitempty" require:"true"`
-}
-
-func (s GetTopPoliciesTriggeredEventTypeDTO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetTopPoliciesTriggeredEventTypeDTO) GoString() string {
-  return s.String()
-}
-
-func (s *GetTopPoliciesTriggeredEventTypeDTO) SetCode(v string) *GetTopPoliciesTriggeredEventTypeDTO {
-  s.Code = &v
-  return s
-}
-
-func (s *GetTopPoliciesTriggeredEventTypeDTO) SetValue(v int64) *GetTopPoliciesTriggeredEventTypeDTO {
-  s.Value = &v
+func (s *GetTopPoliciesTriggeredRequestHeader) SetTimezone(v string) *GetTopPoliciesTriggeredRequestHeader {
+  s.Timezone = &v
   return s
 }
 
@@ -9098,21 +8225,60 @@ func (s GetTopPoliciesTriggeredParameters) GoString() string {
   return s.String()
 }
 
-type GetTopPoliciesTriggeredRequestHeader struct {
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+type GetTopPoliciesTriggeredResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"Data.","zh_CN":"出参数据。"}
+  Data []*GetTopPoliciesTriggeredResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
 }
 
-func (s GetTopPoliciesTriggeredRequestHeader) String() string {
+func (s GetTopPoliciesTriggeredResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetTopPoliciesTriggeredRequestHeader) GoString() string {
+func (s GetTopPoliciesTriggeredResponse) GoString() string {
   return s.String()
 }
 
-func (s *GetTopPoliciesTriggeredRequestHeader) SetServiceType(v string) *GetTopPoliciesTriggeredRequestHeader {
-  s.ServiceType = &v
+func (s *GetTopPoliciesTriggeredResponse) SetCode(v string) *GetTopPoliciesTriggeredResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *GetTopPoliciesTriggeredResponse) SetMsg(v string) *GetTopPoliciesTriggeredResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *GetTopPoliciesTriggeredResponse) SetData(v []*GetTopPoliciesTriggeredResponseData) *GetTopPoliciesTriggeredResponse {
+  s.Data = v
+  return s
+}
+
+type GetTopPoliciesTriggeredResponseData struct     {
+  // {"en":"Attack type.\nBLOCK: IP/Geo Block\nDMS_DEFEND: DDoS Protection\nWAF_DEFEND: WAF\nBOT_MANAGE: Bot Management\nAPI_DEFEND: API Security\nINTELLIGENCE: Threat Intelligence\nRATE_LIMIT: Rate Limiting\nCUSTOMIZE_RULE: Custom Rules","zh_CN":"攻击类型。\nBLOCK：IP/区域封禁\nDMS_DEFEND：DDoS防护\nWAF_DEFEND：WAF\nBOT_MANAGE：Bot管理\nAPI_DEFEND：API安全\nINTELLIGENCE：威胁情报\nRATE_LIMIT：频率限制\nCUSTOMIZE_RULE：自定义规则","exampleValue":"BLOCK,DMS_DEFEND,WAF_DEFEND,BOT_MANAGE,API_DEFEND,INTELLIGENCE,RATE_LIMIT,CUSTOMIZE_RULE"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Number of requests that triggered the policy type.","zh_CN":"触发该策略类型的请求数。"}
+  Value *int64 `json:"value,omitempty" xml:"value,omitempty" require:"true"`
+}
+
+func (s GetTopPoliciesTriggeredResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetTopPoliciesTriggeredResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *GetTopPoliciesTriggeredResponseData) SetCode(v string) *GetTopPoliciesTriggeredResponseData {
+  s.Code = &v
+  return s
+}
+
+func (s *GetTopPoliciesTriggeredResponseData) SetValue(v int64) *GetTopPoliciesTriggeredResponseData {
+  s.Value = &v
   return s
 }
 
@@ -9808,185 +8974,16 @@ func (s GetWAFAttackedURLResponseHeader) GoString() string {
 
 
 
-type GetL7DdosAnalysisAttackedUrlListV2Request struct {
-  // {"en":"Start time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 30 days.", "zh_CN":"开始时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过30天。"}
-  StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {"en":"End time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 30 days)", "zh_CN":"结束时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过30天。"}
-  EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
-  // {"en":"Hostname list.", "zh_CN":"域名数组。"}
-  Hostnames []*string `json:"Hostnames,omitempty" xml:"Hostnames,omitempty" require:"true" type:"Repeated"`
-  // {"en":"Top num.", "zh_CN":"默认10条。"}
-  TopNum *int `json:"topNum,omitempty" xml:"topNum,omitempty"`
-}
-
-func (s GetL7DdosAnalysisAttackedUrlListV2Request) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetL7DdosAnalysisAttackedUrlListV2Request) GoString() string {
-  return s.String()
-}
-
-func (s *GetL7DdosAnalysisAttackedUrlListV2Request) SetStartTime(v string) *GetL7DdosAnalysisAttackedUrlListV2Request {
-  s.StartTime = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackedUrlListV2Request) SetEndTime(v string) *GetL7DdosAnalysisAttackedUrlListV2Request {
-  s.EndTime = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackedUrlListV2Request) SetHostnames(v []*string) *GetL7DdosAnalysisAttackedUrlListV2Request {
-  s.Hostnames = v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackedUrlListV2Request) SetTopNum(v int) *GetL7DdosAnalysisAttackedUrlListV2Request {
-  s.TopNum = &v
-  return s
-}
-
-type GetL7DdosAnalysisAttackedUrlListV2Response struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Description.", "zh_CN":"描述信息。"}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {"en":"Data.", "zh_CN":"出参数据。"}
-  Data []*GetL7DdosAnalysisAttackedUrlListV2AttackedUrl `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
-}
-
-func (s GetL7DdosAnalysisAttackedUrlListV2Response) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetL7DdosAnalysisAttackedUrlListV2Response) GoString() string {
-  return s.String()
-}
-
-func (s *GetL7DdosAnalysisAttackedUrlListV2Response) SetCode(v string) *GetL7DdosAnalysisAttackedUrlListV2Response {
-  s.Code = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackedUrlListV2Response) SetMsg(v string) *GetL7DdosAnalysisAttackedUrlListV2Response {
-  s.Msg = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackedUrlListV2Response) SetData(v []*GetL7DdosAnalysisAttackedUrlListV2AttackedUrl) *GetL7DdosAnalysisAttackedUrlListV2Response {
-  s.Data = v
-  return s
-}
-
-type GetL7DdosAnalysisAttackedUrlListV2AttackedUrl struct {
-  // {"en":"Observed Requests.", "zh_CN":"观察请求数。"}
-  AlarmCount *int64 `json:"alarmCount,omitempty" xml:"alarmCount,omitempty" require:"true"`
-  // {"en":"Resisted Requests.", "zh_CN":"已抵御请求数。"}
-  Count *int64 `json:"count,omitempty" xml:"count,omitempty" require:"true"`
-  // {"en":"URL.", "zh_CN":"URL。"}
-  Url *string `json:"url,omitempty" xml:"url,omitempty" require:"true"`
-}
-
-func (s GetL7DdosAnalysisAttackedUrlListV2AttackedUrl) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetL7DdosAnalysisAttackedUrlListV2AttackedUrl) GoString() string {
-  return s.String()
-}
-
-func (s *GetL7DdosAnalysisAttackedUrlListV2AttackedUrl) SetAlarmCount(v int64) *GetL7DdosAnalysisAttackedUrlListV2AttackedUrl {
-  s.AlarmCount = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackedUrlListV2AttackedUrl) SetCount(v int64) *GetL7DdosAnalysisAttackedUrlListV2AttackedUrl {
-  s.Count = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackedUrlListV2AttackedUrl) SetUrl(v string) *GetL7DdosAnalysisAttackedUrlListV2AttackedUrl {
-  s.Url = &v
-  return s
-}
-
-type GetL7DdosAnalysisAttackedUrlListV2Paths struct {
-}
-
-func (s GetL7DdosAnalysisAttackedUrlListV2Paths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetL7DdosAnalysisAttackedUrlListV2Paths) GoString() string {
-  return s.String()
-}
-
-type GetL7DdosAnalysisAttackedUrlListV2Parameters struct {
-}
-
-func (s GetL7DdosAnalysisAttackedUrlListV2Parameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetL7DdosAnalysisAttackedUrlListV2Parameters) GoString() string {
-  return s.String()
-}
-
-type GetL7DdosAnalysisAttackedUrlListV2RequestHeader struct {
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
-}
-
-func (s GetL7DdosAnalysisAttackedUrlListV2RequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetL7DdosAnalysisAttackedUrlListV2RequestHeader) GoString() string {
-  return s.String()
-}
-
-func (s *GetL7DdosAnalysisAttackedUrlListV2RequestHeader) SetServiceType(v string) *GetL7DdosAnalysisAttackedUrlListV2RequestHeader {
-  s.ServiceType = &v
-  return s
-}
-
-type GetL7DdosAnalysisAttackedUrlListV2ResponseHeader struct {
-}
-
-func (s GetL7DdosAnalysisAttackedUrlListV2ResponseHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetL7DdosAnalysisAttackedUrlListV2ResponseHeader) GoString() string {
-  return s.String()
-}
-
-
-
-
 type GetTriggeredRateLimitingRulesRequest struct {
-  // {'en':'Top rankings, default value: 10, max: 1000.', 'zh_CN':'取前几排名，默认：10，上限：1000。'}
-  Top *int32 `json:"top,omitempty" xml:"top,omitempty"`
-  // {'en':'Multiple choice. Disposal result, default value: all results.
-  //  mitigated: Mitegaed requests.
-  //  monitored: monitored requests.', 'zh_CN':'多选。处置结果，默认：展示所有结果。
-  //  mitigated：已抵御请求数。
-  //  monitored：观察请求数。'}
+  // {"defaultValue":"10","en":"Top rankings, default value: 10, max: 1000.","zh_CN":"取前几排名，默认：10，上限：1000。"}
+  Top *int `json:"top,omitempty" xml:"top,omitempty"`
+  // {"en":"Multiple selection. Handling results, default: display all results.\nmitigated: Number of mitigated requests.\nmonitored: Number of observed requests.","zh_CN":"多选。处置结果，默认：展示所有结果。\nmitigated：已抵御请求数。\nmonitored：观察请求数。","exampleValue":"mitigated,monitored"}
   ActType []*string `json:"actType,omitempty" xml:"actType,omitempty" type:"Repeated"`
-  // {'en':'Start time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'起始时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"Start time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"起始时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {'en':'End time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'截止时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"End time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"截止时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
-  // {'en':'Hostname list, if not specified, it means all the hostnames of the account.', 'zh_CN':'域名列表，未指定时查询账号下的所有域名。'}
+  // {"en":"Domain list. Queries all domains under the account when not specified.","zh_CN":"域名列表，未指定时查询账号下的所有域名。"}
   Domains []*string `json:"domains,omitempty" xml:"domains,omitempty" type:"Repeated"`
 }
 
@@ -9998,7 +8995,7 @@ func (s GetTriggeredRateLimitingRulesRequest) GoString() string {
   return s.String()
 }
 
-func (s *GetTriggeredRateLimitingRulesRequest) SetTop(v int32) *GetTriggeredRateLimitingRulesRequest {
+func (s *GetTriggeredRateLimitingRulesRequest) SetTop(v int) *GetTriggeredRateLimitingRulesRequest {
   s.Top = &v
   return s
 }
@@ -10023,99 +9020,35 @@ func (s *GetTriggeredRateLimitingRulesRequest) SetDomains(v []*string) *GetTrigg
   return s
 }
 
-type GetTriggeredRateLimitingRulesResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'描述信息。'}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {'en':'Data.', 'zh_CN':'出参数据。'}
-  Data []*GetTriggeredRateLimitingRulesRuleTopDTO `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
+type GetTriggeredRateLimitingRulesRequestHeader struct {
+  // {"defaultValue":"en","en":"The language of response data, default value: en.\nzh_CN: Chinese\nen: English","zh_CN":"返回内容的语言版本，默认值: en。\nzh_CN：中文\nen：英文","exampleValue":"zh_CN,en"}
+  Language *string `json:"language,omitempty" xml:"language,omitempty"`
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+  // {"defaultValue":"GMT+8","en":"Report Data Timezone:1. Indicates the timezone for the report data. lt must be relative to GMT andspecified in the format GMT+n where -12<=n <= 12. For example,timezone=GMT-7 and timezone=GMT+8.2. If the parameter is unspecified,results will be in the GMT+8 timezone.","zh_CN":"报表数据时区：1.请传递GMT时区。示例格式：GMT+N（其中12<=N <= 12），示例：timezone=GMT-7或timezone=GMT+8.2.若参数为传递，将默认按GMT+8时区查询"}
+  Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty"`
 }
 
-func (s GetTriggeredRateLimitingRulesResponse) String() string {
+func (s GetTriggeredRateLimitingRulesRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetTriggeredRateLimitingRulesResponse) GoString() string {
+func (s GetTriggeredRateLimitingRulesRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *GetTriggeredRateLimitingRulesResponse) SetCode(v string) *GetTriggeredRateLimitingRulesResponse {
-  s.Code = &v
+func (s *GetTriggeredRateLimitingRulesRequestHeader) SetLanguage(v string) *GetTriggeredRateLimitingRulesRequestHeader {
+  s.Language = &v
   return s
 }
 
-func (s *GetTriggeredRateLimitingRulesResponse) SetMsg(v string) *GetTriggeredRateLimitingRulesResponse {
-  s.Msg = &v
+func (s *GetTriggeredRateLimitingRulesRequestHeader) SetServiceType(v string) *GetTriggeredRateLimitingRulesRequestHeader {
+  s.ServiceType = &v
   return s
 }
 
-func (s *GetTriggeredRateLimitingRulesResponse) SetData(v []*GetTriggeredRateLimitingRulesRuleTopDTO) *GetTriggeredRateLimitingRulesResponse {
-  s.Data = v
-  return s
-}
-
-type GetTriggeredRateLimitingRulesRuleHitDTO struct {
-  // {'en':'Action.', 'zh_CN':'采取动作。'}
-  Act *string `json:"act,omitempty" xml:"act,omitempty" require:"true"`
-  // {'en':'Hit times.', 'zh_CN':'命中数。'}
-  Value *int64 `json:"value,omitempty" xml:"value,omitempty" require:"true"`
-}
-
-func (s GetTriggeredRateLimitingRulesRuleHitDTO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetTriggeredRateLimitingRulesRuleHitDTO) GoString() string {
-  return s.String()
-}
-
-func (s *GetTriggeredRateLimitingRulesRuleHitDTO) SetAct(v string) *GetTriggeredRateLimitingRulesRuleHitDTO {
-  s.Act = &v
-  return s
-}
-
-func (s *GetTriggeredRateLimitingRulesRuleHitDTO) SetValue(v int64) *GetTriggeredRateLimitingRulesRuleHitDTO {
-  s.Value = &v
-  return s
-}
-
-type GetTriggeredRateLimitingRulesRuleTopDTO struct {
-  // {'en':'Rule ID.', 'zh_CN':'规则ID。'}
-  RuleId *string `json:"ruleId,omitempty" xml:"ruleId,omitempty" require:"true"`
-  // {'en':'Rule name.', 'zh_CN':'规则名称。'}
-  RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
-  // {'en':'Protected target.', 'zh_CN':'业务场景。'}
-  Scene *string `json:"scene,omitempty" xml:"scene,omitempty" require:"true"`
-  // {'en':'Trigger times, sort by times.', 'zh_CN':'触发次数，按次数排序。'}
-  Hits []*GetTriggeredRateLimitingRulesRuleHitDTO `json:"hits,omitempty" xml:"hits,omitempty" require:"true" type:"Repeated"`
-}
-
-func (s GetTriggeredRateLimitingRulesRuleTopDTO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetTriggeredRateLimitingRulesRuleTopDTO) GoString() string {
-  return s.String()
-}
-
-func (s *GetTriggeredRateLimitingRulesRuleTopDTO) SetRuleId(v string) *GetTriggeredRateLimitingRulesRuleTopDTO {
-  s.RuleId = &v
-  return s
-}
-
-func (s *GetTriggeredRateLimitingRulesRuleTopDTO) SetRuleName(v string) *GetTriggeredRateLimitingRulesRuleTopDTO {
-  s.RuleName = &v
-  return s
-}
-
-func (s *GetTriggeredRateLimitingRulesRuleTopDTO) SetScene(v string) *GetTriggeredRateLimitingRulesRuleTopDTO {
-  s.Scene = &v
-  return s
-}
-
-func (s *GetTriggeredRateLimitingRulesRuleTopDTO) SetHits(v []*GetTriggeredRateLimitingRulesRuleHitDTO) *GetTriggeredRateLimitingRulesRuleTopDTO {
-  s.Hits = v
+func (s *GetTriggeredRateLimitingRulesRequestHeader) SetTimezone(v string) *GetTriggeredRateLimitingRulesRequestHeader {
+  s.Timezone = &v
   return s
 }
 
@@ -10141,32 +9074,99 @@ func (s GetTriggeredRateLimitingRulesParameters) GoString() string {
   return s.String()
 }
 
-type GetTriggeredRateLimitingRulesRequestHeader struct {
-  // {'en':'The language of response data, default value: en.
-  // zh_CN: Chinese
-  // en: English', 'zh_CN':'返回内容的语言版本，默认值: en。
-  // zh_CN：中文
-  // en：英文'}
-  Language *string `json:"language,omitempty" xml:"language,omitempty"`
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+type GetTriggeredRateLimitingRulesResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"Data.","zh_CN":"出参数据。"}
+  Data []*GetTriggeredRateLimitingRulesResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
 }
 
-func (s GetTriggeredRateLimitingRulesRequestHeader) String() string {
+func (s GetTriggeredRateLimitingRulesResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetTriggeredRateLimitingRulesRequestHeader) GoString() string {
+func (s GetTriggeredRateLimitingRulesResponse) GoString() string {
   return s.String()
 }
 
-func (s *GetTriggeredRateLimitingRulesRequestHeader) SetLanguage(v string) *GetTriggeredRateLimitingRulesRequestHeader {
-  s.Language = &v
+func (s *GetTriggeredRateLimitingRulesResponse) SetCode(v string) *GetTriggeredRateLimitingRulesResponse {
+  s.Code = &v
   return s
 }
 
-func (s *GetTriggeredRateLimitingRulesRequestHeader) SetServiceType(v string) *GetTriggeredRateLimitingRulesRequestHeader {
-  s.ServiceType = &v
+func (s *GetTriggeredRateLimitingRulesResponse) SetMsg(v string) *GetTriggeredRateLimitingRulesResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *GetTriggeredRateLimitingRulesResponse) SetData(v []*GetTriggeredRateLimitingRulesResponseData) *GetTriggeredRateLimitingRulesResponse {
+  s.Data = v
+  return s
+}
+
+type GetTriggeredRateLimitingRulesResponseData struct     {
+  // {"en":"Rule ID.","zh_CN":"规则ID。"}
+  RuleId *string `json:"ruleId,omitempty" xml:"ruleId,omitempty" require:"true"`
+  // {"en":"Rule name.","zh_CN":"规则名称。"}
+  RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
+  // {"en":"Protected target.","zh_CN":"业务场景。"}
+  Scene *string `json:"scene,omitempty" xml:"scene,omitempty" require:"true"`
+  // {"en":"Trigger times, sort by times.","zh_CN":"触发次数，按次数排序。"}
+  Hits []*GetTriggeredRateLimitingRulesResponseDataHits `json:"hits,omitempty" xml:"hits,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s GetTriggeredRateLimitingRulesResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetTriggeredRateLimitingRulesResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *GetTriggeredRateLimitingRulesResponseData) SetRuleId(v string) *GetTriggeredRateLimitingRulesResponseData {
+  s.RuleId = &v
+  return s
+}
+
+func (s *GetTriggeredRateLimitingRulesResponseData) SetRuleName(v string) *GetTriggeredRateLimitingRulesResponseData {
+  s.RuleName = &v
+  return s
+}
+
+func (s *GetTriggeredRateLimitingRulesResponseData) SetScene(v string) *GetTriggeredRateLimitingRulesResponseData {
+  s.Scene = &v
+  return s
+}
+
+func (s *GetTriggeredRateLimitingRulesResponseData) SetHits(v []*GetTriggeredRateLimitingRulesResponseDataHits) *GetTriggeredRateLimitingRulesResponseData {
+  s.Hits = v
+  return s
+}
+
+type GetTriggeredRateLimitingRulesResponseDataHits struct     {
+  // {"en":"Action.","zh_CN":"采取动作。"}
+  Act *string `json:"act,omitempty" xml:"act,omitempty" require:"true"`
+  // {"en":"Hit times.","zh_CN":"命中数。"}
+  Value *int64 `json:"value,omitempty" xml:"value,omitempty" require:"true"`
+}
+
+func (s GetTriggeredRateLimitingRulesResponseDataHits) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetTriggeredRateLimitingRulesResponseDataHits) GoString() string {
+  return s.String()
+}
+
+func (s *GetTriggeredRateLimitingRulesResponseDataHits) SetAct(v string) *GetTriggeredRateLimitingRulesResponseDataHits {
+  s.Act = &v
+  return s
+}
+
+func (s *GetTriggeredRateLimitingRulesResponseDataHits) SetValue(v int64) *GetTriggeredRateLimitingRulesResponseDataHits {
+  s.Value = &v
   return s
 }
 
@@ -10342,23 +9342,15 @@ func (s GetConsumerNumberResponseHeader) GoString() string {
 
 
 type GetTriggeredWAFManagedRulesRequest struct {
-  // {'en':'Top rankings, default value: 10, max: 1000.', 'zh_CN':'取前几排名，默认：10，上限：1000。'}
-  Top *int32 `json:"top,omitempty" xml:"top,omitempty"`
-  // {'en':'Multiple choice. Disposal result, default value: all results.
-  //  mitigated: Mitegaed requests.
-  //  monitored: monitored requests.', 'zh_CN':'多选。处置结果，默认：展示所有结果。
-  //  mitigated：已抵御请求数。
-  //  monitored：观察请求数。'}
+  // {"defaultValue":"10","en":"Top rankings, default value: 10, max: 1000.","zh_CN":"取前几排名，默认：10，上限：1000。"}
+  Top *int `json:"top,omitempty" xml:"top,omitempty"`
+  // {"en":"Multiple selection. Handling results, default: display all results.\nmitigated: Number of mitigated requests.\nmonitored: Number of observed requests.","zh_CN":"多选。处置结果，默认：展示所有结果。\nmitigated：已抵御请求数。\nmonitored：观察请求数。","exampleValue":"mitigated,monitored"}
   ActType []*string `json:"actType,omitempty" xml:"actType,omitempty" type:"Repeated"`
-  // {'en':'Start time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'起始时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"Start time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"起始时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {'en':'End time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'截止时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"End time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"截止时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
-  // {'en':'Hostname list, if not specified, it means all the hostnames of the account.', 'zh_CN':'域名列表，未指定时查询账号下的所有域名。'}
+  // {"en":"Domain list. Queries all domains under the account when not specified.","zh_CN":"域名列表，未指定时查询账号下的所有域名。"}
   Domains []*string `json:"domains,omitempty" xml:"domains,omitempty" type:"Repeated"`
 }
 
@@ -10370,7 +9362,7 @@ func (s GetTriggeredWAFManagedRulesRequest) GoString() string {
   return s.String()
 }
 
-func (s *GetTriggeredWAFManagedRulesRequest) SetTop(v int32) *GetTriggeredWAFManagedRulesRequest {
+func (s *GetTriggeredWAFManagedRulesRequest) SetTop(v int) *GetTriggeredWAFManagedRulesRequest {
   s.Top = &v
   return s
 }
@@ -10395,106 +9387,35 @@ func (s *GetTriggeredWAFManagedRulesRequest) SetDomains(v []*string) *GetTrigger
   return s
 }
 
-type GetTriggeredWAFManagedRulesResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'描述信息。'}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {'en':'Data.', 'zh_CN':'出参数据。'}
-  Data []*GetTriggeredWAFManagedRulesRuleTopDTO `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
+type GetTriggeredWAFManagedRulesRequestHeader struct {
+  // {"defaultValue":"en","en":"The language of response data, default value: en.\nzh_CN: Chinese\nen: English","zh_CN":"返回内容的语言版本，默认值: en。\nzh_CN：中文\nen：英文","exampleValue":"zh_CN,en"}
+  Language *string `json:"language,omitempty" xml:"language,omitempty"`
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+  // {"defaultValue":"GMT+8","en":"Report Data Timezone:1. Indicates the timezone for the report data. lt must be relative to GMT andspecified in the format GMT+n where -12<=n <= 12. For example,timezone=GMT-7 and timezone=GMT+8.2. If the parameter is unspecified,results will be in the GMT+8 timezone.","zh_CN":"报表数据时区：1.请传递GMT时区。示例格式：GMT+N（其中12<=N <= 12），示例：timezone=GMT-7或timezone=GMT+8.2.若参数为传递，将默认按GMT+8时区查询"}
+  Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty"`
 }
 
-func (s GetTriggeredWAFManagedRulesResponse) String() string {
+func (s GetTriggeredWAFManagedRulesRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetTriggeredWAFManagedRulesResponse) GoString() string {
+func (s GetTriggeredWAFManagedRulesRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *GetTriggeredWAFManagedRulesResponse) SetCode(v string) *GetTriggeredWAFManagedRulesResponse {
-  s.Code = &v
+func (s *GetTriggeredWAFManagedRulesRequestHeader) SetLanguage(v string) *GetTriggeredWAFManagedRulesRequestHeader {
+  s.Language = &v
   return s
 }
 
-func (s *GetTriggeredWAFManagedRulesResponse) SetMsg(v string) *GetTriggeredWAFManagedRulesResponse {
-  s.Msg = &v
+func (s *GetTriggeredWAFManagedRulesRequestHeader) SetServiceType(v string) *GetTriggeredWAFManagedRulesRequestHeader {
+  s.ServiceType = &v
   return s
 }
 
-func (s *GetTriggeredWAFManagedRulesResponse) SetData(v []*GetTriggeredWAFManagedRulesRuleTopDTO) *GetTriggeredWAFManagedRulesResponse {
-  s.Data = v
-  return s
-}
-
-type GetTriggeredWAFManagedRulesRuleHitDTO struct {
-  // {'en':'Action.', 'zh_CN':'采取动作。'}
-  Act *string `json:"act,omitempty" xml:"act,omitempty" require:"true"`
-  // {'en':'Hit times.', 'zh_CN':'命中数。'}
-  Value *int64 `json:"value,omitempty" xml:"value,omitempty" require:"true"`
-}
-
-func (s GetTriggeredWAFManagedRulesRuleHitDTO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetTriggeredWAFManagedRulesRuleHitDTO) GoString() string {
-  return s.String()
-}
-
-func (s *GetTriggeredWAFManagedRulesRuleHitDTO) SetAct(v string) *GetTriggeredWAFManagedRulesRuleHitDTO {
-  s.Act = &v
-  return s
-}
-
-func (s *GetTriggeredWAFManagedRulesRuleHitDTO) SetValue(v int64) *GetTriggeredWAFManagedRulesRuleHitDTO {
-  s.Value = &v
-  return s
-}
-
-type GetTriggeredWAFManagedRulesRuleTopDTO struct {
-  // {'en':'Rule ID.', 'zh_CN':'规则ID。'}
-  RuleId *string `json:"ruleId,omitempty" xml:"ruleId,omitempty" require:"true"`
-  // {'en':'Rule name.', 'zh_CN':'规则名称。'}
-  RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
-  // {'en':'Rule type.', 'zh_CN':'规则类型。'}
-  RuleType *string `json:"ruleType,omitempty" xml:"ruleType,omitempty" require:"true"`
-  // {'en':'System recommended action.', 'zh_CN':'系统推荐动作。'}
-  Action *string `json:"action,omitempty" xml:"action,omitempty" require:"true"`
-  // {'en':'Trigger times, sort by times.', 'zh_CN':'触发次数，按次数排序。'}
-  Hits []*GetTriggeredWAFManagedRulesRuleHitDTO `json:"hits,omitempty" xml:"hits,omitempty" require:"true" type:"Repeated"`
-}
-
-func (s GetTriggeredWAFManagedRulesRuleTopDTO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetTriggeredWAFManagedRulesRuleTopDTO) GoString() string {
-  return s.String()
-}
-
-func (s *GetTriggeredWAFManagedRulesRuleTopDTO) SetRuleId(v string) *GetTriggeredWAFManagedRulesRuleTopDTO {
-  s.RuleId = &v
-  return s
-}
-
-func (s *GetTriggeredWAFManagedRulesRuleTopDTO) SetRuleName(v string) *GetTriggeredWAFManagedRulesRuleTopDTO {
-  s.RuleName = &v
-  return s
-}
-
-func (s *GetTriggeredWAFManagedRulesRuleTopDTO) SetRuleType(v string) *GetTriggeredWAFManagedRulesRuleTopDTO {
-  s.RuleType = &v
-  return s
-}
-
-func (s *GetTriggeredWAFManagedRulesRuleTopDTO) SetAction(v string) *GetTriggeredWAFManagedRulesRuleTopDTO {
-  s.Action = &v
-  return s
-}
-
-func (s *GetTriggeredWAFManagedRulesRuleTopDTO) SetHits(v []*GetTriggeredWAFManagedRulesRuleHitDTO) *GetTriggeredWAFManagedRulesRuleTopDTO {
-  s.Hits = v
+func (s *GetTriggeredWAFManagedRulesRequestHeader) SetTimezone(v string) *GetTriggeredWAFManagedRulesRequestHeader {
+  s.Timezone = &v
   return s
 }
 
@@ -10520,32 +9441,106 @@ func (s GetTriggeredWAFManagedRulesParameters) GoString() string {
   return s.String()
 }
 
-type GetTriggeredWAFManagedRulesRequestHeader struct {
-  // {'en':'The language of response data, default value: en.
-  // zh_CN: Chinese
-  // en: English', 'zh_CN':'返回内容的语言版本，默认值: en。
-  // zh_CN：中文
-  // en：英文'}
-  Language *string `json:"language,omitempty" xml:"language,omitempty"`
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+type GetTriggeredWAFManagedRulesResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"Data.","zh_CN":"出参数据。"}
+  Data []*GetTriggeredWAFManagedRulesResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
 }
 
-func (s GetTriggeredWAFManagedRulesRequestHeader) String() string {
+func (s GetTriggeredWAFManagedRulesResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetTriggeredWAFManagedRulesRequestHeader) GoString() string {
+func (s GetTriggeredWAFManagedRulesResponse) GoString() string {
   return s.String()
 }
 
-func (s *GetTriggeredWAFManagedRulesRequestHeader) SetLanguage(v string) *GetTriggeredWAFManagedRulesRequestHeader {
-  s.Language = &v
+func (s *GetTriggeredWAFManagedRulesResponse) SetCode(v string) *GetTriggeredWAFManagedRulesResponse {
+  s.Code = &v
   return s
 }
 
-func (s *GetTriggeredWAFManagedRulesRequestHeader) SetServiceType(v string) *GetTriggeredWAFManagedRulesRequestHeader {
-  s.ServiceType = &v
+func (s *GetTriggeredWAFManagedRulesResponse) SetMsg(v string) *GetTriggeredWAFManagedRulesResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *GetTriggeredWAFManagedRulesResponse) SetData(v []*GetTriggeredWAFManagedRulesResponseData) *GetTriggeredWAFManagedRulesResponse {
+  s.Data = v
+  return s
+}
+
+type GetTriggeredWAFManagedRulesResponseData struct     {
+  // {"en":"Rule ID.","zh_CN":"规则ID。"}
+  RuleId *string `json:"ruleId,omitempty" xml:"ruleId,omitempty" require:"true"`
+  // {"en":"Rule name.","zh_CN":"规则名称。"}
+  RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
+  // {"en":"Rule type.","zh_CN":"规则类型。"}
+  RuleType *string `json:"ruleType,omitempty" xml:"ruleType,omitempty" require:"true"`
+  // {"en":"System recommended action.","zh_CN":"系统推荐动作。"}
+  Action *string `json:"action,omitempty" xml:"action,omitempty" require:"true"`
+  // {"en":"Trigger times, sort by times.","zh_CN":"触发次数，按次数排序。"}
+  Hits []*GetTriggeredWAFManagedRulesResponseDataHits `json:"hits,omitempty" xml:"hits,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s GetTriggeredWAFManagedRulesResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetTriggeredWAFManagedRulesResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *GetTriggeredWAFManagedRulesResponseData) SetRuleId(v string) *GetTriggeredWAFManagedRulesResponseData {
+  s.RuleId = &v
+  return s
+}
+
+func (s *GetTriggeredWAFManagedRulesResponseData) SetRuleName(v string) *GetTriggeredWAFManagedRulesResponseData {
+  s.RuleName = &v
+  return s
+}
+
+func (s *GetTriggeredWAFManagedRulesResponseData) SetRuleType(v string) *GetTriggeredWAFManagedRulesResponseData {
+  s.RuleType = &v
+  return s
+}
+
+func (s *GetTriggeredWAFManagedRulesResponseData) SetAction(v string) *GetTriggeredWAFManagedRulesResponseData {
+  s.Action = &v
+  return s
+}
+
+func (s *GetTriggeredWAFManagedRulesResponseData) SetHits(v []*GetTriggeredWAFManagedRulesResponseDataHits) *GetTriggeredWAFManagedRulesResponseData {
+  s.Hits = v
+  return s
+}
+
+type GetTriggeredWAFManagedRulesResponseDataHits struct     {
+  // {"en":"Action.","zh_CN":"采取动作。"}
+  Act *string `json:"act,omitempty" xml:"act,omitempty" require:"true"`
+  // {"en":"Hit times.","zh_CN":"命中数。"}
+  Value *int64 `json:"value,omitempty" xml:"value,omitempty" require:"true"`
+}
+
+func (s GetTriggeredWAFManagedRulesResponseDataHits) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetTriggeredWAFManagedRulesResponseDataHits) GoString() string {
+  return s.String()
+}
+
+func (s *GetTriggeredWAFManagedRulesResponseDataHits) SetAct(v string) *GetTriggeredWAFManagedRulesResponseDataHits {
+  s.Act = &v
+  return s
+}
+
+func (s *GetTriggeredWAFManagedRulesResponseDataHits) SetValue(v int64) *GetTriggeredWAFManagedRulesResponseDataHits {
+  s.Value = &v
   return s
 }
 
@@ -10968,21 +9963,13 @@ func (s GetBotRequestTrendsAndTriggerRulesDataResponseHeader) GoString() string 
 
 
 type QueryEventTrendRequest struct {
-  // {'en':'Start time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'开始时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"Start time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"开始时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {'en':'End time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 31 days.', 'zh_CN':'结束时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过31天。'}
+  // {"en":"End time, format: yyyy-MM-dd HH:mm:ss.\nThe time range can not exceed 31 days.","zh_CN":"结束时间，格式：yyyy-MM-dd HH:mm:ss。\n时间范围不超过31天。"}
   EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
-  // {'en':'Multiple choice. Disposal result, default value: all results.
-  //  mitigated: Mitegaed requests.
-  //  monitored: monitored requests.', 'zh_CN':'多选。处置结果，默认：展示所有结果。
-  //  mitigated：已抵御请求数。
-  //  monitored：观察请求数。'}
+  // {"en":"Multiple selection. Handling results, default: display all results. \nmitigated: Number of mitigated requests. \nmonitored: Number of observed requests.","zh_CN":"多选。处置结果，默认：展示所有结果。\nmitigated：已抵御请求数。\nmonitored：观察请求数。","exampleValue":"mitigated,monitored"}
   ActType []*string `json:"actType,omitempty" xml:"actType,omitempty" type:"Repeated"`
-  // {'en':'Hostname list, if not specified, it means all the hostnames of the account.', 'zh_CN':'域名列表，未指定时查询账号下的所有域名。'}
+  // {"en":"Domain list. Queries all domains under the account when not specified.","zh_CN":"域名列表，未指定时查询账号下的所有域名。"}
   Domains []*string `json:"domains,omitempty" xml:"domains,omitempty" type:"Repeated"`
 }
 
@@ -11014,136 +10001,28 @@ func (s *QueryEventTrendRequest) SetDomains(v []*string) *QueryEventTrendRequest
   return s
 }
 
-type QueryEventTrendResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'描述信息。'}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {'en':'Data.', 'zh_CN':'出参数据。'}
-  Data []*QueryEventTrendEventTrendDTO `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
+type QueryEventTrendRequestHeader struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+  // {"defaultValue":"GMT+8","en":"Report Data Timezone:1. Indicates the timezone for the report data. lt must be relative to GMT andspecified in the format GMT+n where -12<=n <= 12. For example,timezone=GMT-7 and timezone=GMT+8.2. If the parameter is unspecified,results will be in the GMT+8 timezone.","zh_CN":"报表数据时区：1.请传递GMT时区。示例格式：GMT+N（其中12<=N <= 12），示例：timezone=GMT-7或timezone=GMT+8.2.若参数为传递，将默认按GMT+8时区查询"}
+  Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty"`
 }
 
-func (s QueryEventTrendResponse) String() string {
+func (s QueryEventTrendRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryEventTrendResponse) GoString() string {
+func (s QueryEventTrendRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *QueryEventTrendResponse) SetCode(v string) *QueryEventTrendResponse {
-  s.Code = &v
+func (s *QueryEventTrendRequestHeader) SetServiceType(v string) *QueryEventTrendRequestHeader {
+  s.ServiceType = &v
   return s
 }
 
-func (s *QueryEventTrendResponse) SetMsg(v string) *QueryEventTrendResponse {
-  s.Msg = &v
-  return s
-}
-
-func (s *QueryEventTrendResponse) SetData(v []*QueryEventTrendEventTrendDTO) *QueryEventTrendResponse {
-  s.Data = v
-  return s
-}
-
-type QueryEventTrendEventTypeDTO struct {
-  // {'en':'Policy type.
-  //  BLOCK: IP/Geo Block
-  //  DMS_DEFEND: DDoS Protection
-  //  WAF_DEFEND: WAF
-  //  BOT_MANAGE: Bot Management
-  //  API_DEFEND: API Security
-  //  INTELLIGENCE: Threat Intelligence
-  //  RATE_LIMIT: Rate Limiting
-  //  CUSTOMIZE_RULE: Custom Rules', 'zh_CN':'策略类型。
-  //  BLOCK：IP/区域封禁
-  //  DMS_DEFEND：DDoS防护
-  //  WAF_DEFEND：WAF
-  //  BOT_MANAGE：Bot管理
-  //  API_DEFEND：API安全
-  //  INTELLIGENCE：威胁情报
-  //  RATE_LIMIT：频率限制
-  //  CUSTOMIZE_RULE：自定义规则'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Number of policy requests of this type.', 'zh_CN':'该策略类型请求数。'}
-  Value *int64 `json:"value,omitempty" xml:"value,omitempty" require:"true"`
-}
-
-func (s QueryEventTrendEventTypeDTO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryEventTrendEventTypeDTO) GoString() string {
-  return s.String()
-}
-
-func (s *QueryEventTrendEventTypeDTO) SetCode(v string) *QueryEventTrendEventTypeDTO {
-  s.Code = &v
-  return s
-}
-
-func (s *QueryEventTrendEventTypeDTO) SetValue(v int64) *QueryEventTrendEventTypeDTO {
-  s.Value = &v
-  return s
-}
-
-type QueryEventTrendEventTrendDTO struct {
-  // {'en':'Time point, format: yyyy-MM-dd HH-mm-ss.', 'zh_CN':'时间点，格式：yyyy-MM-dd HH-mm-ss。'}
-  TimePoint *string `json:"timePoint,omitempty" xml:"timePoint,omitempty" require:"true"`
-  // {'en':'Total requests.', 'zh_CN':'总请求数。'}
-  Total *int64 `json:"total,omitempty" xml:"total,omitempty" require:"true"`
-  // {'en':'Attack requests.', 'zh_CN':'攻击请求数。'}
-  Attack *int64 `json:"attack,omitempty" xml:"attack,omitempty" require:"true"`
-  // {'en':'Mitigated requests.', 'zh_CN':'已抵御请求数。'}
-  Mitigated *int64 `json:"mitigated,omitempty" xml:"mitigated,omitempty" require:"true"`
-  // {'en':'Monitored requests.', 'zh_CN':'观察请求数。'}
-  Monitored *int64 `json:"monitored,omitempty" xml:"monitored,omitempty" require:"true"`
-  // {'en':'Whitelist requests.', 'zh_CN':'白名单请求数。'}
-  Whitelist *int64 `json:"whitelist,omitempty" xml:"whitelist,omitempty" require:"true"`
-  // {'en':'Policy type classification requests.', 'zh_CN':'策略类型分类请求数。'}
-  Distribution []*QueryEventTrendEventTypeDTO `json:"distribution,omitempty" xml:"distribution,omitempty" require:"true" type:"Repeated"`
-}
-
-func (s QueryEventTrendEventTrendDTO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryEventTrendEventTrendDTO) GoString() string {
-  return s.String()
-}
-
-func (s *QueryEventTrendEventTrendDTO) SetTimePoint(v string) *QueryEventTrendEventTrendDTO {
-  s.TimePoint = &v
-  return s
-}
-
-func (s *QueryEventTrendEventTrendDTO) SetTotal(v int64) *QueryEventTrendEventTrendDTO {
-  s.Total = &v
-  return s
-}
-
-func (s *QueryEventTrendEventTrendDTO) SetAttack(v int64) *QueryEventTrendEventTrendDTO {
-  s.Attack = &v
-  return s
-}
-
-func (s *QueryEventTrendEventTrendDTO) SetMitigated(v int64) *QueryEventTrendEventTrendDTO {
-  s.Mitigated = &v
-  return s
-}
-
-func (s *QueryEventTrendEventTrendDTO) SetMonitored(v int64) *QueryEventTrendEventTrendDTO {
-  s.Monitored = &v
-  return s
-}
-
-func (s *QueryEventTrendEventTrendDTO) SetWhitelist(v int64) *QueryEventTrendEventTrendDTO {
-  s.Whitelist = &v
-  return s
-}
-
-func (s *QueryEventTrendEventTrendDTO) SetDistribution(v []*QueryEventTrendEventTypeDTO) *QueryEventTrendEventTrendDTO {
-  s.Distribution = v
+func (s *QueryEventTrendRequestHeader) SetTimezone(v string) *QueryEventTrendRequestHeader {
+  s.Timezone = &v
   return s
 }
 
@@ -11169,21 +10048,120 @@ func (s QueryEventTrendParameters) GoString() string {
   return s.String()
 }
 
-type QueryEventTrendRequestHeader struct {
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+type QueryEventTrendResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"Data.","zh_CN":"出参数据。"}
+  Data []*QueryEventTrendResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
 }
 
-func (s QueryEventTrendRequestHeader) String() string {
+func (s QueryEventTrendResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryEventTrendRequestHeader) GoString() string {
+func (s QueryEventTrendResponse) GoString() string {
   return s.String()
 }
 
-func (s *QueryEventTrendRequestHeader) SetServiceType(v string) *QueryEventTrendRequestHeader {
-  s.ServiceType = &v
+func (s *QueryEventTrendResponse) SetCode(v string) *QueryEventTrendResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *QueryEventTrendResponse) SetMsg(v string) *QueryEventTrendResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *QueryEventTrendResponse) SetData(v []*QueryEventTrendResponseData) *QueryEventTrendResponse {
+  s.Data = v
+  return s
+}
+
+type QueryEventTrendResponseData struct     {
+  // {"en":"Time, format: yyyy-MM-dd HH-mm-ss.","zh_CN":"时间点，格式：yyyy-MM-dd HH-mm-ss。"}
+  TimePoint *string `json:"timePoint,omitempty" xml:"timePoint,omitempty" require:"true"`
+  // {"en":"Total requests.","zh_CN":"总请求数。"}
+  Total *int64 `json:"total,omitempty" xml:"total,omitempty" require:"true"`
+  // {"en":"Attack requests.","zh_CN":"攻击请求数。"}
+  Attack *int64 `json:"attack,omitempty" xml:"attack,omitempty" require:"true"`
+  // {"en":"Mitigated requests.","zh_CN":"已抵御请求数。"}
+  Mitigated *int64 `json:"mitigated,omitempty" xml:"mitigated,omitempty" require:"true"`
+  // {"en":"Monitored requests.","zh_CN":"观察请求数。"}
+  Monitored *int64 `json:"monitored,omitempty" xml:"monitored,omitempty" require:"true"`
+  // {"en":"Whitelist requests.","zh_CN":"白名单请求数。"}
+  Whitelist *int64 `json:"whitelist,omitempty" xml:"whitelist,omitempty" require:"true"`
+  // {"en":"Policy type classification requests.","zh_CN":"策略类型分类请求数。"}
+  Distribution []*QueryEventTrendResponseDataDistribution `json:"distribution,omitempty" xml:"distribution,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s QueryEventTrendResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryEventTrendResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *QueryEventTrendResponseData) SetTimePoint(v string) *QueryEventTrendResponseData {
+  s.TimePoint = &v
+  return s
+}
+
+func (s *QueryEventTrendResponseData) SetTotal(v int64) *QueryEventTrendResponseData {
+  s.Total = &v
+  return s
+}
+
+func (s *QueryEventTrendResponseData) SetAttack(v int64) *QueryEventTrendResponseData {
+  s.Attack = &v
+  return s
+}
+
+func (s *QueryEventTrendResponseData) SetMitigated(v int64) *QueryEventTrendResponseData {
+  s.Mitigated = &v
+  return s
+}
+
+func (s *QueryEventTrendResponseData) SetMonitored(v int64) *QueryEventTrendResponseData {
+  s.Monitored = &v
+  return s
+}
+
+func (s *QueryEventTrendResponseData) SetWhitelist(v int64) *QueryEventTrendResponseData {
+  s.Whitelist = &v
+  return s
+}
+
+func (s *QueryEventTrendResponseData) SetDistribution(v []*QueryEventTrendResponseDataDistribution) *QueryEventTrendResponseData {
+  s.Distribution = v
+  return s
+}
+
+type QueryEventTrendResponseDataDistribution struct     {
+  // {"en":"Policy type.\nBLOCK: IP/Geo Block\nDMS_DEFEND: DDoS Protection\nWAF_DEFEND: WAF\nBOT_MANAGE: Bot Management\nAPI_DEFEND: API Security\nINTELLIGENCE: Threat Intelligence\nRATE_LIMIT: Rate Limiting\nCUSTOMIZE_RULE: Custom Rules","zh_CN":"策略类型。\nBLOCK：IP/区域封禁\nDMS_DEFEND：DDoS防护\nWAF_DEFEND：WAF\nBOT_MANAGE：Bot管理\nAPI_DEFEND：API安全\nINTELLIGENCE：威胁情报\nRATE_LIMIT：频率限制\nCUSTOMIZE_RULE：自定义规则","exampleValue":"BLOCK,DMS_DEFEND,WAF_DEFEND,BOT_MANAGE,API_DEFEND,INTELLIGENCE,RATE_LIMIT,CUSTOMIZE_RULE"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Number of policy requests of this type.","zh_CN":"该策略类型请求数。"}
+  Value *int64 `json:"value,omitempty" xml:"value,omitempty" require:"true"`
+}
+
+func (s QueryEventTrendResponseDataDistribution) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryEventTrendResponseDataDistribution) GoString() string {
+  return s.String()
+}
+
+func (s *QueryEventTrendResponseDataDistribution) SetCode(v string) *QueryEventTrendResponseDataDistribution {
+  s.Code = &v
+  return s
+}
+
+func (s *QueryEventTrendResponseDataDistribution) SetValue(v int64) *QueryEventTrendResponseDataDistribution {
+  s.Value = &v
   return s
 }
 
@@ -11203,11 +10181,11 @@ func (s QueryEventTrendResponseHeader) GoString() string {
 
 type ListServiceUsageRequest struct {
   // {"en":"Code of Control Group.","zh_CN":"Control Group的code。"}
-  ControlGroupCode *string `json:"controlGroupCode,omitempty" xml:"controlGroupCode,omitempty"`
+  ControlGroupCode *string `json:"controlGroupCode,omitempty" xml:"controlGroupCode,omitempty" require:"true"`
   // {"en":"End date, format: yyyy-MM-dd.The time range does not exceed 31 days, only supports querying data within one year..","zh_CN":"结束日期，格式：yyyy-MM-dd。时间范围不超过31天，仅支持查询一年内的数据。"}
   EndDate *string `json:"endDate,omitempty" xml:"endDate,omitempty" require:"true"`
   // {"en":"Type of Control Group.ALL: All  PART: Custom category  DOMAIN_ITEM: Contract category","zh_CN":"Control Group的类型。ALL： 所有  PART：自定义类 DOMAIN_ITEM： 合同类"}
-  ControlGroupType *string `json:"controlGroupType,omitempty" xml:"controlGroupType,omitempty"`
+  ControlGroupType *string `json:"controlGroupType,omitempty" xml:"controlGroupType,omitempty" require:"true"`
   // {"en":"Start date, format: yyyy-MM-dd.The time range does not exceed 31 days, only supports querying data within one year..","zh_CN":"开始日期，格式：yyyy-MM-dd。时间范围不超过31天，仅支持查询一年内的数据。"}
   StartDate *string `json:"startDate,omitempty" xml:"startDate,omitempty" require:"true"`
 }
@@ -11243,8 +10221,10 @@ func (s *ListServiceUsageRequest) SetStartDate(v string) *ListServiceUsageReques
 type ListServiceUsageRequestHeader struct {
   // {"en":"The language of response data, default value: en.zh_CN: Chinese en: English","zh_CN":"返回内容的语言版本，默认值: en。zh_CN：中文 en：英文"}
   Language *string `json:"language,omitempty" xml:"language,omitempty"`
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
   ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+  // {"defaultValue":"GMT+8","en":"Report Data Timezone:1. Indicates the timezone for the report data. lt must be relative to GMT andspecified in the format GMT+n where -12<=n <= 12. For example,timezone=GMT-7 and timezone=GMT+8.2. If the parameter is unspecified,results will be in the GMT+8 timezone.","zh_CN":"报表数据时区：1.请传递GMT时区。示例格式：GMT+N（其中12<=N <= 12），示例：timezone=GMT-7或timezone=GMT+8.2.若参数为传递，将默认按GMT+8时区查询"}
+  Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty"`
 }
 
 func (s ListServiceUsageRequestHeader) String() string {
@@ -11262,6 +10242,11 @@ func (s *ListServiceUsageRequestHeader) SetLanguage(v string) *ListServiceUsageR
 
 func (s *ListServiceUsageRequestHeader) SetServiceType(v string) *ListServiceUsageRequestHeader {
   s.ServiceType = &v
+  return s
+}
+
+func (s *ListServiceUsageRequestHeader) SetTimezone(v string) *ListServiceUsageRequestHeader {
+  s.Timezone = &v
   return s
 }
 
@@ -11390,215 +10375,25 @@ func (s ListServiceUsageResponseHeader) GoString() string {
 
 
 
-type GetL7DdosAnalysisAttackedHostnameListV2Request struct {
-  // {"en":"Start time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 30 days.", "zh_CN":"开始时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过30天。"}
-  StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {"en":"End time, format: yyyy-MM-dd HH:mm:ss.
-  // The time range does not exceed 30 days)", "zh_CN":"结束时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 时间范围不超过30天。"}
-  EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
-  // {"en":"Hostname list.", "zh_CN":"域名数组"}
-  Hostnames []*string `json:"Hostnames,omitempty" xml:"Hostnames,omitempty" require:"true" type:"Repeated"`
-  // {"en":"Top num.", "zh_CN":"默认10条"}
-  TopNum *int `json:"topNum,omitempty" xml:"topNum,omitempty"`
-}
-
-func (s GetL7DdosAnalysisAttackedHostnameListV2Request) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetL7DdosAnalysisAttackedHostnameListV2Request) GoString() string {
-  return s.String()
-}
-
-func (s *GetL7DdosAnalysisAttackedHostnameListV2Request) SetStartTime(v string) *GetL7DdosAnalysisAttackedHostnameListV2Request {
-  s.StartTime = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackedHostnameListV2Request) SetEndTime(v string) *GetL7DdosAnalysisAttackedHostnameListV2Request {
-  s.EndTime = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackedHostnameListV2Request) SetHostnames(v []*string) *GetL7DdosAnalysisAttackedHostnameListV2Request {
-  s.Hostnames = v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackedHostnameListV2Request) SetTopNum(v int) *GetL7DdosAnalysisAttackedHostnameListV2Request {
-  s.TopNum = &v
-  return s
-}
-
-type GetL7DdosAnalysisAttackedHostnameListV2Response struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Description.", "zh_CN":"描述信息。"}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {"en":"Data.", "zh_CN":"出参数据。"}
-  Data []*GetL7DdosAnalysisAttackedHostnameListV2AttackedDomain `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
-}
-
-func (s GetL7DdosAnalysisAttackedHostnameListV2Response) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetL7DdosAnalysisAttackedHostnameListV2Response) GoString() string {
-  return s.String()
-}
-
-func (s *GetL7DdosAnalysisAttackedHostnameListV2Response) SetCode(v string) *GetL7DdosAnalysisAttackedHostnameListV2Response {
-  s.Code = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackedHostnameListV2Response) SetMsg(v string) *GetL7DdosAnalysisAttackedHostnameListV2Response {
-  s.Msg = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackedHostnameListV2Response) SetData(v []*GetL7DdosAnalysisAttackedHostnameListV2AttackedDomain) *GetL7DdosAnalysisAttackedHostnameListV2Response {
-  s.Data = v
-  return s
-}
-
-type GetL7DdosAnalysisAttackedHostnameListV2AttackedDomain struct {
-  // {"en":"All count.", "zh_CN":"总请求。"}
-  All_count *int64 `json:"all_count,omitempty" xml:"all_count,omitempty" require:"true"`
-  // {"en":"Observed Requests..", "zh_CN":"观察请求数。"}
-  AlarmCount *int64 `json:"alarmCount,omitempty" xml:"alarmCount,omitempty" require:"true"`
-  // {"en":"Observed Ratio.", "zh_CN":"观察请求占比。"}
-  AlarmRatio *float64 `json:"alarmRatio,omitempty" xml:"alarmRatio,omitempty" require:"true"`
-  // {"en":"Resisted Requests..", "zh_CN":"已抵御请求数。"}
-  Count *int64 `json:"count,omitempty" xml:"count,omitempty" require:"true"`
-  // {"en":"Resisted Ratio.", "zh_CN":"已抵御请求占比。"}
-  Ratio *float64 `json:"ratio,omitempty" xml:"ratio,omitempty" require:"true"`
-  // {"en":"Hostname.", "zh_CN":"域名。"}
-  Hostname *string `json:"Hostname,omitempty" xml:"Hostname,omitempty" require:"true"`
-}
-
-func (s GetL7DdosAnalysisAttackedHostnameListV2AttackedDomain) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetL7DdosAnalysisAttackedHostnameListV2AttackedDomain) GoString() string {
-  return s.String()
-}
-
-func (s *GetL7DdosAnalysisAttackedHostnameListV2AttackedDomain) SetAll_count(v int64) *GetL7DdosAnalysisAttackedHostnameListV2AttackedDomain {
-  s.All_count = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackedHostnameListV2AttackedDomain) SetAlarmCount(v int64) *GetL7DdosAnalysisAttackedHostnameListV2AttackedDomain {
-  s.AlarmCount = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackedHostnameListV2AttackedDomain) SetAlarmRatio(v float64) *GetL7DdosAnalysisAttackedHostnameListV2AttackedDomain {
-  s.AlarmRatio = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackedHostnameListV2AttackedDomain) SetCount(v int64) *GetL7DdosAnalysisAttackedHostnameListV2AttackedDomain {
-  s.Count = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackedHostnameListV2AttackedDomain) SetRatio(v float64) *GetL7DdosAnalysisAttackedHostnameListV2AttackedDomain {
-  s.Ratio = &v
-  return s
-}
-
-func (s *GetL7DdosAnalysisAttackedHostnameListV2AttackedDomain) SetHostname(v string) *GetL7DdosAnalysisAttackedHostnameListV2AttackedDomain {
-  s.Hostname = &v
-  return s
-}
-
-type GetL7DdosAnalysisAttackedHostnameListV2Paths struct {
-}
-
-func (s GetL7DdosAnalysisAttackedHostnameListV2Paths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetL7DdosAnalysisAttackedHostnameListV2Paths) GoString() string {
-  return s.String()
-}
-
-type GetL7DdosAnalysisAttackedHostnameListV2Parameters struct {
-}
-
-func (s GetL7DdosAnalysisAttackedHostnameListV2Parameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetL7DdosAnalysisAttackedHostnameListV2Parameters) GoString() string {
-  return s.String()
-}
-
-type GetL7DdosAnalysisAttackedHostnameListV2RequestHeader struct {
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
-}
-
-func (s GetL7DdosAnalysisAttackedHostnameListV2RequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetL7DdosAnalysisAttackedHostnameListV2RequestHeader) GoString() string {
-  return s.String()
-}
-
-func (s *GetL7DdosAnalysisAttackedHostnameListV2RequestHeader) SetServiceType(v string) *GetL7DdosAnalysisAttackedHostnameListV2RequestHeader {
-  s.ServiceType = &v
-  return s
-}
-
-type GetL7DdosAnalysisAttackedHostnameListV2ResponseHeader struct {
-}
-
-func (s GetL7DdosAnalysisAttackedHostnameListV2ResponseHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetL7DdosAnalysisAttackedHostnameListV2ResponseHeader) GoString() string {
-  return s.String()
-}
-
-
-
-
 type GetInfrastructureLogListRequest struct {
-  // {'en':'Start time, format:yyyy-MM-dd HH:mm:ss. 
-  // Only supports querying logs of the past month, the query time range cannot exceed 24 hours.', 'zh_CN':'开始时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 仅支持查询近一个月的日志，查询时间范围不能超过24小时。'}
+  // {"en":"Start time, format:yyyy-MM-dd HH:mm:ss.\nOnly supports querying logs of the past month, the query time range cannot exceed 24 hours.","zh_CN":"开始时间，格式：yyyy-MM-dd HH:mm:ss。\n仅支持查询近一个月的日志，查询时间范围不能超过24小时。"}
   StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {'en':'End time, format:yyyy-MM-dd HH:mm:ss. 
-  // Only supports querying logs of the past month, the query time range cannot exceed 24 hours.', 'zh_CN':'结束时间，格式：yyyy-MM-dd HH:mm:ss。
-  // 仅支持查询近一个月的日志，查询时间范围不能超过24小时，格式：yyyy-MM-dd HH:mm:ss。'}
+  // {"en":"End time, format:yyyy-MM-dd HH:mm:ss.\nOnly supports querying logs of the past month, the query time range cannot exceed 24 hours.","zh_CN":"结束时间，格式：yyyy-MM-dd HH:mm:ss。\n仅支持查询近一个月的日志，查询时间范围不能超过24小时，格式：yyyy-MM-dd HH:mm:ss。"}
   EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
-  // {'en':'Client IP.', 'zh_CN':'客户端IP。'}
+  // {"en":"Client IP.","zh_CN":"客户端IP。"}
   ClientIps []*string `json:"clientIps,omitempty" xml:"clientIps,omitempty" type:"Repeated"`
-  // {'en':'Node IP.', 'zh_CN':'节点IP。'}
+  // {"en":"Target IP.","zh_CN":"目标IP。"}
   TargetIps []*string `json:"targetIps,omitempty" xml:"targetIps,omitempty" type:"Repeated"`
-  // {'en':'Rule Name.', 'zh_CN':'规则名称。'}
+  // {"en":"Rule Name.","zh_CN":"规则名称。"}
   RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty"`
-  // {'en':'Policy Name.
-  // rule_protection:Managed Ruleset Protection', 'zh_CN':'策略名称。
-  // rule_protection：内置防护规则'}
+  // {"en":"Policy Name.\nrule_protection:Managed Ruleset Protection","zh_CN":"策略名称。\nrule_protection：内置防护规则"}
   PolicyNames []*string `json:"policyNames,omitempty" xml:"policyNames,omitempty" require:"true" type:"Repeated"`
-  // {'en':'Action.
-  // connection_denied:Connection Refused', 'zh_CN':'处理动作。
-  // connection_denied：拒绝连接'}
+  // {"en":"Action.\nconnection_denied:Connection Refused","zh_CN":"处理动作。\nconnection_denied：拒绝连接"}
   Actions []*string `json:"actions,omitempty" xml:"actions,omitempty" require:"true" type:"Repeated"`
-  // {'en':'The number of records per page, default value:10', 'zh_CN':'每页显示的条目数。默认值：10'}
-  PageSize *int32 `json:"pageSize,omitempty" xml:"pageSize,omitempty"`
-  // {'en':'Current page, default:1', 'zh_CN':'当前第几页。默认值：1'}
-  CurrentPage *int32 `json:"currentPage,omitempty" xml:"currentPage,omitempty"`
+  // {"defaultValue":"10","en":"The number of records per page, default value:10","zh_CN":"每页显示的条目数。默认值：10"}
+  PageSize *int `json:"pageSize,omitempty" xml:"pageSize,omitempty"`
+  // {"defaultValue":"1","en":"Current page, default:1","zh_CN":"当前第几页。默认值：1"}
+  CurrentPage *int `json:"currentPage,omitempty" xml:"currentPage,omitempty"`
 }
 
 func (s GetInfrastructureLogListRequest) String() string {
@@ -11644,165 +10439,38 @@ func (s *GetInfrastructureLogListRequest) SetActions(v []*string) *GetInfrastruc
   return s
 }
 
-func (s *GetInfrastructureLogListRequest) SetPageSize(v int32) *GetInfrastructureLogListRequest {
+func (s *GetInfrastructureLogListRequest) SetPageSize(v int) *GetInfrastructureLogListRequest {
   s.PageSize = &v
   return s
 }
 
-func (s *GetInfrastructureLogListRequest) SetCurrentPage(v int32) *GetInfrastructureLogListRequest {
+func (s *GetInfrastructureLogListRequest) SetCurrentPage(v int) *GetInfrastructureLogListRequest {
   s.CurrentPage = &v
   return s
 }
 
-type GetInfrastructureLogListResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'描述信息。'}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {'en':'Data.', 'zh_CN':'出参数据。'}
-  Data *GetInfrastructureLogListPageVO `json:"data,omitempty" xml:"data,omitempty" require:"true"`
+type GetInfrastructureLogListRequestHeader struct {
+  // {"en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+  // {"defaultValue":"GMT+8","en":"Report Data Timezone:1. Indicates the timezone for the report data. lt must be relative to GMT andspecified in the format GMT+n where -12<=n <= 12. For example,timezone=GMT-7 and timezone=GMT+8.2. If the parameter is unspecified,results will be in the GMT+8 timezone.","zh_CN":"报表数据时区：1.请传递GMT时区。示例格式：GMT+N（其中12<=N <= 12），示例：timezone=GMT-7或timezone=GMT+8.2.若参数为传递，将默认按GMT+8时区查询"}
+  Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty"`
 }
 
-func (s GetInfrastructureLogListResponse) String() string {
+func (s GetInfrastructureLogListRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetInfrastructureLogListResponse) GoString() string {
+func (s GetInfrastructureLogListRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *GetInfrastructureLogListResponse) SetCode(v string) *GetInfrastructureLogListResponse {
-  s.Code = &v
+func (s *GetInfrastructureLogListRequestHeader) SetServiceType(v string) *GetInfrastructureLogListRequestHeader {
+  s.ServiceType = &v
   return s
 }
 
-func (s *GetInfrastructureLogListResponse) SetMsg(v string) *GetInfrastructureLogListResponse {
-  s.Msg = &v
-  return s
-}
-
-func (s *GetInfrastructureLogListResponse) SetData(v *GetInfrastructureLogListPageVO) *GetInfrastructureLogListResponse {
-  s.Data = v
-  return s
-}
-
-type GetInfrastructureLogListPageVO struct {
-  // {'en':'The current page number.', 'zh_CN':'当前页码。'}
-  Current *int64 `json:"current,omitempty" xml:"current,omitempty" require:"true"`
-  // {'en':'The number of records per page.', 'zh_CN':'每页显示的条目数。'}
-  Size *int64 `json:"size,omitempty" xml:"size,omitempty" require:"true"`
-  // {'en':'Pages.', 'zh_CN':'页数。'}
-  Pages *int64 `json:"pages,omitempty" xml:"pages,omitempty" require:"true"`
-  // {'en':'The total number of records.', 'zh_CN':'总记录数。'}
-  Total *int64 `json:"total,omitempty" xml:"total,omitempty" require:"true"`
-  // {'en':'Records.', 'zh_CN':'记录。'}
-  Records *GetInfrastructureLogListCsecInfrastructureLogVO `json:"records,omitempty" xml:"records,omitempty" require:"true"`
-}
-
-func (s GetInfrastructureLogListPageVO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetInfrastructureLogListPageVO) GoString() string {
-  return s.String()
-}
-
-func (s *GetInfrastructureLogListPageVO) SetCurrent(v int64) *GetInfrastructureLogListPageVO {
-  s.Current = &v
-  return s
-}
-
-func (s *GetInfrastructureLogListPageVO) SetSize(v int64) *GetInfrastructureLogListPageVO {
-  s.Size = &v
-  return s
-}
-
-func (s *GetInfrastructureLogListPageVO) SetPages(v int64) *GetInfrastructureLogListPageVO {
-  s.Pages = &v
-  return s
-}
-
-func (s *GetInfrastructureLogListPageVO) SetTotal(v int64) *GetInfrastructureLogListPageVO {
-  s.Total = &v
-  return s
-}
-
-func (s *GetInfrastructureLogListPageVO) SetRecords(v *GetInfrastructureLogListCsecInfrastructureLogVO) *GetInfrastructureLogListPageVO {
-  s.Records = v
-  return s
-}
-
-type GetInfrastructureLogListCsecInfrastructureLogVO struct {
-  // {'en':'Time.', 'zh_CN':'时间。'}
-  AttackTime *string `json:"attackTime,omitempty" xml:"attackTime,omitempty" require:"true"`
-  // {'en':'Client IP.', 'zh_CN':'客户端IP。'}
-  ClientIp *string `json:"clientIp,omitempty" xml:"clientIp,omitempty" require:"true"`
-  // {'en':'Node IP.', 'zh_CN':'节点IP。'}
-  TargetIp *string `json:"targetIp,omitempty" xml:"targetIp,omitempty" require:"true"`
-  // {'en':'Policy Name.', 'zh_CN':'策略名称。'}
-  PolicyName *string `json:"policyName,omitempty" xml:"policyName,omitempty" require:"true"`
-  // {'en':'Rule Name.', 'zh_CN':'规则名称。'}
-  RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
-  // {'en':'Action.', 'zh_CN':'处理动作。'}
-  Action *string `json:"action,omitempty" xml:"action,omitempty" require:"true"`
-  // {'en':'IP site.', 'zh_CN':'IP地理位置。'}
-  IpSite *string `json:"ipSite,omitempty" xml:"ipSite,omitempty" require:"true"`
-  // {'en':'Explanation.', 'zh_CN':'异常说明。'}
-  Content *string `json:"content,omitempty" xml:"content,omitempty" require:"true"`
-  // {'en':'Target port.', 'zh_CN':'目标端口。'}
-  TargetPort *string `json:"targetPort,omitempty" xml:"targetPort,omitempty" require:"true"`
-}
-
-func (s GetInfrastructureLogListCsecInfrastructureLogVO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetInfrastructureLogListCsecInfrastructureLogVO) GoString() string {
-  return s.String()
-}
-
-func (s *GetInfrastructureLogListCsecInfrastructureLogVO) SetAttackTime(v string) *GetInfrastructureLogListCsecInfrastructureLogVO {
-  s.AttackTime = &v
-  return s
-}
-
-func (s *GetInfrastructureLogListCsecInfrastructureLogVO) SetClientIp(v string) *GetInfrastructureLogListCsecInfrastructureLogVO {
-  s.ClientIp = &v
-  return s
-}
-
-func (s *GetInfrastructureLogListCsecInfrastructureLogVO) SetTargetIp(v string) *GetInfrastructureLogListCsecInfrastructureLogVO {
-  s.TargetIp = &v
-  return s
-}
-
-func (s *GetInfrastructureLogListCsecInfrastructureLogVO) SetPolicyName(v string) *GetInfrastructureLogListCsecInfrastructureLogVO {
-  s.PolicyName = &v
-  return s
-}
-
-func (s *GetInfrastructureLogListCsecInfrastructureLogVO) SetRuleName(v string) *GetInfrastructureLogListCsecInfrastructureLogVO {
-  s.RuleName = &v
-  return s
-}
-
-func (s *GetInfrastructureLogListCsecInfrastructureLogVO) SetAction(v string) *GetInfrastructureLogListCsecInfrastructureLogVO {
-  s.Action = &v
-  return s
-}
-
-func (s *GetInfrastructureLogListCsecInfrastructureLogVO) SetIpSite(v string) *GetInfrastructureLogListCsecInfrastructureLogVO {
-  s.IpSite = &v
-  return s
-}
-
-func (s *GetInfrastructureLogListCsecInfrastructureLogVO) SetContent(v string) *GetInfrastructureLogListCsecInfrastructureLogVO {
-  s.Content = &v
-  return s
-}
-
-func (s *GetInfrastructureLogListCsecInfrastructureLogVO) SetTargetPort(v string) *GetInfrastructureLogListCsecInfrastructureLogVO {
-  s.TargetPort = &v
+func (s *GetInfrastructureLogListRequestHeader) SetTimezone(v string) *GetInfrastructureLogListRequestHeader {
+  s.Timezone = &v
   return s
 }
 
@@ -11828,21 +10496,155 @@ func (s GetInfrastructureLogListParameters) GoString() string {
   return s.String()
 }
 
-type GetInfrastructureLogListRequestHeader struct {
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+type GetInfrastructureLogListResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"Data.","zh_CN":"出参数据。"}
+  Data *GetInfrastructureLogListResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
 }
 
-func (s GetInfrastructureLogListRequestHeader) String() string {
+func (s GetInfrastructureLogListResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetInfrastructureLogListRequestHeader) GoString() string {
+func (s GetInfrastructureLogListResponse) GoString() string {
   return s.String()
 }
 
-func (s *GetInfrastructureLogListRequestHeader) SetServiceType(v string) *GetInfrastructureLogListRequestHeader {
-  s.ServiceType = &v
+func (s *GetInfrastructureLogListResponse) SetCode(v string) *GetInfrastructureLogListResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *GetInfrastructureLogListResponse) SetMsg(v string) *GetInfrastructureLogListResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *GetInfrastructureLogListResponse) SetData(v *GetInfrastructureLogListResponseData) *GetInfrastructureLogListResponse {
+  s.Data = v
+  return s
+}
+
+type GetInfrastructureLogListResponseData struct {
+  // {"en":"The current page number.","zh_CN":"当前页码。"}
+  Current *int64 `json:"current,omitempty" xml:"current,omitempty" require:"true"`
+  // {"en":"The number of records per page.","zh_CN":"每页显示的条目数。"}
+  Size *int64 `json:"size,omitempty" xml:"size,omitempty" require:"true"`
+  // {"en":"Pages.","zh_CN":"页数。"}
+  Pages *int64 `json:"pages,omitempty" xml:"pages,omitempty" require:"true"`
+  // {"en":"The total number of records.","zh_CN":"总记录数。"}
+  Total *int64 `json:"total,omitempty" xml:"total,omitempty" require:"true"`
+  // {"en":"Records.","zh_CN":"记录。"}
+  Records *GetInfrastructureLogListResponseDataRecords `json:"records,omitempty" xml:"records,omitempty" require:"true" type:"Struct"`
+}
+
+func (s GetInfrastructureLogListResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetInfrastructureLogListResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *GetInfrastructureLogListResponseData) SetCurrent(v int64) *GetInfrastructureLogListResponseData {
+  s.Current = &v
+  return s
+}
+
+func (s *GetInfrastructureLogListResponseData) SetSize(v int64) *GetInfrastructureLogListResponseData {
+  s.Size = &v
+  return s
+}
+
+func (s *GetInfrastructureLogListResponseData) SetPages(v int64) *GetInfrastructureLogListResponseData {
+  s.Pages = &v
+  return s
+}
+
+func (s *GetInfrastructureLogListResponseData) SetTotal(v int64) *GetInfrastructureLogListResponseData {
+  s.Total = &v
+  return s
+}
+
+func (s *GetInfrastructureLogListResponseData) SetRecords(v *GetInfrastructureLogListResponseDataRecords) *GetInfrastructureLogListResponseData {
+  s.Records = v
+  return s
+}
+
+type GetInfrastructureLogListResponseDataRecords struct {
+  // {"en":"Time.","zh_CN":"时间。"}
+  AttackTime *string `json:"attackTime,omitempty" xml:"attackTime,omitempty" require:"true"`
+  // {"en":"Client IP.","zh_CN":"客户端IP。"}
+  ClientIp *string `json:"clientIp,omitempty" xml:"clientIp,omitempty" require:"true"`
+  // {"en":"Target IP.","zh_CN":"目标IP。"}
+  TargetIp *string `json:"targetIp,omitempty" xml:"targetIp,omitempty" require:"true"`
+  // {"en":"Policy Name.","zh_CN":"策略名称。"}
+  PolicyName *string `json:"policyName,omitempty" xml:"policyName,omitempty" require:"true"`
+  // {"en":"Rule Name.","zh_CN":"规则名称。"}
+  RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
+  // {"en":"Action.","zh_CN":"处理动作。"}
+  Action *string `json:"action,omitempty" xml:"action,omitempty" require:"true"`
+  // {"en":"IP site.","zh_CN":"IP地理位置。"}
+  IpSite *string `json:"ipSite,omitempty" xml:"ipSite,omitempty" require:"true"`
+  // {"en":"Explanation.","zh_CN":"异常说明。"}
+  Content *string `json:"content,omitempty" xml:"content,omitempty" require:"true"`
+  // {"en":"Target port.","zh_CN":"目标端口。"}
+  TargetPort *string `json:"targetPort,omitempty" xml:"targetPort,omitempty" require:"true"`
+}
+
+func (s GetInfrastructureLogListResponseDataRecords) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetInfrastructureLogListResponseDataRecords) GoString() string {
+  return s.String()
+}
+
+func (s *GetInfrastructureLogListResponseDataRecords) SetAttackTime(v string) *GetInfrastructureLogListResponseDataRecords {
+  s.AttackTime = &v
+  return s
+}
+
+func (s *GetInfrastructureLogListResponseDataRecords) SetClientIp(v string) *GetInfrastructureLogListResponseDataRecords {
+  s.ClientIp = &v
+  return s
+}
+
+func (s *GetInfrastructureLogListResponseDataRecords) SetTargetIp(v string) *GetInfrastructureLogListResponseDataRecords {
+  s.TargetIp = &v
+  return s
+}
+
+func (s *GetInfrastructureLogListResponseDataRecords) SetPolicyName(v string) *GetInfrastructureLogListResponseDataRecords {
+  s.PolicyName = &v
+  return s
+}
+
+func (s *GetInfrastructureLogListResponseDataRecords) SetRuleName(v string) *GetInfrastructureLogListResponseDataRecords {
+  s.RuleName = &v
+  return s
+}
+
+func (s *GetInfrastructureLogListResponseDataRecords) SetAction(v string) *GetInfrastructureLogListResponseDataRecords {
+  s.Action = &v
+  return s
+}
+
+func (s *GetInfrastructureLogListResponseDataRecords) SetIpSite(v string) *GetInfrastructureLogListResponseDataRecords {
+  s.IpSite = &v
+  return s
+}
+
+func (s *GetInfrastructureLogListResponseDataRecords) SetContent(v string) *GetInfrastructureLogListResponseDataRecords {
+  s.Content = &v
+  return s
+}
+
+func (s *GetInfrastructureLogListResponseDataRecords) SetTargetPort(v string) *GetInfrastructureLogListResponseDataRecords {
+  s.TargetPort = &v
   return s
 }
 
@@ -12033,31 +10835,15 @@ func (s GetBotRequestSourceDistributionDataResponseHeader) GoString() string {
 
 
 type QueryAttackLogDetailInfoRequest struct {
-  // {'en':'Event ID.', 'zh_CN':'事件ID。'}
+  // {"en":"Event ID.","zh_CN":"事件ID。"}
   Uuid *string `json:"uuid,omitempty" xml:"uuid,omitempty" require:"true"`
-  // {'en':'Request ID.', 'zh_CN':'请求ID。'}
+  // {"en":"Request ID.","zh_CN":"请求ID。"}
   RequestId *string `json:"requestId,omitempty" xml:"requestId,omitempty" require:"true"`
-  // {'en':'Hostname.', 'zh_CN':'域名。'}
+  // {"en":"Domain.","zh_CN":"域名。"}
   Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
-  // {'en':'Policy type. 
-  //  DMS_DEFEND: DDoS Protection
-  //  BOT_MANAGE: Bot Management
-  //  API_DEFEND: API Security
-  //  WAF_DEFEND: WAF
-  //  BLOCK: IP/Geo Block
-  //  CUSTOMIZE_RULE: Custom Rules
-  //  RATE_LIMIT: Rate Limiting
-  //  INTELLIGENCE: Threat Intelligence', 'zh_CN':'策略类型。
-  //  DMS_DEFEND：DDoS防护
-  //  BOT_MANAGE：Bot管理
-  //  API_DEFEND：API安全
-  //  WAF_DEFEND：WAF
-  //  BLOCK：IP/区域封禁
-  //  CUSTOMIZE_RULE：自定义规则
-  //  RATE_LIMIT：频率限制
-  //  INTELLIGENCE：威胁情报'}
+  // {"en":"Policy type.\nDMS_DEFEND: DDoS Protection\nBOT_MANAGE: Bot Management\nAPI_DEFEND: API Security\nWAF_DEFEND: WAF\nBLOCK: IP/Geo Block\nCUSTOMIZE_RULE: Custom Rules\nRATE_LIMIT: Rate Limiting\nINTELLIGENCE: Threat Intelligence","zh_CN":"策略类型。\nDMS_DEFEND：DDoS防护\nBOT_MANAGE：Bot管理\nAPI_DEFEND：API安全\nWAF_DEFEND：WAF\nBLOCK：IP/区域封禁\nCUSTOMIZE_RULE：自定义规则\nRATE_LIMIT：频率限制\nINTELLIGENCE：威胁情报","exampleValue":"BLOCK,DMS_DEFEND,WAF_DEFEND,BOT_MANAGE,API_DEFEND,INTELLIGENCE,RATE_LIMIT,CUSTOMIZE_RULE"}
   PolicyType *string `json:"policyType,omitempty" xml:"policyType,omitempty" require:"true"`
-  // {'en':'Attack time, format: yyyy-MM-dd HH:mm:ss.', 'zh_CN':'攻击时间，时间格式：yyyy-MM-dd HH:mm:ss。'}
+  // {"en":"Attack time, format: yyyy-MM-dd HH:mm:ss.","zh_CN":"攻击时间，时间格式：yyyy-MM-dd HH:mm:ss。"}
   AttackTime *string `json:"attackTime,omitempty" xml:"attackTime,omitempty" require:"true"`
 }
 
@@ -12094,676 +10880,35 @@ func (s *QueryAttackLogDetailInfoRequest) SetAttackTime(v string) *QueryAttackLo
   return s
 }
 
-type QueryAttackLogDetailInfoResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'描述信息。'}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {'en':'Data.', 'zh_CN':'出参数据。'}
-  Data *QueryAttackLogDetailInfoAttackLogAllDetailDto `json:"data,omitempty" xml:"data,omitempty" require:"true"`
+type QueryAttackLogDetailInfoRequestHeader struct {
+  // {"defaultValue":"en","en":"The language of response data, default value: en.\nzh_CN: Chinese\nen: English","zh_CN":"返回内容的语言版本，默认值: en。\nzh_CN：中文\nen：英文","exampleValue":"zh_CN,en"}
+  Language *string `json:"language,omitempty" xml:"language,omitempty"`
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+  // {"defaultValue":"GMT+8","en":"Report Data Timezone:1. Indicates the timezone for the report data. lt must be relative to GMT andspecified in the format GMT+n where -12<=n <= 12. For example,timezone=GMT-7 and timezone=GMT+8.2. If the parameter is unspecified,results will be in the GMT+8 timezone.","zh_CN":"报表数据时区：1.请传递GMT时区。示例格式：GMT+N（其中12<=N <= 12），示例：timezone=GMT-7或timezone=GMT+8.2.若参数为传递，将默认按GMT+8时区查询"}
+  Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty"`
 }
 
-func (s QueryAttackLogDetailInfoResponse) String() string {
+func (s QueryAttackLogDetailInfoRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryAttackLogDetailInfoResponse) GoString() string {
+func (s QueryAttackLogDetailInfoRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *QueryAttackLogDetailInfoResponse) SetCode(v string) *QueryAttackLogDetailInfoResponse {
-  s.Code = &v
+func (s *QueryAttackLogDetailInfoRequestHeader) SetLanguage(v string) *QueryAttackLogDetailInfoRequestHeader {
+  s.Language = &v
   return s
 }
 
-func (s *QueryAttackLogDetailInfoResponse) SetMsg(v string) *QueryAttackLogDetailInfoResponse {
-  s.Msg = &v
+func (s *QueryAttackLogDetailInfoRequestHeader) SetServiceType(v string) *QueryAttackLogDetailInfoRequestHeader {
+  s.ServiceType = &v
   return s
 }
 
-func (s *QueryAttackLogDetailInfoResponse) SetData(v *QueryAttackLogDetailInfoAttackLogAllDetailDto) *QueryAttackLogDetailInfoResponse {
-  s.Data = v
-  return s
-}
-
-type QueryAttackLogDetailInfoAttackLogDetailDto struct {
-  // {'en':'The policy type of hit interception, empty when not intercepted. 
-  //  DMS_DEFEND: DDoS Protection
-  //  BOT_MANAGE: Bot Management
-  //  API_DEFEND: API Security
-  //  WAF_DEFEND: WAF
-  //  BLOCK: IP/Geo Block
-  //  CUSTOMIZE_RULE: Custom Rules
-  //  RATE_LIMIT: Rate Limiting
-  //  INTELLIGENCE: Threat Intelligence', 'zh_CN':'命中拦截的策略类型，没有被拦截时为空。
-  //  DMS_DEFEND：DDoS防护
-  //  BOT_MANAGE：Bot管理
-  //  API_DEFEND：API安全
-  //  WAF_DEFEND：WAF
-  //  BLOCK：IP/区域封禁
-  //  CUSTOMIZE_RULE：自定义规则
-  //  RATE_LIMIT：频率限制
-  //  INTELLIGENCE：威胁情报'}
-  BlockPolicyName *string `json:"blockPolicyName,omitempty" xml:"blockPolicyName,omitempty" require:"true"`
-  // {'en':'IP/Geo Block.', 'zh_CN':'IP区域封禁。'}
-  BLOCK *QueryAttackLogDetailInfoAttackLogIpBlockDto `json:"BLOCK,omitempty" xml:"BLOCK,omitempty" require:"true"`
-  // {'en':'WAF.', 'zh_CN':'WAF。'}
-  WAF_DEFEND []*QueryAttackLogDetailInfoAttackLogWafRuleDto `json:"WAF_DEFEND,omitempty" xml:"WAF_DEFEND,omitempty" require:"true" type:"Repeated"`
-  // {'en':'DDoS Protection.', 'zh_CN':'DDos防护。'}
-  DMS_DEFEND []*QueryAttackLogDetailInfoAttackLogDdosRuleDto `json:"DMS_DEFEND,omitempty" xml:"DMS_DEFEND,omitempty" require:"true" type:"Repeated"`
-  // {'en':'Bot Management.', 'zh_CN':'Bot管理。'}
-  BOT_MANAGE []*QueryAttackLogDetailInfoAttackLogBotRuleDto `json:"BOT_MANAGE,omitempty" xml:"BOT_MANAGE,omitempty" require:"true" type:"Repeated"`
-  // {'en':'API Security.', 'zh_CN':'API安全。'}
-  API_DEFEND []*QueryAttackLogDetailInfoAttackLogApiRuleDto `json:"API_DEFEND,omitempty" xml:"API_DEFEND,omitempty" require:"true" type:"Repeated"`
-  // {'en':'Threat Intelligence.', 'zh_CN':'威胁情报。'}
-  INTELLIGENCE []*QueryAttackLogDetailInfoAttackLogIntelligentDto `json:"INTELLIGENCE,omitempty" xml:"INTELLIGENCE,omitempty" require:"true" type:"Repeated"`
-  // {'en':'Rate Limiting.', 'zh_CN':'频率限制。'}
-  RATE_LIMIT []*QueryAttackLogDetailInfoAttackLogRateLimitDto `json:"RATE_LIMIT,omitempty" xml:"RATE_LIMIT,omitempty" require:"true" type:"Repeated"`
-  // {'en':'Custom Rules.', 'zh_CN':'自定义规则。'}
-  CUSTOMIZE_RULE []*QueryAttackLogDetailInfoAttackLogCustomizeRuleDto `json:"CUSTOMIZE_RULE,omitempty" xml:"CUSTOMIZE_RULE,omitempty" require:"true" type:"Repeated"`
-}
-
-func (s QueryAttackLogDetailInfoAttackLogDetailDto) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAttackLogDetailInfoAttackLogDetailDto) GoString() string {
-  return s.String()
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogDetailDto) SetBlockPolicyName(v string) *QueryAttackLogDetailInfoAttackLogDetailDto {
-  s.BlockPolicyName = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogDetailDto) SetBLOCK(v *QueryAttackLogDetailInfoAttackLogIpBlockDto) *QueryAttackLogDetailInfoAttackLogDetailDto {
-  s.BLOCK = v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogDetailDto) SetWAF_DEFEND(v []*QueryAttackLogDetailInfoAttackLogWafRuleDto) *QueryAttackLogDetailInfoAttackLogDetailDto {
-  s.WAF_DEFEND = v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogDetailDto) SetDMS_DEFEND(v []*QueryAttackLogDetailInfoAttackLogDdosRuleDto) *QueryAttackLogDetailInfoAttackLogDetailDto {
-  s.DMS_DEFEND = v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogDetailDto) SetBOT_MANAGE(v []*QueryAttackLogDetailInfoAttackLogBotRuleDto) *QueryAttackLogDetailInfoAttackLogDetailDto {
-  s.BOT_MANAGE = v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogDetailDto) SetAPI_DEFEND(v []*QueryAttackLogDetailInfoAttackLogApiRuleDto) *QueryAttackLogDetailInfoAttackLogDetailDto {
-  s.API_DEFEND = v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogDetailDto) SetINTELLIGENCE(v []*QueryAttackLogDetailInfoAttackLogIntelligentDto) *QueryAttackLogDetailInfoAttackLogDetailDto {
-  s.INTELLIGENCE = v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogDetailDto) SetRATE_LIMIT(v []*QueryAttackLogDetailInfoAttackLogRateLimitDto) *QueryAttackLogDetailInfoAttackLogDetailDto {
-  s.RATE_LIMIT = v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogDetailDto) SetCUSTOMIZE_RULE(v []*QueryAttackLogDetailInfoAttackLogCustomizeRuleDto) *QueryAttackLogDetailInfoAttackLogDetailDto {
-  s.CUSTOMIZE_RULE = v
-  return s
-}
-
-type QueryAttackLogDetailInfoAttackLogAllDetailDto struct {
-  // {'en':'Basic Information.', 'zh_CN':'基础信息。'}
-  BasicInfo *QueryAttackLogDetailInfoAttackLogBasicInfoDto `json:"basicInfo,omitempty" xml:"basicInfo,omitempty" require:"true"`
-  // {'en':'Details.', 'zh_CN':'详细信息。'}
-  DetailInfo *QueryAttackLogDetailInfoAttackLogDetailDto `json:"detailInfo,omitempty" xml:"detailInfo,omitempty" require:"true"`
-}
-
-func (s QueryAttackLogDetailInfoAttackLogAllDetailDto) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAttackLogDetailInfoAttackLogAllDetailDto) GoString() string {
-  return s.String()
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogAllDetailDto) SetBasicInfo(v *QueryAttackLogDetailInfoAttackLogBasicInfoDto) *QueryAttackLogDetailInfoAttackLogAllDetailDto {
-  s.BasicInfo = v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogAllDetailDto) SetDetailInfo(v *QueryAttackLogDetailInfoAttackLogDetailDto) *QueryAttackLogDetailInfoAttackLogAllDetailDto {
-  s.DetailInfo = v
-  return s
-}
-
-type QueryAttackLogDetailInfoAttackLogWafRuleDto struct {
-  // {'en':'Rule type.', 'zh_CN':'规则类型。'}
-  RuleType *string `json:"ruleType,omitempty" xml:"ruleType,omitempty" require:"true"`
-  // {'en':'Rule action.', 'zh_CN':'规则动作。'}
-  RuleAction *string `json:"ruleAction,omitempty" xml:"ruleAction,omitempty" require:"true"`
-  // {'en':'Rule ID.', 'zh_CN':'规则ID。'}
-  RuleId *string `json:"ruleId,omitempty" xml:"ruleId,omitempty" require:"true"`
-  // {'en':'Rule name.', 'zh_CN':'规则名称。'}
-  RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
-  // {'en':'Rule description.', 'zh_CN':'规则描述。'}
-  RuleDesc *string `json:"ruleDesc,omitempty" xml:"ruleDesc,omitempty" require:"true"`
-  // {'en':'Hit request area.', 'zh_CN':'命中请求区域。'}
-  MatchArea *string `json:"matchArea,omitempty" xml:"matchArea,omitempty" require:"true"`
-  // {'en':'Hit request content.', 'zh_CN':'命中请求内容。'}
-  MatchContent *string `json:"matchContent,omitempty" xml:"matchContent,omitempty" require:"true"`
-}
-
-func (s QueryAttackLogDetailInfoAttackLogWafRuleDto) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAttackLogDetailInfoAttackLogWafRuleDto) GoString() string {
-  return s.String()
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogWafRuleDto) SetRuleType(v string) *QueryAttackLogDetailInfoAttackLogWafRuleDto {
-  s.RuleType = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogWafRuleDto) SetRuleAction(v string) *QueryAttackLogDetailInfoAttackLogWafRuleDto {
-  s.RuleAction = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogWafRuleDto) SetRuleId(v string) *QueryAttackLogDetailInfoAttackLogWafRuleDto {
-  s.RuleId = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogWafRuleDto) SetRuleName(v string) *QueryAttackLogDetailInfoAttackLogWafRuleDto {
-  s.RuleName = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogWafRuleDto) SetRuleDesc(v string) *QueryAttackLogDetailInfoAttackLogWafRuleDto {
-  s.RuleDesc = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogWafRuleDto) SetMatchArea(v string) *QueryAttackLogDetailInfoAttackLogWafRuleDto {
-  s.MatchArea = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogWafRuleDto) SetMatchContent(v string) *QueryAttackLogDetailInfoAttackLogWafRuleDto {
-  s.MatchContent = &v
-  return s
-}
-
-type QueryAttackLogDetailInfoAttackLogApiRuleDto struct {
-  // {'en':'Rule action.', 'zh_CN':'规则动作。'}
-  RuleAction *string `json:"ruleAction,omitempty" xml:"ruleAction,omitempty" require:"true"`
-  // {'en':'Policy name.', 'zh_CN':'策略名称。'}
-  PolicyName *string `json:"policyName,omitempty" xml:"policyName,omitempty" require:"true"`
-  // {'en':'API name.', 'zh_CN':'API名称。'}
-  ApiName *string `json:"apiName,omitempty" xml:"apiName,omitempty" require:"true"`
-  // {'en':'API ID.', 'zh_CN':'API ID。'}
-  ApiId *string `json:"apiId,omitempty" xml:"apiId,omitempty" require:"true"`
-  // {'en':'English instructions.', 'zh_CN':'英文说明。'}
-  ExplainEn *string `json:"explainEn,omitempty" xml:"explainEn,omitempty" require:"true"`
-  // {'en':'Chinese instructions, only supported in language=zh_CN', 'zh_CN':'中文说明，仅当language=zh_CN支持。'}
-  ExplainCn *string `json:"explainCn,omitempty" xml:"explainCn,omitempty" require:"true"`
-}
-
-func (s QueryAttackLogDetailInfoAttackLogApiRuleDto) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAttackLogDetailInfoAttackLogApiRuleDto) GoString() string {
-  return s.String()
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogApiRuleDto) SetRuleAction(v string) *QueryAttackLogDetailInfoAttackLogApiRuleDto {
-  s.RuleAction = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogApiRuleDto) SetPolicyName(v string) *QueryAttackLogDetailInfoAttackLogApiRuleDto {
-  s.PolicyName = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogApiRuleDto) SetApiName(v string) *QueryAttackLogDetailInfoAttackLogApiRuleDto {
-  s.ApiName = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogApiRuleDto) SetApiId(v string) *QueryAttackLogDetailInfoAttackLogApiRuleDto {
-  s.ApiId = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogApiRuleDto) SetExplainEn(v string) *QueryAttackLogDetailInfoAttackLogApiRuleDto {
-  s.ExplainEn = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogApiRuleDto) SetExplainCn(v string) *QueryAttackLogDetailInfoAttackLogApiRuleDto {
-  s.ExplainCn = &v
-  return s
-}
-
-type QueryAttackLogDetailInfoAttackLogIntelligentDto struct {
-  // {'en':'Threat type.', 'zh_CN':'情报类型。'}
-  IntelligentType *string `json:"intelligentType,omitempty" xml:"intelligentType,omitempty" require:"true"`
-  // {'en':'Rule action.', 'zh_CN':'规则动作。'}
-  RuleAction *string `json:"ruleAction,omitempty" xml:"ruleAction,omitempty" require:"true"`
-  // {'en':'Intelligence module.', 'zh_CN':'情报模块。'}
-  IntelligentModule *string `json:"intelligentModule,omitempty" xml:"intelligentModule,omitempty" require:"true"`
-}
-
-func (s QueryAttackLogDetailInfoAttackLogIntelligentDto) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAttackLogDetailInfoAttackLogIntelligentDto) GoString() string {
-  return s.String()
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogIntelligentDto) SetIntelligentType(v string) *QueryAttackLogDetailInfoAttackLogIntelligentDto {
-  s.IntelligentType = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogIntelligentDto) SetRuleAction(v string) *QueryAttackLogDetailInfoAttackLogIntelligentDto {
-  s.RuleAction = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogIntelligentDto) SetIntelligentModule(v string) *QueryAttackLogDetailInfoAttackLogIntelligentDto {
-  s.IntelligentModule = &v
-  return s
-}
-
-type QueryAttackLogDetailInfoAttackLogCustomizeRuleDto struct {
-  // {'en':'Rule action.', 'zh_CN':'规则动作。'}
-  RuleAction *string `json:"ruleAction,omitempty" xml:"ruleAction,omitempty" require:"true"`
-  // {'en':'API name.', 'zh_CN':'API名称。'}
-  ApiName *string `json:"apiName,omitempty" xml:"apiName,omitempty" require:"true"`
-  // {'en':'API ID.', 'zh_CN':'API ID。'}
-  ApiId *string `json:"apiId,omitempty" xml:"apiId,omitempty" require:"true"`
-  // {'en':'Rule name.', 'zh_CN':'规则名称。'}
-  RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
-  // {'en':'Rule ID.', 'zh_CN':'规则ID。'}
-  RuleId *string `json:"ruleId,omitempty" xml:"ruleId,omitempty" require:"true"`
-  // {'en':'Rule description.', 'zh_CN':'规则描述。'}
-  RuleDesc *string `json:"ruleDesc,omitempty" xml:"ruleDesc,omitempty" require:"true"`
-}
-
-func (s QueryAttackLogDetailInfoAttackLogCustomizeRuleDto) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAttackLogDetailInfoAttackLogCustomizeRuleDto) GoString() string {
-  return s.String()
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogCustomizeRuleDto) SetRuleAction(v string) *QueryAttackLogDetailInfoAttackLogCustomizeRuleDto {
-  s.RuleAction = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogCustomizeRuleDto) SetApiName(v string) *QueryAttackLogDetailInfoAttackLogCustomizeRuleDto {
-  s.ApiName = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogCustomizeRuleDto) SetApiId(v string) *QueryAttackLogDetailInfoAttackLogCustomizeRuleDto {
-  s.ApiId = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogCustomizeRuleDto) SetRuleName(v string) *QueryAttackLogDetailInfoAttackLogCustomizeRuleDto {
-  s.RuleName = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogCustomizeRuleDto) SetRuleId(v string) *QueryAttackLogDetailInfoAttackLogCustomizeRuleDto {
-  s.RuleId = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogCustomizeRuleDto) SetRuleDesc(v string) *QueryAttackLogDetailInfoAttackLogCustomizeRuleDto {
-  s.RuleDesc = &v
-  return s
-}
-
-type QueryAttackLogDetailInfoAttackLogBasicInfoDto struct {
-  // {'en':'Request ID.', 'zh_CN':'请求ID。'}
-  RequestId *string `json:"requestId,omitempty" xml:"requestId,omitempty" require:"true"`
-  // {'en':'Event ID.', 'zh_CN':'事件ID。'}
-  Uuid *string `json:"uuid,omitempty" xml:"uuid,omitempty" require:"true"`
-  // {'en':'Request Method.', 'zh_CN':'请求方法。'}
-  RequestMethod *string `json:"requestMethod,omitempty" xml:"requestMethod,omitempty" require:"true"`
-  // {'en':'Http Version.', 'zh_CN':'HTTP版本。'}
-  HttpVersion *string `json:"httpVersion,omitempty" xml:"httpVersion,omitempty" require:"true"`
-  // {'en':'Path.', 'zh_CN':'路径。'}
-  Path *string `json:"path,omitempty" xml:"path,omitempty" require:"true"`
-  // {'en':'URI.', 'zh_CN':'URI。'}
-  Uri *string `json:"uri,omitempty" xml:"uri,omitempty" require:"true"`
-  // {'en':'User-Agent.', 'zh_CN':'User-Agent。'}
-  UserAgent *string `json:"userAgent,omitempty" xml:"userAgent,omitempty" require:"true"`
-  // {'en':'Referer.', 'zh_CN':'Referer。'}
-  Referer *string `json:"referer,omitempty" xml:"referer,omitempty" require:"true"`
-  // {'en':'Status Code.', 'zh_CN':'状态码。'}
-  StatusCode *string `json:"statusCode,omitempty" xml:"statusCode,omitempty" require:"true"`
-  // {'en':'Client IP.', 'zh_CN':'客户端IP。'}
-  ClientIp *string `json:"clientIp,omitempty" xml:"clientIp,omitempty" require:"true"`
-  // {'en':'IP geolocation.', 'zh_CN':'IP地理位置。'}
-  IpLocation *string `json:"ipLocation,omitempty" xml:"ipLocation,omitempty" require:"true"`
-  // {'en':'Client ID.', 'zh_CN':'客户端ID。'}
-  UserFinger *string `json:"userFinger,omitempty" xml:"userFinger,omitempty" require:"true"`
-  // {'en':'Browser fingerprint.', 'zh_CN':'浏览器指纹。'}
-  BrowserFinger *string `json:"browserFinger,omitempty" xml:"browserFinger,omitempty" require:"true"`
-  // {'en':'Device fingerprint.', 'zh_CN':'设备指纹。'}
-  DeviceFinger *string `json:"deviceFinger,omitempty" xml:"deviceFinger,omitempty" require:"true"`
-  // {'en':'APP name.', 'zh_CN':'APP名称。'}
-  AppName *string `json:"appName,omitempty" xml:"appName,omitempty" require:"true"`
-  // {'en':'APP version.', 'zh_CN':'APP版本。'}
-  AppVersion *string `json:"appVersion,omitempty" xml:"appVersion,omitempty" require:"true"`
-  // {'en':'APP ID.', 'zh_CN':'APP ID。'}
-  AppId *string `json:"appId,omitempty" xml:"appId,omitempty" require:"true"`
-  // {'en':'APP package name.', 'zh_CN':'APP包名。'}
-  AppPackageName *string `json:"appPackageName,omitempty" xml:"appPackageName,omitempty" require:"true"`
-  // {'en':'SDK version.', 'zh_CN':'SDK版本。'}
-  SdkVersion *string `json:"sdkVersion,omitempty" xml:"sdkVersion,omitempty" require:"true"`
-}
-
-func (s QueryAttackLogDetailInfoAttackLogBasicInfoDto) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAttackLogDetailInfoAttackLogBasicInfoDto) GoString() string {
-  return s.String()
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBasicInfoDto) SetRequestId(v string) *QueryAttackLogDetailInfoAttackLogBasicInfoDto {
-  s.RequestId = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBasicInfoDto) SetUuid(v string) *QueryAttackLogDetailInfoAttackLogBasicInfoDto {
-  s.Uuid = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBasicInfoDto) SetRequestMethod(v string) *QueryAttackLogDetailInfoAttackLogBasicInfoDto {
-  s.RequestMethod = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBasicInfoDto) SetHttpVersion(v string) *QueryAttackLogDetailInfoAttackLogBasicInfoDto {
-  s.HttpVersion = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBasicInfoDto) SetPath(v string) *QueryAttackLogDetailInfoAttackLogBasicInfoDto {
-  s.Path = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBasicInfoDto) SetUri(v string) *QueryAttackLogDetailInfoAttackLogBasicInfoDto {
-  s.Uri = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBasicInfoDto) SetUserAgent(v string) *QueryAttackLogDetailInfoAttackLogBasicInfoDto {
-  s.UserAgent = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBasicInfoDto) SetReferer(v string) *QueryAttackLogDetailInfoAttackLogBasicInfoDto {
-  s.Referer = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBasicInfoDto) SetStatusCode(v string) *QueryAttackLogDetailInfoAttackLogBasicInfoDto {
-  s.StatusCode = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBasicInfoDto) SetClientIp(v string) *QueryAttackLogDetailInfoAttackLogBasicInfoDto {
-  s.ClientIp = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBasicInfoDto) SetIpLocation(v string) *QueryAttackLogDetailInfoAttackLogBasicInfoDto {
-  s.IpLocation = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBasicInfoDto) SetUserFinger(v string) *QueryAttackLogDetailInfoAttackLogBasicInfoDto {
-  s.UserFinger = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBasicInfoDto) SetBrowserFinger(v string) *QueryAttackLogDetailInfoAttackLogBasicInfoDto {
-  s.BrowserFinger = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBasicInfoDto) SetDeviceFinger(v string) *QueryAttackLogDetailInfoAttackLogBasicInfoDto {
-  s.DeviceFinger = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBasicInfoDto) SetAppName(v string) *QueryAttackLogDetailInfoAttackLogBasicInfoDto {
-  s.AppName = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBasicInfoDto) SetAppVersion(v string) *QueryAttackLogDetailInfoAttackLogBasicInfoDto {
-  s.AppVersion = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBasicInfoDto) SetAppId(v string) *QueryAttackLogDetailInfoAttackLogBasicInfoDto {
-  s.AppId = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBasicInfoDto) SetAppPackageName(v string) *QueryAttackLogDetailInfoAttackLogBasicInfoDto {
-  s.AppPackageName = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBasicInfoDto) SetSdkVersion(v string) *QueryAttackLogDetailInfoAttackLogBasicInfoDto {
-  s.SdkVersion = &v
-  return s
-}
-
-type QueryAttackLogDetailInfoAttackLogIpBlockDto struct {
-  // {'en':'Policy name.', 'zh_CN':'策略名称。'}
-  PolicyName *string `json:"policyName,omitempty" xml:"policyName,omitempty" require:"true"`
-  // {'en':'Rule action.', 'zh_CN':'规则动作。'}
-  RuleAction *string `json:"ruleAction,omitempty" xml:"ruleAction,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'说明。'}
-  Explain *string `json:"explain,omitempty" xml:"explain,omitempty" require:"true"`
-}
-
-func (s QueryAttackLogDetailInfoAttackLogIpBlockDto) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAttackLogDetailInfoAttackLogIpBlockDto) GoString() string {
-  return s.String()
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogIpBlockDto) SetPolicyName(v string) *QueryAttackLogDetailInfoAttackLogIpBlockDto {
-  s.PolicyName = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogIpBlockDto) SetRuleAction(v string) *QueryAttackLogDetailInfoAttackLogIpBlockDto {
-  s.RuleAction = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogIpBlockDto) SetExplain(v string) *QueryAttackLogDetailInfoAttackLogIpBlockDto {
-  s.Explain = &v
-  return s
-}
-
-type QueryAttackLogDetailInfoAttackLogDdosRuleDto struct {
-  // {'en':'Policy name.', 'zh_CN':'策略名称。'}
-  PolicyName *string `json:"policyName,omitempty" xml:"policyName,omitempty" require:"true"`
-  // {'en':'Rule action.', 'zh_CN':'规则动作。'}
-  RuleAction *string `json:"ruleAction,omitempty" xml:"ruleAction,omitempty" require:"true"`
-  // {'en':'Rule ID.', 'zh_CN':'规则ID。'}
-  RuleId *string `json:"ruleId,omitempty" xml:"ruleId,omitempty" require:"true"`
-  // {'en':'Rule name.', 'zh_CN':'规则名称。'}
-  RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'说明。'}
-  Explain *string `json:"explain,omitempty" xml:"explain,omitempty" require:"true"`
-}
-
-func (s QueryAttackLogDetailInfoAttackLogDdosRuleDto) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAttackLogDetailInfoAttackLogDdosRuleDto) GoString() string {
-  return s.String()
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogDdosRuleDto) SetPolicyName(v string) *QueryAttackLogDetailInfoAttackLogDdosRuleDto {
-  s.PolicyName = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogDdosRuleDto) SetRuleAction(v string) *QueryAttackLogDetailInfoAttackLogDdosRuleDto {
-  s.RuleAction = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogDdosRuleDto) SetRuleId(v string) *QueryAttackLogDetailInfoAttackLogDdosRuleDto {
-  s.RuleId = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogDdosRuleDto) SetRuleName(v string) *QueryAttackLogDetailInfoAttackLogDdosRuleDto {
-  s.RuleName = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogDdosRuleDto) SetExplain(v string) *QueryAttackLogDetailInfoAttackLogDdosRuleDto {
-  s.Explain = &v
-  return s
-}
-
-type QueryAttackLogDetailInfoAttackLogBotRuleDto struct {
-  // {'en':'Policy name.', 'zh_CN':'策略名称。'}
-  PolicyName *string `json:"policyName,omitempty" xml:"policyName,omitempty" require:"true"`
-  // {'en':'Rule action.', 'zh_CN':'规则动作。'}
-  RuleAction *string `json:"ruleAction,omitempty" xml:"ruleAction,omitempty" require:"true"`
-  // {'en':'Rule name.', 'zh_CN':'规则名称。'}
-  RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
-  // {'en':'Bot Category.', 'zh_CN':'Bot分类。'}
-  BotCategory *string `json:"botCategory,omitempty" xml:"botCategory,omitempty" require:"true"`
-  // {'en':'Bot tag.', 'zh_CN':'Bot标签。'}
-  BotLabel *string `json:"botLabel,omitempty" xml:"botLabel,omitempty" require:"true"`
-  // {'en':'Event description.', 'zh_CN':'事件描述。'}
-  EventDesc *string `json:"eventDesc,omitempty" xml:"eventDesc,omitempty" require:"true"`
-}
-
-func (s QueryAttackLogDetailInfoAttackLogBotRuleDto) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAttackLogDetailInfoAttackLogBotRuleDto) GoString() string {
-  return s.String()
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBotRuleDto) SetPolicyName(v string) *QueryAttackLogDetailInfoAttackLogBotRuleDto {
-  s.PolicyName = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBotRuleDto) SetRuleAction(v string) *QueryAttackLogDetailInfoAttackLogBotRuleDto {
-  s.RuleAction = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBotRuleDto) SetRuleName(v string) *QueryAttackLogDetailInfoAttackLogBotRuleDto {
-  s.RuleName = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBotRuleDto) SetBotCategory(v string) *QueryAttackLogDetailInfoAttackLogBotRuleDto {
-  s.BotCategory = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBotRuleDto) SetBotLabel(v string) *QueryAttackLogDetailInfoAttackLogBotRuleDto {
-  s.BotLabel = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogBotRuleDto) SetEventDesc(v string) *QueryAttackLogDetailInfoAttackLogBotRuleDto {
-  s.EventDesc = &v
-  return s
-}
-
-type QueryAttackLogDetailInfoAttackLogRateLimitDto struct {
-  // {'en':'Rule action.', 'zh_CN':'规则动作。'}
-  RuleAction *string `json:"ruleAction,omitempty" xml:"ruleAction,omitempty" require:"true"`
-  // {'en':'API name.', 'zh_CN':'API名称。'}
-  ApiName *string `json:"apiName,omitempty" xml:"apiName,omitempty" require:"true"`
-  // {'en':'API ID.', 'zh_CN':'API ID。'}
-  ApiId *string `json:"apiId,omitempty" xml:"apiId,omitempty" require:"true"`
-  // {'en':'Rule name.', 'zh_CN':'规则名称。'}
-  RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
-  // {'en':'Rule ID.', 'zh_CN':'规则ID。'}
-  RuleId *string `json:"ruleId,omitempty" xml:"ruleId,omitempty" require:"true"`
-  // {'en':'Rule description.', 'zh_CN':'规则描述。'}
-  RuleDesc *string `json:"ruleDesc,omitempty" xml:"ruleDesc,omitempty" require:"true"`
-}
-
-func (s QueryAttackLogDetailInfoAttackLogRateLimitDto) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAttackLogDetailInfoAttackLogRateLimitDto) GoString() string {
-  return s.String()
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogRateLimitDto) SetRuleAction(v string) *QueryAttackLogDetailInfoAttackLogRateLimitDto {
-  s.RuleAction = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogRateLimitDto) SetApiName(v string) *QueryAttackLogDetailInfoAttackLogRateLimitDto {
-  s.ApiName = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogRateLimitDto) SetApiId(v string) *QueryAttackLogDetailInfoAttackLogRateLimitDto {
-  s.ApiId = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogRateLimitDto) SetRuleName(v string) *QueryAttackLogDetailInfoAttackLogRateLimitDto {
-  s.RuleName = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogRateLimitDto) SetRuleId(v string) *QueryAttackLogDetailInfoAttackLogRateLimitDto {
-  s.RuleId = &v
-  return s
-}
-
-func (s *QueryAttackLogDetailInfoAttackLogRateLimitDto) SetRuleDesc(v string) *QueryAttackLogDetailInfoAttackLogRateLimitDto {
-  s.RuleDesc = &v
+func (s *QueryAttackLogDetailInfoRequestHeader) SetTimezone(v string) *QueryAttackLogDetailInfoRequestHeader {
+  s.Timezone = &v
   return s
 }
 
@@ -12789,32 +10934,625 @@ func (s QueryAttackLogDetailInfoParameters) GoString() string {
   return s.String()
 }
 
-type QueryAttackLogDetailInfoRequestHeader struct {
-  // {'en':'The language of response data, default value: en.
-  // zh_CN: Chinese
-  // en: English', 'zh_CN':'返回内容的语言版本，默认值: en。
-  // zh_CN：中文
-  // en：英文'}
-  Language *string `json:"language,omitempty" xml:"language,omitempty"`
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+type QueryAttackLogDetailInfoResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"Data.","zh_CN":"出参数据。"}
+  Data *QueryAttackLogDetailInfoResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
 }
 
-func (s QueryAttackLogDetailInfoRequestHeader) String() string {
+func (s QueryAttackLogDetailInfoResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryAttackLogDetailInfoRequestHeader) GoString() string {
+func (s QueryAttackLogDetailInfoResponse) GoString() string {
   return s.String()
 }
 
-func (s *QueryAttackLogDetailInfoRequestHeader) SetLanguage(v string) *QueryAttackLogDetailInfoRequestHeader {
-  s.Language = &v
+func (s *QueryAttackLogDetailInfoResponse) SetCode(v string) *QueryAttackLogDetailInfoResponse {
+  s.Code = &v
   return s
 }
 
-func (s *QueryAttackLogDetailInfoRequestHeader) SetServiceType(v string) *QueryAttackLogDetailInfoRequestHeader {
-  s.ServiceType = &v
+func (s *QueryAttackLogDetailInfoResponse) SetMsg(v string) *QueryAttackLogDetailInfoResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponse) SetData(v *QueryAttackLogDetailInfoResponseData) *QueryAttackLogDetailInfoResponse {
+  s.Data = v
+  return s
+}
+
+type QueryAttackLogDetailInfoResponseData struct {
+  // {"en":"Basic Information.","zh_CN":"基础信息。"}
+  BasicInfo *QueryAttackLogDetailInfoResponseDataBasicInfo `json:"basicInfo,omitempty" xml:"basicInfo,omitempty" require:"true" type:"Struct"`
+  // {"en":"Details.","zh_CN":"详细信息。"}
+  DetailInfo *QueryAttackLogDetailInfoResponseDataDetailInfo `json:"detailInfo,omitempty" xml:"detailInfo,omitempty" require:"true" type:"Struct"`
+}
+
+func (s QueryAttackLogDetailInfoResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAttackLogDetailInfoResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAttackLogDetailInfoResponseData) SetBasicInfo(v *QueryAttackLogDetailInfoResponseDataBasicInfo) *QueryAttackLogDetailInfoResponseData {
+  s.BasicInfo = v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseData) SetDetailInfo(v *QueryAttackLogDetailInfoResponseDataDetailInfo) *QueryAttackLogDetailInfoResponseData {
+  s.DetailInfo = v
+  return s
+}
+
+type QueryAttackLogDetailInfoResponseDataBasicInfo struct {
+  // {"en":"Request ID.","zh_CN":"请求ID。"}
+  RequestId *string `json:"requestId,omitempty" xml:"requestId,omitempty" require:"true"`
+  // {"en":"Event ID.","zh_CN":"事件ID。"}
+  Uuid *string `json:"uuid,omitempty" xml:"uuid,omitempty" require:"true"`
+  // {"en":"Request Method.","zh_CN":"请求方法。"}
+  RequestMethod *string `json:"requestMethod,omitempty" xml:"requestMethod,omitempty" require:"true"`
+  // {"en":"Http Version.","zh_CN":"HTTP版本。"}
+  HttpVersion *string `json:"httpVersion,omitempty" xml:"httpVersion,omitempty" require:"true"`
+  // {"en":"Path.","zh_CN":"路径。"}
+  Path *string `json:"path,omitempty" xml:"path,omitempty" require:"true"`
+  // {"en":"URI.","zh_CN":"URI。"}
+  Uri *string `json:"uri,omitempty" xml:"uri,omitempty" require:"true"`
+  // {"en":"User-Agent.","zh_CN":"User-Agent。"}
+  UserAgent *string `json:"userAgent,omitempty" xml:"userAgent,omitempty" require:"true"`
+  // {"en":"Referer.","zh_CN":"Referer。"}
+  Referer *string `json:"referer,omitempty" xml:"referer,omitempty" require:"true"`
+  // {"en":"Status Code.","zh_CN":"状态码。"}
+  StatusCode *string `json:"statusCode,omitempty" xml:"statusCode,omitempty" require:"true"`
+  // {"en":"Client IP.","zh_CN":"客户端IP。"}
+  ClientIp *string `json:"clientIp,omitempty" xml:"clientIp,omitempty" require:"true"`
+  // {"en":"IP geolocation.","zh_CN":"IP地理位置。"}
+  IpLocation *string `json:"ipLocation,omitempty" xml:"ipLocation,omitempty" require:"true"`
+  // {"en":"Client ID.","zh_CN":"客户端ID。"}
+  UserFinger *string `json:"userFinger,omitempty" xml:"userFinger,omitempty" require:"true"`
+  // {"en":"Browser fingerprint.","zh_CN":"浏览器指纹。"}
+  BrowserFinger *string `json:"browserFinger,omitempty" xml:"browserFinger,omitempty" require:"true"`
+  // {"en":"Device fingerprint.","zh_CN":"设备指纹。"}
+  DeviceFinger *string `json:"deviceFinger,omitempty" xml:"deviceFinger,omitempty" require:"true"`
+}
+
+func (s QueryAttackLogDetailInfoResponseDataBasicInfo) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAttackLogDetailInfoResponseDataBasicInfo) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataBasicInfo) SetRequestId(v string) *QueryAttackLogDetailInfoResponseDataBasicInfo {
+  s.RequestId = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataBasicInfo) SetUuid(v string) *QueryAttackLogDetailInfoResponseDataBasicInfo {
+  s.Uuid = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataBasicInfo) SetRequestMethod(v string) *QueryAttackLogDetailInfoResponseDataBasicInfo {
+  s.RequestMethod = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataBasicInfo) SetHttpVersion(v string) *QueryAttackLogDetailInfoResponseDataBasicInfo {
+  s.HttpVersion = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataBasicInfo) SetPath(v string) *QueryAttackLogDetailInfoResponseDataBasicInfo {
+  s.Path = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataBasicInfo) SetUri(v string) *QueryAttackLogDetailInfoResponseDataBasicInfo {
+  s.Uri = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataBasicInfo) SetUserAgent(v string) *QueryAttackLogDetailInfoResponseDataBasicInfo {
+  s.UserAgent = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataBasicInfo) SetReferer(v string) *QueryAttackLogDetailInfoResponseDataBasicInfo {
+  s.Referer = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataBasicInfo) SetStatusCode(v string) *QueryAttackLogDetailInfoResponseDataBasicInfo {
+  s.StatusCode = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataBasicInfo) SetClientIp(v string) *QueryAttackLogDetailInfoResponseDataBasicInfo {
+  s.ClientIp = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataBasicInfo) SetIpLocation(v string) *QueryAttackLogDetailInfoResponseDataBasicInfo {
+  s.IpLocation = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataBasicInfo) SetUserFinger(v string) *QueryAttackLogDetailInfoResponseDataBasicInfo {
+  s.UserFinger = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataBasicInfo) SetBrowserFinger(v string) *QueryAttackLogDetailInfoResponseDataBasicInfo {
+  s.BrowserFinger = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataBasicInfo) SetDeviceFinger(v string) *QueryAttackLogDetailInfoResponseDataBasicInfo {
+  s.DeviceFinger = &v
+  return s
+}
+
+type QueryAttackLogDetailInfoResponseDataDetailInfo struct {
+  // {"en":"The policy type of hit interception, empty when not intercepted.\nDMS_DEFEND: DDoS Protection\nBOT_MANAGE: Bot Management\nAPI_DEFEND: API Security\nWAF_DEFEND: WAF\nBLOCK: IP/Geo Block\nCUSTOMIZE_RULE: Custom Rules\nRATE_LIMIT: Rate Limiting\nINTELLIGENCE: Threat Intelligence","zh_CN":"命中拦截的策略类型，没有被拦截时为空。\nDMS_DEFEND：DDoS防护\nBOT_MANAGE：Bot管理\nAPI_DEFEND：API安全\nWAF_DEFEND：WAF\nBLOCK：IP/区域封禁\nCUSTOMIZE_RULE：自定义规则\nRATE_LIMIT：频率限制\nINTELLIGENCE：威胁情报","exampleValue":"BLOCK,DMS_DEFEND,WAF_DEFEND,BOT_MANAGE,API_DEFEND,INTELLIGENCE,RATE_LIMIT,CUSTOMIZE_RULE"}
+  BlockPolicyName *string `json:"blockPolicyName,omitempty" xml:"blockPolicyName,omitempty" require:"true"`
+  // {"en":"IP/Geo Block.","zh_CN":"IP区域封禁。"}
+  BLOCK *QueryAttackLogDetailInfoResponseDataDetailInfoBLOCK `json:"BLOCK,omitempty" xml:"BLOCK,omitempty" require:"true" type:"Struct"`
+  // {"en":"WAF.","zh_CN":"WAF。"}
+  WAFDEFEND []*QueryAttackLogDetailInfoResponseDataDetailInfoWAFDEFEND `json:"WAF_DEFEND,omitempty" xml:"WAF_DEFEND,omitempty" require:"true" type:"Repeated"`
+  // {"en":"DDoS Protection.","zh_CN":"DDos防护。"}
+  DMSDEFEND []*QueryAttackLogDetailInfoResponseDataDetailInfoDMSDEFEND `json:"DMS_DEFEND,omitempty" xml:"DMS_DEFEND,omitempty" require:"true" type:"Repeated"`
+  // {"en":"Bot Management.","zh_CN":"Bot管理。"}
+  BOTMANAGE []*QueryAttackLogDetailInfoResponseDataDetailInfoBOTMANAGE `json:"BOT_MANAGE,omitempty" xml:"BOT_MANAGE,omitempty" require:"true" type:"Repeated"`
+  // {"en":"API Security.","zh_CN":"API安全。"}
+  APIDEFEND []*QueryAttackLogDetailInfoResponseDataDetailInfoAPIDEFEND `json:"API_DEFEND,omitempty" xml:"API_DEFEND,omitempty" require:"true" type:"Repeated"`
+  // {"en":"Threat Intelligence.","zh_CN":"威胁情报。"}
+  INTELLIGENCE []*QueryAttackLogDetailInfoResponseDataDetailInfoINTELLIGENCE `json:"INTELLIGENCE,omitempty" xml:"INTELLIGENCE,omitempty" require:"true" type:"Repeated"`
+  // {"en":"Rate Limiting.","zh_CN":"频率限制。"}
+  RATELIMIT []*QueryAttackLogDetailInfoResponseDataDetailInfoRATELIMIT `json:"RATE_LIMIT,omitempty" xml:"RATE_LIMIT,omitempty" require:"true" type:"Repeated"`
+  // {"en":"Custom Rules.","zh_CN":"自定义规则。"}
+  CUSTOMIZERULE []*QueryAttackLogDetailInfoResponseDataDetailInfoCUSTOMIZERULE `json:"CUSTOMIZE_RULE,omitempty" xml:"CUSTOMIZE_RULE,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s QueryAttackLogDetailInfoResponseDataDetailInfo) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAttackLogDetailInfoResponseDataDetailInfo) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfo) SetBlockPolicyName(v string) *QueryAttackLogDetailInfoResponseDataDetailInfo {
+  s.BlockPolicyName = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfo) SetBLOCK(v *QueryAttackLogDetailInfoResponseDataDetailInfoBLOCK) *QueryAttackLogDetailInfoResponseDataDetailInfo {
+  s.BLOCK = v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfo) SetWAFDEFEND(v []*QueryAttackLogDetailInfoResponseDataDetailInfoWAFDEFEND) *QueryAttackLogDetailInfoResponseDataDetailInfo {
+  s.WAFDEFEND = v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfo) SetDMSDEFEND(v []*QueryAttackLogDetailInfoResponseDataDetailInfoDMSDEFEND) *QueryAttackLogDetailInfoResponseDataDetailInfo {
+  s.DMSDEFEND = v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfo) SetBOTMANAGE(v []*QueryAttackLogDetailInfoResponseDataDetailInfoBOTMANAGE) *QueryAttackLogDetailInfoResponseDataDetailInfo {
+  s.BOTMANAGE = v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfo) SetAPIDEFEND(v []*QueryAttackLogDetailInfoResponseDataDetailInfoAPIDEFEND) *QueryAttackLogDetailInfoResponseDataDetailInfo {
+  s.APIDEFEND = v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfo) SetINTELLIGENCE(v []*QueryAttackLogDetailInfoResponseDataDetailInfoINTELLIGENCE) *QueryAttackLogDetailInfoResponseDataDetailInfo {
+  s.INTELLIGENCE = v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfo) SetRATELIMIT(v []*QueryAttackLogDetailInfoResponseDataDetailInfoRATELIMIT) *QueryAttackLogDetailInfoResponseDataDetailInfo {
+  s.RATELIMIT = v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfo) SetCUSTOMIZERULE(v []*QueryAttackLogDetailInfoResponseDataDetailInfoCUSTOMIZERULE) *QueryAttackLogDetailInfoResponseDataDetailInfo {
+  s.CUSTOMIZERULE = v
+  return s
+}
+
+type QueryAttackLogDetailInfoResponseDataDetailInfoBLOCK struct {
+  // {"en":"Policy name.","zh_CN":"策略名称。"}
+  PolicyName *string `json:"policyName,omitempty" xml:"policyName,omitempty" require:"true"`
+  // {"en":"Rule action.","zh_CN":"规则动作。"}
+  RuleAction *string `json:"ruleAction,omitempty" xml:"ruleAction,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"说明。"}
+  Explain *string `json:"explain,omitempty" xml:"explain,omitempty" require:"true"`
+}
+
+func (s QueryAttackLogDetailInfoResponseDataDetailInfoBLOCK) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAttackLogDetailInfoResponseDataDetailInfoBLOCK) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoBLOCK) SetPolicyName(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoBLOCK {
+  s.PolicyName = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoBLOCK) SetRuleAction(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoBLOCK {
+  s.RuleAction = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoBLOCK) SetExplain(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoBLOCK {
+  s.Explain = &v
+  return s
+}
+
+type QueryAttackLogDetailInfoResponseDataDetailInfoWAFDEFEND struct     {
+  // {"en":"Rule type.","zh_CN":"规则类型。"}
+  RuleType *string `json:"ruleType,omitempty" xml:"ruleType,omitempty" require:"true"`
+  // {"en":"Rule action.","zh_CN":"规则动作。"}
+  RuleAction *string `json:"ruleAction,omitempty" xml:"ruleAction,omitempty" require:"true"`
+  // {"en":"Rule ID.","zh_CN":"规则ID。"}
+  RuleId *string `json:"ruleId,omitempty" xml:"ruleId,omitempty" require:"true"`
+  // {"en":"Rule name.","zh_CN":"规则名称。"}
+  RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
+  // {"en":"Rule description.","zh_CN":"规则描述。"}
+  RuleDesc *string `json:"ruleDesc,omitempty" xml:"ruleDesc,omitempty" require:"true"`
+  // {"en":"Hit request area.","zh_CN":"命中请求区域。"}
+  MatchArea *string `json:"matchArea,omitempty" xml:"matchArea,omitempty" require:"true"`
+  // {"en":"Hit request content.","zh_CN":"命中请求内容。"}
+  MatchContent *string `json:"matchContent,omitempty" xml:"matchContent,omitempty" require:"true"`
+}
+
+func (s QueryAttackLogDetailInfoResponseDataDetailInfoWAFDEFEND) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAttackLogDetailInfoResponseDataDetailInfoWAFDEFEND) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoWAFDEFEND) SetRuleType(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoWAFDEFEND {
+  s.RuleType = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoWAFDEFEND) SetRuleAction(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoWAFDEFEND {
+  s.RuleAction = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoWAFDEFEND) SetRuleId(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoWAFDEFEND {
+  s.RuleId = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoWAFDEFEND) SetRuleName(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoWAFDEFEND {
+  s.RuleName = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoWAFDEFEND) SetRuleDesc(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoWAFDEFEND {
+  s.RuleDesc = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoWAFDEFEND) SetMatchArea(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoWAFDEFEND {
+  s.MatchArea = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoWAFDEFEND) SetMatchContent(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoWAFDEFEND {
+  s.MatchContent = &v
+  return s
+}
+
+type QueryAttackLogDetailInfoResponseDataDetailInfoDMSDEFEND struct     {
+  // {"en":"Policy name.","zh_CN":"策略名称。"}
+  PolicyName *string `json:"policyName,omitempty" xml:"policyName,omitempty" require:"true"`
+  // {"en":"Rule action.","zh_CN":"规则动作。"}
+  RuleAction *string `json:"ruleAction,omitempty" xml:"ruleAction,omitempty" require:"true"`
+  // {"en":"Rule ID.","zh_CN":"规则ID。"}
+  RuleId *string `json:"ruleId,omitempty" xml:"ruleId,omitempty" require:"true"`
+  // {"en":"Rule name.","zh_CN":"规则名称。"}
+  RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"说明。"}
+  Explain *string `json:"explain,omitempty" xml:"explain,omitempty" require:"true"`
+}
+
+func (s QueryAttackLogDetailInfoResponseDataDetailInfoDMSDEFEND) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAttackLogDetailInfoResponseDataDetailInfoDMSDEFEND) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoDMSDEFEND) SetPolicyName(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoDMSDEFEND {
+  s.PolicyName = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoDMSDEFEND) SetRuleAction(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoDMSDEFEND {
+  s.RuleAction = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoDMSDEFEND) SetRuleId(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoDMSDEFEND {
+  s.RuleId = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoDMSDEFEND) SetRuleName(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoDMSDEFEND {
+  s.RuleName = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoDMSDEFEND) SetExplain(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoDMSDEFEND {
+  s.Explain = &v
+  return s
+}
+
+type QueryAttackLogDetailInfoResponseDataDetailInfoBOTMANAGE struct     {
+  // {"en":"Policy name.","zh_CN":"策略名称。"}
+  PolicyName *string `json:"policyName,omitempty" xml:"policyName,omitempty" require:"true"`
+  // {"en":"Rule action.","zh_CN":"规则动作。"}
+  RuleAction *string `json:"ruleAction,omitempty" xml:"ruleAction,omitempty" require:"true"`
+  // {"en":"Rule name.","zh_CN":"规则名称。"}
+  RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
+  // {"en":"Bot Category.","zh_CN":"Bot分类。"}
+  BotCategory *string `json:"botCategory,omitempty" xml:"botCategory,omitempty" require:"true"`
+  // {"en":"Bot tag.","zh_CN":"Bot标签。"}
+  BotLabel *string `json:"botLabel,omitempty" xml:"botLabel,omitempty" require:"true"`
+  // {"en":"Event description.","zh_CN":"事件描述。"}
+  EventDesc *string `json:"eventDesc,omitempty" xml:"eventDesc,omitempty" require:"true"`
+}
+
+func (s QueryAttackLogDetailInfoResponseDataDetailInfoBOTMANAGE) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAttackLogDetailInfoResponseDataDetailInfoBOTMANAGE) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoBOTMANAGE) SetPolicyName(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoBOTMANAGE {
+  s.PolicyName = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoBOTMANAGE) SetRuleAction(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoBOTMANAGE {
+  s.RuleAction = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoBOTMANAGE) SetRuleName(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoBOTMANAGE {
+  s.RuleName = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoBOTMANAGE) SetBotCategory(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoBOTMANAGE {
+  s.BotCategory = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoBOTMANAGE) SetBotLabel(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoBOTMANAGE {
+  s.BotLabel = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoBOTMANAGE) SetEventDesc(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoBOTMANAGE {
+  s.EventDesc = &v
+  return s
+}
+
+type QueryAttackLogDetailInfoResponseDataDetailInfoAPIDEFEND struct     {
+  // {"en":"Rule action.","zh_CN":"规则动作。"}
+  RuleAction *string `json:"ruleAction,omitempty" xml:"ruleAction,omitempty" require:"true"`
+  // {"en":"Policy name.","zh_CN":"策略名称。"}
+  PolicyName *string `json:"policyName,omitempty" xml:"policyName,omitempty" require:"true"`
+  // {"en":"API name.","zh_CN":"API名称。"}
+  ApiName *string `json:"apiName,omitempty" xml:"apiName,omitempty" require:"true"`
+  // {"en":"API ID.","zh_CN":"API ID。"}
+  ApiId *string `json:"apiId,omitempty" xml:"apiId,omitempty" require:"true"`
+  // {"en":"English instructions.","zh_CN":"英文说明。"}
+  ExplainEn *string `json:"explainEn,omitempty" xml:"explainEn,omitempty" require:"true"`
+  // {"en":"Chinese instructions, only supported in language=zh_CN","zh_CN":"中文说明，仅当language=zh_CN支持。"}
+  ExplainCn *string `json:"explainCn,omitempty" xml:"explainCn,omitempty" require:"true"`
+}
+
+func (s QueryAttackLogDetailInfoResponseDataDetailInfoAPIDEFEND) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAttackLogDetailInfoResponseDataDetailInfoAPIDEFEND) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoAPIDEFEND) SetRuleAction(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoAPIDEFEND {
+  s.RuleAction = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoAPIDEFEND) SetPolicyName(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoAPIDEFEND {
+  s.PolicyName = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoAPIDEFEND) SetApiName(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoAPIDEFEND {
+  s.ApiName = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoAPIDEFEND) SetApiId(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoAPIDEFEND {
+  s.ApiId = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoAPIDEFEND) SetExplainEn(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoAPIDEFEND {
+  s.ExplainEn = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoAPIDEFEND) SetExplainCn(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoAPIDEFEND {
+  s.ExplainCn = &v
+  return s
+}
+
+type QueryAttackLogDetailInfoResponseDataDetailInfoINTELLIGENCE struct     {
+  // {"en":"Threat type.","zh_CN":"情报类型。"}
+  IntelligentType *string `json:"intelligentType,omitempty" xml:"intelligentType,omitempty" require:"true"`
+  // {"en":"Rule action.","zh_CN":"规则动作。"}
+  RuleAction *string `json:"ruleAction,omitempty" xml:"ruleAction,omitempty" require:"true"`
+  // {"en":"Intelligence module.","zh_CN":"情报模块。"}
+  IntelligentModule *string `json:"intelligentModule,omitempty" xml:"intelligentModule,omitempty" require:"true"`
+}
+
+func (s QueryAttackLogDetailInfoResponseDataDetailInfoINTELLIGENCE) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAttackLogDetailInfoResponseDataDetailInfoINTELLIGENCE) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoINTELLIGENCE) SetIntelligentType(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoINTELLIGENCE {
+  s.IntelligentType = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoINTELLIGENCE) SetRuleAction(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoINTELLIGENCE {
+  s.RuleAction = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoINTELLIGENCE) SetIntelligentModule(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoINTELLIGENCE {
+  s.IntelligentModule = &v
+  return s
+}
+
+type QueryAttackLogDetailInfoResponseDataDetailInfoRATELIMIT struct     {
+  // {"en":"Rule action.","zh_CN":"规则动作。"}
+  RuleAction *string `json:"ruleAction,omitempty" xml:"ruleAction,omitempty" require:"true"`
+  // {"en":"API name.","zh_CN":"API名称。"}
+  ApiName *string `json:"apiName,omitempty" xml:"apiName,omitempty" require:"true"`
+  // {"en":"API ID.","zh_CN":"API ID。"}
+  ApiId *string `json:"apiId,omitempty" xml:"apiId,omitempty" require:"true"`
+  // {"en":"Rule name.","zh_CN":"规则名称。"}
+  RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
+  // {"en":"Rule ID.","zh_CN":"规则ID。"}
+  RuleId *string `json:"ruleId,omitempty" xml:"ruleId,omitempty" require:"true"`
+  // {"en":"Rule description.","zh_CN":"规则描述。"}
+  RuleDesc *string `json:"ruleDesc,omitempty" xml:"ruleDesc,omitempty" require:"true"`
+}
+
+func (s QueryAttackLogDetailInfoResponseDataDetailInfoRATELIMIT) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAttackLogDetailInfoResponseDataDetailInfoRATELIMIT) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoRATELIMIT) SetRuleAction(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoRATELIMIT {
+  s.RuleAction = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoRATELIMIT) SetApiName(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoRATELIMIT {
+  s.ApiName = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoRATELIMIT) SetApiId(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoRATELIMIT {
+  s.ApiId = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoRATELIMIT) SetRuleName(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoRATELIMIT {
+  s.RuleName = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoRATELIMIT) SetRuleId(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoRATELIMIT {
+  s.RuleId = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoRATELIMIT) SetRuleDesc(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoRATELIMIT {
+  s.RuleDesc = &v
+  return s
+}
+
+type QueryAttackLogDetailInfoResponseDataDetailInfoCUSTOMIZERULE struct     {
+  // {"en":"Rule action.","zh_CN":"规则动作。"}
+  RuleAction *string `json:"ruleAction,omitempty" xml:"ruleAction,omitempty" require:"true"`
+  // {"en":"API name.","zh_CN":"API名称。"}
+  ApiName *string `json:"apiName,omitempty" xml:"apiName,omitempty" require:"true"`
+  // {"en":"API ID.","zh_CN":"API ID。"}
+  ApiId *string `json:"apiId,omitempty" xml:"apiId,omitempty" require:"true"`
+  // {"en":"Rule name.","zh_CN":"规则名称。"}
+  RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
+  // {"en":"Rule ID.","zh_CN":"规则ID。"}
+  RuleId *string `json:"ruleId,omitempty" xml:"ruleId,omitempty" require:"true"`
+  // {"en":"Rule description.","zh_CN":"规则描述。"}
+  RuleDesc *string `json:"ruleDesc,omitempty" xml:"ruleDesc,omitempty" require:"true"`
+}
+
+func (s QueryAttackLogDetailInfoResponseDataDetailInfoCUSTOMIZERULE) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAttackLogDetailInfoResponseDataDetailInfoCUSTOMIZERULE) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoCUSTOMIZERULE) SetRuleAction(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoCUSTOMIZERULE {
+  s.RuleAction = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoCUSTOMIZERULE) SetApiName(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoCUSTOMIZERULE {
+  s.ApiName = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoCUSTOMIZERULE) SetApiId(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoCUSTOMIZERULE {
+  s.ApiId = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoCUSTOMIZERULE) SetRuleName(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoCUSTOMIZERULE {
+  s.RuleName = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoCUSTOMIZERULE) SetRuleId(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoCUSTOMIZERULE {
+  s.RuleId = &v
+  return s
+}
+
+func (s *QueryAttackLogDetailInfoResponseDataDetailInfoCUSTOMIZERULE) SetRuleDesc(v string) *QueryAttackLogDetailInfoResponseDataDetailInfoCUSTOMIZERULE {
+  s.RuleDesc = &v
   return s
 }
 

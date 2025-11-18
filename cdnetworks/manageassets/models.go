@@ -957,21 +957,21 @@ func (s EditAudioResponseHeader) GoString() string {
 
 
 type GetAudioListRequest struct {
-  // {"en":"Create a user. The value is blank by default. Multiple entries are allowed. They are separated by commas (,) and cannot start or end with a comma. This parameter is restricted by permissions. Only sub-accounts or users with special permissions can be queried.", "zh_CN":"创建用户。默认为空，允许传多个，以半角逗号隔开，不能以逗号开头或结尾，两个逗号之间的内容不为能为空或空白字符。该参数受权限限制，只能查询子账户或权限特殊配置的用户。"}
+  // {"en":"Create a user. The value is blank by default. Multiple entries are allowed. They are separated by commas (,) and cannot start or end with a comma. This parameter is restricted by permissions. Only sub-accounts or users with special permissions can be queried.","zh_CN":"创建用户。默认为空，允许传多个，以半角逗号隔开，不能以逗号开头或结尾，两个逗号之间的内容不为能为空或空白字符。该参数受权限限制，只能查询子账户或权限特殊配置的用户。"}
   CreateUser *string `json:"createUser,omitempty" xml:"createUser,omitempty"`
-  // {"en":"The start time is in the format of 2016-01-01 12:00:00. It is used to query the audio according to the creation time range.", "zh_CN":"查询起始时间，时间格式为，2016-01-01 12:00:00；用于按创建时间段查询音频；"}
+  // {"en":"The start time is in the format of 2016-01-01 12:00:00. It is used to query the audio according to the creation time range.","zh_CN":"查询起始时间，时间格式为，2016-01-01 12:00:00；用于按创建时间段查询音频；"}
   StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty"`
-  // {"en":"The query end time is in the format of 2016-01-01 12:00:00. This parameter is used to query audio files within the creation period, which is smaller than the current query time.", "zh_CN":"查询截止时间，时间格式为，2016-01-01 12:00:00；用于按创建时间段查询音频，小于当前查询时间；"}
+  // {"en":"The query end time is in the format of 2016-01-01 12:00:00. This parameter is used to query audio files within the creation period, which is smaller than the current query time.","zh_CN":"查询截止时间，时间格式为，2016-01-01 12:00:00；用于按创建时间段查询音频，小于当前查询时间；"}
   EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty"`
-  // {"en":"Audio name, used to filter audio, support fuzzy matching;", "zh_CN":"音频名称，用于筛选音频，支持模糊匹配；"}
+  // {"en":"Audio name, used to filter audio, support fuzzy matching;","zh_CN":"音频名称，用于筛选音频，支持模糊匹配；"}
   AudioName *string `json:"audioName,omitempty" xml:"audioName,omitempty"`
-  // {"en":"Audio ID, used to filter audio;", "zh_CN":"音频ID，用于筛选音频；"}
+  // {"en":"Audio ID, used to filter audio;","zh_CN":"音频ID，用于筛选音频；"}
   AudioId *string `json:"audioId,omitempty" xml:"audioId,omitempty"`
-  // {"en":"The value range is · 0(in descending order by creation time)· 1(in ascending order by creation time) The default value is 0", "zh_CN":"列表排列顺序，取值范围 ： · 0(按创建时间降序排列)· 1(按创建时间升序排列)默认为0"}
+  // {"en":"The value range is · 0(in descending order by creation time)· 1(in ascending order by creation time) The default value is 0","zh_CN":"列表排列顺序，取值范围 ： · 0(按创建时间降序排列)· 1(按创建时间升序排列)默认为0"}
   ListOrder *string `json:"listOrder,omitempty" xml:"listOrder,omitempty"`
-  // {"en":"The page of the audio list starts with 1. The default value is 1. The product of pageIndex and pageSize must be less than 100000.", "zh_CN":"取音频列表第几页，从1开始取值,默认为1。入参pageIndex和pageSize的乘积必须不大于100000。"}
+  // {"en":"The page of the audio list starts with 1. The default value is 1. The product of pageIndex and pageSize must be less than 100000.","zh_CN":"取音频列表第几页，从1开始取值,默认为1。入参pageIndex和pageSize的乘积必须不大于100000。"}
   PageIndex *string `json:"pageIndex,omitempty" xml:"pageIndex,omitempty"`
-  // {"en":"Average number of audio files per page. The value ranges from 1 to 50. The default value is 10. The product of pageIndex and pageSize must be less than 100000", "zh_CN":"平均每页音频数量，取值范围1-50，默认为10。入参pageIndex和pageSize的乘积必须不大于100000。"}
+  // {"en":"Average number of audio files per page. The value ranges from 1 to 50. The default value is 10. The product of pageIndex and pageSize must be less than 100000","zh_CN":"平均每页音频数量，取值范围1-50，默认为10。入参pageIndex和pageSize的乘积必须不大于100000。"}
   PageSize *string `json:"pageSize,omitempty" xml:"pageSize,omitempty"`
 }
 
@@ -1023,133 +1023,15 @@ func (s *GetAudioListRequest) SetPageSize(v string) *GetAudioListRequest {
   return s
 }
 
-type GetAudioListResponse struct {
-  // {'en':"Return status code", "zh_CN":"返回状态码"}
-  Code *int32 `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  Data *GetAudioListDataList `json:"data,omitempty" xml:"data,omitempty" require:"true"`
-  // {'en':"Return message","zh_CN":"返回消息"}
-  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+type GetAudioListRequestHeader struct {
 }
 
-func (s GetAudioListResponse) String() string {
+func (s GetAudioListRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetAudioListResponse) GoString() string {
+func (s GetAudioListRequestHeader) GoString() string {
   return s.String()
-}
-
-func (s *GetAudioListResponse) SetCode(v int32) *GetAudioListResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *GetAudioListResponse) SetData(v *GetAudioListDataList) *GetAudioListResponse {
-  s.Data = v
-  return s
-}
-
-func (s *GetAudioListResponse) SetMessage(v string) *GetAudioListResponse {
-  s.Message = &v
-  return s
-}
-
-type GetAudioListDataList struct {
-  GetAudioListAudioGetListResponseList []*GetAudioListAudioGetListResponseList `json:"audioGetListResponseList,omitempty" xml:"audioGetListResponseList,omitempty" require:"true" type:"Repeated"`
-  // {'en':'Audio upload time', 'zh_CN':'音频上传时间'}
-  AudioTotal *int32 `json:"audioTotal,omitempty" xml:"audioTotal,omitempty" require:"true"`
-}
-
-func (s GetAudioListDataList) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetAudioListDataList) GoString() string {
-  return s.String()
-}
-
-func (s *GetAudioListDataList) SetAudioGetListResponseList(v []*GetAudioListAudioGetListResponseList) *GetAudioListDataList {
-  s.GetAudioListAudioGetListResponseList = v
-  return s
-}
-
-func (s *GetAudioListDataList) SetAudioTotal(v int32) *GetAudioListDataList {
-  s.AudioTotal = &v
-  return s
-}
-
-type GetAudioListAudioGetListResponseList struct {
-  // {'en':'Audio name', 'zh_CN':'音频名称'}
-  AudioName *string `json:"audioName,omitempty" xml:"audioName,omitempty" require:"true"`
-  // {'en':'Audio ID', 'zh_CN':'音频ID'}
-  AudioId *string `json:"audioId,omitempty" xml:"audioId,omitempty" require:"true"`
-  // {'en':'Create user', 'zh_CN':'创建人'}
-  CreateUser *string `json:"createUser,omitempty" xml:"createUser,omitempty" require:"true"`
-  // {'en':'The space occupied by audio, and the total space used by video and video after transcoding', 'zh_CN':'音频占用空间大小，视频及其转码后视频的总空间使用量'}
-  AudioSize *int32 `json:"audioSize,omitempty" xml:"audioSize,omitempty" require:"true"`
-  // {'en':'Audio duration', 'zh_CN':'音频时长'}
-  AudioDuration *int32 `json:"audioDuration,omitempty" xml:"audioDuration,omitempty" require:"true"`
-  // {'en':'File url', 'zh_CN':'文件url'}
-  Url *string `json:"url,omitempty" xml:"url,omitempty" require:"true"`
-  // {'en':'File suffix', 'zh_CN':'文件后缀'}
-  Suffix *string `json:"suffix,omitempty" xml:"suffix,omitempty" require:"true"`
-  // {'en':'Create time', 'zh_CN':'音频创建时间'}
-  CreateTime *int32 `json:"createTime,omitempty" xml:"createTime,omitempty" require:"true"`
-  // {'en':'Upload time', 'zh_CN':'音频上传时间'}
-  UploadTime *int32 `json:"uploadTime,omitempty" xml:"uploadTime,omitempty" require:"true"`
-}
-
-func (s GetAudioListAudioGetListResponseList) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetAudioListAudioGetListResponseList) GoString() string {
-  return s.String()
-}
-
-func (s *GetAudioListAudioGetListResponseList) SetAudioName(v string) *GetAudioListAudioGetListResponseList {
-  s.AudioName = &v
-  return s
-}
-
-func (s *GetAudioListAudioGetListResponseList) SetAudioId(v string) *GetAudioListAudioGetListResponseList {
-  s.AudioId = &v
-  return s
-}
-
-func (s *GetAudioListAudioGetListResponseList) SetCreateUser(v string) *GetAudioListAudioGetListResponseList {
-  s.CreateUser = &v
-  return s
-}
-
-func (s *GetAudioListAudioGetListResponseList) SetAudioSize(v int32) *GetAudioListAudioGetListResponseList {
-  s.AudioSize = &v
-  return s
-}
-
-func (s *GetAudioListAudioGetListResponseList) SetAudioDuration(v int32) *GetAudioListAudioGetListResponseList {
-  s.AudioDuration = &v
-  return s
-}
-
-func (s *GetAudioListAudioGetListResponseList) SetUrl(v string) *GetAudioListAudioGetListResponseList {
-  s.Url = &v
-  return s
-}
-
-func (s *GetAudioListAudioGetListResponseList) SetSuffix(v string) *GetAudioListAudioGetListResponseList {
-  s.Suffix = &v
-  return s
-}
-
-func (s *GetAudioListAudioGetListResponseList) SetCreateTime(v int32) *GetAudioListAudioGetListResponseList {
-  s.CreateTime = &v
-  return s
-}
-
-func (s *GetAudioListAudioGetListResponseList) SetUploadTime(v int32) *GetAudioListAudioGetListResponseList {
-  s.UploadTime = &v
-  return s
 }
 
 type GetAudioListPaths struct {
@@ -1174,15 +1056,135 @@ func (s GetAudioListParameters) GoString() string {
   return s.String()
 }
 
-type GetAudioListRequestHeader struct {
+type GetAudioListResponse struct {
+  // {"en":"Return status code","zh_CN":"返回状态码"}
+  Code *int `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"","zh_CN":""}
+  Data *GetAudioListResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
+  // {"en":"Return message","zh_CN":"返回消息"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
 }
 
-func (s GetAudioListRequestHeader) String() string {
+func (s GetAudioListResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetAudioListRequestHeader) GoString() string {
+func (s GetAudioListResponse) GoString() string {
   return s.String()
+}
+
+func (s *GetAudioListResponse) SetCode(v int) *GetAudioListResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *GetAudioListResponse) SetData(v *GetAudioListResponseData) *GetAudioListResponse {
+  s.Data = v
+  return s
+}
+
+func (s *GetAudioListResponse) SetMessage(v string) *GetAudioListResponse {
+  s.Message = &v
+  return s
+}
+
+type GetAudioListResponseData struct {
+  // {"en":"","zh_CN":""}
+  AudioGetListResponseList []*GetAudioListResponseDataAudioGetListResponseList `json:"audioGetListResponseList,omitempty" xml:"audioGetListResponseList,omitempty" require:"true" type:"Repeated"`
+  // {"en":"Audio upload time, timestamp in seconds, for example: 1639106397","zh_CN":"音频上传时间，秒级时间戳，例如：1639106397"}
+  AudioTotal *int `json:"audioTotal,omitempty" xml:"audioTotal,omitempty" require:"true"`
+}
+
+func (s GetAudioListResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetAudioListResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *GetAudioListResponseData) SetAudioGetListResponseList(v []*GetAudioListResponseDataAudioGetListResponseList) *GetAudioListResponseData {
+  s.AudioGetListResponseList = v
+  return s
+}
+
+func (s *GetAudioListResponseData) SetAudioTotal(v int) *GetAudioListResponseData {
+  s.AudioTotal = &v
+  return s
+}
+
+type GetAudioListResponseDataAudioGetListResponseList struct     {
+  // {"en":"Audio name","zh_CN":"音频名称"}
+  AudioName *string `json:"audioName,omitempty" xml:"audioName,omitempty" require:"true"`
+  // {"en":"Audio ID","zh_CN":"音频ID"}
+  AudioId *string `json:"audioId,omitempty" xml:"audioId,omitempty" require:"true"`
+  // {"en":"Create user","zh_CN":"创建人"}
+  CreateUser *string `json:"createUser,omitempty" xml:"createUser,omitempty" require:"true"`
+  // {"en":"The space occupied by audio, and the total space used by video and video after transcoding,unit: Byte","zh_CN":"音频占用空间大小，视频及其转码后视频的总空间使用量，单位：Byte"}
+  AudioSize *int `json:"audioSize,omitempty" xml:"audioSize,omitempty" require:"true"`
+  // {"en":"Audio duration,unit: Seconds","zh_CN":"音频时长，单位：秒"}
+  AudioDuration *int `json:"audioDuration,omitempty" xml:"audioDuration,omitempty" require:"true"`
+  // {"en":"File url","zh_CN":"文件url"}
+  Url *string `json:"url,omitempty" xml:"url,omitempty" require:"true"`
+  // {"en":"File suffix","zh_CN":"文件后缀"}
+  Suffix *string `json:"suffix,omitempty" xml:"suffix,omitempty" require:"true"`
+  // {"en":"Audio creation time, timestamp in seconds, for example: 1639106397","zh_CN":"音频创建时间，秒级时间戳，例如：1639106397"}
+  CreateTime *int `json:"createTime,omitempty" xml:"createTime,omitempty" require:"true"`
+  // {"en":"Upload time, timestamp in seconds, for example: 1639106397","zh_CN":"音频上传时间，秒级时间戳，例如：1639106397"}
+  UploadTime *int `json:"uploadTime,omitempty" xml:"uploadTime,omitempty" require:"true"`
+}
+
+func (s GetAudioListResponseDataAudioGetListResponseList) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetAudioListResponseDataAudioGetListResponseList) GoString() string {
+  return s.String()
+}
+
+func (s *GetAudioListResponseDataAudioGetListResponseList) SetAudioName(v string) *GetAudioListResponseDataAudioGetListResponseList {
+  s.AudioName = &v
+  return s
+}
+
+func (s *GetAudioListResponseDataAudioGetListResponseList) SetAudioId(v string) *GetAudioListResponseDataAudioGetListResponseList {
+  s.AudioId = &v
+  return s
+}
+
+func (s *GetAudioListResponseDataAudioGetListResponseList) SetCreateUser(v string) *GetAudioListResponseDataAudioGetListResponseList {
+  s.CreateUser = &v
+  return s
+}
+
+func (s *GetAudioListResponseDataAudioGetListResponseList) SetAudioSize(v int) *GetAudioListResponseDataAudioGetListResponseList {
+  s.AudioSize = &v
+  return s
+}
+
+func (s *GetAudioListResponseDataAudioGetListResponseList) SetAudioDuration(v int) *GetAudioListResponseDataAudioGetListResponseList {
+  s.AudioDuration = &v
+  return s
+}
+
+func (s *GetAudioListResponseDataAudioGetListResponseList) SetUrl(v string) *GetAudioListResponseDataAudioGetListResponseList {
+  s.Url = &v
+  return s
+}
+
+func (s *GetAudioListResponseDataAudioGetListResponseList) SetSuffix(v string) *GetAudioListResponseDataAudioGetListResponseList {
+  s.Suffix = &v
+  return s
+}
+
+func (s *GetAudioListResponseDataAudioGetListResponseList) SetCreateTime(v int) *GetAudioListResponseDataAudioGetListResponseList {
+  s.CreateTime = &v
+  return s
+}
+
+func (s *GetAudioListResponseDataAudioGetListResponseList) SetUploadTime(v int) *GetAudioListResponseDataAudioGetListResponseList {
+  s.UploadTime = &v
+  return s
 }
 
 type GetAudioListResponseHeader struct {
@@ -1912,44 +1914,28 @@ func (s CreateCategoryResponseHeader) GoString() string {
 
 
 type GetVideoListRequest struct {
-  // {"en":"Create a user. The value is blank by default. Multiple entries are allowed. They are separated by commas (,) and cannot start or end with a comma. This parameter is restricted by permissions. Only sub-accounts or users with special permissions can be queried.", "zh_CN":"创建用户。默认为空，允许传多个，以半角逗号隔开，不能以逗号开头或结尾，两个逗号之间的内容不为能为空或空白字符。该参数受权限限制，只能查询子账户或权限特殊配置的用户。"}
+  // {"en":"Create a user. The value is blank by default. Multiple entries are allowed. They are separated by commas (,) and cannot start or end with a comma. This parameter is restricted by permissions. Only sub-accounts or users with special permissions can be queried.","zh_CN":"创建用户。默认为空，允许传多个，以半角逗号隔开，不能以逗号开头或结尾，两个逗号之间的内容不为能为空或空白字符。该参数受权限限制，只能查询子账户或权限特殊配置的用户。"}
   CreateUser *string `json:"createUser,omitempty" xml:"createUser,omitempty"`
-  // {"en":"The start time is in the format of 2016-01-01 12:00:00. Query videos by creation time range.", "zh_CN":"查询起始时间，时间格式为，2016-01-01 12:00:00；用于按创建时间段查询视频；"}
+  // {"en":"The start time is in the format of 2016-01-01 12:00:00. Query videos by creation time range.","zh_CN":"查询起始时间，时间格式为，2016-01-01 12:00:00；用于按创建时间段查询视频；"}
   StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty"`
-  // {"en":"The query end time is in the format of 2016-01-01 12:00:00. This parameter is used to query videos in the creation period, which is smaller than the current query time.", "zh_CN":"查询截止时间，时间格式为，2016-01-01 12:00:00；用于按创建时间段查询视频，小于当前查询时间；"}
+  // {"en":"The query end time is in the format of 2016-01-01 12:00:00. This parameter is used to query videos in the creation period, which is smaller than the current query time.","zh_CN":"查询截止时间，时间格式为，2016-01-01 12:00:00；用于按创建时间段查询视频，小于当前查询时间；"}
   EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty"`
-  // {"en":"Video name, used to filter videos, support fuzzy matching;", "zh_CN":"视频名称，用于筛选视频，支持模糊匹配；"}
+  // {"en":"Video name, used to filter videos, support fuzzy matching;","zh_CN":"视频名称，用于筛选视频，支持模糊匹配；"}
   VideoName *string `json:"videoName,omitempty" xml:"videoName,omitempty"`
-  // {"en":"Video ID, used to filter videos;", "zh_CN":"视频ID，用于筛选视频；"}
+  // {"en":"Video ID, used to filter videos;","zh_CN":"视频ID，用于筛选视频；"}
   VideoId *string `json:"videoId,omitempty" xml:"videoId,omitempty"`
-  // {"en":"Video status, used to filter videos", "zh_CN":"视频状态，用于筛选视频。取值范围 ：
-  // 0(启用)
-  // 1(屏蔽)"}
-  VideoStatus *int32 `json:"videoStatus,omitempty" xml:"videoStatus,omitempty"`
-  // {"en":"Authorized play is not enabled. Procedure", "zh_CN":"未开启授权播放，视频的转码状态的取值范围 ：
-  // 1(已转码)
-  // 2(未转码)
-  // 3(转码中)
-  // 4(转码失败)
-  // 
-  // 开启授权播放（视频加密）功能时的转码状态的取值范围 ：
-  // 1(已加密转码)
-  // 2(非加密转码)
-  // 3(转码中)
-  // 4(转码失败)
-  // 5(未转码)"}
-  TranscodeState *int32 `json:"transcodeState,omitempty" xml:"transcodeState,omitempty"`
-  // {"en":"Subcategory names for video classification, supporting multiple subcategory names simultaneously, separated by',' for each subcategory name. videoClassification can only contain Chinese characters, uppercase and lowercase letters, numbers, underscores, and spaces. It cannot start with a space. Multiple characters can be separated by commas.", "zh_CN":"视频分类子分类名称，支持同时输入多个子分类名称，每个子分类名称用“,”隔开。只能包含中文、大小写字母、数字、下划线、空格，不能空格开头，多个支持逗号分隔"}
+  // {"en":"Video status, used to filter videos","zh_CN":"视频状态，用于筛选视频。取值范围 ：\n0(启用)\n1(屏蔽)"}
+  VideoStatus *int `json:"videoStatus,omitempty" xml:"videoStatus,omitempty"`
+  // {"en":"Authorized play is not enabled. Procedure","zh_CN":"未开启授权播放，视频的转码状态的取值范围 ：\n1(已转码)\n2(未转码)\n3(转码中)\n4(转码失败)\n\n开启授权播放（视频加密）功能时的转码状态的取值范围 ：\n1(已加密转码)\n2(非加密转码)\n3(转码中)\n4(转码失败)\n5(未转码)"}
+  TranscodeState *int `json:"transcodeState,omitempty" xml:"transcodeState,omitempty"`
+  // {"en":"Subcategory names for video classification, supporting multiple subcategory names simultaneously, separated by',' for each subcategory name. videoClassification can only contain Chinese characters, uppercase and lowercase letters, numbers, underscores, and spaces. It cannot start with a space. Multiple characters can be separated by commas.","zh_CN":"视频分类子分类名称，支持同时输入多个子分类名称，每个子分类名称用“,”隔开。只能包含中文、大小写字母、数字、下划线、空格，不能空格开头，多个支持逗号分隔"}
   VideoClassification *string `json:"videoClassification,omitempty" xml:"videoClassification,omitempty"`
-  // {"en":"List order", "zh_CN":"列表排列顺序，取值范围 ：
-  // 0(按创建时间降序排列)
-  // 1(按创建时间升序排列)
-  // 默认为0"}
-  ListOrder *int32 `json:"listOrder,omitempty" xml:"listOrder,omitempty"`
-  // {"en":"Page of the video list. The value starts from 1. The default value is 1. The product of pageIndex and pageSize must be less than 100000.", "zh_CN":"取视频列表第几页，从1开始取值,默认为1。入参pageIndex和pageSize的乘积必须不大于100000。"}
-  PageIndex *int32 `json:"pageIndex,omitempty" xml:"pageIndex,omitempty"`
-  // {"en":"Average number of videos per page. The value ranges from 1 to 50. The default value is 10. The product of pageIndex and pageSize must be less than 100000.", "zh_CN":"平均每页视频数量，取值范围1-50，默认为10。入参pageIndex和pageSize的乘积必须不大于100000。"}
-  PageSize *int32 `json:"pageSize,omitempty" xml:"pageSize,omitempty"`
+  // {"en":"List order","zh_CN":"列表排列顺序，取值范围 ：\n0(按创建时间降序排列)\n1(按创建时间升序排列)\n默认为0"}
+  ListOrder *int `json:"listOrder,omitempty" xml:"listOrder,omitempty"`
+  // {"en":"Page of the video list. The value starts from 1. The default value is 1. The product of pageIndex and pageSize must be less than 100000.","zh_CN":"取视频列表第几页，从1开始取值,默认为1。入参pageIndex和pageSize的乘积必须不大于100000。"}
+  PageIndex *int `json:"pageIndex,omitempty" xml:"pageIndex,omitempty"`
+  // {"en":"Average number of videos per page. The value ranges from 1 to 50. The default value is 10. The product of pageIndex and pageSize must be less than 100000.","zh_CN":"平均每页视频数量，取值范围1-50，默认为10。入参pageIndex和pageSize的乘积必须不大于100000。"}
+  PageSize *int `json:"pageSize,omitempty" xml:"pageSize,omitempty"`
 }
 
 func (s GetVideoListRequest) String() string {
@@ -1985,12 +1971,12 @@ func (s *GetVideoListRequest) SetVideoId(v string) *GetVideoListRequest {
   return s
 }
 
-func (s *GetVideoListRequest) SetVideoStatus(v int32) *GetVideoListRequest {
+func (s *GetVideoListRequest) SetVideoStatus(v int) *GetVideoListRequest {
   s.VideoStatus = &v
   return s
 }
 
-func (s *GetVideoListRequest) SetTranscodeState(v int32) *GetVideoListRequest {
+func (s *GetVideoListRequest) SetTranscodeState(v int) *GetVideoListRequest {
   s.TranscodeState = &v
   return s
 }
@@ -2000,338 +1986,30 @@ func (s *GetVideoListRequest) SetVideoClassification(v string) *GetVideoListRequ
   return s
 }
 
-func (s *GetVideoListRequest) SetListOrder(v int32) *GetVideoListRequest {
+func (s *GetVideoListRequest) SetListOrder(v int) *GetVideoListRequest {
   s.ListOrder = &v
   return s
 }
 
-func (s *GetVideoListRequest) SetPageIndex(v int32) *GetVideoListRequest {
+func (s *GetVideoListRequest) SetPageIndex(v int) *GetVideoListRequest {
   s.PageIndex = &v
   return s
 }
 
-func (s *GetVideoListRequest) SetPageSize(v int32) *GetVideoListRequest {
+func (s *GetVideoListRequest) SetPageSize(v int) *GetVideoListRequest {
   s.PageSize = &v
   return s
 }
 
-type GetVideoListResponse struct {
-  // {"en":"200 success", "zh_CN":"结果状态码，200为成功"}
-  Code *int32 `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Successful operation", "zh_CN":"返回消息"}
-  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
-  // {"en":"Return data", "zh_CN":"返回数据"}
-  GetVideoListData *GetVideoListData `json:"data,omitempty" xml:"data,omitempty" require:"true"`
+type GetVideoListRequestHeader struct {
 }
 
-func (s GetVideoListResponse) String() string {
+func (s GetVideoListRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetVideoListResponse) GoString() string {
+func (s GetVideoListRequestHeader) GoString() string {
   return s.String()
-}
-
-func (s *GetVideoListResponse) SetCode(v int32) *GetVideoListResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *GetVideoListResponse) SetMessage(v string) *GetVideoListResponse {
-  s.Message = &v
-  return s
-}
-
-func (s *GetVideoListResponse) SetData(v *GetVideoListData) *GetVideoListResponse {
-  s.GetVideoListData = v
-  return s
-}
-
-type GetVideoListData struct {
-  // {"en":"The number of records of the video list information currently returned. Note that the number of records returned here is only the number of records of the current page.", "zh_CN":"当前返回的视频列表信息的记录数，注意这里返回的记录数只是当前页的记录数。"}
-  VideoTotal *int32 `json:"videoTotal,omitempty" xml:"videoTotal,omitempty" require:"true"`
-  // {"en":"videoListInfo", "zh_CN":"视频列表信息"}
-  VideoListInfo []*GetVideoListVideoInfo `json:"videoListInfo,omitempty" xml:"videoListInfo,omitempty" require:"true" type:"Repeated"`
-}
-
-func (s GetVideoListData) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetVideoListData) GoString() string {
-  return s.String()
-}
-
-func (s *GetVideoListData) SetVideoTotal(v int32) *GetVideoListData {
-  s.VideoTotal = &v
-  return s
-}
-
-func (s *GetVideoListData) SetVideoListInfo(v []*GetVideoListVideoInfo) *GetVideoListData {
-  s.VideoListInfo = v
-  return s
-}
-
-type GetVideoListVideoInfo struct {
-  // {"en":"videoName", "zh_CN":"视频名称"}
-  VideoName *string `json:"videoName,omitempty" xml:"videoName,omitempty" require:"true"`
-  // {"en":"videoId", "zh_CN":"视频ID"}
-  VideoId *string `json:"videoId,omitempty" xml:"videoId,omitempty" require:"true"`
-  // {"en":"createUser", "zh_CN":"创建人"}
-  CreateUser *string `json:"createUser,omitempty" xml:"createUser,omitempty" require:"true"`
-  // {"en":"Whether to encrypt transcoding files. Value range:
-  // 0(unencrypted)
-  // 1(encrypted)", "zh_CN":"是否加密转码文件。取值范围 ：
-  // 0(不加密)
-  // 1(加密)"}
-  Encrypt *int32 `json:"encrypt,omitempty" xml:"encrypt,omitempty" require:"true"`
-  // {"en":"The space occupied by the video, and the total space used by the video and its transcoding", "zh_CN":"视频占用空间大小，视频及其转码后视频的总空间使用量"}
-  VideoSize *string `json:"videoSize,omitempty" xml:"videoSize,omitempty" require:"true"`
-  // {"en":"videoDuration", "zh_CN":"视频时长"}
-  VideoDuration *string `json:"videoDuration,omitempty" xml:"videoDuration,omitempty" require:"true"`
-  // {"en":"createTime", "zh_CN":"视频创建时间"}
-  CreateTime *string `json:"createTime,omitempty" xml:"createTime,omitempty" require:"true"`
-  // {"en":"uploadTime", "zh_CN":"视频上传时间"}
-  UploadTime *string `json:"uploadTime,omitempty" xml:"uploadTime,omitempty" require:"true"`
-  // {"en":"updateTime", "zh_CN":"视频修改时间"}
-  UpdateTime *string `json:"updateTime,omitempty" xml:"updateTime,omitempty" require:"true"`
-  // {"en":"videoDescription", "zh_CN":"视频描述"}
-  VideoDescription *string `json:"videoDescription,omitempty" xml:"videoDescription,omitempty" require:"true"`
-  // {"en":"videoClassification", "zh_CN":"视频分类"}
-  VideoClassification *string `json:"videoClassification,omitempty" xml:"videoClassification,omitempty" require:"true"`
-  // {"en":"imageUrl", "zh_CN":"视频封面URL"}
-  ImageUrl *string `json:"imageUrl,omitempty" xml:"imageUrl,omitempty" require:"true"`
-  // {"en":"publishDomain", "zh_CN":"视频的发布域名"}
-  PublishDomain *string `json:"publishDomain,omitempty" xml:"publishDomain,omitempty" require:"true"`
-  // {"en":"playerName", "zh_CN":"视频使用的播放器名称"}
-  PlayerName *string `json:"playerName,omitempty" xml:"playerName,omitempty" require:"true"`
-  // {"en":"playerId", "zh_CN":"视频使用的播放器ID"}
-  PlayerId *string `json:"playerId,omitempty" xml:"playerId,omitempty" require:"true"`
-  // {"en":"Video state
-  // Value range:
-  // 0(enable)
-  // 1(mask)", "zh_CN":"视频状态
-  // 取值范围：
-  // 0(启用)
-  // 1(屏蔽)"}
-  VideoState *int32 `json:"videoState,omitempty" xml:"videoState,omitempty" require:"true"`
-  // {"en":"If authorized play is not enabled, the video transcoding status ranges from:
-  // 1(transcoded)
-  // 2(no transcoding)
-  // 3(in transcoding)
-  // 4(Transcoding fails)
-  // 
-  // Value range of transcoding status when the Authorized Play (video encryption) function is enabled:
-  // 1(encrypted transcoding)
-  // 2(non-encrypted transcoding)
-  // 3(in transcoding)
-  // 4(Transcoding fails)
-  // 5(not transcoded)", "zh_CN":"未开启授权播放，视频的转码状态的取值范围 ：
-  // 1(已转码)
-  // 2(未转码)
-  // 3(转码中)
-  // 4(转码失败)
-  // 
-  // 开启授权播放（视频加密）功能时的转码状态的取值范围 ：
-  // 1(已加密转码)
-  // 2(非加密转码)
-  // 3(转码中)
-  // 4(转码失败)
-  // 5(未转码)"}
-  TranscodeState *int32 `json:"transcodeState,omitempty" xml:"transcodeState,omitempty" require:"true"`
-  // {"en":"Video source
-  // Value range:
-  // 0(other)
-  // 1(Upload)
-  // 2 (Live streaming to recording)
-  // 3 (Video pull)
-  // 4 (Video cutting)
-  // 5 (Video Stitching)
-  // 6 (edge pull recording)
-  // 10 (universal version of live broadcasting to recording)
-  // 11 (Uploading SDK)
-  // 12 (Upload tool)", "zh_CN":"	视频来源
-  // 取值范围：
-  // 0(其他)
-  // 1(上传)
-  // 2（直播转录制）
-  // 3（视频拉取）
-  // 4（视频剪切）
-  // 5（视频拼接）
-  // 6（边缘拉流录制）
-  // 10（通用版直播转录制）
-  // 11（上传SDK）
-  // 12（上传工具）"}
-  VideoSourceCode *int32 `json:"videoSourceCode,omitempty" xml:"videoSourceCode,omitempty" require:"true"`
-  // {"en":"Video resolution and other information", "zh_CN":"视频分辨率等信息"}
-  VideoResolutions []*GetVideoListVideoResolution `json:"videoResolutions,omitempty" xml:"videoResolutions,omitempty" require:"true" type:"Repeated"`
-}
-
-func (s GetVideoListVideoInfo) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetVideoListVideoInfo) GoString() string {
-  return s.String()
-}
-
-func (s *GetVideoListVideoInfo) SetVideoName(v string) *GetVideoListVideoInfo {
-  s.VideoName = &v
-  return s
-}
-
-func (s *GetVideoListVideoInfo) SetVideoId(v string) *GetVideoListVideoInfo {
-  s.VideoId = &v
-  return s
-}
-
-func (s *GetVideoListVideoInfo) SetCreateUser(v string) *GetVideoListVideoInfo {
-  s.CreateUser = &v
-  return s
-}
-
-func (s *GetVideoListVideoInfo) SetEncrypt(v int32) *GetVideoListVideoInfo {
-  s.Encrypt = &v
-  return s
-}
-
-func (s *GetVideoListVideoInfo) SetVideoSize(v string) *GetVideoListVideoInfo {
-  s.VideoSize = &v
-  return s
-}
-
-func (s *GetVideoListVideoInfo) SetVideoDuration(v string) *GetVideoListVideoInfo {
-  s.VideoDuration = &v
-  return s
-}
-
-func (s *GetVideoListVideoInfo) SetCreateTime(v string) *GetVideoListVideoInfo {
-  s.CreateTime = &v
-  return s
-}
-
-func (s *GetVideoListVideoInfo) SetUploadTime(v string) *GetVideoListVideoInfo {
-  s.UploadTime = &v
-  return s
-}
-
-func (s *GetVideoListVideoInfo) SetUpdateTime(v string) *GetVideoListVideoInfo {
-  s.UpdateTime = &v
-  return s
-}
-
-func (s *GetVideoListVideoInfo) SetVideoDescription(v string) *GetVideoListVideoInfo {
-  s.VideoDescription = &v
-  return s
-}
-
-func (s *GetVideoListVideoInfo) SetVideoClassification(v string) *GetVideoListVideoInfo {
-  s.VideoClassification = &v
-  return s
-}
-
-func (s *GetVideoListVideoInfo) SetImageUrl(v string) *GetVideoListVideoInfo {
-  s.ImageUrl = &v
-  return s
-}
-
-func (s *GetVideoListVideoInfo) SetPublishDomain(v string) *GetVideoListVideoInfo {
-  s.PublishDomain = &v
-  return s
-}
-
-func (s *GetVideoListVideoInfo) SetPlayerName(v string) *GetVideoListVideoInfo {
-  s.PlayerName = &v
-  return s
-}
-
-func (s *GetVideoListVideoInfo) SetPlayerId(v string) *GetVideoListVideoInfo {
-  s.PlayerId = &v
-  return s
-}
-
-func (s *GetVideoListVideoInfo) SetVideoState(v int32) *GetVideoListVideoInfo {
-  s.VideoState = &v
-  return s
-}
-
-func (s *GetVideoListVideoInfo) SetTranscodeState(v int32) *GetVideoListVideoInfo {
-  s.TranscodeState = &v
-  return s
-}
-
-func (s *GetVideoListVideoInfo) SetVideoSourceCode(v int32) *GetVideoListVideoInfo {
-  s.VideoSourceCode = &v
-  return s
-}
-
-func (s *GetVideoListVideoInfo) SetVideoResolutions(v []*GetVideoListVideoResolution) *GetVideoListVideoInfo {
-  s.VideoResolutions = v
-  return s
-}
-
-type GetVideoListVideoResolution struct {
-  // {"en":"Clarity. Value range:
-  // 1(original painting)
-  // 2(fluency)
-  // 3(standard definition)
-  // 4(HD)
-  // 5(Super clear)
-  // -99(record file)", "zh_CN":"	清晰度。取值范围 ：
-  // 1(原画)
-  // 2(流畅)
-  // 3(标清)
-  // 4(高清)
-  // 5(超清)
-  // -99(录制文件)"}
-  Clarity *int32 `json:"clarity,omitempty" xml:"clarity,omitempty" require:"true"`
-  // {"en":"Terminal type. Value range:
-  // -1(Source video)
-  // 0(PC)
-  // 1(mobile terminal)", "zh_CN":"终端类型。取值范围 ：
-  // -1(源视频)
-  // 0(PC端)
-  // 1(移动端)"}
-  ServerType *int32 `json:"serverType,omitempty" xml:"serverType,omitempty" require:"true"`
-  // {"en":"height", "zh_CN":"高度"}
-  Height *int32 `json:"height,omitempty" xml:"height,omitempty" require:"true"`
-  // {"en":"width", "zh_CN":"宽度"}
-  Width *int32 `json:"width,omitempty" xml:"width,omitempty" require:"true"`
-  // {"en":"fileSize", "zh_CN":"文件大小(单位为bit)"}
-  FileSize *int64 `json:"fileSize,omitempty" xml:"fileSize,omitempty" require:"true"`
-}
-
-func (s GetVideoListVideoResolution) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetVideoListVideoResolution) GoString() string {
-  return s.String()
-}
-
-func (s *GetVideoListVideoResolution) SetClarity(v int32) *GetVideoListVideoResolution {
-  s.Clarity = &v
-  return s
-}
-
-func (s *GetVideoListVideoResolution) SetServerType(v int32) *GetVideoListVideoResolution {
-  s.ServerType = &v
-  return s
-}
-
-func (s *GetVideoListVideoResolution) SetHeight(v int32) *GetVideoListVideoResolution {
-  s.Height = &v
-  return s
-}
-
-func (s *GetVideoListVideoResolution) SetWidth(v int32) *GetVideoListVideoResolution {
-  s.Width = &v
-  return s
-}
-
-func (s *GetVideoListVideoResolution) SetFileSize(v int64) *GetVideoListVideoResolution {
-  s.FileSize = &v
-  return s
 }
 
 type GetVideoListPaths struct {
@@ -2356,15 +2034,251 @@ func (s GetVideoListParameters) GoString() string {
   return s.String()
 }
 
-type GetVideoListRequestHeader struct {
+type GetVideoListResponse struct {
+  // {"en":"200 success","zh_CN":"结果状态码，200为成功"}
+  Code *int `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Successful operation","zh_CN":"返回消息"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+  // {"en":"Return data","zh_CN":"返回数据"}
+  Data *GetVideoListResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
 }
 
-func (s GetVideoListRequestHeader) String() string {
+func (s GetVideoListResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetVideoListRequestHeader) GoString() string {
+func (s GetVideoListResponse) GoString() string {
   return s.String()
+}
+
+func (s *GetVideoListResponse) SetCode(v int) *GetVideoListResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *GetVideoListResponse) SetMessage(v string) *GetVideoListResponse {
+  s.Message = &v
+  return s
+}
+
+func (s *GetVideoListResponse) SetData(v *GetVideoListResponseData) *GetVideoListResponse {
+  s.Data = v
+  return s
+}
+
+type GetVideoListResponseData struct {
+  // {"en":"The number of records of the video list information currently returned. Note that the number of records returned here is only the number of records of the current page.","zh_CN":"当前返回的视频列表信息的记录数，注意这里返回的记录数只是当前页的记录数。"}
+  VideoTotal *int `json:"videoTotal,omitempty" xml:"videoTotal,omitempty" require:"true"`
+  // {"en":"videoListInfo","zh_CN":"视频列表信息"}
+  VideoListInfo []*GetVideoListResponseDataVideoListInfo `json:"videoListInfo,omitempty" xml:"videoListInfo,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s GetVideoListResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetVideoListResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *GetVideoListResponseData) SetVideoTotal(v int) *GetVideoListResponseData {
+  s.VideoTotal = &v
+  return s
+}
+
+func (s *GetVideoListResponseData) SetVideoListInfo(v []*GetVideoListResponseDataVideoListInfo) *GetVideoListResponseData {
+  s.VideoListInfo = v
+  return s
+}
+
+type GetVideoListResponseDataVideoListInfo struct     {
+  // {"en":"videoName","zh_CN":"视频名称"}
+  VideoName *string `json:"videoName,omitempty" xml:"videoName,omitempty" require:"true"`
+  // {"en":"videoId","zh_CN":"视频ID"}
+  VideoId *string `json:"videoId,omitempty" xml:"videoId,omitempty" require:"true"`
+  // {"en":"createUser","zh_CN":"创建人"}
+  CreateUser *string `json:"createUser,omitempty" xml:"createUser,omitempty" require:"true"`
+  // {"en":"Whether to encrypt transcoding files. Value range:\n0(unencrypted)\n1(encrypted)","zh_CN":"是否加密转码文件。取值范围 ：\n0(不加密)\n1(加密)"}
+  Encrypt *int `json:"encrypt,omitempty" xml:"encrypt,omitempty" require:"true"`
+  // {"en":"The space occupied by the video, and the total space used by the video and its transcoding(Unit: B)","zh_CN":"视频占用空间大小，视频及其转码后视频的总空间使用量（单位：B）"}
+  VideoSize *string `json:"videoSize,omitempty" xml:"videoSize,omitempty" require:"true"`
+  // {"en":"videoDuration(Unit: Seconds)","zh_CN":"视频时长（单位：秒）"}
+  VideoDuration *string `json:"videoDuration,omitempty" xml:"videoDuration,omitempty" require:"true"`
+  // {"en":"createTime","zh_CN":"视频创建时间"}
+  CreateTime *string `json:"createTime,omitempty" xml:"createTime,omitempty" require:"true"`
+  // {"en":"uploadTime","zh_CN":"视频上传时间"}
+  UploadTime *string `json:"uploadTime,omitempty" xml:"uploadTime,omitempty" require:"true"`
+  // {"en":"updateTime","zh_CN":"视频修改时间"}
+  UpdateTime *string `json:"updateTime,omitempty" xml:"updateTime,omitempty" require:"true"`
+  // {"en":"videoDescription","zh_CN":"视频描述"}
+  VideoDescription *string `json:"videoDescription,omitempty" xml:"videoDescription,omitempty" require:"true"`
+  // {"en":"videoClassification","zh_CN":"视频分类"}
+  VideoClassification *string `json:"videoClassification,omitempty" xml:"videoClassification,omitempty" require:"true"`
+  // {"en":"imageUrl","zh_CN":"视频封面URL"}
+  ImageUrl *string `json:"imageUrl,omitempty" xml:"imageUrl,omitempty" require:"true"`
+  // {"en":"publishDomain","zh_CN":"视频的发布域名"}
+  PublishDomain *string `json:"publishDomain,omitempty" xml:"publishDomain,omitempty" require:"true"`
+  // {"en":"playerName","zh_CN":"视频使用的播放器名称"}
+  PlayerName *string `json:"playerName,omitempty" xml:"playerName,omitempty" require:"true"`
+  // {"en":"playerId","zh_CN":"视频使用的播放器ID"}
+  PlayerId *string `json:"playerId,omitempty" xml:"playerId,omitempty" require:"true"`
+  // {"en":"Video state\nValue range:\n0(enable)\n1(mask)","zh_CN":"视频状态\n取值范围：\n0(启用)\n1(屏蔽)"}
+  VideoState *int `json:"videoState,omitempty" xml:"videoState,omitempty" require:"true"`
+  // {"en":"If authorized play is not enabled, the video transcoding status ranges from:\n1(transcoded)\n2(no transcoding)\n3(in transcoding)\n4(Transcoding fails)\n\nValue range of transcoding status when the Authorized Play (video encryption) function is enabled:\n1(encrypted transcoding)\n2(non-encrypted transcoding)\n3(in transcoding)\n4(Transcoding fails)\n5(not transcoded)","zh_CN":"未开启授权播放，视频的转码状态的取值范围 ：\n1(已转码)\n2(未转码)\n3(转码中)\n4(转码失败)\n\n开启授权播放（视频加密）功能时的转码状态的取值范围 ：\n1(已加密转码)\n2(非加密转码)\n3(转码中)\n4(转码失败)\n5(未转码)"}
+  TranscodeState *int `json:"transcodeState,omitempty" xml:"transcodeState,omitempty" require:"true"`
+  // {"en":"Video source\nValue range:\n0(other)\n1(Upload)\n2 (Live streaming to recording)\n3 (Video pull)\n4 (Video cutting)\n5 (Video Stitching)\n6 (edge pull recording)\n10 (universal version of live broadcasting to recording)\n11 (Uploading SDK)\n12 (Upload tool)","zh_CN":"视频来源\n取值范围：\n0(其他)\n1(上传)\n2（直播转录制）\n3（视频拉取）\n4（视频剪切）\n5（视频拼接）\n6（边缘拉流录制）\n10（通用版直播转录制）\n11（上传SDK）\n12（上传工具）"}
+  VideoSourceCode *int `json:"videoSourceCode,omitempty" xml:"videoSourceCode,omitempty" require:"true"`
+  // {"en":"Video resolution and other information","zh_CN":"视频分辨率等信息"}
+  VideoResolutions []*GetVideoListResponseDataVideoListInfoVideoResolutions `json:"videoResolutions,omitempty" xml:"videoResolutions,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s GetVideoListResponseDataVideoListInfo) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetVideoListResponseDataVideoListInfo) GoString() string {
+  return s.String()
+}
+
+func (s *GetVideoListResponseDataVideoListInfo) SetVideoName(v string) *GetVideoListResponseDataVideoListInfo {
+  s.VideoName = &v
+  return s
+}
+
+func (s *GetVideoListResponseDataVideoListInfo) SetVideoId(v string) *GetVideoListResponseDataVideoListInfo {
+  s.VideoId = &v
+  return s
+}
+
+func (s *GetVideoListResponseDataVideoListInfo) SetCreateUser(v string) *GetVideoListResponseDataVideoListInfo {
+  s.CreateUser = &v
+  return s
+}
+
+func (s *GetVideoListResponseDataVideoListInfo) SetEncrypt(v int) *GetVideoListResponseDataVideoListInfo {
+  s.Encrypt = &v
+  return s
+}
+
+func (s *GetVideoListResponseDataVideoListInfo) SetVideoSize(v string) *GetVideoListResponseDataVideoListInfo {
+  s.VideoSize = &v
+  return s
+}
+
+func (s *GetVideoListResponseDataVideoListInfo) SetVideoDuration(v string) *GetVideoListResponseDataVideoListInfo {
+  s.VideoDuration = &v
+  return s
+}
+
+func (s *GetVideoListResponseDataVideoListInfo) SetCreateTime(v string) *GetVideoListResponseDataVideoListInfo {
+  s.CreateTime = &v
+  return s
+}
+
+func (s *GetVideoListResponseDataVideoListInfo) SetUploadTime(v string) *GetVideoListResponseDataVideoListInfo {
+  s.UploadTime = &v
+  return s
+}
+
+func (s *GetVideoListResponseDataVideoListInfo) SetUpdateTime(v string) *GetVideoListResponseDataVideoListInfo {
+  s.UpdateTime = &v
+  return s
+}
+
+func (s *GetVideoListResponseDataVideoListInfo) SetVideoDescription(v string) *GetVideoListResponseDataVideoListInfo {
+  s.VideoDescription = &v
+  return s
+}
+
+func (s *GetVideoListResponseDataVideoListInfo) SetVideoClassification(v string) *GetVideoListResponseDataVideoListInfo {
+  s.VideoClassification = &v
+  return s
+}
+
+func (s *GetVideoListResponseDataVideoListInfo) SetImageUrl(v string) *GetVideoListResponseDataVideoListInfo {
+  s.ImageUrl = &v
+  return s
+}
+
+func (s *GetVideoListResponseDataVideoListInfo) SetPublishDomain(v string) *GetVideoListResponseDataVideoListInfo {
+  s.PublishDomain = &v
+  return s
+}
+
+func (s *GetVideoListResponseDataVideoListInfo) SetPlayerName(v string) *GetVideoListResponseDataVideoListInfo {
+  s.PlayerName = &v
+  return s
+}
+
+func (s *GetVideoListResponseDataVideoListInfo) SetPlayerId(v string) *GetVideoListResponseDataVideoListInfo {
+  s.PlayerId = &v
+  return s
+}
+
+func (s *GetVideoListResponseDataVideoListInfo) SetVideoState(v int) *GetVideoListResponseDataVideoListInfo {
+  s.VideoState = &v
+  return s
+}
+
+func (s *GetVideoListResponseDataVideoListInfo) SetTranscodeState(v int) *GetVideoListResponseDataVideoListInfo {
+  s.TranscodeState = &v
+  return s
+}
+
+func (s *GetVideoListResponseDataVideoListInfo) SetVideoSourceCode(v int) *GetVideoListResponseDataVideoListInfo {
+  s.VideoSourceCode = &v
+  return s
+}
+
+func (s *GetVideoListResponseDataVideoListInfo) SetVideoResolutions(v []*GetVideoListResponseDataVideoListInfoVideoResolutions) *GetVideoListResponseDataVideoListInfo {
+  s.VideoResolutions = v
+  return s
+}
+
+type GetVideoListResponseDataVideoListInfoVideoResolutions struct     {
+  // {"en":"Clarity. Value range:\n1(original painting)\n2(fluency)\n3(standard definition)\n4(HD)\n5(Super clear)\n-99(record file)","zh_CN":"清晰度。取值范围 ：\n1(原画)\n2(流畅)\n3(标清)\n4(高清)\n5(超清)\n-99(录制文件)"}
+  Clarity *int `json:"clarity,omitempty" xml:"clarity,omitempty" require:"true"`
+  // {"en":"Terminal type. Value range:\n-1(Source video)\n0(PC)\n1(mobile terminal)","zh_CN":"终端类型。取值范围 ：\n-1(源视频)\n0(PC端)\n1(移动端)"}
+  ServerType *int `json:"serverType,omitempty" xml:"serverType,omitempty" require:"true"`
+  // {"en":"height","zh_CN":"高度"}
+  Height *int `json:"height,omitempty" xml:"height,omitempty" require:"true"`
+  // {"en":"width","zh_CN":"宽度"}
+  Width *int `json:"width,omitempty" xml:"width,omitempty" require:"true"`
+  // {"en":"fileSize","zh_CN":"文件大小(单位为bit)"}
+  FileSize *int64 `json:"fileSize,omitempty" xml:"fileSize,omitempty" require:"true"`
+}
+
+func (s GetVideoListResponseDataVideoListInfoVideoResolutions) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetVideoListResponseDataVideoListInfoVideoResolutions) GoString() string {
+  return s.String()
+}
+
+func (s *GetVideoListResponseDataVideoListInfoVideoResolutions) SetClarity(v int) *GetVideoListResponseDataVideoListInfoVideoResolutions {
+  s.Clarity = &v
+  return s
+}
+
+func (s *GetVideoListResponseDataVideoListInfoVideoResolutions) SetServerType(v int) *GetVideoListResponseDataVideoListInfoVideoResolutions {
+  s.ServerType = &v
+  return s
+}
+
+func (s *GetVideoListResponseDataVideoListInfoVideoResolutions) SetHeight(v int) *GetVideoListResponseDataVideoListInfoVideoResolutions {
+  s.Height = &v
+  return s
+}
+
+func (s *GetVideoListResponseDataVideoListInfoVideoResolutions) SetWidth(v int) *GetVideoListResponseDataVideoListInfoVideoResolutions {
+  s.Width = &v
+  return s
+}
+
+func (s *GetVideoListResponseDataVideoListInfoVideoResolutions) SetFileSize(v int64) *GetVideoListResponseDataVideoListInfoVideoResolutions {
+  s.FileSize = &v
+  return s
 }
 
 type GetVideoListResponseHeader struct {

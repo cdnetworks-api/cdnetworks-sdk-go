@@ -76,5 +76,6 @@ if err != nil {
 | Queryipv6requestofeachispandprovince | 根据访客访问日志，查询多域名访客IP归属各ISP各省份不同IP类型的请求数<br>支持语言请求头Accept-Language，只支持zh-CN、en-US，默认为zh-CN。Accept-Language：en-US时，省份及运营商 入参及返回都为code，否则返回的为中文。 | POST | /api/report/request/isp-province/ipv6 |
 | Queryrequesthitratio | 该接口用于查询特定时间段内的分钟级别请求数缓存命中率，用户需提供开始时间、结束时间和域名信息，以获取请求命中率的数据。可选数据粒度1分钟、5分钟、1小时和1天。接口返回的数据信息包括每分钟的缓存命中率，帮助用户评估其域名命中CDN缓存的情况。 | POST | /api/report/request/hit-ratio/total |
 | Querymultidomainsipv6oripv4requests | 该接口用于查询指定域名的IPV6/IPV4请求数。用户可以指定时间范围、域名、IP类型和区域进行数据筛选。返回的数据包括每个域名在指定时间段内的每个时间点的请求数。该接口有助于用户分析网络流量的组成和趋势，以便更好地了解不同地域和IP类型的请求分布情况。 | POST | /api/report/request/ipv6 |
+| Reportrequestquicservice | 该接口用于查询多个域名的QUIC请求数量和总请求数。用户需要提供开始时间、结束时间以及域名列表来获取数据。接口返回的数据包括每个时间戳的QUIC请求数和总请求数。有助于用户分析QUIC的使用情况，调整策略以提升网站的响应速度和用户体验。<br>建议调用频率：300次 / 5min | POST | /api/report/request/quic |
 | Reportuserrequestcountryservice | 查询多域名访客IP归属各国家区域请求数 | POST | /api/report/request/country |
 | Queryedgerequesthitratioservice | 查询多域名分钟级别的在边缘节点命中缓存的请求数命中率 | POST | /api/report/request/edge-hit-ratio/total |

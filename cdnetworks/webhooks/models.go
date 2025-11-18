@@ -81,86 +81,14 @@ func (s DeleteAWebhookResponse) GoString() string {
 
 
 
-type UpdateAWebhookPaths struct {
-  // {"en" : "ID of a webhook", "zh_CN": "webhook接口id。"}
-  Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
-}
-
-func (s UpdateAWebhookPaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s UpdateAWebhookPaths) GoString() string {
-  return s.String()
-}
-
-func (s *UpdateAWebhookPaths) SetId(v string) *UpdateAWebhookPaths {
-  s.Id = &v
-  return s
-}
-
-type UpdateAWebhookParameters struct {
-}
-
-func (s UpdateAWebhookParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s UpdateAWebhookParameters) GoString() string {
-  return s.String()
-}
-
-type UpdateAWebhookRequestHeader struct {
-}
-
-func (s UpdateAWebhookRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s UpdateAWebhookRequestHeader) GoString() string {
-  return s.String()
-}
-
 type UpdateAWebhookRequest struct {
-  // {"en" : "Range: <= 250 characters 
-  // Name of the webhook.", "zh_CN": "取值范围: <= 250 字符 
-  // webhook接口名称。"}
+  // {"en":"Range: <= 250 characters\nName of the webhook.","zh_CN":"取值范围: <= 250 字符\nwebhook接口名称。"}
   Name *string `json:"name,omitempty" xml:"name,omitempty"`
-  // {"en" : "Range: <= 500 characters 
-  // An optional description of the webhook.", "zh_CN": "取值范围: <= 500 字符 
-  // webhook接口描述。"}
+  // {"en":"Range: <= 500 characters\nAn optional description of the webhook.","zh_CN":"取值范围: <= 500 字符\nwebhook接口描述。"}
   Description *string `json:"description,omitempty" xml:"description,omitempty"`
-  // {"en" : "Range: <= 250 characters 
-  // That URL that will be called when the asynchronous task has completed. The HTTP POST method will be used. The body will in JSON format:
-  // 
-  // { 'subject': '{some text}',
-  //   'taskType': '{task type}',
-  //   'taskList': [
-  //     { 'taskId': '{task id 1}',
-  //       ...
-  //     },
-  //     { 'taskId': '{task id 2}',
-  //       ...
-  //     }
-  //   ]
-  // }
-  // ", "zh_CN": "取值范围: <= 250 字符 
-  // 当关联的异步任务执行完成时，需触发的webhook接口的地址。CDN Pro将使用HTTP POST方法调webhook接口，请求体为JSON格式。请求体示例：
-  // 
-  // { 'subject': '{some text}',
-  //   'taskType': '{task type}',
-  //   'taskList': [
-  //     { 'taskId': '{task id 1}',
-  //       ...
-  //     },
-  //     { 'taskId': '{task id 2}',
-  //       ...
-  //     }
-  //   ]
-  // }
-  // "}
+  // {"en":"Range: <= 250 characters\nThat URL that will be called when the asynchronous task has completed. The HTTP POST method will be used. The body will in JSON format.","zh_CN":"取值范围: <= 250 字符\n当关联的异步任务执行完成时，需触发的webhook接口的地址。CDN Pro将使用HTTP POST方法调webhook接口，请求体为JSON格式。"}
   Url *string `json:"url,omitempty" xml:"url,omitempty"`
-  // {"en" : "Optional credentials passed to the URL. If requiring credentials your server should support HTTP Basic authentication the same way we do. Refer to Authentication summary. In particular, the password will be the secretKey encoded with the current date.", "zh_CN": "用于鉴权的账号信息。当您的服务器有鉴权要求时，需支持HTTP Basic鉴权方式。CDN Pro将用当前日期对secretKey进行加密，生成密码(password)。"}
+  // {"en":"If your webhook endpoint requires authentication, the authentication method should be HTTP Basic authentication. You should provide credentials which we will use to generate the Authorization header.","zh_CN":"用于鉴权的账号信息。当您的服务器有鉴权要求时，需支持HTTP Basic鉴权方式。CDN Pro将用当前日期对secretKey进行加密，生成密码(password)。"}
   Credentials *UpdateAWebhookRequestCredentials `json:"credentials,omitempty" xml:"credentials,omitempty" type:"Struct"`
 }
 
@@ -193,9 +121,9 @@ func (s *UpdateAWebhookRequest) SetCredentials(v *UpdateAWebhookRequestCredentia
 }
 
 type UpdateAWebhookRequestCredentials struct {
-  // {"en" : "The username passed to the URL on your server.", "zh_CN": "用于鉴权的用户名。"}
+  // {"en":"The username passed to the URL on your server.","zh_CN":"用于鉴权的用户名。"}
   User *string `json:"user,omitempty" xml:"user,omitempty"`
-  // {"en" : "A string that is encoded with the date and passed in the Authorization header to your server.", "zh_CN": "用于鉴权的密钥。CDN Pro将用当期日期对密钥进行加密生成密码(password)，然后通过Authorization请求头传给你方服务器。"}
+  // {"en":"A string that is encoded with the date and passed in the Authorization header to your server.","zh_CN":"用于鉴权的密钥。CDN Pro将用当期日期对密钥进行加密生成密码(password)，然后通过Authorization请求头传给你方服务器。"}
   SecretKey *string `json:"secretKey,omitempty" xml:"secretKey,omitempty"`
 }
 
@@ -217,14 +145,43 @@ func (s *UpdateAWebhookRequestCredentials) SetSecretKey(v string) *UpdateAWebhoo
   return s
 }
 
-type UpdateAWebhookResponseHeader struct {
+type UpdateAWebhookRequestHeader struct {
 }
 
-func (s UpdateAWebhookResponseHeader) String() string {
+func (s UpdateAWebhookRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateAWebhookResponseHeader) GoString() string {
+func (s UpdateAWebhookRequestHeader) GoString() string {
+  return s.String()
+}
+
+type UpdateAWebhookPaths struct {
+  // {"en":"ID of a webhook","zh_CN":"webhook接口id。"}
+  Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
+}
+
+func (s UpdateAWebhookPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateAWebhookPaths) GoString() string {
+  return s.String()
+}
+
+func (s *UpdateAWebhookPaths) SetId(v string) *UpdateAWebhookPaths {
+  s.Id = &v
+  return s
+}
+
+type UpdateAWebhookParameters struct {
+}
+
+func (s UpdateAWebhookParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateAWebhookParameters) GoString() string {
   return s.String()
 }
 
@@ -239,105 +196,28 @@ func (s UpdateAWebhookResponse) GoString() string {
   return s.String()
 }
 
-
-
-
-type CreateAWebhookPaths struct {
+type UpdateAWebhookResponseHeader struct {
 }
 
-func (s CreateAWebhookPaths) String() string {
+func (s UpdateAWebhookResponseHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s CreateAWebhookPaths) GoString() string {
+func (s UpdateAWebhookResponseHeader) GoString() string {
   return s.String()
 }
 
-type CreateAWebhookParameters struct {
-}
 
-func (s CreateAWebhookParameters) String() string {
-  return tea.Prettify(s)
-}
 
-func (s CreateAWebhookParameters) GoString() string {
-  return s.String()
-}
-
-type CreateAWebhookRequestHeader struct {
-}
-
-func (s CreateAWebhookRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateAWebhookRequestHeader) GoString() string {
-  return s.String()
-}
 
 type CreateAWebhookRequest struct {
-  // {"en" : "Range: <= 250 characters 
-  // Name of the webhook.", "zh_CN": "取值范围: <= 250 字符 
-  // webhook接口名称。"}
+  // {"en":"Range: <= 250 characters\nName of the webhook.","zh_CN":"取值范围: <= 250 字符\nwebhook接口名称。"}
   Name *string `json:"name,omitempty" xml:"name,omitempty" require:"true"`
-  // {"en" : "Range: <= 500 characters 
-  // Optional description of the webhook.", "zh_CN": "取值范围: <= 500 字符 
-  // webhook接口描述。"}
+  // {"en":"Range: <= 500 characters\nOptional description of the webhook.","zh_CN":"取值范围: <= 500 字符\nwebhook接口描述。"}
   Description *string `json:"description,omitempty" xml:"description,omitempty"`
-  // {"en" : "Range: <= 250 characters 
-  // That URL that will be called when the asynchronous task has completed. The HTTP POST method will be used. The body will in JSON format:
-  // 
-  // { 'subject': '{some text}',
-  //   'taskType': '{task type}',
-  //   'taskList': [
-  //     { 'taskId': '{task id 1}',
-  //       ...
-  //     },
-  //     { 'taskId': '{task id 2}',
-  //       ...
-  //     }
-  //   ]
-  // }
-  // ", "zh_CN": "取值范围: <= 250 字符 
-  // 当关联的异步任务执行完成时，需触发的webhook接口的地址。CDN Pro将使用HTTP POST方法调用webhook接口，请求体为JSON格式。请求体示例：
-  // 
-  // { 'subject': '{some text}',
-  //   'taskType': '{task type}',
-  //   'taskList': [
-  //     { 'taskId': '{task id 1}',
-  //       ...
-  //     },
-  //     { 'taskId': '{task id 2}',
-  //       ...
-  //     }
-  //   ]
-  // }
-  // "}
+  // {"en":"Range: <= 250 characters\nThat URL that will be called when the asynchronous task has completed. The HTTP POST method will be used. The body will in JSON format:\n<code>{\"subject\":\"{subject}\",\"taskType\":\"{task type}\",\"taskList\":[{\"taskId\":\"{task id 1}\",...},{ \"taskId\":\"{task id 2}\",...}]}<code>","zh_CN":"取值范围: <= 250 字符\n当关联的异步任务执行完成时，需触发的webhook接口的地址。CDN Pro将使用HTTP POST方法调用webhook接口，请求体为JSON格式。请求体示例：\n<code>{\"subject\":\"{subject}\",\"taskType\":\"{task type}\",\"taskList\":[{\"taskId\":\"{task id 1}\",...},{ \"taskId\":\"{task id 2}\",...}]}<code>"}
   Url *string `json:"url,omitempty" xml:"url,omitempty" require:"true"`
-  // {"en" : "Optional credentials passed to the URL. If requiring credentials your server should support HTTP Basic authentication the same way we do. Refer to Authentication summary. In particular, the password will be the secretKey encoded with the current date.", "zh_CN": "用于鉴权的账号信息。当您的服务器有鉴权要求时，需支持HTTP Basic鉴权方式。CDN Pro将用当前日期对secretKey进行加密，生成密码(password)。以下是一个secretKey加密和webhook接口调用的示例：
-  // 
-  // <pre>
-  // #!/bin/bash
-  // 
-  // # 鉴权账号
-  // USER=YourUser
-  // SECRET_KEY=YourSecretKey
-  // 
-  // DATE=`date '+%a, %d %b %Y %H:%M:%S %Z'`
-  // echo $DATE
-  // 
-  // # 生成密码
-  // password=$(echo -n '$DATE' | openssl dgst -sha1 -hmac '$SECRET_KEY' -binary | base64)
-  // echo ' '
-  // 
-  // # 调用webhook接口
-  // apiCall='curl -i --url
-  //  'https://a.webhook.com'
-  // 	-X POST \n	-u $USER:$password \n	-H 'Date: $DATE' \n        -H 'Content-Type: application/json' \n        -d '{
-  //                 ...
-  //             }' \n        '
-  // eval $apiCall
-  // </pre>"}
+  // {"en":"If your webhook endpoint requires authentication, the authentication method should be HTTP Basic authentication. You should provide credentials which we will use to generate the Authorization header. The example below show how the credentials will be used and how your webhook endpoint will be requested. \n\n<pre>\n#!/bin/bash\n# credentials you provide\nUSER=YourUser\nSECRET_KEY=YourSecretKey\n\nDATE=`date '+%a, %d %b %Y %H:%M:%S %Z'`\necho $DATE\n\n# generate password\npassword=$(echo -n '$DATE' | openssl dgst -sha1 -hmac '$SECRET_KEY' -binary | base64)\necho ' '\n\n# invoke webhook request\napiCall='curl -i --url 'https://a.webhook.com'\n-X POST \n-u $USER:$password \n-H 'Date: $DATE' \n-H 'Content-Type: application/json' \n-d '{\n...\n}' \n'\neval $apiCall\n</pre>","zh_CN":"用于鉴权的账号信息。当您的服务器有鉴权要求时，需支持HTTP Basic鉴权方式。CDN Pro将用当前日期对secretKey进行加密，生成密码(password)。以下是一个secretKey加密和webhook接口调用的示例：\n\n<pre>\n#!/bin/bash\n# 鉴权账号\nUSER=YourUser\nSECRET_KEY=YourSecretKey\n\nDATE=`date '+%a, %d %b %Y %H:%M:%S %Z'`\necho $DATE\n\n# 生成密码\npassword=$(echo -n '$DATE' | openssl dgst -sha1 -hmac '$SECRET_KEY' -binary | base64)\necho ' '\n\n# 调用webhook接口\napiCall='curl -i --url 'https://a.webhook.com'\n-X POST \n-u $USER:$password \n-H 'Date: $DATE' \n-H 'Content-Type: application/json' \n-d '{\n...\n}' \n'\neval $apiCall\n</pre>"}
   Credentials *CreateAWebhookRequestCredentials `json:"credentials,omitempty" xml:"credentials,omitempty" type:"Struct"`
 }
 
@@ -370,9 +250,9 @@ func (s *CreateAWebhookRequest) SetCredentials(v *CreateAWebhookRequestCredentia
 }
 
 type CreateAWebhookRequestCredentials struct {
-  // {"en" : "The username passed to the URL on your server.", "zh_CN": "用于鉴权的用户名。"}
+  // {"en":"The username passed to the URL on your server.","zh_CN":"用于鉴权的用户名。"}
   User *string `json:"user,omitempty" xml:"user,omitempty" require:"true"`
-  // {"en" : "A string that is encoded with the date and passed in the Authorization header to your server.", "zh_CN": "用于鉴权的密钥。CDN Pro将用当期日期对密钥进行加密生成密码(password)，然后通过Authorization请求头传给你方服务器。"}
+  // {"en":"A string that is encoded with the date and passed in the Authorization header to your server.","zh_CN":"用于鉴权的密钥。CDN Pro将用当期日期对密钥进行加密生成密码(password)，然后通过Authorization请求头传给你方服务器。"}
   SecretKey *string `json:"secretKey,omitempty" xml:"secretKey,omitempty" require:"true"`
 }
 
@@ -394,6 +274,39 @@ func (s *CreateAWebhookRequestCredentials) SetSecretKey(v string) *CreateAWebhoo
   return s
 }
 
+type CreateAWebhookRequestHeader struct {
+}
+
+func (s CreateAWebhookRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateAWebhookRequestHeader) GoString() string {
+  return s.String()
+}
+
+type CreateAWebhookPaths struct {
+}
+
+func (s CreateAWebhookPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateAWebhookPaths) GoString() string {
+  return s.String()
+}
+
+type CreateAWebhookParameters struct {
+}
+
+func (s CreateAWebhookParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateAWebhookParameters) GoString() string {
+  return s.String()
+}
+
 type CreateAWebhookResponse struct {
 }
 
@@ -406,8 +319,7 @@ func (s CreateAWebhookResponse) GoString() string {
 }
 
 type CreateAWebhookResponseHeader struct {
-  // {"en":"Refers to the new webhook. Example: <code>Location: https://{domain}/cdn/webhooks/60a2e69806d5583a81ad9500</code>
-  // ", "zh_CN":"通过Location响应头返回新建的wehbook的地址。地址中包含webhook的ID，可使用该ID调用获取‘webhook详细信息’接口来查看webhook的详细信息。URL示例：<code>Location: https://{domain}/cdn/webhooks/60a2e69806d5583a81ad9500</code>"}
+  // {"en":"Returns a URL pointing to the new webhook created, if the request is accepted. The URL contains the ID of the new webhook. </br> URL format: <code>{scheme}://{domain}/cdn/webhooks/{webhookId}</code> Example URL: <code>https://api.example.com/cdn/webhooks/60a2e69806d5583a81ad9500</code>","zh_CN":"当接口调用成功时，通过Location响应头返回新建的wehbook的地址。地址中包含webhook的ID，可使用该ID调用获取‘webhook详细信息’接口来查看webhook的详细信息。</br> URL格式：<code>{协议}://{域名}/cdn/webhooks/{webhookId}</code> URL示例： <code>https://open.chinanetcenter.com/cdn/webhooks/60a2e69806d5583a81ad9500</code>"}
   Location *string `json:"Location,omitempty" xml:"Location,omitempty" require:"true"`
 }
 

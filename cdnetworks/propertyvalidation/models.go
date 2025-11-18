@@ -389,47 +389,14 @@ func (s *GetListOfPropertyValidationTasksResponseValidations) SetApiRequestId(v 
 
 
 
-type CreateAValidationTaskPaths struct {
-}
-
-func (s CreateAValidationTaskPaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateAValidationTaskPaths) GoString() string {
-  return s.String()
-}
-
-type CreateAValidationTaskParameters struct {
-}
-
-func (s CreateAValidationTaskParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateAValidationTaskParameters) GoString() string {
-  return s.String()
-}
-
-type CreateAValidationTaskRequestHeader struct {
-}
-
-func (s CreateAValidationTaskRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateAValidationTaskRequestHeader) GoString() string {
-  return s.String()
-}
-
 type CreateAValidationTaskRequest struct {
-  // {"en" : "Name of the validation task.", "zh_CN": "验证任务的名称。"}
+  // {"en":"Name of the validation task.","zh_CN":"验证任务的名称。"}
   Name *string `json:"name,omitempty" xml:"name,omitempty"`
-  // {"en" : "Indicates the property to validate.", "zh_CN": "需要验证的加速项目的ID。"}
+  // {"en":"Indicates the property to validate.","zh_CN":"需要验证的加速项目的ID。"}
   PropertyId *string `json:"propertyId,omitempty" xml:"propertyId,omitempty" require:"true"`
-  // {"en" : "Indicates the version of the property to validate.", "zh_CN": "需要验证的加速项目的版本号。"}
+  // {"en":"Indicates the version of the property to validate.","zh_CN":"需要验证的加速项目的版本号。"}
   Version *int `json:"version,omitempty" xml:"version,omitempty" require:"true"`
-  // {"en" : "ID of a webhook to call when the validation task completes.", "zh_CN": "验证任务完成时需要调用的webhook ID。webhook是指通过“创建webhook接口”创建的回调接口。"}
+  // {"en":"ID of a webhook to call when the validation task completes.","zh_CN":"验证任务完成时需要调用的webhook ID。webhook是指通过“创建webhook接口”创建的回调接口。"}
   Webhook *string `json:"webhook,omitempty" xml:"webhook,omitempty"`
 }
 
@@ -461,6 +428,39 @@ func (s *CreateAValidationTaskRequest) SetWebhook(v string) *CreateAValidationTa
   return s
 }
 
+type CreateAValidationTaskRequestHeader struct {
+}
+
+func (s CreateAValidationTaskRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateAValidationTaskRequestHeader) GoString() string {
+  return s.String()
+}
+
+type CreateAValidationTaskPaths struct {
+}
+
+func (s CreateAValidationTaskPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateAValidationTaskPaths) GoString() string {
+  return s.String()
+}
+
+type CreateAValidationTaskParameters struct {
+}
+
+func (s CreateAValidationTaskParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateAValidationTaskParameters) GoString() string {
+  return s.String()
+}
+
 type CreateAValidationTaskResponse struct {
 }
 
@@ -473,7 +473,7 @@ func (s CreateAValidationTaskResponse) GoString() string {
 }
 
 type CreateAValidationTaskResponseHeader struct {
-  // {"en":"The Location header contains a URL to the validation task. Example: <code>Location: https://{domain}/cdn/validations/5dca2205f9e9cc0001df7b24</code>", "zh_CN":"通过Location响应头返回新建的验证任务的URL。URL中包含了验证任务的ID，可使用该ID调用'查询验证任务详情'接口来查看任务详情。URL示例：<code>Location: https://{domain}/cdn/validations/5dca2205f9e9cc0001df7b24</code>"}
+  // {"en":"Returns a URL pointing to the new validation task created, if the request is accepted. The URL contains the ID of the new validation task. </br> URL format: <code>{scheme}://{domain}/cdn/validations/{validationId}</code> Example URL: <code>https://api.example.com/cdn/validations/5dca2205f9e9cc0001df7b24</code>","zh_CN":"当接口调用成功时，通过Location响应头返回新建的验证任务的URL。URL中包含验证任务的ID，可使用该URL调用'查询验证任务详情'接口来查看任务详情。</br> URL格式：<code>{协议}://{域名}/cdn/validations/{验证任务ID}</code> URL示例： <code>https://open.chinanetcenter.com/cdn/validations/5dca2205f9e9cc0001df7b24</code>"}
   Location *string `json:"Location,omitempty" xml:"Location,omitempty" require:"true"`
 }
 

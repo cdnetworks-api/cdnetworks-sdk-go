@@ -70,5 +70,5 @@ For detailed API documentation and available methods, please refer to the [offic
 
 | ActionName | enDescription | client_methods | uri |
 | --- | --- | --- | --- |
-| Prefetch | The file is pre-loaded from the origin to the CDN. The user does not need to back to the origin at the first visit, he can directly hit the cache of the CDN. Not only can it improve the speed of the first access, but also effectively relieve the pressure on the origin. | POST | /ccm/fetch/ItemIdReceiver |
-| Queryprefetchstatus | Query the prefetch task status. Use this API to check global network has prefetch successfully. | POST | /ccm/fetch/ItemIdQuery |
+| Prefetch | Proactively pre - fetch the content from the origin server to the CDN nodes. When users visit for the first time, they can directly hit the cache. This not only improves the first - visit speed but also effectively alleviates the pressure on the origin server. | POST | /ccm/fetch/ItemIdReceiver |
+| Getprefetchstatus | Query the prefetch task status. Use this API to check global network has prefetch successfully. | POST | /ccm/fetch/ItemIdQuery |

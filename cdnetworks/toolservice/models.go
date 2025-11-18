@@ -113,203 +113,108 @@ func (s IcpQueryServiceResponseHeader) GoString() string {
 
 
 
-type QueryForbiddingVisitorIPsByLabelCodeServiceRequest struct {
-  // {"en":"List of forbidding Label Code", "zh_CN":"封禁标签列表"}
-  LabelCodeList []*string `json:"labelCodeList,omitempty" xml:"labelCodeList,omitempty" require:"true" type:"Repeated"`
-  // {"en":"List of forbidding IP, leave it empty to query all ", "zh_CN":"封禁IP列表,放空则查询全部"}
-  IpList []*string `json:"ipList,omitempty" xml:"ipList,omitempty" type:"Repeated"`
-  // {"en":"Current page number,the first page starts from 0,default 0 ", "zh_CN":"分页，当前页，第一页从0开始，默认0"}
-  PageNo *int `json:"pageNo,omitempty" xml:"pageNo,omitempty"`
-  // {"en":"Page size,must be greater than 0,default 100 ", "zh_CN":"每页大小，必须大于0，默认100"}
-  PageSize *int `json:"pageSize,omitempty" xml:"pageSize,omitempty"`
+type QueryBandwidthLimitTaskListServiceRequest struct {
 }
 
-func (s QueryForbiddingVisitorIPsByLabelCodeServiceRequest) String() string {
+func (s QueryBandwidthLimitTaskListServiceRequest) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryForbiddingVisitorIPsByLabelCodeServiceRequest) GoString() string {
+func (s QueryBandwidthLimitTaskListServiceRequest) GoString() string {
   return s.String()
 }
 
-func (s *QueryForbiddingVisitorIPsByLabelCodeServiceRequest) SetLabelCodeList(v []*string) *QueryForbiddingVisitorIPsByLabelCodeServiceRequest {
-  s.LabelCodeList = v
-  return s
+type QueryBandwidthLimitTaskListServiceRequestHeader struct {
 }
 
-func (s *QueryForbiddingVisitorIPsByLabelCodeServiceRequest) SetIpList(v []*string) *QueryForbiddingVisitorIPsByLabelCodeServiceRequest {
-  s.IpList = v
-  return s
-}
-
-func (s *QueryForbiddingVisitorIPsByLabelCodeServiceRequest) SetPageNo(v int) *QueryForbiddingVisitorIPsByLabelCodeServiceRequest {
-  s.PageNo = &v
-  return s
-}
-
-func (s *QueryForbiddingVisitorIPsByLabelCodeServiceRequest) SetPageSize(v int) *QueryForbiddingVisitorIPsByLabelCodeServiceRequest {
-  s.PageSize = &v
-  return s
-}
-
-type QueryForbiddingVisitorIPsByLabelCodeServiceResponse struct {
-  // {"en":"Result Code", "zh_CN":"响应码"}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Result Message", "zh_CN":"响应信息"}
-  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
-  // {"en":"Result Data", "zh_CN":"响应数据"}
-  Data *QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true"`
-}
-
-func (s QueryForbiddingVisitorIPsByLabelCodeServiceResponse) String() string {
+func (s QueryBandwidthLimitTaskListServiceRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryForbiddingVisitorIPsByLabelCodeServiceResponse) GoString() string {
+func (s QueryBandwidthLimitTaskListServiceRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *QueryForbiddingVisitorIPsByLabelCodeServiceResponse) SetCode(v string) *QueryForbiddingVisitorIPsByLabelCodeServiceResponse {
-  s.Code = &v
-  return s
+type QueryBandwidthLimitTaskListServicePaths struct {
 }
 
-func (s *QueryForbiddingVisitorIPsByLabelCodeServiceResponse) SetMessage(v string) *QueryForbiddingVisitorIPsByLabelCodeServiceResponse {
-  s.Message = &v
-  return s
-}
-
-func (s *QueryForbiddingVisitorIPsByLabelCodeServiceResponse) SetData(v *QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryResponseData) *QueryForbiddingVisitorIPsByLabelCodeServiceResponse {
-  s.Data = v
-  return s
-}
-
-type QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryResponseData struct {
-  // {"en":"Total count ", "zh_CN":"总数据条数"}
-  Total *int `json:"total,omitempty" xml:"total,omitempty" require:"true"`
-  // {"en":"Current page number,the first page starts from 0,default 0 ", "zh_CN":"分页，当前页，第一页从0开始，默认0"}
-  PageNo *int `json:"pageNo,omitempty" xml:"pageNo,omitempty" require:"true"`
-  // {"en":"Page size,must be greater than 0,default 100 ", "zh_CN":"每页大小，必须大于0，默认100"}
-  PageSize *int `json:"pageSize,omitempty" xml:"pageSize,omitempty" require:"true"`
-  // {"en":"Query results", "zh_CN":"查询结果"}
-  Result []*QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryDetailData `json:"result,omitempty" xml:"result,omitempty" require:"true" type:"Repeated"`
-}
-
-func (s QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryResponseData) String() string {
+func (s QueryBandwidthLimitTaskListServicePaths) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryResponseData) GoString() string {
+func (s QueryBandwidthLimitTaskListServicePaths) GoString() string {
   return s.String()
 }
 
-func (s *QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryResponseData) SetTotal(v int) *QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryResponseData {
-  s.Total = &v
-  return s
+type QueryBandwidthLimitTaskListServiceParameters struct {
 }
 
-func (s *QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryResponseData) SetPageNo(v int) *QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryResponseData {
-  s.PageNo = &v
-  return s
+func (s QueryBandwidthLimitTaskListServiceParameters) String() string {
+  return tea.Prettify(s)
 }
 
-func (s *QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryResponseData) SetPageSize(v int) *QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryResponseData {
-  s.PageSize = &v
-  return s
+func (s QueryBandwidthLimitTaskListServiceParameters) GoString() string {
+  return s.String()
 }
 
-func (s *QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryResponseData) SetResult(v []*QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryDetailData) *QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryResponseData {
+type QueryBandwidthLimitTaskListServiceResponse struct {
+  // {"en":"result","zh_CN":"结果"}
+  Result []*QueryBandwidthLimitTaskListServiceResponseResult `json:"result,omitempty" xml:"result,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s QueryBandwidthLimitTaskListServiceResponse) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryBandwidthLimitTaskListServiceResponse) GoString() string {
+  return s.String()
+}
+
+func (s *QueryBandwidthLimitTaskListServiceResponse) SetResult(v []*QueryBandwidthLimitTaskListServiceResponseResult) *QueryBandwidthLimitTaskListServiceResponse {
   s.Result = v
   return s
 }
 
-type QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryDetailData struct {
-  // {"en":"Label Code", "zh_CN":"标签编码"}
-  LabelCode *string `json:"labelCode,omitempty" xml:"labelCode,omitempty" require:"true"`
-  // {"en":"Label Name", "zh_CN":"标签名称"}
-  LabelName *string `json:"labelName,omitempty" xml:"labelName,omitempty" require:"true"`
-  // {"en":"IP forbidding", "zh_CN":"封禁的IP"}
-  Ip *string `json:"ip,omitempty" xml:"ip,omitempty" require:"true"`
-  // {"en":"Start time of forbidden", "zh_CN":"封禁开始时间"}
-  StartTime *int `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {"en":"End time of forbidden", "zh_CN":"封禁结束时间"}
-  EndTime *int `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
+type QueryBandwidthLimitTaskListServiceResponseResult struct     {
+  // {"en":"Domain","zh_CN":"域名"}
+  DomainName *string `json:"domainName,omitempty" xml:"domainName,omitempty" require:"true"`
+  // {"en":"Maximum bandwidth set","zh_CN":"设置的最大带宽值"}
+  BandwidthLimit *int `json:"bandwidthLimit,omitempty" xml:"bandwidthLimit,omitempty" require:"true"`
+  // {"en":"Task name","zh_CN":"任务名称"}
+  TaskName *string `json:"taskName,omitempty" xml:"taskName,omitempty" require:"true"`
 }
 
-func (s QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryDetailData) String() string {
+func (s QueryBandwidthLimitTaskListServiceResponseResult) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryDetailData) GoString() string {
+func (s QueryBandwidthLimitTaskListServiceResponseResult) GoString() string {
   return s.String()
 }
 
-func (s *QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryDetailData) SetLabelCode(v string) *QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryDetailData {
-  s.LabelCode = &v
+func (s *QueryBandwidthLimitTaskListServiceResponseResult) SetDomainName(v string) *QueryBandwidthLimitTaskListServiceResponseResult {
+  s.DomainName = &v
   return s
 }
 
-func (s *QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryDetailData) SetLabelName(v string) *QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryDetailData {
-  s.LabelName = &v
+func (s *QueryBandwidthLimitTaskListServiceResponseResult) SetBandwidthLimit(v int) *QueryBandwidthLimitTaskListServiceResponseResult {
+  s.BandwidthLimit = &v
   return s
 }
 
-func (s *QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryDetailData) SetIp(v string) *QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryDetailData {
-  s.Ip = &v
+func (s *QueryBandwidthLimitTaskListServiceResponseResult) SetTaskName(v string) *QueryBandwidthLimitTaskListServiceResponseResult {
+  s.TaskName = &v
   return s
 }
 
-func (s *QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryDetailData) SetStartTime(v int) *QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryDetailData {
-  s.StartTime = &v
-  return s
+type QueryBandwidthLimitTaskListServiceResponseHeader struct {
 }
 
-func (s *QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryDetailData) SetEndTime(v int) *QueryForbiddingVisitorIPsByLabelCodeServiceLabelIpQueryDetailData {
-  s.EndTime = &v
-  return s
-}
-
-type QueryForbiddingVisitorIPsByLabelCodeServicePaths struct {
-}
-
-func (s QueryForbiddingVisitorIPsByLabelCodeServicePaths) String() string {
+func (s QueryBandwidthLimitTaskListServiceResponseHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryForbiddingVisitorIPsByLabelCodeServicePaths) GoString() string {
-  return s.String()
-}
-
-type QueryForbiddingVisitorIPsByLabelCodeServiceParameters struct {
-}
-
-func (s QueryForbiddingVisitorIPsByLabelCodeServiceParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryForbiddingVisitorIPsByLabelCodeServiceParameters) GoString() string {
-  return s.String()
-}
-
-type QueryForbiddingVisitorIPsByLabelCodeServiceRequestHeader struct {
-}
-
-func (s QueryForbiddingVisitorIPsByLabelCodeServiceRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryForbiddingVisitorIPsByLabelCodeServiceRequestHeader) GoString() string {
-  return s.String()
-}
-
-type QueryForbiddingVisitorIPsByLabelCodeServiceResponseHeader struct {
-}
-
-func (s QueryForbiddingVisitorIPsByLabelCodeServiceResponseHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryForbiddingVisitorIPsByLabelCodeServiceResponseHeader) GoString() string {
+func (s QueryBandwidthLimitTaskListServiceResponseHeader) GoString() string {
   return s.String()
 }
 
@@ -452,174 +357,342 @@ func (s IpDomainServiceResponseHeader) GoString() string {
 
 
 
-type QueryForbiddingVisitorIPsByDomainServiceRequest struct {
-  // {"en":"List of forbidding domain", "zh_CN":"封禁域名列表"}
-  DomainList []*string `json:"domainList,omitempty" xml:"domainList,omitempty" require:"true" type:"Repeated"`
-  // {"en":"List of forbidding IP", "zh_CN":"封禁IP列表"}
-  IpList []*string `json:"ipList,omitempty" xml:"ipList,omitempty" type:"Repeated"`
-  // {"en":"Current page number,the first page starts from 0,default 0", "zh_CN":"分页，当前页，第一页从0开始，默认0"}
-  PageNo *int `json:"pageNo,omitempty" xml:"pageNo,omitempty"`
-  // {"en":"Page size,must be greater than 0,default 100, the maximum is 1000 ", "zh_CN":"每页大小，必须大于0，默认100，最大1000"}
-  PageSize *int `json:"pageSize,omitempty" xml:"pageSize,omitempty"`
+type BandwidthLimitServiceRequest struct {
+  // {"en":"Task: Limits to the number of tasks can be adjusted depending on different accounts. The default value is 3","zh_CN":"任务：任务个数限制根据账号可调，默认为3个"}
+  Task *string `json:"task,omitempty" xml:"task,omitempty"`
+  // {"en":"Operation type: \nenable: set, update or enable bandwidth limit; \ndisable: to disable bandwidth limit","zh_CN":"操作类型：\nenable 设置、更新或开启带宽限制，\ndisable 关闭带宽限制"}
+  Action *string `json:"action,omitempty" xml:"action,omitempty"`
+  // {"en":"Domain list.","zh_CN":"域名列表"}
+  DomainList *string `json:"domain-list,omitempty" xml:"domain-list,omitempty"`
+  // {"en":"Domain, must follow regular expression rule of (([\w-]{1,62})?(\.[\w-]{1,62})+)","zh_CN":"域名，必须符合正则(([\w-]{1,62})?(\.[\w-]{1,62})+)"}
+  DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty"`
+  // {"en":"1. Cancel the control ratio (the proportion to which the threshold is reduced, and cancel the control bandwidth), calculated as a percentage;\n\n2. The input value is a positive integer. When no parameters are passed, the default is 60.","zh_CN":"1.取消控制比例（阈值降到多少比例，取消控制带宽），按百分比计算；\n\n2.输入值为正整数。未传参时，默认为40。"}
+  CtrlMinRatio *int `json:"ctrlMinRatio,omitempty" xml:"ctrlMinRatio,omitempty"`
+  // {"en":"1. Control the effective ratio (what ratio the threshold reaches and start to control the bandwidth), calculated as a percentage;\n2. The input value is a positive integer. When no parameter is passed, the default is 60;\n3. The effective ratio of control is greater than the ratio of canceled control;\n4. The effective control ratio and the cancel control ratio need to be paired and configured.","zh_CN":"1.控制生效比例（ 阈值达到多少比例，开始控制带宽），按百分比计算；\n\n2.输入值为正整数。未传参时，默认为60；\n\n3.控制生效比例 要大于 取消控制比例；\n\n4.控制生效比例 和 取消控制比例 需配对配置。"}
+  CtrlInitRatio *int `json:"ctrlInitRatio,omitempty" xml:"ctrlInitRatio,omitempty"`
+  // {"en":"Bandwidth limit, positive integer, unit is Mbps. This filed is required when action is enable","zh_CN":"带宽限制值，为正整数，单位为Mbps，当action为enable时为必选项"}
+  BandwidthLimit *int `json:"bandwidth-limit,omitempty" xml:"bandwidth-limit,omitempty"`
 }
 
-func (s QueryForbiddingVisitorIPsByDomainServiceRequest) String() string {
+func (s BandwidthLimitServiceRequest) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryForbiddingVisitorIPsByDomainServiceRequest) GoString() string {
+func (s BandwidthLimitServiceRequest) GoString() string {
   return s.String()
 }
 
-func (s *QueryForbiddingVisitorIPsByDomainServiceRequest) SetDomainList(v []*string) *QueryForbiddingVisitorIPsByDomainServiceRequest {
-  s.DomainList = v
+func (s *BandwidthLimitServiceRequest) SetTask(v string) *BandwidthLimitServiceRequest {
+  s.Task = &v
   return s
 }
 
-func (s *QueryForbiddingVisitorIPsByDomainServiceRequest) SetIpList(v []*string) *QueryForbiddingVisitorIPsByDomainServiceRequest {
-  s.IpList = v
+func (s *BandwidthLimitServiceRequest) SetAction(v string) *BandwidthLimitServiceRequest {
+  s.Action = &v
   return s
 }
 
-func (s *QueryForbiddingVisitorIPsByDomainServiceRequest) SetPageNo(v int) *QueryForbiddingVisitorIPsByDomainServiceRequest {
-  s.PageNo = &v
+func (s *BandwidthLimitServiceRequest) SetDomainList(v string) *BandwidthLimitServiceRequest {
+  s.DomainList = &v
   return s
 }
 
-func (s *QueryForbiddingVisitorIPsByDomainServiceRequest) SetPageSize(v int) *QueryForbiddingVisitorIPsByDomainServiceRequest {
-  s.PageSize = &v
+func (s *BandwidthLimitServiceRequest) SetDomainName(v string) *BandwidthLimitServiceRequest {
+  s.DomainName = &v
   return s
 }
 
-type QueryForbiddingVisitorIPsByDomainServiceResponse struct {
-  // {"en":"Result Code", "zh_CN":"响应码"}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Result Message", "zh_CN":"响应信息"}
-  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
-  // {"en":"Result Data", "zh_CN":"响应数据"}
-  Data map[string]interface{} `json:"data,omitempty" xml:"data,omitempty" require:"true"`
-  // {"en":"Total count", "zh_CN":"总数据条数"}
-  Total *int `json:"total,omitempty" xml:"total,omitempty" require:"true"`
-  // {"en":"Current page number,the first page starts from 0,default 0", "zh_CN":"分页，当前页，第一页从0开始，默认0"}
-  PageNo *int `json:"pageNo,omitempty" xml:"pageNo,omitempty" require:"true"`
-  // {"en":"Page size,must be greater than 0,default 100, the maximum is 1000", "zh_CN":"每页大小，必须大于0，默认100，最大1000"}
-  PageSize *int `json:"pageSize,omitempty" xml:"pageSize,omitempty" require:"true"`
-  // {"en":"Query results", "zh_CN":"查询结果"}
-  Result []*string `json:"result,omitempty" xml:"result,omitempty" require:"true" type:"Repeated"`
-  // {"en":"Domain forbidding", "zh_CN":"封禁的域名"}
-  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
-  // {"en":"IP forbidding", "zh_CN":"封禁的IP"}
-  Ip *string `json:"ip,omitempty" xml:"ip,omitempty" require:"true"`
-  // {"en":"Start time of forbidden", "zh_CN":"封禁开始时间"}
-  StartTime *int `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
-  // {"en":"End time of forbidden", "zh_CN":"封禁结束时间"}
-  EndTime *int `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
+func (s *BandwidthLimitServiceRequest) SetCtrlMinRatio(v int) *BandwidthLimitServiceRequest {
+  s.CtrlMinRatio = &v
+  return s
 }
 
-func (s QueryForbiddingVisitorIPsByDomainServiceResponse) String() string {
+func (s *BandwidthLimitServiceRequest) SetCtrlInitRatio(v int) *BandwidthLimitServiceRequest {
+  s.CtrlInitRatio = &v
+  return s
+}
+
+func (s *BandwidthLimitServiceRequest) SetBandwidthLimit(v int) *BandwidthLimitServiceRequest {
+  s.BandwidthLimit = &v
+  return s
+}
+
+type BandwidthLimitServiceRequestHeader struct {
+}
+
+func (s BandwidthLimitServiceRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryForbiddingVisitorIPsByDomainServiceResponse) GoString() string {
+func (s BandwidthLimitServiceRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *QueryForbiddingVisitorIPsByDomainServiceResponse) SetCode(v string) *QueryForbiddingVisitorIPsByDomainServiceResponse {
+type BandwidthLimitServicePaths struct {
+}
+
+func (s BandwidthLimitServicePaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BandwidthLimitServicePaths) GoString() string {
+  return s.String()
+}
+
+type BandwidthLimitServiceParameters struct {
+}
+
+func (s BandwidthLimitServiceParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BandwidthLimitServiceParameters) GoString() string {
+  return s.String()
+}
+
+type BandwidthLimitServiceResponse struct {
+  // {"en":"Task ID","zh_CN":"任务ID"}
+  TaskId *string `json:"taskId,omitempty" xml:"taskId,omitempty" require:"true"`
+  // {"en":"Domain","zh_CN":"域名"}
+  DomainName *string `json:"domainName,omitempty" xml:"domainName,omitempty" require:"true"`
+  // {"en":"Status codes, 1 for success and 0   means failed","zh_CN":"状态码，1：成功，0：失败"}
+  Code *int `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description of results","zh_CN":"结果描述信息"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+}
+
+func (s BandwidthLimitServiceResponse) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BandwidthLimitServiceResponse) GoString() string {
+  return s.String()
+}
+
+func (s *BandwidthLimitServiceResponse) SetTaskId(v string) *BandwidthLimitServiceResponse {
+  s.TaskId = &v
+  return s
+}
+
+func (s *BandwidthLimitServiceResponse) SetDomainName(v string) *BandwidthLimitServiceResponse {
+  s.DomainName = &v
+  return s
+}
+
+func (s *BandwidthLimitServiceResponse) SetCode(v int) *BandwidthLimitServiceResponse {
   s.Code = &v
   return s
 }
 
-func (s *QueryForbiddingVisitorIPsByDomainServiceResponse) SetMessage(v string) *QueryForbiddingVisitorIPsByDomainServiceResponse {
+func (s *BandwidthLimitServiceResponse) SetMsg(v string) *BandwidthLimitServiceResponse {
+  s.Msg = &v
+  return s
+}
+
+type BandwidthLimitServiceResponseHeader struct {
+}
+
+func (s BandwidthLimitServiceResponseHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BandwidthLimitServiceResponseHeader) GoString() string {
+  return s.String()
+}
+
+
+
+
+type QueryAllBandwidthLimitTaskListServiceRequest struct {
+  // {"en":"Domain:\n1. The maximum number of domain is 100 by default (you can contact technical support for adjustment);\n2. Automatically filter out invalid domain (an illegal domain will be filtered, and the query result will only return the data of valid domains).","zh_CN":"域名:\n1.可传递域名数量上限默认为100个(可联系技术支持调整);\n2.自动过滤掉无效域名(如传递非法域名,会被过滤,查询结果只返回有效域名的数据)。"}
+  Domain []*string `json:"domain,omitempty" xml:"domain,omitempty" require:"true" type:"Repeated"`
+  // {"en":"Whether to ignore task status.\n0: No, only return the configuration whose task status is enabled; default: 0;\n1: Yes, return whether the task status is open or closed.","zh_CN":"是否忽略任务状态。0:否,只返回任务状态为开启的配置;默认:0; 1:是,不论任务状态是开启还是关闭都返回。"}
+  IgnoreTaskStatus *string `json:"ignoreTaskStatus,omitempty" xml:"ignoreTaskStatus,omitempty"`
+  // {"en":"Whether the returned data contains all customer domain names involved in the task, the default is 0;\n0: no;\n1: Yes.","zh_CN":"返回数据是否包含任务涉及的所有客户域名。0:否;默认:0;1:是。"}
+  ContainDomain *string `json:"containDomain,omitempty" xml:"containDomain,omitempty"`
+}
+
+func (s QueryAllBandwidthLimitTaskListServiceRequest) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAllBandwidthLimitTaskListServiceRequest) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAllBandwidthLimitTaskListServiceRequest) SetDomain(v []*string) *QueryAllBandwidthLimitTaskListServiceRequest {
+  s.Domain = v
+  return s
+}
+
+func (s *QueryAllBandwidthLimitTaskListServiceRequest) SetIgnoreTaskStatus(v string) *QueryAllBandwidthLimitTaskListServiceRequest {
+  s.IgnoreTaskStatus = &v
+  return s
+}
+
+func (s *QueryAllBandwidthLimitTaskListServiceRequest) SetContainDomain(v string) *QueryAllBandwidthLimitTaskListServiceRequest {
+  s.ContainDomain = &v
+  return s
+}
+
+type QueryAllBandwidthLimitTaskListServiceRequestHeader struct {
+}
+
+func (s QueryAllBandwidthLimitTaskListServiceRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAllBandwidthLimitTaskListServiceRequestHeader) GoString() string {
+  return s.String()
+}
+
+type QueryAllBandwidthLimitTaskListServicePaths struct {
+}
+
+func (s QueryAllBandwidthLimitTaskListServicePaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAllBandwidthLimitTaskListServicePaths) GoString() string {
+  return s.String()
+}
+
+type QueryAllBandwidthLimitTaskListServiceParameters struct {
+}
+
+func (s QueryAllBandwidthLimitTaskListServiceParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAllBandwidthLimitTaskListServiceParameters) GoString() string {
+  return s.String()
+}
+
+type QueryAllBandwidthLimitTaskListServiceResponse struct {
+  // {"en":"request result status code","zh_CN":"请求结果状态码"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Request result information","zh_CN":"请求结果信息"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+  // {"en":"","zh_CN":""}
+  Data []*QueryAllBandwidthLimitTaskListServiceResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s QueryAllBandwidthLimitTaskListServiceResponse) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAllBandwidthLimitTaskListServiceResponse) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAllBandwidthLimitTaskListServiceResponse) SetCode(v string) *QueryAllBandwidthLimitTaskListServiceResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *QueryAllBandwidthLimitTaskListServiceResponse) SetMessage(v string) *QueryAllBandwidthLimitTaskListServiceResponse {
   s.Message = &v
   return s
 }
 
-func (s *QueryForbiddingVisitorIPsByDomainServiceResponse) SetData(v map[string]interface{}) *QueryForbiddingVisitorIPsByDomainServiceResponse {
+func (s *QueryAllBandwidthLimitTaskListServiceResponse) SetData(v []*QueryAllBandwidthLimitTaskListServiceResponseData) *QueryAllBandwidthLimitTaskListServiceResponse {
   s.Data = v
   return s
 }
 
-func (s *QueryForbiddingVisitorIPsByDomainServiceResponse) SetTotal(v int) *QueryForbiddingVisitorIPsByDomainServiceResponse {
-  s.Total = &v
-  return s
+type QueryAllBandwidthLimitTaskListServiceResponseData struct     {
+  // {"en":"domain","zh_CN":"客户域名"}
+  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
+  // {"en":"Whether there is a configuration control task, 0: no, 1: yes","zh_CN":"是否有配置控制任务,0表示没有,1表示有"}
+  IsExist *string `json:"isExist,omitempty" xml:"isExist,omitempty" require:"true"`
+  // {"en":"","zh_CN":""}
+  Content []*QueryAllBandwidthLimitTaskListServiceResponseDataContent `json:"content,omitempty" xml:"content,omitempty" require:"true" type:"Repeated"`
 }
 
-func (s *QueryForbiddingVisitorIPsByDomainServiceResponse) SetPageNo(v int) *QueryForbiddingVisitorIPsByDomainServiceResponse {
-  s.PageNo = &v
-  return s
+func (s QueryAllBandwidthLimitTaskListServiceResponseData) String() string {
+  return tea.Prettify(s)
 }
 
-func (s *QueryForbiddingVisitorIPsByDomainServiceResponse) SetPageSize(v int) *QueryForbiddingVisitorIPsByDomainServiceResponse {
-  s.PageSize = &v
-  return s
+func (s QueryAllBandwidthLimitTaskListServiceResponseData) GoString() string {
+  return s.String()
 }
 
-func (s *QueryForbiddingVisitorIPsByDomainServiceResponse) SetResult(v []*string) *QueryForbiddingVisitorIPsByDomainServiceResponse {
-  s.Result = v
-  return s
-}
-
-func (s *QueryForbiddingVisitorIPsByDomainServiceResponse) SetDomain(v string) *QueryForbiddingVisitorIPsByDomainServiceResponse {
+func (s *QueryAllBandwidthLimitTaskListServiceResponseData) SetDomain(v string) *QueryAllBandwidthLimitTaskListServiceResponseData {
   s.Domain = &v
   return s
 }
 
-func (s *QueryForbiddingVisitorIPsByDomainServiceResponse) SetIp(v string) *QueryForbiddingVisitorIPsByDomainServiceResponse {
-  s.Ip = &v
+func (s *QueryAllBandwidthLimitTaskListServiceResponseData) SetIsExist(v string) *QueryAllBandwidthLimitTaskListServiceResponseData {
+  s.IsExist = &v
   return s
 }
 
-func (s *QueryForbiddingVisitorIPsByDomainServiceResponse) SetStartTime(v int) *QueryForbiddingVisitorIPsByDomainServiceResponse {
-  s.StartTime = &v
+func (s *QueryAllBandwidthLimitTaskListServiceResponseData) SetContent(v []*QueryAllBandwidthLimitTaskListServiceResponseDataContent) *QueryAllBandwidthLimitTaskListServiceResponseData {
+  s.Content = v
   return s
 }
 
-func (s *QueryForbiddingVisitorIPsByDomainServiceResponse) SetEndTime(v int) *QueryForbiddingVisitorIPsByDomainServiceResponse {
-  s.EndTime = &v
+type QueryAllBandwidthLimitTaskListServiceResponseDataContent struct     {
+  // {"en":"taskName","zh_CN":"任务名称"}
+  TaskName *string `json:"taskName,omitempty" xml:"taskName,omitempty" require:"true"`
+  // {"en":"Domain name configuration task types: 1. Static bandwidth control task, 2. Bandwidth buyout task, 3. Flow buyout task, 4. Request number buyout task, 5. Redundant pool speed limit task, 6. Back-to-source task, 7. POP running high scheduling task (this kind of task is quite special, the domain name is a global quantity, so as long as there is configuration, it will be enabled by default), 8. IP ban task","zh_CN":"域名配置的任务类型:1静态带宽控制任务,2带宽买断任务,3流量买断任务,4请求数买断任务,5冗余池限速任务,6回源任务,7POP跑高调度任务(此种任务比较特殊,域名为全局量,所以只要有配置,就默认开启),8IP封禁任务"}
+  TaskType *string `json:"taskType,omitempty" xml:"taskType,omitempty" require:"true"`
+  // {"en":"Task status, 0: task is off, 1: task is on.","zh_CN":"任务状态,0表示任务关闭,1表示任务开启。"}
+  TaskStatus *string `json:"taskStatus,omitempty" xml:"taskStatus,omitempty" require:"true"`
+  // {"en":"Control strategy. 0 means squid default, 1 rejects, 2 when taskType=8, is ladder blocked, the rest is redirected ip, 3 when taskType=6, is backup source, the rest is speed limit = rejection + maximum download rate, 4 speed limit = rejection + timeout to disconnect, 5 does not process, controls each connection at minimum speed, does not process the excess part, 6 backups, 7 redirects domain name, 8 redirects URL","zh_CN":"控制策略。0表示squid默认,1拒绝,2当taskType=8时,为阶梯封禁,其余为重定向ip,3当taskType=6时,为主备回源,其余为限速=拒绝+最大下载速率,4限速=拒绝+超时断开连接,5不处理,按最小速率控制每个连接,超出部分不处理,6回源,7重定向域名,8重定向URL"}
+  CtrlMode *string `json:"ctrlMode,omitempty" xml:"ctrlMode,omitempty" require:"true"`
+  // {"en":"Bandwidth limit value, when taskType=1,2,5,6, in Mbps, when taskType=3, in G, when taskType=4, in MH (millions), when taskType=7, in -1, there is no bandwidth limit value, when taskType=8, in seconds.","zh_CN":"带宽限制值,当taskType=1,2,5,6时,单位为Mbps,当taskType=3,单位为G,当taskType=4,单位为MH(百万个),当taskType=7,为-1,表示没有带宽限制值,当taskType=8,单位为次。"}
+  CtrlValue *string `json:"ctrlValue,omitempty" xml:"ctrlValue,omitempty" require:"true"`
+  // {"en":"List of customer domains involved under the task. Values are only available when entering ContainOrichannelName=1.","zh_CN":"任务下涉及的客户域名列表。只有在入参containOrichannelName=1的时候有值。"}
+  DomainList []*string `json:"domainList,omitempty" xml:"domainList,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s QueryAllBandwidthLimitTaskListServiceResponseDataContent) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAllBandwidthLimitTaskListServiceResponseDataContent) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAllBandwidthLimitTaskListServiceResponseDataContent) SetTaskName(v string) *QueryAllBandwidthLimitTaskListServiceResponseDataContent {
+  s.TaskName = &v
   return s
 }
 
-type QueryForbiddingVisitorIPsByDomainServicePaths struct {
+func (s *QueryAllBandwidthLimitTaskListServiceResponseDataContent) SetTaskType(v string) *QueryAllBandwidthLimitTaskListServiceResponseDataContent {
+  s.TaskType = &v
+  return s
 }
 
-func (s QueryForbiddingVisitorIPsByDomainServicePaths) String() string {
+func (s *QueryAllBandwidthLimitTaskListServiceResponseDataContent) SetTaskStatus(v string) *QueryAllBandwidthLimitTaskListServiceResponseDataContent {
+  s.TaskStatus = &v
+  return s
+}
+
+func (s *QueryAllBandwidthLimitTaskListServiceResponseDataContent) SetCtrlMode(v string) *QueryAllBandwidthLimitTaskListServiceResponseDataContent {
+  s.CtrlMode = &v
+  return s
+}
+
+func (s *QueryAllBandwidthLimitTaskListServiceResponseDataContent) SetCtrlValue(v string) *QueryAllBandwidthLimitTaskListServiceResponseDataContent {
+  s.CtrlValue = &v
+  return s
+}
+
+func (s *QueryAllBandwidthLimitTaskListServiceResponseDataContent) SetDomainList(v []*string) *QueryAllBandwidthLimitTaskListServiceResponseDataContent {
+  s.DomainList = v
+  return s
+}
+
+type QueryAllBandwidthLimitTaskListServiceResponseHeader struct {
+}
+
+func (s QueryAllBandwidthLimitTaskListServiceResponseHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryForbiddingVisitorIPsByDomainServicePaths) GoString() string {
-  return s.String()
-}
-
-type QueryForbiddingVisitorIPsByDomainServiceParameters struct {
-}
-
-func (s QueryForbiddingVisitorIPsByDomainServiceParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryForbiddingVisitorIPsByDomainServiceParameters) GoString() string {
-  return s.String()
-}
-
-type QueryForbiddingVisitorIPsByDomainServiceRequestHeader struct {
-}
-
-func (s QueryForbiddingVisitorIPsByDomainServiceRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryForbiddingVisitorIPsByDomainServiceRequestHeader) GoString() string {
-  return s.String()
-}
-
-type QueryForbiddingVisitorIPsByDomainServiceResponseHeader struct {
-}
-
-func (s QueryForbiddingVisitorIPsByDomainServiceResponseHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryForbiddingVisitorIPsByDomainServiceResponseHeader) GoString() string {
+func (s QueryAllBandwidthLimitTaskListServiceResponseHeader) GoString() string {
   return s.String()
 }
 

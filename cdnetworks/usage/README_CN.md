@@ -70,6 +70,6 @@ if err != nil {
 
 | ActionName | description | client_methods | uri |
 | --- | --- | --- | --- |
-| Getdomainusage | 该接口用于查询指定域名在东九区的的流量数据。用户需提供查询时间范围、域名及合同信息，返回结果包含每个时间戳对应域名的用量数据。有助于用户监控域名流量，进行资源规划和成本管理。<br> | POST | /api/domain-usage |
+| Getdomainusage | 该接口用于查询指定域名在东九区的的本地存储用量数据。用户需提供查询时间范围、域名及合同信息，返回结果包含每个时间戳对应域名的用量数据。有助于用户监控域名本地存储用量数据，进行资源规划和成本管理。<br> | POST | /api/domain-usage |
 | Getcontractusage | 该接口用于查询单个合同在东九区的用量数据。用户需提供合同标识和查询时间范围来获取数据。返回结果包括合同在指定时间段内的每个时间片的用量数据，以字节为单位。有助于用户监控合同下数据使用情况，从而进行成本管理和资源规划。<br> | POST | /api/contract-usage |
 | Getpeakusage | 通过合同查询合同及其下域名的峰值用量，数据只支持东九区时区 | POST | /api/peak-usage |

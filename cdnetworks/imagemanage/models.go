@@ -6,9 +6,9 @@ import (
 )
 
 type DeployVmpImagePreheatingRequest struct {
-  // {"en":"Image ID", "zh_CN":"镜像id"}
+  // {"en":"Image ID","zh_CN":"镜像id"}
   ImageId *string `json:"imageId,omitempty" xml:"imageId,omitempty" require:"true"`
-  // {"en":"Name of preheating node", "zh_CN":"预热节点"}
+  // {"en":"Name of preheating node","zh_CN":"预热节点"}
   NodeNames []*string `json:"nodeNames,omitempty" xml:"nodeNames,omitempty" require:"true" type:"Repeated"`
 }
 
@@ -30,14 +30,14 @@ func (s *DeployVmpImagePreheatingRequest) SetNodeNames(v []*string) *DeployVmpIm
   return s
 }
 
-type DeployVmpImagePreheatingResponse struct {
+type DeployVmpImagePreheatingRequestHeader struct {
 }
 
-func (s DeployVmpImagePreheatingResponse) String() string {
+func (s DeployVmpImagePreheatingRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s DeployVmpImagePreheatingResponse) GoString() string {
+func (s DeployVmpImagePreheatingRequestHeader) GoString() string {
   return s.String()
 }
 
@@ -63,15 +63,29 @@ func (s DeployVmpImagePreheatingParameters) GoString() string {
   return s.String()
 }
 
-type DeployVmpImagePreheatingRequestHeader struct {
+type DeployVmpImagePreheatingResponse struct {
+  // {"en":"Response code","zh_CN":"响应码，0为成功"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Error message","zh_CN":"错误信息"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
 }
 
-func (s DeployVmpImagePreheatingRequestHeader) String() string {
+func (s DeployVmpImagePreheatingResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s DeployVmpImagePreheatingRequestHeader) GoString() string {
+func (s DeployVmpImagePreheatingResponse) GoString() string {
   return s.String()
+}
+
+func (s *DeployVmpImagePreheatingResponse) SetCode(v string) *DeployVmpImagePreheatingResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *DeployVmpImagePreheatingResponse) SetMessage(v string) *DeployVmpImagePreheatingResponse {
+  s.Message = &v
+  return s
 }
 
 type DeployVmpImagePreheatingResponseHeader struct {
@@ -297,50 +311,19 @@ func (s QueryVmpImagePreheatingStateRequest) GoString() string {
   return s.String()
 }
 
-type QueryVmpImagePreheatingStateResponse struct {
-  QueryVmpImagePreheatingStatePreHeatingInfo []*QueryVmpImagePreheatingStatePreHeatingInfo `json:"preHeatingInfo,omitempty" xml:"preHeatingInfo,omitempty" require:"true" type:"Repeated"`
+type QueryVmpImagePreheatingStateRequestHeader struct {
 }
 
-func (s QueryVmpImagePreheatingStateResponse) String() string {
+func (s QueryVmpImagePreheatingStateRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryVmpImagePreheatingStateResponse) GoString() string {
+func (s QueryVmpImagePreheatingStateRequestHeader) GoString() string {
   return s.String()
-}
-
-func (s *QueryVmpImagePreheatingStateResponse) SetPreHeatingInfo(v []*QueryVmpImagePreheatingStatePreHeatingInfo) *QueryVmpImagePreheatingStateResponse {
-  s.QueryVmpImagePreheatingStatePreHeatingInfo = v
-  return s
-}
-
-type QueryVmpImagePreheatingStatePreHeatingInfo struct {
-  // {"en":"Node name", "zh_CN":"节点名称"}
-  NodeName *string `json:"nodeName,omitempty" xml:"nodeName,omitempty" require:"true"`
-  // {"en":"Preheating status: SUCCESS - preheated; FAIL - preheating failed; SENDING - preheating", "zh_CN":"预热状态：SUCCESS-已预热；FAIL-预热失败；SENDING-预热中"}
-  State *string `json:"state,omitempty" xml:"state,omitempty" require:"true"`
-}
-
-func (s QueryVmpImagePreheatingStatePreHeatingInfo) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryVmpImagePreheatingStatePreHeatingInfo) GoString() string {
-  return s.String()
-}
-
-func (s *QueryVmpImagePreheatingStatePreHeatingInfo) SetNodeName(v string) *QueryVmpImagePreheatingStatePreHeatingInfo {
-  s.NodeName = &v
-  return s
-}
-
-func (s *QueryVmpImagePreheatingStatePreHeatingInfo) SetState(v string) *QueryVmpImagePreheatingStatePreHeatingInfo {
-  s.State = &v
-  return s
 }
 
 type QueryVmpImagePreheatingStatePaths struct {
-  // {"en":"no", "zh_CN":"镜像id"}
+  // {"en":"no","zh_CN":"镜像id"}
   Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
 }
 
@@ -368,15 +351,79 @@ func (s QueryVmpImagePreheatingStateParameters) GoString() string {
   return s.String()
 }
 
-type QueryVmpImagePreheatingStateRequestHeader struct {
+type QueryVmpImagePreheatingStateResponse struct {
+  // {"en":"Response code","zh_CN":"响应码，0为成功"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Error message","zh_CN":"错误信息"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+  // {"en":"Response data","zh_CN":"响应数据"}
+  Data *QueryVmpImagePreheatingStateResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
 }
 
-func (s QueryVmpImagePreheatingStateRequestHeader) String() string {
+func (s QueryVmpImagePreheatingStateResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryVmpImagePreheatingStateRequestHeader) GoString() string {
+func (s QueryVmpImagePreheatingStateResponse) GoString() string {
   return s.String()
+}
+
+func (s *QueryVmpImagePreheatingStateResponse) SetCode(v string) *QueryVmpImagePreheatingStateResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *QueryVmpImagePreheatingStateResponse) SetMessage(v string) *QueryVmpImagePreheatingStateResponse {
+  s.Message = &v
+  return s
+}
+
+func (s *QueryVmpImagePreheatingStateResponse) SetData(v *QueryVmpImagePreheatingStateResponseData) *QueryVmpImagePreheatingStateResponse {
+  s.Data = v
+  return s
+}
+
+type QueryVmpImagePreheatingStateResponseData struct {
+  // {"en":"Preheating info","zh_CN":"预热信息"}
+  PreHeatingInfo []*QueryVmpImagePreheatingStateResponseDataPreHeatingInfo `json:"preHeatingInfo,omitempty" xml:"preHeatingInfo,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s QueryVmpImagePreheatingStateResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryVmpImagePreheatingStateResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *QueryVmpImagePreheatingStateResponseData) SetPreHeatingInfo(v []*QueryVmpImagePreheatingStateResponseDataPreHeatingInfo) *QueryVmpImagePreheatingStateResponseData {
+  s.PreHeatingInfo = v
+  return s
+}
+
+type QueryVmpImagePreheatingStateResponseDataPreHeatingInfo struct     {
+  // {"en":"Node name","zh_CN":"节点名称"}
+  NodeName *string `json:"nodeName,omitempty" xml:"nodeName,omitempty" require:"true"`
+  // {"en":"State","zh_CN":"状态"}
+  State *string `json:"state,omitempty" xml:"state,omitempty" require:"true"`
+}
+
+func (s QueryVmpImagePreheatingStateResponseDataPreHeatingInfo) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryVmpImagePreheatingStateResponseDataPreHeatingInfo) GoString() string {
+  return s.String()
+}
+
+func (s *QueryVmpImagePreheatingStateResponseDataPreHeatingInfo) SetNodeName(v string) *QueryVmpImagePreheatingStateResponseDataPreHeatingInfo {
+  s.NodeName = &v
+  return s
+}
+
+func (s *QueryVmpImagePreheatingStateResponseDataPreHeatingInfo) SetState(v string) *QueryVmpImagePreheatingStateResponseDataPreHeatingInfo {
+  s.State = &v
+  return s
 }
 
 type QueryVmpImagePreheatingStateResponseHeader struct {

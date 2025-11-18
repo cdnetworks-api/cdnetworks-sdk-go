@@ -70,9 +70,11 @@ For detailed API documentation and available methods, please refer to the [offic
 
 | ActionName | enDescription | client_methods | uri |
 | --- | --- | --- | --- |
-| Querypurgestatus | Query the purge task status. Use this API to check if the task has been completed successfully throughout the global CDN. | POST | /ccm/purge/ItemIdQuery |
-| Purgefilewithtag | Push the file with the tag in the domain name with the tag switch enabled under the customer | POST | /api/content/tag/purge |
-| Regexurlpurge | The content of the file cached on the CDN node is cleared according to the regular url method, and the entire network takes effect within 1 minute. | POST | /api/content/regular-url/purge |
-| Purge | Refresh the files cached on the CDN nodes, which takes effect throughout the whole CDN within about 10 minutes. | POST | /ccm/purge/ItemIdReceiver |
+| Getpurgestatus | Query the purge task status. Use this API to check if the task has been completed successfully throughout the global CDN. | POST | /ccm/purge/ItemIdQuery |
+| Purgefilewithtag | Purge cache by tags. The tag purge feature should be enabled first. | POST | /api/content/tag/purge |
+| Purgeurlsmatchingregex | Clear the cached file content on CDN nodes according to the regular URL method. | POST | /api/content/regular-url/purge |
+| Purge | Refresh the cached file content on CDN nodes. It generally takes effect within 1 - 3 minutes across the network. The daily limit for directory pushing per account and per domain name is 500. | POST | /ccm/purge/ItemIdReceiver |
 | Querypurgelimit | query purge daily limit | POST | /ccm/purge/limit |
 | Querypurgeresiduals | Query url purge , directory purge and prefetch daily limit . | GET | /ccm/upperQuery |
+| Getpurgequota | This interface is used to query the daily push limit and daily remaining amount for a specified customer. Users can obtain their daily push limit and remaining amount through this interface, including URL push, directory push, regular expression push, and tag push. This is of great significance for determining whether the customer can continue to submit tasks. It can help customers promptly find out if they have reached the daily limit, and when customers have a large number of tasks to submit, they can adjust the daily limit in advance.<br> | POST | /ccm/purge/quota |
+| Getprefetchquota | This interface is used to query the daily upper limit and remaining daily quantity of prefetching for a specified customer. Through this interface, users can obtain their daily prefetching upper limit and remaining quantity, including the number of URLs and prefetching size. This is crucial for whether the customer can continue to submit tasks. It helps customers promptly identify whether the daily upper limit has been reached. When customers have a large number of tasks to submit, they can adjust the daily upper limit in advance. | POST | /ccm/prefetch/quota |

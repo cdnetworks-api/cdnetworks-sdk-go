@@ -96,20 +96,17 @@ func (s DeleteACaCertificateResponseHeader) GoString() string {
 
 
 type UpdateACaCertificateRequest struct {
-  // {"en":"Certificate name", "zh_CN":"证书名称"}
+  // {"en":"Certificate name","zh_CN":"证书名称"}
   CertificateName *string `json:"certificateName,omitempty" xml:"certificateName,omitempty" require:"true"`
-  // {"en":"Certificate content, in PEM format. ", "zh_CN":"证书内容，PEM格式。例如：
-  // -----BEGIN CERTIFICATE-----
-  // ……
-  // -----END CERTIFICATE-----"}
+  // {"en":"Certificate content, in PEM format.","zh_CN":"证书内容，PEM格式。例如：\n-----BEGIN CERTIFICATE-----\n……\n-----END CERTIFICATE-----"}
   Content *string `json:"content,omitempty" xml:"content,omitempty" require:"true"`
-  // {"en":"comment.", "zh_CN":"备注"}
+  // {"en":"comment.","zh_CN":"备注"}
   Comment *string `json:"comment,omitempty" xml:"comment,omitempty"`
-  // {"en":"Certificate type,can be ROOT or NODE. ", "zh_CN":"证书的类型，可选值：ROOT,NODE。ROOT表示根证书，NODE表示子证书"}
+  // {"en":"Certificate type","zh_CN":"证书的类型。ROOT表示根证书，NODE表示子证书","exampleValue":"ROOT,NODE"}
   Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
-  // {"en":"parent certificate Id,if the certificate type is NODE, it cannot be empty.", "zh_CN":"父证书id，如果证书类型为NODE，则必填"}
+  // {"en":"parent certificate Id,if the certificate type is NODE, it cannot be empty.","zh_CN":"父证书id，如果证书类型为NODE，则必填"}
   ParentCertificateId *string `json:"parentCertificateId,omitempty" xml:"parentCertificateId,omitempty"`
-  // {"en":"Skip the constraints that have expired.", "zh_CN":"是否跳过校验证书是否已过期的约束"}
+  // {"en":"Skip the constraints that have expired.","zh_CN":"是否跳过校验证书已过期的约束","exampleValue":"true,false"}
   SkipExpired *bool `json:"skipExpired,omitempty" xml:"skipExpired,omitempty" require:"true"`
 }
 
@@ -151,33 +148,19 @@ func (s *UpdateACaCertificateRequest) SetSkipExpired(v bool) *UpdateACaCertifica
   return s
 }
 
-type UpdateACaCertificateResponse struct {
-  // {"en":"Status code", "zh_CN":"状态码"}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Response message", "zh_CN":"响应信息"}
-  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+type UpdateACaCertificateRequestHeader struct {
 }
 
-func (s UpdateACaCertificateResponse) String() string {
+func (s UpdateACaCertificateRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateACaCertificateResponse) GoString() string {
+func (s UpdateACaCertificateRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *UpdateACaCertificateResponse) SetCode(v string) *UpdateACaCertificateResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *UpdateACaCertificateResponse) SetMessage(v string) *UpdateACaCertificateResponse {
-  s.Message = &v
-  return s
-}
-
 type UpdateACaCertificatePaths struct {
-  // {"en":"The certificate ID you want to modify.", "zh_CN":"需要修改的证书id"}
+  // {"en":"The certificate ID you want to modify.","zh_CN":"需要修改的证书id"}
   CertificateId *string `json:"certificateId,omitempty" xml:"certificateId,omitempty" require:"true"`
 }
 
@@ -205,15 +188,29 @@ func (s UpdateACaCertificateParameters) GoString() string {
   return s.String()
 }
 
-type UpdateACaCertificateRequestHeader struct {
+type UpdateACaCertificateResponse struct {
+  // {"en":"Status code","zh_CN":"状态码"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Response message","zh_CN":"响应信息"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
 }
 
-func (s UpdateACaCertificateRequestHeader) String() string {
+func (s UpdateACaCertificateResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateACaCertificateRequestHeader) GoString() string {
+func (s UpdateACaCertificateResponse) GoString() string {
   return s.String()
+}
+
+func (s *UpdateACaCertificateResponse) SetCode(v string) *UpdateACaCertificateResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *UpdateACaCertificateResponse) SetMessage(v string) *UpdateACaCertificateResponse {
+  s.Message = &v
+  return s
 }
 
 type UpdateACaCertificateResponseHeader struct {
@@ -230,202 +227,213 @@ func (s UpdateACaCertificateResponseHeader) GoString() string {
 
 
 
-type GetACaCertificateRequest struct {
+type GetCaCertificateRequest struct {
 }
 
-func (s GetACaCertificateRequest) String() string {
+func (s GetCaCertificateRequest) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetACaCertificateRequest) GoString() string {
+func (s GetCaCertificateRequest) GoString() string {
   return s.String()
 }
 
-type GetACaCertificateResponse struct {
-  // {"en":"Status code", "zh_CN":"状态码"}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Response message", "zh_CN":"响应信息"}
-  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
-  // {"en":"detail", "zh_CN":"详情"}
-  Data map[string]interface{} `json:"data,omitempty" xml:"data,omitempty" require:"true"`
-  // {"en":"Certificate ID.", "zh_CN":"证书ID。"}
-  CertificateId *string `json:"certificateId,omitempty" xml:"certificateId,omitempty" require:"true"`
-  // {"en":"Certificate name.", "zh_CN":"证书名称。"}
-  CertificateName *string `json:"certificateName,omitempty" xml:"certificateName,omitempty" require:"true"`
-  // {"en":"Certificate type, ROOT or NODE.", "zh_CN":"证书类型,取值ROOT或NODE。"}
-  Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
-  // {"en":"Parent certificate Id.", "zh_CN":"父证书id。"}
-  ParentCertificateId *string `json:"parentCertificateId,omitempty" xml:"parentCertificateId,omitempty" require:"true"`
-  // {"en":"Parent certificate name.", "zh_CN":"父证书名称。"}
-  ParentCertificateName *string `json:"parentCertificateName,omitempty" xml:"parentCertificateName,omitempty" require:"true"`
-  // {"en":"Certificate validity from.", "zh_CN":"证书有效期开始时间。"}
-  ValidityFrom *string `json:"validityFrom,omitempty" xml:"validityFrom,omitempty" require:"true"`
-  // {"en":"Certificate validity to.", "zh_CN":"证书有效期结束时间。"}
-  ValidityTo *string `json:"validityTo,omitempty" xml:"validityTo,omitempty" require:"true"`
-  // {"en":"Certificate create time.", "zh_CN":"证书创建时间。"}
-  CreationTime *string `json:"creationTime,omitempty" xml:"creationTime,omitempty" require:"true"`
-  // {"en":"algorithm", "zh_CN":"私钥算法。"}
-  Algorithm *string `json:"algorithm,omitempty" xml:"algorithm,omitempty" require:"true"`
-  // {"en":"version", "zh_CN":"version"}
-  Version *string `json:"version,omitempty" xml:"version,omitempty" require:"true"`
-  // {"en":"issuer", "zh_CN":"颁发机构"}
-  Issuer *string `json:"issuer,omitempty" xml:"issuer,omitempty" require:"true"`
-  // {"en":"serial number", "zh_CN":"序列号"}
-  SerialNumber *string `json:"serialNumber,omitempty" xml:"serialNumber,omitempty" require:"true"`
-  // {"en":"certificate content", "zh_CN":"证书内容"}
-  Content *string `json:"content,omitempty" xml:"content,omitempty" require:"true"`
-  // {"en":"Certificate expire status, 0-normal, 1-nearly expired, 2-already expired.", "zh_CN":"证书过期状态，0-正常，1-临近过期，2-已过期。"}
-  ExpireStatus *string `json:"expireStatus,omitempty" xml:"expireStatus,omitempty" require:"true"`
-  // {"en":"comment.", "zh_CN":"备注。"}
-  Comment *string `json:"comment,omitempty" xml:"comment,omitempty" require:"true"`
+type GetCaCertificateRequestHeader struct {
 }
 
-func (s GetACaCertificateResponse) String() string {
+func (s GetCaCertificateRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetACaCertificateResponse) GoString() string {
+func (s GetCaCertificateRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *GetACaCertificateResponse) SetCode(v string) *GetACaCertificateResponse {
-  s.Code = &v
-  return s
+type GetCaCertificatePaths struct {
+  // {"en":"CA certificate ID","zh_CN":"CA证书ID"}
+  CertificateId *string `json:"certificate-id,omitempty" xml:"certificate-id,omitempty" require:"true"`
 }
 
-func (s *GetACaCertificateResponse) SetMessage(v string) *GetACaCertificateResponse {
-  s.Message = &v
-  return s
+func (s GetCaCertificatePaths) String() string {
+  return tea.Prettify(s)
 }
 
-func (s *GetACaCertificateResponse) SetData(v map[string]interface{}) *GetACaCertificateResponse {
-  s.Data = v
-  return s
+func (s GetCaCertificatePaths) GoString() string {
+  return s.String()
 }
 
-func (s *GetACaCertificateResponse) SetCertificateId(v string) *GetACaCertificateResponse {
+func (s *GetCaCertificatePaths) SetCertificateId(v string) *GetCaCertificatePaths {
   s.CertificateId = &v
   return s
 }
 
-func (s *GetACaCertificateResponse) SetCertificateName(v string) *GetACaCertificateResponse {
+type GetCaCertificateParameters struct {
+}
+
+func (s GetCaCertificateParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetCaCertificateParameters) GoString() string {
+  return s.String()
+}
+
+type GetCaCertificateResponse struct {
+  // {"en":"Status code","zh_CN":"状态码"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Response message","zh_CN":"响应信息"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+  // {"en":"detail","zh_CN":"详情"}
+  Data *GetCaCertificateResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
+  // {"en":"Certificate ID.","zh_CN":"证书ID。"}
+  CertificateId *string `json:"certificateId,omitempty" xml:"certificateId,omitempty" require:"true"`
+  // {"en":"Certificate name.","zh_CN":"证书名称。"}
+  CertificateName *string `json:"certificateName,omitempty" xml:"certificateName,omitempty" require:"true"`
+  // {"en":"Certificate type","zh_CN":"证书类型","exampleValue":"ROOT,NODE"}
+  Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
+  // {"en":"Parent certificate Id.","zh_CN":"父证书id。"}
+  ParentCertificateId *string `json:"parentCertificateId,omitempty" xml:"parentCertificateId,omitempty" require:"true"`
+  // {"en":"Parent certificate name.","zh_CN":"父证书名称。"}
+  ParentCertificateName *string `json:"parentCertificateName,omitempty" xml:"parentCertificateName,omitempty" require:"true"`
+  // {"en":"Certificate validity from.","zh_CN":"证书有效期开始时间。"}
+  ValidityFrom *string `json:"validityFrom,omitempty" xml:"validityFrom,omitempty" require:"true"`
+  // {"en":"Certificate validity to.","zh_CN":"证书有效期结束时间。"}
+  ValidityTo *string `json:"validityTo,omitempty" xml:"validityTo,omitempty" require:"true"`
+  // {"en":"Certificate create time.","zh_CN":"证书创建时间。"}
+  CreationTime *string `json:"creationTime,omitempty" xml:"creationTime,omitempty" require:"true"`
+  // {"en":"algorithm","zh_CN":"私钥算法。"}
+  Algorithm *string `json:"algorithm,omitempty" xml:"algorithm,omitempty" require:"true"`
+  // {"en":"version","zh_CN":"version"}
+  Version *string `json:"version,omitempty" xml:"version,omitempty" require:"true"`
+  // {"en":"issuer","zh_CN":"颁发机构"}
+  Issuer *string `json:"issuer,omitempty" xml:"issuer,omitempty" require:"true"`
+  // {"en":"serial number","zh_CN":"序列号"}
+  SerialNumber *string `json:"serialNumber,omitempty" xml:"serialNumber,omitempty" require:"true"`
+  // {"en":"certificate content","zh_CN":"证书内容"}
+  Content *string `json:"content,omitempty" xml:"content,omitempty" require:"true"`
+  // {"en":"Certificate expire status, 0-normal, 1-nearly expired, 2-already expired.","zh_CN":"证书过期状态，0-正常，1-临近过期，2-已过期。","exampleValue":"0,1,2"}
+  ExpireStatus *string `json:"expireStatus,omitempty" xml:"expireStatus,omitempty" require:"true"`
+  // {"en":"comment.","zh_CN":"备注。"}
+  Comment *string `json:"comment,omitempty" xml:"comment,omitempty" require:"true"`
+}
+
+func (s GetCaCertificateResponse) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetCaCertificateResponse) GoString() string {
+  return s.String()
+}
+
+func (s *GetCaCertificateResponse) SetCode(v string) *GetCaCertificateResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *GetCaCertificateResponse) SetMessage(v string) *GetCaCertificateResponse {
+  s.Message = &v
+  return s
+}
+
+func (s *GetCaCertificateResponse) SetData(v *GetCaCertificateResponseData) *GetCaCertificateResponse {
+  s.Data = v
+  return s
+}
+
+func (s *GetCaCertificateResponse) SetCertificateId(v string) *GetCaCertificateResponse {
+  s.CertificateId = &v
+  return s
+}
+
+func (s *GetCaCertificateResponse) SetCertificateName(v string) *GetCaCertificateResponse {
   s.CertificateName = &v
   return s
 }
 
-func (s *GetACaCertificateResponse) SetType(v string) *GetACaCertificateResponse {
+func (s *GetCaCertificateResponse) SetType(v string) *GetCaCertificateResponse {
   s.Type = &v
   return s
 }
 
-func (s *GetACaCertificateResponse) SetParentCertificateId(v string) *GetACaCertificateResponse {
+func (s *GetCaCertificateResponse) SetParentCertificateId(v string) *GetCaCertificateResponse {
   s.ParentCertificateId = &v
   return s
 }
 
-func (s *GetACaCertificateResponse) SetParentCertificateName(v string) *GetACaCertificateResponse {
+func (s *GetCaCertificateResponse) SetParentCertificateName(v string) *GetCaCertificateResponse {
   s.ParentCertificateName = &v
   return s
 }
 
-func (s *GetACaCertificateResponse) SetValidityFrom(v string) *GetACaCertificateResponse {
+func (s *GetCaCertificateResponse) SetValidityFrom(v string) *GetCaCertificateResponse {
   s.ValidityFrom = &v
   return s
 }
 
-func (s *GetACaCertificateResponse) SetValidityTo(v string) *GetACaCertificateResponse {
+func (s *GetCaCertificateResponse) SetValidityTo(v string) *GetCaCertificateResponse {
   s.ValidityTo = &v
   return s
 }
 
-func (s *GetACaCertificateResponse) SetCreationTime(v string) *GetACaCertificateResponse {
+func (s *GetCaCertificateResponse) SetCreationTime(v string) *GetCaCertificateResponse {
   s.CreationTime = &v
   return s
 }
 
-func (s *GetACaCertificateResponse) SetAlgorithm(v string) *GetACaCertificateResponse {
+func (s *GetCaCertificateResponse) SetAlgorithm(v string) *GetCaCertificateResponse {
   s.Algorithm = &v
   return s
 }
 
-func (s *GetACaCertificateResponse) SetVersion(v string) *GetACaCertificateResponse {
+func (s *GetCaCertificateResponse) SetVersion(v string) *GetCaCertificateResponse {
   s.Version = &v
   return s
 }
 
-func (s *GetACaCertificateResponse) SetIssuer(v string) *GetACaCertificateResponse {
+func (s *GetCaCertificateResponse) SetIssuer(v string) *GetCaCertificateResponse {
   s.Issuer = &v
   return s
 }
 
-func (s *GetACaCertificateResponse) SetSerialNumber(v string) *GetACaCertificateResponse {
+func (s *GetCaCertificateResponse) SetSerialNumber(v string) *GetCaCertificateResponse {
   s.SerialNumber = &v
   return s
 }
 
-func (s *GetACaCertificateResponse) SetContent(v string) *GetACaCertificateResponse {
+func (s *GetCaCertificateResponse) SetContent(v string) *GetCaCertificateResponse {
   s.Content = &v
   return s
 }
 
-func (s *GetACaCertificateResponse) SetExpireStatus(v string) *GetACaCertificateResponse {
+func (s *GetCaCertificateResponse) SetExpireStatus(v string) *GetCaCertificateResponse {
   s.ExpireStatus = &v
   return s
 }
 
-func (s *GetACaCertificateResponse) SetComment(v string) *GetACaCertificateResponse {
+func (s *GetCaCertificateResponse) SetComment(v string) *GetCaCertificateResponse {
   s.Comment = &v
   return s
 }
 
-type GetACaCertificatePaths struct {
-  // {"en":"CA certificate ID", "zh_CN":"CA证书ID"}
-  CertifiateId *string `json:"certificate-id,omitempty" xml:"certificate-id,omitempty" require:"true"`
+type GetCaCertificateResponseData struct {
 }
 
-func (s GetACaCertificatePaths) String() string {
+func (s GetCaCertificateResponseData) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetACaCertificatePaths) GoString() string {
+func (s GetCaCertificateResponseData) GoString() string {
   return s.String()
 }
 
-func (s *GetACaCertificatePaths) SetCertifiateId(v string) *GetACaCertificatePaths {
-  s.CertifiateId = &v
-  return s
+type GetCaCertificateResponseHeader struct {
 }
 
-type GetACaCertificateParameters struct {
-}
-
-func (s GetACaCertificateParameters) String() string {
+func (s GetCaCertificateResponseHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s GetACaCertificateParameters) GoString() string {
-  return s.String()
-}
-
-type GetACaCertificateRequestHeader struct {
-}
-
-func (s GetACaCertificateRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetACaCertificateRequestHeader) GoString() string {
-  return s.String()
-}
-
-type GetACaCertificateResponseHeader struct {
-}
-
-func (s GetACaCertificateResponseHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetACaCertificateResponseHeader) GoString() string {
+func (s GetCaCertificateResponseHeader) GoString() string {
   return s.String()
 }
 
@@ -433,11 +441,11 @@ func (s GetACaCertificateResponseHeader) GoString() string {
 
 
 type AssociateDomainWithCaCertificateRequest struct {
-  // {"en":"Certificate ID", "zh_CN":"证书ID"}
+  // {"en":"Certificate ID","zh_CN":"证书ID"}
   CertificateId *string `json:"certificateId,omitempty" xml:"certificateId,omitempty" require:"true"`
-  // {"en":"Certificate usage, Allowed values: CLIENT_MTLS, ORIGIN_MTLS .", "zh_CN":"证书用途，取值范围：CLIENT_MTLS、ORIGIN_MTLS "}
+  // {"en":"Certificate usage, Allowed values: CLIENT_MTLS, ORIGIN_MTLS,VERIFY_ORIGIN","zh_CN":"证书用途，取值范围：CLIENT_MTLS、ORIGIN_MTLS、VERIFY_ORIGIN"}
   Usage *string `json:"usage,omitempty" xml:"usage,omitempty" require:"true"`
-  // {"en":"Associated domains.", "zh_CN":"关联域名列表"}
+  // {"en":"Associated domains.","zh_CN":"关联域名列表"}
   Domains []*string `json:"domains,omitempty" xml:"domains,omitempty" require:"true" type:"Repeated"`
 }
 
@@ -464,29 +472,15 @@ func (s *AssociateDomainWithCaCertificateRequest) SetDomains(v []*string) *Assoc
   return s
 }
 
-type AssociateDomainWithCaCertificateResponse struct {
-  // {"en":"Status code", "zh_CN":"状态码"}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Response message", "zh_CN":"响应信息"}
-  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+type AssociateDomainWithCaCertificateRequestHeader struct {
 }
 
-func (s AssociateDomainWithCaCertificateResponse) String() string {
+func (s AssociateDomainWithCaCertificateRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s AssociateDomainWithCaCertificateResponse) GoString() string {
+func (s AssociateDomainWithCaCertificateRequestHeader) GoString() string {
   return s.String()
-}
-
-func (s *AssociateDomainWithCaCertificateResponse) SetCode(v string) *AssociateDomainWithCaCertificateResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *AssociateDomainWithCaCertificateResponse) SetMessage(v string) *AssociateDomainWithCaCertificateResponse {
-  s.Message = &v
-  return s
 }
 
 type AssociateDomainWithCaCertificatePaths struct {
@@ -511,15 +505,29 @@ func (s AssociateDomainWithCaCertificateParameters) GoString() string {
   return s.String()
 }
 
-type AssociateDomainWithCaCertificateRequestHeader struct {
+type AssociateDomainWithCaCertificateResponse struct {
+  // {"en":"Status code","zh_CN":"状态码"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Response message","zh_CN":"响应信息"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
 }
 
-func (s AssociateDomainWithCaCertificateRequestHeader) String() string {
+func (s AssociateDomainWithCaCertificateResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s AssociateDomainWithCaCertificateRequestHeader) GoString() string {
+func (s AssociateDomainWithCaCertificateResponse) GoString() string {
   return s.String()
+}
+
+func (s *AssociateDomainWithCaCertificateResponse) SetCode(v string) *AssociateDomainWithCaCertificateResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *AssociateDomainWithCaCertificateResponse) SetMessage(v string) *AssociateDomainWithCaCertificateResponse {
+  s.Message = &v
+  return s
 }
 
 type AssociateDomainWithCaCertificateResponseHeader struct {
@@ -537,20 +545,17 @@ func (s AssociateDomainWithCaCertificateResponseHeader) GoString() string {
 
 
 type CreateACaCertificateRequest struct {
-  // {"en":"Certificate name", "zh_CN":"证书名称"}
+  // {"en":"Certificate name","zh_CN":"证书名称"}
   CertificateName *string `json:"certificateName,omitempty" xml:"certificateName,omitempty" require:"true"`
-  // {"en":"Certificate content, in PEM format. ", "zh_CN":"证书内容，PEM格式。例如：
-  // -----BEGIN CERTIFICATE-----
-  // ……
-  // -----END CERTIFICATE-----"}
+  // {"en":"Certificate content, in PEM format.","zh_CN":"证书内容，PEM格式。例如：\n-----BEGIN CERTIFICATE-----\n……\n-----END CERTIFICATE-----"}
   Content *string `json:"content,omitempty" xml:"content,omitempty" require:"true"`
-  // {"en":"comment.", "zh_CN":"备注"}
+  // {"en":"comment.","zh_CN":"备注"}
   Comment *string `json:"comment,omitempty" xml:"comment,omitempty"`
-  // {"en":"Certificate type,can be ROOT or NODE. ", "zh_CN":"证书的类型，可选值：ROOT,NODE。ROOT表示根证书，NODE表示子证书"}
+  // {"en":"Certificate type","zh_CN":"证书的类型。ROOT表示根证书，NODE表示子证书","exampleValue":"ROOT,NODE"}
   Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
-  // {"en":"parent certificate Id,if the certificate type is NODE, it cannot be empty.", "zh_CN":"父证书ID，如果证书类型为NODE，则必填"}
+  // {"en":"parent certificate Id,if the certificate type is NODE, it cannot be empty.","zh_CN":"父证书ID，如果证书类型为NODE，则必填"}
   ParentCertificateId *string `json:"parentCertificateId,omitempty" xml:"parentCertificateId,omitempty"`
-  // {"en":"Skip the constraints that have expired.", "zh_CN":"是否跳过校验证书是否已过期的约束"}
+  // {"en":"Skip the constraints that have expired.","zh_CN":"是否跳过校验证书已过期的约束"}
   SkipExpired *bool `json:"skipExpired,omitempty" xml:"skipExpired,omitempty" require:"true"`
 }
 
@@ -592,12 +597,45 @@ func (s *CreateACaCertificateRequest) SetSkipExpired(v bool) *CreateACaCertifica
   return s
 }
 
+type CreateACaCertificateRequestHeader struct {
+}
+
+func (s CreateACaCertificateRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateACaCertificateRequestHeader) GoString() string {
+  return s.String()
+}
+
+type CreateACaCertificatePaths struct {
+}
+
+func (s CreateACaCertificatePaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateACaCertificatePaths) GoString() string {
+  return s.String()
+}
+
+type CreateACaCertificateParameters struct {
+}
+
+func (s CreateACaCertificateParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateACaCertificateParameters) GoString() string {
+  return s.String()
+}
+
 type CreateACaCertificateResponse struct {
-  // {"en":"The URL used to access the certificate file where certificate-id is the unique token that the system generates for the certificate and whose value is a string", "zh_CN":"用于访问该证书文件的URL，其中certificate-id为系统为该证书生成的唯一标示，其值为字符串"}
+  // {"en":"The URL used to access the certificate file where certificate-id is the unique token that the system generates for the certificate and whose value is a string","zh_CN":"用于访问该证书文件的URL，其中certificate-id为系统为该证书生成的唯一标示，其值为字符串"}
   Location *string `json:"location,omitempty" xml:"location,omitempty" require:"true"`
-  // {"en":"Status code", "zh_CN":"状态码"}
+  // {"en":"Status code","zh_CN":"状态码"}
   Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Response message", "zh_CN":"响应信息"}
+  // {"en":"Response message","zh_CN":"响应信息"}
   Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
 }
 
@@ -624,39 +662,6 @@ func (s *CreateACaCertificateResponse) SetMessage(v string) *CreateACaCertificat
   return s
 }
 
-type CreateACaCertificatePaths struct {
-}
-
-func (s CreateACaCertificatePaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateACaCertificatePaths) GoString() string {
-  return s.String()
-}
-
-type CreateACaCertificateParameters struct {
-}
-
-func (s CreateACaCertificateParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateACaCertificateParameters) GoString() string {
-  return s.String()
-}
-
-type CreateACaCertificateRequestHeader struct {
-}
-
-func (s CreateACaCertificateRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateACaCertificateRequestHeader) GoString() string {
-  return s.String()
-}
-
 type CreateACaCertificateResponseHeader struct {
 }
 
@@ -671,291 +676,291 @@ func (s CreateACaCertificateResponseHeader) GoString() string {
 
 
 
-type QueryCaCertificateListRequest struct {
-  // {"en":"QueryCaCertificateListCertificate name", "zh_CN":"证书名称"}
+type ListCaCertificatesRequest struct {
+  // {"en":"Certificate name","zh_CN":"证书名称"}
   CertificateName *string `json:"certificateName,omitempty" xml:"certificateName,omitempty"`
-  // {"en":"Page number, must great than 0.", "zh_CN":"当前页数,大于0"}
+  // {"en":"Page number, must great than 0.","zh_CN":"当前页数,大于0"}
   PageNumber *int `json:"pageNumber,omitempty" xml:"pageNumber,omitempty" require:"true"`
-  // {"en":"Page size,must great than 0 and not allowed to exceed 500.", "zh_CN":"每页记录数,大于0小于500"}
+  // {"en":"Page size,must great than 0 and not allowed to exceed 500.","zh_CN":"每页记录数,大于0小于500"}
   PageSize *int `json:"pageSize,omitempty" xml:"pageSize,omitempty" require:"true"`
-  // {"en":"related domain names.", "zh_CN":"关联的域名"}
+  // {"en":"related domain names.","zh_CN":"关联的域名"}
   RelateDomains []*string `json:"relateDomains,omitempty" xml:"relateDomains,omitempty" type:"Repeated"`
-  // {"en":"QueryCaCertificateListCertificate expire status, 0-normal, 1-nearly expired, 2-already expired.", "zh_CN":"证书过期状态，0-正常，1-临近过期，2-已过期"}
+  // {"en":"Certificate expire status, 0-normal, 1-nearly expired, 2-already expired.","zh_CN":"证书过期状态，0-正常，1-临近过期，2-已过期","exampleValue":"0,1,2"}
   ExpireStatus []*string `json:"expireStatus,omitempty" xml:"expireStatus,omitempty" type:"Repeated"`
-  // {"en":"algorithm.", "zh_CN":"私钥算法"}
+  // {"en":"algorithm.","zh_CN":"私钥算法"}
   Algorithm *string `json:"algorithm,omitempty" xml:"algorithm,omitempty"`
-  // {"en":"Match mode, effects on parameter certificateName and relateDomains.", "zh_CN":"匹配方式,作用与证书名称以及关联域名"}
+  // {"en":"Match mode, effects on parameter certificateName and relateDomains.","zh_CN":"匹配方式,作用于证书名称以及关联域名"}
   IsLike *string `json:"isLike,omitempty" xml:"isLike,omitempty" require:"true"`
 }
 
-func (s QueryCaCertificateListRequest) String() string {
+func (s ListCaCertificatesRequest) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryCaCertificateListRequest) GoString() string {
+func (s ListCaCertificatesRequest) GoString() string {
   return s.String()
 }
 
-func (s *QueryCaCertificateListRequest) SetCertificateName(v string) *QueryCaCertificateListRequest {
+func (s *ListCaCertificatesRequest) SetCertificateName(v string) *ListCaCertificatesRequest {
   s.CertificateName = &v
   return s
 }
 
-func (s *QueryCaCertificateListRequest) SetPageNumber(v int) *QueryCaCertificateListRequest {
+func (s *ListCaCertificatesRequest) SetPageNumber(v int) *ListCaCertificatesRequest {
   s.PageNumber = &v
   return s
 }
 
-func (s *QueryCaCertificateListRequest) SetPageSize(v int) *QueryCaCertificateListRequest {
+func (s *ListCaCertificatesRequest) SetPageSize(v int) *ListCaCertificatesRequest {
   s.PageSize = &v
   return s
 }
 
-func (s *QueryCaCertificateListRequest) SetRelateDomains(v []*string) *QueryCaCertificateListRequest {
+func (s *ListCaCertificatesRequest) SetRelateDomains(v []*string) *ListCaCertificatesRequest {
   s.RelateDomains = v
   return s
 }
 
-func (s *QueryCaCertificateListRequest) SetExpireStatus(v []*string) *QueryCaCertificateListRequest {
+func (s *ListCaCertificatesRequest) SetExpireStatus(v []*string) *ListCaCertificatesRequest {
   s.ExpireStatus = v
   return s
 }
 
-func (s *QueryCaCertificateListRequest) SetAlgorithm(v string) *QueryCaCertificateListRequest {
+func (s *ListCaCertificatesRequest) SetAlgorithm(v string) *ListCaCertificatesRequest {
   s.Algorithm = &v
   return s
 }
 
-func (s *QueryCaCertificateListRequest) SetIsLike(v string) *QueryCaCertificateListRequest {
+func (s *ListCaCertificatesRequest) SetIsLike(v string) *ListCaCertificatesRequest {
   s.IsLike = &v
   return s
 }
 
-type QueryCaCertificateListResponse struct {
-  // {"en":"Result Code, success is 0 ", "zh_CN":"响应码，成功为0"}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Result Message", "zh_CN":"响应信息"}
-  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
-  // {"en":"QueryCaCertificateListCertificate list", "zh_CN":"ca证书列表"}
-  Certificates []*QueryCaCertificateListCertificate `json:"certificates,omitempty" xml:"certificates,omitempty" require:"true" type:"Repeated"`
-  // {"en":"Page Info", "zh_CN":"分页数据"}
-  QueryCaCertificateListPageInfo *QueryCaCertificateListPageInfo `json:"pageInfo,omitempty" xml:"pageInfo,omitempty" require:"true"`
+type ListCaCertificatesRequestHeader struct {
 }
 
-func (s QueryCaCertificateListResponse) String() string {
+func (s ListCaCertificatesRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryCaCertificateListResponse) GoString() string {
+func (s ListCaCertificatesRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *QueryCaCertificateListResponse) SetCode(v string) *QueryCaCertificateListResponse {
+type ListCaCertificatesPaths struct {
+}
+
+func (s ListCaCertificatesPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s ListCaCertificatesPaths) GoString() string {
+  return s.String()
+}
+
+type ListCaCertificatesParameters struct {
+}
+
+func (s ListCaCertificatesParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s ListCaCertificatesParameters) GoString() string {
+  return s.String()
+}
+
+type ListCaCertificatesResponse struct {
+  // {"en":"Result Code, success is 0","zh_CN":"响应码，成功为0"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Result Message","zh_CN":"响应信息"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+  // {"en":"Certificate list","zh_CN":"ca证书列表"}
+  Certificates []*ListCaCertificatesResponseCertificates `json:"certificates,omitempty" xml:"certificates,omitempty" require:"true" type:"Repeated"`
+  // {"en":"Page Info","zh_CN":"分页数据"}
+  PageInfo *ListCaCertificatesResponsePageInfo `json:"pageInfo,omitempty" xml:"pageInfo,omitempty" require:"true" type:"Struct"`
+}
+
+func (s ListCaCertificatesResponse) String() string {
+  return tea.Prettify(s)
+}
+
+func (s ListCaCertificatesResponse) GoString() string {
+  return s.String()
+}
+
+func (s *ListCaCertificatesResponse) SetCode(v string) *ListCaCertificatesResponse {
   s.Code = &v
   return s
 }
 
-func (s *QueryCaCertificateListResponse) SetMessage(v string) *QueryCaCertificateListResponse {
+func (s *ListCaCertificatesResponse) SetMessage(v string) *ListCaCertificatesResponse {
   s.Message = &v
   return s
 }
 
-func (s *QueryCaCertificateListResponse) SetCertificates(v []*QueryCaCertificateListCertificate) *QueryCaCertificateListResponse {
+func (s *ListCaCertificatesResponse) SetCertificates(v []*ListCaCertificatesResponseCertificates) *ListCaCertificatesResponse {
   s.Certificates = v
   return s
 }
 
-func (s *QueryCaCertificateListResponse) SetPageInfo(v *QueryCaCertificateListPageInfo) *QueryCaCertificateListResponse {
-  s.QueryCaCertificateListPageInfo = v
+func (s *ListCaCertificatesResponse) SetPageInfo(v *ListCaCertificatesResponsePageInfo) *ListCaCertificatesResponse {
+  s.PageInfo = v
   return s
 }
 
-type QueryCaCertificateListCertificate struct {
-  // {"en":"QueryCaCertificateListCertificate ID.", "zh_CN":"证书ID。"}
+type ListCaCertificatesResponseCertificates struct     {
+  // {"en":"Certificate ID.","zh_CN":"证书ID。"}
   CertificateId *string `json:"certificateId,omitempty" xml:"certificateId,omitempty" require:"true"`
-  // {"en":"QueryCaCertificateListCertificate name.", "zh_CN":"证书名称。"}
+  // {"en":"Certificate name.","zh_CN":"证书名称。"}
   CertificateName *string `json:"certificateName,omitempty" xml:"certificateName,omitempty" require:"true"`
-  // {"en":"QueryCaCertificateListCertificate type, ROOT or NODE.", "zh_CN":"证书类型,取值ROOT或NODE。"}
+  // {"en":"Certificate type, ROOT or NODE.","zh_CN":"证书类型,取值ROOT或NODE。"}
   Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
-  // {"en":"Parent certificate Id. ", "zh_CN":"父证书id。"}
+  // {"en":"Parent certificate Id.","zh_CN":"父证书id。"}
   ParentCertificateId *string `json:"parentCertificateId,omitempty" xml:"parentCertificateId,omitempty" require:"true"`
-  // {"en":"QueryCaCertificateListCertificate validity from.", "zh_CN":"证书有效期开始时间。"}
+  // {"en":"Certificate validity from.","zh_CN":"证书有效期开始时间。"}
   ValidityFrom *string `json:"validityFrom,omitempty" xml:"validityFrom,omitempty" require:"true"`
-  // {"en":"QueryCaCertificateListCertificate validity to.", "zh_CN":"证书有效期结束时间。"}
+  // {"en":"Certificate validity to.","zh_CN":"证书有效期结束时间。"}
   ValidityTo *string `json:"validityTo,omitempty" xml:"validityTo,omitempty" require:"true"`
-  // {"en":"Related domain list.", "zh_CN":"关联的域名。"}
-  RelatedDomainList []*QueryCaCertificateListRelatedDomain `json:"relatedDomainList,omitempty" xml:"relatedDomainList,omitempty" require:"true" type:"Repeated"`
-  // {"en":"algorithm ", "zh_CN":"私钥算法。"}
+  // {"en":"Related domain list.","zh_CN":"关联的域名。"}
+  RelatedDomainList []*ListCaCertificatesResponseCertificatesRelatedDomainList `json:"relatedDomainList,omitempty" xml:"relatedDomainList,omitempty" require:"true" type:"Repeated"`
+  // {"en":"algorithm","zh_CN":"私钥算法。"}
   Algorithm *string `json:"algorithm,omitempty" xml:"algorithm,omitempty" require:"true"`
-  // {"en":"QueryCaCertificateListCertificate expire status, 0-normal, 1-nearly expired, 2-already expired.", "zh_CN":"证书过期状态，0-正常，1-临近过期，2-已过期。"}
+  // {"en":"Certificate expire status, 0-normal, 1-nearly expired, 2-already expired.","zh_CN":"证书过期状态，0-正常，1-临近过期，2-已过期。"}
   ExpireStatus *string `json:"expireStatus,omitempty" xml:"expireStatus,omitempty" require:"true"`
-  // {"en":"comment.", "zh_CN":"备注。"}
+  // {"en":"comment.","zh_CN":"备注。"}
   Comment *string `json:"comment,omitempty" xml:"comment,omitempty" require:"true"`
 }
 
-func (s QueryCaCertificateListCertificate) String() string {
+func (s ListCaCertificatesResponseCertificates) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryCaCertificateListCertificate) GoString() string {
+func (s ListCaCertificatesResponseCertificates) GoString() string {
   return s.String()
 }
 
-func (s *QueryCaCertificateListCertificate) SetCertificateId(v string) *QueryCaCertificateListCertificate {
+func (s *ListCaCertificatesResponseCertificates) SetCertificateId(v string) *ListCaCertificatesResponseCertificates {
   s.CertificateId = &v
   return s
 }
 
-func (s *QueryCaCertificateListCertificate) SetCertificateName(v string) *QueryCaCertificateListCertificate {
+func (s *ListCaCertificatesResponseCertificates) SetCertificateName(v string) *ListCaCertificatesResponseCertificates {
   s.CertificateName = &v
   return s
 }
 
-func (s *QueryCaCertificateListCertificate) SetType(v string) *QueryCaCertificateListCertificate {
+func (s *ListCaCertificatesResponseCertificates) SetType(v string) *ListCaCertificatesResponseCertificates {
   s.Type = &v
   return s
 }
 
-func (s *QueryCaCertificateListCertificate) SetParentCertificateId(v string) *QueryCaCertificateListCertificate {
+func (s *ListCaCertificatesResponseCertificates) SetParentCertificateId(v string) *ListCaCertificatesResponseCertificates {
   s.ParentCertificateId = &v
   return s
 }
 
-func (s *QueryCaCertificateListCertificate) SetValidityFrom(v string) *QueryCaCertificateListCertificate {
+func (s *ListCaCertificatesResponseCertificates) SetValidityFrom(v string) *ListCaCertificatesResponseCertificates {
   s.ValidityFrom = &v
   return s
 }
 
-func (s *QueryCaCertificateListCertificate) SetValidityTo(v string) *QueryCaCertificateListCertificate {
+func (s *ListCaCertificatesResponseCertificates) SetValidityTo(v string) *ListCaCertificatesResponseCertificates {
   s.ValidityTo = &v
   return s
 }
 
-func (s *QueryCaCertificateListCertificate) SetRelatedDomainList(v []*QueryCaCertificateListRelatedDomain) *QueryCaCertificateListCertificate {
+func (s *ListCaCertificatesResponseCertificates) SetRelatedDomainList(v []*ListCaCertificatesResponseCertificatesRelatedDomainList) *ListCaCertificatesResponseCertificates {
   s.RelatedDomainList = v
   return s
 }
 
-func (s *QueryCaCertificateListCertificate) SetAlgorithm(v string) *QueryCaCertificateListCertificate {
+func (s *ListCaCertificatesResponseCertificates) SetAlgorithm(v string) *ListCaCertificatesResponseCertificates {
   s.Algorithm = &v
   return s
 }
 
-func (s *QueryCaCertificateListCertificate) SetExpireStatus(v string) *QueryCaCertificateListCertificate {
+func (s *ListCaCertificatesResponseCertificates) SetExpireStatus(v string) *ListCaCertificatesResponseCertificates {
   s.ExpireStatus = &v
   return s
 }
 
-func (s *QueryCaCertificateListCertificate) SetComment(v string) *QueryCaCertificateListCertificate {
+func (s *ListCaCertificatesResponseCertificates) SetComment(v string) *ListCaCertificatesResponseCertificates {
   s.Comment = &v
   return s
 }
 
-type QueryCaCertificateListRelatedDomain struct {
-  // {"en":"QueryCaCertificateListCertificate usage, CLIENT_MTLS or ORIGIN_MTLS.", "zh_CN":"证书用途，取值CLIENT_MTLS或ORIGIN_MTLS"}
+type ListCaCertificatesResponseCertificatesRelatedDomainList struct     {
+  // {"en":"Certificate usage, CLIENT_MTLS or ORIGIN_MTLS.","zh_CN":"证书用途，取值CLIENT_MTLS或ORIGIN_MTLS"}
   Usage *string `json:"usage,omitempty" xml:"usage,omitempty" require:"true"`
-  // {"en":"Domain list", "zh_CN":"域名列表"}
+  // {"en":"Domain list","zh_CN":"域名列表"}
   Domains []*string `json:"domains,omitempty" xml:"domains,omitempty" require:"true" type:"Repeated"`
 }
 
-func (s QueryCaCertificateListRelatedDomain) String() string {
+func (s ListCaCertificatesResponseCertificatesRelatedDomainList) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryCaCertificateListRelatedDomain) GoString() string {
+func (s ListCaCertificatesResponseCertificatesRelatedDomainList) GoString() string {
   return s.String()
 }
 
-func (s *QueryCaCertificateListRelatedDomain) SetUsage(v string) *QueryCaCertificateListRelatedDomain {
+func (s *ListCaCertificatesResponseCertificatesRelatedDomainList) SetUsage(v string) *ListCaCertificatesResponseCertificatesRelatedDomainList {
   s.Usage = &v
   return s
 }
 
-func (s *QueryCaCertificateListRelatedDomain) SetDomains(v []*string) *QueryCaCertificateListRelatedDomain {
+func (s *ListCaCertificatesResponseCertificatesRelatedDomainList) SetDomains(v []*string) *ListCaCertificatesResponseCertificatesRelatedDomainList {
   s.Domains = v
   return s
 }
 
-type QueryCaCertificateListPageInfo struct {
-  // {"en":"Total Number", "zh_CN":"总数"}
+type ListCaCertificatesResponsePageInfo struct {
+  // {"en":"Total Number","zh_CN":"总数"}
   TotalNumber *int `json:"totalNumber,omitempty" xml:"totalNumber,omitempty" require:"true"`
-  // {"en":"Page Number", "zh_CN":"页码"}
+  // {"en":"Page Number","zh_CN":"页码"}
   PageNumber *int `json:"pageNumber,omitempty" xml:"pageNumber,omitempty" require:"true"`
-  // {"en":"Page Size", "zh_CN":"每页大小 "}
+  // {"en":"Page Size","zh_CN":"每页大小"}
   PageSize *int `json:"pageSize,omitempty" xml:"pageSize,omitempty" require:"true"`
-  // {"en":"Total Page Number", "zh_CN":"总页码数"}
+  // {"en":"Total Page Number","zh_CN":"总页码数"}
   TotalPageNumber *int `json:"totalPageNumber,omitempty" xml:"totalPageNumber,omitempty" require:"true"`
 }
 
-func (s QueryCaCertificateListPageInfo) String() string {
+func (s ListCaCertificatesResponsePageInfo) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryCaCertificateListPageInfo) GoString() string {
+func (s ListCaCertificatesResponsePageInfo) GoString() string {
   return s.String()
 }
 
-func (s *QueryCaCertificateListPageInfo) SetTotalNumber(v int) *QueryCaCertificateListPageInfo {
+func (s *ListCaCertificatesResponsePageInfo) SetTotalNumber(v int) *ListCaCertificatesResponsePageInfo {
   s.TotalNumber = &v
   return s
 }
 
-func (s *QueryCaCertificateListPageInfo) SetPageNumber(v int) *QueryCaCertificateListPageInfo {
+func (s *ListCaCertificatesResponsePageInfo) SetPageNumber(v int) *ListCaCertificatesResponsePageInfo {
   s.PageNumber = &v
   return s
 }
 
-func (s *QueryCaCertificateListPageInfo) SetPageSize(v int) *QueryCaCertificateListPageInfo {
+func (s *ListCaCertificatesResponsePageInfo) SetPageSize(v int) *ListCaCertificatesResponsePageInfo {
   s.PageSize = &v
   return s
 }
 
-func (s *QueryCaCertificateListPageInfo) SetTotalPageNumber(v int) *QueryCaCertificateListPageInfo {
+func (s *ListCaCertificatesResponsePageInfo) SetTotalPageNumber(v int) *ListCaCertificatesResponsePageInfo {
   s.TotalPageNumber = &v
   return s
 }
 
-type QueryCaCertificateListPaths struct {
+type ListCaCertificatesResponseHeader struct {
 }
 
-func (s QueryCaCertificateListPaths) String() string {
+func (s ListCaCertificatesResponseHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryCaCertificateListPaths) GoString() string {
-  return s.String()
-}
-
-type QueryCaCertificateListParameters struct {
-}
-
-func (s QueryCaCertificateListParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryCaCertificateListParameters) GoString() string {
-  return s.String()
-}
-
-type QueryCaCertificateListRequestHeader struct {
-}
-
-func (s QueryCaCertificateListRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryCaCertificateListRequestHeader) GoString() string {
-  return s.String()
-}
-
-type QueryCaCertificateListResponseHeader struct {
-}
-
-func (s QueryCaCertificateListResponseHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryCaCertificateListResponseHeader) GoString() string {
+func (s ListCaCertificatesResponseHeader) GoString() string {
   return s.String()
 }
 
@@ -963,11 +968,11 @@ func (s QueryCaCertificateListResponseHeader) GoString() string {
 
 
 type DisassociateDomainWithCaCertificateRequest struct {
-  // {"en":"Certificate ID", "zh_CN":"证书ID"}
+  // {"en":"Certificate ID","zh_CN":"证书ID"}
   CertificateId *string `json:"certificateId,omitempty" xml:"certificateId,omitempty" require:"true"`
-  // {"en":"Certificate usage, Allowed value: CLIENT_MTLS,ORIGIN_MTLS  .", "zh_CN":"证书用途，取值范围：CLIENT_MTLS、ORIGIN_MTLS "}
+  // {"en":"Certificate usage, Allowed value: CLIENT_MTLS,ORIGIN_MTLS,VERIFY_ORIGIN .","zh_CN":"证书用途，取值范围：CLIENT_MTLS、ORIGIN_MTLS、 VERIFY_ORIGIN"}
   Usage *string `json:"usage,omitempty" xml:"usage,omitempty" require:"true"`
-  // {"en":"Associated domains.", "zh_CN":"关联域名列表"}
+  // {"en":"Associated domains.","zh_CN":"关联域名列表"}
   Domains []*string `json:"domains,omitempty" xml:"domains,omitempty" require:"true" type:"Repeated"`
 }
 
@@ -994,29 +999,15 @@ func (s *DisassociateDomainWithCaCertificateRequest) SetDomains(v []*string) *Di
   return s
 }
 
-type DisassociateDomainWithCaCertificateResponse struct {
-  // {"en":"Status code", "zh_CN":"响应码"}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Response message", "zh_CN":"响应信息"}
-  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+type DisassociateDomainWithCaCertificateRequestHeader struct {
 }
 
-func (s DisassociateDomainWithCaCertificateResponse) String() string {
+func (s DisassociateDomainWithCaCertificateRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s DisassociateDomainWithCaCertificateResponse) GoString() string {
+func (s DisassociateDomainWithCaCertificateRequestHeader) GoString() string {
   return s.String()
-}
-
-func (s *DisassociateDomainWithCaCertificateResponse) SetCode(v string) *DisassociateDomainWithCaCertificateResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *DisassociateDomainWithCaCertificateResponse) SetMessage(v string) *DisassociateDomainWithCaCertificateResponse {
-  s.Message = &v
-  return s
 }
 
 type DisassociateDomainWithCaCertificatePaths struct {
@@ -1041,15 +1032,29 @@ func (s DisassociateDomainWithCaCertificateParameters) GoString() string {
   return s.String()
 }
 
-type DisassociateDomainWithCaCertificateRequestHeader struct {
+type DisassociateDomainWithCaCertificateResponse struct {
+  // {"en":"Status code","zh_CN":"响应码"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Response message","zh_CN":"响应信息"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
 }
 
-func (s DisassociateDomainWithCaCertificateRequestHeader) String() string {
+func (s DisassociateDomainWithCaCertificateResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s DisassociateDomainWithCaCertificateRequestHeader) GoString() string {
+func (s DisassociateDomainWithCaCertificateResponse) GoString() string {
   return s.String()
+}
+
+func (s *DisassociateDomainWithCaCertificateResponse) SetCode(v string) *DisassociateDomainWithCaCertificateResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *DisassociateDomainWithCaCertificateResponse) SetMessage(v string) *DisassociateDomainWithCaCertificateResponse {
+  s.Message = &v
+  return s
 }
 
 type DisassociateDomainWithCaCertificateResponseHeader struct {

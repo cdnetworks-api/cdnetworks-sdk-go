@@ -259,88 +259,22 @@ func (s *GetPurgeRequestStatusResponseDirHeaders) SetValue(v string) *GetPurgeRe
 
 
 
-type CreateAPurgeRequestPaths struct {
-}
-
-func (s CreateAPurgeRequestPaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateAPurgeRequestPaths) GoString() string {
-  return s.String()
-}
-
-type CreateAPurgeRequestParameters struct {
-}
-
-func (s CreateAPurgeRequestParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateAPurgeRequestParameters) GoString() string {
-  return s.String()
-}
-
-type CreateAPurgeRequestRequestHeader struct {
-}
-
-func (s CreateAPurgeRequestRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateAPurgeRequestRequestHeader) GoString() string {
-  return s.String()
-}
-
 type CreateAPurgeRequestRequest struct {
-  // {"en" : "A description of the purge request.", "zh_CN": "刷新请求的说明。"}
+  // {"en":"A description of the purge request.","zh_CN":"刷新请求的说明。"}
   Name *string `json:"name,omitempty" xml:"name,omitempty"`
-  // {"en" : "URLs of files to purge.  File URLs should not contain the asterisk character, '*'.   If a directory or filename in a URL includes a percent character, '%', be sure to encode it. A URL can be up to 2048 characters.", "zh_CN": "要刷新的文件的URL。URL不能包含星号字符'*'。如果URL中的目录或文件名包含'%'等特殊符号，需要先进行URL编码。每个URL长度不能超过2048个字符。"}
+  // {"en":"URLs of files to purge.  File URLs should not contain the asterisk character, '*'.   If a directory or filename in a URL includes a percent character, '%', be sure to encode it. A URL can be up to 2048 characters.","zh_CN":"要刷新的文件的URL。URL不能包含星号字符'*'。如果URL中的目录或文件名包含'%'等特殊符号，需要先进行URL编码。每个URL长度不能超过2048个字符。"}
   FileUrls []*string `json:"fileUrls,omitempty" xml:"fileUrls,omitempty" type:"Repeated"`
-  // {"en" : "If a file's cache key depends on request headers, you can specify the header values that are applicable to purge one version of the cached file. The same set of header values will apply to all entries in fileUrls.", "zh_CN": "如果文件的缓存键与请求头相关，则可以指定请求头和值来刷新相应的缓存文件。此处指定的请求头和值将应用于fileUrls中的所有条目。"}
+  // {"en":"If a file's cache key depends on request headers, you can specify the header values that are applicable to purge one version of the cached file. The same set of header values will apply to all entries in fileUrls.","zh_CN":"如果文件的缓存键与请求头相关，则可以指定请求头和值来刷新相应的缓存文件。此处指定的请求头和值将应用于fileUrls中的所有条目。"}
   FileHeaders []*CreateAPurgeRequestRequestFileHeaders `json:"fileHeaders,omitempty" xml:"fileHeaders,omitempty" type:"Repeated"`
-  // {"en" : "<= 20 items 
-  // URLs to purge. URLs must begin with http:// or https:// and can be up to 2048 characters. Use the '*' character to purge multiple files or directories. If a URL has multiple sets of asterisk characters, only the last '*' or '**' will be treated as a wildcard. Other instances of '*' earlier in the URL will be treated as the literal character '*'.
-  // <table><tr><th>Example</th><th>Description</th></tr><tr><td>http://test.domain2.com/mydir</td><td>Purge all variations of a single directory, but not its subdirectories or files. Variations may exist if custom cache keys are used.</td></tr><tr><td>http://test.domain2.com/mydir/**</td><td>Purge all files and subdirectories whose cache key begins with http://test.domain2.com/mydir/.</td></tr><tr><td>http://test.domain2.com/mydir/*</td><td>Purge all files, but not subdirectories, within a directory.</td></tr><tr><td>http://test.domain2.com/mydir/*.jpg</td><td>Purge all cache entries ending with the .jpg file extension. Subdirectories of http://test.domain2.com/mydir/ are not purged. </td></tr><tr><td>http://test.domain2.com/mydir/a*</td><td>Purge all files, but not subdirectories, that start with the letter 'a'.</td></tr><tr><td>http://test.domain2.com/mydir/a**</td><td>Purge all files and subdirectories that start with the letter 'a'.</td></tr><tr><td>http://test.domain2.com/mydir/a.jpg</td><td>Purge all variations of 'a.jpg'. Variations may exist if custom cache keys are used.</td></tr><tr><td>http://test.domain2.com/my**jpg</td><td>Purge all entries whose cache key begins with http://test.domain2.com/my and ends with the suffix jpg. The '**' can match anything in the path including additional subdirectories. For example, http://test.domain2.com/mydirectory/picture.jpg would be purged.</td></tr></table>
-  // If a directory or filename in a URL includes a percent character, '%', be sure to encode it.", "zh_CN": "<= 20 条目 
-  // 要刷新的目录的URL。URL必须以http:// 或者 https://开头，每条URL最多只能包含2048个字符。 在URL中使用'*'字符可以匹配多个文件或目录。如果一条URL中带有多组'*'，则只有最后一个'*'或'**'会被当成通配符来进行匹配，其它的'*'只会被当成普通字符。
-  // <table><tr><th>示例</th><th>描述</th></tr><tr><td>http://test.domain2.com/mydir</td><td>刷新单个目录的所有变体，但不包括其子目录或文件。当您自定义了缓存键时，则可能存在变体。</td></tr><tr><td>http://test.domain2.com/mydir/**</td><td>刷新缓存键以http://test.domain2.com/mydir/开头的所有文件和子目录。</td></tr><tr><td>http://test.domain2.com/mydir/*</td><td>刷新目录中的所有文件，但不包括子目录。</td></tr><tr><td>http://test.domain2.com/mydir/*.jpg</td><td>刷新所有以.jpg文件扩展名结尾的缓存，但不会刷新http://test.domain2.com/mydir/ 的子目录。 </td></tr><tr><td>http://test.domain2.com/mydir/a*</td><td>刷新以字母'a'开头的所有文件，但不包括子目录。</td></tr><tr><td>http://test.domain2.com/mydir/a**</td><td>刷新以字母'a'开头的所有文件和子目录。</td></tr><tr><td>http://test.domain2.com/mydir/a.jpg</td><td>刷新'a.jpg'文件的所有变体。当您自定义了缓存键时，则可能存在变体。</td></tr><tr><td>http://test.domain2.com/my**jpg</td><td>刷新缓存键以 http://test.domain2.com/my 开头并以后缀 jpg 结尾的所有条目。'**'可以匹配路径中的任何内容，包括其他子目录。例如，http://test.domain2.com/mydirectory/picture.jpg 将被刷新。</td></tr></table>
-  // 如果URL中的目录或文件名包含百分号'%'等特殊符号时，请确保先进行URL编码。"}
+  // {"en":"<= 20 items\nURLs to purge. URLs must begin with http:// or https:// and can be up to 2048 characters. Use the '*' character to purge multiple files or directories. If a URL has multiple sets of asterisk characters, only the last '*' or '**' will be treated as a wildcard. Other instances of '*' earlier in the URL will be treated as the literal character '*'.\n<table><tr><th>Example</th><th>Description</th></tr><tr><td>http://test.domain2.com/mydir</td><td>Purge all variations of a single directory, but not its subdirectories or files. Variations may exist if custom cache keys are used.</td></tr><tr><td>http://test.domain2.com/mydir/**</td><td>Purge all files and subdirectories whose cache key begins with http://test.domain2.com/mydir/.</td></tr><tr><td>http://test.domain2.com/mydir/*</td><td>Purge all files, but not subdirectories, within a directory.</td></tr><tr><td>http://test.domain2.com/mydir/*.jpg</td><td>Purge all cache entries ending with the .jpg file extension. Subdirectories of http://test.domain2.com/mydir/ are not purged. </td></tr><tr><td>http://test.domain2.com/mydir/a*</td><td>Purge all files, but not subdirectories, that start with the letter 'a'.</td></tr><tr><td>http://test.domain2.com/mydir/a**</td><td>Purge all files and subdirectories that start with the letter 'a'.</td></tr><tr><td>http://test.domain2.com/mydir/a.jpg</td><td>Purge all variations of 'a.jpg'. Variations may exist if custom cache keys are used.</td></tr><tr><td>http://test.domain2.com/my**jpg</td><td>Purge all entries whose cache key begins with http://test.domain2.com/my and ends with the suffix jpg. The '**' can match anything in the path including additional subdirectories. For example, http://test.domain2.com/mydirectory/picture.jpg would be purged.</td></tr></table>\nIf a directory or filename in a URL includes a percent character, '%', be sure to encode it.","zh_CN":"<= 20 条目\n要刷新的目录的URL。URL必须以http:// 或者 https://开头，每条URL最多只能包含2048个字符。 在URL中使用'*'字符可以匹配多个文件或目录。如果一条URL中带有多组'*'，则只有最后一个'*'或'**'会被当成通配符来进行匹配，其它的'*'只会被当成普通字符。\n<table><tr><th>示例</th><th>描述</th></tr><tr><td>http://test.domain2.com/mydir</td><td>刷新单个目录的所有变体，但不包括其子目录或文件。当您自定义了缓存键时，则可能存在变体。</td></tr><tr><td>http://test.domain2.com/mydir/**</td><td>刷新缓存键以http://test.domain2.com/mydir/开头的所有文件和子目录。</td></tr><tr><td>http://test.domain2.com/mydir/*</td><td>刷新目录中的所有文件，但不包括子目录。</td></tr><tr><td>http://test.domain2.com/mydir/*.jpg</td><td>刷新所有以.jpg文件扩展名结尾的缓存，但不会刷新http://test.domain2.com/mydir/ 的子目录。 </td></tr><tr><td>http://test.domain2.com/mydir/a*</td><td>刷新以字母'a'开头的所有文件，但不包括子目录。</td></tr><tr><td>http://test.domain2.com/mydir/a**</td><td>刷新以字母'a'开头的所有文件和子目录。</td></tr><tr><td>http://test.domain2.com/mydir/a.jpg</td><td>刷新'a.jpg'文件的所有变体。当您自定义了缓存键时，则可能存在变体。</td></tr><tr><td>http://test.domain2.com/my**jpg</td><td>刷新缓存键以 http://test.domain2.com/my 开头并以后缀 jpg 结尾的所有条目。'**'可以匹配路径中的任何内容，包括其他子目录。例如，http://test.domain2.com/mydirectory/picture.jpg 将被刷新。</td></tr></table>\n如果URL中的目录或文件名包含百分号'%'等特殊符号时，请确保先进行URL编码。"}
   DirUrls []*string `json:"dirUrls,omitempty" xml:"dirUrls,omitempty" type:"Repeated"`
-  // {"en" : "<= 2 items 
-  // Regular expression patterns used to match the cache key. Each must begin with the following format: 
-  //  {scheme}://{hostname}/. {scheme} can be http, https, or any, which matches any scheme.
-  // Example: 
-  // https://test.domain.com/my.*\.(jpg|png)\?q=
-  // <br/>
-  // For performance considerations, the following restrictions apply:
-  // The regular expression pattern following the hostname can be up to 126 characters.
-  // 
-  // It can consist of up to two unlimited quantifiers ('*', '+', or ',}').
-  // The upper limit on a quantifier cannot be more than 59, for example, {1,59}", "zh_CN": "<= 2 条目 
-  // 用于匹配缓存键的正则表达式。
-  // 每个表达式必须以
-  // {协议}://{域名}/ 格式开头。其中，{协议} 可以是 http, https，或any（表示不限协议）。
-  // 示例：
-  // https://test.domain.com/my.*\.(jpg|png)\?q=
-  // <br/>
-  // 出于性能考虑，使用正则表达式有以下限制：
-  // 
-  // 在域名后面的正则表达式最多只能包含126个字符。
-  // 最多只能包含两个限定符('*'、'+'或',}')。
-  // 限定符的上限不能超过59，例如{1,59}"}
+  // {"en":"<= 2 items\nRegular expression patterns used to match the cache key. Each must begin with the following format:\n{scheme}://{hostname}/. {scheme} can be http, https, or any, which matches any scheme.\nExample:\nhttps://test.domain.com/my.*\.(jpg|png)\?q=\n<br/>\nFor performance considerations, the following restrictions apply:\nThe regular expression pattern following the hostname can be up to 126 characters.\n\nIt can consist of up to two unlimited quantifiers ('*', '+', or ',}').\nThe upper limit on a quantifier cannot be more than 59, for example, {1,59}","zh_CN":"<= 2 条目\n用于匹配缓存键的正则表达式。\n每个表达式必须以\n{协议}://{域名}/ 格式开头。其中，{协议} 可以是 http, https，或any（表示不限协议）。\n示例：\nhttps://test.domain.com/my.*\.(jpg|png)\?q=\n<br/>\n出于性能考虑，使用正则表达式有以下限制：\n\n在域名后面的正则表达式最多只能包含126个字符。\n最多只能包含两个限定符('*'、'+'或',}')。\n限定符的上限不能超过59，例如{1,59}"}
   RegexPatterns []*string `json:"regexPatterns,omitempty" xml:"regexPatterns,omitempty" type:"Repeated"`
-  // {"en" : "Enum: delete invalidate 
-  // Default: invalidate 
-  // This controls whether cached files and directories should be removed altogether from the CDN Pro servers (delete) or flagged as invalid (invalidate).", "zh_CN": "取值范围: delete, invalidate 
-  // 默认值: invalidate 
-  // 指定刷新类型，包括完全删除(delete)和标记为无效(invalidate)。"}
+  // {"en":"Enum: delete invalidate\nDefault: invalidate\nThis controls whether cached files and directories should be removed altogether from the CDN Pro servers (delete) or flagged as invalid (invalidate).","zh_CN":"取值范围: delete, invalidate\n默认值: invalidate\n指定刷新类型，包括完全删除(delete)和标记为无效(invalidate)。"}
   Action *string `json:"action,omitempty" xml:"action,omitempty"`
-  // {"en" : "Enum: staging production 
-  // Specify if the purge request applies to the staging or production environment.", "zh_CN": "取值范围: staging, production 
-  // 指定刷新请求应用于演练环境还是生产环境。"}
+  // {"en":"Enum: staging production\nSpecify if the purge request applies to the staging or production environment.","zh_CN":"取值范围: staging, production\n指定刷新请求应用于演练环境还是生产环境。"}
   Target *string `json:"target,omitempty" xml:"target,omitempty" require:"true"`
-  // {"en" : "ID of a webhook to call when the purge task completes.", "zh_CN": "刷新任务完成时要调用的webhook的ID。"}
+  // {"en":"ID of a webhook to call when the purge task completes.","zh_CN":"刷新任务完成时要调用的webhook的ID。"}
   Webhook *string `json:"webhook,omitempty" xml:"webhook,omitempty"`
 }
 
@@ -393,9 +327,9 @@ func (s *CreateAPurgeRequestRequest) SetWebhook(v string) *CreateAPurgeRequestRe
 }
 
 type CreateAPurgeRequestRequestFileHeaders struct     {
-  // {"en" : "HTTP header name.", "zh_CN": "HTTP 头部名称"}
+  // {"en":"HTTP header name.","zh_CN":"HTTP 头部名称"}
   Name *string `json:"name,omitempty" xml:"name,omitempty"`
-  // {"en" : "Value of an HTTP header.", "zh_CN": "HTTP 头部的值"}
+  // {"en":"Value of an HTTP header.","zh_CN":"HTTP 头部的值"}
   Value *string `json:"value,omitempty" xml:"value,omitempty"`
 }
 
@@ -417,6 +351,39 @@ func (s *CreateAPurgeRequestRequestFileHeaders) SetValue(v string) *CreateAPurge
   return s
 }
 
+type CreateAPurgeRequestRequestHeader struct {
+}
+
+func (s CreateAPurgeRequestRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateAPurgeRequestRequestHeader) GoString() string {
+  return s.String()
+}
+
+type CreateAPurgeRequestPaths struct {
+}
+
+func (s CreateAPurgeRequestPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateAPurgeRequestPaths) GoString() string {
+  return s.String()
+}
+
+type CreateAPurgeRequestParameters struct {
+}
+
+func (s CreateAPurgeRequestParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateAPurgeRequestParameters) GoString() string {
+  return s.String()
+}
+
 type CreateAPurgeRequestResponse struct {
 }
 
@@ -429,7 +396,7 @@ func (s CreateAPurgeRequestResponse) GoString() string {
 }
 
 type CreateAPurgeRequestResponseHeader struct {
-  // {"en":"The Location header is a URL representing the new purge request, for example, <code>Location: https://{domain}/cdn/purges/e91e8674-c2c5-4440-a1de-8b2ea99293dd</code>.", "zh_CN":"通过Location响应头返回新建的刷新任务的URL。URL中包含刷新任务的ID，可使用该ID调用'查询刷新任务详情'接口来查看刷新任务详情。URL示例：<code>Location: https://{domain}/cdn/purges/5dca2205f9e9cc0001df7b33"}
+  // {"en":"Returns a URL pointing to the new purge task created, if the request is accepted. The URL contains the ID of the new purge task. </br> URL format: <code>{scheme}://{domain}/cdn/purges/{purgeId}</code> Example URL: <code>https://api.example.com/cdn/purges/5dca2205f9e9cc0001df7b33</code>","zh_CN":"当接口调用成功时，通过Location响应头返回新建的刷新任务的URL。URL中包含刷新任务的ID，可使用该ID调用'查询刷新任务详情'接口来查看刷新任务详情。</br> URL格式：<code>{协议}://{域名}/cdn/purges/{刷新任务ID}</code> URL示例： <code>https://open.chinanetcenter.com/cdn/purges/5dca2205f9e9cc0001df7b33</code>"}
   Location *string `json:"Location,omitempty" xml:"Location,omitempty" require:"true"`
 }
 
@@ -1334,51 +1301,16 @@ func (s *GetListOfPurgeRequestsResponsePurgeRequests) SetRegexEntries(v int) *Ge
 
 
 
-type CreateAPrefetchRequestPaths struct {
-}
-
-func (s CreateAPrefetchRequestPaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateAPrefetchRequestPaths) GoString() string {
-  return s.String()
-}
-
-type CreateAPrefetchRequestParameters struct {
-}
-
-func (s CreateAPrefetchRequestParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateAPrefetchRequestParameters) GoString() string {
-  return s.String()
-}
-
-type CreateAPrefetchRequestRequestHeader struct {
-}
-
-func (s CreateAPrefetchRequestRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateAPrefetchRequestRequestHeader) GoString() string {
-  return s.String()
-}
-
 type CreateAPrefetchRequestRequest struct {
-  // {"en" : "Range: <= 1000 characters 
-  // Enter a short description of the prefetch task.", "zh_CN": "取值范围: <= 1000 字符 
-  // 预取请求的简短描述。"}
+  // {"en":"Range: <= 1000 characters\nEnter a short description of the prefetch task.","zh_CN":"取值范围: <= 1000 字符\n预取请求的简短描述。"}
   Name *string `json:"name,omitempty" xml:"name,omitempty"`
-  // {"en" : "", "zh_CN": ""}
+  // {"en":"List of files to be prefetched.","zh_CN":"指定需预取的文件列表。"}
   FileList []*CreateAPrefetchRequestRequestFileList `json:"fileList,omitempty" xml:"fileList,omitempty" require:"true" type:"Repeated"`
-  // {"en" : "A list of continents representing the regions in which to perform the prefetch. Specify 'Mainland China' as the region, if prefetch by servers in mainland China only is desired. Omitting the field means the prefetch will be done by all regions' servers.", "zh_CN": "指定需要预取内容的大洲，以大洲英文全名表示，例如Asia, Europe。支持仅预取到中国大陆的服务器，区域名称以Mainland China表示。未指定区域时，表示预取内容到所有大洲的服务器。"}
+  // {"en":"A list of continents representing the regions in which to perform the prefetch. Specify 'Mainland China' as the region, if prefetch by servers in mainland China only is desired. Omitting the field means the prefetch will be done by all regions' servers.","zh_CN":"指定需要预取内容的大洲，以大洲英文全名表示，例如Asia, Europe。支持仅预取到中国大陆的服务器，区域名称以Mainland China表示。未指定区域时，表示预取内容到所有大洲的服务器。"}
   Regions []*string `json:"regions,omitempty" xml:"regions,omitempty" type:"Repeated"`
-  // {"en" : "RFC 3339 date indicating when the prefetch should begin. This must be in UTC time, for example, '2021-03-06T00:00:00Z'.", "zh_CN": "RFC 3339格式的日期，表示开始预取的时间。必须使用UTC时间，例如'2021-03-06T00:00:00Z'。"}
+  // {"en":"RFC 3339 date indicating when the prefetch should begin. This must be in UTC time, for example, '2021-03-06T00:00:00Z'.","zh_CN":"RFC 3339格式的日期，表示开始预取的时间。必须使用UTC时间，例如'2021-03-06T00:00:00Z'。"}
   StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty"`
-  // {"en" : "ID of a webhook to call when the purge task completes. Wehook menas the callback endpoint as created via the 'Create a webhook' API.", "zh_CN": "刷新任务完成时要调用的webhook的ID。webhook是指通过“创建webhook接口”创建的回调接口。"}
+  // {"en":"ID of a webhook to call when the purge task completes. Wehook menas the callback endpoint as created via the 'Create a webhook' API.","zh_CN":"刷新任务完成时要调用的webhook的ID。webhook是指通过“创建webhook接口”创建的回调接口。"}
   Webhook *string `json:"webhook,omitempty" xml:"webhook,omitempty"`
 }
 
@@ -1416,12 +1348,9 @@ func (s *CreateAPrefetchRequestRequest) SetWebhook(v string) *CreateAPrefetchReq
 }
 
 type CreateAPrefetchRequestRequestFileList struct     {
-  // {"en" : "Range: [ 10 .. 2048 ] characters 
-  // A URL to prefetch. It must begin with 'http' or 'https' and can be up to 2048 characters.
-  // ", "zh_CN": "取值范围: [ 10 .. 2048 ] 字符 
-  // 预取的URL。必须以'http'或'https'开头，长度不超过2048个字符。"}
-  Url *string `json:"url,omitempty" xml:"url,omitempty"`
-  // {"en" : "If a URL's cache key depends on request headers, you can specify the header values that are applicable to prefetch one version of the URL.", "zh_CN": "如果需要在缓存键中加入请求头，可用该字段指定请求头。"}
+  // {"en":"Range: [ 10 .. 2048 ] characters\nA URL to prefetch. It must begin with 'http' or 'https' and can be up to 2048 characters.","zh_CN":"取值范围: [ 10 .. 2048 ] 字符\n预取的URL。必须以'http'或'https'开头，长度不超过2048个字符。"}
+  Url *string `json:"url,omitempty" xml:"url,omitempty" require:"true"`
+  // {"en":"If a URL's cache key depends on request headers, you can specify the header values that are applicable to prefetch one version of the URL.","zh_CN":"如果需要在缓存键中加入请求头，可用该字段指定请求头。"}
   Headers []*CreateAPrefetchRequestRequestFileListHeaders `json:"headers,omitempty" xml:"headers,omitempty" type:"Repeated"`
 }
 
@@ -1444,9 +1373,9 @@ func (s *CreateAPrefetchRequestRequestFileList) SetHeaders(v []*CreateAPrefetchR
 }
 
 type CreateAPrefetchRequestRequestFileListHeaders struct     {
-  // {"en" : "HTTP header name.", "zh_CN": "HTTP 头部名称。"}
+  // {"en":"HTTP header name.","zh_CN":"HTTP 头部名称。"}
   Name *string `json:"name,omitempty" xml:"name,omitempty"`
-  // {"en" : "HTTP header value.", "zh_CN": "HTTP 头部值。"}
+  // {"en":"HTTP header value.","zh_CN":"HTTP 头部值。"}
   Value *string `json:"value,omitempty" xml:"value,omitempty"`
 }
 
@@ -1468,6 +1397,39 @@ func (s *CreateAPrefetchRequestRequestFileListHeaders) SetValue(v string) *Creat
   return s
 }
 
+type CreateAPrefetchRequestRequestHeader struct {
+}
+
+func (s CreateAPrefetchRequestRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateAPrefetchRequestRequestHeader) GoString() string {
+  return s.String()
+}
+
+type CreateAPrefetchRequestPaths struct {
+}
+
+func (s CreateAPrefetchRequestPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateAPrefetchRequestPaths) GoString() string {
+  return s.String()
+}
+
+type CreateAPrefetchRequestParameters struct {
+}
+
+func (s CreateAPrefetchRequestParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateAPrefetchRequestParameters) GoString() string {
+  return s.String()
+}
+
 type CreateAPrefetchRequestResponse struct {
 }
 
@@ -1480,7 +1442,7 @@ func (s CreateAPrefetchRequestResponse) GoString() string {
 }
 
 type CreateAPrefetchRequestResponseHeader struct {
-  // {"en":"The Location header is a URL representing the new prefetch request, for example, <code>Location: https://{domain}/cdn/prefetches/e91e8674-c2c5-4440-a1de-8b2ea99293dd</code>.", "zh_CN":"通过Location响应头返回新建的预取任务的URL。URL中包含预取任务的ID，可使用该ID调用'查询预取任务详情'接口来查看预取任务详情。URL示例：<code>Location: https://{domain}/cdn/prefetches/5dca2205f9e9cc0001df7b33"}
+  // {"en":"Returns a URL pointing to the new prefetch task created, if the request is accepted. The URL contains the ID of the new prefetch task. </br> URL format: <code>{scheme}://{domain}/cdn/prefetches/{prefetchId}</code> Example URL: <code>https://api.example.com/cdn/prefetches/5dca2205f9e9cc0001df7b33</code>","zh_CN":"当接口调用成功时，通过Location响应头返回新建的预取任务的URL。URL中包含预取任务的ID，可使用该ID调用'查询预取任务详情'接口来查看预取任务详情。</br> URL格式：<code>{协议}://{域名}/cdn/prefetches/{预取任务ID}</code> URL示例： <code>https://open.chinanetcenter.com/cdn/prefetches/5dca2205f9e9cc0001df7b33</code>"}
   Location *string `json:"Location,omitempty" xml:"Location,omitempty" require:"true"`
 }
 

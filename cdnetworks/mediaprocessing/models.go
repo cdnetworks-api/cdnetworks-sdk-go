@@ -855,6 +855,135 @@ func (s VideoConcatQueryResponseHeader) GoString() string {
 
 
 
+type StartWorkflowRequest struct {
+  // {"en":"Result status code, 200 indicates success", "zh_CN":"视频ID"}
+  TargetId *string `json:"targetId,omitempty" xml:"targetId,omitempty" require:"true"`
+  // {"en":"Result status code, 200 indicates success", "zh_CN":"全局唯一的事务ID，用于标识一个工作流任务，建议使用UUID"}
+  TransNo *string `json:"transNo,omitempty" xml:"transNo,omitempty" require:"true"`
+  // {"en":"Result status code, 200 indicates success", "zh_CN":"工作流ID"}
+  WorkflowId *string `json:"workflowId,omitempty" xml:"workflowId,omitempty" require:"true"`
+}
+
+func (s StartWorkflowRequest) String() string {
+  return tea.Prettify(s)
+}
+
+func (s StartWorkflowRequest) GoString() string {
+  return s.String()
+}
+
+func (s *StartWorkflowRequest) SetTargetId(v string) *StartWorkflowRequest {
+  s.TargetId = &v
+  return s
+}
+
+func (s *StartWorkflowRequest) SetTransNo(v string) *StartWorkflowRequest {
+  s.TransNo = &v
+  return s
+}
+
+func (s *StartWorkflowRequest) SetWorkflowId(v string) *StartWorkflowRequest {
+  s.WorkflowId = &v
+  return s
+}
+
+type StartWorkflowResponse struct {
+  // {"en":"Result status code, 200 indicates success", "zh_CN":"结果状态码，200为成功"}
+  Ode *int32 `json:"ode,omitempty" xml:"ode,omitempty" require:"true"`
+  // {"en":"message", "zh_CN":"返回消息"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+  // {"en":"Return data", "zh_CN":"返回数据"}
+  StartWorkflowData *StartWorkflowData `json:"data,omitempty" xml:"data,omitempty" require:"true"`
+}
+
+func (s StartWorkflowResponse) String() string {
+  return tea.Prettify(s)
+}
+
+func (s StartWorkflowResponse) GoString() string {
+  return s.String()
+}
+
+func (s *StartWorkflowResponse) SetOde(v int32) *StartWorkflowResponse {
+  s.Ode = &v
+  return s
+}
+
+func (s *StartWorkflowResponse) SetMessage(v string) *StartWorkflowResponse {
+  s.Message = &v
+  return s
+}
+
+func (s *StartWorkflowResponse) SetData(v *StartWorkflowData) *StartWorkflowResponse {
+  s.StartWorkflowData = v
+  return s
+}
+
+type StartWorkflowData struct {
+  // {"en":"Upload url address", "zh_CN":"工作流任务ID"}
+  Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
+}
+
+func (s StartWorkflowData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s StartWorkflowData) GoString() string {
+  return s.String()
+}
+
+func (s *StartWorkflowData) SetId(v string) *StartWorkflowData {
+  s.Id = &v
+  return s
+}
+
+type StartWorkflowPaths struct {
+}
+
+func (s StartWorkflowPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s StartWorkflowPaths) GoString() string {
+  return s.String()
+}
+
+type StartWorkflowParameters struct {
+}
+
+func (s StartWorkflowParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s StartWorkflowParameters) GoString() string {
+  return s.String()
+}
+
+type StartWorkflowRequestHeader struct {
+}
+
+func (s StartWorkflowRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s StartWorkflowRequestHeader) GoString() string {
+  return s.String()
+}
+
+type StartWorkflowResponseHeader struct {
+}
+
+func (s StartWorkflowResponseHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s StartWorkflowResponseHeader) GoString() string {
+  return s.String()
+}
+
+
+
+
 type CreateClearAdTaskRequest struct {
   // {"en":"videoId", "zh_CN":"视频ID"}
   VideoId *string `json:"videoId,omitempty" xml:"videoId,omitempty" require:"true"`
@@ -1047,58 +1176,19 @@ func (s CreateClearAdTaskResponseHeader) GoString() string {
 
 
 type TransCodeRequest struct {
-  // {"en":"Please provide the ID of the video(s) you want to view. If there are multiple videos, separate each ID with a comma ,", "zh_CN":"视频ID，多个视频通过“,“隔开；"}
+  // {"en":"Please provide the ID of the video(s) you want to view. If there are multiple videos, separate each ID with a comma ,","zh_CN":"视频ID，多个视频通过“,“隔开；"}
   VideoIds *string `json:"videoIds,omitempty" xml:"videoIds,omitempty" require:"true"`
-  // {"en":"By default, there is no watermark added to the video. However, you have the option to select a watermark template from our cloud-based management platform and add it to your video on-demand.", "zh_CN":"水印模板名，默认不添加水印，可选择云点播管理平台中的模板为视频添加水印；"}
+  // {"en":"By default, there is no watermark added to the video. However, you have the option to select a watermark template from our cloud-based management platform and add it to your video on-demand.","zh_CN":"水印模板名，默认不添加水印，可选择云点播管理平台中的模板为视频添加水印；"}
   WaterMarkTemplateName *string `json:"waterMarkTemplateName,omitempty" xml:"waterMarkTemplateName,omitempty"`
-  // {"en":"The transcoding combination template name, by default, is set to the template provided by the cloud VOD management platform.", "zh_CN":"转码组合模板名，默认使用云点播管理平台设置的默认模板，"}
+  // {"en":"The transcoding combination template name, by default, is set to the template provided by the cloud VOD management platform.","zh_CN":"转码组合模板名，默认使用云点播管理平台设置的默认模板，"}
   TransCodeTemplateName *string `json:"transCodeTemplateName,omitempty" xml:"transCodeTemplateName,omitempty"`
-  // {"en":"The Watermark template Id is optional and by default no watermark is added to the video. However, you can conveniently choose a template from the cloud-based management platform to easily add a watermark to your videos", "zh_CN":"水印模板Id，默认不添加水印，可选择云点播管理平台中的模板为视频添加水印；"}
+  // {"en":"The Watermark template Id is optional and by default no watermark is added to the video. However, you can conveniently choose a template from the cloud-based management platform to easily add a watermark to your videos","zh_CN":"水印模板Id，默认不添加水印，可选择云点播管理平台中的模板为视频添加水印；"}
   WatermarkTemplateId *string `json:"watermarkTemplateId,omitempty" xml:"watermarkTemplateId,omitempty"`
-  // {"en":"Transcoding combination template ID, the default template set by the cloud on-demand management platform is used by default", "zh_CN":"转码组合模板ID，默认使用云点播管理平台设置的默认模板"}
+  // {"en":"Transcoding combination template ID, the default template set by the cloud on-demand management platform is used by default","zh_CN":"转码组合模板ID，默认使用云点播管理平台设置的默认模板"}
   TransCodeTemplateId *string `json:"transCodeTemplateId,omitempty" xml:"transCodeTemplateId,omitempty"`
-  // {"en":"Subtitle ID, corresponding to the material ID of Cloud VOD material management. After successful upload, subtitles will be automatically Transcoding and added; only ass or srt subtitle formats are supported.", "zh_CN":"字幕ID ,对应云点播素材管理的素材ID。上传成功后会自动转码增加字幕；仅支持ass或srt字幕格式。"}
+  // {"en":"Subtitle ID, corresponding to the material ID of Cloud VOD material management. After successful upload, subtitles will be automatically Transcoding and added; only ass or srt subtitle formats are supported.","zh_CN":"字幕ID ,对应云点播素材管理的素材ID。上传成功后会自动转码增加字幕；仅支持ass或srt字幕格式。"}
   SubtitleId *string `json:"subtitleId,omitempty" xml:"subtitleId,omitempty"`
-  // {"en":"Supports multiple subtitles, up to 13 subtitles can be added. Only supports multi- Bitrate adaptive Transcoding. Only supports vtt subtitle format.
-  // The format content is:
-  // lang: subtitle code, which can be defined according to your needs
-  // subtitleId: subtitle ID, corresponding to the material ID of Cloud VOD material management
-  // code[{\"lang\":\"cn\",\"subtitleId\":\"8a36dfe101921000368ac14400000000\"},{\"lang\":\"en-US\",\"subtitleId\":\"8a38e428019210004d56ef8c00000000\"},{\"lang\":\"ko\",\"subtitleId\":\"8a36dfe101921000368ac14400000000\"}] base64 encryption
-  // The subtitle language corresponding code of the console player.
-  // Language code
-  // Chinese: cn
-  // English: en-US
-  // Japanese:ja
-  // Traditional Chinese:zh-tw
-  // French:fr
-  // German: de
-  // Spanish: es
-  // Portuguese:pt
-  // Russian:ru
-  // Korean:ko
-  // Thai:th
-  // Vietnamese:vt
-  // Indonesian:id"
-  //   , "zh_CN":"支持多个字幕，最多可以添加13个字幕。只支持多码率自适应转码。仅支持vtt字幕格式。
-  // 格式内容为：
-  // lang：字幕code，可以根据自己需求定义
-  // subtitleId：字幕ID，对应云点播素材管理的素材ID
-  // code[{\"lang\":\"cn\",\"subtitleId\":\"8a36dfe101921000368ac14400000000\"},{\"lang\":\"en-US\",\"subtitleId\":\"8a38e428019210004d56ef8c00000000\"},{\"lang\":\"ko\",\"subtitleId\":\"8a36dfe101921000368ac14400000000\"}] 的base64加密
-  // 控制台播放器字幕语言对应code。
-  // 语言 code
-  // 中文：cn
-  // 英文：en-US
-  // 日文:ja
-  // 繁体中文:zh-tw
-  // 法语:fr
-  // 德语:de
-  // 西班牙语:es
-  // 葡萄牙语:pt
-  // 俄语:ru
-  // 韩语:ko
-  // 泰语:th
-  // 越南语:vt
-  // 印尼语:id"}
+  // {"en":"Supports multiple subtitles, up to 13 subtitles can be added. Only supports multi- Bitrate adaptive Transcoding. Only supports vtt subtitle format. The format content is: lang: subtitle code, which can be defined according to your needs subtitleId: subtitle ID, corresponding to the material ID of Cloud VOD material management code[{\"lang\":\"cn\",\"subtitleId\":\"8a36dfe101921000368ac14400000000\"},{\"lang\":\"en-US\",\"subtitleId\":\" 8a38e428019210004d56ef8c00000000\"},{\"lang\":\"ko\",\"subtitleId\":\"8a36dfe101921000368ac14400000000\"}] base64 encryption The subtitle language corresponding code of the console player. Language code Chinese: cn English: en-US Japanese:ja Traditional Chinese:zh-tw French:fr German: de Spanish: es Portuguese:pt Russian:ru Korean:ko Thai:th Vietnamese:vt Indonesian:id","zh_CN":"支持多个字幕，最多可以添加13个字幕。只支持多码率自适应转码。仅支持vtt字幕格式。 格式内容为： lang：字幕code，可以根据自己需求定义 subtitleId：字幕ID，对应云点播素材管理的素材ID code[{\"lang\":\"cn\",\"subtitleId\":\"8a36dfe101921000368ac14400000000\"},{\"lang\":\"en-US\",\"subtitleId\":\"8a38e428019210004d56ef8c00000000\"},{\"lang\":\"ko\",\"subtitleId\":\"8a36dfe101921000368ac14400000000\"}] 的base64加密 控制台播放器字幕语言对应code。 语言 code 中文：cn 英文：en-US 日文:ja 繁体中文:zh-tw 法语:fr 德语:de 西班牙语:es 葡萄牙语:pt 俄语:ru 韩语:ko 泰语:th 越南语:vt 印尼语:id"}
   Subtitle *string `json:"subtitle,omitempty" xml:"subtitle,omitempty"`
 }
 
@@ -1145,36 +1235,15 @@ func (s *TransCodeRequest) SetSubtitle(v string) *TransCodeRequest {
   return s
 }
 
-type TransCodeResponse struct {
-  // {"en":"success", "zh_CN":"结果状态码，200为成功"}
-  Code *int32 `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"message", "zh_CN":"返回消息"}
-  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
-  // {"en":"data", "zh_CN":"返回数据"}
-  Data *string `json:"data,omitempty" xml:"data,omitempty" require:"true"`
+type TransCodeRequestHeader struct {
 }
 
-func (s TransCodeResponse) String() string {
+func (s TransCodeRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s TransCodeResponse) GoString() string {
+func (s TransCodeRequestHeader) GoString() string {
   return s.String()
-}
-
-func (s *TransCodeResponse) SetCode(v int32) *TransCodeResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *TransCodeResponse) SetMessage(v string) *TransCodeResponse {
-  s.Message = &v
-  return s
-}
-
-func (s *TransCodeResponse) SetData(v string) *TransCodeResponse {
-  s.Data = &v
-  return s
 }
 
 type TransCodePaths struct {
@@ -1199,15 +1268,36 @@ func (s TransCodeParameters) GoString() string {
   return s.String()
 }
 
-type TransCodeRequestHeader struct {
+type TransCodeResponse struct {
+  // {"en":"success","zh_CN":"结果状态码，200为成功"}
+  Code *int `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"message","zh_CN":"返回消息"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+  // {"en":"data","zh_CN":"返回数据"}
+  Data *string `json:"data,omitempty" xml:"data,omitempty" require:"true"`
 }
 
-func (s TransCodeRequestHeader) String() string {
+func (s TransCodeResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s TransCodeRequestHeader) GoString() string {
+func (s TransCodeResponse) GoString() string {
   return s.String()
+}
+
+func (s *TransCodeResponse) SetCode(v int) *TransCodeResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *TransCodeResponse) SetMessage(v string) *TransCodeResponse {
+  s.Message = &v
+  return s
+}
+
+func (s *TransCodeResponse) SetData(v string) *TransCodeResponse {
+  s.Data = &v
+  return s
 }
 
 type TransCodeResponseHeader struct {

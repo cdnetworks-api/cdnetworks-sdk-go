@@ -520,51 +520,12 @@ func (s *GetAListOfSecretsResponseSecrets) SetLastUpdateTime(v string) *GetAList
 
 
 
-type CreateASecretPaths struct {
-}
-
-func (s CreateASecretPaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateASecretPaths) GoString() string {
-  return s.String()
-}
-
-type CreateASecretParameters struct {
-}
-
-func (s CreateASecretParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateASecretParameters) GoString() string {
-  return s.String()
-}
-
-type CreateASecretRequestHeader struct {
-}
-
-func (s CreateASecretRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateASecretRequestHeader) GoString() string {
-  return s.String()
-}
-
 type CreateASecretRequest struct {
-  // {"en" : "Range: [ 1 .. 30 ] characters ^[A-Za-z0-9_.-]+ 
-  // The name of the secret. It can consist of letters, numbers, hyphens, underscores, and periods. Refer to this in your Edge Logic using the $SECRET(secretName) syntax.", "zh_CN": "取值范围: [ 1 .. 30 ] 字符 ^[A-Za-z0-9_.-]+ 
-  // 保密信息的名称。可以由字母、数字、连字符、下划线和句点组成。在边缘逻辑中使用$SECRET(secretName) 语法来引用。"}
+  // {"en":"Range: [ 1 .. 30 ] characters ^[A-Za-z0-9_.-]+\nThe name of the secret. It can consist of letters, numbers, hyphens, underscores, and periods. Refer to this in your Edge Logic using the $SECRET(secretName) syntax.","zh_CN":"取值范围: [ 1 .. 30 ] 字符 ^[A-Za-z0-9_.-]+\n保密信息的名称。可以由字母、数字、连字符、下划线和句点组成。在边缘逻辑中使用$SECRET(secretName) 语法来引用。"}
   Name *string `json:"name,omitempty" xml:"name,omitempty" require:"true"`
-  // {"en" : "Range: <= 250 characters 
-  // A description of the secret. This may be useful for recording the purpose of the secret.", "zh_CN": "取值范围: <= 250 字符 
-  // 保密信息的描述。"}
+  // {"en":"Range: <= 250 characters\nA description of the secret. This may be useful for recording the purpose of the secret.","zh_CN":"取值范围: <= 250 字符\n保密信息的描述。"}
   Description *string `json:"description,omitempty" xml:"description,omitempty"`
-  // {"en" : "Range: [ 8 .. 3599 ] characters 
-  // The sensitive text you want to protect. When you deploy your property, references to $SECRET(secretName) in your Edge Logic will be replaced by this text. The secret can consist of printable ASCII characters along with the tab, newline, and return characters.", "zh_CN": "取值范围: [ 8 .. 3599 ] 字符 
-  // 需要被保护的敏感内容。当部署加速项目时，将对边缘逻辑中的 $SECRET(secretName)进行解析，提取出敏感内容。支持可打印的ASCII字符、制表符(0x09)、换行符(0x0a) 和回车符(0x0d)。"}
+  // {"en":"Range: [ 8 .. 3599 ] characters\nThe sensitive text you want to protect. When you deploy your property, references to $SECRET(secretName) in your Edge Logic will be replaced by this text. The secret can consist of printable ASCII characters along with the tab, newline, and return characters.","zh_CN":"取值范围: [ 8 .. 3599 ] 字符\n需要被保护的敏感内容。当部署加速项目时，将对边缘逻辑中的 $SECRET(secretName)进行解析，提取出敏感内容。支持可打印的ASCII字符、制表符(0x09)、换行符(0x0a) 和回车符(0x0d)。"}
   Secret *string `json:"secret,omitempty" xml:"secret,omitempty" require:"true"`
 }
 
@@ -591,6 +552,39 @@ func (s *CreateASecretRequest) SetSecret(v string) *CreateASecretRequest {
   return s
 }
 
+type CreateASecretRequestHeader struct {
+}
+
+func (s CreateASecretRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateASecretRequestHeader) GoString() string {
+  return s.String()
+}
+
+type CreateASecretPaths struct {
+}
+
+func (s CreateASecretPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateASecretPaths) GoString() string {
+  return s.String()
+}
+
+type CreateASecretParameters struct {
+}
+
+func (s CreateASecretParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateASecretParameters) GoString() string {
+  return s.String()
+}
+
 type CreateASecretResponse struct {
 }
 
@@ -603,7 +597,7 @@ func (s CreateASecretResponse) GoString() string {
 }
 
 type CreateASecretResponseHeader struct {
-  // {"en":"The location header contains a reference to the new secret's ID.", "zh_CN":"通过Location响应头返回新建的保密信息的URL。URL中包含保密信息的ID，可使用该ID调用‘获取保密信息详请’接口来查看保密信息的详请。URL示例：<code>Location: https://openapi.chinanetcenter.com/cdn/secrets/60d6707cca3e387d2a28fc9e</code>。"}
+  // {"en":"Returns a URL pointing to the new secret created, if the request is accepted. The URL contains the ID of the new secret. </br> URL format: <code>{scheme}://{domain}/cdn/secrets/{secretId}</code> Example URL: <code>https://api.example.com/cdn/secrets/60d6707cca3e387d2a28fc9e</code>","zh_CN":"当接口调用成功时，通过Location响应头返回新建的保密信息的URL。URL中包含保密信息的ID，可使用该ID调用‘获取保密信息详请’接口来查看保密信息的详请。</br> URL格式：<code>{协议}://{域名}/cdn/secrets/{保密信息ID}</code> URL示例： <code>https://open.chinanetcenter.com/cdn/secrets/60d6707cca3e387d2a28fc9e</code>"}
   Location *string `json:"Location,omitempty" xml:"Location,omitempty" require:"true"`
 }
 

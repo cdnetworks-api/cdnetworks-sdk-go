@@ -73,4 +73,7 @@ For detailed API documentation and available methods, please refer to the [offic
 | Deletekeyvalue | Delete multiple KV pairs from the namespace.  | DELETE | /edgekv/kv |
 | Setkeyvalue | Write kv pairs to the specified namespace | PUT | /edgekv/kv |
 | Getkeyvalue | get key value  from the specified namespace | POST | /edgekv/kv |
-| Ecakvinfo | Query edge KV storage information, including: storage capacity, read request count, write request count, delete request count. | POST | /myview/Ecakvinfo |
+| Createshorturl | Short Url Create | POST | /short-urls/create |
+| Getshorturl | query long url by short url | POST | /short-urls/query |
+| Delshorturl | delete  short url | POST | /short-urls/del |
+| Ecakvinfo | Query edge KV storage information, including: storage capacity, read request count, write request count, delete request count. | POST | /myview/ecaKvInfo |

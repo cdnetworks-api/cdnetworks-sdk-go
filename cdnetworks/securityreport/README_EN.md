@@ -106,8 +106,8 @@ For detailed API documentation and available methods, please refer to the [offic
 | Getrequesttrend | The trend of requests | POST | /api/sam/view-request-trend |
 | Gettotalrequestnumber | The total number of requests | POST | /api/sam/view-total-call-count |
 | Getrulestatusstatistics | Query the rule status statistics.<br> | POST | /api/waf/report/get-ruleStatus-statistics |
-| Queryeventtrend | Query traffic trends (by requests). | POST | /api/v1/overview/trend-info |
-| Listattacklogs | Query attack logs by policy type or by specified hostnames. | POST | /api/v1/attack-log/attack-log-list |
+| Queryeventtrend | Query traffic trend (by request count). | POST | /api/v1/overview/trend-info |
+| Listattacklogs | Query attack logs based on policy type or specified domain.Only the first 10,000 log entries are returned. To retrieve all logs, please adjust the filter criteria or contact technical support to use a non-API method. | POST | /api/v1/attack-log/attack-log-list |
 | Gettrendsbyrps | Get traffic trends (by rps). | POST | /api/v1/overview/trend-info-qps |
 | Queryattacklogdetailinfo | Query attack log details. | POST | /api/v1/attack-log/all-detail-info |
 | Getoriginalrequestinformation | Get the original request information of the attack log. | POST | /api/v1/attack-log/original-request-info |
@@ -115,20 +115,14 @@ For detailed API documentation and available methods, please refer to the [offic
 | Gettriggeredddosmanagedrules | Return a list of DDoS managed rules that have been triggered and how many times they have been triggered. | POST | /api/v1/situation/ddos-rule-hit |
 | Gettriggeredratelimitingrules | Return a list of Rate limiting rules that have been triggered and how many times they have been triggered. | POST | /api/v1/situation/rate-limit-rule-hit |
 | Gettriggeredcustomrules | Return a list of custom rules that have been triggered and how many times they have been triggered. | POST | /api/v1/situation/customize-rule-hit |
-| Gettopattacktargetsbyhostname | Get the most attacked hostnames. | POST | /api/v1/situation/target-domain |
+| Gettopattacktargetsbydomain | Get the most attacked domains. | POST | /api/v1/situation/target-domain |
 | Gettopattacktargetsbypath | Get the most attacked path. | POST | /api/v1/situation/target-url |
-| Gettopattacksourcesforclientips | Obtain the Top data of attack sources, you can see which client IPs the attack requests come from. | POST | /api/v1/situation/source-ip-top |
+| Gettopattacksourcesforclientips | Get Top Attack Sources (Client IP). | POST | /api/v1/situation/source-ip-top |
 | Gettopattacksourcesforglobal | Obtain the Top data of global attack sources, you can see which countries/regions the attack requests come from. | POST | /api/v1/situation/source-country-top |
 | Gettopattacksourcesforchinamainland | Obtain the Top data of attack sources in Mainland China, you can see which cities the attack requests come from. | POST | /api/v1/situation/source-province-top |
 | Getsummaryrequests | Get the number of requests, including total requests, mitigated requests, monitored requests, and the whitelisted requests. | POST | /api/v1/overview/event-summary |
-| Dmsthreatenanalysisattackedurls | url | POST | /api/v1/dms-threaten-analysis/attacked-urls |
 | Getinfrastructureloglist | Get a list of infrastructure protection logs. | POST | /api/v1/csec-attack-log/get-infrastructure-log-list |
-| Getl7ddosanalysisattackiplistv2 | Obtain attack ip list(L7 DDoS Analysis). | POST | /api/v2/dms-threaten-analysis/v2/attack-ips |
-| Getl7ddosanalysisattackedhostnamelistv2 | Obtain attacked hostname list(L7 DDoS Analysis). | POST | /api/v2/dms-threaten-analysis/v2/attacked-domains |
-| Getl7ddosanalysisattackedurllistv2 | Obtain attacked url list(L7 DDoS Analysis) | POST | /api/v2/dms-threaten-analysis/v2/attacked-urls |
-| L4ddosevent | Obtain L3/4 DDOS events. | POST | /api/v1/dms-overview/ddos-event |
+| L4ddosevent | Obtain L3/4 DDoS events. | POST | /api/v1/dms-overview/ddos-event |
 | L4ddostrend | Obtain data related to the L3/4 DDoS attack trend. | POST | /api/v1/dms-overview/ddos-trend |
-| L7ddosevents | <br>Obtain L7 DDoS events. | POST | /api/v2/dms-overview/v2/cc-event |
-| L7ddostrend | Obtain data related to the L7 DDoS attack trend. | POST | /api/v2/dms-overview/v2/cc-trend |
 | Gettoppoliciestriggered | Gets the number of triggers for each policy type. | POST | /api/v1/overview/event-distribution |
 | Listserviceusage | This interface is used to query service usage. Users can obtain service usage data by specifying a time period, including the main domain, list of subdomains, defense start time, and defense end time. The current fs2.0 billing logic charges based on the number of main domains, helping users control costs and perform billing audits. | POST | /api/v1/service-usage/service-usage-list |

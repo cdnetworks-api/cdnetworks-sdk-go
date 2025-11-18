@@ -70,8 +70,9 @@ if err != nil {
 
 | ActionName | description | client_methods | uri |
 | --- | --- | --- | --- |
-| Createcertificateapplyingorder | 创建证书申请订单. | POST | /api/certificate/order/create |
-| Getcertificateapplyingorderlist | 查询证书申请订单列表。 | POST | /api/certificate/order/list |
-| Getdomaincontrolvalidationcontent | 查询CA机构进行域名所有权验证时的验证内容。 | POST | /api/certificate/order/domain/validate/info |
-| Cancelcertificateapplyingorder | 取消证书申请订单。 | POST | /api/certificate/order/cancel |
-| Querycertificatesalesorderdetailforwplus | 查询证书申请订单详情 | POST | /api/certificate/order/detail |
+| Createcertificateapplicationorder | 创建证书申请订单. | POST | /api/certificate/order/create |
+| Listcertificateapplicationorders | 查询证书申请订单列表。 | POST | /api/certificate/order/list |
+| Getdcvcontent | 查询CA机构进行域名所有权验证时的验证内容。 | POST | /api/certificate/order/domain/validate/info |
+| Cancelcertificateapplicationorder | 取消证书申请订单。 | POST | /api/certificate/order/cancel |
+| Getcertificateapplicationorder | 查询证书申请订单详情 | POST | /api/certificate/order/detail |
+| Reissuecertificateforwplus | 该接口用于重颁发证书。可以通过提供证书ID、证书描述、证书算法、验证方式、是否自动验证、是否自动部署、通用名称、主体备用名称重颁发证书，调用成功时接口会返回销售订单id。 | POST | /api/certificate/reissue |

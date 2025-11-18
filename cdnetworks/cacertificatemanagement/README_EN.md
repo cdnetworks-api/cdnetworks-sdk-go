@@ -75,5 +75,5 @@ For detailed API documentation and available methods, please refer to the [offic
 | DeleteACaCertificate | DeleteACaCertificate | DELETE | /api/certificate/ca/* |
 | DisassociateDomainWithCaCertificate | DisassociateDomainWithCaCertificate | POST | /api/certificate/ca/disassociatedomain |
 | UpdateACaCertificate | UpdateACaCertificate. | PUT | /api/certificate/ca/* |
-| QueryCaCertificateList | QueryCaCertificateList | POST | /api/certificate/ca/list |
-| GetACaCertificate | GetACaCertificate | GET | /api/certificate/ca/* |
+| Listcacertificates | Query ca certificate list | POST | /api/certificate/ca/list |
+| Getcacertificate | Get a ca certificate | GET | /api/certificate/ca/* |

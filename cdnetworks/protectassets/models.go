@@ -6,7 +6,7 @@ import (
 )
 
 type BatchDeleteAPIDefinitionRequest struct {
-  // {'en':'API definition ID array.', 'zh_CN':'API定义ID数组。'}
+  // {"en":"API definition ID array.","zh_CN":"API定义ID数组。"}
   IdList []*string `json:"idList,omitempty" xml:"idList,omitempty" require:"true" type:"Repeated"`
 }
 
@@ -23,12 +23,52 @@ func (s *BatchDeleteAPIDefinitionRequest) SetIdList(v []*string) *BatchDeleteAPI
   return s
 }
 
+type BatchDeleteAPIDefinitionRequestHeader struct {
+  // {"en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+}
+
+func (s BatchDeleteAPIDefinitionRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchDeleteAPIDefinitionRequestHeader) GoString() string {
+  return s.String()
+}
+
+func (s *BatchDeleteAPIDefinitionRequestHeader) SetServiceType(v string) *BatchDeleteAPIDefinitionRequestHeader {
+  s.ServiceType = &v
+  return s
+}
+
+type BatchDeleteAPIDefinitionPaths struct {
+}
+
+func (s BatchDeleteAPIDefinitionPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchDeleteAPIDefinitionPaths) GoString() string {
+  return s.String()
+}
+
+type BatchDeleteAPIDefinitionParameters struct {
+}
+
+func (s BatchDeleteAPIDefinitionParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchDeleteAPIDefinitionParameters) GoString() string {
+  return s.String()
+}
+
 type BatchDeleteAPIDefinitionResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
   Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'描述信息。'}
+  // {"en":"Description.","zh_CN":"描述信息。"}
   Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {'en':'Data.', 'zh_CN':'出参数据。'}
+  // {"en":"Data.","zh_CN":"出参数据。"}
   Data *bool `json:"data,omitempty" xml:"data,omitempty" require:"true"`
 }
 
@@ -55,46 +95,6 @@ func (s *BatchDeleteAPIDefinitionResponse) SetData(v bool) *BatchDeleteAPIDefini
   return s
 }
 
-type BatchDeleteAPIDefinitionPaths struct {
-}
-
-func (s BatchDeleteAPIDefinitionPaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s BatchDeleteAPIDefinitionPaths) GoString() string {
-  return s.String()
-}
-
-type BatchDeleteAPIDefinitionParameters struct {
-}
-
-func (s BatchDeleteAPIDefinitionParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s BatchDeleteAPIDefinitionParameters) GoString() string {
-  return s.String()
-}
-
-type BatchDeleteAPIDefinitionRequestHeader struct {
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
-}
-
-func (s BatchDeleteAPIDefinitionRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s BatchDeleteAPIDefinitionRequestHeader) GoString() string {
-  return s.String()
-}
-
-func (s *BatchDeleteAPIDefinitionRequestHeader) SetServiceType(v string) *BatchDeleteAPIDefinitionRequestHeader {
-  s.ServiceType = &v
-  return s
-}
-
 type BatchDeleteAPIDefinitionResponseHeader struct {
 }
 
@@ -110,7 +110,7 @@ func (s BatchDeleteAPIDefinitionResponseHeader) GoString() string {
 
 
 type QueryAPIDefinitionDetailRequest struct {
-  // {'en':'API definition ID.', 'zh_CN':'API定义ID。'}
+  // {"en":"API definition ID.","zh_CN":"API定义ID。"}
   Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
 }
 
@@ -127,889 +127,21 @@ func (s *QueryAPIDefinitionDetailRequest) SetId(v string) *QueryAPIDefinitionDet
   return s
 }
 
-type QueryAPIDefinitionDetailResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'描述信息。'}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {'en':'Data.', 'zh_CN':'出参数据。'}
-  Data *QueryAPIDefinitionDetailApiDefineVO `json:"data,omitempty" xml:"data,omitempty" require:"true"`
+type QueryAPIDefinitionDetailRequestHeader struct {
+  // {"en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
 }
 
-func (s QueryAPIDefinitionDetailResponse) String() string {
+func (s QueryAPIDefinitionDetailRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryAPIDefinitionDetailResponse) GoString() string {
+func (s QueryAPIDefinitionDetailRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *QueryAPIDefinitionDetailResponse) SetCode(v string) *QueryAPIDefinitionDetailResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailResponse) SetMsg(v string) *QueryAPIDefinitionDetailResponse {
-  s.Msg = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailResponse) SetData(v *QueryAPIDefinitionDetailApiDefineVO) *QueryAPIDefinitionDetailResponse {
-  s.Data = v
-  return s
-}
-
-type QueryAPIDefinitionDetailApiDefineVO struct {
-  // {'en':'Basic information.', 'zh_CN':'基础信息。'}
-  Basic *QueryAPIDefinitionDetailApiDefineBasicVO `json:"basic,omitempty" xml:"basic,omitempty" require:"true"`
-  // {'en':'Endpoint information.', 'zh_CN':'端点信息。'}
-  Endpoint *QueryAPIDefinitionDetailApiDefineEndpointVO `json:"endpoint,omitempty" xml:"endpoint,omitempty" require:"true"`
-  // {'en':'Authentication configuration.', 'zh_CN':'鉴权配置。'}
-  Auth *QueryAPIDefinitionDetailApiDefineAuthVO `json:"auth,omitempty" xml:"auth,omitempty" require:"true"`
-  // {'en':'Body restrictions.', 'zh_CN':'body限制。'}
-  BodyLimit *QueryAPIDefinitionDetailApiDefineBodyLimitVO `json:"bodyLimit,omitempty" xml:"bodyLimit,omitempty" require:"true"`
-  // {'en':'Parameter limit.', 'zh_CN':'参数限制。'}
-  ParamLimit *QueryAPIDefinitionDetailApiDefineParamLimitVO `json:"paramLimit,omitempty" xml:"paramLimit,omitempty" require:"true"`
-}
-
-func (s QueryAPIDefinitionDetailApiDefineVO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAPIDefinitionDetailApiDefineVO) GoString() string {
-  return s.String()
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineVO) SetBasic(v *QueryAPIDefinitionDetailApiDefineBasicVO) *QueryAPIDefinitionDetailApiDefineVO {
-  s.Basic = v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineVO) SetEndpoint(v *QueryAPIDefinitionDetailApiDefineEndpointVO) *QueryAPIDefinitionDetailApiDefineVO {
-  s.Endpoint = v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineVO) SetAuth(v *QueryAPIDefinitionDetailApiDefineAuthVO) *QueryAPIDefinitionDetailApiDefineVO {
-  s.Auth = v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineVO) SetBodyLimit(v *QueryAPIDefinitionDetailApiDefineBodyLimitVO) *QueryAPIDefinitionDetailApiDefineVO {
-  s.BodyLimit = v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineVO) SetParamLimit(v *QueryAPIDefinitionDetailApiDefineParamLimitVO) *QueryAPIDefinitionDetailApiDefineVO {
-  s.ParamLimit = v
-  return s
-}
-
-type QueryAPIDefinitionDetailApiDefineBasicVO struct {
-  // {'en':'API definition ID.', 'zh_CN':'API定义ID。'}
-  Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
-  // {'en':'API name.', 'zh_CN':'API名称。'}
-  Name *string `json:"name,omitempty" xml:"name,omitempty" require:"true"`
-  // {'en':'API groups.', 'zh_CN':'API分组。'}
-  GroupName *string `json:"groupName,omitempty" xml:"groupName,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'备注。'}
-  Remark *string `json:"remark,omitempty" xml:"remark,omitempty" require:"true"`
-  // {'en':'Attributed hostname.', 'zh_CN':'归属域名。'}
-  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
-  // {'en':'API base path.', 'zh_CN':'端点路径。'}
-  Path *string `json:"path,omitempty" xml:"path,omitempty" require:"true"`
-  // {'en':'Creation time, format: yyyy-MM-dd HH:mm:ss.', 'zh_CN':'创建时间，格式：yyyy-MM-dd HH:mm:ss。'}
-  CreateTime *string `json:"createTime,omitempty" xml:"createTime,omitempty" require:"true"`
-  // {'en':'Update time, format: yyyy-MM-dd HH:mm:ss.', 'zh_CN':'更新时间，格式：yyyy-MM-dd HH:mm:ss。'}
-  UpdateTime *string `json:"updateTime,omitempty" xml:"updateTime,omitempty" require:"true"`
-}
-
-func (s QueryAPIDefinitionDetailApiDefineBasicVO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAPIDefinitionDetailApiDefineBasicVO) GoString() string {
-  return s.String()
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineBasicVO) SetId(v string) *QueryAPIDefinitionDetailApiDefineBasicVO {
-  s.Id = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineBasicVO) SetName(v string) *QueryAPIDefinitionDetailApiDefineBasicVO {
-  s.Name = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineBasicVO) SetGroupName(v string) *QueryAPIDefinitionDetailApiDefineBasicVO {
-  s.GroupName = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineBasicVO) SetRemark(v string) *QueryAPIDefinitionDetailApiDefineBasicVO {
-  s.Remark = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineBasicVO) SetDomain(v string) *QueryAPIDefinitionDetailApiDefineBasicVO {
-  s.Domain = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineBasicVO) SetPath(v string) *QueryAPIDefinitionDetailApiDefineBasicVO {
-  s.Path = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineBasicVO) SetCreateTime(v string) *QueryAPIDefinitionDetailApiDefineBasicVO {
-  s.CreateTime = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineBasicVO) SetUpdateTime(v string) *QueryAPIDefinitionDetailApiDefineBasicVO {
-  s.UpdateTime = &v
-  return s
-}
-
-type QueryAPIDefinitionDetailApiDefineEndpointVO struct {
-  // {'en':'Request methods.
-  // GET:GET, configurable parameter limits
-  // POST:POST, configurable parameter limits
-  // DELETE:DELETE, configurable parameter limits
-  // UPDATE:UPDATE
-  // PUT:PUT, configurable parameter limits
-  // HEAD:HEAD, configurable parameter limits
-  // CONNECT:CONNECT
-  // OPTIONS:OPTIONS, configurable parameter limits
-  // COPY:COPY
-  // LOCK:LOCK
-  // UNLOCK:UNLOCK
-  // TRACE:TRACE
-  // PATCH:PATCH, configurable parameter limits
-  // PROPFIND:PROPFIND
-  // MKCOL:MKCOL
-  // MOVE:MOVE', 'zh_CN':'请求方法。
-  // GET：GET，可配置参数限制
-  // POST：POST，可配置参数限制
-  // DELETE：DELETE，可配置参数限制
-  // UPDATE：UPDATE
-  // PUT：PUT，可配置参数限制
-  // HEAD：HEAD，可配置参数限制
-  // CONNECT：CONNECT
-  // OPTIONS：OPTIONS，可配置参数限制
-  // COPY：COPY
-  // LOCK：LOCK
-  // UNLOCK：UNLOCK
-  // TRACE：TRACE
-  // PATCH：PATCH，可配置参数限制
-  // PROPFIND：PROPFIND
-  // MKCOL：MKCOL
-  // MOVE：MOVE'}
-  RequestMethod *string `json:"requestMethod,omitempty" xml:"requestMethod,omitempty" require:"true"`
-  // {'en':'API type.
-  // NORMAL:Common API
-  // WHEN_CASE:Common API', 'zh_CN':'API类型。
-  // NORMAL：普通接口
-  // WHEN_CASE：when-case接口'}
-  Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
-  // {'en':'Path matching type.
-  // EQUAL: Complete match
-  // REGEX: Regular matching', 'zh_CN':'路径匹配类型。
-  // EQUAL：完整匹配
-  // REGEX：正则匹配'}
-  MatchType *string `json:"matchType,omitempty" xml:"matchType,omitempty" require:"true"`
-  // {'en':'API base path.', 'zh_CN':'端点路径。'}
-  Path *string `json:"path,omitempty" xml:"path,omitempty" require:"true"`
-  // {'en':'Case sensitive.
-  // TRUE:Yes
-  // FALSE:No', 'zh_CN':'大小写是否敏感。
-  // TRUE：是
-  // FALSE：否'}
-  CaseSensitive *string `json:"caseSensitive,omitempty" xml:"caseSensitive,omitempty" require:"true"`
-  // {'en':'Match QueryAPIDefinitionDetailParameters in the Path.
-  // TRUE:Yes
-  // FALSE:No', 'zh_CN':'匹配路径参数。
-  // TRUE：是
-  // FALSE：否'}
-  MatchPathVar *string `json:"matchPathVar,omitempty" xml:"matchPathVar,omitempty" require:"true"`
-}
-
-func (s QueryAPIDefinitionDetailApiDefineEndpointVO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAPIDefinitionDetailApiDefineEndpointVO) GoString() string {
-  return s.String()
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineEndpointVO) SetRequestMethod(v string) *QueryAPIDefinitionDetailApiDefineEndpointVO {
-  s.RequestMethod = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineEndpointVO) SetType(v string) *QueryAPIDefinitionDetailApiDefineEndpointVO {
-  s.Type = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineEndpointVO) SetMatchType(v string) *QueryAPIDefinitionDetailApiDefineEndpointVO {
-  s.MatchType = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineEndpointVO) SetPath(v string) *QueryAPIDefinitionDetailApiDefineEndpointVO {
-  s.Path = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineEndpointVO) SetCaseSensitive(v string) *QueryAPIDefinitionDetailApiDefineEndpointVO {
-  s.CaseSensitive = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineEndpointVO) SetMatchPathVar(v string) *QueryAPIDefinitionDetailApiDefineEndpointVO {
-  s.MatchPathVar = &v
-  return s
-}
-
-type QueryAPIDefinitionDetailApiDefineAuthVO struct {
-  // {'en':'Authentication method.
-  // NO_NEED:No authentication required
-  // SIGN:Key authentication', 'zh_CN':'鉴权方法。
-  // NO_NEED：免鉴权
-  // SIGN：秘钥对鉴权'}
-  Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
-  // {'en':'Authentication key.', 'zh_CN':'鉴权秘钥。'}
-  AuthKey *string `json:"authKey,omitempty" xml:"authKey,omitempty" require:"true"`
-  // {'en':'Authentication parameter location.
-  // HTTP_HEADER:Http Header
-  // QUERY_STRING:Query String
-  // COOKIE:Cookie', 'zh_CN':'鉴权参数位置。
-  // HTTP_HEADER：Http Header
-  // QUERY_STRING：Query String
-  // COOKIE：Cookie'}
-  ParamPosition *string `json:"paramPosition,omitempty" xml:"paramPosition,omitempty" require:"true"`
-  // {'en':'Authentication parameter name.', 'zh_CN':'鉴权参数名称。'}
-  ParamName *string `json:"paramName,omitempty" xml:"paramName,omitempty" require:"true"`
-  // {'en':'Authentication token validity period, in seconds.', 'zh_CN':'鉴权有效期，单位秒。'}
-  ValidityTime *int64 `json:"validityTime,omitempty" xml:"validityTime,omitempty" require:"true"`
-}
-
-func (s QueryAPIDefinitionDetailApiDefineAuthVO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAPIDefinitionDetailApiDefineAuthVO) GoString() string {
-  return s.String()
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineAuthVO) SetType(v string) *QueryAPIDefinitionDetailApiDefineAuthVO {
-  s.Type = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineAuthVO) SetAuthKey(v string) *QueryAPIDefinitionDetailApiDefineAuthVO {
-  s.AuthKey = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineAuthVO) SetParamPosition(v string) *QueryAPIDefinitionDetailApiDefineAuthVO {
-  s.ParamPosition = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineAuthVO) SetParamName(v string) *QueryAPIDefinitionDetailApiDefineAuthVO {
-  s.ParamName = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineAuthVO) SetValidityTime(v int64) *QueryAPIDefinitionDetailApiDefineAuthVO {
-  s.ValidityTime = &v
-  return s
-}
-
-type QueryAPIDefinitionDetailApiDefineBodyLimitVO struct {
-  // {'en':'Request body restriction switch.
-  // ON:ON
-  // OFF:OFF', 'zh_CN':'请求body限制开关。
-  // ON：开启
-  // OFF：关闭'}
-  DefendSwitch *string `json:"defendSwitch,omitempty" xml:"defendSwitch,omitempty" require:"true"`
-  // {'en':'Content-Type.
-  // FORM:FORM
-  // JSON:JSON
-  // ANY:ANY
-  // EMPTY:EMPTY or NON-EXISTENT', 'zh_CN':'Content-Type。
-  // FORM：FORM表单
-  // JSON：JSON
-  // ANY：任意
-  // EMPTY：为空或不存在'}
-  ContentType *string `json:"contentType,omitempty" xml:"contentType,omitempty" require:"true"`
-  // {'en':'Maximum body limit(bytes).', 'zh_CN':'Body最大限制(bytes)。'}
-  BodyLimitMax *int64 `json:"bodyLimitMax,omitempty" xml:"bodyLimitMax,omitempty" require:"true"`
-  // {'en':'Maximum nesting depth.', 'zh_CN':'最大嵌套层数。'}
-  NestMax *int64 `json:"nestMax,omitempty" xml:"nestMax,omitempty" require:"true"`
-  // {'en':'Maximum number of parameters for JSON.', 'zh_CN':'JSON最大参数个数。'}
-  ParamCountMax *int64 `json:"paramCountMax,omitempty" xml:"paramCountMax,omitempty" require:"true"`
-}
-
-func (s QueryAPIDefinitionDetailApiDefineBodyLimitVO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAPIDefinitionDetailApiDefineBodyLimitVO) GoString() string {
-  return s.String()
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineBodyLimitVO) SetDefendSwitch(v string) *QueryAPIDefinitionDetailApiDefineBodyLimitVO {
-  s.DefendSwitch = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineBodyLimitVO) SetContentType(v string) *QueryAPIDefinitionDetailApiDefineBodyLimitVO {
-  s.ContentType = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineBodyLimitVO) SetBodyLimitMax(v int64) *QueryAPIDefinitionDetailApiDefineBodyLimitVO {
-  s.BodyLimitMax = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineBodyLimitVO) SetNestMax(v int64) *QueryAPIDefinitionDetailApiDefineBodyLimitVO {
-  s.NestMax = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineBodyLimitVO) SetParamCountMax(v int64) *QueryAPIDefinitionDetailApiDefineBodyLimitVO {
-  s.ParamCountMax = &v
-  return s
-}
-
-type QueryAPIDefinitionDetailApiDefineParamLimitVO struct {
-  // {'en':'Basic information.', 'zh_CN':'基础信息。'}
-  Basic *QueryAPIDefinitionDetailApiDefineParamLimitBasicVO `json:"basic,omitempty" xml:"basic,omitempty" require:"true"`
-  // {'en':'Method attributes.', 'zh_CN':'方法属性。'}
-  MethodList []*QueryAPIDefinitionDetailApiDefineParamLimitMethodVO `json:"methodList,omitempty" xml:"methodList,omitempty" require:"true" type:"Repeated"`
-}
-
-func (s QueryAPIDefinitionDetailApiDefineParamLimitVO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAPIDefinitionDetailApiDefineParamLimitVO) GoString() string {
-  return s.String()
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitVO) SetBasic(v *QueryAPIDefinitionDetailApiDefineParamLimitBasicVO) *QueryAPIDefinitionDetailApiDefineParamLimitVO {
-  s.Basic = v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitVO) SetMethodList(v []*QueryAPIDefinitionDetailApiDefineParamLimitMethodVO) *QueryAPIDefinitionDetailApiDefineParamLimitVO {
-  s.MethodList = v
-  return s
-}
-
-type QueryAPIDefinitionDetailApiDefineParamLimitBasicVO struct {
-  // {'en':'Parameter limit.
-  // ON:ON
-  // OFF:OFF', 'zh_CN':'参数限制。
-  // ON：ON
-  // OFF：OFF'}
-  DefendSwitch *string `json:"defendSwitch,omitempty" xml:"defendSwitch,omitempty" require:"true"`
-  // {'en':'Query String Parameter Detection Mode.
-  // LOOSE:Loose mode - detect some parameters
-  // STRICT:Strict mode - checks all parameters', 'zh_CN':'Query String参数检测模式。
-  // LOOSE：宽松模式-检测部分参数
-  // STRICT：严格模式-检测所有参数'}
-  ParamCheckMode *string `json:"paramCheckMode,omitempty" xml:"paramCheckMode,omitempty" require:"true"`
-}
-
-func (s QueryAPIDefinitionDetailApiDefineParamLimitBasicVO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAPIDefinitionDetailApiDefineParamLimitBasicVO) GoString() string {
-  return s.String()
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitBasicVO) SetDefendSwitch(v string) *QueryAPIDefinitionDetailApiDefineParamLimitBasicVO {
-  s.DefendSwitch = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitBasicVO) SetParamCheckMode(v string) *QueryAPIDefinitionDetailApiDefineParamLimitBasicVO {
-  s.ParamCheckMode = &v
-  return s
-}
-
-type QueryAPIDefinitionDetailApiDefineParamLimitMethodVO struct {
-  // {'en':'Request methods.
-  // GET:GET
-  // POST:POST
-  // DELETE:DELETE
-  // PUT:PUT
-  // HEAD:HEAD
-  // OPTIONS:OPTIONS
-  // PATCH:PATCH', 'zh_CN':'请求方法。
-  // GET：GET
-  // POST：POST
-  // DELETE：DELETE
-  // PUT：PUT
-  // HEAD：HEAD
-  // OPTIONS：OPTIONS
-  // PATCH：PATCH'}
-  Method *string `json:"method,omitempty" xml:"method,omitempty" require:"true"`
-  // {'en':'Whether to define body parameters.
-  // TRUE:Yes
-  // FALSE:No', 'zh_CN':'是否定义body参数。
-  // TRUE：是
-  // FALSE：否'}
-  BodyFlag *string `json:"bodyFlag,omitempty" xml:"bodyFlag,omitempty" require:"true"`
-  // {'en':'Body parameter type.
-  // JSON:JSON
-  // FROM:FROM', 'zh_CN':'body参数类型。
-  // JSON：JSON
-  // FROM：FROM表单'}
-  BodyType *string `json:"bodyType,omitempty" xml:"bodyType,omitempty" require:"true"`
-  // {'en':'Normal parameter list.', 'zh_CN':'普通参数数组。'}
-  NormalParamList []*QueryAPIDefinitionDetailApiDefineParamLimitNormalVO `json:"normalParamList,omitempty" xml:"normalParamList,omitempty" require:"true" type:"Repeated"`
-  // {'en':'FROM form parameter array.', 'zh_CN':'FROM 表单参数数组。'}
-  FormParamList []*QueryAPIDefinitionDetailApiDefineParamLimitFormVO `json:"formParamList,omitempty" xml:"formParamList,omitempty" require:"true" type:"Repeated"`
-  // {'en':'JSON parameter array.', 'zh_CN':'JSON参数数组。'}
-  JsonParam *QueryAPIDefinitionDetailApiDefineParamLimitJsonVO `json:"jsonParam,omitempty" xml:"jsonParam,omitempty" require:"true"`
-}
-
-func (s QueryAPIDefinitionDetailApiDefineParamLimitMethodVO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAPIDefinitionDetailApiDefineParamLimitMethodVO) GoString() string {
-  return s.String()
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitMethodVO) SetMethod(v string) *QueryAPIDefinitionDetailApiDefineParamLimitMethodVO {
-  s.Method = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitMethodVO) SetBodyFlag(v string) *QueryAPIDefinitionDetailApiDefineParamLimitMethodVO {
-  s.BodyFlag = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitMethodVO) SetBodyType(v string) *QueryAPIDefinitionDetailApiDefineParamLimitMethodVO {
-  s.BodyType = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitMethodVO) SetNormalParamList(v []*QueryAPIDefinitionDetailApiDefineParamLimitNormalVO) *QueryAPIDefinitionDetailApiDefineParamLimitMethodVO {
-  s.NormalParamList = v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitMethodVO) SetFormParamList(v []*QueryAPIDefinitionDetailApiDefineParamLimitFormVO) *QueryAPIDefinitionDetailApiDefineParamLimitMethodVO {
-  s.FormParamList = v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitMethodVO) SetJsonParam(v *QueryAPIDefinitionDetailApiDefineParamLimitJsonVO) *QueryAPIDefinitionDetailApiDefineParamLimitMethodVO {
-  s.JsonParam = v
-  return s
-}
-
-type QueryAPIDefinitionDetailApiDefineParamLimitNormalVO struct {
-  // {'en':'Request methods.
-  // GET:GET
-  // POST:POST
-  // DELETE:DELETE
-  // PUT:PUT
-  // HEAD:HEAD
-  // OPTIONS:OPTIONS
-  // PATCH:PATCH', 'zh_CN':'请求方法。
-  // GET：GET
-  // POST：POST
-  // DELETE：DELETE
-  // PUT：PUT
-  // HEAD：HEAD
-  // OPTIONS：OPTIONS
-  // PATCH：PATCH'}
-  Method *string `json:"method,omitempty" xml:"method,omitempty" require:"true"`
-  // {'en':'Parameter name.', 'zh_CN':'参数名称。'}
-  Name *string `json:"name,omitempty" xml:"name,omitempty" require:"true"`
-  // {'en':'Parameter position.
-  // HTTP_HEADER:Http Header
-  // QUERY_STRING:Query String
-  // COOKIE:Cookie
-  // PATH_PARAMS:Path', 'zh_CN':'参数变量。
-  // HTTP_HEADER：Http Header
-  // QUERY_STRING：Query String
-  // COOKIE：Cookie
-  // PATH_PARAMS：路径变量'}
-  ParamPosition *string `json:"paramPosition,omitempty" xml:"paramPosition,omitempty" require:"true"`
-  // {'en':'Parameter type.
-  // Integer:Integer
-  // Number:Number
-  // String:String
-  // Boolean:Boolean
-  // Enumeration:Enumeration', 'zh_CN':'参数类型。
-  // Integer：整数
-  // Number：数字
-  // String：字符串
-  // Boolean：布尔
-  // Enumeration：枚举'}
-  Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
-  // {'en':'Minimum value/Minimum length.', 'zh_CN':'最小值、最小长度。'}
-  MinVal *string `json:"minVal,omitempty" xml:"minVal,omitempty" require:"true"`
-  // {'en':'Maximum value/Maximum length.', 'zh_CN':'最大值、最大长度。'}
-  MaxVal *string `json:"maxVal,omitempty" xml:"maxVal,omitempty" require:"true"`
-  // {'en':'Required.
-  // TRUE:Yes
-  // FALSE:No', 'zh_CN':'必带参数。
-  // TRUE：是
-  // FALSE：否'}
-  Required *string `json:"required,omitempty" xml:"required,omitempty" require:"true"`
-  // {'en':'Content.', 'zh_CN':'内容。'}
-  Content *string `json:"content,omitempty" xml:"content,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'备注。'}
-  Remark *string `json:"remark,omitempty" xml:"remark,omitempty" require:"true"`
-}
-
-func (s QueryAPIDefinitionDetailApiDefineParamLimitNormalVO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAPIDefinitionDetailApiDefineParamLimitNormalVO) GoString() string {
-  return s.String()
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitNormalVO) SetMethod(v string) *QueryAPIDefinitionDetailApiDefineParamLimitNormalVO {
-  s.Method = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitNormalVO) SetName(v string) *QueryAPIDefinitionDetailApiDefineParamLimitNormalVO {
-  s.Name = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitNormalVO) SetParamPosition(v string) *QueryAPIDefinitionDetailApiDefineParamLimitNormalVO {
-  s.ParamPosition = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitNormalVO) SetType(v string) *QueryAPIDefinitionDetailApiDefineParamLimitNormalVO {
-  s.Type = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitNormalVO) SetMinVal(v string) *QueryAPIDefinitionDetailApiDefineParamLimitNormalVO {
-  s.MinVal = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitNormalVO) SetMaxVal(v string) *QueryAPIDefinitionDetailApiDefineParamLimitNormalVO {
-  s.MaxVal = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitNormalVO) SetRequired(v string) *QueryAPIDefinitionDetailApiDefineParamLimitNormalVO {
-  s.Required = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitNormalVO) SetContent(v string) *QueryAPIDefinitionDetailApiDefineParamLimitNormalVO {
-  s.Content = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitNormalVO) SetRemark(v string) *QueryAPIDefinitionDetailApiDefineParamLimitNormalVO {
-  s.Remark = &v
-  return s
-}
-
-type QueryAPIDefinitionDetailApiDefineParamLimitFormVO struct {
-  // {'en':'Request methods.
-  // POST:POST
-  // PUT:PUT
-  // PATCH:PATCH', 'zh_CN':'请求方法。
-  // POST：POST
-  // PUT：PUT
-  // PATCH：PATCH'}
-  Method *string `json:"method,omitempty" xml:"method,omitempty" require:"true"`
-  // {'en':'Parameter name.', 'zh_CN':'参数名称。'}
-  Name *string `json:"name,omitempty" xml:"name,omitempty" require:"true"`
-  // {'en':'Parameter type.
-  // Integer:Integer
-  // Number:Number
-  // String:String
-  // Boolean:Boolean
-  // Enumeration:Enumeration', 'zh_CN':'参数类型。
-  // Integer：整数
-  // Number：数字
-  // String：字符串
-  // Boolean：布尔
-  // Enumeration：枚举'}
-  Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
-  // {'en':'Minimum value/Minimum length.', 'zh_CN':'最小值、最小长度。'}
-  MinVal *string `json:"minVal,omitempty" xml:"minVal,omitempty" require:"true"`
-  // {'en':'Maximum value/Maximum length.', 'zh_CN':'最大值、最大长度。'}
-  MaxVal *string `json:"maxVal,omitempty" xml:"maxVal,omitempty" require:"true"`
-  // {'en':'Required.
-  // TRUE:Yes
-  // FALSE:No', 'zh_CN':'必带参数。
-  // TRUE：是
-  // FALSE：否'}
-  Required *string `json:"required,omitempty" xml:"required,omitempty" require:"true"`
-  // {'en':'Content.', 'zh_CN':'内容。'}
-  Content *string `json:"content,omitempty" xml:"content,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'备注。'}
-  Remark *string `json:"remark,omitempty" xml:"remark,omitempty" require:"true"`
-}
-
-func (s QueryAPIDefinitionDetailApiDefineParamLimitFormVO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAPIDefinitionDetailApiDefineParamLimitFormVO) GoString() string {
-  return s.String()
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitFormVO) SetMethod(v string) *QueryAPIDefinitionDetailApiDefineParamLimitFormVO {
-  s.Method = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitFormVO) SetName(v string) *QueryAPIDefinitionDetailApiDefineParamLimitFormVO {
-  s.Name = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitFormVO) SetType(v string) *QueryAPIDefinitionDetailApiDefineParamLimitFormVO {
-  s.Type = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitFormVO) SetMinVal(v string) *QueryAPIDefinitionDetailApiDefineParamLimitFormVO {
-  s.MinVal = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitFormVO) SetMaxVal(v string) *QueryAPIDefinitionDetailApiDefineParamLimitFormVO {
-  s.MaxVal = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitFormVO) SetRequired(v string) *QueryAPIDefinitionDetailApiDefineParamLimitFormVO {
-  s.Required = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitFormVO) SetContent(v string) *QueryAPIDefinitionDetailApiDefineParamLimitFormVO {
-  s.Content = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitFormVO) SetRemark(v string) *QueryAPIDefinitionDetailApiDefineParamLimitFormVO {
-  s.Remark = &v
-  return s
-}
-
-type QueryAPIDefinitionDetailApiDefineParamLimitJsonVO struct {
-  // {'en':'Request methods.
-  // POST:POST
-  // PUT:PUT
-  // PATCH:PATCH', 'zh_CN':'请求方法。
-  // POST：POST
-  // PUT：PUT
-  // PATCH：PATCH'}
-  Method *string `json:"method,omitempty" xml:"method,omitempty" require:"true"`
-  // {'en':'Parameter Name.', 'zh_CN':'参数名称。'}
-  Name *string `json:"name,omitempty" xml:"name,omitempty" require:"true"`
-  // {'en':'Level.', 'zh_CN':'层级。'}
-  Level *int32 `json:"level,omitempty" xml:"level,omitempty" require:"true"`
-  // {'en':'Parameter Type.
-  // Integer:Integer
-  // Number:Number
-  // String:String
-  // Boolean:Boolean
-  // Enumeration:Enumeration
-  // Array:Array
-  // Json:JSON Object', 'zh_CN':'参数类型。
-  // Integer：整数
-  // Number：数字
-  // String：字符串
-  // Boolean：布尔
-  // Enumeration：枚举
-  // Array：数组
-  // Json：JSON对象'}
-  Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
-  // {'en':'Minimum value/Minimum length.', 'zh_CN':'最小值、最小长度。'}
-  MinVal *string `json:"minVal,omitempty" xml:"minVal,omitempty" require:"true"`
-  // {'en':'Maximum value/Maximum length.', 'zh_CN':'最大值、最大长度。'}
-  MaxVal *string `json:"maxVal,omitempty" xml:"maxVal,omitempty" require:"true"`
-  // {'en':'Required.
-  // TRUE:Yes
-  // FALSE:No', 'zh_CN':'必带参数。
-  // TRUE：是
-  // FALSE：否'}
-  Required *string `json:"required,omitempty" xml:"required,omitempty" require:"true"`
-  // {'en':'Content.', 'zh_CN':'内容。'}
-  Content *string `json:"content,omitempty" xml:"content,omitempty" require:"true"`
-  // {'en':'Child node array, required when type= Array.', 'zh_CN':'子节点数组，type = Array 时必填。'}
-  Children []*QueryAPIDefinitionDetailApiDefineParamLimitJsonChildrenVO `json:"children,omitempty" xml:"children,omitempty" require:"true" type:"Repeated"`
-}
-
-func (s QueryAPIDefinitionDetailApiDefineParamLimitJsonVO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAPIDefinitionDetailApiDefineParamLimitJsonVO) GoString() string {
-  return s.String()
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitJsonVO) SetMethod(v string) *QueryAPIDefinitionDetailApiDefineParamLimitJsonVO {
-  s.Method = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitJsonVO) SetName(v string) *QueryAPIDefinitionDetailApiDefineParamLimitJsonVO {
-  s.Name = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitJsonVO) SetLevel(v int32) *QueryAPIDefinitionDetailApiDefineParamLimitJsonVO {
-  s.Level = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitJsonVO) SetType(v string) *QueryAPIDefinitionDetailApiDefineParamLimitJsonVO {
-  s.Type = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitJsonVO) SetMinVal(v string) *QueryAPIDefinitionDetailApiDefineParamLimitJsonVO {
-  s.MinVal = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitJsonVO) SetMaxVal(v string) *QueryAPIDefinitionDetailApiDefineParamLimitJsonVO {
-  s.MaxVal = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitJsonVO) SetRequired(v string) *QueryAPIDefinitionDetailApiDefineParamLimitJsonVO {
-  s.Required = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitJsonVO) SetContent(v string) *QueryAPIDefinitionDetailApiDefineParamLimitJsonVO {
-  s.Content = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitJsonVO) SetChildren(v []*QueryAPIDefinitionDetailApiDefineParamLimitJsonChildrenVO) *QueryAPIDefinitionDetailApiDefineParamLimitJsonVO {
-  s.Children = v
-  return s
-}
-
-type QueryAPIDefinitionDetailApiDefineParamLimitJsonChildrenVO struct {
-  // {'en':'Request methods.
-  // POST:POST
-  // PUT:PUT
-  // PATCH:PATCH', 'zh_CN':'请求方法。
-  // POST：POST
-  // PUT：PUT
-  // PATCH：PATCH'}
-  Method *string `json:"method,omitempty" xml:"method,omitempty" require:"true"`
-  // {'en':'Parameter Name.', 'zh_CN':'参数名称。'}
-  Name *string `json:"name,omitempty" xml:"name,omitempty" require:"true"`
-  // {'en':'Level.', 'zh_CN':'层级。'}
-  Level *int32 `json:"level,omitempty" xml:"level,omitempty" require:"true"`
-  // {'en':'Parameter Type.
-  // Integer:Integer
-  // Number:Number
-  // String:String
-  // Boolean:Boolean
-  // Enumeration:Enumeration
-  // Array:Array
-  // Json:JSON Object', 'zh_CN':'参数类型。
-  // Integer：整数
-  // Number：数字
-  // String：字符串
-  // Boolean：布尔
-  // Enumeration：枚举
-  // Array：数组
-  // Json：JSON对象'}
-  Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
-  // {'en':'Minimum value/Minimum length.', 'zh_CN':'最小值、最小长度。'}
-  MinVal *string `json:"minVal,omitempty" xml:"minVal,omitempty" require:"true"`
-  // {'en':'Maximum value/Maximum length.', 'zh_CN':'最大值、最大长度。'}
-  MaxVal *string `json:"maxVal,omitempty" xml:"maxVal,omitempty" require:"true"`
-  // {'en':'Required.
-  // TRUE:Yes
-  // FALSE:No', 'zh_CN':'必带参数。
-  // TRUE：是
-  // FALSE：否'}
-  Required *string `json:"required,omitempty" xml:"required,omitempty" require:"true"`
-  // {'en':'Content.', 'zh_CN':'内容。'}
-  Content *string `json:"content,omitempty" xml:"content,omitempty" require:"true"`
-  // {'en':'Child node array (JSON string), the structure is consistent with the parent node, required when type= Array.', 'zh_CN':'子节点数组（JSON字符串），结构与父结点一致，type = Array 时必填。'}
-  Children []*string `json:"children,omitempty" xml:"children,omitempty" require:"true" type:"Repeated"`
-}
-
-func (s QueryAPIDefinitionDetailApiDefineParamLimitJsonChildrenVO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAPIDefinitionDetailApiDefineParamLimitJsonChildrenVO) GoString() string {
-  return s.String()
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitJsonChildrenVO) SetMethod(v string) *QueryAPIDefinitionDetailApiDefineParamLimitJsonChildrenVO {
-  s.Method = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitJsonChildrenVO) SetName(v string) *QueryAPIDefinitionDetailApiDefineParamLimitJsonChildrenVO {
-  s.Name = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitJsonChildrenVO) SetLevel(v int32) *QueryAPIDefinitionDetailApiDefineParamLimitJsonChildrenVO {
-  s.Level = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitJsonChildrenVO) SetType(v string) *QueryAPIDefinitionDetailApiDefineParamLimitJsonChildrenVO {
-  s.Type = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitJsonChildrenVO) SetMinVal(v string) *QueryAPIDefinitionDetailApiDefineParamLimitJsonChildrenVO {
-  s.MinVal = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitJsonChildrenVO) SetMaxVal(v string) *QueryAPIDefinitionDetailApiDefineParamLimitJsonChildrenVO {
-  s.MaxVal = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitJsonChildrenVO) SetRequired(v string) *QueryAPIDefinitionDetailApiDefineParamLimitJsonChildrenVO {
-  s.Required = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitJsonChildrenVO) SetContent(v string) *QueryAPIDefinitionDetailApiDefineParamLimitJsonChildrenVO {
-  s.Content = &v
-  return s
-}
-
-func (s *QueryAPIDefinitionDetailApiDefineParamLimitJsonChildrenVO) SetChildren(v []*string) *QueryAPIDefinitionDetailApiDefineParamLimitJsonChildrenVO {
-  s.Children = v
+func (s *QueryAPIDefinitionDetailRequestHeader) SetServiceType(v string) *QueryAPIDefinitionDetailRequestHeader {
+  s.ServiceType = &v
   return s
 }
 
@@ -1035,21 +167,685 @@ func (s QueryAPIDefinitionDetailParameters) GoString() string {
   return s.String()
 }
 
-type QueryAPIDefinitionDetailRequestHeader struct {
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+type QueryAPIDefinitionDetailResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"Data.","zh_CN":"出参数据。"}
+  Data *QueryAPIDefinitionDetailResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
 }
 
-func (s QueryAPIDefinitionDetailRequestHeader) String() string {
+func (s QueryAPIDefinitionDetailResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryAPIDefinitionDetailRequestHeader) GoString() string {
+func (s QueryAPIDefinitionDetailResponse) GoString() string {
   return s.String()
 }
 
-func (s *QueryAPIDefinitionDetailRequestHeader) SetServiceType(v string) *QueryAPIDefinitionDetailRequestHeader {
-  s.ServiceType = &v
+func (s *QueryAPIDefinitionDetailResponse) SetCode(v string) *QueryAPIDefinitionDetailResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponse) SetMsg(v string) *QueryAPIDefinitionDetailResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponse) SetData(v *QueryAPIDefinitionDetailResponseData) *QueryAPIDefinitionDetailResponse {
+  s.Data = v
+  return s
+}
+
+type QueryAPIDefinitionDetailResponseData struct {
+  // {"en":"Basic information.","zh_CN":"基础信息。"}
+  Basic *QueryAPIDefinitionDetailResponseDataBasic `json:"basic,omitempty" xml:"basic,omitempty" require:"true" type:"Struct"`
+  // {"en":"Endpoint information.","zh_CN":"端点信息。"}
+  Endpoint *QueryAPIDefinitionDetailResponseDataEndpoint `json:"endpoint,omitempty" xml:"endpoint,omitempty" require:"true" type:"Struct"`
+  // {"en":"Authentication configuration.","zh_CN":"鉴权配置。"}
+  Auth *QueryAPIDefinitionDetailResponseDataAuth `json:"auth,omitempty" xml:"auth,omitempty" require:"true" type:"Struct"`
+  // {"en":"Body restrictions.","zh_CN":"body限制。"}
+  BodyLimit *QueryAPIDefinitionDetailResponseDataBodyLimit `json:"bodyLimit,omitempty" xml:"bodyLimit,omitempty" require:"true" type:"Struct"`
+  // {"en":"Parameter limit.","zh_CN":"参数限制。"}
+  ParamLimit *QueryAPIDefinitionDetailResponseDataParamLimit `json:"paramLimit,omitempty" xml:"paramLimit,omitempty" require:"true" type:"Struct"`
+}
+
+func (s QueryAPIDefinitionDetailResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAPIDefinitionDetailResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAPIDefinitionDetailResponseData) SetBasic(v *QueryAPIDefinitionDetailResponseDataBasic) *QueryAPIDefinitionDetailResponseData {
+  s.Basic = v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseData) SetEndpoint(v *QueryAPIDefinitionDetailResponseDataEndpoint) *QueryAPIDefinitionDetailResponseData {
+  s.Endpoint = v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseData) SetAuth(v *QueryAPIDefinitionDetailResponseDataAuth) *QueryAPIDefinitionDetailResponseData {
+  s.Auth = v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseData) SetBodyLimit(v *QueryAPIDefinitionDetailResponseDataBodyLimit) *QueryAPIDefinitionDetailResponseData {
+  s.BodyLimit = v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseData) SetParamLimit(v *QueryAPIDefinitionDetailResponseDataParamLimit) *QueryAPIDefinitionDetailResponseData {
+  s.ParamLimit = v
+  return s
+}
+
+type QueryAPIDefinitionDetailResponseDataBasic struct {
+  // {"en":"API definition ID.","zh_CN":"API定义ID。"}
+  Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
+  // {"en":"API name.","zh_CN":"API名称。"}
+  Name *string `json:"name,omitempty" xml:"name,omitempty" require:"true"`
+  // {"en":"API groups.","zh_CN":"API分组。"}
+  GroupName *string `json:"groupName,omitempty" xml:"groupName,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"备注。"}
+  Remark *string `json:"remark,omitempty" xml:"remark,omitempty" require:"true"`
+  // {"en":"Attributed domain.","zh_CN":"归属域名。"}
+  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
+  // {"en":"API base path.","zh_CN":"端点路径。"}
+  Path *string `json:"path,omitempty" xml:"path,omitempty" require:"true"`
+  // {"en":"Creation time, format: yyyy-MM-dd HH:mm:ss.","zh_CN":"创建时间，格式：yyyy-MM-dd HH:mm:ss。"}
+  CreateTime *string `json:"createTime,omitempty" xml:"createTime,omitempty" require:"true"`
+  // {"en":"Update time, format: yyyy-MM-dd HH:mm:ss.","zh_CN":"更新时间，格式：yyyy-MM-dd HH:mm:ss。"}
+  UpdateTime *string `json:"updateTime,omitempty" xml:"updateTime,omitempty" require:"true"`
+}
+
+func (s QueryAPIDefinitionDetailResponseDataBasic) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAPIDefinitionDetailResponseDataBasic) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataBasic) SetId(v string) *QueryAPIDefinitionDetailResponseDataBasic {
+  s.Id = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataBasic) SetName(v string) *QueryAPIDefinitionDetailResponseDataBasic {
+  s.Name = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataBasic) SetGroupName(v string) *QueryAPIDefinitionDetailResponseDataBasic {
+  s.GroupName = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataBasic) SetRemark(v string) *QueryAPIDefinitionDetailResponseDataBasic {
+  s.Remark = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataBasic) SetDomain(v string) *QueryAPIDefinitionDetailResponseDataBasic {
+  s.Domain = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataBasic) SetPath(v string) *QueryAPIDefinitionDetailResponseDataBasic {
+  s.Path = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataBasic) SetCreateTime(v string) *QueryAPIDefinitionDetailResponseDataBasic {
+  s.CreateTime = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataBasic) SetUpdateTime(v string) *QueryAPIDefinitionDetailResponseDataBasic {
+  s.UpdateTime = &v
+  return s
+}
+
+type QueryAPIDefinitionDetailResponseDataEndpoint struct {
+  // {"en":"Request methods.\nGET:GET, configurable parameter limits\nPOST:POST, configurable parameter limits\nDELETE:DELETE, configurable parameter limits\nUPDATE:UPDATE\nPUT:PUT, configurable parameter limits\nHEAD:HEAD, configurable parameter limits\nCONNECT:CONNECT\nOPTIONS:OPTIONS, configurable parameter limits\nCOPY:COPY\nLOCK:LOCK\nUNLOCK:UNLOCK\nTRACE:TRACE\nPATCH:PATCH, configurable parameter limits\nPROPFIND:PROPFIND\nMKCOL:MKCOL\nMOVE:MOVE","zh_CN":"请求方法。\nGET：GET，可配置参数限制\nPOST：POST，可配置参数限制\nDELETE：DELETE，可配置参数限制\nUPDATE：UPDATE\nPUT：PUT，可配置参数限制\nHEAD：HEAD，可配置参数限制\nCONNECT：CONNECT\nOPTIONS：OPTIONS，可配置参数限制\nCOPY：COPY\nLOCK：LOCK\nUNLOCK：UNLOCK\nTRACE：TRACE\nPATCH：PATCH，可配置参数限制\nPROPFIND：PROPFIND\nMKCOL：MKCOL\nMOVE：MOVE","exampleValue":"GET,POST,DELETE,UPDATE,PUT,HEAD,CONNECT,OPTIONS,COPY,LOCK,UNLOCK,TRACE,PATCH,PROPFIND,MKCOL,MOVE"}
+  RequestMethod *string `json:"requestMethod,omitempty" xml:"requestMethod,omitempty" require:"true"`
+  // {"en":"API type.\nNORMAL:Common API\nWHEN_CASE:Common API","zh_CN":"API类型。\nNORMAL：普通接口\nWHEN_CASE：when-case接口","exampleValue":"NORMAL,WHEN_CASE"}
+  Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
+  // {"en":"Path matching type.\nEQUAL: Complete match\nREGEX: Regular matching","zh_CN":"路径匹配类型。\nEQUAL：完整匹配\nREGEX：正则匹配","exampleValue":"EQUAL,REGEX"}
+  MatchType *string `json:"matchType,omitempty" xml:"matchType,omitempty" require:"true"`
+  // {"en":"API base path.","zh_CN":"端点路径。"}
+  Path *string `json:"path,omitempty" xml:"path,omitempty" require:"true"`
+  // {"en":"Case sensitive.\nTRUE:Yes\nFALSE:No","zh_CN":"大小写是否敏感。\nTRUE：是\nFALSE：否","exampleValue":"TRUE,FALSE"}
+  CaseSensitive *string `json:"caseSensitive,omitempty" xml:"caseSensitive,omitempty" require:"true"`
+  // {"en":"Match QueryAPIDefinitionDetailParameters in the Path.\nTRUE:Yes\nFALSE:No","zh_CN":"匹配路径参数。\nTRUE：是\nFALSE：否","exampleValue":"TRUE,FALSE"}
+  MatchPathVar *string `json:"matchPathVar,omitempty" xml:"matchPathVar,omitempty" require:"true"`
+}
+
+func (s QueryAPIDefinitionDetailResponseDataEndpoint) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAPIDefinitionDetailResponseDataEndpoint) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataEndpoint) SetRequestMethod(v string) *QueryAPIDefinitionDetailResponseDataEndpoint {
+  s.RequestMethod = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataEndpoint) SetType(v string) *QueryAPIDefinitionDetailResponseDataEndpoint {
+  s.Type = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataEndpoint) SetMatchType(v string) *QueryAPIDefinitionDetailResponseDataEndpoint {
+  s.MatchType = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataEndpoint) SetPath(v string) *QueryAPIDefinitionDetailResponseDataEndpoint {
+  s.Path = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataEndpoint) SetCaseSensitive(v string) *QueryAPIDefinitionDetailResponseDataEndpoint {
+  s.CaseSensitive = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataEndpoint) SetMatchPathVar(v string) *QueryAPIDefinitionDetailResponseDataEndpoint {
+  s.MatchPathVar = &v
+  return s
+}
+
+type QueryAPIDefinitionDetailResponseDataAuth struct {
+  // {"en":"Authentication method.\nNO_NEED:No authentication required\nSIGN:Key authentication","zh_CN":"鉴权方法。\nNO_NEED：免鉴权\nSIGN：秘钥对鉴权","exampleValue":"NO_NEED,SIGN"}
+  Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
+  // {"en":"Authentication key.","zh_CN":"鉴权秘钥。"}
+  AuthKey *string `json:"authKey,omitempty" xml:"authKey,omitempty" require:"true"`
+  // {"en":"Authentication parameter location.\nHTTP_HEADER:Http Header\nQUERY_STRING:Query String\nCOOKIE:Cookie","zh_CN":"鉴权参数位置。\nHTTP_HEADER：Http Header\nQUERY_STRING：Query String\nCOOKIE：Cookie","exampleValue":"HTTP_HEADER,QUERY_STRING,COOKIE"}
+  ParamPosition *string `json:"paramPosition,omitempty" xml:"paramPosition,omitempty" require:"true"`
+  // {"en":"Authentication parameter name.","zh_CN":"鉴权参数名称。"}
+  ParamName *string `json:"paramName,omitempty" xml:"paramName,omitempty" require:"true"`
+  // {"en":"Authentication token validity period, in seconds.","zh_CN":"鉴权有效期，单位秒。"}
+  ValidityTime *int64 `json:"validityTime,omitempty" xml:"validityTime,omitempty" require:"true"`
+}
+
+func (s QueryAPIDefinitionDetailResponseDataAuth) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAPIDefinitionDetailResponseDataAuth) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataAuth) SetType(v string) *QueryAPIDefinitionDetailResponseDataAuth {
+  s.Type = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataAuth) SetAuthKey(v string) *QueryAPIDefinitionDetailResponseDataAuth {
+  s.AuthKey = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataAuth) SetParamPosition(v string) *QueryAPIDefinitionDetailResponseDataAuth {
+  s.ParamPosition = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataAuth) SetParamName(v string) *QueryAPIDefinitionDetailResponseDataAuth {
+  s.ParamName = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataAuth) SetValidityTime(v int64) *QueryAPIDefinitionDetailResponseDataAuth {
+  s.ValidityTime = &v
+  return s
+}
+
+type QueryAPIDefinitionDetailResponseDataBodyLimit struct {
+  // {"en":"Request body restriction switch.\nON:ON\nOFF:OFF","zh_CN":"请求body限制开关。\nON：开启\nOFF：关闭","exampleValue":"ON,OFF"}
+  DefendSwitch *string `json:"defendSwitch,omitempty" xml:"defendSwitch,omitempty" require:"true"`
+  // {"en":"Content-Type.\nFORM:FORM\nJSON:JSON\nANY:ANY\nEMPTY:EMPTY or NON-EXISTENT","zh_CN":"Content-Type。\nFORM：FORM表单\nJSON：JSON\nANY：任意\nEMPTY：为空或不存在","exampleValue":"FORM,JSON,ANY,EMPTY"}
+  ContentType *string `json:"contentType,omitempty" xml:"contentType,omitempty" require:"true"`
+  // {"en":"Maximum body limit(bytes).","zh_CN":"Body最大限制(bytes)。"}
+  BodyLimitMax *int64 `json:"bodyLimitMax,omitempty" xml:"bodyLimitMax,omitempty" require:"true"`
+  // {"en":"Maximum nesting depth.","zh_CN":"最大嵌套层数。"}
+  NestMax *int64 `json:"nestMax,omitempty" xml:"nestMax,omitempty" require:"true"`
+  // {"en":"Maximum number of parameters for JSON.","zh_CN":"JSON最大参数个数。"}
+  ParamCountMax *int64 `json:"paramCountMax,omitempty" xml:"paramCountMax,omitempty" require:"true"`
+}
+
+func (s QueryAPIDefinitionDetailResponseDataBodyLimit) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAPIDefinitionDetailResponseDataBodyLimit) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataBodyLimit) SetDefendSwitch(v string) *QueryAPIDefinitionDetailResponseDataBodyLimit {
+  s.DefendSwitch = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataBodyLimit) SetContentType(v string) *QueryAPIDefinitionDetailResponseDataBodyLimit {
+  s.ContentType = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataBodyLimit) SetBodyLimitMax(v int64) *QueryAPIDefinitionDetailResponseDataBodyLimit {
+  s.BodyLimitMax = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataBodyLimit) SetNestMax(v int64) *QueryAPIDefinitionDetailResponseDataBodyLimit {
+  s.NestMax = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataBodyLimit) SetParamCountMax(v int64) *QueryAPIDefinitionDetailResponseDataBodyLimit {
+  s.ParamCountMax = &v
+  return s
+}
+
+type QueryAPIDefinitionDetailResponseDataParamLimit struct {
+  // {"en":"Basic information.","zh_CN":"基础信息。"}
+  Basic *QueryAPIDefinitionDetailResponseDataParamLimitBasic `json:"basic,omitempty" xml:"basic,omitempty" require:"true" type:"Struct"`
+  // {"en":"Method attributes.","zh_CN":"方法属性。"}
+  MethodList []*QueryAPIDefinitionDetailResponseDataParamLimitMethodList `json:"methodList,omitempty" xml:"methodList,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s QueryAPIDefinitionDetailResponseDataParamLimit) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAPIDefinitionDetailResponseDataParamLimit) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimit) SetBasic(v *QueryAPIDefinitionDetailResponseDataParamLimitBasic) *QueryAPIDefinitionDetailResponseDataParamLimit {
+  s.Basic = v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimit) SetMethodList(v []*QueryAPIDefinitionDetailResponseDataParamLimitMethodList) *QueryAPIDefinitionDetailResponseDataParamLimit {
+  s.MethodList = v
+  return s
+}
+
+type QueryAPIDefinitionDetailResponseDataParamLimitBasic struct {
+  // {"en":"Parameter limit.\nON:ON\nOFF:OFF","zh_CN":"参数限制。\nON：ON\nOFF：OFF","exampleValue":"ON,OFF"}
+  DefendSwitch *string `json:"defendSwitch,omitempty" xml:"defendSwitch,omitempty" require:"true"`
+  // {"en":"Query String Parameter Detection Mode.\nLOOSE:Loose mode - detect some parameters\nSTRICT:Strict mode - checks all parameters","zh_CN":"Query String参数检测模式。\nLOOSE：宽松模式-检测部分参数\nSTRICT：严格模式-检测所有参数","exampleValue":"LOOSE,STRICT"}
+  ParamCheckMode *string `json:"paramCheckMode,omitempty" xml:"paramCheckMode,omitempty" require:"true"`
+}
+
+func (s QueryAPIDefinitionDetailResponseDataParamLimitBasic) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAPIDefinitionDetailResponseDataParamLimitBasic) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitBasic) SetDefendSwitch(v string) *QueryAPIDefinitionDetailResponseDataParamLimitBasic {
+  s.DefendSwitch = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitBasic) SetParamCheckMode(v string) *QueryAPIDefinitionDetailResponseDataParamLimitBasic {
+  s.ParamCheckMode = &v
+  return s
+}
+
+type QueryAPIDefinitionDetailResponseDataParamLimitMethodList struct     {
+  // {"en":"Request methods.\nGET:GET\nPOST:POST\nDELETE:DELETE\nPUT:PUT\nHEAD:HEAD\nOPTIONS:OPTIONS\nPATCH:PATCH","zh_CN":"请求方法。\nGET：GET\nPOST：POST\nDELETE：DELETE\nPUT：PUT\nHEAD：HEAD\nOPTIONS：OPTIONS\nPATCH：PATCH","exampleValue":"GET,POST,DELETE,PUT,HEAD,OPTIONS,PATCH"}
+  Method *string `json:"method,omitempty" xml:"method,omitempty" require:"true"`
+  // {"en":"Whether to define body parameters.\nTRUE:Yes\nFALSE:No","zh_CN":"是否定义body参数。\nTRUE：是\nFALSE：否","exampleValue":"TRUE,FALSE"}
+  BodyFlag *string `json:"bodyFlag,omitempty" xml:"bodyFlag,omitempty" require:"true"`
+  // {"en":"Body parameter type.\nJSON:JSON\nFROM:FROM","zh_CN":"body参数类型。\nJSON：JSON\nFROM：FROM表单","exampleValue":"FORM,JSON"}
+  BodyType *string `json:"bodyType,omitempty" xml:"bodyType,omitempty" require:"true"`
+  // {"en":"Normal parameter list.","zh_CN":"普通参数数组。"}
+  NormalParamList []*QueryAPIDefinitionDetailResponseDataParamLimitMethodListNormalParamList `json:"normalParamList,omitempty" xml:"normalParamList,omitempty" require:"true" type:"Repeated"`
+  // {"en":"FROM form parameter array.","zh_CN":"FROM 表单参数数组。"}
+  FormParamList []*QueryAPIDefinitionDetailResponseDataParamLimitMethodListFormParamList `json:"formParamList,omitempty" xml:"formParamList,omitempty" require:"true" type:"Repeated"`
+  // {"en":"JSON parameter array.","zh_CN":"JSON参数数组。"}
+  JsonParam *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParam `json:"jsonParam,omitempty" xml:"jsonParam,omitempty" require:"true" type:"Struct"`
+}
+
+func (s QueryAPIDefinitionDetailResponseDataParamLimitMethodList) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAPIDefinitionDetailResponseDataParamLimitMethodList) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodList) SetMethod(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodList {
+  s.Method = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodList) SetBodyFlag(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodList {
+  s.BodyFlag = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodList) SetBodyType(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodList {
+  s.BodyType = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodList) SetNormalParamList(v []*QueryAPIDefinitionDetailResponseDataParamLimitMethodListNormalParamList) *QueryAPIDefinitionDetailResponseDataParamLimitMethodList {
+  s.NormalParamList = v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodList) SetFormParamList(v []*QueryAPIDefinitionDetailResponseDataParamLimitMethodListFormParamList) *QueryAPIDefinitionDetailResponseDataParamLimitMethodList {
+  s.FormParamList = v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodList) SetJsonParam(v *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParam) *QueryAPIDefinitionDetailResponseDataParamLimitMethodList {
+  s.JsonParam = v
+  return s
+}
+
+type QueryAPIDefinitionDetailResponseDataParamLimitMethodListNormalParamList struct     {
+  // {"en":"Request methods.\nGET:GET\nPOST:POST\nDELETE:DELETE\nPUT:PUT\nHEAD:HEAD\nOPTIONS:OPTIONS\nPATCH:PATCH","zh_CN":"请求方法。\nGET：GET\nPOST：POST\nDELETE：DELETE\nPUT：PUT\nHEAD：HEAD\nOPTIONS：OPTIONS\nPATCH：PATCH","exampleValue":"GET,POST,DELETE,PUT,HEAD,OPTIONS,PATCH"}
+  Method *string `json:"method,omitempty" xml:"method,omitempty" require:"true"`
+  // {"en":"Parameter name.","zh_CN":"参数名称。"}
+  Name *string `json:"name,omitempty" xml:"name,omitempty" require:"true"`
+  // {"en":"Parameter position.\nHTTP_HEADER:Http Header\nQUERY_STRING:Query String\nCOOKIE:Cookie\nPATH_PARAMS:Path","zh_CN":"参数变量。\nHTTP_HEADER：Http Header\nQUERY_STRING：Query String\nCOOKIE：Cookie\nPATH_PARAMS：路径变量","exampleValue":"HTTP_HEADER,QUERY_STRING,COOKIE,PATH_PARAMS"}
+  ParamPosition *string `json:"paramPosition,omitempty" xml:"paramPosition,omitempty" require:"true"`
+  // {"en":"Parameter type.\nInteger:Integer\nNumber:Number\nString:String\nBoolean:Boolean\nEnumeration:Enumeration","zh_CN":"参数类型。\nInteger：整数\nNumber：数字\nString：字符串\nBoolean：布尔\nEnumeration：枚举","exampleValue":"Integer,Number,String,Boolean,Enumeration"}
+  Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
+  // {"en":"Minimum value/Minimum length.","zh_CN":"最小值、最小长度。"}
+  MinVal *string `json:"minVal,omitempty" xml:"minVal,omitempty" require:"true"`
+  // {"en":"Maximum value/Maximum length.","zh_CN":"最大值、最大长度。"}
+  MaxVal *string `json:"maxVal,omitempty" xml:"maxVal,omitempty" require:"true"`
+  // {"en":"Required.\nTRUE:Yes\nFALSE:No","zh_CN":"必带参数。\nTRUE：是\nFALSE：否","exampleValue":"TRUE,FALSE"}
+  Required *string `json:"required,omitempty" xml:"required,omitempty" require:"true"`
+  // {"en":"Content.","zh_CN":"内容。"}
+  Content *string `json:"content,omitempty" xml:"content,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"备注。"}
+  Remark *string `json:"remark,omitempty" xml:"remark,omitempty" require:"true"`
+}
+
+func (s QueryAPIDefinitionDetailResponseDataParamLimitMethodListNormalParamList) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAPIDefinitionDetailResponseDataParamLimitMethodListNormalParamList) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListNormalParamList) SetMethod(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListNormalParamList {
+  s.Method = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListNormalParamList) SetName(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListNormalParamList {
+  s.Name = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListNormalParamList) SetParamPosition(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListNormalParamList {
+  s.ParamPosition = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListNormalParamList) SetType(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListNormalParamList {
+  s.Type = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListNormalParamList) SetMinVal(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListNormalParamList {
+  s.MinVal = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListNormalParamList) SetMaxVal(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListNormalParamList {
+  s.MaxVal = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListNormalParamList) SetRequired(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListNormalParamList {
+  s.Required = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListNormalParamList) SetContent(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListNormalParamList {
+  s.Content = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListNormalParamList) SetRemark(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListNormalParamList {
+  s.Remark = &v
+  return s
+}
+
+type QueryAPIDefinitionDetailResponseDataParamLimitMethodListFormParamList struct     {
+  // {"en":"Request methods.\nPOST:POST\nPUT:PUT\nPATCH:PATCH","zh_CN":"请求方法。\nPOST：POST\nPUT：PUT\nPATCH：PATCH","exampleValue":"POST,PUT,PATCH"}
+  Method *string `json:"method,omitempty" xml:"method,omitempty" require:"true"`
+  // {"en":"Parameter name.","zh_CN":"参数名称。"}
+  Name *string `json:"name,omitempty" xml:"name,omitempty" require:"true"`
+  // {"en":"Parameter type.\nInteger:Integer\nNumber:Number\nString:String\nBoolean:Boolean\nEnumeration:Enumeration","zh_CN":"参数类型。\nInteger：整数\nNumber：数字\nString：字符串\nBoolean：布尔\nEnumeration：枚举","exampleValue":"Integer,Number,String,Boolean,Enumeration"}
+  Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
+  // {"en":"Minimum value/Minimum length.","zh_CN":"最小值、最小长度。"}
+  MinVal *string `json:"minVal,omitempty" xml:"minVal,omitempty" require:"true"`
+  // {"en":"Maximum value/Maximum length.","zh_CN":"最大值、最大长度。"}
+  MaxVal *string `json:"maxVal,omitempty" xml:"maxVal,omitempty" require:"true"`
+  // {"en":"Required.\nTRUE:Yes\nFALSE:No","zh_CN":"必带参数。\nTRUE：是\nFALSE：否","exampleValue":"TRUE,FALSE"}
+  Required *string `json:"required,omitempty" xml:"required,omitempty" require:"true"`
+  // {"en":"Content.","zh_CN":"内容。"}
+  Content *string `json:"content,omitempty" xml:"content,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"备注。"}
+  Remark *string `json:"remark,omitempty" xml:"remark,omitempty" require:"true"`
+}
+
+func (s QueryAPIDefinitionDetailResponseDataParamLimitMethodListFormParamList) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAPIDefinitionDetailResponseDataParamLimitMethodListFormParamList) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListFormParamList) SetMethod(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListFormParamList {
+  s.Method = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListFormParamList) SetName(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListFormParamList {
+  s.Name = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListFormParamList) SetType(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListFormParamList {
+  s.Type = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListFormParamList) SetMinVal(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListFormParamList {
+  s.MinVal = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListFormParamList) SetMaxVal(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListFormParamList {
+  s.MaxVal = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListFormParamList) SetRequired(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListFormParamList {
+  s.Required = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListFormParamList) SetContent(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListFormParamList {
+  s.Content = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListFormParamList) SetRemark(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListFormParamList {
+  s.Remark = &v
+  return s
+}
+
+type QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParam struct {
+  // {"en":"Request methods.\nPOST:POST\nPUT:PUT\nPATCH:PATCH","zh_CN":"请求方法。\nPOST：POST\nPUT：PUT\nPATCH：PATCH","exampleValue":"POST,PUT,PATCH"}
+  Method *string `json:"method,omitempty" xml:"method,omitempty" require:"true"`
+  // {"en":"Parameter Name.","zh_CN":"参数名称。"}
+  Name *string `json:"name,omitempty" xml:"name,omitempty" require:"true"`
+  // {"en":"Level.","zh_CN":"层级。"}
+  Level *int `json:"level,omitempty" xml:"level,omitempty" require:"true"`
+  // {"en":"Parameter Type.\nInteger:Integer\nNumber:Number\nString:String\nBoolean:Boolean\nEnumeration:Enumeration\nArray:Array\nJson:JSON Object","zh_CN":"参数类型。\nInteger：整数\nNumber：数字\nString：字符串\nBoolean：布尔\nEnumeration：枚举\nArray：数组\nJson：JSON对象","exampleValue":"Integer,Number,String,Boolean,Enumeration,Array,Json"}
+  Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
+  // {"en":"Minimum value/Minimum length.","zh_CN":"最小值、最小长度。"}
+  MinVal *string `json:"minVal,omitempty" xml:"minVal,omitempty" require:"true"`
+  // {"en":"Maximum value/Maximum length.","zh_CN":"最大值、最大长度。"}
+  MaxVal *string `json:"maxVal,omitempty" xml:"maxVal,omitempty" require:"true"`
+  // {"en":"Required.\nTRUE:Yes\nFALSE:No","zh_CN":"必带参数。\nTRUE：是\nFALSE：否","exampleValue":"TRUE,FALSE"}
+  Required *string `json:"required,omitempty" xml:"required,omitempty" require:"true"`
+  // {"en":"Content.","zh_CN":"内容。"}
+  Content *string `json:"content,omitempty" xml:"content,omitempty" require:"true"`
+  // {"en":"Child node array, required when type= Array.","zh_CN":"子节点数组，type = Array 时必填。"}
+  Children []*QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParamChildren `json:"children,omitempty" xml:"children,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParam) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParam) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParam) SetMethod(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParam {
+  s.Method = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParam) SetName(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParam {
+  s.Name = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParam) SetLevel(v int) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParam {
+  s.Level = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParam) SetType(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParam {
+  s.Type = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParam) SetMinVal(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParam {
+  s.MinVal = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParam) SetMaxVal(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParam {
+  s.MaxVal = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParam) SetRequired(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParam {
+  s.Required = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParam) SetContent(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParam {
+  s.Content = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParam) SetChildren(v []*QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParamChildren) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParam {
+  s.Children = v
+  return s
+}
+
+type QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParamChildren struct     {
+  // {"en":"Request methods.\nPOST:POST\nPUT:PUT\nPATCH:PATCH","zh_CN":"请求方法。\nPOST：POST\nPUT：PUT\nPATCH：PATCH","exampleValue":"POST,PUT,PATCH"}
+  Method *string `json:"method,omitempty" xml:"method,omitempty" require:"true"`
+  // {"en":"Parameter Name.","zh_CN":"参数名称。"}
+  Name *string `json:"name,omitempty" xml:"name,omitempty" require:"true"`
+  // {"en":"Level.","zh_CN":"层级。"}
+  Level *int `json:"level,omitempty" xml:"level,omitempty" require:"true"`
+  // {"en":"Parameter Type.\nInteger:Integer\nNumber:Number\nString:String\nBoolean:Boolean\nEnumeration:Enumeration\nArray:Array\nJson:JSON Object","zh_CN":"参数类型。\nInteger：整数\nNumber：数字\nString：字符串\nBoolean：布尔\nEnumeration：枚举\nArray：数组\nJson：JSON对象","exampleValue":"Integer,Number,String,Boolean,Enumeration,Array,Json"}
+  Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
+  // {"en":"Minimum value/Minimum length.","zh_CN":"最小值、最小长度。"}
+  MinVal *string `json:"minVal,omitempty" xml:"minVal,omitempty" require:"true"`
+  // {"en":"Maximum value/Maximum length.","zh_CN":"最大值、最大长度。"}
+  MaxVal *string `json:"maxVal,omitempty" xml:"maxVal,omitempty" require:"true"`
+  // {"en":"Required.\nTRUE:Yes\nFALSE:No","zh_CN":"必带参数。\nTRUE：是\nFALSE：否","exampleValue":"TRUE,FALSE"}
+  Required *string `json:"required,omitempty" xml:"required,omitempty" require:"true"`
+  // {"en":"Content.","zh_CN":"内容。"}
+  Content *string `json:"content,omitempty" xml:"content,omitempty" require:"true"`
+  // {"en":"Child node array (JSON string), the structure is consistent with the parent node, required when type= Array.","zh_CN":"子节点数组（JSON字符串），结构与父结点一致，type = Array 时必填。"}
+  Children []*string `json:"children,omitempty" xml:"children,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParamChildren) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParamChildren) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParamChildren) SetMethod(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParamChildren {
+  s.Method = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParamChildren) SetName(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParamChildren {
+  s.Name = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParamChildren) SetLevel(v int) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParamChildren {
+  s.Level = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParamChildren) SetType(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParamChildren {
+  s.Type = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParamChildren) SetMinVal(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParamChildren {
+  s.MinVal = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParamChildren) SetMaxVal(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParamChildren {
+  s.MaxVal = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParamChildren) SetRequired(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParamChildren {
+  s.Required = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParamChildren) SetContent(v string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParamChildren {
+  s.Content = &v
+  return s
+}
+
+func (s *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParamChildren) SetChildren(v []*string) *QueryAPIDefinitionDetailResponseDataParamLimitMethodListJsonParamChildren {
+  s.Children = v
   return s
 }
 
@@ -1068,9 +864,9 @@ func (s QueryAPIDefinitionDetailResponseHeader) GoString() string {
 
 
 type FeedbackWrongAPIAssetDiscoveryRequest struct {
-  // {"en":"API discovery ID.", "zh_CN":"API发现ID。"}
+  // {"en":"API discovery ID.","zh_CN":"API发现ID。"}
   Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
-  // {"en":"Feedback, maximum 200 characters.", "zh_CN":"反馈意见，最多200个字符。"}
+  // {"en":"Feedback, maximum 200 characters.","zh_CN":"反馈意见，最多200个字符。"}
   Feedback *string `json:"feedback,omitempty" xml:"feedback,omitempty"`
 }
 
@@ -1092,28 +888,21 @@ func (s *FeedbackWrongAPIAssetDiscoveryRequest) SetFeedback(v string) *FeedbackW
   return s
 }
 
-type FeedbackWrongAPIAssetDiscoveryResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Description.", "zh_CN":"描述信息。"}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+type FeedbackWrongAPIAssetDiscoveryRequestHeader struct {
+  // {"en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
 }
 
-func (s FeedbackWrongAPIAssetDiscoveryResponse) String() string {
+func (s FeedbackWrongAPIAssetDiscoveryRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s FeedbackWrongAPIAssetDiscoveryResponse) GoString() string {
+func (s FeedbackWrongAPIAssetDiscoveryRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *FeedbackWrongAPIAssetDiscoveryResponse) SetCode(v string) *FeedbackWrongAPIAssetDiscoveryResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *FeedbackWrongAPIAssetDiscoveryResponse) SetMsg(v string) *FeedbackWrongAPIAssetDiscoveryResponse {
-  s.Msg = &v
+func (s *FeedbackWrongAPIAssetDiscoveryRequestHeader) SetServiceType(v string) *FeedbackWrongAPIAssetDiscoveryRequestHeader {
+  s.ServiceType = &v
   return s
 }
 
@@ -1139,21 +928,28 @@ func (s FeedbackWrongAPIAssetDiscoveryParameters) GoString() string {
   return s.String()
 }
 
-type FeedbackWrongAPIAssetDiscoveryRequestHeader struct {
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+type FeedbackWrongAPIAssetDiscoveryResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
 }
 
-func (s FeedbackWrongAPIAssetDiscoveryRequestHeader) String() string {
+func (s FeedbackWrongAPIAssetDiscoveryResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s FeedbackWrongAPIAssetDiscoveryRequestHeader) GoString() string {
+func (s FeedbackWrongAPIAssetDiscoveryResponse) GoString() string {
   return s.String()
 }
 
-func (s *FeedbackWrongAPIAssetDiscoveryRequestHeader) SetServiceType(v string) *FeedbackWrongAPIAssetDiscoveryRequestHeader {
-  s.ServiceType = &v
+func (s *FeedbackWrongAPIAssetDiscoveryResponse) SetCode(v string) *FeedbackWrongAPIAssetDiscoveryResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *FeedbackWrongAPIAssetDiscoveryResponse) SetMsg(v string) *FeedbackWrongAPIAssetDiscoveryResponse {
+  s.Msg = &v
   return s
 }
 
@@ -1172,16 +968,16 @@ func (s FeedbackWrongAPIAssetDiscoveryResponseHeader) GoString() string {
 
 
 type UpdateAPIDefinitionRequest struct {
-  // {'en':'Basic information.', 'zh_CN':'基础信息。'}
-  Basic *UpdateAPIDefinitionApiDefineBasicEditDTO `json:"basic,omitempty" xml:"basic,omitempty" require:"true"`
-  // {'en':'Endpoint information.', 'zh_CN':'端点信息。'}
-  Endpoint *UpdateAPIDefinitionApiDefineEndpointEditDTO `json:"endpoint,omitempty" xml:"endpoint,omitempty"`
-  // {'en':'Authentication configuration.', 'zh_CN':'鉴权配置。'}
-  Auth *UpdateAPIDefinitionApiDefineAuthEditDTO `json:"auth,omitempty" xml:"auth,omitempty"`
-  // {'en':'Body restrictions.', 'zh_CN':'body限制。'}
-  BodyLimit *UpdateAPIDefinitionApiDefineBodyLimitEditDTO `json:"bodyLimit,omitempty" xml:"bodyLimit,omitempty"`
-  // {'en':'Parameter limit.', 'zh_CN':'参数限制。'}
-  ParamLimit *UpdateAPIDefinitionApiDefineParamLimitEditDTO `json:"paramLimit,omitempty" xml:"paramLimit,omitempty"`
+  // {"en":"Basic information.","zh_CN":"基础信息。"}
+  Basic *UpdateAPIDefinitionRequestBasic `json:"basic,omitempty" xml:"basic,omitempty" require:"true" type:"Struct"`
+  // {"en":"Endpoint information.","zh_CN":"端点信息。"}
+  Endpoint *UpdateAPIDefinitionRequestEndpoint `json:"endpoint,omitempty" xml:"endpoint,omitempty" type:"Struct"`
+  // {"en":"Authentication configuration.","zh_CN":"鉴权配置。"}
+  Auth *UpdateAPIDefinitionRequestAuth `json:"auth,omitempty" xml:"auth,omitempty" type:"Struct"`
+  // {"en":"Body restrictions.","zh_CN":"body限制。"}
+  BodyLimit *UpdateAPIDefinitionRequestBodyLimit `json:"bodyLimit,omitempty" xml:"bodyLimit,omitempty" type:"Struct"`
+  // {"en":"Parameter limit.","zh_CN":"参数限制。"}
+  ParamLimit *UpdateAPIDefinitionRequestParamLimit `json:"paramLimit,omitempty" xml:"paramLimit,omitempty" type:"Struct"`
 }
 
 func (s UpdateAPIDefinitionRequest) String() string {
@@ -1192,730 +988,559 @@ func (s UpdateAPIDefinitionRequest) GoString() string {
   return s.String()
 }
 
-func (s *UpdateAPIDefinitionRequest) SetBasic(v *UpdateAPIDefinitionApiDefineBasicEditDTO) *UpdateAPIDefinitionRequest {
+func (s *UpdateAPIDefinitionRequest) SetBasic(v *UpdateAPIDefinitionRequestBasic) *UpdateAPIDefinitionRequest {
   s.Basic = v
   return s
 }
 
-func (s *UpdateAPIDefinitionRequest) SetEndpoint(v *UpdateAPIDefinitionApiDefineEndpointEditDTO) *UpdateAPIDefinitionRequest {
+func (s *UpdateAPIDefinitionRequest) SetEndpoint(v *UpdateAPIDefinitionRequestEndpoint) *UpdateAPIDefinitionRequest {
   s.Endpoint = v
   return s
 }
 
-func (s *UpdateAPIDefinitionRequest) SetAuth(v *UpdateAPIDefinitionApiDefineAuthEditDTO) *UpdateAPIDefinitionRequest {
+func (s *UpdateAPIDefinitionRequest) SetAuth(v *UpdateAPIDefinitionRequestAuth) *UpdateAPIDefinitionRequest {
   s.Auth = v
   return s
 }
 
-func (s *UpdateAPIDefinitionRequest) SetBodyLimit(v *UpdateAPIDefinitionApiDefineBodyLimitEditDTO) *UpdateAPIDefinitionRequest {
+func (s *UpdateAPIDefinitionRequest) SetBodyLimit(v *UpdateAPIDefinitionRequestBodyLimit) *UpdateAPIDefinitionRequest {
   s.BodyLimit = v
   return s
 }
 
-func (s *UpdateAPIDefinitionRequest) SetParamLimit(v *UpdateAPIDefinitionApiDefineParamLimitEditDTO) *UpdateAPIDefinitionRequest {
+func (s *UpdateAPIDefinitionRequest) SetParamLimit(v *UpdateAPIDefinitionRequestParamLimit) *UpdateAPIDefinitionRequest {
   s.ParamLimit = v
   return s
 }
 
-type UpdateAPIDefinitionApiDefineBasicEditDTO struct {
-  // {'en':'API define ID.', 'zh_CN':'API定义ID。'}
+type UpdateAPIDefinitionRequestBasic struct {
+  // {"en":"API define ID.","zh_CN":"API定义ID。"}
   Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
-  // {'en':'API name, maximum 200 characters.', 'zh_CN':'API名称，最多200个字符。'}
+  // {"en":"API name, maximum 200 characters.","zh_CN":"API名称，最多200个字符。"}
   Name *string `json:"name,omitempty" xml:"name,omitempty" require:"true"`
-  // {'en':'API groups, maximum 64 characters.', 'zh_CN':'API分组，最多64个字符。'}
+  // {"en":"API groups, maximum 64 characters.","zh_CN":"API分组，最多64个字符。"}
   GroupName *string `json:"groupName,omitempty" xml:"groupName,omitempty" require:"true"`
-  // {'en':'Description, maximum 200 characters.', 'zh_CN':'备注，最多200个字符。'}
+  // {"en":"Description, maximum 200 characters.","zh_CN":"备注，最多200个字符。"}
   Remark *string `json:"remark,omitempty" xml:"remark,omitempty"`
 }
 
-func (s UpdateAPIDefinitionApiDefineBasicEditDTO) String() string {
+func (s UpdateAPIDefinitionRequestBasic) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateAPIDefinitionApiDefineBasicEditDTO) GoString() string {
+func (s UpdateAPIDefinitionRequestBasic) GoString() string {
   return s.String()
 }
 
-func (s *UpdateAPIDefinitionApiDefineBasicEditDTO) SetId(v string) *UpdateAPIDefinitionApiDefineBasicEditDTO {
+func (s *UpdateAPIDefinitionRequestBasic) SetId(v string) *UpdateAPIDefinitionRequestBasic {
   s.Id = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineBasicEditDTO) SetName(v string) *UpdateAPIDefinitionApiDefineBasicEditDTO {
+func (s *UpdateAPIDefinitionRequestBasic) SetName(v string) *UpdateAPIDefinitionRequestBasic {
   s.Name = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineBasicEditDTO) SetGroupName(v string) *UpdateAPIDefinitionApiDefineBasicEditDTO {
+func (s *UpdateAPIDefinitionRequestBasic) SetGroupName(v string) *UpdateAPIDefinitionRequestBasic {
   s.GroupName = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineBasicEditDTO) SetRemark(v string) *UpdateAPIDefinitionApiDefineBasicEditDTO {
+func (s *UpdateAPIDefinitionRequestBasic) SetRemark(v string) *UpdateAPIDefinitionRequestBasic {
   s.Remark = &v
   return s
 }
 
-type UpdateAPIDefinitionApiDefineEndpointEditDTO struct {
-  // {'en':'Request methods,Multiple separated by ; sign.
-  // GET:GET, configurable parameter limits
-  // POST:POST, configurable parameter limits
-  // DELETE:DELETE, configurable parameter limits
-  // UPDATE:UPDATE
-  // PUT:PUT, configurable parameter limits
-  // HEAD:HEAD, configurable parameter limits
-  // CONNECT:CONNECT
-  // OPTIONS:OPTIONS, configurable parameter limits
-  // COPY:COPY
-  // LOCK:LOCK
-  // UNLOCK:UNLOCK
-  // TRACE:TRACE
-  // PATCH:PATCH, configurable parameter limits
-  // PROPFIND:PROPFIND
-  // MKCOL:MKCOL
-  // MOVE:MOVE', 'zh_CN':'请求方法。多个以 ; 号分隔。
-  // GET：GET，可配置参数限制
-  // POST：POST，可配置参数限制
-  // DELETE：DELETE，可配置参数限制
-  // UPDATE：UPDATE
-  // PUT：PUT，可配置参数限制
-  // HEAD：HEAD，可配置参数限制
-  // CONNECT：CONNECT
-  // OPTIONS：OPTIONS，可配置参数限制
-  // COPY：COPY
-  // LOCK：LOCK
-  // UNLOCK：UNLOCK
-  // TRACE：TRACE
-  // PATCH：PATCH，可配置参数限制
-  // PROPFIND：PROPFIND
-  // MKCOL：MKCOL
-  // MOVE：MOVE'}
+type UpdateAPIDefinitionRequestEndpoint struct {
+  // {"en":"Request methods,Multiple separated by ; sign.\nGET:GET, configurable parameter limits\nPOST:POST, configurable parameter limits\nDELETE:DELETE, configurable parameter limits\nUPDATE:UPDATE\nPUT:PUT, configurable parameter limits\nHEAD:HEAD, configurable parameter limits\nCONNECT:CONNECT\nOPTIONS:OPTIONS, configurable parameter limits\nCOPY:COPY\nLOCK:LOCK\nUNLOCK:UNLOCK\nTRACE:TRACE\nPATCH:PATCH, configurable parameter limits\nPROPFIND:PROPFIND\nMKCOL:MKCOL\nMOVE:MOVE","zh_CN":"请求方法。多个以 ; 号分隔。\nGET：GET，可配置参数限制\nPOST：POST，可配置参数限制\nDELETE：DELETE，可配置参数限制\nUPDATE：UPDATE\nPUT：PUT，可配置参数限制\nHEAD：HEAD，可配置参数限制\nCONNECT：CONNECT\nOPTIONS：OPTIONS，可配置参数限制\nCOPY：COPY\nLOCK：LOCK\nUNLOCK：UNLOCK\nTRACE：TRACE\nPATCH：PATCH，可配置参数限制\nPROPFIND：PROPFIND\nMKCOL：MKCOL\nMOVE：MOVE","exampleValue":"GET,POST,DELETE,UPDATE,PUT,HEAD,CONNECT,OPTIONS,COPY,LOCK,UNLOCK,TRACE,PATCH,PROPFIND,MKCOL,MOVE"}
   RequestMethod *string `json:"requestMethod,omitempty" xml:"requestMethod,omitempty" require:"true"`
-  // {'en':'Case sensitive.
-  // TRUE:Yes
-  // FALSE:No', 'zh_CN':'大小写是否敏感。
-  // TRUE：是
-  // FALSE：否'}
+  // {"en":"Case sensitive.\nTRUE:Yes\nFALSE:No","zh_CN":"大小写是否敏感。\nTRUE：是\nFALSE：否","exampleValue":"TRUE,FALSE"}
   CaseSensitive *string `json:"caseSensitive,omitempty" xml:"caseSensitive,omitempty" require:"true"`
 }
 
-func (s UpdateAPIDefinitionApiDefineEndpointEditDTO) String() string {
+func (s UpdateAPIDefinitionRequestEndpoint) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateAPIDefinitionApiDefineEndpointEditDTO) GoString() string {
+func (s UpdateAPIDefinitionRequestEndpoint) GoString() string {
   return s.String()
 }
 
-func (s *UpdateAPIDefinitionApiDefineEndpointEditDTO) SetRequestMethod(v string) *UpdateAPIDefinitionApiDefineEndpointEditDTO {
+func (s *UpdateAPIDefinitionRequestEndpoint) SetRequestMethod(v string) *UpdateAPIDefinitionRequestEndpoint {
   s.RequestMethod = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineEndpointEditDTO) SetCaseSensitive(v string) *UpdateAPIDefinitionApiDefineEndpointEditDTO {
+func (s *UpdateAPIDefinitionRequestEndpoint) SetCaseSensitive(v string) *UpdateAPIDefinitionRequestEndpoint {
   s.CaseSensitive = &v
   return s
 }
 
-type UpdateAPIDefinitionApiDefineAuthEditDTO struct {
-  // {'en':'Authentication method.
-  // NO_NEED:No authentication required
-  // SIGN:Key authentication', 'zh_CN':'鉴权方法。
-  // NO_NEED：免鉴权
-  // SIGN：秘钥对鉴权'}
+type UpdateAPIDefinitionRequestAuth struct {
+  // {"en":"Authentication method.\nNO_NEED:No authentication required\nSIGN:Key authentication","zh_CN":"鉴权方法。\nNO_NEED：免鉴权\nSIGN：秘钥对鉴权","exampleValue":"NO_NEED,SIGN"}
   Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
-  // {'en':'Authentication key, type = SIGN is required. If it has been set, it will be ignored. The format is a 16-digit string containing uppercase and lowercase letters and numbers. Example: gjZkg2E1uNkXBDxj.', 'zh_CN':'鉴权秘钥，type = SIGN 是必填，如已设置则忽略，格式为16位含大小写字母与数字字符串，示例：gjZkg2E1uNkXBDxj。'}
+  // {"en":"Authentication key, type = SIGN is required. If it has been set, it will be ignored. The format is a 16-digit string containing uppercase and lowercase letters and numbers. Example: gjZkg2E1uNkXBDxj.","zh_CN":"鉴权秘钥，type = SIGN 是必填，如已设置则忽略，格式为16位含大小写字母与数字字符串，示例：gjZkg2E1uNkXBDxj。"}
   AuthKey *string `json:"authKey,omitempty" xml:"authKey,omitempty"`
-  // {'en':'Authentication parameter location, type = SIGN is required.
-  // HTTP_HEADER:Http Header
-  // QUERY_STRING:Query String
-  // COOKIE:Cookie', 'zh_CN':'鉴权参数位置，type = SIGN 时必填。
-  // HTTP_HEADER：Http Header
-  // QUERY_STRING：Query String
-  // COOKIE：Cookie'}
+  // {"en":"Authentication parameter location, type = SIGN is required.\nHTTP_HEADER:Http Header\nQUERY_STRING:Query String\nCOOKIE:Cookie","zh_CN":"鉴权参数位置，type = SIGN 时必填。\nHTTP_HEADER：Http Header\nQUERY_STRING：Query String\nCOOKIE：Cookie","exampleValue":"HTTP_HEADER,QUERY_STRING,COOKIE"}
   ParamPosition *string `json:"paramPosition,omitempty" xml:"paramPosition,omitempty"`
-  // {'en':'Authentication parameter name, type = SIGN is required.', 'zh_CN':'鉴权参数名称，type = SIGN 时必填。'}
+  // {"en":"Authentication parameter name, type = SIGN is required.","zh_CN":"鉴权参数名称，type = SIGN 时必填。"}
   ParamName *string `json:"paramName,omitempty" xml:"paramName,omitempty"`
-  // {'en':'Authentication token validity period, in seconds, type = SIGN is required.', 'zh_CN':'鉴权有效期，单位秒，type = SIGN 时必填。'}
+  // {"en":"Authentication token validity period, in seconds, type = SIGN is required.","zh_CN":"鉴权有效期，单位秒，type = SIGN 时必填。"}
   ValidityTime *int64 `json:"validityTime,omitempty" xml:"validityTime,omitempty"`
 }
 
-func (s UpdateAPIDefinitionApiDefineAuthEditDTO) String() string {
+func (s UpdateAPIDefinitionRequestAuth) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateAPIDefinitionApiDefineAuthEditDTO) GoString() string {
+func (s UpdateAPIDefinitionRequestAuth) GoString() string {
   return s.String()
 }
 
-func (s *UpdateAPIDefinitionApiDefineAuthEditDTO) SetType(v string) *UpdateAPIDefinitionApiDefineAuthEditDTO {
+func (s *UpdateAPIDefinitionRequestAuth) SetType(v string) *UpdateAPIDefinitionRequestAuth {
   s.Type = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineAuthEditDTO) SetAuthKey(v string) *UpdateAPIDefinitionApiDefineAuthEditDTO {
+func (s *UpdateAPIDefinitionRequestAuth) SetAuthKey(v string) *UpdateAPIDefinitionRequestAuth {
   s.AuthKey = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineAuthEditDTO) SetParamPosition(v string) *UpdateAPIDefinitionApiDefineAuthEditDTO {
+func (s *UpdateAPIDefinitionRequestAuth) SetParamPosition(v string) *UpdateAPIDefinitionRequestAuth {
   s.ParamPosition = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineAuthEditDTO) SetParamName(v string) *UpdateAPIDefinitionApiDefineAuthEditDTO {
+func (s *UpdateAPIDefinitionRequestAuth) SetParamName(v string) *UpdateAPIDefinitionRequestAuth {
   s.ParamName = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineAuthEditDTO) SetValidityTime(v int64) *UpdateAPIDefinitionApiDefineAuthEditDTO {
+func (s *UpdateAPIDefinitionRequestAuth) SetValidityTime(v int64) *UpdateAPIDefinitionRequestAuth {
   s.ValidityTime = &v
   return s
 }
 
-type UpdateAPIDefinitionApiDefineBodyLimitEditDTO struct {
-  // {'en':'Request body restriction switch. default value:OFF.
-  // ON:On
-  // OFF:Off', 'zh_CN':'请求body限制开关。默认值：关。
-  // ON：开启
-  // OFF：关闭'}
+type UpdateAPIDefinitionRequestBodyLimit struct {
+  // {"defaultValue":"OFF","en":"Request body restriction switch. default value:OFF.\nON:On\nOFF:Off","zh_CN":"请求body限制开关。默认值：关。\nON：开启\nOFF：关闭","exampleValue":"ON,OFF"}
   DefendSwitch *string `json:"defendSwitch,omitempty" xml:"defendSwitch,omitempty"`
-  // {'en':'Content-Type, required when defendSwitch = ON.
-  // FORM:FORM
-  // JSON:JSON
-  // ANY:ANY
-  // EMPTY:EMPTY or NON-EXISTENT', 'zh_CN':'Content-Type，defendSwitch = ON 时必填。
-  // FORM：FORM表单
-  // JSON：JSON
-  // ANY：任意
-  // EMPTY：为空或不存在'}
+  // {"en":"Content-Type, required when defendSwitch = ON.\nFORM:FORM\nJSON:JSON\nANY:ANY\nEMPTY:EMPTY or NON-EXISTENT","zh_CN":"Content-Type，defendSwitch = ON 时必填。\nFORM：FORM表单\nJSON：JSON\nANY：任意\nEMPTY：为空或不存在","exampleValue":"FORM,JSON,ANY,EMPTY"}
   ContentType *string `json:"contentType,omitempty" xml:"contentType,omitempty"`
-  // {'en':'Maximum body limit(bytes).', 'zh_CN':'Body最大限制(bytes)。'}
+  // {"en":"Maximum body limit(bytes),does not exceed 16,384.","zh_CN":"Body最大限制(bytes),最大不超过16384。"}
   BodyLimitMax *int64 `json:"bodyLimitMax,omitempty" xml:"bodyLimitMax,omitempty"`
-  // {'en':'Maximum nesting depth, enter the maximum allowable JSON nesting depth in the request body.', 'zh_CN':'最大嵌套层数，输入允许的请求body中JSON嵌套层数最大值。'}
+  // {"en":"Maximum nesting depth, enter the maximum allowable JSON nesting depth in the request body.","zh_CN":"最大嵌套层数，输入允许的请求body中JSON嵌套层数最大值。"}
   NestMax *int64 `json:"nestMax,omitempty" xml:"nestMax,omitempty"`
-  // {'en':'Maximum number of parameters for JSON, enter the maximum number of JSON parameters allowed in the request body.', 'zh_CN':'JSON最大参数个数，输入允许的请求body中JSON参数个数的最大值。'}
+  // {"en":"Maximum number of parameters for JSON, enter the maximum number of JSON parameters allowed in the request body.","zh_CN":"JSON最大参数个数，输入允许的请求body中JSON参数个数的最大值。"}
   ParamCountMax *int64 `json:"paramCountMax,omitempty" xml:"paramCountMax,omitempty"`
 }
 
-func (s UpdateAPIDefinitionApiDefineBodyLimitEditDTO) String() string {
+func (s UpdateAPIDefinitionRequestBodyLimit) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateAPIDefinitionApiDefineBodyLimitEditDTO) GoString() string {
+func (s UpdateAPIDefinitionRequestBodyLimit) GoString() string {
   return s.String()
 }
 
-func (s *UpdateAPIDefinitionApiDefineBodyLimitEditDTO) SetDefendSwitch(v string) *UpdateAPIDefinitionApiDefineBodyLimitEditDTO {
+func (s *UpdateAPIDefinitionRequestBodyLimit) SetDefendSwitch(v string) *UpdateAPIDefinitionRequestBodyLimit {
   s.DefendSwitch = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineBodyLimitEditDTO) SetContentType(v string) *UpdateAPIDefinitionApiDefineBodyLimitEditDTO {
+func (s *UpdateAPIDefinitionRequestBodyLimit) SetContentType(v string) *UpdateAPIDefinitionRequestBodyLimit {
   s.ContentType = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineBodyLimitEditDTO) SetBodyLimitMax(v int64) *UpdateAPIDefinitionApiDefineBodyLimitEditDTO {
+func (s *UpdateAPIDefinitionRequestBodyLimit) SetBodyLimitMax(v int64) *UpdateAPIDefinitionRequestBodyLimit {
   s.BodyLimitMax = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineBodyLimitEditDTO) SetNestMax(v int64) *UpdateAPIDefinitionApiDefineBodyLimitEditDTO {
+func (s *UpdateAPIDefinitionRequestBodyLimit) SetNestMax(v int64) *UpdateAPIDefinitionRequestBodyLimit {
   s.NestMax = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineBodyLimitEditDTO) SetParamCountMax(v int64) *UpdateAPIDefinitionApiDefineBodyLimitEditDTO {
+func (s *UpdateAPIDefinitionRequestBodyLimit) SetParamCountMax(v int64) *UpdateAPIDefinitionRequestBodyLimit {
   s.ParamCountMax = &v
   return s
 }
 
-type UpdateAPIDefinitionApiDefineParamLimitEditDTO struct {
-  // {'en':'Basic information.', 'zh_CN':'基础信息。'}
-  Basic *UpdateAPIDefinitionApiDefineParamLimitBasicEditDTO `json:"basic,omitempty" xml:"basic,omitempty" require:"true"`
-  // {'en':'There are request methods for changing configurations.
-  // GET:GET
-  // POST:POST
-  // DELETE:DELETE
-  // PUT:PUT
-  // HEAD:HEAD
-  // OPTIONS:OPTIONS
-  // PATCH:PATCH', 'zh_CN':'有变更配置的请求方法。
-  // GET：GET
-  // POST：POST
-  // DELETE：DELETE
-  // PUT：PUT
-  // HEAD：HEAD
-  // OPTIONS：OPTIONS
-  // PATCH：PATCH'}
+type UpdateAPIDefinitionRequestParamLimit struct {
+  // {"en":"Basic information.","zh_CN":"基础信息。"}
+  Basic *UpdateAPIDefinitionRequestParamLimitBasic `json:"basic,omitempty" xml:"basic,omitempty" require:"true" type:"Struct"`
+  // {"en":"There are request methods for changing configurations.\nGET:GET\nPOST:POST\nDELETE:DELETE\nPUT:PUT\nHEAD:HEAD\nOPTIONS:OPTIONS\nPATCH:PATCH","zh_CN":"有变更配置的请求方法。\nGET：GET\nPOST：POST\nDELETE：DELETE\nPUT：PUT\nHEAD：HEAD\nOPTIONS：OPTIONS\nPATCH：PATCH","exampleValue":"GET,POST,DELETE,PUT,HEAD,OPTIONS,PATCH"}
   ChangeParamLimitMethodList []*string `json:"changeParamLimitMethodList,omitempty" xml:"changeParamLimitMethodList,omitempty" type:"Repeated"`
-  // {'en':'Method attributes.', 'zh_CN':'方法属性。'}
-  MethodList []*UpdateAPIDefinitionApiDefineParamLimitMethodEditDTO `json:"methodList,omitempty" xml:"methodList,omitempty" type:"Repeated"`
+  // {"en":"Method attributes.","zh_CN":"方法属性。"}
+  MethodList []*UpdateAPIDefinitionRequestParamLimitMethodList `json:"methodList,omitempty" xml:"methodList,omitempty" type:"Repeated"`
 }
 
-func (s UpdateAPIDefinitionApiDefineParamLimitEditDTO) String() string {
+func (s UpdateAPIDefinitionRequestParamLimit) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateAPIDefinitionApiDefineParamLimitEditDTO) GoString() string {
+func (s UpdateAPIDefinitionRequestParamLimit) GoString() string {
   return s.String()
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitEditDTO) SetBasic(v *UpdateAPIDefinitionApiDefineParamLimitBasicEditDTO) *UpdateAPIDefinitionApiDefineParamLimitEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimit) SetBasic(v *UpdateAPIDefinitionRequestParamLimitBasic) *UpdateAPIDefinitionRequestParamLimit {
   s.Basic = v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitEditDTO) SetChangeParamLimitMethodList(v []*string) *UpdateAPIDefinitionApiDefineParamLimitEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimit) SetChangeParamLimitMethodList(v []*string) *UpdateAPIDefinitionRequestParamLimit {
   s.ChangeParamLimitMethodList = v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitEditDTO) SetMethodList(v []*UpdateAPIDefinitionApiDefineParamLimitMethodEditDTO) *UpdateAPIDefinitionApiDefineParamLimitEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimit) SetMethodList(v []*UpdateAPIDefinitionRequestParamLimitMethodList) *UpdateAPIDefinitionRequestParamLimit {
   s.MethodList = v
   return s
 }
 
-type UpdateAPIDefinitionApiDefineParamLimitBasicEditDTO struct {
-  // {'en':'Parameter limit.
-  // ON:On
-  // OFF:Off', 'zh_CN':'参数限制。
-  // ON：开启
-  // OFF：关闭'}
+type UpdateAPIDefinitionRequestParamLimitBasic struct {
+  // {"en":"Parameter limit.\nON:On\nOFF:Off","zh_CN":"参数限制。\nON：开启\nOFF：关闭","exampleValue":"ON,OFF"}
   DefendSwitch *string `json:"defendSwitch,omitempty" xml:"defendSwitch,omitempty"`
-  // {'en':'Query String Parameter Detection Mode, required when defendSwitch = ON.
-  // LOOSE:Loose mode - detect some parameters
-  // STRICT:Strict mode - checks all parameters', 'zh_CN':'Query String参数检测模式，defendSwitch = ON 时必填。
-  // LOOSE：宽松模式-检测部分参数
-  // STRICT：严格模式-检测所有参数'}
+  // {"en":"Query String Parameter Detection Mode, required when defendSwitch = ON.\nLOOSE:Loose mode - detect some parameters\nSTRICT:Strict mode - checks all parameters","zh_CN":"Query String参数检测模式，defendSwitch = ON 时必填。\nLOOSE：宽松模式-检测部分参数\nSTRICT：严格模式-检测所有参数","exampleValue":"LOOSE,STRICT"}
   ParamCheckMode *string `json:"paramCheckMode,omitempty" xml:"paramCheckMode,omitempty"`
 }
 
-func (s UpdateAPIDefinitionApiDefineParamLimitBasicEditDTO) String() string {
+func (s UpdateAPIDefinitionRequestParamLimitBasic) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateAPIDefinitionApiDefineParamLimitBasicEditDTO) GoString() string {
+func (s UpdateAPIDefinitionRequestParamLimitBasic) GoString() string {
   return s.String()
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitBasicEditDTO) SetDefendSwitch(v string) *UpdateAPIDefinitionApiDefineParamLimitBasicEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitBasic) SetDefendSwitch(v string) *UpdateAPIDefinitionRequestParamLimitBasic {
   s.DefendSwitch = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitBasicEditDTO) SetParamCheckMode(v string) *UpdateAPIDefinitionApiDefineParamLimitBasicEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitBasic) SetParamCheckMode(v string) *UpdateAPIDefinitionRequestParamLimitBasic {
   s.ParamCheckMode = &v
   return s
 }
 
-type UpdateAPIDefinitionApiDefineParamLimitMethodEditDTO struct {
-  // {'en':'Request methods.
-  // GET:GET
-  // POST:POST
-  // DELETE:DELETE
-  // PUT:PUT
-  // HEAD:HEAD
-  // OPTIONS:OPTIONS
-  // PATCH:PATCH', 'zh_CN':'请求方法。
-  // GET：GET
-  // POST：POST
-  // DELETE：DELETE
-  // PUT：PUT
-  // HEAD：HEAD
-  // OPTIONS：OPTIONS
-  // PATCH：PATCH'}
+type UpdateAPIDefinitionRequestParamLimitMethodList struct     {
+  // {"en":"Request methods.\nGET:GET\nPOST:POST\nDELETE:DELETE\nPUT:PUT\nHEAD:HEAD\nOPTIONS:OPTIONS\nPATCH:PATCH","zh_CN":"请求方法。\nGET：GET\nPOST：POST\nDELETE：DELETE\nPUT：PUT\nHEAD：HEAD\nOPTIONS：OPTIONS\nPATCH：PATCH","exampleValue":"GET,POST,DELETE,PUT,HEAD,OPTIONS,PATCH"}
   Method *string `json:"method,omitempty" xml:"method,omitempty"`
-  // {'en':'Whether to define body parameters, required when method = POST/PUT/PATCH.
-  // TRUE:Yes
-  // FALSE:No', 'zh_CN':'是否定义body参数，method = POST/PUT/PATCH时必填。
-  // TRUE：是
-  // FALSE：否'}
+  // {"en":"Whether to define body parameters, required when method = POST/PUT/PATCH.\nTRUE:Yes\nFALSE:No","zh_CN":"是否定义body参数，method = POST/PUT/PATCH时必填。\nTRUE：是\nFALSE：否","exampleValue":"TRUE,FALSE"}
   BodyFlag *string `json:"bodyFlag,omitempty" xml:"bodyFlag,omitempty"`
-  // {'en':'Body parameter type, required when bodyFlag = TRUE.
-  // JSON:JSON
-  // FROM:FROM', 'zh_CN':'body参数类型，bodyFlag = TRUE 时必填。
-  // JSON：JSON
-  // FROM：FROM表单'}
+  // {"en":"Body parameter type, required when bodyFlag = TRUE.\nJSON:JSON\nFROM:FROM","zh_CN":"body参数类型，bodyFlag = TRUE 时必填。\nJSON：JSON\nFROM：FROM表单","exampleValue":"FORM,JSON"}
   BodyType *string `json:"bodyType,omitempty" xml:"bodyType,omitempty"`
-  // {'en':'Normal parameter list.', 'zh_CN':'普通参数数组。'}
-  NormalParamList []*UpdateAPIDefinitionApiDefineParamLimitNormalEditDTO `json:"normalParamList,omitempty" xml:"normalParamList,omitempty" type:"Repeated"`
-  // {'en':'FROM form parameter array, Optional when bodyType = FROM.', 'zh_CN':'FROM 表单参数数组，bodyType = FROM 时选填。'}
-  FormParamList []*UpdateAPIDefinitionApiDefineParamLimitFormEditDTO `json:"formParamList,omitempty" xml:"formParamList,omitempty" type:"Repeated"`
-  // {'en':'JSON parameter array, Optional when bodyType = JSON.', 'zh_CN':'JSON参数数组，bodyType = JSON 时选填。'}
-  JsonParam *UpdateAPIDefinitionApiDefineParamLimitJsonEditDTO `json:"jsonParam,omitempty" xml:"jsonParam,omitempty"`
+  // {"en":"Normal parameter list.","zh_CN":"普通参数数组。"}
+  NormalParamList []*UpdateAPIDefinitionRequestParamLimitMethodListNormalParamList `json:"normalParamList,omitempty" xml:"normalParamList,omitempty" type:"Repeated"`
+  // {"en":"FROM form parameter array, Optional when bodyType = FROM.","zh_CN":"FROM 表单参数数组，bodyType = FROM 时选填。"}
+  FormParamList []*UpdateAPIDefinitionRequestParamLimitMethodListFormParamList `json:"formParamList,omitempty" xml:"formParamList,omitempty" type:"Repeated"`
+  // {"en":"JSON parameter array, Optional when bodyType = JSON.","zh_CN":"JSON参数数组，bodyType = JSON 时选填。"}
+  JsonParam *UpdateAPIDefinitionRequestParamLimitMethodListJsonParam `json:"jsonParam,omitempty" xml:"jsonParam,omitempty" type:"Struct"`
 }
 
-func (s UpdateAPIDefinitionApiDefineParamLimitMethodEditDTO) String() string {
+func (s UpdateAPIDefinitionRequestParamLimitMethodList) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateAPIDefinitionApiDefineParamLimitMethodEditDTO) GoString() string {
+func (s UpdateAPIDefinitionRequestParamLimitMethodList) GoString() string {
   return s.String()
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitMethodEditDTO) SetMethod(v string) *UpdateAPIDefinitionApiDefineParamLimitMethodEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodList) SetMethod(v string) *UpdateAPIDefinitionRequestParamLimitMethodList {
   s.Method = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitMethodEditDTO) SetBodyFlag(v string) *UpdateAPIDefinitionApiDefineParamLimitMethodEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodList) SetBodyFlag(v string) *UpdateAPIDefinitionRequestParamLimitMethodList {
   s.BodyFlag = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitMethodEditDTO) SetBodyType(v string) *UpdateAPIDefinitionApiDefineParamLimitMethodEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodList) SetBodyType(v string) *UpdateAPIDefinitionRequestParamLimitMethodList {
   s.BodyType = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitMethodEditDTO) SetNormalParamList(v []*UpdateAPIDefinitionApiDefineParamLimitNormalEditDTO) *UpdateAPIDefinitionApiDefineParamLimitMethodEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodList) SetNormalParamList(v []*UpdateAPIDefinitionRequestParamLimitMethodListNormalParamList) *UpdateAPIDefinitionRequestParamLimitMethodList {
   s.NormalParamList = v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitMethodEditDTO) SetFormParamList(v []*UpdateAPIDefinitionApiDefineParamLimitFormEditDTO) *UpdateAPIDefinitionApiDefineParamLimitMethodEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodList) SetFormParamList(v []*UpdateAPIDefinitionRequestParamLimitMethodListFormParamList) *UpdateAPIDefinitionRequestParamLimitMethodList {
   s.FormParamList = v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitMethodEditDTO) SetJsonParam(v *UpdateAPIDefinitionApiDefineParamLimitJsonEditDTO) *UpdateAPIDefinitionApiDefineParamLimitMethodEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodList) SetJsonParam(v *UpdateAPIDefinitionRequestParamLimitMethodListJsonParam) *UpdateAPIDefinitionRequestParamLimitMethodList {
   s.JsonParam = v
   return s
 }
 
-type UpdateAPIDefinitionApiDefineParamLimitNormalEditDTO struct {
-  // {'en':'Parameter name, when paramPosition = PATH_PARAMS, the path need to be matched, for example: /basePath/{name}/.', 'zh_CN':'参数名称，paramPosition = PATH_PARAMS 时需匹配路径变量，例如：/basePath/{name}/。'}
+type UpdateAPIDefinitionRequestParamLimitMethodListNormalParamList struct     {
+  // {"en":"Parameter name, when paramPosition = PATH_PARAMS, the path need to be matched, for example: /basePath/{name}/.","zh_CN":"参数名称，paramPosition = PATH_PARAMS 时需匹配路径变量，例如：/basePath/{name}/。"}
   Name *string `json:"name,omitempty" xml:"name,omitempty"`
-  // {'en':'Parameter position.
-  // HTTP_HEADER:Http Header
-  // QUERY_STRING:Query String
-  // COOKIE:Cookie
-  // PATH_PARAMS:Path, endpoint.matchPathVar needs to equal TRUE', 'zh_CN':'参数位置。
-  // HTTP_HEADER：Http Header
-  // QUERY_STRING：Query String
-  // COOKIE：Cookie
-  // PATH_PARAMS：路径变量，endpoint.matchPathVar需等于TRUE'}
+  // {"en":"Parameter position.\nHTTP_HEADER:Http Header\nQUERY_STRING:Query String\nCOOKIE:Cookie\nPATH_PARAMS:Path, endpoint.matchPathVar needs to equal TRUE","zh_CN":"参数位置。\nHTTP_HEADER：Http Header\nQUERY_STRING：Query String\nCOOKIE：Cookie\nPATH_PARAMS：路径变量，endpoint.matchPathVar需等于TRUE","exampleValue":"HTTP_HEADER,QUERY_STRING,COOKIE,PATH_PARAMS"}
   ParamPosition *string `json:"paramPosition,omitempty" xml:"paramPosition,omitempty"`
-  // {'en':'Parameter type.
-  // Integer:Integer
-  // Number:Number
-  // String:String
-  // Boolean:Boolean
-  // Enumeration:Enumeration', 'zh_CN':'参数类型。
-  // Integer：整数
-  // Number：数字
-  // String：字符串
-  // Boolean：布尔
-  // Enumeration：枚举'}
+  // {"en":"Parameter type.\nInteger:Integer\nNumber:Number\nString:String\nBoolean:Boolean\nEnumeration:Enumeration","zh_CN":"参数类型。\nInteger：整数\nNumber：数字\nString：字符串\nBoolean：布尔\nEnumeration：枚举","exampleValue":"Integer,Number,String,Boolean,Enumeration"}
   Type *string `json:"type,omitempty" xml:"type,omitempty"`
-  // {'en':'type = Integer/Number:minimum value, type = String:minimum length, type = Boolean/Enumeration:leave blank.', 'zh_CN':'type = Integer/Number：最小值，type = String：最小长度，type = Boolean/Enumeration：置空。'}
+  // {"en":"type = Integer/Number:minimum value, type = String:minimum length, type = Boolean/Enumeration:leave blank.","zh_CN":"type = Integer/Number：最小值，type = String：最小长度，type = Boolean/Enumeration：置空。"}
   MinVal *string `json:"minVal,omitempty" xml:"minVal,omitempty"`
-  // {'en':'type = Integer/Number:maximum value, type = String:maximum length, type = Boolean/Enumeration:leave blank.', 'zh_CN':'type = Integer/Number：最大值，type = String：最大长度，type = Boolean/Enumeration：置空。'}
+  // {"en":"type = Integer/Number:maximum value, type = String:maximum length, type = Boolean/Enumeration:leave blank.","zh_CN":"type = Integer/Number：最大值，type = String：最大长度，type = Boolean/Enumeration：置空。"}
   MaxVal *string `json:"maxVal,omitempty" xml:"maxVal,omitempty"`
-  // {'en':'Required.
-  // TRUE:Yes
-  // FALSE:No', 'zh_CN':'必带参数。
-  // TRUE：是
-  // FALSE：否'}
+  // {"en":"Required.\nTRUE:Yes\nFALSE:No","zh_CN":"必带参数。\nTRUE：是\nFALSE：否","exampleValue":"TRUE,FALSE"}
   Required *string `json:"required,omitempty" xml:"required,omitempty"`
-  // {'en':'Content (maximum 2000 characters), required when type = Enumeration, Multiple separated by ; sign.', 'zh_CN':'内容（最多2000个字符），type = Enumeration 时必填，多个以 ; 号分隔。'}
+  // {"en":"Content (maximum 2000 characters), required when type = Enumeration, Multiple separated by ; sign.","zh_CN":"内容（最多2000个字符），type = Enumeration 时必填，多个以 ; 号分隔。"}
   Content *string `json:"content,omitempty" xml:"content,omitempty"`
-  // {'en':'Description.', 'zh_CN':'备注。'}
+  // {"en":"Description.","zh_CN":"备注。"}
   Remark *string `json:"remark,omitempty" xml:"remark,omitempty"`
 }
 
-func (s UpdateAPIDefinitionApiDefineParamLimitNormalEditDTO) String() string {
+func (s UpdateAPIDefinitionRequestParamLimitMethodListNormalParamList) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateAPIDefinitionApiDefineParamLimitNormalEditDTO) GoString() string {
+func (s UpdateAPIDefinitionRequestParamLimitMethodListNormalParamList) GoString() string {
   return s.String()
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitNormalEditDTO) SetName(v string) *UpdateAPIDefinitionApiDefineParamLimitNormalEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListNormalParamList) SetName(v string) *UpdateAPIDefinitionRequestParamLimitMethodListNormalParamList {
   s.Name = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitNormalEditDTO) SetParamPosition(v string) *UpdateAPIDefinitionApiDefineParamLimitNormalEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListNormalParamList) SetParamPosition(v string) *UpdateAPIDefinitionRequestParamLimitMethodListNormalParamList {
   s.ParamPosition = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitNormalEditDTO) SetType(v string) *UpdateAPIDefinitionApiDefineParamLimitNormalEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListNormalParamList) SetType(v string) *UpdateAPIDefinitionRequestParamLimitMethodListNormalParamList {
   s.Type = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitNormalEditDTO) SetMinVal(v string) *UpdateAPIDefinitionApiDefineParamLimitNormalEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListNormalParamList) SetMinVal(v string) *UpdateAPIDefinitionRequestParamLimitMethodListNormalParamList {
   s.MinVal = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitNormalEditDTO) SetMaxVal(v string) *UpdateAPIDefinitionApiDefineParamLimitNormalEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListNormalParamList) SetMaxVal(v string) *UpdateAPIDefinitionRequestParamLimitMethodListNormalParamList {
   s.MaxVal = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitNormalEditDTO) SetRequired(v string) *UpdateAPIDefinitionApiDefineParamLimitNormalEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListNormalParamList) SetRequired(v string) *UpdateAPIDefinitionRequestParamLimitMethodListNormalParamList {
   s.Required = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitNormalEditDTO) SetContent(v string) *UpdateAPIDefinitionApiDefineParamLimitNormalEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListNormalParamList) SetContent(v string) *UpdateAPIDefinitionRequestParamLimitMethodListNormalParamList {
   s.Content = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitNormalEditDTO) SetRemark(v string) *UpdateAPIDefinitionApiDefineParamLimitNormalEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListNormalParamList) SetRemark(v string) *UpdateAPIDefinitionRequestParamLimitMethodListNormalParamList {
   s.Remark = &v
   return s
 }
 
-type UpdateAPIDefinitionApiDefineParamLimitFormEditDTO struct {
-  // {'en':'Parameter name.', 'zh_CN':'参数名称。'}
+type UpdateAPIDefinitionRequestParamLimitMethodListFormParamList struct     {
+  // {"en":"Parameter name.","zh_CN":"参数名称。"}
   Name *string `json:"name,omitempty" xml:"name,omitempty"`
-  // {'en':'Parameter type.
-  // Integer:Integer
-  // Number:Number
-  // String:String
-  // Boolean:Boolean
-  // Enumeration:Enumeration', 'zh_CN':'参数类型。
-  // Integer：整数
-  // Number：数字
-  // String：字符串
-  // Boolean：布尔
-  // Enumeration：枚举'}
+  // {"en":"Parameter type.\nInteger:Integer\nNumber:Number\nString:String\nBoolean:Boolean\nEnumeration:Enumeration","zh_CN":"参数类型。\nInteger：整数\nNumber：数字\nString：字符串\nBoolean：布尔\nEnumeration：枚举","exampleValue":"Integer,Number,String,Boolean,Enumeration"}
   Type *string `json:"type,omitempty" xml:"type,omitempty"`
-  // {'en':'type = Integer/Number:minimum value, type = String:minimum length, type = Boolean/Enumeration:leave blank.', 'zh_CN':'type = Integer/Number：最小值，type = String：最小长度，type = Boolean/Enumeration：置空。'}
+  // {"en":"type = Integer/Number:minimum value, type = String:minimum length, type = Boolean/Enumeration:leave blank.","zh_CN":"type = Integer/Number：最小值，type = String：最小长度，type = Boolean/Enumeration：置空。"}
   MinVal *string `json:"minVal,omitempty" xml:"minVal,omitempty"`
-  // {'en':'type = Integer/Number:maximum value, type = String:maximum length, type = Boolean/Enumeration:leave blank.', 'zh_CN':'type = Integer/Number：最大值，type = String：最大长度，type = Boolean/Enumeration：置空。'}
+  // {"en":"type = Integer/Number:maximum value, type = String:maximum length, type = Boolean/Enumeration:leave blank.","zh_CN":"type = Integer/Number：最大值，type = String：最大长度，type = Boolean/Enumeration：置空。"}
   MaxVal *string `json:"maxVal,omitempty" xml:"maxVal,omitempty"`
-  // {'en':'Required.
-  // TRUE:Yes
-  // FALSE:No', 'zh_CN':'必带参数。
-  // TRUE：是
-  // FALSE：否'}
+  // {"en":"Required.\nTRUE:Yes\nFALSE:No","zh_CN":"必带参数。\nTRUE：是\nFALSE：否","exampleValue":"TRUE,FALSE"}
   Required *string `json:"required,omitempty" xml:"required,omitempty"`
-  // {'en':'Content (maximum 2000 characters), required when type = Enumeration, multiple separated by ; sign.', 'zh_CN':'内容（最多2000个字符），type = Enumeration 时必填，多个以 ; 号分隔。'}
+  // {"en":"Content (maximum 2000 characters), required when type = Enumeration, multiple separated by ; sign.","zh_CN":"内容（最多2000个字符），type = Enumeration 时必填，多个以 ; 号分隔。"}
   Content *string `json:"content,omitempty" xml:"content,omitempty"`
-  // {'en':'Description.', 'zh_CN':'备注。'}
+  // {"en":"Description.","zh_CN":"备注。"}
   Remark *string `json:"remark,omitempty" xml:"remark,omitempty"`
 }
 
-func (s UpdateAPIDefinitionApiDefineParamLimitFormEditDTO) String() string {
+func (s UpdateAPIDefinitionRequestParamLimitMethodListFormParamList) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateAPIDefinitionApiDefineParamLimitFormEditDTO) GoString() string {
+func (s UpdateAPIDefinitionRequestParamLimitMethodListFormParamList) GoString() string {
   return s.String()
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitFormEditDTO) SetName(v string) *UpdateAPIDefinitionApiDefineParamLimitFormEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListFormParamList) SetName(v string) *UpdateAPIDefinitionRequestParamLimitMethodListFormParamList {
   s.Name = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitFormEditDTO) SetType(v string) *UpdateAPIDefinitionApiDefineParamLimitFormEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListFormParamList) SetType(v string) *UpdateAPIDefinitionRequestParamLimitMethodListFormParamList {
   s.Type = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitFormEditDTO) SetMinVal(v string) *UpdateAPIDefinitionApiDefineParamLimitFormEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListFormParamList) SetMinVal(v string) *UpdateAPIDefinitionRequestParamLimitMethodListFormParamList {
   s.MinVal = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitFormEditDTO) SetMaxVal(v string) *UpdateAPIDefinitionApiDefineParamLimitFormEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListFormParamList) SetMaxVal(v string) *UpdateAPIDefinitionRequestParamLimitMethodListFormParamList {
   s.MaxVal = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitFormEditDTO) SetRequired(v string) *UpdateAPIDefinitionApiDefineParamLimitFormEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListFormParamList) SetRequired(v string) *UpdateAPIDefinitionRequestParamLimitMethodListFormParamList {
   s.Required = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitFormEditDTO) SetContent(v string) *UpdateAPIDefinitionApiDefineParamLimitFormEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListFormParamList) SetContent(v string) *UpdateAPIDefinitionRequestParamLimitMethodListFormParamList {
   s.Content = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitFormEditDTO) SetRemark(v string) *UpdateAPIDefinitionApiDefineParamLimitFormEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListFormParamList) SetRemark(v string) *UpdateAPIDefinitionRequestParamLimitMethodListFormParamList {
   s.Remark = &v
   return s
 }
 
-type UpdateAPIDefinitionApiDefineParamLimitJsonEditDTO struct {
-  // {'en':'Parameter Name.', 'zh_CN':'参数名称。'}
+type UpdateAPIDefinitionRequestParamLimitMethodListJsonParam struct {
+  // {"en":"Parameter Name.","zh_CN":"参数名称。"}
   Name *string `json:"name,omitempty" xml:"name,omitempty"`
-  // {'en':'Parameter Type.
-  // Array:Array
-  // Json:JSON Object', 'zh_CN':'参数类型。
-  // Array：数组
-  // Json：JSON对象'}
+  // {"en":"Parameter Type.\nArray:Array\nJson:JSON Object","zh_CN":"参数类型。\nArray：数组\nJson：JSON对象","exampleValue":"Array,Json"}
   Type *string `json:"type,omitempty" xml:"type,omitempty"`
-  // {'en':'type = Integer/Number:minimum value, type = String:minimum length, type = Boolean/Enumeration:leave blank.', 'zh_CN':'type = Integer/Number：最小值，type = String：最小长度，type = Boolean/Enumeration：置空。'}
+  // {"en":"type = Integer/Number:minimum value, type = String:minimum length, type = Boolean/Enumeration:leave blank.","zh_CN":"type = Integer/Number：最小值，type = String：最小长度，type = Boolean/Enumeration：置空。"}
   MinVal *string `json:"minVal,omitempty" xml:"minVal,omitempty"`
-  // {'en':'type = Integer/Number:maximum value, type = String:maximum length, type = Boolean/Enumeration:leave blank.', 'zh_CN':'type = Integer/Number：最大值，type = String：最大长度，type = Boolean/Enumeration：置空。'}
+  // {"en":"type = Integer/Number:maximum value, type = String:maximum length, type = Boolean/Enumeration:leave blank.","zh_CN":"type = Integer/Number：最大值，type = String：最大长度，type = Boolean/Enumeration：置空。"}
   MaxVal *string `json:"maxVal,omitempty" xml:"maxVal,omitempty"`
-  // {'en':'Required.
-  // TRUE:Yes
-  // FALSE:No', 'zh_CN':'必带参数。
-  // TRUE：是
-  // FALSE：否'}
+  // {"en":"Required.\nTRUE:Yes\nFALSE:No","zh_CN":"必带参数。\nTRUE：是\nFALSE：否","exampleValue":"TRUE,FALSE"}
   Required *string `json:"required,omitempty" xml:"required,omitempty"`
-  // {'en':'Content (maximum 2000 characters), required when type = Enumeration, multiple separated by ; sign.', 'zh_CN':'内容（最多2000个字符），type = Enumeration 时必填，多个以 ; 号分隔。'}
+  // {"en":"Content (maximum 2000 characters), required when type = Enumeration, multiple separated by ; sign.","zh_CN":"内容（最多2000个字符），type = Enumeration 时必填，多个以 ; 号分隔。"}
   Content *string `json:"content,omitempty" xml:"content,omitempty"`
-  // {'en':'Array of child nodes, required when type= Array.', 'zh_CN':'子节点数组，type = Array 时必填。'}
-  Children []*UpdateAPIDefinitionApiDefineParamLimitJsonChildrenDTO `json:"children,omitempty" xml:"children,omitempty" type:"Repeated"`
+  // {"en":"Array of child nodes, required when type= Array.","zh_CN":"子节点数组，type = Array 时必填。"}
+  Children []*UpdateAPIDefinitionRequestParamLimitMethodListJsonParamChildren `json:"children,omitempty" xml:"children,omitempty" type:"Repeated"`
 }
 
-func (s UpdateAPIDefinitionApiDefineParamLimitJsonEditDTO) String() string {
+func (s UpdateAPIDefinitionRequestParamLimitMethodListJsonParam) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateAPIDefinitionApiDefineParamLimitJsonEditDTO) GoString() string {
+func (s UpdateAPIDefinitionRequestParamLimitMethodListJsonParam) GoString() string {
   return s.String()
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitJsonEditDTO) SetName(v string) *UpdateAPIDefinitionApiDefineParamLimitJsonEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListJsonParam) SetName(v string) *UpdateAPIDefinitionRequestParamLimitMethodListJsonParam {
   s.Name = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitJsonEditDTO) SetType(v string) *UpdateAPIDefinitionApiDefineParamLimitJsonEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListJsonParam) SetType(v string) *UpdateAPIDefinitionRequestParamLimitMethodListJsonParam {
   s.Type = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitJsonEditDTO) SetMinVal(v string) *UpdateAPIDefinitionApiDefineParamLimitJsonEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListJsonParam) SetMinVal(v string) *UpdateAPIDefinitionRequestParamLimitMethodListJsonParam {
   s.MinVal = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitJsonEditDTO) SetMaxVal(v string) *UpdateAPIDefinitionApiDefineParamLimitJsonEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListJsonParam) SetMaxVal(v string) *UpdateAPIDefinitionRequestParamLimitMethodListJsonParam {
   s.MaxVal = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitJsonEditDTO) SetRequired(v string) *UpdateAPIDefinitionApiDefineParamLimitJsonEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListJsonParam) SetRequired(v string) *UpdateAPIDefinitionRequestParamLimitMethodListJsonParam {
   s.Required = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitJsonEditDTO) SetContent(v string) *UpdateAPIDefinitionApiDefineParamLimitJsonEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListJsonParam) SetContent(v string) *UpdateAPIDefinitionRequestParamLimitMethodListJsonParam {
   s.Content = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitJsonEditDTO) SetChildren(v []*UpdateAPIDefinitionApiDefineParamLimitJsonChildrenDTO) *UpdateAPIDefinitionApiDefineParamLimitJsonEditDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListJsonParam) SetChildren(v []*UpdateAPIDefinitionRequestParamLimitMethodListJsonParamChildren) *UpdateAPIDefinitionRequestParamLimitMethodListJsonParam {
   s.Children = v
   return s
 }
 
-type UpdateAPIDefinitionApiDefineParamLimitJsonChildrenDTO struct {
-  // {'en':'Parameter Name.', 'zh_CN':'参数名称。'}
+type UpdateAPIDefinitionRequestParamLimitMethodListJsonParamChildren struct     {
+  // {"en":"Parameter Name.","zh_CN":"参数名称。"}
   Name *string `json:"name,omitempty" xml:"name,omitempty"`
-  // {'en':'Parameter Type.
-  // Integer:Integer
-  // Number:Number
-  // String:String
-  // Boolean:Boolean
-  // Enumeration:Enumeration
-  // Array:Array
-  // Json:JSON Object', 'zh_CN':'参数类型。
-  // Integer：整数
-  // Number：数字
-  // String：字符串
-  // Boolean：布尔
-  // Enumeration：枚举
-  // Array：数组
-  // Json：JSON对象'}
+  // {"en":"Parameter Type.\nInteger:Integer\nNumber:Number\nString:String\nBoolean:Boolean\nEnumeration:Enumeration\nArray:Array\nJson:JSON Object","zh_CN":"参数类型。\nInteger：整数\nNumber：数字\nString：字符串\nBoolean：布尔\nEnumeration：枚举\nArray：数组\nJson：JSON对象","exampleValue":"Integer,Number,String,Boolean,Enumeration,Array,Json"}
   Type *string `json:"type,omitempty" xml:"type,omitempty"`
-  // {'en':'type = Integer/Number:minimum value, type = String:minimum length, type = Boolean/Enumeration:leave blank.', 'zh_CN':'type = Integer/Number：最小值，type = String：最小长度，type = Boolean/Enumeration：置空。'}
+  // {"en":"type = Integer/Number:minimum value, type = String:minimum length, type = Boolean/Enumeration:leave blank.","zh_CN":"type = Integer/Number：最小值，type = String：最小长度，type = Boolean/Enumeration：置空。"}
   MinVal *string `json:"minVal,omitempty" xml:"minVal,omitempty"`
-  // {'en':'type = Integer/Number:maximum value, type = String:maximum length, type = Boolean/Enumeration:leave blank.', 'zh_CN':'type = Integer/Number：最大值，type = String：最大长度，type = Boolean/Enumeration：置空。'}
+  // {"en":"type = Integer/Number:maximum value, type = String:maximum length, type = Boolean/Enumeration:leave blank.","zh_CN":"type = Integer/Number：最大值，type = String：最大长度，type = Boolean/Enumeration：置空。"}
   MaxVal *string `json:"maxVal,omitempty" xml:"maxVal,omitempty"`
-  // {'en':'Required.
-  // TRUE:Yes
-  // FALSE:No', 'zh_CN':'必带参数。
-  // TRUE：是
-  // FALSE：否'}
+  // {"en":"Required.\nTRUE:Yes\nFALSE:No","zh_CN":"必带参数。\nTRUE：是\nFALSE：否","exampleValue":"TRUE,FALSE"}
   Required *string `json:"required,omitempty" xml:"required,omitempty"`
-  // {'en':'Content (maximum 2000 characters), required when type = Enumeration, multiple separated by; sign.', 'zh_CN':'内容（最多2000个字符），type = Enumeration 时必填，多个以 ; 号分隔。'}
+  // {"en":"Content (maximum 2000 characters), required when type = Enumeration, multiple separated by; sign.","zh_CN":"内容（最多2000个字符），type = Enumeration 时必填，多个以 ; 号分隔。"}
   Content *string `json:"content,omitempty" xml:"content,omitempty"`
-  // {'en':'Child node array (JSON string), the structure is consistent with the parent node, required when type= Array.', 'zh_CN':'子节点数组（JSON字符串），结构与父结点一致，type = Array 时必填。'}
+  // {"en":"Child node array (JSON string), the structure is consistent with the parent node, required when type= Array.","zh_CN":"子节点数组（JSON字符串），结构与父结点一致，type = Array 时必填。"}
   Children []*string `json:"children,omitempty" xml:"children,omitempty" type:"Repeated"`
 }
 
-func (s UpdateAPIDefinitionApiDefineParamLimitJsonChildrenDTO) String() string {
+func (s UpdateAPIDefinitionRequestParamLimitMethodListJsonParamChildren) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateAPIDefinitionApiDefineParamLimitJsonChildrenDTO) GoString() string {
+func (s UpdateAPIDefinitionRequestParamLimitMethodListJsonParamChildren) GoString() string {
   return s.String()
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitJsonChildrenDTO) SetName(v string) *UpdateAPIDefinitionApiDefineParamLimitJsonChildrenDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListJsonParamChildren) SetName(v string) *UpdateAPIDefinitionRequestParamLimitMethodListJsonParamChildren {
   s.Name = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitJsonChildrenDTO) SetType(v string) *UpdateAPIDefinitionApiDefineParamLimitJsonChildrenDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListJsonParamChildren) SetType(v string) *UpdateAPIDefinitionRequestParamLimitMethodListJsonParamChildren {
   s.Type = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitJsonChildrenDTO) SetMinVal(v string) *UpdateAPIDefinitionApiDefineParamLimitJsonChildrenDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListJsonParamChildren) SetMinVal(v string) *UpdateAPIDefinitionRequestParamLimitMethodListJsonParamChildren {
   s.MinVal = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitJsonChildrenDTO) SetMaxVal(v string) *UpdateAPIDefinitionApiDefineParamLimitJsonChildrenDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListJsonParamChildren) SetMaxVal(v string) *UpdateAPIDefinitionRequestParamLimitMethodListJsonParamChildren {
   s.MaxVal = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitJsonChildrenDTO) SetRequired(v string) *UpdateAPIDefinitionApiDefineParamLimitJsonChildrenDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListJsonParamChildren) SetRequired(v string) *UpdateAPIDefinitionRequestParamLimitMethodListJsonParamChildren {
   s.Required = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitJsonChildrenDTO) SetContent(v string) *UpdateAPIDefinitionApiDefineParamLimitJsonChildrenDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListJsonParamChildren) SetContent(v string) *UpdateAPIDefinitionRequestParamLimitMethodListJsonParamChildren {
   s.Content = &v
   return s
 }
 
-func (s *UpdateAPIDefinitionApiDefineParamLimitJsonChildrenDTO) SetChildren(v []*string) *UpdateAPIDefinitionApiDefineParamLimitJsonChildrenDTO {
+func (s *UpdateAPIDefinitionRequestParamLimitMethodListJsonParamChildren) SetChildren(v []*string) *UpdateAPIDefinitionRequestParamLimitMethodListJsonParamChildren {
   s.Children = v
   return s
 }
 
-type UpdateAPIDefinitionResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'描述信息。'}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+type UpdateAPIDefinitionRequestHeader struct {
+  // {"en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
 }
 
-func (s UpdateAPIDefinitionResponse) String() string {
+func (s UpdateAPIDefinitionRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateAPIDefinitionResponse) GoString() string {
+func (s UpdateAPIDefinitionRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *UpdateAPIDefinitionResponse) SetCode(v string) *UpdateAPIDefinitionResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *UpdateAPIDefinitionResponse) SetMsg(v string) *UpdateAPIDefinitionResponse {
-  s.Msg = &v
+func (s *UpdateAPIDefinitionRequestHeader) SetServiceType(v string) *UpdateAPIDefinitionRequestHeader {
+  s.ServiceType = &v
   return s
 }
 
@@ -1941,21 +1566,28 @@ func (s UpdateAPIDefinitionParameters) GoString() string {
   return s.String()
 }
 
-type UpdateAPIDefinitionRequestHeader struct {
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+type UpdateAPIDefinitionResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
 }
 
-func (s UpdateAPIDefinitionRequestHeader) String() string {
+func (s UpdateAPIDefinitionResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateAPIDefinitionRequestHeader) GoString() string {
+func (s UpdateAPIDefinitionResponse) GoString() string {
   return s.String()
 }
 
-func (s *UpdateAPIDefinitionRequestHeader) SetServiceType(v string) *UpdateAPIDefinitionRequestHeader {
-  s.ServiceType = &v
+func (s *UpdateAPIDefinitionResponse) SetCode(v string) *UpdateAPIDefinitionResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *UpdateAPIDefinitionResponse) SetMsg(v string) *UpdateAPIDefinitionResponse {
+  s.Msg = &v
   return s
 }
 
@@ -1974,31 +1606,13 @@ func (s UpdateAPIDefinitionResponseHeader) GoString() string {
 
 
 type ListAPIAssetDiscoveryRequest struct {
-  // {"en":"Hostname list.", "zh_CN":"域名列表。"}
+  // {"en":"Domain list.","zh_CN":"域名列表。"}
   DomainList []*string `json:"domainList,omitempty" xml:"domainList,omitempty" require:"true" type:"Repeated"`
-  // {"en":"API base path.", "zh_CN":"端点路径。"}
+  // {"en":"API base path.","zh_CN":"端点路径。"}
   PathList []*string `json:"pathList,omitempty" xml:"pathList,omitempty" type:"Repeated"`
-  // {"en":"Definition state.
-  // DEFINED: Defined
-  // UNDEFINED:Undefined", "zh_CN":"定义状态。
-  // DEFINED: 已定义
-  // UNDEFINED:未定义"}
+  // {"en":"Definition state.\nDEFINED: Defined\nUNDEFINED:Undefined","zh_CN":"定义状态。\nDEFINED: 已定义\nUNDEFINED:未定义","exampleValue":"DEFINED,UNDEFINED"}
   DefineStatus *string `json:"defineStatus,omitempty" xml:"defineStatus,omitempty"`
-  // {"en":"Sort, format: field1,sort1;field2,sort2.
-  // Optional field:
-  // lastDiscoveryTime: Last discovery time
-  // firstDiscoveryTime: First discovery time
-  // reqCount24h: 24h Requests
-  // Optional sort:
-  // ascending:Ascend
-  // descending:Descend.", "zh_CN":"排序，格式：字段1,排序1;字段2,排序2。
-  // 可选字段：
-  // lastDiscoveryTime：最新发现时间
-  // firstDiscoveryTime：首次发现时间
-  // reqCount24h：24h调用量
-  // 可选排序：
-  // ascending：升序
-  // descending：降序"}
+  // {"en":"Sort, format: field1,sort1;field2,sort2.\nOptional field:\nlastDiscoveryTime: Last discovery time\nfirstDiscoveryTime: First discovery time\nreqCount24h: 24h Requests\nOptional sort:\nascending:Ascend\ndescending:Descend.","zh_CN":"排序，格式：字段1,排序1;字段2,排序2。\n可选字段：\nlastDiscoveryTime：最新发现时间\nfirstDiscoveryTime：首次发现时间\nreqCount24h：24h调用量\n可选排序：\nascending：升序\ndescending：降序"}
   OrderBy *string `json:"orderBy,omitempty" xml:"orderBy,omitempty"`
 }
 
@@ -2030,99 +1644,21 @@ func (s *ListAPIAssetDiscoveryRequest) SetOrderBy(v string) *ListAPIAssetDiscove
   return s
 }
 
-type ListAPIAssetDiscoveryResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Description.", "zh_CN":"描述信息。"}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {"en":"Data.", "zh_CN":"出参数据。"}
-  Data []*ListAPIAssetDiscoveryApiDiscoveryLogVO `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
+type ListAPIAssetDiscoveryRequestHeader struct {
+  // {"en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
 }
 
-func (s ListAPIAssetDiscoveryResponse) String() string {
+func (s ListAPIAssetDiscoveryRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s ListAPIAssetDiscoveryResponse) GoString() string {
+func (s ListAPIAssetDiscoveryRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *ListAPIAssetDiscoveryResponse) SetCode(v string) *ListAPIAssetDiscoveryResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *ListAPIAssetDiscoveryResponse) SetMsg(v string) *ListAPIAssetDiscoveryResponse {
-  s.Msg = &v
-  return s
-}
-
-func (s *ListAPIAssetDiscoveryResponse) SetData(v []*ListAPIAssetDiscoveryApiDiscoveryLogVO) *ListAPIAssetDiscoveryResponse {
-  s.Data = v
-  return s
-}
-
-type ListAPIAssetDiscoveryApiDiscoveryLogVO struct {
-  // {"en":"API discovery ID.", "zh_CN":"API发现ID。"}
-  Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
-  // {"en":"Hostname.", "zh_CN":"域名。"}
-  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
-  // {"en":"API base path.", "zh_CN":"端点路径。"}
-  Path *string `json:"path,omitempty" xml:"path,omitempty" require:"true"`
-  // {"en":"Last Discovery Time, format: yyyy-MM-dd HH:mm:ss.", "zh_CN":"最新发现时间，格式：yyyy-MM-dd HH:mm:ss。"}
-  LastDiscoveryTime *string `json:"lastDiscoveryTime,omitempty" xml:"lastDiscoveryTime,omitempty" require:"true"`
-  // {"en":"First Discovery Time, format: yyyy-MM-dd HH:mm:ss.", "zh_CN":"首次发现时间，格式：yyyy-MM-dd HH:mm:ss。"}
-  FirstDiscoveryTime *string `json:"firstDiscoveryTime,omitempty" xml:"firstDiscoveryTime,omitempty" require:"true"`
-  // {"en":"24h Requests.", "zh_CN":"24h调用量。"}
-  ReqCount24h *int64 `json:"reqCount24h,omitempty" xml:"reqCount24h,omitempty" require:"true"`
-  // {"en":"Status.
-  // DEFINED: Defined
-  // UNDEFINED:Pending", "zh_CN":"定义状态。
-  // DEFINED: 已定义
-  // UNDEFINED: 待确认"}
-  DefineStatus *string `json:"defineStatus,omitempty" xml:"defineStatus,omitempty" require:"true"`
-}
-
-func (s ListAPIAssetDiscoveryApiDiscoveryLogVO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s ListAPIAssetDiscoveryApiDiscoveryLogVO) GoString() string {
-  return s.String()
-}
-
-func (s *ListAPIAssetDiscoveryApiDiscoveryLogVO) SetId(v string) *ListAPIAssetDiscoveryApiDiscoveryLogVO {
-  s.Id = &v
-  return s
-}
-
-func (s *ListAPIAssetDiscoveryApiDiscoveryLogVO) SetDomain(v string) *ListAPIAssetDiscoveryApiDiscoveryLogVO {
-  s.Domain = &v
-  return s
-}
-
-func (s *ListAPIAssetDiscoveryApiDiscoveryLogVO) SetPath(v string) *ListAPIAssetDiscoveryApiDiscoveryLogVO {
-  s.Path = &v
-  return s
-}
-
-func (s *ListAPIAssetDiscoveryApiDiscoveryLogVO) SetLastDiscoveryTime(v string) *ListAPIAssetDiscoveryApiDiscoveryLogVO {
-  s.LastDiscoveryTime = &v
-  return s
-}
-
-func (s *ListAPIAssetDiscoveryApiDiscoveryLogVO) SetFirstDiscoveryTime(v string) *ListAPIAssetDiscoveryApiDiscoveryLogVO {
-  s.FirstDiscoveryTime = &v
-  return s
-}
-
-func (s *ListAPIAssetDiscoveryApiDiscoveryLogVO) SetReqCount24h(v int64) *ListAPIAssetDiscoveryApiDiscoveryLogVO {
-  s.ReqCount24h = &v
-  return s
-}
-
-func (s *ListAPIAssetDiscoveryApiDiscoveryLogVO) SetDefineStatus(v string) *ListAPIAssetDiscoveryApiDiscoveryLogVO {
-  s.DefineStatus = &v
+func (s *ListAPIAssetDiscoveryRequestHeader) SetServiceType(v string) *ListAPIAssetDiscoveryRequestHeader {
+  s.ServiceType = &v
   return s
 }
 
@@ -2148,21 +1684,95 @@ func (s ListAPIAssetDiscoveryParameters) GoString() string {
   return s.String()
 }
 
-type ListAPIAssetDiscoveryRequestHeader struct {
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+type ListAPIAssetDiscoveryResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"Data.","zh_CN":"出参数据。"}
+  Data []*ListAPIAssetDiscoveryResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
 }
 
-func (s ListAPIAssetDiscoveryRequestHeader) String() string {
+func (s ListAPIAssetDiscoveryResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s ListAPIAssetDiscoveryRequestHeader) GoString() string {
+func (s ListAPIAssetDiscoveryResponse) GoString() string {
   return s.String()
 }
 
-func (s *ListAPIAssetDiscoveryRequestHeader) SetServiceType(v string) *ListAPIAssetDiscoveryRequestHeader {
-  s.ServiceType = &v
+func (s *ListAPIAssetDiscoveryResponse) SetCode(v string) *ListAPIAssetDiscoveryResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *ListAPIAssetDiscoveryResponse) SetMsg(v string) *ListAPIAssetDiscoveryResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *ListAPIAssetDiscoveryResponse) SetData(v []*ListAPIAssetDiscoveryResponseData) *ListAPIAssetDiscoveryResponse {
+  s.Data = v
+  return s
+}
+
+type ListAPIAssetDiscoveryResponseData struct     {
+  // {"en":"API discovery ID.","zh_CN":"API发现ID。"}
+  Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
+  // {"en":"Domain.","zh_CN":"域名。"}
+  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
+  // {"en":"API base path.","zh_CN":"端点路径。"}
+  Path *string `json:"path,omitempty" xml:"path,omitempty" require:"true"`
+  // {"en":"Last Discovery Time, format: yyyy-MM-dd HH:mm:ss.","zh_CN":"最新发现时间，格式：yyyy-MM-dd HH:mm:ss。"}
+  LastDiscoveryTime *string `json:"lastDiscoveryTime,omitempty" xml:"lastDiscoveryTime,omitempty" require:"true"`
+  // {"en":"First Discovery Time, format: yyyy-MM-dd HH:mm:ss.","zh_CN":"首次发现时间，格式：yyyy-MM-dd HH:mm:ss。"}
+  FirstDiscoveryTime *string `json:"firstDiscoveryTime,omitempty" xml:"firstDiscoveryTime,omitempty" require:"true"`
+  // {"en":"24h Requests.","zh_CN":"24h调用量。"}
+  ReqCount24h *int64 `json:"reqCount24h,omitempty" xml:"reqCount24h,omitempty" require:"true"`
+  // {"en":"Status.\nDEFINED: Defined\nUNDEFINED:Pending","zh_CN":"定义状态。\nDEFINED: 已定义\nUNDEFINED: 待确认","exampleValue":"DEFINED,UNDEFINED"}
+  DefineStatus *string `json:"defineStatus,omitempty" xml:"defineStatus,omitempty" require:"true"`
+}
+
+func (s ListAPIAssetDiscoveryResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s ListAPIAssetDiscoveryResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *ListAPIAssetDiscoveryResponseData) SetId(v string) *ListAPIAssetDiscoveryResponseData {
+  s.Id = &v
+  return s
+}
+
+func (s *ListAPIAssetDiscoveryResponseData) SetDomain(v string) *ListAPIAssetDiscoveryResponseData {
+  s.Domain = &v
+  return s
+}
+
+func (s *ListAPIAssetDiscoveryResponseData) SetPath(v string) *ListAPIAssetDiscoveryResponseData {
+  s.Path = &v
+  return s
+}
+
+func (s *ListAPIAssetDiscoveryResponseData) SetLastDiscoveryTime(v string) *ListAPIAssetDiscoveryResponseData {
+  s.LastDiscoveryTime = &v
+  return s
+}
+
+func (s *ListAPIAssetDiscoveryResponseData) SetFirstDiscoveryTime(v string) *ListAPIAssetDiscoveryResponseData {
+  s.FirstDiscoveryTime = &v
+  return s
+}
+
+func (s *ListAPIAssetDiscoveryResponseData) SetReqCount24h(v int64) *ListAPIAssetDiscoveryResponseData {
+  s.ReqCount24h = &v
+  return s
+}
+
+func (s *ListAPIAssetDiscoveryResponseData) SetDefineStatus(v string) *ListAPIAssetDiscoveryResponseData {
+  s.DefineStatus = &v
   return s
 }
 
@@ -2181,16 +1791,16 @@ func (s ListAPIAssetDiscoveryResponseHeader) GoString() string {
 
 
 type CreateAPIDefinitionRequest struct {
-  // {'en':'Basic information.', 'zh_CN':'基础信息。'}
-  Basic *CreateAPIDefinitionApiDefineBasicAddDTO `json:"basic,omitempty" xml:"basic,omitempty" require:"true"`
-  // {'en':'Endpoint information.', 'zh_CN':'端点信息。'}
-  Endpoint *CreateAPIDefinitionApiDefineEndpointAddDTO `json:"endpoint,omitempty" xml:"endpoint,omitempty" require:"true"`
-  // {'en':'Authentication configuration.', 'zh_CN':'鉴权配置。'}
-  Auth *CreateAPIDefinitionApiDefineAuthAddDTO `json:"auth,omitempty" xml:"auth,omitempty" require:"true"`
-  // {'en':'Body restrictions.', 'zh_CN':'body限制。'}
-  BodyLimit *CreateAPIDefinitionApiDefineBodyLimitAddDTO `json:"bodyLimit,omitempty" xml:"bodyLimit,omitempty"`
-  // {'en':'Parameter limit.', 'zh_CN':'参数限制。'}
-  ParamLimit *CreateAPIDefinitionApiDefineParamLimitAddDTO `json:"paramLimit,omitempty" xml:"paramLimit,omitempty"`
+  // {"en":"Basic information.","zh_CN":"基础信息。"}
+  Basic *CreateAPIDefinitionRequestBasic `json:"basic,omitempty" xml:"basic,omitempty" require:"true" type:"Struct"`
+  // {"en":"Endpoint information.","zh_CN":"端点信息。"}
+  Endpoint *CreateAPIDefinitionRequestEndpoint `json:"endpoint,omitempty" xml:"endpoint,omitempty" require:"true" type:"Struct"`
+  // {"en":"Authentication configuration.","zh_CN":"鉴权配置。"}
+  Auth *CreateAPIDefinitionRequestAuth `json:"auth,omitempty" xml:"auth,omitempty" require:"true" type:"Struct"`
+  // {"en":"Body restrictions.","zh_CN":"body限制。"}
+  BodyLimit *CreateAPIDefinitionRequestBodyLimit `json:"bodyLimit,omitempty" xml:"bodyLimit,omitempty" type:"Struct"`
+  // {"en":"Parameter limit.","zh_CN":"参数限制。"}
+  ParamLimit *CreateAPIDefinitionRequestParamLimit `json:"paramLimit,omitempty" xml:"paramLimit,omitempty" type:"Struct"`
 }
 
 func (s CreateAPIDefinitionRequest) String() string {
@@ -2201,733 +1811,611 @@ func (s CreateAPIDefinitionRequest) GoString() string {
   return s.String()
 }
 
-func (s *CreateAPIDefinitionRequest) SetBasic(v *CreateAPIDefinitionApiDefineBasicAddDTO) *CreateAPIDefinitionRequest {
+func (s *CreateAPIDefinitionRequest) SetBasic(v *CreateAPIDefinitionRequestBasic) *CreateAPIDefinitionRequest {
   s.Basic = v
   return s
 }
 
-func (s *CreateAPIDefinitionRequest) SetEndpoint(v *CreateAPIDefinitionApiDefineEndpointAddDTO) *CreateAPIDefinitionRequest {
+func (s *CreateAPIDefinitionRequest) SetEndpoint(v *CreateAPIDefinitionRequestEndpoint) *CreateAPIDefinitionRequest {
   s.Endpoint = v
   return s
 }
 
-func (s *CreateAPIDefinitionRequest) SetAuth(v *CreateAPIDefinitionApiDefineAuthAddDTO) *CreateAPIDefinitionRequest {
+func (s *CreateAPIDefinitionRequest) SetAuth(v *CreateAPIDefinitionRequestAuth) *CreateAPIDefinitionRequest {
   s.Auth = v
   return s
 }
 
-func (s *CreateAPIDefinitionRequest) SetBodyLimit(v *CreateAPIDefinitionApiDefineBodyLimitAddDTO) *CreateAPIDefinitionRequest {
+func (s *CreateAPIDefinitionRequest) SetBodyLimit(v *CreateAPIDefinitionRequestBodyLimit) *CreateAPIDefinitionRequest {
   s.BodyLimit = v
   return s
 }
 
-func (s *CreateAPIDefinitionRequest) SetParamLimit(v *CreateAPIDefinitionApiDefineParamLimitAddDTO) *CreateAPIDefinitionRequest {
+func (s *CreateAPIDefinitionRequest) SetParamLimit(v *CreateAPIDefinitionRequestParamLimit) *CreateAPIDefinitionRequest {
   s.ParamLimit = v
   return s
 }
 
-type CreateAPIDefinitionApiDefineBasicAddDTO struct {
-  // {'en':'API name, maximum 200 characters.', 'zh_CN':'API名称，最多200个字符。'}
+type CreateAPIDefinitionRequestBasic struct {
+  // {"en":"API name, maximum 200 characters.","zh_CN":"API名称，最多200个字符。"}
   Name *string `json:"name,omitempty" xml:"name,omitempty" require:"true"`
-  // {'en':'API groups, maximum 64 characters.', 'zh_CN':'API分组，最多64个字符。'}
+  // {"en":"API groups, maximum 64 characters.","zh_CN":"API分组，最多64个字符。"}
   GroupName *string `json:"groupName,omitempty" xml:"groupName,omitempty" require:"true"`
-  // {'en':'Hostname.', 'zh_CN':'所属域名。'}
+  // {"en":"Domain.","zh_CN":"所属域名。"}
   Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
-  // {'en':'Description, maximum 200 characters.', 'zh_CN':'备注，最多200个字符。'}
+  // {"en":"Description, maximum 200 characters.","zh_CN":"备注，最多200个字符。"}
   Remark *string `json:"remark,omitempty" xml:"remark,omitempty"`
 }
 
-func (s CreateAPIDefinitionApiDefineBasicAddDTO) String() string {
+func (s CreateAPIDefinitionRequestBasic) String() string {
   return tea.Prettify(s)
 }
 
-func (s CreateAPIDefinitionApiDefineBasicAddDTO) GoString() string {
+func (s CreateAPIDefinitionRequestBasic) GoString() string {
   return s.String()
 }
 
-func (s *CreateAPIDefinitionApiDefineBasicAddDTO) SetName(v string) *CreateAPIDefinitionApiDefineBasicAddDTO {
+func (s *CreateAPIDefinitionRequestBasic) SetName(v string) *CreateAPIDefinitionRequestBasic {
   s.Name = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineBasicAddDTO) SetGroupName(v string) *CreateAPIDefinitionApiDefineBasicAddDTO {
+func (s *CreateAPIDefinitionRequestBasic) SetGroupName(v string) *CreateAPIDefinitionRequestBasic {
   s.GroupName = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineBasicAddDTO) SetDomain(v string) *CreateAPIDefinitionApiDefineBasicAddDTO {
+func (s *CreateAPIDefinitionRequestBasic) SetDomain(v string) *CreateAPIDefinitionRequestBasic {
   s.Domain = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineBasicAddDTO) SetRemark(v string) *CreateAPIDefinitionApiDefineBasicAddDTO {
+func (s *CreateAPIDefinitionRequestBasic) SetRemark(v string) *CreateAPIDefinitionRequestBasic {
   s.Remark = &v
   return s
 }
 
-type CreateAPIDefinitionApiDefineEndpointAddDTO struct {
-  // {'en':'Request methods.Multiple separated by ; sign.
-  // GET:GET, configurable parameter limits
-  // POST:POST, configurable parameter limits
-  // DELETE:DELETE, configurable parameter limits
-  // UPDATE:UPDATE
-  // PUT:PUT, configurable parameter limits
-  // HEAD:HEAD, configurable parameter limits
-  // CONNECT:CONNECT
-  // OPTIONS:OPTIONS, configurable parameter limits
-  // COPY:COPY
-  // LOCK:LOCK
-  // UNLOCK:UNLOCK
-  // TRACE:TRACE
-  // PATCH:PATCH, configurable parameter limits
-  // PROPFIND:PROPFIND
-  // MKCOL:MKCOL
-  // MOVE:MOVE', 'zh_CN':'请求方法。多个以 ; 号分隔。
-  // GET：GET，可配置参数限制
-  // POST：POST，可配置参数限制
-  // DELETE：DELETE，可配置参数限制
-  // UPDATE：UPDATE
-  // PUT：PUT，可配置参数限制
-  // HEAD：HEAD，可配置参数限制
-  // CONNECT：CONNECT
-  // OPTIONS：OPTIONS，可配置参数限制
-  // COPY：COPY
-  // LOCK：LOCK
-  // UNLOCK：UNLOCK
-  // TRACE：TRACE
-  // PATCH：PATCH，可配置参数限制
-  // PROPFIND：PROPFIND
-  // MKCOL：MKCOL
-  // MOVE：MOVE'}
+type CreateAPIDefinitionRequestEndpoint struct {
+  // {"en":"Request methods.Multiple separated by ; sign.\nGET:GET, configurable parameter limits\nPOST:POST, configurable parameter limits\nDELETE:DELETE, configurable parameter limits\nUPDATE:UPDATE\nPUT:PUT, configurable parameter limits\nHEAD:HEAD, configurable parameter limits\nCONNECT:CONNECT\nOPTIONS:OPTIONS, configurable parameter limits\nCOPY:COPY\nLOCK:LOCK\nUNLOCK:UNLOCK\nTRACE:TRACE\nPATCH:PATCH, configurable parameter limits\nPROPFIND:PROPFIND\nMKCOL:MKCOL\nMOVE:MOVE","zh_CN":"请求方法。多个以 ; 号分隔。\nGET：GET，可配置参数限制\nPOST：POST，可配置参数限制\nDELETE：DELETE，可配置参数限制\nUPDATE：UPDATE\nPUT：PUT，可配置参数限制\nHEAD：HEAD，可配置参数限制\nCONNECT：CONNECT\nOPTIONS：OPTIONS，可配置参数限制\nCOPY：COPY\nLOCK：LOCK\nUNLOCK：UNLOCK\nTRACE：TRACE\nPATCH：PATCH，可配置参数限制\nPROPFIND：PROPFIND\nMKCOL：MKCOL\nMOVE：MOVE","exampleValue":"GET,POST,DELETE,UPDATE,PUT,HEAD,CONNECT,OPTIONS,COPY,LOCK,UNLOCK,TRACE,PATCH,PROPFIND,MKCOL,MOVE"}
   RequestMethod *string `json:"requestMethod,omitempty" xml:"requestMethod,omitempty" require:"true"`
-  // {'en':'API type.
-  // NORMAL:Common API, the path does not contain query string parameters, such as http://www.test.com/api.
-  // WHEN_CASE:Common API, the path contains query string parameters, such as http://www.test.com/api?action=1 and http://www.test.com/api?action=2 are two different APIs.', 'zh_CN':'API类型。
-  // NORMAL：普通接口，路径中不包含query string参数的普通接口，如http://www.test.com/api。
-  // WHEN_CASE：when-case接口，路径中包含query string参数，如http://www.test.com/api?action=1与http://www.test.com/api?action=2 是两个不同的接口。'}
+  // {"en":"API type.\nNORMAL:Common API, the path does not contain query string parameters, such as http://www.test.com/api.\nWHEN_CASE:Common API, the path contains query string parameters, such as http://www.test.com/api?action=1 and http://www.test.com/api?action=2 are two different APIs.","zh_CN":"API类型。\nNORMAL：普通接口，路径中不包含query string参数的普通接口，如http://www.test.com/api。\nWHEN_CASE：when-case接口，路径中包含query string参数，如http://www.test.com/api?action=1与http://www.test.com/api?action=2 是两个不同的接口。","exampleValue":"NORMAL,WHEN_CASE"}
   Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
-  // {'en':'Path matching type, EQUAL is passed when type = WHEM_CASE.
-  // EQUAL: Complete match
-  // REGEX: Regular matching', 'zh_CN':'路径匹配类型，type = WHEN_CASE 时传 EQUAL。
-  // EQUAL：完整匹配
-  // REGEX：正则匹配'}
+  // {"en":"Path matching type, EQUAL is passed when type = WHEM_CASE.\nEQUAL: Complete match\nREGEX: Regular matching","zh_CN":"路径匹配类型，type = WHEN_CASE 时传 EQUAL。\nEQUAL：完整匹配\nREGEX：正则匹配","exampleValue":"EQUAL,REGEX"}
   MatchType *string `json:"matchType,omitempty" xml:"matchType,omitempty" require:"true"`
-  // {'en':'API base Path, only English characters, underscores, hyphens, or numbers are supported, maximum 200 characters.', 'zh_CN':'端点路径，只支持英文字符、下划线、短横线或数字，最多200个字符。'}
+  // {"en":"API base Path, only English characters, underscores, hyphens, or numbers are supported, maximum 200 characters.","zh_CN":"端点路径，只支持英文字符、下划线、短横线或数字，最多200个字符。"}
   Path *string `json:"path,omitempty" xml:"path,omitempty" require:"true"`
-  // {'en':'Case sensitive, whether the endpoint path is case-sensitive. Example for case sensitive: /Order and /order are two different API paths.
-  // TRUE:Yes
-  // FALSE:No', 'zh_CN':'大小写是否敏感，端点路径是否区分大小写。若大小写敏感，示例：/Order 和 /order为两不同的API路径。
-  // TRUE：是
-  // FALSE：否'}
+  // {"en":"Case sensitive, whether the endpoint path is case-sensitive. Example for case sensitive: /Order and /order are two different API paths.\nTRUE:Yes\nFALSE:No","zh_CN":"大小写是否敏感，端点路径是否区分大小写。若大小写敏感，示例：/Order 和 /order为两不同的API路径。\nTRUE：是\nFALSE：否","exampleValue":"TRUE,FALSE"}
   CaseSensitive *string `json:"caseSensitive,omitempty" xml:"caseSensitive,omitempty" require:"true"`
-  // {'en':'Match CreateAPIDefinitionParameters in the Path(Effective when type = NORMAL && matchType = EQUAL), with matching path parameters turned on, you can use curly braces "{}" to define path parameters. Example: /basePath/{pathParam1}/{pathParam2}/{pathParam3}.
-  // TRUE:Yes
-  // FALSE:No', 'zh_CN':'匹配路径参数（type = NORMAL && matchType = EQUAL 时生效），开启匹配路径参数后，您可以使用花括号({})来定义路径参数。例：/basePath/{pathParam1}/{pathParam2}/{pathParam3}。
-  // TRUE：是
-  // FALSE：否'}
+  // {"en":"Match CreateAPIDefinitionParameters in the Path(Effective when type = NORMAL && matchType = EQUAL), with matching path parameters turned on, you can use curly braces \"{}\" to define path parameters. Example: /basePath/{pathParam1}/{pathParam2}/{pathParam3}.\nTRUE:Yes\nFALSE:No","zh_CN":"匹配路径参数（type = NORMAL && matchType = EQUAL 时生效），开启匹配路径参数后，您可以使用花括号({})来定义路径参数。例：/basePath/{pathParam1}/{pathParam2}/{pathParam3}。\nTRUE：是\nFALSE：否","exampleValue":"TRUE,FALSE"}
   MatchPathVar *string `json:"matchPathVar,omitempty" xml:"matchPathVar,omitempty"`
 }
 
-func (s CreateAPIDefinitionApiDefineEndpointAddDTO) String() string {
+func (s CreateAPIDefinitionRequestEndpoint) String() string {
   return tea.Prettify(s)
 }
 
-func (s CreateAPIDefinitionApiDefineEndpointAddDTO) GoString() string {
+func (s CreateAPIDefinitionRequestEndpoint) GoString() string {
   return s.String()
 }
 
-func (s *CreateAPIDefinitionApiDefineEndpointAddDTO) SetRequestMethod(v string) *CreateAPIDefinitionApiDefineEndpointAddDTO {
+func (s *CreateAPIDefinitionRequestEndpoint) SetRequestMethod(v string) *CreateAPIDefinitionRequestEndpoint {
   s.RequestMethod = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineEndpointAddDTO) SetType(v string) *CreateAPIDefinitionApiDefineEndpointAddDTO {
+func (s *CreateAPIDefinitionRequestEndpoint) SetType(v string) *CreateAPIDefinitionRequestEndpoint {
   s.Type = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineEndpointAddDTO) SetMatchType(v string) *CreateAPIDefinitionApiDefineEndpointAddDTO {
+func (s *CreateAPIDefinitionRequestEndpoint) SetMatchType(v string) *CreateAPIDefinitionRequestEndpoint {
   s.MatchType = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineEndpointAddDTO) SetPath(v string) *CreateAPIDefinitionApiDefineEndpointAddDTO {
+func (s *CreateAPIDefinitionRequestEndpoint) SetPath(v string) *CreateAPIDefinitionRequestEndpoint {
   s.Path = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineEndpointAddDTO) SetCaseSensitive(v string) *CreateAPIDefinitionApiDefineEndpointAddDTO {
+func (s *CreateAPIDefinitionRequestEndpoint) SetCaseSensitive(v string) *CreateAPIDefinitionRequestEndpoint {
   s.CaseSensitive = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineEndpointAddDTO) SetMatchPathVar(v string) *CreateAPIDefinitionApiDefineEndpointAddDTO {
+func (s *CreateAPIDefinitionRequestEndpoint) SetMatchPathVar(v string) *CreateAPIDefinitionRequestEndpoint {
   s.MatchPathVar = &v
   return s
 }
 
-type CreateAPIDefinitionApiDefineAuthAddDTO struct {
-  // {'en':'Authentication method.
-  // NO_NEED:No authentication required
-  // SIGN:Key authentication', 'zh_CN':'鉴权方法。
-  // NO_NEED：免鉴权
-  // SIGN：秘钥对鉴权'}
+type CreateAPIDefinitionRequestAuth struct {
+  // {"en":"Authentication method.\nNO_NEED:No authentication required\nSIGN:Key authentication","zh_CN":"鉴权方法。\nNO_NEED：免鉴权\nSIGN：秘钥对鉴权","exampleValue":"NO_NEED,SIGN"}
   Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
-  // {'en':'Authentication key, type = SIGN is required, the format is a 16-digit string containing uppercase and lowercase letters and numbers, example: gjZkg2E1uNkXBDxj.', 'zh_CN':'鉴权秘钥，type = SIGN 时必填，格式为16位含大小写字母与数字字符串，示例：gjZkg2E1uNkXBDxj。'}
+  // {"en":"Authentication key, type = SIGN is required, the format is a 16-digit string containing uppercase and lowercase letters and numbers, example: gjZkg2E1uNkXBDxj.","zh_CN":"鉴权秘钥，type = SIGN 时必填，格式为16位含大小写字母与数字字符串，示例：gjZkg2E1uNkXBDxj。"}
   AuthKey *string `json:"authKey,omitempty" xml:"authKey,omitempty"`
-  // {'en':'Authentication parameter location, type = SIGN is required.
-  // HTTP_HEADER:Http Header
-  // QUERY_STRING:Query String
-  // COOKIE:Cookie', 'zh_CN':'鉴权参数位置，type = SIGN 时必填。
-  // HTTP_HEADER：Http Header
-  // QUERY_STRING：Query String
-  // COOKIE：Cookie'}
+  // {"en":"Authentication parameter location, type = SIGN is required.\nHTTP_HEADER:Http Header\nQUERY_STRING:Query String\nCOOKIE:Cookie","zh_CN":"鉴权参数位置，type = SIGN 时必填。\nHTTP_HEADER：Http Header\nQUERY_STRING：Query String\nCOOKIE：Cookie","exampleValue":"HTTP_HEADER,QUERY_STRING,COOKIE"}
   ParamPosition *string `json:"paramPosition,omitempty" xml:"paramPosition,omitempty"`
-  // {'en':'Authentication parameter name, type = SIGN is required.', 'zh_CN':'鉴权参数名称，type = SIGN 时必填。'}
+  // {"en":"Authentication parameter name, type = SIGN is required.","zh_CN":"鉴权参数名称，type = SIGN 时必填。"}
   ParamName *string `json:"paramName,omitempty" xml:"paramName,omitempty"`
-  // {'en':'Authentication token validity period, in seconds, type = SIGN is required.', 'zh_CN':'鉴权有效期，单位秒，type = SIGN 时必填。'}
+  // {"en":"Authentication token validity period, in seconds, type = SIGN is required.","zh_CN":"鉴权有效期，单位秒，type = SIGN 时必填。"}
   ValidityTime *int64 `json:"validityTime,omitempty" xml:"validityTime,omitempty"`
 }
 
-func (s CreateAPIDefinitionApiDefineAuthAddDTO) String() string {
+func (s CreateAPIDefinitionRequestAuth) String() string {
   return tea.Prettify(s)
 }
 
-func (s CreateAPIDefinitionApiDefineAuthAddDTO) GoString() string {
+func (s CreateAPIDefinitionRequestAuth) GoString() string {
   return s.String()
 }
 
-func (s *CreateAPIDefinitionApiDefineAuthAddDTO) SetType(v string) *CreateAPIDefinitionApiDefineAuthAddDTO {
+func (s *CreateAPIDefinitionRequestAuth) SetType(v string) *CreateAPIDefinitionRequestAuth {
   s.Type = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineAuthAddDTO) SetAuthKey(v string) *CreateAPIDefinitionApiDefineAuthAddDTO {
+func (s *CreateAPIDefinitionRequestAuth) SetAuthKey(v string) *CreateAPIDefinitionRequestAuth {
   s.AuthKey = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineAuthAddDTO) SetParamPosition(v string) *CreateAPIDefinitionApiDefineAuthAddDTO {
+func (s *CreateAPIDefinitionRequestAuth) SetParamPosition(v string) *CreateAPIDefinitionRequestAuth {
   s.ParamPosition = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineAuthAddDTO) SetParamName(v string) *CreateAPIDefinitionApiDefineAuthAddDTO {
+func (s *CreateAPIDefinitionRequestAuth) SetParamName(v string) *CreateAPIDefinitionRequestAuth {
   s.ParamName = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineAuthAddDTO) SetValidityTime(v int64) *CreateAPIDefinitionApiDefineAuthAddDTO {
+func (s *CreateAPIDefinitionRequestAuth) SetValidityTime(v int64) *CreateAPIDefinitionRequestAuth {
   s.ValidityTime = &v
   return s
 }
 
-type CreateAPIDefinitionApiDefineBodyLimitAddDTO struct {
-  // {'en':'Request body restriction switch.default value:OFF.
-  // ON:On
-  // OFF:Off', 'zh_CN':'请求body限制开关。默认值：关。
-  // ON：开启
-  // OFF：关闭'}
+type CreateAPIDefinitionRequestBodyLimit struct {
+  // {"defaultValue":"OFF","en":"Request body restriction switch.default value:OFF.\nON:On\nOFF:Off","zh_CN":"请求body限制开关。默认值：关。\nON：开启\nOFF：关闭","exampleValue":"ON,OFF"}
   DefendSwitch *string `json:"defendSwitch,omitempty" xml:"defendSwitch,omitempty"`
-  // {'en':'Content-Type, required when defendSwitch = ON.
-  // FORM:FORM
-  // JSON:JSON
-  // ANY:ANY
-  // EMPTY:EMPTY or NON-EXISTENT', 'zh_CN':'Content-Type，defendSwitch = ON 时必填。
-  // FORM：FORM表单
-  // JSON：JSON
-  // ANY：任意
-  // EMPTY：为空或不存在'}
+  // {"en":"Content-Type, required when defendSwitch = ON.\nFORM:FORM\nJSON:JSON\nANY:ANY\nEMPTY:EMPTY or NON-EXISTENT","zh_CN":"Content-Type，defendSwitch = ON 时必填。\nFORM：FORM表单\nJSON：JSON\nANY：任意\nEMPTY：为空或不存在","exampleValue":"FORM,JSON,ANY,EMPTY"}
   ContentType *string `json:"contentType,omitempty" xml:"contentType,omitempty"`
-  // {'en':'Maximum body limit(bytes).', 'zh_CN':'Body最大限制(bytes)。'}
+  // {"en":"Maximum body limit(bytes), does not exceed 16,384.","zh_CN":"Body最大限制(bytes)，最大不超过16384。"}
   BodyLimitMax *int64 `json:"bodyLimitMax,omitempty" xml:"bodyLimitMax,omitempty"`
-  // {'en':'Maximum nesting depth, enter the maximum allowable JSON nesting depth in the request body.', 'zh_CN':'最大嵌套层数，输入允许的请求body中JSON嵌套层数最大值。'}
+  // {"en":"Maximum nesting depth, enter the maximum allowable JSON nesting depth in the request body.","zh_CN":"最大嵌套层数，输入允许的请求body中JSON嵌套层数最大值。"}
   NestMax *int64 `json:"nestMax,omitempty" xml:"nestMax,omitempty"`
-  // {'en':'Maximum number of parameters for JSON, enter the maximum number of JSON parameters allowed in the request body.', 'zh_CN':'JSON最大参数个数，输入允许的请求body中JSON参数个数的最大值。'}
+  // {"en":"Maximum number of parameters for JSON, enter the maximum number of JSON parameters allowed in the request body.","zh_CN":"JSON最大参数个数，输入允许的请求body中JSON参数个数的最大值。"}
   ParamCountMax *int64 `json:"paramCountMax,omitempty" xml:"paramCountMax,omitempty"`
 }
 
-func (s CreateAPIDefinitionApiDefineBodyLimitAddDTO) String() string {
+func (s CreateAPIDefinitionRequestBodyLimit) String() string {
   return tea.Prettify(s)
 }
 
-func (s CreateAPIDefinitionApiDefineBodyLimitAddDTO) GoString() string {
+func (s CreateAPIDefinitionRequestBodyLimit) GoString() string {
   return s.String()
 }
 
-func (s *CreateAPIDefinitionApiDefineBodyLimitAddDTO) SetDefendSwitch(v string) *CreateAPIDefinitionApiDefineBodyLimitAddDTO {
+func (s *CreateAPIDefinitionRequestBodyLimit) SetDefendSwitch(v string) *CreateAPIDefinitionRequestBodyLimit {
   s.DefendSwitch = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineBodyLimitAddDTO) SetContentType(v string) *CreateAPIDefinitionApiDefineBodyLimitAddDTO {
+func (s *CreateAPIDefinitionRequestBodyLimit) SetContentType(v string) *CreateAPIDefinitionRequestBodyLimit {
   s.ContentType = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineBodyLimitAddDTO) SetBodyLimitMax(v int64) *CreateAPIDefinitionApiDefineBodyLimitAddDTO {
+func (s *CreateAPIDefinitionRequestBodyLimit) SetBodyLimitMax(v int64) *CreateAPIDefinitionRequestBodyLimit {
   s.BodyLimitMax = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineBodyLimitAddDTO) SetNestMax(v int64) *CreateAPIDefinitionApiDefineBodyLimitAddDTO {
+func (s *CreateAPIDefinitionRequestBodyLimit) SetNestMax(v int64) *CreateAPIDefinitionRequestBodyLimit {
   s.NestMax = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineBodyLimitAddDTO) SetParamCountMax(v int64) *CreateAPIDefinitionApiDefineBodyLimitAddDTO {
+func (s *CreateAPIDefinitionRequestBodyLimit) SetParamCountMax(v int64) *CreateAPIDefinitionRequestBodyLimit {
   s.ParamCountMax = &v
   return s
 }
 
-type CreateAPIDefinitionApiDefineParamLimitAddDTO struct {
-  // {'en':'Basic information.', 'zh_CN':'基础信息。'}
-  Basic *CreateAPIDefinitionApiDefineParamLimitBasicAddDTO `json:"basic,omitempty" xml:"basic,omitempty" require:"true"`
-  // {'en':'Method attributes.', 'zh_CN':'方法属性。'}
-  MethodList []*CreateAPIDefinitionApiDefineParamLimitMethodAddDTO `json:"methodList,omitempty" xml:"methodList,omitempty" type:"Repeated"`
+type CreateAPIDefinitionRequestParamLimit struct {
+  // {"en":"Basic information.","zh_CN":"基础信息。"}
+  Basic *CreateAPIDefinitionRequestParamLimitBasic `json:"basic,omitempty" xml:"basic,omitempty" require:"true" type:"Struct"`
+  // {"en":"Method attributes.","zh_CN":"方法属性。"}
+  MethodList []*CreateAPIDefinitionRequestParamLimitMethodList `json:"methodList,omitempty" xml:"methodList,omitempty" type:"Repeated"`
 }
 
-func (s CreateAPIDefinitionApiDefineParamLimitAddDTO) String() string {
+func (s CreateAPIDefinitionRequestParamLimit) String() string {
   return tea.Prettify(s)
 }
 
-func (s CreateAPIDefinitionApiDefineParamLimitAddDTO) GoString() string {
+func (s CreateAPIDefinitionRequestParamLimit) GoString() string {
   return s.String()
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitAddDTO) SetBasic(v *CreateAPIDefinitionApiDefineParamLimitBasicAddDTO) *CreateAPIDefinitionApiDefineParamLimitAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimit) SetBasic(v *CreateAPIDefinitionRequestParamLimitBasic) *CreateAPIDefinitionRequestParamLimit {
   s.Basic = v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitAddDTO) SetMethodList(v []*CreateAPIDefinitionApiDefineParamLimitMethodAddDTO) *CreateAPIDefinitionApiDefineParamLimitAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimit) SetMethodList(v []*CreateAPIDefinitionRequestParamLimitMethodList) *CreateAPIDefinitionRequestParamLimit {
   s.MethodList = v
   return s
 }
 
-type CreateAPIDefinitionApiDefineParamLimitBasicAddDTO struct {
-  // {'en':'Parameter limit.
-  // ON:On
-  // OFF:Off', 'zh_CN':'参数限制。
-  // ON：开启
-  // OFF：关闭'}
+type CreateAPIDefinitionRequestParamLimitBasic struct {
+  // {"en":"Parameter limit.\nON:On\nOFF:Off","zh_CN":"参数限制。\nON：开启\nOFF：关闭","exampleValue":"ON,OFF"}
   DefendSwitch *string `json:"defendSwitch,omitempty" xml:"defendSwitch,omitempty"`
-  // {'en':'Query String Parameter Detection Mode, required when defendSwitch = ON.
-  // LOOSE:Loose mode - detect some parameters
-  // STRICT:Strict mode - checks all parameters', 'zh_CN':'Query String参数检测模式，defendSwitch = ON 时必填。
-  // LOOSE：宽松模式-检测部分参数
-  // STRICT：严格模式-检测所有参数'}
+  // {"en":"Query String Parameter Detection Mode, required when defendSwitch = ON.\nLOOSE:Loose mode - detect some parameters\nSTRICT:Strict mode - checks all parameters","zh_CN":"Query String参数检测模式，defendSwitch = ON 时必填。\nLOOSE：宽松模式-检测部分参数\nSTRICT：严格模式-检测所有参数","exampleValue":"LOOSE,STRICT"}
   ParamCheckMode *string `json:"paramCheckMode,omitempty" xml:"paramCheckMode,omitempty"`
 }
 
-func (s CreateAPIDefinitionApiDefineParamLimitBasicAddDTO) String() string {
+func (s CreateAPIDefinitionRequestParamLimitBasic) String() string {
   return tea.Prettify(s)
 }
 
-func (s CreateAPIDefinitionApiDefineParamLimitBasicAddDTO) GoString() string {
+func (s CreateAPIDefinitionRequestParamLimitBasic) GoString() string {
   return s.String()
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitBasicAddDTO) SetDefendSwitch(v string) *CreateAPIDefinitionApiDefineParamLimitBasicAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitBasic) SetDefendSwitch(v string) *CreateAPIDefinitionRequestParamLimitBasic {
   s.DefendSwitch = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitBasicAddDTO) SetParamCheckMode(v string) *CreateAPIDefinitionApiDefineParamLimitBasicAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitBasic) SetParamCheckMode(v string) *CreateAPIDefinitionRequestParamLimitBasic {
   s.ParamCheckMode = &v
   return s
 }
 
-type CreateAPIDefinitionApiDefineParamLimitMethodAddDTO struct {
-  // {'en':'Request methods.
-  // GET:GET
-  // POST:POST
-  // DELETE:DELETE
-  // PUT:PUT
-  // HEAD:HEAD
-  // OPTIONS:OPTIONS
-  // PATCH:PATCH', 'zh_CN':'请求方法。
-  // GET：GET
-  // POST：POST
-  // DELETE：DELETE
-  // PUT：PUT
-  // HEAD：HEAD
-  // OPTIONS：OPTIONS
-  // PATCH：PATCH'}
+type CreateAPIDefinitionRequestParamLimitMethodList struct     {
+  // {"en":"Request methods.\nGET:GET\nPOST:POST\nDELETE:DELETE\nPUT:PUT\nHEAD:HEAD\nOPTIONS:OPTIONS\nPATCH:PATCH","zh_CN":"请求方法。\nGET：GET\nPOST：POST\nDELETE：DELETE\nPUT：PUT\nHEAD：HEAD\nOPTIONS：OPTIONS\nPATCH：PATCH","exampleValue":"GET,POST,DELETE,PUT,HEAD,OPTIONS,PATCH"}
   Method *string `json:"method,omitempty" xml:"method,omitempty"`
-  // {'en':'Whether to define body parameters, required when method = POST/PUT/PATCH.
-  // TRUE:Yes
-  // FALSE:No', 'zh_CN':'是否定义body参数，method = POST/PUT/PATCH时必填。
-  // TRUE：是
-  // FALSE：否'}
+  // {"en":"Whether to define body parameters, required when method = POST/PUT/PATCH.\nTRUE:Yes\nFALSE:No","zh_CN":"是否定义body参数，method = POST/PUT/PATCH时必填。\nTRUE：是\nFALSE：否","exampleValue":"TRUE,FALSE"}
   BodyFlag *string `json:"bodyFlag,omitempty" xml:"bodyFlag,omitempty"`
-  // {'en':'Body parameter type, required when bodyFlag = TRUE.
-  // JSON:JSON
-  // FROM:FROM', 'zh_CN':'body参数类型，bodyFlag = TRUE 时必填。
-  // JSON：JSON
-  // FROM：FROM表单'}
+  // {"en":"Body parameter type, required when bodyFlag = TRUE.\nJSON:JSON\nFROM:FROM","zh_CN":"body参数类型，bodyFlag = TRUE 时必填。\nJSON：JSON\nFROM：FROM表单","exampleValue":"FORM,JSON"}
   BodyType *string `json:"bodyType,omitempty" xml:"bodyType,omitempty"`
-  // {'en':'Normal parameter list.', 'zh_CN':'普通参数数组。'}
-  NormalParamList []*CreateAPIDefinitionApiDefineParamLimitNormalAddDTO `json:"normalParamList,omitempty" xml:"normalParamList,omitempty" type:"Repeated"`
-  // {'en':'FROM form parameter array, Optional when bodyType = FROM.', 'zh_CN':'FROM 表单参数数组，bodyType = FROM 时选填。'}
-  FormParamList []*CreateAPIDefinitionApiDefineParamLimitFormAddDTO `json:"formParamList,omitempty" xml:"formParamList,omitempty" type:"Repeated"`
-  // {'en':'JSON parameter array, Optional when bodyType = JSON.', 'zh_CN':'JSON参数数组，bodyType = JSON 时选填。'}
-  JsonParam *CreateAPIDefinitionApiDefineParamLimitJsonAddDTO `json:"jsonParam,omitempty" xml:"jsonParam,omitempty"`
+  // {"en":"Normal parameter list.","zh_CN":"普通参数数组。"}
+  NormalParamList []*CreateAPIDefinitionRequestParamLimitMethodListNormalParamList `json:"normalParamList,omitempty" xml:"normalParamList,omitempty" type:"Repeated"`
+  // {"en":"FROM form parameter array, Optional when bodyType = FROM.","zh_CN":"FROM 表单参数数组，bodyType = FROM 时选填。"}
+  FormParamList []*CreateAPIDefinitionRequestParamLimitMethodListFormParamList `json:"formParamList,omitempty" xml:"formParamList,omitempty" type:"Repeated"`
+  // {"en":"JSON parameter array, Optional when bodyType = JSON.","zh_CN":"JSON参数数组，bodyType = JSON 时选填。"}
+  JsonParam *CreateAPIDefinitionRequestParamLimitMethodListJsonParam `json:"jsonParam,omitempty" xml:"jsonParam,omitempty" type:"Struct"`
 }
 
-func (s CreateAPIDefinitionApiDefineParamLimitMethodAddDTO) String() string {
+func (s CreateAPIDefinitionRequestParamLimitMethodList) String() string {
   return tea.Prettify(s)
 }
 
-func (s CreateAPIDefinitionApiDefineParamLimitMethodAddDTO) GoString() string {
+func (s CreateAPIDefinitionRequestParamLimitMethodList) GoString() string {
   return s.String()
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitMethodAddDTO) SetMethod(v string) *CreateAPIDefinitionApiDefineParamLimitMethodAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodList) SetMethod(v string) *CreateAPIDefinitionRequestParamLimitMethodList {
   s.Method = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitMethodAddDTO) SetBodyFlag(v string) *CreateAPIDefinitionApiDefineParamLimitMethodAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodList) SetBodyFlag(v string) *CreateAPIDefinitionRequestParamLimitMethodList {
   s.BodyFlag = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitMethodAddDTO) SetBodyType(v string) *CreateAPIDefinitionApiDefineParamLimitMethodAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodList) SetBodyType(v string) *CreateAPIDefinitionRequestParamLimitMethodList {
   s.BodyType = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitMethodAddDTO) SetNormalParamList(v []*CreateAPIDefinitionApiDefineParamLimitNormalAddDTO) *CreateAPIDefinitionApiDefineParamLimitMethodAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodList) SetNormalParamList(v []*CreateAPIDefinitionRequestParamLimitMethodListNormalParamList) *CreateAPIDefinitionRequestParamLimitMethodList {
   s.NormalParamList = v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitMethodAddDTO) SetFormParamList(v []*CreateAPIDefinitionApiDefineParamLimitFormAddDTO) *CreateAPIDefinitionApiDefineParamLimitMethodAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodList) SetFormParamList(v []*CreateAPIDefinitionRequestParamLimitMethodListFormParamList) *CreateAPIDefinitionRequestParamLimitMethodList {
   s.FormParamList = v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitMethodAddDTO) SetJsonParam(v *CreateAPIDefinitionApiDefineParamLimitJsonAddDTO) *CreateAPIDefinitionApiDefineParamLimitMethodAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodList) SetJsonParam(v *CreateAPIDefinitionRequestParamLimitMethodListJsonParam) *CreateAPIDefinitionRequestParamLimitMethodList {
   s.JsonParam = v
   return s
 }
 
-type CreateAPIDefinitionApiDefineParamLimitNormalAddDTO struct {
-  // {'en':'Parameter name, when paramPosition = PATH_PARAMS, the path need to be matched, for example: /basePath/{name}/.', 'zh_CN':'参数名称，paramPosition = PATH_PARAMS 时需匹配路径变量，例如：/basePath/{name}/。'}
+type CreateAPIDefinitionRequestParamLimitMethodListNormalParamList struct     {
+  // {"en":"Parameter name, when paramPosition = PATH_PARAMS, the path need to be matched, for example: /basePath/{name}/.","zh_CN":"参数名称，paramPosition = PATH_PARAMS 时需匹配路径变量，例如：/basePath/{name}/。"}
   Name *string `json:"name,omitempty" xml:"name,omitempty"`
-  // {'en':'Parameter position.
-  // HTTP_HEADER:Http Header
-  // QUERY_STRING:Query String
-  // COOKIE:Cookie
-  // PATH_PARAMS:Path, endpoint.matchPathVar needs to equal TRUE', 'zh_CN':'参数位置。
-  // HTTP_HEADER：Http Header
-  // QUERY_STRING：Query String
-  // COOKIE：Cookie
-  // PATH_PARAMS：路径变量，endpoint.matchPathVar需等于TRUE'}
+  // {"en":"Parameter position.\nHTTP_HEADER:Http Header\nQUERY_STRING:Query String\nCOOKIE:Cookie\nPATH_PARAMS:Path, endpoint.matchPathVar needs to equal TRUE","zh_CN":"参数位置。\nHTTP_HEADER：Http Header\nQUERY_STRING：Query String\nCOOKIE：Cookie\nPATH_PARAMS：路径变量，endpoint.matchPathVar需等于TRUE","exampleValue":"HTTP_HEADER,QUERY_STRING,COOKIE,PATH_PARAMS"}
   ParamPosition *string `json:"paramPosition,omitempty" xml:"paramPosition,omitempty"`
-  // {'en':'Parameter type.
-  // Integer:Integer
-  // Number:Number
-  // String:String
-  // Boolean:Boolean
-  // Enumeration:Enumeration', 'zh_CN':'参数类型。
-  // Integer：整数
-  // Number：数字
-  // String：字符串
-  // Boolean：布尔
-  // Enumeration：枚举'}
+  // {"en":"Parameter type.\nInteger:Integer\nNumber:Number\nString:String\nBoolean:Boolean\nEnumeration:Enumeration","zh_CN":"参数类型。\nInteger：整数\nNumber：数字\nString：字符串\nBoolean：布尔\nEnumeration：枚举","exampleValue":"Integer,Number,String,Boolean,Enumeration"}
   Type *string `json:"type,omitempty" xml:"type,omitempty"`
-  // {'en':'type = Integer/Number:minimum value, type = String:minimum length, type = Boolean/Enumeration:leave blank.', 'zh_CN':'type = Integer/Number：最小值，type = String：最小长度，type = Boolean/Enumeration：置空。'}
+  // {"en":"type = Integer/Number:minimum value, type = String:minimum length, type = Boolean/Enumeration:leave blank.","zh_CN":"type = Integer/Number：最小值，type = String：最小长度，type = Boolean/Enumeration：置空。"}
   MinVal *string `json:"minVal,omitempty" xml:"minVal,omitempty"`
-  // {'en':'type = Integer/Number:maximum value, type = String:maximum length, type = Boolean/Enumeration:leave blank.', 'zh_CN':'type = Integer/Number：最大值，type = String：最大长度，type = Boolean/Enumeration：置空。'}
+  // {"en":"type = Integer/Number:maximum value, type = String:maximum length, type = Boolean/Enumeration:leave blank.","zh_CN":"type = Integer/Number：最大值，type = String：最大长度，type = Boolean/Enumeration：置空。"}
   MaxVal *string `json:"maxVal,omitempty" xml:"maxVal,omitempty"`
-  // {'en':'Required.
-  // TRUE:Yes
-  // FALSE:No', 'zh_CN':'必带参数。
-  // TRUE：是
-  // FALSE：否'}
+  // {"en":"Required.\nTRUE:Yes\nFALSE:No","zh_CN":"必带参数。\nTRUE：是\nFALSE：否","exampleValue":"TRUE,FALSE"}
   Required *string `json:"required,omitempty" xml:"required,omitempty"`
-  // {'en':'Content (maximum 2000 characters), required when type = Enumeration,multiple separated by  ; sign.', 'zh_CN':'内容（最多2000个字符），type = Enumeration 时必填，多个以 ; 号分隔。'}
+  // {"en":"Content (maximum 2000 characters), required when type = Enumeration,multiple separated by  ; sign.","zh_CN":"内容（最多2000个字符），type = Enumeration 时必填，多个以 ; 号分隔。"}
   Content *string `json:"content,omitempty" xml:"content,omitempty"`
-  // {'en':'Description.', 'zh_CN':'备注。'}
+  // {"en":"Description.","zh_CN":"备注。"}
   Remark *string `json:"remark,omitempty" xml:"remark,omitempty"`
 }
 
-func (s CreateAPIDefinitionApiDefineParamLimitNormalAddDTO) String() string {
+func (s CreateAPIDefinitionRequestParamLimitMethodListNormalParamList) String() string {
   return tea.Prettify(s)
 }
 
-func (s CreateAPIDefinitionApiDefineParamLimitNormalAddDTO) GoString() string {
+func (s CreateAPIDefinitionRequestParamLimitMethodListNormalParamList) GoString() string {
   return s.String()
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitNormalAddDTO) SetName(v string) *CreateAPIDefinitionApiDefineParamLimitNormalAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListNormalParamList) SetName(v string) *CreateAPIDefinitionRequestParamLimitMethodListNormalParamList {
   s.Name = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitNormalAddDTO) SetParamPosition(v string) *CreateAPIDefinitionApiDefineParamLimitNormalAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListNormalParamList) SetParamPosition(v string) *CreateAPIDefinitionRequestParamLimitMethodListNormalParamList {
   s.ParamPosition = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitNormalAddDTO) SetType(v string) *CreateAPIDefinitionApiDefineParamLimitNormalAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListNormalParamList) SetType(v string) *CreateAPIDefinitionRequestParamLimitMethodListNormalParamList {
   s.Type = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitNormalAddDTO) SetMinVal(v string) *CreateAPIDefinitionApiDefineParamLimitNormalAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListNormalParamList) SetMinVal(v string) *CreateAPIDefinitionRequestParamLimitMethodListNormalParamList {
   s.MinVal = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitNormalAddDTO) SetMaxVal(v string) *CreateAPIDefinitionApiDefineParamLimitNormalAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListNormalParamList) SetMaxVal(v string) *CreateAPIDefinitionRequestParamLimitMethodListNormalParamList {
   s.MaxVal = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitNormalAddDTO) SetRequired(v string) *CreateAPIDefinitionApiDefineParamLimitNormalAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListNormalParamList) SetRequired(v string) *CreateAPIDefinitionRequestParamLimitMethodListNormalParamList {
   s.Required = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitNormalAddDTO) SetContent(v string) *CreateAPIDefinitionApiDefineParamLimitNormalAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListNormalParamList) SetContent(v string) *CreateAPIDefinitionRequestParamLimitMethodListNormalParamList {
   s.Content = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitNormalAddDTO) SetRemark(v string) *CreateAPIDefinitionApiDefineParamLimitNormalAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListNormalParamList) SetRemark(v string) *CreateAPIDefinitionRequestParamLimitMethodListNormalParamList {
   s.Remark = &v
   return s
 }
 
-type CreateAPIDefinitionApiDefineParamLimitFormAddDTO struct {
-  // {'en':'Parameter name.', 'zh_CN':'参数名称。'}
+type CreateAPIDefinitionRequestParamLimitMethodListFormParamList struct     {
+  // {"en":"Parameter name.","zh_CN":"参数名称。"}
   Name *string `json:"name,omitempty" xml:"name,omitempty"`
-  // {'en':'Parameter type.
-  // Integer:Integer
-  // Number:Number
-  // String:String
-  // Boolean:Boolean
-  // Enumeration:Enumeration', 'zh_CN':'参数类型。
-  // Integer：整数
-  // Number：数字
-  // String：字符串
-  // Boolean：布尔
-  // Enumeration：枚举'}
+  // {"en":"Parameter type.\nInteger:Integer\nNumber:Number\nString:String\nBoolean:Boolean\nEnumeration:Enumeration","zh_CN":"参数类型。\nInteger：整数\nNumber：数字\nString：字符串\nBoolean：布尔\nEnumeration：枚举","exampleValue":"Integer,Number,String,Boolean,Enumeration"}
   Type *string `json:"type,omitempty" xml:"type,omitempty"`
-  // {'en':'type = Integer/Number:minimum value, type = String:minimum length, type = Boolean/Enumeration:leave blank.', 'zh_CN':'type = Integer/Number：最小值，type = String：最小长度，type = Boolean/Enumeration：置空。'}
+  // {"en":"type = Integer/Number:minimum value, type = String:minimum length, type = Boolean/Enumeration:leave blank.","zh_CN":"type = Integer/Number：最小值，type = String：最小长度，type = Boolean/Enumeration：置空。"}
   MinVal *string `json:"minVal,omitempty" xml:"minVal,omitempty"`
-  // {'en':'type = Integer/Number:maximum value, type = String:maximum length, type = Boolean/Enumeration:leave blank.', 'zh_CN':'type = Integer/Number：最大值，type = String：最大长度，type = Boolean/Enumeration：置空。'}
+  // {"en":"type = Integer/Number:maximum value, type = String:maximum length, type = Boolean/Enumeration:leave blank.","zh_CN":"type = Integer/Number：最大值，type = String：最大长度，type = Boolean/Enumeration：置空。"}
   MaxVal *string `json:"maxVal,omitempty" xml:"maxVal,omitempty"`
-  // {'en':'Required.
-  // TRUE:Yes
-  // FALSE:No', 'zh_CN':'必带参数。
-  // TRUE：是
-  // FALSE：否'}
+  // {"en":"Required.\nTRUE:Yes\nFALSE:No","zh_CN":"必带参数。\nTRUE：是\nFALSE：否","exampleValue":"TRUE,FALSE"}
   Required *string `json:"required,omitempty" xml:"required,omitempty"`
-  // {'en':'Content (maximum 2000 characters), required when type = Enumeration, multiple separated by ; sign.', 'zh_CN':'内容（最多2000个字符），type = Enumeration 时必填，多个以 ; 号分隔。'}
+  // {"en":"Content (maximum 2000 characters), required when type = Enumeration, multiple separated by ; sign.","zh_CN":"内容（最多2000个字符），type = Enumeration 时必填，多个以 ; 号分隔。"}
   Content *string `json:"content,omitempty" xml:"content,omitempty"`
-  // {'en':'Description.', 'zh_CN':'备注。'}
+  // {"en":"Description.","zh_CN":"备注。"}
   Remark *string `json:"remark,omitempty" xml:"remark,omitempty"`
 }
 
-func (s CreateAPIDefinitionApiDefineParamLimitFormAddDTO) String() string {
+func (s CreateAPIDefinitionRequestParamLimitMethodListFormParamList) String() string {
   return tea.Prettify(s)
 }
 
-func (s CreateAPIDefinitionApiDefineParamLimitFormAddDTO) GoString() string {
+func (s CreateAPIDefinitionRequestParamLimitMethodListFormParamList) GoString() string {
   return s.String()
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitFormAddDTO) SetName(v string) *CreateAPIDefinitionApiDefineParamLimitFormAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListFormParamList) SetName(v string) *CreateAPIDefinitionRequestParamLimitMethodListFormParamList {
   s.Name = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitFormAddDTO) SetType(v string) *CreateAPIDefinitionApiDefineParamLimitFormAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListFormParamList) SetType(v string) *CreateAPIDefinitionRequestParamLimitMethodListFormParamList {
   s.Type = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitFormAddDTO) SetMinVal(v string) *CreateAPIDefinitionApiDefineParamLimitFormAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListFormParamList) SetMinVal(v string) *CreateAPIDefinitionRequestParamLimitMethodListFormParamList {
   s.MinVal = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitFormAddDTO) SetMaxVal(v string) *CreateAPIDefinitionApiDefineParamLimitFormAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListFormParamList) SetMaxVal(v string) *CreateAPIDefinitionRequestParamLimitMethodListFormParamList {
   s.MaxVal = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitFormAddDTO) SetRequired(v string) *CreateAPIDefinitionApiDefineParamLimitFormAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListFormParamList) SetRequired(v string) *CreateAPIDefinitionRequestParamLimitMethodListFormParamList {
   s.Required = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitFormAddDTO) SetContent(v string) *CreateAPIDefinitionApiDefineParamLimitFormAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListFormParamList) SetContent(v string) *CreateAPIDefinitionRequestParamLimitMethodListFormParamList {
   s.Content = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitFormAddDTO) SetRemark(v string) *CreateAPIDefinitionApiDefineParamLimitFormAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListFormParamList) SetRemark(v string) *CreateAPIDefinitionRequestParamLimitMethodListFormParamList {
   s.Remark = &v
   return s
 }
 
-type CreateAPIDefinitionApiDefineParamLimitJsonAddDTO struct {
-  // {'en':'Parameter Name.', 'zh_CN':'参数名称。'}
+type CreateAPIDefinitionRequestParamLimitMethodListJsonParam struct {
+  // {"en":"Parameter Name.","zh_CN":"参数名称。"}
   Name *string `json:"name,omitempty" xml:"name,omitempty"`
-  // {'en':'Parameter Type.
-  // Array:Array
-  // Json:JSON Object', 'zh_CN':'参数类型。
-  // Array：数组
-  // Json：JSON对象'}
+  // {"en":"Parameter Type.\nArray:Array\nJson:JSON Object","zh_CN":"参数类型。\nArray：数组\nJson：JSON对象","exampleValue":"Array,Json"}
   Type *string `json:"type,omitempty" xml:"type,omitempty"`
-  // {'en':'type = Integer/Number:minimum value, type = String:minimum length, type = Boolean/Enumeration:leave blank.', 'zh_CN':'type = Integer/Number：最小值，type = String：最小长度，type = Boolean/Enumeration：置空。'}
+  // {"en":"type = Integer/Number:minimum value, type = String:minimum length, type = Boolean/Enumeration:leave blank.","zh_CN":"type = Integer/Number：最小值，type = String：最小长度，type = Boolean/Enumeration：置空。"}
   MinVal *string `json:"minVal,omitempty" xml:"minVal,omitempty"`
-  // {'en':'type = Integer/Number:maximum value, type = String:maximum length, type = Boolean/Enumeration:leave blank.', 'zh_CN':'type = Integer/Number：最大值，type = String：最大长度，type = Boolean/Enumeration：置空。'}
+  // {"en":"type = Integer/Number:maximum value, type = String:maximum length, type = Boolean/Enumeration:leave blank.","zh_CN":"type = Integer/Number：最大值，type = String：最大长度，type = Boolean/Enumeration：置空。"}
   MaxVal *string `json:"maxVal,omitempty" xml:"maxVal,omitempty"`
-  // {'en':'Required.
-  // TRUE:Yes
-  // FALSE:No', 'zh_CN':'必带参数。
-  // TRUE：是
-  // FALSE：否'}
+  // {"en":"Required.\nTRUE:Yes\nFALSE:No","zh_CN":"必带参数。\nTRUE：是\nFALSE：否","exampleValue":"TRUE,FALSE"}
   Required *string `json:"required,omitempty" xml:"required,omitempty"`
-  // {'en':'Content (maximum 2000 characters), required when type = Enumeration, multiple separated by ; sign.', 'zh_CN':'内容（最多2000个字符），type = Enumeration 时必填，多个以 ; 号分隔。'}
+  // {"en":"Content (maximum 2000 characters), required when type = Enumeration, multiple separated by ; sign.","zh_CN":"内容（最多2000个字符），type = Enumeration 时必填，多个以 ; 号分隔。"}
   Content *string `json:"content,omitempty" xml:"content,omitempty"`
-  // {'en':'Child node array, required when type= Array.', 'zh_CN':'子节点数组，type = Array 时必填。'}
-  Children []*CreateAPIDefinitionApiDefineParamLimitJsonAddChildrenDTO `json:"children,omitempty" xml:"children,omitempty" type:"Repeated"`
+  // {"en":"Child node array, required when type= Array.","zh_CN":"子节点数组，type = Array 时必填。"}
+  Children []*CreateAPIDefinitionRequestParamLimitMethodListJsonParamChildren `json:"children,omitempty" xml:"children,omitempty" type:"Repeated"`
 }
 
-func (s CreateAPIDefinitionApiDefineParamLimitJsonAddDTO) String() string {
+func (s CreateAPIDefinitionRequestParamLimitMethodListJsonParam) String() string {
   return tea.Prettify(s)
 }
 
-func (s CreateAPIDefinitionApiDefineParamLimitJsonAddDTO) GoString() string {
+func (s CreateAPIDefinitionRequestParamLimitMethodListJsonParam) GoString() string {
   return s.String()
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitJsonAddDTO) SetName(v string) *CreateAPIDefinitionApiDefineParamLimitJsonAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListJsonParam) SetName(v string) *CreateAPIDefinitionRequestParamLimitMethodListJsonParam {
   s.Name = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitJsonAddDTO) SetType(v string) *CreateAPIDefinitionApiDefineParamLimitJsonAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListJsonParam) SetType(v string) *CreateAPIDefinitionRequestParamLimitMethodListJsonParam {
   s.Type = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitJsonAddDTO) SetMinVal(v string) *CreateAPIDefinitionApiDefineParamLimitJsonAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListJsonParam) SetMinVal(v string) *CreateAPIDefinitionRequestParamLimitMethodListJsonParam {
   s.MinVal = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitJsonAddDTO) SetMaxVal(v string) *CreateAPIDefinitionApiDefineParamLimitJsonAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListJsonParam) SetMaxVal(v string) *CreateAPIDefinitionRequestParamLimitMethodListJsonParam {
   s.MaxVal = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitJsonAddDTO) SetRequired(v string) *CreateAPIDefinitionApiDefineParamLimitJsonAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListJsonParam) SetRequired(v string) *CreateAPIDefinitionRequestParamLimitMethodListJsonParam {
   s.Required = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitJsonAddDTO) SetContent(v string) *CreateAPIDefinitionApiDefineParamLimitJsonAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListJsonParam) SetContent(v string) *CreateAPIDefinitionRequestParamLimitMethodListJsonParam {
   s.Content = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitJsonAddDTO) SetChildren(v []*CreateAPIDefinitionApiDefineParamLimitJsonAddChildrenDTO) *CreateAPIDefinitionApiDefineParamLimitJsonAddDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListJsonParam) SetChildren(v []*CreateAPIDefinitionRequestParamLimitMethodListJsonParamChildren) *CreateAPIDefinitionRequestParamLimitMethodListJsonParam {
   s.Children = v
   return s
 }
 
-type CreateAPIDefinitionApiDefineParamLimitJsonAddChildrenDTO struct {
-  // {'en':'Parameter Name.', 'zh_CN':'参数名称。'}
+type CreateAPIDefinitionRequestParamLimitMethodListJsonParamChildren struct     {
+  // {"en":"Parameter Name.","zh_CN":"参数名称。"}
   Name *string `json:"name,omitempty" xml:"name,omitempty"`
-  // {'en':'Parameter Type.
-  // Integer:Integer
-  // Number:Number
-  // String:String
-  // Boolean:Boolean
-  // Enumeration:Enumeration
-  // Array:Array
-  // Json:JSON Object', 'zh_CN':'参数类型。
-  // Integer：整数
-  // Number：数字
-  // String：字符串
-  // Boolean：布尔
-  // Enumeration：枚举
-  // Array：数组
-  // Json：JSON对象'}
+  // {"en":"Parameter Type.\nInteger:Integer\nNumber:Number\nString:String\nBoolean:Boolean\nEnumeration:Enumeration\nArray:Array\nJson:JSON Object","zh_CN":"参数类型。\nInteger：整数\nNumber：数字\nString：字符串\nBoolean：布尔\nEnumeration：枚举\nArray：数组\nJson：JSON对象","exampleValue":"Integer,Number,String,Boolean,Enumeration,Array,Json"}
   Type *string `json:"type,omitempty" xml:"type,omitempty"`
-  // {'en':'type = Integer/Number:minimum value, type = String:minimum length, type = Boolean/Enumeration:leave blank.', 'zh_CN':'type = Integer/Number：最小值，type = String：最小长度，type = Boolean/Enumeration：置空。'}
+  // {"en":"type = Integer/Number:minimum value, type = String:minimum length, type = Boolean/Enumeration:leave blank.","zh_CN":"type = Integer/Number：最小值，type = String：最小长度，type = Boolean/Enumeration：置空。"}
   MinVal *string `json:"minVal,omitempty" xml:"minVal,omitempty"`
-  // {'en':'type = Integer/Number:maximum value, type = String:maximum length, type = Boolean/Enumeration:leave blank.', 'zh_CN':'type = Integer/Number：最大值，type = String：最大长度，type = Boolean/Enumeration：置空。'}
+  // {"en":"type = Integer/Number:maximum value, type = String:maximum length, type = Boolean/Enumeration:leave blank.","zh_CN":"type = Integer/Number：最大值，type = String：最大长度，type = Boolean/Enumeration：置空。"}
   MaxVal *string `json:"maxVal,omitempty" xml:"maxVal,omitempty"`
-  // {'en':'Required.
-  // TRUE:Yes
-  // FALSE:No', 'zh_CN':'必带参数。
-  // TRUE：是
-  // FALSE：否'}
+  // {"en":"Required.\nTRUE:Yes\nFALSE:No","zh_CN":"必带参数。\nTRUE：是\nFALSE：否","exampleValue":"TRUE,FALSE"}
   Required *string `json:"required,omitempty" xml:"required,omitempty"`
-  // {'en':'Content (maximum 2000 characters), required when type = Enumeration, multiple separated by ; sign.', 'zh_CN':'内容（最多2000个字符），type = Enumeration 时必填，多个以 ; 号分隔。'}
+  // {"en":"Content (maximum 2000 characters), required when type = Enumeration, multiple separated by ; sign.","zh_CN":"内容（最多2000个字符），type = Enumeration 时必填，多个以 ; 号分隔。"}
   Content *string `json:"content,omitempty" xml:"content,omitempty"`
-  // {'en':'Child node array (JSON string), the structure is consistent with the parent node, required when type= Array.', 'zh_CN':'子节点数组（JSON字符串），结构与父结点一致，type = Array 时必填。'}
+  // {"en":"Child node array (JSON string), the structure is consistent with the parent node, required when type= Array.","zh_CN":"子节点数组（JSON字符串），结构与父结点一致，type = Array 时必填。"}
   Children []*string `json:"children,omitempty" xml:"children,omitempty" type:"Repeated"`
 }
 
-func (s CreateAPIDefinitionApiDefineParamLimitJsonAddChildrenDTO) String() string {
+func (s CreateAPIDefinitionRequestParamLimitMethodListJsonParamChildren) String() string {
   return tea.Prettify(s)
 }
 
-func (s CreateAPIDefinitionApiDefineParamLimitJsonAddChildrenDTO) GoString() string {
+func (s CreateAPIDefinitionRequestParamLimitMethodListJsonParamChildren) GoString() string {
   return s.String()
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitJsonAddChildrenDTO) SetName(v string) *CreateAPIDefinitionApiDefineParamLimitJsonAddChildrenDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListJsonParamChildren) SetName(v string) *CreateAPIDefinitionRequestParamLimitMethodListJsonParamChildren {
   s.Name = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitJsonAddChildrenDTO) SetType(v string) *CreateAPIDefinitionApiDefineParamLimitJsonAddChildrenDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListJsonParamChildren) SetType(v string) *CreateAPIDefinitionRequestParamLimitMethodListJsonParamChildren {
   s.Type = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitJsonAddChildrenDTO) SetMinVal(v string) *CreateAPIDefinitionApiDefineParamLimitJsonAddChildrenDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListJsonParamChildren) SetMinVal(v string) *CreateAPIDefinitionRequestParamLimitMethodListJsonParamChildren {
   s.MinVal = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitJsonAddChildrenDTO) SetMaxVal(v string) *CreateAPIDefinitionApiDefineParamLimitJsonAddChildrenDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListJsonParamChildren) SetMaxVal(v string) *CreateAPIDefinitionRequestParamLimitMethodListJsonParamChildren {
   s.MaxVal = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitJsonAddChildrenDTO) SetRequired(v string) *CreateAPIDefinitionApiDefineParamLimitJsonAddChildrenDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListJsonParamChildren) SetRequired(v string) *CreateAPIDefinitionRequestParamLimitMethodListJsonParamChildren {
   s.Required = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitJsonAddChildrenDTO) SetContent(v string) *CreateAPIDefinitionApiDefineParamLimitJsonAddChildrenDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListJsonParamChildren) SetContent(v string) *CreateAPIDefinitionRequestParamLimitMethodListJsonParamChildren {
   s.Content = &v
   return s
 }
 
-func (s *CreateAPIDefinitionApiDefineParamLimitJsonAddChildrenDTO) SetChildren(v []*string) *CreateAPIDefinitionApiDefineParamLimitJsonAddChildrenDTO {
+func (s *CreateAPIDefinitionRequestParamLimitMethodListJsonParamChildren) SetChildren(v []*string) *CreateAPIDefinitionRequestParamLimitMethodListJsonParamChildren {
   s.Children = v
   return s
 }
 
+type CreateAPIDefinitionRequestHeader struct {
+  // {"en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+}
+
+func (s CreateAPIDefinitionRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateAPIDefinitionRequestHeader) GoString() string {
+  return s.String()
+}
+
+func (s *CreateAPIDefinitionRequestHeader) SetServiceType(v string) *CreateAPIDefinitionRequestHeader {
+  s.ServiceType = &v
+  return s
+}
+
+type CreateAPIDefinitionPaths struct {
+}
+
+func (s CreateAPIDefinitionPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateAPIDefinitionPaths) GoString() string {
+  return s.String()
+}
+
+type CreateAPIDefinitionParameters struct {
+}
+
+func (s CreateAPIDefinitionParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateAPIDefinitionParameters) GoString() string {
+  return s.String()
+}
+
 type CreateAPIDefinitionResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
   Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'描述信息。'}
+  // {"en":"Description.","zh_CN":"描述信息。"}
   Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {'en':'API definition ID.', 'zh_CN':'API定义ID。'}
+  // {"en":"API definition ID.","zh_CN":"API定义ID。"}
   Data *string `json:"data,omitempty" xml:"data,omitempty" require:"true"`
 }
 
@@ -2954,46 +2442,6 @@ func (s *CreateAPIDefinitionResponse) SetData(v string) *CreateAPIDefinitionResp
   return s
 }
 
-type CreateAPIDefinitionPaths struct {
-}
-
-func (s CreateAPIDefinitionPaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateAPIDefinitionPaths) GoString() string {
-  return s.String()
-}
-
-type CreateAPIDefinitionParameters struct {
-}
-
-func (s CreateAPIDefinitionParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateAPIDefinitionParameters) GoString() string {
-  return s.String()
-}
-
-type CreateAPIDefinitionRequestHeader struct {
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
-}
-
-func (s CreateAPIDefinitionRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateAPIDefinitionRequestHeader) GoString() string {
-  return s.String()
-}
-
-func (s *CreateAPIDefinitionRequestHeader) SetServiceType(v string) *CreateAPIDefinitionRequestHeader {
-  s.ServiceType = &v
-  return s
-}
-
 type CreateAPIDefinitionResponseHeader struct {
 }
 
@@ -3009,17 +2457,13 @@ func (s CreateAPIDefinitionResponseHeader) GoString() string {
 
 
 type ListAPIDefinitionsRequest struct {
-  // {'en':'Hostname array, by default all valid hostnames.', 'zh_CN':'域名数组，默认所有生效域名。'}
+  // {"en":"Domain array, by default all valid domains.","zh_CN":"域名数组，默认所有生效域名。"}
   DomainList []*string `json:"domainList,omitempty" xml:"domainList,omitempty" type:"Repeated"`
-  // {'en':'API name array.', 'zh_CN':'API名称数组。'}
+  // {"en":"API name array.","zh_CN":"API名称数组。"}
   NameList []*string `json:"nameList,omitempty" xml:"nameList,omitempty" type:"Repeated"`
-  // {'en':'API grouped array.', 'zh_CN':'API分组数组。'}
+  // {"en":"API grouped array.","zh_CN":"API分组数组。"}
   GroupNameList []*string `json:"groupNameList,omitempty" xml:"groupNameList,omitempty" type:"Repeated"`
-  // {'en':'Sorting method, reverse order by default.
-  // true: Modify time in reverse order
-  // false: Modify time sequence', 'zh_CN':'排序方式，默认倒序。
-  // true：修改时间倒序
-  // false：修改时间正序'}
+  // {"en":"Sorting method, reverse order by default.\ntrue: Modify time in reverse order\nfalse: Modify time sequence","zh_CN":"排序方式，默认倒序。\ntrue：修改时间倒序\nfalse：修改时间正序","exampleValue":"true,false"}
   Desc *bool `json:"desc,omitempty" xml:"desc,omitempty"`
 }
 
@@ -3051,102 +2495,21 @@ func (s *ListAPIDefinitionsRequest) SetDesc(v bool) *ListAPIDefinitionsRequest {
   return s
 }
 
-type ListAPIDefinitionsResponse struct {
-  // {'en':'Please refer to the error code for exceptions.', 'zh_CN':'请参照错误码。','dictionary':'belong=WAAP-MS-Ext|dict=waap_retCodeEnum'}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'描述信息。'}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {'en':'Data.', 'zh_CN':'出参数据。'}
-  Data []*ListAPIDefinitionsApiDefineBasicVO `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
+type ListAPIDefinitionsRequestHeader struct {
+  // {"en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
 }
 
-func (s ListAPIDefinitionsResponse) String() string {
+func (s ListAPIDefinitionsRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s ListAPIDefinitionsResponse) GoString() string {
+func (s ListAPIDefinitionsRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *ListAPIDefinitionsResponse) SetCode(v string) *ListAPIDefinitionsResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *ListAPIDefinitionsResponse) SetMsg(v string) *ListAPIDefinitionsResponse {
-  s.Msg = &v
-  return s
-}
-
-func (s *ListAPIDefinitionsResponse) SetData(v []*ListAPIDefinitionsApiDefineBasicVO) *ListAPIDefinitionsResponse {
-  s.Data = v
-  return s
-}
-
-type ListAPIDefinitionsApiDefineBasicVO struct {
-  // {'en':'API definition ID.', 'zh_CN':'API定义ID。'}
-  Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
-  // {'en':'API name.', 'zh_CN':'API名称。'}
-  Name *string `json:"name,omitempty" xml:"name,omitempty" require:"true"`
-  // {'en':'API groups.', 'zh_CN':'API分组。'}
-  GroupName *string `json:"groupName,omitempty" xml:"groupName,omitempty" require:"true"`
-  // {'en':'Description.', 'zh_CN':'备注。'}
-  Remark *string `json:"remark,omitempty" xml:"remark,omitempty" require:"true"`
-  // {'en':'Attributed hostname.', 'zh_CN':'归属域名。'}
-  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
-  // {'en':'API base path.', 'zh_CN':'端点路径。'}
-  Path *string `json:"path,omitempty" xml:"path,omitempty" require:"true"`
-  // {'en':'Creation time, format: yyyy-MM-dd HH:mm:ss.', 'zh_CN':'创建时间，格式：yyyy-MM-dd HH:mm:ss。'}
-  CreateTime *string `json:"createTime,omitempty" xml:"createTime,omitempty" require:"true"`
-  // {'en':'Update time, format: yyyy-MM-dd HH:mm:ss.', 'zh_CN':'更新时间，格式：yyyy-MM-dd HH:mm:ss。'}
-  UpdateTime *string `json:"updateTime,omitempty" xml:"updateTime,omitempty" require:"true"`
-}
-
-func (s ListAPIDefinitionsApiDefineBasicVO) String() string {
-  return tea.Prettify(s)
-}
-
-func (s ListAPIDefinitionsApiDefineBasicVO) GoString() string {
-  return s.String()
-}
-
-func (s *ListAPIDefinitionsApiDefineBasicVO) SetId(v string) *ListAPIDefinitionsApiDefineBasicVO {
-  s.Id = &v
-  return s
-}
-
-func (s *ListAPIDefinitionsApiDefineBasicVO) SetName(v string) *ListAPIDefinitionsApiDefineBasicVO {
-  s.Name = &v
-  return s
-}
-
-func (s *ListAPIDefinitionsApiDefineBasicVO) SetGroupName(v string) *ListAPIDefinitionsApiDefineBasicVO {
-  s.GroupName = &v
-  return s
-}
-
-func (s *ListAPIDefinitionsApiDefineBasicVO) SetRemark(v string) *ListAPIDefinitionsApiDefineBasicVO {
-  s.Remark = &v
-  return s
-}
-
-func (s *ListAPIDefinitionsApiDefineBasicVO) SetDomain(v string) *ListAPIDefinitionsApiDefineBasicVO {
-  s.Domain = &v
-  return s
-}
-
-func (s *ListAPIDefinitionsApiDefineBasicVO) SetPath(v string) *ListAPIDefinitionsApiDefineBasicVO {
-  s.Path = &v
-  return s
-}
-
-func (s *ListAPIDefinitionsApiDefineBasicVO) SetCreateTime(v string) *ListAPIDefinitionsApiDefineBasicVO {
-  s.CreateTime = &v
-  return s
-}
-
-func (s *ListAPIDefinitionsApiDefineBasicVO) SetUpdateTime(v string) *ListAPIDefinitionsApiDefineBasicVO {
-  s.UpdateTime = &v
+func (s *ListAPIDefinitionsRequestHeader) SetServiceType(v string) *ListAPIDefinitionsRequestHeader {
+  s.ServiceType = &v
   return s
 }
 
@@ -3172,21 +2535,102 @@ func (s ListAPIDefinitionsParameters) GoString() string {
   return s.String()
 }
 
-type ListAPIDefinitionsRequestHeader struct {
-  // {"zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。","en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","dictionary":"belong=WAAP-MS-Ext|dict=waap_serviceType"}
-  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+type ListAPIDefinitionsResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"Data.","zh_CN":"出参数据。"}
+  Data []*ListAPIDefinitionsResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
 }
 
-func (s ListAPIDefinitionsRequestHeader) String() string {
+func (s ListAPIDefinitionsResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s ListAPIDefinitionsRequestHeader) GoString() string {
+func (s ListAPIDefinitionsResponse) GoString() string {
   return s.String()
 }
 
-func (s *ListAPIDefinitionsRequestHeader) SetServiceType(v string) *ListAPIDefinitionsRequestHeader {
-  s.ServiceType = &v
+func (s *ListAPIDefinitionsResponse) SetCode(v string) *ListAPIDefinitionsResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *ListAPIDefinitionsResponse) SetMsg(v string) *ListAPIDefinitionsResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *ListAPIDefinitionsResponse) SetData(v []*ListAPIDefinitionsResponseData) *ListAPIDefinitionsResponse {
+  s.Data = v
+  return s
+}
+
+type ListAPIDefinitionsResponseData struct     {
+  // {"en":"API definition ID.","zh_CN":"API定义ID。"}
+  Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
+  // {"en":"API name.","zh_CN":"API名称。"}
+  Name *string `json:"name,omitempty" xml:"name,omitempty" require:"true"`
+  // {"en":"API groups.","zh_CN":"API分组。"}
+  GroupName *string `json:"groupName,omitempty" xml:"groupName,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"备注。"}
+  Remark *string `json:"remark,omitempty" xml:"remark,omitempty" require:"true"`
+  // {"en":"Attributed domain.","zh_CN":"归属域名。"}
+  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
+  // {"en":"API base path.","zh_CN":"端点路径。"}
+  Path *string `json:"path,omitempty" xml:"path,omitempty" require:"true"`
+  // {"en":"Creation time, format: yyyy-MM-dd HH:mm:ss.","zh_CN":"创建时间，格式：yyyy-MM-dd HH:mm:ss。"}
+  CreateTime *string `json:"createTime,omitempty" xml:"createTime,omitempty" require:"true"`
+  // {"en":"Update time, format: yyyy-MM-dd HH:mm:ss.","zh_CN":"更新时间，格式：yyyy-MM-dd HH:mm:ss。"}
+  UpdateTime *string `json:"updateTime,omitempty" xml:"updateTime,omitempty" require:"true"`
+}
+
+func (s ListAPIDefinitionsResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s ListAPIDefinitionsResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *ListAPIDefinitionsResponseData) SetId(v string) *ListAPIDefinitionsResponseData {
+  s.Id = &v
+  return s
+}
+
+func (s *ListAPIDefinitionsResponseData) SetName(v string) *ListAPIDefinitionsResponseData {
+  s.Name = &v
+  return s
+}
+
+func (s *ListAPIDefinitionsResponseData) SetGroupName(v string) *ListAPIDefinitionsResponseData {
+  s.GroupName = &v
+  return s
+}
+
+func (s *ListAPIDefinitionsResponseData) SetRemark(v string) *ListAPIDefinitionsResponseData {
+  s.Remark = &v
+  return s
+}
+
+func (s *ListAPIDefinitionsResponseData) SetDomain(v string) *ListAPIDefinitionsResponseData {
+  s.Domain = &v
+  return s
+}
+
+func (s *ListAPIDefinitionsResponseData) SetPath(v string) *ListAPIDefinitionsResponseData {
+  s.Path = &v
+  return s
+}
+
+func (s *ListAPIDefinitionsResponseData) SetCreateTime(v string) *ListAPIDefinitionsResponseData {
+  s.CreateTime = &v
+  return s
+}
+
+func (s *ListAPIDefinitionsResponseData) SetUpdateTime(v string) *ListAPIDefinitionsResponseData {
+  s.UpdateTime = &v
   return s
 }
 

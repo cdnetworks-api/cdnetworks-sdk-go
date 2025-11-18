@@ -71,17 +71,17 @@ For detailed API documentation and available methods, please refer to the [offic
 | ActionName | enDescription | client_methods | uri |
 | --- | --- | --- | --- |
 | Editdomainconfig | To modify configuration of the specified domain; both domain name and domain name ID are supported. | PUT | /api/domain/* |
-| Updatetimecontrolservice | Modify Time anti-theft chain custom configuration item content | PUT | /api/config/timecontrol/* |
+| Updatetimecontrolservice | Modify timestamp anti-theft chain custom configuration item content | PUT | /api/config/timecontrol/* |
 | Querytimecontrolservice | Query Time anti-theft chain custom configuration item content | GET | /api/config/timecontrol/* |
 | Editdomainredirectconfig | Self-service through interface, url redirection function | PUT | /api/config/InnerRedirect/* |
 | Edithttpheaderconfig | Through the interface self-implementation http header additions and deletions to the function, can be achieved in the cdn layer of personalized http header control, so that customers do not need to modify the source stationin this case, a custom http header and speedup are implemented. The interface * can be domain name or domain id. | PUT | /api/config/headermodify/* |
 | Queryhttpheaderconfig | Query http header configuration via interface self - service. The interface * can be domain name or domain id. | GET | /api/config/headermodify/* |
-| Editcachetimeconfig | The interface self-help implementation modifies the domain name cache time configuration, realizes the custom cache function according to the customer's request. Node cache is divided into regular cache and query string URl cache, where you can set the ca | PUT | /api/config/cachetime/* |
+| Editcachetimeconfig | The interface self-help implementation modifies the domain name cache time configuration, realizes the custom cache function according to the customer's request. Node cache is divided into regular cache and query string URl cache, where you can set the cache time and ignore certain headers that affect the cache, and whether to cache empty files, etc., can the query string Url be set to multiple or to cache the Url after removing the question mark (increasing hit rate) | PUT | /api/config/cachetime/* |
 | Editantihotlinkingconfig | Modify the IP whitelist configuration under the domain name anti-theft chain through the interface self-service, and implement whitelist or blacklist control on the specific access IP. The interface * can be domain name or domain id. | PUT | /api/config/visitcontrol/* |
 | Queryantihotlinkingconfig | Self-checking IP black and white list anti-theft chain configuration through interface. The interface * can be domain name or domain id. | GET | /api/config/visitcontrol/* |
 | Updatesourceverificationconfig | Retweet back to the source with parameter authentication through the interface self-service, realize rtmp retweet back to the source, the edge can simulate the client with timestamp anti-leech parameters according to the encryption rules to retweet back to the source. | PUT | /api/config/sourceverification/* |
 | Querysourceverificationconfig | Query retweet back to the source with parameter authentication configuration. | GET | /api/config/sourceverification/* |
-| Addbanurltodomian | xxx | PUT | /api/basicconfig/illegalinformation |
+| Addbanurltodomian | The feature of URL blocking addition via API is now available. Customers can call the API to add URL blocking entries according to their own requirements. | PUT | /api/basicconfig/illegalinformation |
 | Queryapideployservice | Requests for new, modified, enabled, disabled, cancelled, restored, deleted, etc. for domain names | POST | /api/request/* |
 | Updatecompressionconfig | Modify compress setting configurations. | PUT | /api/config/compresssetting/* |
 | Querycompressionconfig | Get compress setting configurations. | GET | /api/config/compresssetting/* |
@@ -124,3 +124,7 @@ For detailed API documentation and available methods, please refer to the [offic
 | Querydomaincertconfig | Get domain's certificate config, support SNI only. | GET | /api/config/certificate/* |
 | Updatedomainmulticertconfig | Set domain's certificate config, support SNI and mutil SNI. | PUT | /api/config/certificate/v2/* |
 | Updateipversionconfig | Set IPv4 and IPv6 resource for your domain. | PUT | /api/config/ipversion/* |
+| Antihijackipadd | This API is used to add mitigation IPs, allowing users to add hijack mitigation IPs by calling this API. | POST | /api/v1/dms/antiHijackIP/add |
+| Antihijackipupdate | Modify Anti-Hijack IP, customers can call this API to modify the business domain information associated with the mitigation IP. | POST | /api/v1/dms/antiHijackIP/update |
+| Antihijackipdelete | If you delete a hijacked mitigation IP, you can delete the mitigation IP address by calling the API. | POST | /api/v1/dms/antiHijackIP/delete |
+| Batchupdatedomaincertconfig | The interface is used to modify the configuration certificates of multiple CDN acceleration domains. Users can modify the certificates associated with the domains by providing the certificate ID and the list of domain names to be modified. | PUT | /api/config/certificate/batch |

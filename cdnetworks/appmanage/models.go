@@ -162,6 +162,146 @@ func (s CreateAppResponseHeader) GoString() string {
 
 
 
+type GetAppRequest struct {
+  // {"en":"Application package name list","zh_CN":"应用包名列表"}
+  PackageNameList []*string `json:"packageNameList,omitempty" xml:"packageNameList,omitempty" type:"Repeated"`
+}
+
+func (s GetAppRequest) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetAppRequest) GoString() string {
+  return s.String()
+}
+
+func (s *GetAppRequest) SetPackageNameList(v []*string) *GetAppRequest {
+  s.PackageNameList = v
+  return s
+}
+
+type GetAppRequestHeader struct {
+}
+
+func (s GetAppRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetAppRequestHeader) GoString() string {
+  return s.String()
+}
+
+type GetAppPaths struct {
+}
+
+func (s GetAppPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetAppPaths) GoString() string {
+  return s.String()
+}
+
+type GetAppParameters struct {
+}
+
+func (s GetAppParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetAppParameters) GoString() string {
+  return s.String()
+}
+
+type GetAppResponse struct {
+  // {"dictionary":"belong=MAA-masp-portal-console|dict=wplus_code","en":"Response Code","zh_CN":"响应码"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Response Description","zh_CN":"响应描述"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+  // {"en":"Return data","zh_CN":"返回结果"}
+  Data *GetAppResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
+}
+
+func (s GetAppResponse) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetAppResponse) GoString() string {
+  return s.String()
+}
+
+func (s *GetAppResponse) SetCode(v string) *GetAppResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *GetAppResponse) SetMessage(v string) *GetAppResponse {
+  s.Message = &v
+  return s
+}
+
+func (s *GetAppResponse) SetData(v *GetAppResponseData) *GetAppResponse {
+  s.Data = v
+  return s
+}
+
+type GetAppResponseData struct {
+  // {"en":"Application List","zh_CN":"应用列表"}
+  AppList []*GetAppResponseDataAppList `json:"appList,omitempty" xml:"appList,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s GetAppResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetAppResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *GetAppResponseData) SetAppList(v []*GetAppResponseDataAppList) *GetAppResponseData {
+  s.AppList = v
+  return s
+}
+
+type GetAppResponseDataAppList struct     {
+  // {"en":"Application ID","zh_CN":"应用ID"}
+  AppId *int `json:"appId,omitempty" xml:"appId,omitempty" require:"true"`
+  // {"en":"Application package name","zh_CN":"应用包名"}
+  PackageName *string `json:"packageName,omitempty" xml:"packageName,omitempty" require:"true"`
+}
+
+func (s GetAppResponseDataAppList) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetAppResponseDataAppList) GoString() string {
+  return s.String()
+}
+
+func (s *GetAppResponseDataAppList) SetAppId(v int) *GetAppResponseDataAppList {
+  s.AppId = &v
+  return s
+}
+
+func (s *GetAppResponseDataAppList) SetPackageName(v string) *GetAppResponseDataAppList {
+  s.PackageName = &v
+  return s
+}
+
+type GetAppResponseHeader struct {
+}
+
+func (s GetAppResponseHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetAppResponseHeader) GoString() string {
+  return s.String()
+}
+
+
+
+
 type AddDebugFingerprintRequest struct {
   // {"en":"Application ID","zh_CN":"应用ID"}
   AppId *int `json:"appId,omitempty" xml:"appId,omitempty" require:"true"`

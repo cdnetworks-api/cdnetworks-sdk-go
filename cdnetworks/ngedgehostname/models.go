@@ -454,56 +454,12 @@ func (s *GetAListOfIspsResponseData) SetName(v string) *GetAListOfIspsResponseDa
 
 
 
-type UpdateAnEdgeHostnamePartPaths struct {
-  // {"en" : "an edge hostname", "zh_CN": "调度域名。"}
-  EdgeHostname *string `json:"edgeHostname,omitempty" xml:"edgeHostname,omitempty" require:"true"`
-}
-
-func (s UpdateAnEdgeHostnamePartPaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s UpdateAnEdgeHostnamePartPaths) GoString() string {
-  return s.String()
-}
-
-func (s *UpdateAnEdgeHostnamePartPaths) SetEdgeHostname(v string) *UpdateAnEdgeHostnamePartPaths {
-  s.EdgeHostname = &v
-  return s
-}
-
-type UpdateAnEdgeHostnamePartParameters struct {
-}
-
-func (s UpdateAnEdgeHostnamePartParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s UpdateAnEdgeHostnamePartParameters) GoString() string {
-  return s.String()
-}
-
-type UpdateAnEdgeHostnamePartRequestHeader struct {
-}
-
-func (s UpdateAnEdgeHostnamePartRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s UpdateAnEdgeHostnamePartRequestHeader) GoString() string {
-  return s.String()
-}
-
 type UpdateAnEdgeHostnamePartRequest struct {
-  // {"en" : "A description of the edge hostname.", "zh_CN": "调度域名的描述。"}
+  // {"en":"A description of the edge hostname.","zh_CN":"调度域名的描述。"}
   Description *string `json:"description,omitempty" xml:"description,omitempty"`
-  // {"en" : "Whether PCI compliance is required.  true means content will only be served by PCI certified PoPs.", "zh_CN": "表示流量调度是否需要遵循PCI规范。当值为true时，表示只能使用已通过PCI认证的节点提供内容分发服务。"}
-  PciRequired *bool `json:"pciRequired,omitempty" xml:"pciRequired,omitempty"`
-  // {"en" : "If set to 'true', clients from European Economic Area (EEA) countries will only be served by IP addresses in EEA countries.", "zh_CN": "表示流量调度是否需要遵循GDPR的规定。当值为'true'时，对于来自欧洲经济区(EEA)国家的请求，将仅使用归属EEA国家的IP地址提供服务。"}
-  GrprCompliant *bool `json:"grprCompliant,omitempty" xml:"grprCompliant,omitempty"`
-  // {"en" : "Specify rules to control how requests from client zones are handled. There must be a rule that covers all regions and all ISPs.", "zh_CN": "自定义规则来控制如何处理不同访客分区的请求。您必须至少创建一条覆盖所有区域和所有运营商的规则。"}
+  // {"en":"Specify rules to control how requests from client zones are handled. There must be a rule that covers all regions and all ISPs.","zh_CN":"自定义规则来控制如何处理不同访客分区的请求。访客分区是指某个地理位置和运营商的组合。您必须至少创建一条覆盖所有区域和所有运营商的规则，即“区域=all，运营商=all”的访客分区。"}
   ClientZones []*UpdateAnEdgeHostnamePartRequestClientZones `json:"clientZones,omitempty" xml:"clientZones,omitempty" type:"Repeated"`
-  // {"en" : "An estimate of the bandwidth required to serve content using this edge hostname. Units of measurement should be in Tbps, Gbps, Mbps, or kbps. Example: 100Gbps", "zh_CN": "通过该调度域名进行CDN加速预计需要的带宽。单位应为Tbps、Gbps、Mbps或kbps。示例：100 Gbps。"}
+  // {"en":"An estimate of the bandwidth required to serve content using this edge hostname. Units of measurement should be in Tbps, Gbps, Mbps, or kbps. Example: 100Gbps","zh_CN":"通过该调度域名进行CDN加速预计需要的带宽。单位应为Tbps、Gbps、Mbps或kbps。示例：100 Gbps。"}
   EstimatedBandwidth *string `json:"estimatedBandwidth,omitempty" xml:"estimatedBandwidth,omitempty"`
 }
 
@@ -520,16 +476,6 @@ func (s *UpdateAnEdgeHostnamePartRequest) SetDescription(v string) *UpdateAnEdge
   return s
 }
 
-func (s *UpdateAnEdgeHostnamePartRequest) SetPciRequired(v bool) *UpdateAnEdgeHostnamePartRequest {
-  s.PciRequired = &v
-  return s
-}
-
-func (s *UpdateAnEdgeHostnamePartRequest) SetGrprCompliant(v bool) *UpdateAnEdgeHostnamePartRequest {
-  s.GrprCompliant = &v
-  return s
-}
-
 func (s *UpdateAnEdgeHostnamePartRequest) SetClientZones(v []*UpdateAnEdgeHostnamePartRequestClientZones) *UpdateAnEdgeHostnamePartRequest {
   s.ClientZones = v
   return s
@@ -541,32 +487,14 @@ func (s *UpdateAnEdgeHostnamePartRequest) SetEstimatedBandwidth(v string) *Updat
 }
 
 type UpdateAnEdgeHostnamePartRequestClientZones struct     {
-  // {"en" : "This field indicates the region in which the rule applies. Refer to our API to get client regions to get valid region codes. For example, if you wish to create a rule that covers all of Europe, simply specify 'eu' as the region. You can indicate specific countries. For example, 'na.us' represents the 'United States of America', and 'eu.fr' represents 'France'.  
-  // 
-  // A special client region 'all' can be used to specify that the rule applies to the entire world. If overlapping regions are specified, the more specific one takes precedence. For example, if you specify 'as' in one rule and 'as.cn' in another, a request from China will follow the rule for 'as.cn'.", "zh_CN": "该规则适用的区域。可调用'查询支持的区域列表'接口来查看区域信息。例如，如果您希望创建规则覆盖整个欧洲，则指定'eu'为区域。 您可以指定具体的国家。例如，'na.us'代表'美国'，而'eu.fr'代表'法国'。
-  // 
-  // 'all'是一个特殊的区域，可用于指定适用于全球的规则。如果不同规则指定的区域存在重叠，则以更细粒度的区域优先。例如，如果您在一条规则中指定'as'，在另一条规则中指定'as.cn'，则来自中国的请求将优先匹配'as.cn'的规则。"}
+  // {"en":"This field indicates the region in which the rule applies. Refer to our API to get client regions to get valid region codes. For example, if you wish to create a rule that covers all of Europe, simply specify 'eu' as the region. You can indicate specific countries. For example, 'na.us' represents the 'United States of America', and 'eu.fr' represents 'France'.\n\nA special client region 'all' can be used to specify that the rule applies to the entire world. If overlapping regions are specified, the more specific one takes precedence. For example, if you specify 'as' in one rule and 'as.cn' in another, a request from China will follow the rule for 'as.cn'.","zh_CN":"该规则适用的区域。可调用'查询支持的区域列表'接口来查看区域信息。例如，如果您希望创建规则覆盖整个欧洲，则指定'eu'为区域。 您可以指定具体的国家。例如，'na.us'代表'美国'，而'eu.fr'代表'法国'。\n\n'all'是一个特殊的区域，可用于指定适用于全球的规则。如果不同规则指定的区域存在重叠，则以更细粒度的区域优先。例如，如果您在一条规则中指定'as'，在另一条规则中指定'as.cn'，则来自中国的请求将优先匹配'as.cn'的规则。"}
   Region *string `json:"region,omitempty" xml:"region,omitempty"`
-  // {"en" : "Default: 100 Range: [ 0 .. 100 ] 
-  // When multiple actions are specified for a client zone, the weight is used to adjust the probability of a client zone rule applying to a client request.
-  // Consider two rules that apply to 'as.cn': {'region':'as.cn', 'isp':'all', 'action':{'type':'deliver', 'by':['standard', 'premium', 'deluxe']}},
-  //     {'region':'as.cn', 'isp':'all', 'action':{'type':'redirect', 'to':['alternate.cname.com']}, 'weight':10}
-  // 
-  //  The probability of 'deliver' will be 100/(100+10) or 0.909 while the probability of 'redirect' will be 10/(100+10) or 0.091.
-  //  
-  // ", "zh_CN": "默认值: 100 取值范围: [ 0 .. 100 ] 
-  // 可以为同个访客分区指定多条规则。通过在规则中指定weight字段，可控制规则匹配的权重。
-  // 以'as.cn'区域的2条规则为例: {'region':'as.cn', 'isp':'all', 'action':{'type':'deliver', 'by':['standard', 'premium', 'deluxe']}},
-  //     {'region':'as.cn', 'isp':'all', 'action':{'type':'redirect', 'to':['alternate.cname.com']}, 'weight':10}
-  // 
-  // 按照以上规则，客户端请求匹配规则1进行'分发'的比例为100/(100+10)，即0.909，匹配规则2进行'跳转'的比例为10/(100+10)，即0.091。
-  //  
-  // "}
-  Weight *int `json:"weight,omitempty" xml:"weight,omitempty"`
-  // {"en" : "This object describes the action to take for requests matching the rule.", "zh_CN": "当规则匹配时执行的动作。"}
-  Action *UpdateAnEdgeHostnamePartRequestClientZonesAction `json:"action,omitempty" xml:"action,omitempty" type:"Struct"`
-  // {"en" : "Specify the code representing an ISP (Internet Service Provider) if the rule only applies to requests from a particular ISP. Call our API to get a list of supported ISPs. Specify 'all' to indicate all ISPs rather than a particular one. Specify a comma-separated list of up to 10 ISP codes if you want your rule to apply to more than one ISP.", "zh_CN": "该规则适用的运营商。可调用我们的'查询支持的ISP运营商列表'接口查看运营商信息。指定'all'表示所有运营商。如果希望该规则应用于多个运营商，则可指定多个运营商，用逗号分隔，但最多只能包含10个运营商。"}
+  // {"en":"Specify the code representing an ISP (Internet Service Provider) if the rule only applies to requests from a particular ISP. Call our API to get a list of supported ISPs. Specify 'all' to indicate all ISPs rather than a particular one. Specify a comma-separated list of up to 10 ISP codes if you want your rule to apply to more than one ISP.","zh_CN":"该规则适用的运营商。可调用我们的'查询支持的ISP运营商列表'接口查看运营商信息。指定'all'表示所有运营商。如果希望该规则应用于多个运营商，则可指定多个运营商，用逗号分隔，但最多只能包含10个运营商。"}
   Isp *string `json:"isp,omitempty" xml:"isp,omitempty"`
+  // {"en":"Default: 100 Range: [ 0 .. 100 ]\nWhen multiple actions are specified for a client zone, the weight is used to adjust the probability of a client zone rule applying to a client request.\nConsider two rules that apply to 'as.cn': \n<pre>\n{'region':'as.cn', 'isp':'all', 'action':{'type':'deliver', 'by':['standard', 'premium', 'deluxe']}},\n{'region':'as.cn', 'isp':'all', 'action':{'type':'redirect', 'to':['alternate.cname.com']}, 'weight':10}\n</pre>\n\nThe probability of 'deliver' will be 100/(100+10) or 0.909 while the probability of 'redirect' will be 10/(100+10) or 0.091.","zh_CN":"默认值: 100 取值范围: [ 0 .. 100 ]\n可以为同个访客分区指定多条规则。通过在规则中指定weight字段，可控制规则匹配的权重。\n以'as.cn'区域以下的2条规则为例: \n<pre>\n{'region':'as.cn', 'isp':'all', 'action':{'type':'deliver', 'by':['standard', 'premium', 'deluxe']}},\n{'region':'as.cn', 'isp':'all', 'action':{'type':'redirect', 'to':['alternate.cname.com']}, 'weight':10}\n</pre>\n按照以上规则，客户端请求匹配规则1进行'分发'的比例为100/(100+10)，即0.909，匹配规则2进行'跳转'的比例为10/(100+10)，即0.091。"}
+  Weight *int `json:"weight,omitempty" xml:"weight,omitempty"`
+  // {"en":"Enum: deliver, redirect, reject\nDefines the action to take for requests from the client zone. 'deliver' means routing requests to CDN edge locations. 'redirect' means redirecting requests to specified destination, which is achieved via DNS CNAME mechanism. 'reject' means rejecting requests. When 'reject' is specified, the client requests will be directed to a server that always responds with HTTP response code 403 representing 'Forbidden'. Up to one client zone rule with 'reject' action is allowed for a specific client zone.","zh_CN":"当规则匹配时执行的动作。"}
+  Action *UpdateAnEdgeHostnamePartRequestClientZonesAction `json:"action,omitempty" xml:"action,omitempty" type:"Struct"`
 }
 
 func (s UpdateAnEdgeHostnamePartRequestClientZones) String() string {
@@ -582,6 +510,11 @@ func (s *UpdateAnEdgeHostnamePartRequestClientZones) SetRegion(v string) *Update
   return s
 }
 
+func (s *UpdateAnEdgeHostnamePartRequestClientZones) SetIsp(v string) *UpdateAnEdgeHostnamePartRequestClientZones {
+  s.Isp = &v
+  return s
+}
+
 func (s *UpdateAnEdgeHostnamePartRequestClientZones) SetWeight(v int) *UpdateAnEdgeHostnamePartRequestClientZones {
   s.Weight = &v
   return s
@@ -592,25 +525,14 @@ func (s *UpdateAnEdgeHostnamePartRequestClientZones) SetAction(v *UpdateAnEdgeHo
   return s
 }
 
-func (s *UpdateAnEdgeHostnamePartRequestClientZones) SetIsp(v string) *UpdateAnEdgeHostnamePartRequestClientZones {
-  s.Isp = &v
-  return s
-}
-
 type UpdateAnEdgeHostnamePartRequestClientZonesAction struct {
-  // {"en" : "Enum: deliver,redirect,reject 
-  // Defines the action to take for requests to the zone. Options are to deliver using one or more server groups, to reject the request altogether, or to redirect to another domain. If 'reject' is specified, the client request will be redirected to a server that always responds with HTTP response code 403 representing 'Forbidden'. Up to one 'reject' action is allowed for each client zone.
-  // ", "zh_CN": "取值范围: deliver,redirect,reject 
-  // 当规则匹配时，对客户端请求执行的动作的类型。包括分发，拒绝和跳转3个类型。如果指定了'拒绝'，则客户端请求将被调度到一台服务器，该服务器总是响应403状态码，表示'Forbidden'拒绝访问。每个访客分区最多只允许一个'拒绝'动作。"}
+  // {"en":"Enum: deliver,redirect,reject\nDefines the action to take for requests to the zone. Options are to deliver using one or more server groups, to reject the request altogether, or to redirect to another domain. If 'reject' is specified, the client request will be redirected to a server that always responds with HTTP response code 403 representing 'Forbidden'. Up to one 'reject' action is allowed for each client zone.","zh_CN":"取值范围: deliver, redirect, reject\n当规则匹配时，对客户端请求执行的动作的类型。包括分发，拒绝和跳转 3 个类型。'分发'表示将客户端请求调度到CDN边缘节点。'跳转'表示通过DNS CNAME机制将客户端请求重定向到指定的目标。如果指定了'拒绝'，则客户端请求将被固定调度到一台服务器，该服务器总是响应403状态码，表示'Forbidden'拒绝访问。单个访客分区最多只允许一条动作类型为'拒绝'的规则。"}
   Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
-  // {"en" : "This field is used if the action is of type 'deliver'. Specify one or more of the server groups (standard, premium, deluxe,  ultra, nearChina, ChinaStandard, ChinaPremium) to control the servers used to deliver content. If unspecified, 'standard' is used. <br/><br/>'nearChina' is a special server group that can be enabled for you if your domains lack ICP Beian, but you want optimal performance serving Chinese visitors. A client zone rule using nearChina cannot be configured to simultaneously deliver to other server groups, though you may create separate client zone rules to use other server groups.<br/><br/>If you have an ICP Beian license and want your content to be delivered by servers within China, you can opt to use 'ChinaStandard' and 'ChinaPremium.' Please contact our support team if you require nearChina, ChinaStandard, or ChinaPremium.<br/><br/>If an edge hostname is not initially configured to use ChinaStandard or ChinaPremium, you will not be able to modify it later to use these two server groups. Instead, you will need to create a new edge hostname with client zone rules delivering to those server groups.", "zh_CN": "如果动作类型为'分发'，则使用此字段指定一个或多个节点组(standard, premium, deluxe,  ultra, nearChina, ChinaStandard, ChinaPremium) 来选择提供内容分发服务的缓存节点。如果未指定，则使用'standard'。<br/><br/>'nearChina'  是一个特殊的节点组。如果您需要使用nearChina节点组，请联系我们的技术支持开通。不能在同一条规则中同时指定nearChina节点组和其他节点组。如果要使用其他节点组，需要创建单独的访客分区规则。<br/><br/>如果您的加速域名有ICP备案，希望由中国大陆的服务器提供内容分发服务，您可以选择使用'ChinaStandard'和'ChinaPremium'节点组。
-  // <br/><br/>如果调度域名创建时没有指定使用ChinaStandard或ChinaPremium节点组，则无法通过更新调度域名来使用这两个节点组。您需要创建一个新的调度域名，在新的调度域名中指定使用ChinaStandard或ChinaPremium，才能使用这2个节点组。"}
+  // {"en":"This field is used if the action is of type 'deliver'. Specify one or more of the server groups (standard, premium, deluxe,  ultra, nearChina, ChinaStandard, ChinaPremium) to control the servers used to deliver content. What server groups are available here depends on your subscription. <br/><br/>'nearChina' is a special server group that can be enabled for you if your domains lack ICP Beian, but you want optimal performance serving Chinese visitors. A client zone rule using nearChina cannot be configured to simultaneously deliver to other server groups, though you may create separate client zone rules to use other server groups.<br/><br/>If you have an ICP Beian license and want your content to be delivered by servers within China, you can opt to use 'ChinaStandard' and 'ChinaPremium.'<br/><br/>If an edge hostname is not initially configured to use ChinaStandard or ChinaPremium, you will not be able to modify it later to use these two server groups. Instead, you will need to create a new edge hostname with client zone rules delivering to those server groups.","zh_CN":"如果动作类型为'分发'，则使用此字段指定一个或多个节点组(standard, premium, deluxe,  ultra, nearChina, ChinaStandard, ChinaPremium) 来选择提供内容分发服务的缓存节点。您此处能选用的节点组，取决于您合同中开通的加速区域。<br/><br/>'nearChina'  是一个特殊的节点组。不能在同一条规则中同时指定nearChina节点组和其他节点组。如果要使用其他节点组，需要创建单独的访客分区规则。<br/><br/>如果您的加速域名有ICP备案，希望由中国大陆的服务器提供内容分发服务，您可以选择使用'ChinaStandard'和'ChinaPremium'节点组。<br/><br/>如果调度域名创建时没有指定使用ChinaStandard或ChinaPremium节点组，则无法通过更新调度域名来使用这两个节点组。您需要创建一个新的调度域名，在新的调度域名中指定使用ChinaStandard或ChinaPremium，才能使用这2个节点组。"}
   By []*string `json:"by,omitempty" xml:"by,omitempty" type:"Repeated"`
-  // {"en" : "This field is used if the action is of type 'redirect'. It indicates the hostname or IP address to redirect to. This is typically an origin server or another CDN provider.", "zh_CN": "如果动作类型为'跳转'，则通过该字段指定跳转的目标域名或IP地址。'跳转'目标通常是源站服务器或其它CDN厂商。"}
+  // {"en":"This field is used if the action is of type 'redirect'. It indicates the hostname or IP address to redirect to. This is typically an origin server or another CDN provider.","zh_CN":"如果动作类型为'跳转'，则通过该字段指定跳转的目标域名或IP地址。'跳转'目标通常是源站服务器或其它CDN厂商。"}
   To []*string `json:"to,omitempty" xml:"to,omitempty" type:"Repeated"`
-  // {"en" : "Default: True 
-  // Indicates whether an IPv6 address can be used. This value is used only if the client zone rule's action type is 'deliver'.", "zh_CN": "默认值: True 
-  // 指定是否允许使用IPv6地址进行内容分发。仅当动作类型为'分发'时该值才有效。"}
+  // {"en":"Default: True\nIndicates whether an IPv6 address can be used. This value is used only if the client zone rule's action type is 'deliver'.","zh_CN":"默认值: True\n指定是否允许使用IPv6地址进行内容分发。仅当动作类型为'分发'时该值才有效。"}
   EnableIPv6 *bool `json:"enableIPv6,omitempty" xml:"enableIPv6,omitempty"`
 }
 
@@ -642,14 +564,43 @@ func (s *UpdateAnEdgeHostnamePartRequestClientZonesAction) SetEnableIPv6(v bool)
   return s
 }
 
-type UpdateAnEdgeHostnamePartResponseHeader struct {
+type UpdateAnEdgeHostnamePartRequestHeader struct {
 }
 
-func (s UpdateAnEdgeHostnamePartResponseHeader) String() string {
+func (s UpdateAnEdgeHostnamePartRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateAnEdgeHostnamePartResponseHeader) GoString() string {
+func (s UpdateAnEdgeHostnamePartRequestHeader) GoString() string {
+  return s.String()
+}
+
+type UpdateAnEdgeHostnamePartPaths struct {
+  // {"en":"an edge hostname","zh_CN":"调度域名。"}
+  EdgeHostname *string `json:"edgeHostname,omitempty" xml:"edgeHostname,omitempty" require:"true"`
+}
+
+func (s UpdateAnEdgeHostnamePartPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateAnEdgeHostnamePartPaths) GoString() string {
+  return s.String()
+}
+
+func (s *UpdateAnEdgeHostnamePartPaths) SetEdgeHostname(v string) *UpdateAnEdgeHostnamePartPaths {
+  s.EdgeHostname = &v
+  return s
+}
+
+type UpdateAnEdgeHostnamePartParameters struct {
+}
+
+func (s UpdateAnEdgeHostnamePartParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateAnEdgeHostnamePartParameters) GoString() string {
   return s.String()
 }
 
@@ -664,61 +615,28 @@ func (s UpdateAnEdgeHostnamePartResponse) GoString() string {
   return s.String()
 }
 
-
-
-
-type UpdateAnEdgeHostnameAllPaths struct {
-  // {"en" : "an edge hostname", "zh_CN": "调度域名。"}
-  EdgeHostname *string `json:"edgeHostname,omitempty" xml:"edgeHostname,omitempty" require:"true"`
+type UpdateAnEdgeHostnamePartResponseHeader struct {
 }
 
-func (s UpdateAnEdgeHostnameAllPaths) String() string {
+func (s UpdateAnEdgeHostnamePartResponseHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateAnEdgeHostnameAllPaths) GoString() string {
+func (s UpdateAnEdgeHostnamePartResponseHeader) GoString() string {
   return s.String()
 }
 
-func (s *UpdateAnEdgeHostnameAllPaths) SetEdgeHostname(v string) *UpdateAnEdgeHostnameAllPaths {
-  s.EdgeHostname = &v
-  return s
-}
 
-type UpdateAnEdgeHostnameAllParameters struct {
-}
 
-func (s UpdateAnEdgeHostnameAllParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s UpdateAnEdgeHostnameAllParameters) GoString() string {
-  return s.String()
-}
-
-type UpdateAnEdgeHostnameAllRequestHeader struct {
-}
-
-func (s UpdateAnEdgeHostnameAllRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s UpdateAnEdgeHostnameAllRequestHeader) GoString() string {
-  return s.String()
-}
 
 type UpdateAnEdgeHostnameAllRequest struct {
-  // {"en" : "The edge hostname. It cannot be modified.", "zh_CN": "调度域名。该字段不可修改。"}
+  // {"en":"This field cannot be updated.","zh_CN":"调度域名。该字段不可修改。"}
   EdgeHostname *string `json:"edgeHostname,omitempty" xml:"edgeHostname,omitempty" require:"true"`
-  // {"en" : "A description of the edge hostname.", "zh_CN": "调度域名的描述。"}
+  // {"en":"A description of the edge hostname.","zh_CN":"调度域名的描述。"}
   Description *string `json:"description,omitempty" xml:"description,omitempty"`
-  // {"en" : "Whether PCI compliance is required.  true means content will only be served by PCI certified PoPs.", "zh_CN": "表示流量调度是否需要遵循PCI规范。当值为true时，表示只能使用已通过PCI认证的节点提供内容分发服务。"}
-  PciRequired *bool `json:"pciRequired,omitempty" xml:"pciRequired,omitempty"`
-  // {"en" : "If set to 'true', clients from European Economic Area (EEA) countries will only be served by IP addresses in EEA countries.", "zh_CN": "表示流量调度是否需要遵循GDPR的规定。当值为'true'时，对于来自欧洲经济区(EEA)国家的请求，将仅使用归属EEA国家的IP地址提供服务。"}
-  GdprCompliant *bool `json:"gdprCompliant,omitempty" xml:"gdprCompliant,omitempty"`
-  // {"en" : "Specify rules to control how requests from client zones are handled. There must be a rule that covers all regions and all ISPs.", "zh_CN": "自定义规则来控制如何处理不同访客分区的请求。您必须至少创建一条覆盖所有区域和所有运营商的规则。"}
-  ClientZones []*UpdateAnEdgeHostnameAllRequestClientZones `json:"clientZones,omitempty" xml:"clientZones,omitempty" type:"Repeated"`
-  // {"en" : "An estimate of the bandwidth required to serve content using this edge hostname. Units of measurement should be in Tbps, Gbps, Mbps, or kbps. Example: 100Gbps", "zh_CN": "通过该调度域名进行CDN加速预计需要的带宽。单位应为Tbps、Gbps、Mbps或kbps。示例：100 Gbps。"}
+  // {"en":"Specify rules to control how requests from client zones are handled. Each client zone is a pair of geographic region and ISP. There must be a rule that covers all regions and all ISPs.","zh_CN":"自定义规则来控制如何处理不同访客分区的请求。访客分区是指某个地理位置和运营商的组合。您必须至少创建一条覆盖所有区域和所有运营商的规则，即“区域=all，运营商=all”的访客分区。"}
+  ClientZones []*UpdateAnEdgeHostnameAllRequestClientZones `json:"clientZones,omitempty" xml:"clientZones,omitempty" require:"true" type:"Repeated"`
+  // {"en":"An estimate of the bandwidth required to serve content using this edge hostname. Units of measurement should be in Tbps, Gbps, Mbps, or kbps. Example: 100Gbps","zh_CN":"通过该调度域名进行CDN加速预计需要的带宽。单位应为Tbps、Gbps、Mbps或kbps。示例：100 Gbps。"}
   EstimatedBandwidth *string `json:"estimatedBandwidth,omitempty" xml:"estimatedBandwidth,omitempty"`
 }
 
@@ -740,16 +658,6 @@ func (s *UpdateAnEdgeHostnameAllRequest) SetDescription(v string) *UpdateAnEdgeH
   return s
 }
 
-func (s *UpdateAnEdgeHostnameAllRequest) SetPciRequired(v bool) *UpdateAnEdgeHostnameAllRequest {
-  s.PciRequired = &v
-  return s
-}
-
-func (s *UpdateAnEdgeHostnameAllRequest) SetGdprCompliant(v bool) *UpdateAnEdgeHostnameAllRequest {
-  s.GdprCompliant = &v
-  return s
-}
-
 func (s *UpdateAnEdgeHostnameAllRequest) SetClientZones(v []*UpdateAnEdgeHostnameAllRequestClientZones) *UpdateAnEdgeHostnameAllRequest {
   s.ClientZones = v
   return s
@@ -761,32 +669,14 @@ func (s *UpdateAnEdgeHostnameAllRequest) SetEstimatedBandwidth(v string) *Update
 }
 
 type UpdateAnEdgeHostnameAllRequestClientZones struct     {
-  // {"en" : "This field indicates the region in which the rule applies. Refer to our API to get client regions to get valid region codes. For example, if you wish to create a rule that covers all of Europe, simply specify 'eu' as the region. You can indicate specific countries. For example, 'na.us' represents the 'United States of America', and 'eu.fr' represents 'France'.  
-  // 
-  // A special client region 'all' can be used to specify that the rule applies to the entire world. If overlapping regions are specified, the more specific one takes precedence. For example, if you specify 'as' in one rule and 'as.cn' in another, a request from China will follow the rule for 'as.cn'.", "zh_CN": "该规则适用的区域。可调用'查询支持的区域列表'接口来查看区域信息。例如，如果您希望创建规则覆盖整个欧洲，则指定'eu'为区域。 您可以指定具体的国家。例如，'na.us'代表'美国'，而'eu.fr'代表'法国'。
-  // 
-  // 'all'是一个特殊的区域，可用于指定适用于全球的规则。如果不同规则指定的区域存在重叠，则以更细粒度的区域优先。例如，如果您在一条规则中指定'as'，在另一条规则中指定'as.cn'，则来自中国的请求将优先匹配'as.cn'的规则。"}
-  Region *string `json:"region,omitempty" xml:"region,omitempty"`
-  // {"en" : "Default: 100 Range: [ 0 .. 100 ] 
-  // When multiple actions are specified for a client zone, the weight is used to adjust the probability of a client zone rule applying to a client request.
-  // Consider two rules that apply to 'as.cn': {'region':'as.cn', 'isp':'all', 'action':{'type':'deliver', 'by':['standard', 'premium', 'deluxe']}},
-  //     {'region':'as.cn', 'isp':'all', 'action':{'type':'redirect', 'to':['alternate.cname.com']}, 'weight':10}
-  // 
-  //  The probability of 'deliver' will be 100/(100+10) or 0.909 while the probability of 'redirect' will be 10/(100+10) or 0.091.
-  //  
-  // ", "zh_CN": "默认值: 100 取值范围: [ 0 .. 100 ] 
-  // 可以为同个访客分区指定多条规则。通过在规则中指定weight字段，可控制规则匹配的权重。
-  // 以'as.cn'区域的2条规则为例: {'region':'as.cn', 'isp':'all', 'action':{'type':'deliver', 'by':['standard', 'premium', 'deluxe']}},
-  //     {'region':'as.cn', 'isp':'all', 'action':{'type':'redirect', 'to':['alternate.cname.com']}, 'weight':10}
-  // 
-  // 按照以上规则，客户端请求匹配规则1进行'分发'的比例为100/(100+10)，即0.909，匹配规则2进行'跳转'的比例为10/(100+10)，即0.091。
-  //  
-  // "}
+  // {"en":"This field indicates the region in which the rule applies. Refer to our API to get client regions to get valid region codes. For example, if you wish to create a rule that covers all of Europe, simply specify 'eu' as the region. You can indicate specific countries. For example, 'na.us' represents the 'United States of America', and 'eu.fr' represents 'France'.\n\nA special client region 'all' can be used to specify that the rule applies to the entire world. If overlapping regions are specified, the more specific one takes precedence. For example, if you specify 'as' in one rule and 'as.cn' in another, a request from China will follow the rule for 'as.cn'.","zh_CN":"该规则适用的区域。可调用'查询支持的区域列表'接口来查看区域信息。例如，如果您希望创建规则覆盖整个欧洲，则指定'eu'为区域。 您可以指定具体的国家。例如，'na.us'代表'美国'，而'eu.fr'代表'法国'。\n\n'all'是一个特殊的区域，可用于指定适用于全球的规则。如果不同规则指定的区域存在重叠，则以更细粒度的区域优先。例如，如果您在一条规则中指定'as'，在另一条规则中指定'as.cn'，则来自中国的请求将优先匹配'as.cn'的规则。"}
+  Region *string `json:"region,omitempty" xml:"region,omitempty" require:"true"`
+  // {"en":"Specify the code representing an ISP (Internet Service Provider) if the rule only applies to requests from a particular ISP. Call our API to get a list of supported ISPs. Specify 'all' to indicate all ISPs rather than a particular one. Specify a comma-separated list of up to 10 ISP codes if you want your rule to apply to more than one ISP.","zh_CN":"该规则适用的运营商。可调用我们的'查询支持的ISP运营商列表'接口查看运营商信息。指定'all'表示所有运营商。如果希望该规则应用于多个运营商，则可指定多个运营商，用逗号分隔，但最多只能包含10个运营商。"}
+  Isp *string `json:"isp,omitempty" xml:"isp,omitempty" require:"true"`
+  // {"en":"Default: 100 Range: [ 0 .. 100 ]\nWhen multiple actions are specified for a client zone, the weight is used to adjust the probability of a client zone rule applying to a client request.\nConsider two rules that apply to 'as.cn': \n<pre>\n{'region':'as.cn', 'isp':'all', 'action':{'type':'deliver', 'by':['standard', 'premium', 'deluxe']}},\n{'region':'as.cn', 'isp':'all', 'action':{'type':'redirect', 'to':['alternate.cname.com']}, 'weight':10}\n</pre>\n\nThe probability of 'deliver' will be 100/(100+10) or 0.909 while the probability of 'redirect' will be 10/(100+10) or 0.091.","zh_CN":"默认值: 100 取值范围: [ 0 .. 100 ]\n可以为同个访客分区指定多条规则。通过在规则中指定weight字段，可控制规则匹配的权重。\n以'as.cn'区域以下的2条规则为例: \n<pre>\n{'region':'as.cn', 'isp':'all', 'action':{'type':'deliver', 'by':['standard', 'premium', 'deluxe']}},\n{'region':'as.cn', 'isp':'all', 'action':{'type':'redirect', 'to':['alternate.cname.com']}, 'weight':10}\n</pre>\n按照以上规则，客户端请求匹配规则1进行'分发'的比例为100/(100+10)，即0.909，匹配规则2进行'跳转'的比例为10/(100+10)，即0.091。"}
   Weight *int `json:"weight,omitempty" xml:"weight,omitempty"`
-  // {"en" : "This object describes the action to take for requests matching the rule.", "zh_CN": "当规则匹配时执行的动作。"}
-  Action *UpdateAnEdgeHostnameAllRequestClientZonesAction `json:"action,omitempty" xml:"action,omitempty" type:"Struct"`
-  // {"en" : "Specify the code representing an ISP (Internet Service Provider) if the rule only applies to requests from a particular ISP. Call our API to get a list of supported ISPs. Specify 'all' to indicate all ISPs rather than a particular one. Specify a comma-separated list of up to 10 ISP codes if you want your rule to apply to more than one ISP.", "zh_CN": "该规则适用的运营商。可调用我们的'查询支持的ISP运营商列表'接口查看运营商信息。指定'all'表示所有运营商。如果希望该规则应用于多个运营商，则可指定多个运营商，用逗号分隔，但最多只能包含10个运营商。"}
-  Isp *string `json:"isp,omitempty" xml:"isp,omitempty"`
+  // {"en":"This object describes the action to take for requests matching the rule.","zh_CN":"当规则匹配时执行的动作。"}
+  Action *UpdateAnEdgeHostnameAllRequestClientZonesAction `json:"action,omitempty" xml:"action,omitempty" require:"true" type:"Struct"`
 }
 
 func (s UpdateAnEdgeHostnameAllRequestClientZones) String() string {
@@ -802,6 +692,11 @@ func (s *UpdateAnEdgeHostnameAllRequestClientZones) SetRegion(v string) *UpdateA
   return s
 }
 
+func (s *UpdateAnEdgeHostnameAllRequestClientZones) SetIsp(v string) *UpdateAnEdgeHostnameAllRequestClientZones {
+  s.Isp = &v
+  return s
+}
+
 func (s *UpdateAnEdgeHostnameAllRequestClientZones) SetWeight(v int) *UpdateAnEdgeHostnameAllRequestClientZones {
   s.Weight = &v
   return s
@@ -812,25 +707,14 @@ func (s *UpdateAnEdgeHostnameAllRequestClientZones) SetAction(v *UpdateAnEdgeHos
   return s
 }
 
-func (s *UpdateAnEdgeHostnameAllRequestClientZones) SetIsp(v string) *UpdateAnEdgeHostnameAllRequestClientZones {
-  s.Isp = &v
-  return s
-}
-
 type UpdateAnEdgeHostnameAllRequestClientZonesAction struct {
-  // {"en" : "Enum: deliver,redirect,reject 
-  // Defines the action to take for requests to the zone. Options are to deliver using one or more server groups, to reject the request altogether, or to redirect to another domain. If 'reject' is specified, the client request will be redirected to a server that always responds with HTTP response code 403 representing 'Forbidden'. Up to one 'reject' action is allowed for each client zone.
-  // ", "zh_CN": "取值范围: deliver,redirect,reject 
-  // 当规则匹配时，对客户端请求执行的动作的类型。包括分发，拒绝和跳转3个类型。如果指定了'拒绝'，则客户端请求将被调度到一台服务器，该服务器总是响应403状态码，表示'Forbidden'拒绝访问。每个访客分区最多只允许一个'拒绝'动作。"}
+  // {"en":"Enum: deliver, redirect, reject\nDefines the action to take for requests from the client zone. 'deliver' means routing requests to CDN edge locations. 'redirect' means redirecting requests to specified destination, which is achieved via DNS CNAME mechanism. 'reject' means rejecting requests. When 'reject' is specified, the client requests will be directed to a server that always responds with HTTP response code 403 representing 'Forbidden'. Up to one client zone rule with 'reject' action is allowed for a specific client zone.","zh_CN":"取值范围: deliver, redirect, reject\n当规则匹配时，对客户端请求执行的动作的类型。包括分发，拒绝和跳转 3 个类型。'分发'表示将客户端请求调度到CDN边缘节点。'跳转'表示通过DNS CNAME机制将客户端请求重定向到指定的目标。如果指定了'拒绝'，则客户端请求将被固定调度到一台服务器，该服务器总是响应403状态码，表示'Forbidden'拒绝访问。单个访客分区最多只允许一条动作类型为'拒绝'的规则。"}
   Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
-  // {"en" : "This field is used if the action is of type 'deliver'. Specify one or more of the server groups (standard, premium, deluxe,  ultra, nearChina, ChinaStandard, ChinaPremium) to control the servers used to deliver content. If unspecified, 'standard' is used. <br/><br/>'nearChina' is a special server group that can be enabled for you if your domains lack ICP Beian, but you want optimal performance serving Chinese visitors. A client zone rule using nearChina cannot be configured to simultaneously deliver to other server groups, though you may create separate client zone rules to use other server groups.<br/><br/>If you have an ICP Beian license and want your content to be delivered by servers within China, you can opt to use 'ChinaStandard' and 'ChinaPremium.' Please contact our support team if you require nearChina, ChinaStandard, or ChinaPremium.<br/><br/>If an edge hostname is not initially configured to use ChinaStandard or ChinaPremium, you will not be able to modify it later to use these two server groups. Instead, you will need to create a new edge hostname with client zone rules delivering to those server groups.", "zh_CN": "如果动作类型为'分发'，则使用此字段指定一个或多个节点组(standard, premium, deluxe,  ultra, nearChina, ChinaStandard, ChinaPremium) 来选择提供内容分发服务的缓存节点。如果未指定，则使用'standard'。<br/><br/>'nearChina'  是一个特殊的节点组。如果您需要使用nearChina节点组，请联系我们的技术支持开通。不能在同一条规则中同时指定nearChina节点组和其他节点组。如果要使用其他节点组，需要创建单独的访客分区规则。<br/><br/>如果您的加速域名有ICP备案，希望由中国大陆的服务器提供内容分发服务，您可以选择使用'ChinaStandard'和'ChinaPremium'节点组。
-  // <br/><br/>如果调度域名创建时没有指定使用ChinaStandard或ChinaPremium节点组，则无法通过更新调度域名来使用这两个节点组。您需要创建一个新的调度域名，在新的调度域名中指定使用ChinaStandard或ChinaPremium，才能使用这2个节点组。"}
+  // {"en":"This field is used if the action is of type 'deliver'. Specify one or more of the server groups (standard, premium, deluxe,  ultra, nearChina, ChinaStandard, ChinaPremium) to control the servers used to deliver content. What server groups are available here depends on your subscription. <br/><br/>'nearChina' is a special server group that can be enabled for you if your domains lack ICP Beian, but you want optimal performance serving Chinese visitors. A client zone rule using nearChina cannot be configured to simultaneously deliver to other server groups, though you may create separate client zone rules to use other server groups.<br/><br/>If you have an ICP Beian license and want your content to be delivered by servers within China, you can opt to use 'ChinaStandard' and 'ChinaPremium.'<br/><br/>If an edge hostname is not initially configured to use ChinaStandard or ChinaPremium, you will not be able to modify it later to use these two server groups. Instead, you will need to create a new edge hostname with client zone rules delivering to those server groups.","zh_CN":"如果动作类型为'分发'，则使用此字段指定一个或多个节点组(standard, premium, deluxe,  ultra, nearChina, ChinaStandard, ChinaPremium) 来选择提供内容分发服务的缓存节点。您此处能选用的节点组，取决于您合同中开通的加速区域。<br/><br/>'nearChina'  是一个特殊的节点组。不能在同一条规则中同时指定nearChina节点组和其他节点组。如果要使用其他节点组，需要创建单独的访客分区规则。<br/><br/>如果您的加速域名有ICP备案，希望由中国大陆的服务器提供内容分发服务，您可以选择使用'ChinaStandard'和'ChinaPremium'节点组。<br/><br/>如果调度域名创建时没有指定使用ChinaStandard或ChinaPremium节点组，则无法通过更新调度域名来使用这两个节点组。您需要创建一个新的调度域名，在新的调度域名中指定使用ChinaStandard或ChinaPremium，才能使用这2个节点组。"}
   By []*string `json:"by,omitempty" xml:"by,omitempty" type:"Repeated"`
-  // {"en" : "This field is used if the action is of type 'redirect'. It indicates the hostname or IP address to redirect to. This is typically an origin server or another CDN provider.", "zh_CN": "如果动作类型为'跳转'，则通过该字段指定跳转的目标域名或IP地址。'跳转'目标通常是源站服务器或其它CDN厂商。"}
+  // {"en":"This field is used if the action is of type 'redirect'. It indicates the hostname or IP address to redirect to. This is typically an origin server or another CDN provider.","zh_CN":"如果动作类型为'跳转'，则通过该字段指定跳转的目标域名或IP地址。'跳转'目标通常是源站服务器或其它CDN厂商。"}
   To []*string `json:"to,omitempty" xml:"to,omitempty" type:"Repeated"`
-  // {"en" : "Default: True 
-  // Indicates whether an IPv6 address can be used. This value is used only if the client zone rule's action type is 'deliver'.", "zh_CN": "默认值: True 
-  // 指定是否允许使用IPv6地址进行内容分发。仅当动作类型为'分发'时该值才有效。"}
+  // {"en":"Default: True\nIndicates whether an IPv6 address can be used. This value is used only if the client zone rule's action type is 'deliver'.","zh_CN":"默认值: True\n指定是否允许使用IPv6地址进行内容分发。仅当动作类型为'分发'时该值才有效。"}
   EnableIPv6 *bool `json:"enableIPv6,omitempty" xml:"enableIPv6,omitempty"`
 }
 
@@ -862,14 +746,43 @@ func (s *UpdateAnEdgeHostnameAllRequestClientZonesAction) SetEnableIPv6(v bool) 
   return s
 }
 
-type UpdateAnEdgeHostnameAllResponseHeader struct {
+type UpdateAnEdgeHostnameAllRequestHeader struct {
 }
 
-func (s UpdateAnEdgeHostnameAllResponseHeader) String() string {
+func (s UpdateAnEdgeHostnameAllRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateAnEdgeHostnameAllResponseHeader) GoString() string {
+func (s UpdateAnEdgeHostnameAllRequestHeader) GoString() string {
+  return s.String()
+}
+
+type UpdateAnEdgeHostnameAllPaths struct {
+  // {"en":"an edge hostname","zh_CN":"调度域名。"}
+  EdgeHostname *string `json:"edgeHostname,omitempty" xml:"edgeHostname,omitempty" require:"true"`
+}
+
+func (s UpdateAnEdgeHostnameAllPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateAnEdgeHostnameAllPaths) GoString() string {
+  return s.String()
+}
+
+func (s *UpdateAnEdgeHostnameAllPaths) SetEdgeHostname(v string) *UpdateAnEdgeHostnameAllPaths {
+  s.EdgeHostname = &v
+  return s
+}
+
+type UpdateAnEdgeHostnameAllParameters struct {
+}
+
+func (s UpdateAnEdgeHostnameAllParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateAnEdgeHostnameAllParameters) GoString() string {
   return s.String()
 }
 
@@ -881,6 +794,17 @@ func (s UpdateAnEdgeHostnameAllResponse) String() string {
 }
 
 func (s UpdateAnEdgeHostnameAllResponse) GoString() string {
+  return s.String()
+}
+
+type UpdateAnEdgeHostnameAllResponseHeader struct {
+}
+
+func (s UpdateAnEdgeHostnameAllResponseHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateAnEdgeHostnameAllResponseHeader) GoString() string {
   return s.String()
 }
 
@@ -970,55 +894,14 @@ func (s DeleteAnEdgeHostnameResponse) GoString() string {
 
 
 
-type CreateAnEdgeHostnamePaths struct {
-}
-
-func (s CreateAnEdgeHostnamePaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateAnEdgeHostnamePaths) GoString() string {
-  return s.String()
-}
-
-type CreateAnEdgeHostnameParameters struct {
-}
-
-func (s CreateAnEdgeHostnameParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateAnEdgeHostnameParameters) GoString() string {
-  return s.String()
-}
-
-type CreateAnEdgeHostnameRequestHeader struct {
-}
-
-func (s CreateAnEdgeHostnameRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s CreateAnEdgeHostnameRequestHeader) GoString() string {
-  return s.String()
-}
-
 type CreateAnEdgeHostnameRequest struct {
-  // {"en" : "A hostname to use in your DNS server settings. When your property has been deployed to production, you should modify your DNS server so that the CNAME records of the property's hostnames refer to this value. The edge hostname should consist of at least ten characters followed by a permitted suffix such as '.qtlcdn.com' (for example, abcdefg123.qtlcdn.com). Your service quota may include an edgeHostnameZones field. If it does, the suffix used for your edge hostname should be one of the listed values. ", "zh_CN": "当您部署加速项目到生产环境后，您应该修改DNS解析，添加一条CNAME记录，将您的加速域名指向该调度域名。每个调度域名由2部组成，即前缀和后缀（例如， abcdefg123.qtlcdn.com）。前缀可自定义，后缀为既定的DNS zone，如'.qtlcdn.com'。如果您需要使用自定义的DNS zone，请联系我们的技术支持。"}
+  // {"en":"A hostname to use in your DNS server settings. When your property has been deployed to production, you should modify your DNS server so that the CNAME records of the property's hostnames refer to this value. The edge hostname should consist of at least ten characters followed by a permitted suffix such as '.qtlcdn.com' (for example, abcdefg123.qtlcdn.com). Your service quota may include an edgeHostnameZones field. If it does, the suffix used for your edge hostname should be one of the listed values.","zh_CN":"当您部署加速项目到生产环境后，您应该修改DNS解析，添加一条CNAME记录，将您的加速域名指向该调度域名。每个调度域名由2部组成，即前缀和后缀（例如， abcdefg123.qtlcdn.com）。前缀可自定义，后缀为既定的DNS zone，如'.qtlcdn.com'。如果您需要使用自定义的DNS zone，请联系我们的技术支持。"}
   EdgeHostname *string `json:"edgeHostname,omitempty" xml:"edgeHostname,omitempty"`
-  // {"en" : "A description of the edge hostname.", "zh_CN": "调度域名的描述。"}
+  // {"en":"A description of the edge hostname.","zh_CN":"调度域名的描述。"}
   Description *string `json:"description,omitempty" xml:"description,omitempty"`
-  // {"en" : "Default: False 
-  // Indicates whether PCI compliance is required.  true means content will only be served by PCI certified PoPs.", "zh_CN": "默认值: False 
-  // 表示流量调度是否需要遵循PCI规范。当值为true时，表示只能使用已通过PCI认证的节点提供内容分发服务。"}
-  PciRequired *bool `json:"pciRequired,omitempty" xml:"pciRequired,omitempty"`
-  // {"en" : "Default: False 
-  // If set to 'true', clients from European Economic Area (EEA) countries will only be served by IP addresses in EEA countries.", "zh_CN": "默认值: False 
-  // 表示流量调度是否需要遵循GDPR的规定。当值为'true'时，对于来自欧洲经济区(EEA)国家的请求，将仅使用归属EEA国家的IP地址提供服务。"}
-  GdprCompliant *bool `json:"gdprCompliant,omitempty" xml:"gdprCompliant,omitempty"`
-  // {"en" : "Specify rules to control how requests from client zones are handled. There must be a rule that covers all regions and all ISPs.", "zh_CN": "自定义规则来控制如何处理不同访客分区的请求。您必须至少创建一条覆盖所有区域和所有运营商的规则。"}
-  ClientZones []*CreateAnEdgeHostnameRequestClientZones `json:"clientZones,omitempty" xml:"clientZones,omitempty" type:"Repeated"`
-  // {"en" : "An estimate of the bandwidth required to serve content using this edge hostname. Units of measurement should be in Tbps, Gbps, Mbps, or kbps. Example: 100Gbps", "zh_CN": "通过该调度域名进行CDN加速预计需要的带宽。单位应为Tbps、Gbps、Mbps或kbps。示例：100 Gbps。"}
+  // {"en":"Specify rules to control how requests from client zones are handled. Each client zone is a pair of geographic region and ISP. There must be a rule that covers all regions and all ISPs.","zh_CN":"自定义规则来控制如何处理不同访客分区的请求。访客分区是指某个地理位置和运营商的组合。您必须至少创建一条覆盖所有区域和所有运营商的规则，即“区域=all，运营商=all”的访客分区。"}
+  ClientZones []*CreateAnEdgeHostnameRequestClientZones `json:"clientZones,omitempty" xml:"clientZones,omitempty" require:"true" type:"Repeated"`
+  // {"en":"An estimate of the bandwidth required to serve content using this edge hostname. Units of measurement should be in Tbps, Gbps, Mbps, or kbps. Example: 100Gbps","zh_CN":"通过该调度域名进行CDN加速预计需要的带宽。单位应为Tbps、Gbps、Mbps或kbps。示例：100 Gbps。"}
   EstimatedBandwidth *string `json:"estimatedBandwidth,omitempty" xml:"estimatedBandwidth,omitempty"`
 }
 
@@ -1040,16 +923,6 @@ func (s *CreateAnEdgeHostnameRequest) SetDescription(v string) *CreateAnEdgeHost
   return s
 }
 
-func (s *CreateAnEdgeHostnameRequest) SetPciRequired(v bool) *CreateAnEdgeHostnameRequest {
-  s.PciRequired = &v
-  return s
-}
-
-func (s *CreateAnEdgeHostnameRequest) SetGdprCompliant(v bool) *CreateAnEdgeHostnameRequest {
-  s.GdprCompliant = &v
-  return s
-}
-
 func (s *CreateAnEdgeHostnameRequest) SetClientZones(v []*CreateAnEdgeHostnameRequestClientZones) *CreateAnEdgeHostnameRequest {
   s.ClientZones = v
   return s
@@ -1061,32 +934,14 @@ func (s *CreateAnEdgeHostnameRequest) SetEstimatedBandwidth(v string) *CreateAnE
 }
 
 type CreateAnEdgeHostnameRequestClientZones struct     {
-  // {"en" : "This field indicates the region in which the rule applies. Refer to our API to get client regions to get valid region codes. For example, if you wish to create a rule that covers all of Europe, simply specify 'eu' as the region. You can indicate specific countries. For example, 'na.us' represents the 'United States of America', and 'eu.fr' represents 'France'.  
-  // 
-  // A special client region 'all' can be used to specify that the rule applies to the entire world. If overlapping regions are specified, the more specific one takes precedence. For example, if you specify 'as' in one rule and 'as.cn' in another, a request from China will follow the rule for 'as.cn'.", "zh_CN": "该规则适用的区域。可调用'查询支持的区域列表'接口来查看区域信息。例如，如果您希望创建规则覆盖整个欧洲，则指定'eu'为区域。 您可以指定具体的国家。例如，'na.us'代表'美国'，而'eu.fr'代表'法国'。
-  // 
-  // 'all'是一个特殊的区域，可用于指定适用于全球的规则。如果不同规则指定的区域存在重叠，则以更细粒度的区域优先。例如，如果您在一条规则中指定'as'，在另一条规则中指定'as.cn'，则来自中国的请求将优先匹配'as.cn'的规则。"}
-  Region *string `json:"region,omitempty" xml:"region,omitempty"`
-  // {"en" : "Default: 100 Range: [ 0 .. 100 ] 
-  // When multiple actions are specified for a client zone, the weight is used to adjust the probability of a client zone rule applying to a client request.
-  // Consider two rules that apply to 'as.cn': {'region':'as.cn', 'isp':'all', 'action':{'type':'deliver', 'by':['standard', 'premium', 'deluxe']}},
-  //     {'region':'as.cn', 'isp':'all', 'action':{'type':'redirect', 'to':['alternate.cname.com']}, 'weight':10}
-  // 
-  //  The probability of 'deliver' will be 100/(100+10) or 0.909 while the probability of 'redirect' will be 10/(100+10) or 0.091.
-  //  
-  // ", "zh_CN": "默认值: 100 取值范围: [ 0 .. 100 ] 
-  // 可以为同个访客分区指定多条规则。通过在规则中指定weight字段，可控制规则匹配的权重。
-  // 以'as.cn'区域的2条规则为例: {'region':'as.cn', 'isp':'all', 'action':{'type':'deliver', 'by':['standard', 'premium', 'deluxe']}},
-  //     {'region':'as.cn', 'isp':'all', 'action':{'type':'redirect', 'to':['alternate.cname.com']}, 'weight':10}
-  // 
-  // 按照以上规则，客户端请求匹配规则1进行'分发'的比例为100/(100+10)，即0.909，匹配规则2进行'跳转'的比例为10/(100+10)，即0.091。
-  //  
-  // "}
+  // {"en":"This field indicates the region in which the rule applies. Refer to our API to get client regions to get valid region codes. For example, if you wish to create a rule that covers all of Europe, simply specify 'eu' as the region. You can indicate specific countries. For example, 'na.us' represents the 'United States of America', and 'eu.fr' represents 'France'.\n\nA special client region 'all' can be used to specify that the rule applies to the entire world. If overlapping regions are specified, the more specific one takes precedence. For example, if you specify 'as' in one rule and 'as.cn' in another, a request from China will follow the rule for 'as.cn'.","zh_CN":"该规则适用的区域。可调用'查询支持的区域列表'接口来查看区域信息。例如，如果您希望创建规则覆盖整个欧洲，则指定'eu'为区域。 您可以指定具体的国家。例如，'na.us'代表'美国'，而'eu.fr'代表'法国'。\n\n'all'是一个特殊的区域，可用于指定适用于全球的规则。如果不同规则指定的区域存在重叠，则以更细粒度的区域优先。例如，如果您在一条规则中指定'as'，在另一条规则中指定'as.cn'，则来自中国的请求将优先匹配'as.cn'的规则。"}
+  Region *string `json:"region,omitempty" xml:"region,omitempty" require:"true"`
+  // {"en":"Specify the code representing an ISP (Internet Service Provider) if the rule only applies to requests from a particular ISP. Call our API to get a list of supported ISPs. Specify 'all' to indicate all ISPs rather than a particular one. Specify a comma-separated list of up to 10 ISP codes if you want your rule to apply to more than one ISP.","zh_CN":"该规则适用的运营商。可调用我们的'查询支持的ISP运营商列表'接口查看运营商信息。指定'all'表示所有运营商。如果希望该规则应用于多个运营商，则可指定多个运营商，用逗号分隔，但最多只能包含10个运营商。"}
+  Isp *string `json:"isp,omitempty" xml:"isp,omitempty" require:"true"`
+  // {"en":"Default: 100 Range: [ 0 .. 100 ]\nWhen multiple actions are specified for a client zone, the weight is used to adjust the probability of a client zone rule applying to a client request.\nConsider two rules that apply to 'as.cn': \n<pre>\n{'region':'as.cn', 'isp':'all', 'action':{'type':'deliver', 'by':['standard', 'premium', 'deluxe']}},\n{'region':'as.cn', 'isp':'all', 'action':{'type':'redirect', 'to':['alternate.cname.com']}, 'weight':10}\n</pre>\n\nThe probability of 'deliver' will be 100/(100+10) or 0.909 while the probability of 'redirect' will be 10/(100+10) or 0.091.","zh_CN":"默认值: 100 取值范围: [ 0 .. 100 ]\n可以为同个访客分区指定多条规则。通过在规则中指定weight字段，可控制规则匹配的权重。\n以'as.cn'区域以下的2条规则为例: \n<pre>\n{'region':'as.cn', 'isp':'all', 'action':{'type':'deliver', 'by':['standard', 'premium', 'deluxe']}},\n{'region':'as.cn', 'isp':'all', 'action':{'type':'redirect', 'to':['alternate.cname.com']}, 'weight':10}\n</pre>\n按照以上规则，客户端请求匹配规则1进行'分发'的比例为100/(100+10)，即0.909，匹配规则2进行'跳转'的比例为10/(100+10)，即0.091。"}
   Weight *int `json:"weight,omitempty" xml:"weight,omitempty"`
-  // {"en" : "This object describes the action to take for requests matching the rule.", "zh_CN": "当规则匹配时执行的动作。"}
-  Action *CreateAnEdgeHostnameRequestClientZonesAction `json:"action,omitempty" xml:"action,omitempty" type:"Struct"`
-  // {"en" : "Specify the code representing an ISP (Internet Service Provider) if the rule only applies to requests from a particular ISP. Call our API to get a list of supported ISPs. Specify 'all' to indicate all ISPs rather than a particular one. Specify a comma-separated list of up to 10 ISP codes if you want your rule to apply to more than one ISP.", "zh_CN": "该规则适用的运营商。可调用我们的'查询支持的ISP运营商列表'接口查看运营商信息。指定'all'表示所有运营商。如果希望该规则应用于多个运营商，则可指定多个运营商，用逗号分隔，但最多只能包含10个运营商。"}
-  Isp *string `json:"isp,omitempty" xml:"isp,omitempty"`
+  // {"en":"This object describes the action to take for requests matching the rule.","zh_CN":"当规则匹配时执行的动作。"}
+  Action *CreateAnEdgeHostnameRequestClientZonesAction `json:"action,omitempty" xml:"action,omitempty" require:"true" type:"Struct"`
 }
 
 func (s CreateAnEdgeHostnameRequestClientZones) String() string {
@@ -1102,6 +957,11 @@ func (s *CreateAnEdgeHostnameRequestClientZones) SetRegion(v string) *CreateAnEd
   return s
 }
 
+func (s *CreateAnEdgeHostnameRequestClientZones) SetIsp(v string) *CreateAnEdgeHostnameRequestClientZones {
+  s.Isp = &v
+  return s
+}
+
 func (s *CreateAnEdgeHostnameRequestClientZones) SetWeight(v int) *CreateAnEdgeHostnameRequestClientZones {
   s.Weight = &v
   return s
@@ -1112,25 +972,14 @@ func (s *CreateAnEdgeHostnameRequestClientZones) SetAction(v *CreateAnEdgeHostna
   return s
 }
 
-func (s *CreateAnEdgeHostnameRequestClientZones) SetIsp(v string) *CreateAnEdgeHostnameRequestClientZones {
-  s.Isp = &v
-  return s
-}
-
 type CreateAnEdgeHostnameRequestClientZonesAction struct {
-  // {"en" : "Enum: deliver,redirect,reject 
-  // Defines the action to take for requests to the zone. Options are to deliver using one or more server groups, to reject the request altogether, or to redirect to another domain. If 'reject' is specified, the client request will be redirected to a server that always responds with HTTP response code 403 representing 'Forbidden'. Up to one 'reject' action is allowed for each client zone.
-  // ", "zh_CN": "取值范围: deliver,redirect,reject 
-  // 当规则匹配时，对客户端请求执行的动作的类型。包括分发，拒绝和跳转3个类型。如果指定了'拒绝'，则客户端请求将被调度到一台服务器，该服务器总是响应403状态码，表示'Forbidden'拒绝访问。每个访客分区最多只允许一个'拒绝'动作。"}
+  // {"en":"Enum: deliver, redirect, reject\nDefines the action to take for requests from the client zone. 'deliver' means routing requests to CDN edge locations. 'redirect' means redirecting requests to specified destination, which is achieved via DNS CNAME mechanism. 'reject' means rejecting requests. When 'reject' is specified, the client requests will be directed to a server that always responds with HTTP response code 403 representing 'Forbidden'. Up to one client zone rule with 'reject' action is allowed for a specific client zone.","zh_CN":"取值范围: deliver, redirect, reject\n当规则匹配时，对客户端请求执行的动作的类型。包括分发，拒绝和跳转 3 个类型。'分发'表示将客户端请求调度到CDN边缘节点。'跳转'表示通过DNS CNAME机制将客户端请求重定向到指定的目标。如果指定了'拒绝'，则客户端请求将被固定调度到一台服务器，该服务器总是响应403状态码，表示'Forbidden'拒绝访问。单个访客分区最多只允许一条动作类型为'拒绝'的规则。"}
   Type *string `json:"type,omitempty" xml:"type,omitempty" require:"true"`
-  // {"en" : "This field is used if the action is of type 'deliver'. Specify one or more of the server groups (standard, premium, deluxe,  ultra, nearChina, ChinaStandard, ChinaPremium) to control the servers used to deliver content. If unspecified, 'standard' is used. <br/><br/>'nearChina' is a special server group that can be enabled for you if your domains lack ICP Beian, but you want optimal performance serving Chinese visitors. A client zone rule using nearChina cannot be configured to simultaneously deliver to other server groups, though you may create separate client zone rules to use other server groups.<br/><br/>If you have an ICP Beian license and want your content to be delivered by servers within China, you can opt to use 'ChinaStandard' and 'ChinaPremium.' Please contact our support team if you require nearChina, ChinaStandard, or ChinaPremium.<br/><br/>If an edge hostname is not initially configured to use ChinaStandard or ChinaPremium, you will not be able to modify it later to use these two server groups. Instead, you will need to create a new edge hostname with client zone rules delivering to those server groups.", "zh_CN": "如果动作类型为'分发'，则使用此字段指定一个或多个节点组(standard, premium, deluxe,  ultra, nearChina, ChinaStandard, ChinaPremium) 来选择提供内容分发服务的缓存节点。如果未指定，则使用'standard'。<br/><br/>'nearChina'  是一个特殊的节点组。如果您需要使用nearChina节点组，请联系我们的技术支持开通。不能在同一条规则中同时指定nearChina节点组和其他节点组。如果要使用其他节点组，需要创建单独的访客分区规则。<br/><br/>如果您的加速域名有ICP备案，希望由中国大陆的服务器提供内容分发服务，您可以选择使用'ChinaStandard'和'ChinaPremium'节点组。
-  // <br/><br/>如果调度域名创建时没有指定使用ChinaStandard或ChinaPremium节点组，则无法通过更新调度域名来使用这两个节点组。您需要创建一个新的调度域名，在新的调度域名中指定使用ChinaStandard或ChinaPremium，才能使用这2个节点组。"}
+  // {"en":"This field is used if the action is of type 'deliver'. Specify one or more of the server groups (standard, premium, deluxe,  ultra, nearChina, ChinaStandard, ChinaPremium) to control the servers used to deliver content. What server groups are available here depends on your subscription. <br/><br/>'nearChina' is a special server group that can be enabled for you if your domains lack ICP Beian, but you want optimal performance serving Chinese visitors. A client zone rule using nearChina cannot be configured to simultaneously deliver to other server groups, though you may create separate client zone rules to use other server groups.<br/><br/>If you have an ICP Beian license and want your content to be delivered by servers within China, you can opt to use 'ChinaStandard' and 'ChinaPremium.'<br/><br/>If an edge hostname is not initially configured to use ChinaStandard or ChinaPremium, you will not be able to modify it later to use these two server groups. Instead, you will need to create a new edge hostname with client zone rules delivering to those server groups.","zh_CN":"如果动作类型为'分发'，则使用此字段指定一个或多个节点组(standard, premium, deluxe,  ultra, nearChina, ChinaStandard, ChinaPremium) 来选择提供内容分发服务的缓存节点。您此处能选用的节点组，取决于您合同中开通的加速区域。<br/><br/>'nearChina'  是一个特殊的节点组。不能在同一条规则中同时指定nearChina节点组和其他节点组。如果要使用其他节点组，需要创建单独的访客分区规则。<br/><br/>如果您的加速域名有ICP备案，希望由中国大陆的服务器提供内容分发服务，您可以选择使用'ChinaStandard'和'ChinaPremium'节点组。<br/><br/>如果调度域名创建时没有指定使用ChinaStandard或ChinaPremium节点组，则无法通过更新调度域名来使用这两个节点组。您需要创建一个新的调度域名，在新的调度域名中指定使用ChinaStandard或ChinaPremium，才能使用这2个节点组。"}
   By []*string `json:"by,omitempty" xml:"by,omitempty" type:"Repeated"`
-  // {"en" : "This field is used if the action is of type 'redirect'. It indicates the hostname or IP address to redirect to. This is typically an origin server or another CDN provider.", "zh_CN": "如果动作类型为'跳转'，则通过该字段指定跳转的目标域名或IP地址。'跳转'目标通常是源站服务器或其它CDN厂商。"}
+  // {"en":"This field is used if the action is of type 'redirect'. It indicates the hostname or IP address to redirect to. This is typically an origin server or another CDN provider.","zh_CN":"如果动作类型为'跳转'，则通过该字段指定跳转的目标域名或IP地址。'跳转'目标通常是源站服务器或其它CDN厂商。"}
   To []*string `json:"to,omitempty" xml:"to,omitempty" type:"Repeated"`
-  // {"en" : "Default: True 
-  // Indicates whether an IPv6 address can be used. This value is used only if the client zone rule's action type is 'deliver'.", "zh_CN": "默认值: True 
-  // 指定是否允许使用IPv6地址进行内容分发。仅当动作类型为'分发'时该值才有效。"}
+  // {"en":"Default: True\nIndicates whether an IPv6 address can be used. This value is used only if the client zone rule's action type is 'deliver'.","zh_CN":"默认值: True\n指定是否允许使用IPv6地址进行内容分发。仅当动作类型为'分发'时该值才有效。"}
   EnableIPv6 *bool `json:"enableIPv6,omitempty" xml:"enableIPv6,omitempty"`
 }
 
@@ -1162,6 +1011,39 @@ func (s *CreateAnEdgeHostnameRequestClientZonesAction) SetEnableIPv6(v bool) *Cr
   return s
 }
 
+type CreateAnEdgeHostnameRequestHeader struct {
+}
+
+func (s CreateAnEdgeHostnameRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateAnEdgeHostnameRequestHeader) GoString() string {
+  return s.String()
+}
+
+type CreateAnEdgeHostnamePaths struct {
+}
+
+func (s CreateAnEdgeHostnamePaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateAnEdgeHostnamePaths) GoString() string {
+  return s.String()
+}
+
+type CreateAnEdgeHostnameParameters struct {
+}
+
+func (s CreateAnEdgeHostnameParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s CreateAnEdgeHostnameParameters) GoString() string {
+  return s.String()
+}
+
 type CreateAnEdgeHostnameResponse struct {
 }
 
@@ -1174,7 +1056,7 @@ func (s CreateAnEdgeHostnameResponse) GoString() string {
 }
 
 type CreateAnEdgeHostnameResponseHeader struct {
-  // {"en":"The value is a URL to the new edge hostname.", "zh_CN":"通过Location响应头返回新建的调度域名的URL。可使用该URL调用'查询调度域名详情'接口来查看调度域名的详细信息。URL示例：<code>Location: http://open.chinanetcenter.com/cdn/edgeHostnames/abcde12345.qtlcdn.com"}
+  // {"en":"Returns a URL pointing to the new edge hostname created, if the request is accepted. </br> URL format: <code>{scheme}://{domain}/cdn/edgeHostnames/{edgeHostname}</code> Example URL: <code>https://api.example.com/cdn/edgeHostnames/abcde12345.qtlcdn.com</code>","zh_CN":"当接口调用成功时，通过Location响应头返回新建的调度域名的URL。可使用该URL调用'查询调度域名详情'接口来查看调度域名的详细信息。</br> URL格式：<code>{协议}://{域名}/cdn/edgeHostnames/{调度域名}</code> URL示例： <code>https://open.chinanetcenter.com/cdn/edgeHostnames/abcde12345.qtlcdn.com</code>"}
   Location *string `json:"Location,omitempty" xml:"Location,omitempty" require:"true"`
 }
 

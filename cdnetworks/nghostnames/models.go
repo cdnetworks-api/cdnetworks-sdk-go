@@ -151,8 +151,30 @@ func (s *GetListOfHostnamesThatHaveBeenDeployedResponseHostnames) SetPropertyInS
 
 
 
+type GetHistoricalInformationAboutOneHostnameRequest struct {
+}
+
+func (s GetHistoricalInformationAboutOneHostnameRequest) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetHistoricalInformationAboutOneHostnameRequest) GoString() string {
+  return s.String()
+}
+
+type GetHistoricalInformationAboutOneHostnameRequestHeader struct {
+}
+
+func (s GetHistoricalInformationAboutOneHostnameRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetHistoricalInformationAboutOneHostnameRequestHeader) GoString() string {
+  return s.String()
+}
+
 type GetHistoricalInformationAboutOneHostnamePaths struct {
-  // {"en" : "A hostname that was defined in a property.", "zh_CN": "加速域名。"}
+  // {"en":"A hostname that was defined in a property.","zh_CN":"加速域名。"}
   Hostname *string `json:"hostname,omitempty" xml:"hostname,omitempty" require:"true"`
 }
 
@@ -170,16 +192,11 @@ func (s *GetHistoricalInformationAboutOneHostnamePaths) SetHostname(v string) *G
 }
 
 type GetHistoricalInformationAboutOneHostnameParameters struct {
-  // {"en" : "Beginning of the time period in RFC 3339 format. The time must be specified using the UTC timezone; it cannot be an offset. Example: startdate=2019-11-14T00:00:00Z By default, the value is when you began using CDN Pro.", "zh_CN": "指定查询开始时间，以RFC 3339日期格式表示。必须使用UTC时区，不支持指定其它时区。示例：startdate=2019-11-14T00:00:00Z。如果开始时间未指定，则默认为您开通CDN Pro服务的时间。"}
+  // {"en":"Beginning of the time period in RFC 3339 format. The time must be specified using the UTC timezone; it cannot be an offset. Example: startdate=2019-11-14T00:00:00Z By default, the value is when you began using CDN Pro.","zh_CN":"指定查询开始时间，以RFC 3339日期格式表示。必须使用UTC时区，不支持指定其它时区。示例：startdate=2019-11-14T00:00:00Z。如果开始时间未指定，则默认为您开通CDN Pro服务的时间。"}
   Startdate *string `json:"startdate,omitempty" xml:"startdate,omitempty"`
-  // {"en" : "End of the time period in RFC 3339 format. The time must be specified using the UTC timezone; it cannot be an offset. Example: enddate=2019-11-14T00:00:00Z The default is the current time.", "zh_CN": "指定查询结束时间，以RFC 3339日期格式表示。必须使用UTC时区，不支持指定其它时区。示例：enddate=2019-12-14T00:00:00Z。如果结束时间未指定，则默认为当前时间。"}
+  // {"en":"End of the time period in RFC 3339 format. The time must be specified using the UTC timezone; it cannot be an offset. Example: enddate=2019-11-14T00:00:00Z The default is the current time.","zh_CN":"指定查询结束时间，以RFC 3339日期格式表示。必须使用UTC时区，不支持指定其它时区。示例：enddate=2019-12-14T00:00:00Z。如果结束时间未指定，则默认为当前时间。"}
   Enddate *string `json:"enddate,omitempty" xml:"enddate,omitempty"`
-  // {"en" : "Enum: all,staging,production 
-  // Default: all 
-  // The value can be 'all', 'staging', or 'production' to filter the results based on where the hostnames have been deployed. 
-  // ", "zh_CN": "取值范围: all,staging,production 
-  // 默认值: all 
-  // 根据加速域名的部署环境过滤。该值可以是'all', 'staging', 或'production'，分别表示所有环境，演练环境和生产环境。"}
+  // {"en":"Enum: all,staging,production\nDefault: all\nThe value can be 'all', 'staging', or 'production' to filter the results based on where the hostnames have been deployed.","zh_CN":"取值范围: all,staging,production\n默认值: all\n根据加速域名的部署环境过滤。该值可以是'all', 'staging', 或'production'，分别表示所有环境，演练环境和生产环境。"}
   Target *string `json:"target,omitempty" xml:"target,omitempty"`
 }
 
@@ -206,43 +223,10 @@ func (s *GetHistoricalInformationAboutOneHostnameParameters) SetTarget(v string)
   return s
 }
 
-type GetHistoricalInformationAboutOneHostnameRequestHeader struct {
-}
-
-func (s GetHistoricalInformationAboutOneHostnameRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetHistoricalInformationAboutOneHostnameRequestHeader) GoString() string {
-  return s.String()
-}
-
-type GetHistoricalInformationAboutOneHostnameRequest struct {
-}
-
-func (s GetHistoricalInformationAboutOneHostnameRequest) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetHistoricalInformationAboutOneHostnameRequest) GoString() string {
-  return s.String()
-}
-
-type GetHistoricalInformationAboutOneHostnameResponseHeader struct {
-}
-
-func (s GetHistoricalInformationAboutOneHostnameResponseHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetHistoricalInformationAboutOneHostnameResponseHeader) GoString() string {
-  return s.String()
-}
-
 type GetHistoricalInformationAboutOneHostnameResponse struct {
-  // {"en" : "A hostname that was defined in a property.", "zh_CN": "加速域名。"}
+  // {"en":"A hostname that was defined in a property.","zh_CN":"加速域名。"}
   Hostname *string `json:"hostname,omitempty" xml:"hostname,omitempty" require:"true"`
-  // {"en" : "The history contains deployment and undeployment dates. It is empty if the hostname has never been deployed to production.", "zh_CN": "加速域名部署到生产环境或从生产环境卸载的历史信息。如果加速域名从未部署到生产环境，则返回空对象。"}
+  // {"en":"The history contains deployment and undeployment dates. It is empty if the hostname has never been deployed to production.","zh_CN":"加速域名部署到生产环境或从生产环境卸载的历史信息。如果加速域名从未部署到生产环境，则返回空对象。"}
   History []*GetHistoricalInformationAboutOneHostnameResponseHistory `json:"history,omitempty" xml:"history,omitempty" require:"true" type:"Repeated"`
 }
 
@@ -265,14 +249,16 @@ func (s *GetHistoricalInformationAboutOneHostnameResponse) SetHistory(v []*GetHi
 }
 
 type GetHistoricalInformationAboutOneHostnameResponseHistory struct     {
-  // {"en" : "The environment where the hostname is deployed.", "zh_CN": "加速域名所部署的环境。"}
-  Target *string `json:"target,omitempty" xml:"target,omitempty"`
-  // {"en" : "ID of the property that included the hostname.", "zh_CN": "加速域名对应的加速项目的ID。"}
-  PropertyId *string `json:"propertyId,omitempty" xml:"propertyId,omitempty"`
-  // {"en" : "RFC 3339 date with UTC time that indicates when the property with the hostname was deployed. Example: '2020-04-24T20:09:15Z'", "zh_CN": "RFC 3339格式的日期，表示加速项目的部署时间，采用UTC时区。示例：'2020-04-24T20:09:15Z'。"}
-  DeploymentDate *string `json:"deploymentDate,omitempty" xml:"deploymentDate,omitempty"`
-  // {"en" : "RFC 3339 date with UTC time that indicates when the property with the hostname was undeployed. Example: '2020-04-24T20:09:15Z'", "zh_CN": "RFC 3339格式的日期，表示加速项目的卸载时间，采用UTC时区。示例：'2020-04-24T20:09:15Z'。"}
-  UndeploymentDate *string `json:"undeploymentDate,omitempty" xml:"undeploymentDate,omitempty"`
+  // {"en":"The environment where the hostname is deployed.","zh_CN":"加速域名所部署的环境。"}
+  Target *string `json:"target,omitempty" xml:"target,omitempty" require:"true"`
+  // {"en":"ID of the property that included the hostname.","zh_CN":"加速域名对应的加速项目的ID。"}
+  PropertyId *string `json:"propertyId,omitempty" xml:"propertyId,omitempty" require:"true"`
+  // {"en":"RFC 3339 date with UTC time that indicates when the property with the hostname was deployed. Example: '2020-04-24T20:09:15Z'","zh_CN":"RFC 3339格式的日期，表示加速项目的部署时间，采用UTC时区。示例：'2020-04-24T20:09:15Z'。"}
+  DeploymentDate *string `json:"deploymentDate,omitempty" xml:"deploymentDate,omitempty" require:"true"`
+  // {"en":"RFC 3339 date with UTC time that indicates when the property with the hostname was undeployed. Example: '2020-04-24T20:09:15Z'","zh_CN":"RFC 3339格式的日期，表示加速项目的卸载时间，采用UTC时区。示例：'2020-04-24T20:09:15Z'。"}
+  UndeploymentDate *string `json:"undeploymentDate,omitempty" xml:"undeploymentDate,omitempty" require:"true"`
+  // {"en":"Service type that the hostname assoicates with.","zh_CN":"加速域名关联的服务类型。"}
+  LegacyType *string `json:"legacyType,omitempty" xml:"legacyType,omitempty" require:"true"`
 }
 
 func (s GetHistoricalInformationAboutOneHostnameResponseHistory) String() string {
@@ -301,6 +287,22 @@ func (s *GetHistoricalInformationAboutOneHostnameResponseHistory) SetDeploymentD
 func (s *GetHistoricalInformationAboutOneHostnameResponseHistory) SetUndeploymentDate(v string) *GetHistoricalInformationAboutOneHostnameResponseHistory {
   s.UndeploymentDate = &v
   return s
+}
+
+func (s *GetHistoricalInformationAboutOneHostnameResponseHistory) SetLegacyType(v string) *GetHistoricalInformationAboutOneHostnameResponseHistory {
+  s.LegacyType = &v
+  return s
+}
+
+type GetHistoricalInformationAboutOneHostnameResponseHeader struct {
+}
+
+func (s GetHistoricalInformationAboutOneHostnameResponseHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetHistoricalInformationAboutOneHostnameResponseHeader) GoString() string {
+  return s.String()
 }
 
 

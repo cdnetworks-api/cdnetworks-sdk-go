@@ -71,4 +71,4 @@ if err != nil {
 | ActionName | description | client_methods | uri |
 | --- | --- | --- | --- |
 | Prefetch | 将源站的内容主动预取到CDN节点，用户首次访问可直接命中缓存，即提升首次访问速度，又能有效缓解源站压力。 | POST | /ccm/fetch/ItemIdReceiver |
-| Queryprefetchstatus | 查询预取任务的执行状态，可查看是否已经全网执行生效。 | POST | /ccm/fetch/ItemIdQuery |
+| Getprefetchstatus | 查询预取任务的执行状态，可查看是否已经全网执行生效。 | POST | /ccm/fetch/ItemIdQuery |
