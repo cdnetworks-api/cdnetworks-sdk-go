@@ -1100,6 +1100,10 @@ type UpdateDomainForTerraformRequestHeaderModifyRules struct {
 	ExceptRequestMethod *string `json:"exceptRequestMethod" xml:"exceptRequestMethod"`
 	// {"en":"Exception request header.", "zh_CN":"例外的请求头"}
 	ExceptRequestHeader *string `json:"exceptRequestHeader" xml:"exceptRequestHeader"`
+	// {"en":"Status code. Please separate by semicolon.", "zh_CN":"状态码。多个请以英文;分隔"}
+	StatusCode *string `json:"statusCode" xml:"statusCode"`
+	// {"en":"Exception status code. Please separate by semicolon.", "zh_CN":"例外的状态码。多个请以英文;分隔"}
+	ExceptStatusCode *string `json:"exceptStatusCode" xml:"exceptStatusCode"`
 }
 
 func (s UpdateDomainForTerraformRequestHeaderModifyRules) String() string {
@@ -1210,6 +1214,16 @@ func (s *UpdateDomainForTerraformRequestHeaderModifyRules) SetExceptRequestHeade
 	return s
 }
 
+func (s *UpdateDomainForTerraformRequestHeaderModifyRules) SetStatusCode(v string) *UpdateDomainForTerraformRequestHeaderModifyRules {
+	s.StatusCode = &v
+	return s
+}
+
+func (s *UpdateDomainForTerraformRequestHeaderModifyRules) SetExceptStatusCode(v string) *UpdateDomainForTerraformRequestHeaderModifyRules {
+	s.ExceptStatusCode = &v
+	return s
+}
+
 type UpdateDomainForTerraformRequestRewriteRuleSettings struct {
 	// {"en":"Add a grid type identifier to indicate a specific group configuration when the client has multiple groups of configurations.", "zh_CN":"添加grid类型标识，表示客户多组配置时，具体某组配置；data-id重复，已入参同个id最后一组为准生效
 	// data-id可以通过查询接口获取。
@@ -1270,6 +1284,18 @@ type UpdateDomainForTerraformRequestRewriteRuleSettings struct {
 	RequestHeader *string `json:"requestHeader" xml:"requestHeader"`
 	// {"en":"Matching condition: Exception request header", "zh_CN":"匹配条件：例外的请求头"}
 	ExceptionRequestHeader *string `json:"exceptionRequestHeader" xml:"exceptionRequestHeader"`
+	// {"en":"Request Method. Please separate by semicolon.", "zh_CN":"请求方式。多个请以英文;分隔"}
+	RequestWay *string `json:"requestWay" xml:"requestWay"`
+	// {"en":"Exceptional Request Method. Please separate by semicolon.", "zh_CN":"例外的请求方式。多个请以英文;分隔"}
+	ExceptionalRequest *string `json:"exceptionalRequest" xml:"exceptionalRequest"`
+	// {"en":"UA", "zh_CN":"UA"}
+	Ua *string `json:"ua" xml:"ua"`
+	// {"en":"Exceptional UA", "zh_CN":"例外的UA"}
+	ExceptionalUa *string `json:"exceptionalUa" xml:"exceptionalUa"`
+	// {"en":"Region. Please separate by semicolon.", "zh_CN":"用户区域。多个请以英文;分隔"}
+	OperatorsArea *string `json:"operatorsArea" xml:"operatorsArea"`
+	// {"en":"Exceptional region. Please separate by semicolon.", "zh_CN":"例外的用户区域。多个请以英文;分隔"}
+	ExceptionalOperatorsArea *string `json:"exceptionalOperatorsArea" xml:"exceptionalOperatorsArea"`
 }
 
 func (s UpdateDomainForTerraformRequestRewriteRuleSettings) String() string {
@@ -1352,6 +1378,36 @@ func (s *UpdateDomainForTerraformRequestRewriteRuleSettings) SetRequestHeader(v 
 
 func (s *UpdateDomainForTerraformRequestRewriteRuleSettings) SetExceptionRequestHeader(v string) *UpdateDomainForTerraformRequestRewriteRuleSettings {
 	s.ExceptionRequestHeader = &v
+	return s
+}
+
+func (s *UpdateDomainForTerraformRequestRewriteRuleSettings) SetRequestWay(v string) *UpdateDomainForTerraformRequestRewriteRuleSettings {
+	s.RequestWay = &v
+	return s
+}
+
+func (s *UpdateDomainForTerraformRequestRewriteRuleSettings) SetExceptionalRequest(v string) *UpdateDomainForTerraformRequestRewriteRuleSettings {
+	s.ExceptionalRequest = &v
+	return s
+}
+
+func (s *UpdateDomainForTerraformRequestRewriteRuleSettings) SetUa(v string) *UpdateDomainForTerraformRequestRewriteRuleSettings {
+	s.Ua = &v
+	return s
+}
+
+func (s *UpdateDomainForTerraformRequestRewriteRuleSettings) SetExceptionalUa(v string) *UpdateDomainForTerraformRequestRewriteRuleSettings {
+	s.ExceptionalUa = &v
+	return s
+}
+
+func (s *UpdateDomainForTerraformRequestRewriteRuleSettings) SetOperatorsArea(v string) *UpdateDomainForTerraformRequestRewriteRuleSettings {
+	s.OperatorsArea = &v
+	return s
+}
+
+func (s *UpdateDomainForTerraformRequestRewriteRuleSettings) SetExceptionalOperatorsArea(v string) *UpdateDomainForTerraformRequestRewriteRuleSettings {
+	s.ExceptionalOperatorsArea = &v
 	return s
 }
 

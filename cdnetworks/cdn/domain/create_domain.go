@@ -1076,6 +1076,10 @@ type AddDomainForTerraformRequestHeaderModifyRules struct {
 	ExceptRequestMethod *string `json:"exceptRequestMethod,omitempty" xml:"exceptRequestMethod,omitempty"`
 	// {"en":"Exception request header.", "zh_CN":"例外的请求头"}
 	ExceptRequestHeader *string `json:"exceptRequestHeader,omitempty" xml:"exceptRequestHeader,omitempty"`
+	// {"en":"Status code. Please separate by semicolon.", "zh_CN":"状态码。多个请以英文;分隔"}
+	StatusCode *string `json:"statusCode,omitempty" xml:"statusCode,omitempty"`
+	// {"en":"Exception status code. Please separate by semicolon.", "zh_CN":"例外的状态码。多个请以英文;分隔"}
+	ExceptStatusCode *string `json:"exceptStatusCode,omitempty" xml:"exceptStatusCode,omitempty"`
 }
 
 func (s AddDomainForTerraformRequestHeaderModifyRules) String() string {
@@ -1181,6 +1185,16 @@ func (s *AddDomainForTerraformRequestHeaderModifyRules) SetExceptRequestHeader(v
 	return s
 }
 
+func (s *AddDomainForTerraformRequestHeaderModifyRules) SetStatusCode(v string) *AddDomainForTerraformRequestHeaderModifyRules {
+	s.StatusCode = &v
+	return s
+}
+
+func (s *AddDomainForTerraformRequestHeaderModifyRules) SetExceptStatusCode(v string) *AddDomainForTerraformRequestHeaderModifyRules {
+	s.ExceptStatusCode = &v
+	return s
+}
+
 type AddDomainForTerraformRequestRewriteRuleSettings struct {
 	// {"en":"The url matching mode supports fuzzy regularization. If all matches, the input parameters can be configured as: *", "zh_CN":"url匹配模式，支持正则，客户入参参考：.*
 	// 对于匹配到的URL进行内容重定向"}
@@ -1232,6 +1246,18 @@ type AddDomainForTerraformRequestRewriteRuleSettings struct {
 	RequestHeader *string `json:"requestHeader,omitempty" xml:"requestHeader,omitempty"`
 	// {"en":"Matching condition: Exception request header", "zh_CN":"匹配条件：例外的请求头"}
 	ExceptionRequestHeader *string `json:"exceptionRequestHeader,omitempty" xml:"exceptionRequestHeader,omitempty"`
+	// {"en":"Request Method. Please separate by semicolon.", "zh_CN":"请求方式。多个请以英文;分隔"}
+	RequestWay *string `json:"requestWay,omitempty" xml:"requestWay,omitempty"`
+	// {"en":"Exceptional Request Method. Please separate by semicolon.", "zh_CN":"例外的请求方式。多个请以英文;分隔"}
+	ExceptionalRequest *string `json:"exceptionalRequest,omitempty" xml:"exceptionalRequest,omitempty"`
+	// {"en":"UA", "zh_CN":"UA"}
+	Ua *string `json:"ua,omitempty" xml:"ua,omitempty"`
+	// {"en":"Exceptional UA", "zh_CN":"例外的UA"}
+	ExceptionalUa *string `json:"exceptionalUa,omitempty" xml:"exceptionalUa,omitempty"`
+	// {"en":"Region. Please separate by semicolon.", "zh_CN":"用户区域。多个请以英文;分隔"}
+	OperatorsArea *string `json:"operatorsArea,omitempty" xml:"operatorsArea,omitempty"`
+	// {"en":"Exceptional region. Please separate by semicolon.", "zh_CN":"例外的用户区域。多个请以英文;分隔"}
+	ExceptionalOperatorsArea *string `json:"exceptionalOperatorsArea,omitempty" xml:"exceptionalOperatorsArea,omitempty"`
 }
 
 func (s AddDomainForTerraformRequestRewriteRuleSettings) String() string {
@@ -1309,6 +1335,36 @@ func (s *AddDomainForTerraformRequestRewriteRuleSettings) SetRequestHeader(v str
 
 func (s *AddDomainForTerraformRequestRewriteRuleSettings) SetExceptionRequestHeader(v string) *AddDomainForTerraformRequestRewriteRuleSettings {
 	s.ExceptionRequestHeader = &v
+	return s
+}
+
+func (s *AddDomainForTerraformRequestRewriteRuleSettings) SetRequestWay(v string) *AddDomainForTerraformRequestRewriteRuleSettings {
+	s.RequestWay = &v
+	return s
+}
+
+func (s *AddDomainForTerraformRequestRewriteRuleSettings) SetExceptionalRequest(v string) *AddDomainForTerraformRequestRewriteRuleSettings {
+	s.ExceptionalRequest = &v
+	return s
+}
+
+func (s *AddDomainForTerraformRequestRewriteRuleSettings) SetUa(v string) *AddDomainForTerraformRequestRewriteRuleSettings {
+	s.Ua = &v
+	return s
+}
+
+func (s *AddDomainForTerraformRequestRewriteRuleSettings) SetExceptionalUa(v string) *AddDomainForTerraformRequestRewriteRuleSettings {
+	s.ExceptionalUa = &v
+	return s
+}
+
+func (s *AddDomainForTerraformRequestRewriteRuleSettings) SetOperatorsArea(v string) *AddDomainForTerraformRequestRewriteRuleSettings {
+	s.OperatorsArea = &v
+	return s
+}
+
+func (s *AddDomainForTerraformRequestRewriteRuleSettings) SetExceptionalOperatorsArea(v string) *AddDomainForTerraformRequestRewriteRuleSettings {
+	s.ExceptionalOperatorsArea = &v
 	return s
 }
 

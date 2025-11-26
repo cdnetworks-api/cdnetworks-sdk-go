@@ -1189,6 +1189,10 @@ type QueryDomainForTerraformResponseDataHeaderModifyRules struct {
 	ExceptRequestMethod *string `json:"exceptRequestMethod,omitempty" xml:"exceptRequestMethod,omitempty"`
 	// {"en":"Exception request header.", "zh_CN":"例外的请求头"}
 	ExceptRequestHeader *string `json:"exceptRequestHeader,omitempty" xml:"exceptRequestHeader,omitempty"`
+	// {"en":"Status code. Please separate by semicolon.", "zh_CN":"状态码。多个请以英文;分隔"}
+	StatusCode *string `json:"statusCode,omitempty" xml:"statusCode,omitempty"`
+	// {"en":"Exception status code. Please separate by semicolon.", "zh_CN":"例外的状态码。多个请以英文;分隔"}
+	ExceptStatusCode *string `json:"exceptStatusCode,omitempty" xml:"exceptStatusCode,omitempty"`
 }
 
 func (s QueryDomainForTerraformResponseDataHeaderModifyRules) String() string {
@@ -1299,6 +1303,16 @@ func (s *QueryDomainForTerraformResponseDataHeaderModifyRules) SetExceptRequestH
 	return s
 }
 
+func (s *QueryDomainForTerraformResponseDataHeaderModifyRules) SetStatusCode(v string) *QueryDomainForTerraformResponseDataHeaderModifyRules {
+	s.StatusCode = &v
+	return s
+}
+
+func (s *QueryDomainForTerraformResponseDataHeaderModifyRules) SetExceptStatusCode(v string) *QueryDomainForTerraformResponseDataHeaderModifyRules {
+	s.ExceptStatusCode = &v
+	return s
+}
+
 type QueryDomainForTerraformResponseDataRewriteRuleSettings struct {
 	// {"en":"Add a grid type identifier to indicate a specific group configuration when the client has multiple groups of configurations.", "zh_CN":"添加grid类型标识，表示客户多组配置时，具体某组配置；data-id重复，已入参同个id最后一组为准生效
 	// data-id可以通过查询接口获取。
@@ -1359,6 +1373,18 @@ type QueryDomainForTerraformResponseDataRewriteRuleSettings struct {
 	RequestHeader *string `json:"requestHeader,omitempty" xml:"requestHeader,omitempty"`
 	// {"en":"Matching condition: Exception request header", "zh_CN":"匹配条件：例外的请求头"}
 	ExceptionRequestHeader *string `json:"exceptionRequestHeader,omitempty" xml:"exceptionRequestHeader,omitempty"`
+	// {"en":"Request Method. Please separate by semicolon.", "zh_CN":"请求方式。多个请以英文;分隔"}
+	RequestWay *string `json:"requestWay,omitempty" xml:"requestWay,omitempty"`
+	// {"en":"Exceptional Request Method. Please separate by semicolon.", "zh_CN":"例外的请求方式。多个请以英文;分隔"}
+	ExceptionalRequest *string `json:"exceptionalRequest,omitempty" xml:"exceptionalRequest,omitempty"`
+	// {"en":"UA", "zh_CN":"UA"}
+	Ua *string `json:"ua,omitempty" xml:"ua,omitempty"`
+	// {"en":"Exceptional UA", "zh_CN":"例外的UA"}
+	ExceptionalUa *string `json:"exceptionalUa,omitempty" xml:"exceptionalUa,omitempty"`
+	// {"en":"Region. Please separate by semicolon.", "zh_CN":"用户区域。多个请以英文;分隔"}
+	OperatorsArea *string `json:"operatorsArea,omitempty" xml:"operatorsArea,omitempty"`
+	// {"en":"Exceptional region. Please separate by semicolon.", "zh_CN":"例外的用户区域。多个请以英文;分隔"}
+	ExceptionalOperatorsArea *string `json:"exceptionalOperatorsArea,omitempty" xml:"exceptionalOperatorsArea,omitempty"`
 }
 
 func (s QueryDomainForTerraformResponseDataRewriteRuleSettings) String() string {
@@ -1441,6 +1467,36 @@ func (s *QueryDomainForTerraformResponseDataRewriteRuleSettings) SetRequestHeade
 
 func (s *QueryDomainForTerraformResponseDataRewriteRuleSettings) SetExceptionRequestHeader(v string) *QueryDomainForTerraformResponseDataRewriteRuleSettings {
 	s.ExceptionRequestHeader = &v
+	return s
+}
+
+func (s *QueryDomainForTerraformResponseDataRewriteRuleSettings) SetRequestWay(v string) *QueryDomainForTerraformResponseDataRewriteRuleSettings {
+	s.RequestWay = &v
+	return s
+}
+
+func (s *QueryDomainForTerraformResponseDataRewriteRuleSettings) SetExceptionalRequest(v string) *QueryDomainForTerraformResponseDataRewriteRuleSettings {
+	s.ExceptionalRequest = &v
+	return s
+}
+
+func (s *QueryDomainForTerraformResponseDataRewriteRuleSettings) SetUa(v string) *QueryDomainForTerraformResponseDataRewriteRuleSettings {
+	s.Ua = &v
+	return s
+}
+
+func (s *QueryDomainForTerraformResponseDataRewriteRuleSettings) SetExceptionalUa(v string) *QueryDomainForTerraformResponseDataRewriteRuleSettings {
+	s.ExceptionalUa = &v
+	return s
+}
+
+func (s *QueryDomainForTerraformResponseDataRewriteRuleSettings) SetOperatorsArea(v string) *QueryDomainForTerraformResponseDataRewriteRuleSettings {
+	s.OperatorsArea = &v
+	return s
+}
+
+func (s *QueryDomainForTerraformResponseDataRewriteRuleSettings) SetExceptionalOperatorsArea(v string) *QueryDomainForTerraformResponseDataRewriteRuleSettings {
+	s.ExceptionalOperatorsArea = &v
 	return s
 }
 
