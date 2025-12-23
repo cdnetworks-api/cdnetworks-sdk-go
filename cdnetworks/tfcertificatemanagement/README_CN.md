@@ -70,4 +70,8 @@ if err != nil {
 
 | ActionName | description | client_methods | uri |
 | --- | --- | --- | --- |
+| Addcertificateforterraform | Terraform新增证书接口 | POST | /api/terraform/certificate |
+| Updatecertificateforterraform | Terraform修改证书接口 | PUT | /api/terraform/certificate/* |
+| Querycertificateforterraform | Terraform根据证书ID查看证书详情 | GET | /api/terraform/certificate/* |
+| Deletecertificateforterraform | Terraform删除证书接口 | DELETE | /api/terraform/certificate/* |
 | Querycertificatelistforterraform | Terraform查询证书列表接口 | POST | /api/terraform/certificates |

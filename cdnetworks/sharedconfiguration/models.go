@@ -498,9 +498,9 @@ func (s DisassociateShareCustomizeBotsResponseHeader) GoString() string {
 
 
 type CreateSharedRateLimitingRuleRequest struct {
-  // {"en":"Rule Name, maximum 50 characters.\nDoes not support # and &.","zh_CN":"规则名称，最多50个字符。\n不支持 # 和 &。"}
+  // {"en":"Rule Name, maximum 100 characters.Does not support # and &.","zh_CN":"规则名称，最多100个字符。不支持 # 和 &。"}
   RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
-  // {"en":"Description, maximum 200 characters.","zh_CN":"规则描述，最多200个字符。"}
+  // {"en":"Description, maximum 1000 characters.","zh_CN":"规则描述，最多1000个字符。"}
   Description *string `json:"description,omitempty" xml:"description,omitempty"`
   // {"en":"Client identifier.\nIP:Client IP\nIP_UA:Client IP and User-Agent\nCOOKIE:Cookie\nIP_COOKIE:Client IP and Cookie\nHEADER:Request Header\nWhen there is a status code in the matching condition,this client identifier is not supported.\nIP_HEADER:Client IP and Request Header\nWhen there is a status code in the matching condition,this client identifier is not supported .","zh_CN":"统计粒度。\nIP：客户端IP\nIP_UA：客户端IP和User-Agent\nCOOKIE：Cookie\nIP_COOKIE：客户端IP和Cookie\nHEADER：请求头，当匹配条件中存在状态码时不支持此统计粒度\nIP_HEADER：客户端IP和请求头，当匹配条件中存在状态码时不支持此统计粒度"}
   StatisticalItem *string `json:"statisticalItem,omitempty" xml:"statisticalItem,omitempty" require:"true"`
@@ -516,7 +516,7 @@ type CreateSharedRateLimitingRuleRequest struct {
   EffectiveStatus *string `json:"effectiveStatus,omitempty" xml:"effectiveStatus,omitempty" require:"true"`
   // {"en":"Effective time period.\nWhen the effective status is effective within the cycle or not effective within the cycle, this field must have a value.","zh_CN":"规则生效周期。\n生效状态为周期内生效或周期内不生效时，此字段必须有值。"}
   RateLimitEffective *CreateSharedRateLimitingRuleRequestRateLimitEffective `json:"rateLimitEffective,omitempty" xml:"rateLimitEffective,omitempty" type:"Struct"`
-  // {"en":"Action.\nNO_USE:Not Used\nLOG:Log\nCOOKIE:Cookie verification\nJS_CHECK:Javascript verification\nDELAY:Delay\nBLOCK:Deny\nRESET:Reset Connection\nCustom response ID:Custom response ID\nWhen there is a status code in the matching condition, the supported actions are Log, Deny, and Reset Connection.","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nCOOKIE：Cookie校验\nJS_CHECK：JavaScript校验\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接\n自定义响应ID：自定义响应ID\n当匹配条件中存在状态码时，支持处理动作为监控、拦截、断开连接。"}
+  // {"en":"Action.\nNO_USE:Not Used\nLOG:Log\nCOOKIE:Cookie verification\nJS_CHECK:Javascript verification\nDELAY:Delay\nBLOCK:Deny\nRESET:Reset Connection\nCUSTOM_ACTION_ID:Fill in the custom action id of the corresponding action\nWhen there is a status code in the matching condition, the supported actions are Log, Deny, and Reset Connection.","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nCOOKIE：Cookie校验\nJS_CHECK：JavaScript校验\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接\nCUSTOM_ACTION_ID：传入对应的自定义响应动作的ID\n当匹配条件中存在状态码时，支持处理动作为监控、拦截、断开连接。"}
   Action *string `json:"action,omitempty" xml:"action,omitempty" require:"true"`
   // {"en":"Matching conditions.","zh_CN":"匹配条件。"}
   RateLimitRuleCondition *CreateSharedRateLimitingRuleRequestRateLimitRuleCondition `json:"rateLimitRuleCondition,omitempty" xml:"rateLimitRuleCondition,omitempty" require:"true" type:"Struct"`
@@ -592,7 +592,7 @@ type CreateSharedRateLimitingRuleRequestRateLimitEffective struct {
   Start *string `json:"start,omitempty" xml:"start,omitempty" require:"true"`
   // {"en":"End time, format: HH:mm.","zh_CN":"结束时间，格式：HH:mm。"}
   End *string `json:"end,omitempty" xml:"end,omitempty" require:"true"`
-  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_timezone","en":"Timezone,default value: GTM+8.","zh_CN":"时区，默认：GTM+8。"}
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_timezone","en":"Timezone,default value: GMT+8.","zh_CN":"时区，默认：GMT+8。"}
   Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty" require:"true"`
 }
 
@@ -2030,7 +2030,7 @@ type ListSharedCustomRulesResponseData struct     {
   Condition *ListSharedCustomRulesResponseDataCondition `json:"condition,omitempty" xml:"condition,omitempty" require:"true" type:"Struct"`
   // {"en":"Creator.","zh_CN":"创建者。"}
   Creator *string `json:"creator,omitempty" xml:"creator,omitempty" require:"true"`
-  // {"en":"Action.\nNO_USE: Not Used\nLOG: Log\nDELAY: Delay\nBLOCK: Deny\nRESET: Reset Connection","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接","exampleValue":"NO_USE,LOG,DELAY,BLOCK,RESET"}
+  // {"en":"Action.\nNO_USE: Not Used\nLOG: Log\nDELAY: Delay\nBLOCK: Deny\nRESET: Reset Connection\nCUSTOM_ACTION_ID:Fill in the custom action id of the corresponding action","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接\nCUSTOM_ACTION_ID：传入对应的自定义响应动作的ID","exampleValue":"NO_USE,LOG,DELAY,BLOCK,RESET"}
   Act *string `json:"act,omitempty" xml:"act,omitempty" require:"true"`
   // {"en":"Create time, format: yyyy-MM-dd HH:mm:ss.","zh_CN":"创建时间，格式：yyyy-MM-dd HH:mm:ss。"}
   CreateTime *string `json:"createTime,omitempty" xml:"createTime,omitempty" require:"true"`
@@ -3122,11 +3122,11 @@ func (s QueryAppApiExceptionListResponseHeader) GoString() string {
 type CreateSharedCustomRuleRequest struct {
   // {"en":"Matching conditions.\nExcept for header conditions, there can only be at most one record per match type under each type of condition.","zh_CN":"匹配条件。\n除了请求头条件，其它类型的条件下一种匹配类型最多只能有一条记录。"}
   Condition *CreateSharedCustomRuleRequestCondition `json:"condition,omitempty" xml:"condition,omitempty" require:"true" type:"Struct"`
-  // {"en":"Action.\nNO_USE: Not Used\nLOG: Log\nDELAY: Delay\nBLOCK: Deny\nRESET: Reset Connection","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接","exampleValue":"NO_USE,LOG,DELAY,BLOCK,RESET"}
+  // {"en":"Action.\nNO_USE: Not Used\nLOG: Log\nDELAY: Delay\nBLOCK: Deny\nRESET: Reset Connection\nCUSTOM_ACTION_ID:Fill in the custom action id of the corresponding action","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接\nCUSTOM_ACTION_ID：传入对应的自定义响应动作的ID","exampleValue":"NO_USE,LOG,DELAY,BLOCK,RESET"}
   Act *string `json:"act,omitempty" xml:"act,omitempty" require:"true"`
-  // {"en":"Rule Name, maximum 50 characters.\nDoes not support # and &.","zh_CN":"规则名称，最多50个字符。\n不支持 # 和 &。"}
+  // {"en":"Rule Name, maximum 100 characters.Does not support # and &.","zh_CN":"规则名称，最多100个字符。不支持 # 和 &。"}
   RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
-  // {"en":"Description, maximum 200 characters.","zh_CN":"规则描述，最多200个字符。"}
+  // {"en":"Description, maximum 1000 characters.","zh_CN":"规则描述，最多1000个字符。"}
   Description *string `json:"description,omitempty" xml:"description,omitempty"`
 }
 
@@ -3717,9 +3717,9 @@ func (s CreateCustomActionResponseHeader) GoString() string {
 type UpdateSharedWhitelistRuleRequest struct {
   // {"en":"Rule ID.","zh_CN":"规则ID。"}
   Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
-  // {"en":"Rule name, maximum 50 characters.\nDoes not support # and &.","zh_CN":"规则名称，最多50个字符。\n不支持 # 和 &。"}
+  // {"en":"Rule name, maximum 100 characters.Does not support # and &.","zh_CN":"规则名称，最多100个字符。不支持 # 和 &。"}
   RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty"`
-  // {"en":"Description, maximum 200 characters.","zh_CN":"描述，最多200个字符。"}
+  // {"en":"Description, maximum 1000 characters.","zh_CN":"描述，最多1000个字符。"}
   Description *string `json:"description,omitempty" xml:"description,omitempty"`
   // {"en":"Match conditions, at least one, at most five.","zh_CN":"匹配条件，至少一个，至多五个。"}
   Conditions *UpdateSharedWhitelistRuleRequestConditions `json:"conditions,omitempty" xml:"conditions,omitempty" type:"Struct"`
@@ -4436,7 +4436,7 @@ type ListSharedRateLimitingRulesResponseData struct     {
   EffectiveStatus *string `json:"effectiveStatus,omitempty" xml:"effectiveStatus,omitempty" require:"true"`
   // {"en":"Effective time period.","zh_CN":"规则生效周期。"}
   RateLimitEffective *ListSharedRateLimitingRulesResponseDataRateLimitEffective `json:"rateLimitEffective,omitempty" xml:"rateLimitEffective,omitempty" require:"true" type:"Struct"`
-  // {"en":"Action.\nNO_USE:Not Used\nLOG:Log\nCOOKIE:Cookie verification\nJS_CHECK:Javascript verification\nDELAY:Delay\nBLOCK:Deny\nRESET:Reset Connection\nCustom action primary key id:Custom action primary key id","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nCOOKIE：Cookie校验\nJS_CHECK：JavaScript校验\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接\n自定义处理动作主键id：自定义处理动作主键id"}
+  // {"en":"Action.\nNO_USE:Not Used\nLOG:Log\nCOOKIE:Cookie verification\nJS_CHECK:Javascript verification\nDELAY:Delay\nBLOCK:Deny\nRESET:Reset Connection\nCUSTOM_ACTION_ID:Fill in the custom action id of the corresponding action","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nCOOKIE：Cookie校验\nJS_CHECK：JavaScript校验\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接\nCUSTOM_ACTION_ID：传入对应的自定义响应动作的ID"}
   Action *string `json:"action,omitempty" xml:"action,omitempty" require:"true"`
   // {"en":"Matching conditions.","zh_CN":"匹配条件。"}
   RateLimitRuleCondition *ListSharedRateLimitingRulesResponseDataRateLimitRuleCondition `json:"rateLimitRuleCondition,omitempty" xml:"rateLimitRuleCondition,omitempty" require:"true" type:"Struct"`
@@ -4548,7 +4548,7 @@ type ListSharedRateLimitingRulesResponseDataRateLimitEffective struct {
   Start *string `json:"start,omitempty" xml:"start,omitempty" require:"true"`
   // {"en":"End time, format: HH:mm.","zh_CN":"结束时间，格式：HH:mm。"}
   End *string `json:"end,omitempty" xml:"end,omitempty" require:"true"`
-  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_timezone","en":"Timezone,default value: GTM+8.","zh_CN":"时区，默认：GTM+8。"}
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_timezone","en":"Timezone,default value: GMT+8.","zh_CN":"时区，默认：GMT+8。"}
   Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty" require:"true"`
 }
 
@@ -5865,11 +5865,11 @@ func (s DeleteSharedRateLimitingRuleResponseHeader) GoString() string {
 type UpdateSharedCustomRulesRequest struct {
   // {"en":"Matching conditions. Except for header conditions, there can only be at most one record per match type under each type of condition.","zh_CN":"匹配条件。除了请求头条件，其它类型的条件下一种匹配类型最多只能有一条记录。"}
   Condition *UpdateSharedCustomRulesRequestCondition `json:"condition,omitempty" xml:"condition,omitempty" type:"Struct"`
-  // {"en":"Action.\nNO_USE: Not Used\nLOG: Log\nDELAY: Delay\nBLOCK: Deny\nRESET: Reset Connection","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接","exampleValue":"NO_USE,LOG,DELAY,BLOCK,RESET"}
+  // {"en":"Action.\nNO_USE: Not Used\nLOG: Log\nDELAY: Delay\nBLOCK: Deny\nRESET: Reset Connection\nCUSTOM_ACTION_ID:Fill in the custom action id of the corresponding action","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接\nCUSTOM_ACTION_ID：传入对应的自定义响应动作的ID","exampleValue":"NO_USE,LOG,DELAY,BLOCK,RESET"}
   Act *string `json:"act,omitempty" xml:"act,omitempty"`
-  // {"en":"Rule Name, maximum 50 characters.\nDoes not support # and &.","zh_CN":"规则名称，最多50个字符。\n不支持 # 和 &。"}
+  // {"en":"Rule Name, maximum 100 characters.Does not support # and &.","zh_CN":"规则名称，最多100个字符。不支持 # 和 &。"}
   RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty"`
-  // {"en":"Description, maximum 200 characters.","zh_CN":"规则描述，最多200个字符。"}
+  // {"en":"Description, maximum 1000 characters.","zh_CN":"规则描述，最多1000个字符。"}
   Description *string `json:"description,omitempty" xml:"description,omitempty"`
   // {"en":"Rule ID.","zh_CN":"规则ID。"}
   Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
@@ -7000,9 +7000,9 @@ func (s DisassociateSharedWhitelistRuleResponseHeader) GoString() string {
 type UpdateSharedRateLimitingRuleRequest struct {
   // {"en":"Rule ID.","zh_CN":"规则ID。"}
   Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
-  // {"en":"Rule Name, maximum 50 characters.\nDoes not support # and &.","zh_CN":"规则名称，最多50个字符。\n 不支持 # 和 &。"}
+  // {"en":"Rule Name, maximum 100 characters.Does not support # and &.","zh_CN":"规则名称，最多100个字符。 不支持 # 和 &。"}
   RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty"`
-  // {"en":"Description, maximum 200 characters.","zh_CN":"规则描述，最多200个字符。"}
+  // {"en":"Description, maximum 1000 characters.","zh_CN":"规则描述，最多1000个字符。"}
   Description *string `json:"description,omitempty" xml:"description,omitempty"`
   // {"en":"Client identifier.\nIP:Client IP\nIP_UA:Client IP and User-Agent\nCOOKIE:Cookie\nIP_COOKIE:Client IP and Cookie\nHEADER:Request Header\nWhen there is a status code in the matching condition,this client identifier is not supported.\nIP_HEADER:Client IP and Request Header\nWhen there is a status code in the matching condition,this client identifier is not supported .","zh_CN":"统计粒度。\nIP：客户端IP\nIP_UA：客户端IP和User-Agent\nCOOKIE：Cookie\nIP_COOKIE：客户端IP和Cookie\nHEADER：请求头，当匹配条件中存在状态码时不支持此统计粒度\nIP_HEADER：客户端IP和请求头，当匹配条件中存在状态码时不支持此统计粒度"}
   StatisticalItem *string `json:"statisticalItem,omitempty" xml:"statisticalItem,omitempty"`
@@ -7018,7 +7018,7 @@ type UpdateSharedRateLimitingRuleRequest struct {
   EffectiveStatus *string `json:"effectiveStatus,omitempty" xml:"effectiveStatus,omitempty"`
   // {"en":"Effective time period.\nWhen the effective status is effective within the cycle or not effective within the cycle, this field must have a value.","zh_CN":"规则生效周期。\n生效状态为周期内生效或周期内不生效时，此字段必须有值。"}
   RateLimitEffective *UpdateSharedRateLimitingRuleRequestRateLimitEffective `json:"rateLimitEffective,omitempty" xml:"rateLimitEffective,omitempty" type:"Struct"`
-  // {"en":"Action.\nNO_USE:Not Used\nLOG:Log\nCOOKIE:Cookie verification\nJS_CHECK:Javascript verification\nDELAY:Delay\nBLOCK:Deny\nRESET:Reset Connection\nCustom response ID:Custom response ID\n(When there is a status code in the matching condition, the supported actions are Log, Deny, and Reset Connection.)","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nCOOKIE：Cookie校验\nJS_CHECK：JavaScript校验\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接\n自定义响应ID：自定义响应ID\n当匹配条件中存在状态码时，支持处理动作为监控、拦截、断开连接。"}
+  // {"en":"Action.\nNO_USE:Not Used\nLOG:Log\nCOOKIE:Cookie verification\nJS_CHECK:Javascript verification\nDELAY:Delay\nBLOCK:Deny\nRESET:Reset Connection\nCUSTOM_ACTION_ID:Fill in the custom action id of the corresponding action\n(When there is a status code in the matching condition, the supported actions are Log, Deny, and Reset Connection.)","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nCOOKIE：Cookie校验\nJS_CHECK：JavaScript校验\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接\nCUSTOM_ACTION_ID：传入对应的自定义响应动作的ID\n当匹配条件中存在状态码时，支持处理动作为监控、拦截、断开连接。"}
   Action *string `json:"action,omitempty" xml:"action,omitempty"`
   // {"en":"Matching conditions.","zh_CN":"匹配条件。"}
   RateLimitRuleCondition *UpdateSharedRateLimitingRuleRequestRateLimitRuleCondition `json:"rateLimitRuleCondition,omitempty" xml:"rateLimitRuleCondition,omitempty" type:"Struct"`
@@ -7099,7 +7099,7 @@ type UpdateSharedRateLimitingRuleRequestRateLimitEffective struct {
   Start *string `json:"start,omitempty" xml:"start,omitempty" require:"true"`
   // {"en":"End time, format: HH:mm.","zh_CN":"结束时间，格式：HH:mm。"}
   End *string `json:"end,omitempty" xml:"end,omitempty" require:"true"`
-  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_timezone","en":"Timezone,default value: GTM+8.","zh_CN":"时区，默认：GTM+8。"}
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_timezone","en":"Timezone,default value: GMT+8.","zh_CN":"时区，默认：GMT+8。"}
   Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty" require:"true"`
 }
 
@@ -7717,9 +7717,9 @@ func (s AssociateShareCustomizeRuleResponseHeader) GoString() string {
 
 
 type CreateSharedWhitelistRuleRequest struct {
-  // {"en":"Rule name, maximum 50 characters.\nDoes not support # and &.","zh_CN":"规则名称，最多50个字符。\n不支持 # 和 &。"}
+  // {"en":"Rule name, maximum 100 characters.Does not support # and &.","zh_CN":"规则名称，最多100个字符。不支持 # 和 &。"}
   RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
-  // {"en":"Description, maximum 200 characters.","zh_CN":"描述，最多200个字符。"}
+  // {"en":"Description, maximum 1000 characters.","zh_CN":"描述，最多1000个字符。"}
   Description *string `json:"description,omitempty" xml:"description,omitempty"`
   // {"en":"Match conditions, at least one, at most five.","zh_CN":"匹配条件，至少一个，至多五个。"}
   Conditions *CreateSharedWhitelistRuleRequestConditions `json:"conditions,omitempty" xml:"conditions,omitempty" require:"true" type:"Struct"`

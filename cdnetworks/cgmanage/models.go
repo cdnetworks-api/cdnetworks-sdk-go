@@ -6,10 +6,10 @@ import (
 )
 
 type QueryCustomizedControlGroupByNameRequest struct {
-  // {"en":"ControlGroup Code","zh_CN":"ControlGroup 编码"}
-  ControlGroupCode *string `json:"controlGroupCode,omitempty" xml:"controlGroupCode,omitempty"`
   // {"en":"controlGroup Name","zh_CN":"ControlGroup 名称"}
   ControlGroupName *string `json:"controlGroupName,omitempty" xml:"controlGroupName,omitempty"`
+  // {"en":"ControlGroup Code","zh_CN":"ControlGroup 编码"}
+  ControlGroupCode *string `json:"controlGroupCode,omitempty" xml:"controlGroupCode,omitempty"`
 }
 
 func (s QueryCustomizedControlGroupByNameRequest) String() string {
@@ -20,13 +20,13 @@ func (s QueryCustomizedControlGroupByNameRequest) GoString() string {
   return s.String()
 }
 
-func (s *QueryCustomizedControlGroupByNameRequest) SetControlGroupCode(v string) *QueryCustomizedControlGroupByNameRequest {
-  s.ControlGroupCode = &v
+func (s *QueryCustomizedControlGroupByNameRequest) SetControlGroupName(v string) *QueryCustomizedControlGroupByNameRequest {
+  s.ControlGroupName = &v
   return s
 }
 
-func (s *QueryCustomizedControlGroupByNameRequest) SetControlGroupName(v string) *QueryCustomizedControlGroupByNameRequest {
-  s.ControlGroupName = &v
+func (s *QueryCustomizedControlGroupByNameRequest) SetControlGroupCode(v string) *QueryCustomizedControlGroupByNameRequest {
+  s.ControlGroupCode = &v
   return s
 }
 
@@ -64,10 +64,10 @@ func (s QueryCustomizedControlGroupByNameParameters) GoString() string {
 }
 
 type QueryCustomizedControlGroupByNameResponse struct {
-  // {"en":"Message","zh_CN":"消息提示"}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
   // {"en":"Status Code, 200:success,  500: failed","zh_CN":"错误具体状态码，200:success， 500: failed"}
   Code *int `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Message","zh_CN":"消息提示"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
   // {"en":"","zh_CN":""}
   Data *QueryCustomizedControlGroupByNameResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
   // {"en":"Request ID","zh_CN":"请求ID"}
@@ -82,13 +82,13 @@ func (s QueryCustomizedControlGroupByNameResponse) GoString() string {
   return s.String()
 }
 
-func (s *QueryCustomizedControlGroupByNameResponse) SetMsg(v string) *QueryCustomizedControlGroupByNameResponse {
-  s.Msg = &v
+func (s *QueryCustomizedControlGroupByNameResponse) SetCode(v int) *QueryCustomizedControlGroupByNameResponse {
+  s.Code = &v
   return s
 }
 
-func (s *QueryCustomizedControlGroupByNameResponse) SetCode(v int) *QueryCustomizedControlGroupByNameResponse {
-  s.Code = &v
+func (s *QueryCustomizedControlGroupByNameResponse) SetMsg(v string) *QueryCustomizedControlGroupByNameResponse {
+  s.Msg = &v
   return s
 }
 
@@ -103,14 +103,14 @@ func (s *QueryCustomizedControlGroupByNameResponse) SetRequestId(v string) *Quer
 }
 
 type QueryCustomizedControlGroupByNameResponseData struct {
-  // {"en":"Control Group Code","zh_CN":"Control Group编号"}
-  ControlGroupCode *string `json:"controlGroupCode,omitempty" xml:"controlGroupCode,omitempty" require:"true"`
-  // {"en":"Domain array, Used to specify the domain contained in the Control Group","zh_CN":"域名字符串数组，用来指定该Control Group所包含的域名"}
-  DomainList []*string `json:"domainList,omitempty" xml:"domainList,omitempty" require:"true" type:"Repeated"`
-  // {"en":"Account object array, Used to specify accounts with permission.","zh_CN":"账号对象数组，用来指定有权限访问的账号。"}
-  AccountNameList []*string `json:"accountNameList,omitempty" xml:"accountNameList,omitempty" require:"true" type:"Repeated"`
   // {"en":"Control Group Name","zh_CN":"Control Group名称"}
   ControlGroupName *string `json:"controlGroupName,omitempty" xml:"controlGroupName,omitempty" require:"true"`
+  // {"en":"Control Group Code","zh_CN":"Control Group编号"}
+  ControlGroupCode *string `json:"controlGroupCode,omitempty" xml:"controlGroupCode,omitempty" require:"true"`
+  // {"en":"Account object array, Used to specify accounts with permission.","zh_CN":"账号对象数组，用来指定有权限访问的账号。"}
+  AccountNameList []*string `json:"accountNameList,omitempty" xml:"accountNameList,omitempty" require:"true" type:"Repeated"`
+  // {"en":"Domain array, Used to specify the domain contained in the Control Group","zh_CN":"域名字符串数组，用来指定该Control Group所包含的域名"}
+  DomainList []*string `json:"domainList,omitempty" xml:"domainList,omitempty" require:"true" type:"Repeated"`
 }
 
 func (s QueryCustomizedControlGroupByNameResponseData) String() string {
@@ -121,13 +121,13 @@ func (s QueryCustomizedControlGroupByNameResponseData) GoString() string {
   return s.String()
 }
 
-func (s *QueryCustomizedControlGroupByNameResponseData) SetControlGroupCode(v string) *QueryCustomizedControlGroupByNameResponseData {
-  s.ControlGroupCode = &v
+func (s *QueryCustomizedControlGroupByNameResponseData) SetControlGroupName(v string) *QueryCustomizedControlGroupByNameResponseData {
+  s.ControlGroupName = &v
   return s
 }
 
-func (s *QueryCustomizedControlGroupByNameResponseData) SetDomainList(v []*string) *QueryCustomizedControlGroupByNameResponseData {
-  s.DomainList = v
+func (s *QueryCustomizedControlGroupByNameResponseData) SetControlGroupCode(v string) *QueryCustomizedControlGroupByNameResponseData {
+  s.ControlGroupCode = &v
   return s
 }
 
@@ -136,8 +136,8 @@ func (s *QueryCustomizedControlGroupByNameResponseData) SetAccountNameList(v []*
   return s
 }
 
-func (s *QueryCustomizedControlGroupByNameResponseData) SetControlGroupName(v string) *QueryCustomizedControlGroupByNameResponseData {
-  s.ControlGroupName = &v
+func (s *QueryCustomizedControlGroupByNameResponseData) SetDomainList(v []*string) *QueryCustomizedControlGroupByNameResponseData {
+  s.DomainList = v
   return s
 }
 
@@ -156,12 +156,12 @@ func (s QueryCustomizedControlGroupByNameResponseHeader) GoString() string {
 
 
 type CreateControlGroupRequest struct {
-  // {"en":"Domain array, Used to specify the domain contained in the Control Group","zh_CN":"域名字符串数组，用来指定该Control Group所包含的域名"}
-  DomainList []*string `json:"domainList,omitempty" xml:"domainList,omitempty" require:"true" type:"Repeated"`
-  // {"en":"Account object array, Used to specify accounts with permission. (If the account created this Control Group also needs the permission, please remember to add this account into accountList)","zh_CN":"账号对象数组，用来指定有权限访问的账号。（若创建这个Control Group的账号也需要权限记得把自己的账号也加进去）"}
-  AccountList []*CreateControlGroupRequestAccountList `json:"accountList,omitempty" xml:"accountList,omitempty" type:"Repeated"`
   // {"en":"Control Group name","zh_CN":"Control Group名称"}
   ControlGroupName *string `json:"controlGroupName,omitempty" xml:"controlGroupName,omitempty" require:"true"`
+  // {"en":"Account object array, Used to specify accounts with permission. (If the account created this Control Group also needs the permission, please remember to add this account into accountList)","zh_CN":"账号对象数组，用来指定有权限访问的账号。（若创建这个Control Group的账号也需要权限记得把自己的账号也加进去）"}
+  AccountList []*CreateControlGroupRequestAccountList `json:"accountList,omitempty" xml:"accountList,omitempty" type:"Repeated"`
+  // {"en":"Domain array, Used to specify the domain contained in the Control Group","zh_CN":"域名字符串数组，用来指定该Control Group所包含的域名"}
+  DomainList []*string `json:"domainList,omitempty" xml:"domainList,omitempty" require:"true" type:"Repeated"`
 }
 
 func (s CreateControlGroupRequest) String() string {
@@ -172,8 +172,8 @@ func (s CreateControlGroupRequest) GoString() string {
   return s.String()
 }
 
-func (s *CreateControlGroupRequest) SetDomainList(v []*string) *CreateControlGroupRequest {
-  s.DomainList = v
+func (s *CreateControlGroupRequest) SetControlGroupName(v string) *CreateControlGroupRequest {
+  s.ControlGroupName = &v
   return s
 }
 
@@ -182,8 +182,8 @@ func (s *CreateControlGroupRequest) SetAccountList(v []*CreateControlGroupReques
   return s
 }
 
-func (s *CreateControlGroupRequest) SetControlGroupName(v string) *CreateControlGroupRequest {
-  s.ControlGroupName = &v
+func (s *CreateControlGroupRequest) SetDomainList(v []*string) *CreateControlGroupRequest {
+  s.DomainList = v
   return s
 }
 
@@ -239,10 +239,10 @@ func (s CreateControlGroupParameters) GoString() string {
 }
 
 type CreateControlGroupResponse struct {
-  // {"en":"Message","zh_CN":"消息提示"}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
   // {"en":"Status Code","zh_CN":"错误具体状态码"}
   Code *int `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Message","zh_CN":"消息提示"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
   // {"en":"","zh_CN":""}
   Data *CreateControlGroupResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
   // {"en":"Request ID","zh_CN":"请求ID"}
@@ -257,13 +257,13 @@ func (s CreateControlGroupResponse) GoString() string {
   return s.String()
 }
 
-func (s *CreateControlGroupResponse) SetMsg(v string) *CreateControlGroupResponse {
-  s.Msg = &v
+func (s *CreateControlGroupResponse) SetCode(v int) *CreateControlGroupResponse {
+  s.Code = &v
   return s
 }
 
-func (s *CreateControlGroupResponse) SetCode(v int) *CreateControlGroupResponse {
-  s.Code = &v
+func (s *CreateControlGroupResponse) SetMsg(v string) *CreateControlGroupResponse {
+  s.Msg = &v
   return s
 }
 
@@ -442,14 +442,55 @@ func (s QueryCustomizedControlGroupRequest) GoString() string {
   return s.String()
 }
 
+type QueryCustomizedControlGroupRequestHeader struct {
+}
+
+func (s QueryCustomizedControlGroupRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryCustomizedControlGroupRequestHeader) GoString() string {
+  return s.String()
+}
+
+type QueryCustomizedControlGroupPaths struct {
+  // {"en":"Control Group Code","zh_CN":"Control Group 编号"}
+  ControlGroupCode *string `json:"ControlGroupCode,omitempty" xml:"ControlGroupCode,omitempty" require:"true"`
+}
+
+func (s QueryCustomizedControlGroupPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryCustomizedControlGroupPaths) GoString() string {
+  return s.String()
+}
+
+func (s *QueryCustomizedControlGroupPaths) SetControlGroupCode(v string) *QueryCustomizedControlGroupPaths {
+  s.ControlGroupCode = &v
+  return s
+}
+
+type QueryCustomizedControlGroupParameters struct {
+}
+
+func (s QueryCustomizedControlGroupParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryCustomizedControlGroupParameters) GoString() string {
+  return s.String()
+}
+
 type QueryCustomizedControlGroupResponse struct {
-  // {"en":"Status Code, 200:success,  500: failed", "zh_CN":"错误具体状态码，200:success， 500: failed"}
+  // {"en":"Status Code, 200:success,  500: failed","zh_CN":"错误具体状态码，200:success， 500: failed"}
   Code *int `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Message", "zh_CN":"消息提示"}
+  // {"en":"Message","zh_CN":"消息提示"}
   Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"","zh_CN":""}
+  Data *QueryCustomizedControlGroupResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
   // {"en":"Request ID","zh_CN":"请求ID"}
   RequestId *string `json:"requestId,omitempty" xml:"requestId,omitempty" require:"true"`
-  Data *QueryCustomizedControlGroupResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
 }
 
 func (s QueryCustomizedControlGroupResponse) String() string {
@@ -470,24 +511,24 @@ func (s *QueryCustomizedControlGroupResponse) SetMsg(v string) *QueryCustomizedC
   return s
 }
 
-func (s *QueryCustomizedControlGroupResponse) SetRequestId(v string) *QueryCustomizedControlGroupResponse {
-  s.RequestId = &v
-  return s
-}
-
 func (s *QueryCustomizedControlGroupResponse) SetData(v *QueryCustomizedControlGroupResponseData) *QueryCustomizedControlGroupResponse {
   s.Data = v
   return s
 }
 
+func (s *QueryCustomizedControlGroupResponse) SetRequestId(v string) *QueryCustomizedControlGroupResponse {
+  s.RequestId = &v
+  return s
+}
+
 type QueryCustomizedControlGroupResponseData struct {
-  // {"en":"Control Group Name", "zh_CN":"Control Group名称"}
+  // {"en":"Control Group Name","zh_CN":"Control Group名称"}
   ControlGroupName *string `json:"controlGroupName,omitempty" xml:"controlGroupName,omitempty" require:"true"`
-  // {"en":"Control Group Code", "zh_CN":"Control Group编号"}
+  // {"en":"Control Group Code","zh_CN":"Control Group编号"}
   ControlGroupCode *string `json:"controlGroupCode,omitempty" xml:"controlGroupCode,omitempty" require:"true"`
-  // {"en":"Account object array, Used to specify accounts with permission.", "zh_CN":"账号对象数组，用来指定有权限访问的账号。"}
+  // {"en":"Account object array, Used to specify accounts with permission.","zh_CN":"账号对象数组，用来指定有权限访问的账号。"}
   AccountNameList []*string `json:"accountNameList,omitempty" xml:"accountNameList,omitempty" require:"true" type:"Repeated"`
-  // {"en":"Domain array, Used to specify the domain contained in the Control Group", "zh_CN":"域名字符串数组，用来指定该Control Group所包含的域名"}
+  // {"en":"Domain array, Used to specify the domain contained in the Control Group","zh_CN":"域名字符串数组，用来指定该Control Group所包含的域名"}
   DomainList []*string `json:"domainList,omitempty" xml:"domainList,omitempty" require:"true" type:"Repeated"`
 }
 
@@ -519,46 +560,6 @@ func (s *QueryCustomizedControlGroupResponseData) SetDomainList(v []*string) *Qu
   return s
 }
 
-type QueryCustomizedControlGroupPaths struct {
-  // {"en":"Control Group Code", "zh_CN":"Control Group 编号"}
-  ControlGroupCode *string `json:"ControlGroupCode,omitempty" xml:"ControlGroupCode,omitempty" require:"true"`
-}
-
-func (s QueryCustomizedControlGroupPaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryCustomizedControlGroupPaths) GoString() string {
-  return s.String()
-}
-
-func (s *QueryCustomizedControlGroupPaths) SetControlGroupCode(v string) *QueryCustomizedControlGroupPaths {
-  s.ControlGroupCode = &v
-  return s
-}
-
-type QueryCustomizedControlGroupParameters struct {
-}
-
-func (s QueryCustomizedControlGroupParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryCustomizedControlGroupParameters) GoString() string {
-  return s.String()
-}
-
-type QueryCustomizedControlGroupRequestHeader struct {
-}
-
-func (s QueryCustomizedControlGroupRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryCustomizedControlGroupRequestHeader) GoString() string {
-  return s.String()
-}
-
 type QueryCustomizedControlGroupResponseHeader struct {
 }
 
@@ -574,14 +575,14 @@ func (s QueryCustomizedControlGroupResponseHeader) GoString() string {
 
 
 type EditControlGroupRequest struct {
-  // {"en":"Domain array, which only the User Customized type Control Group can be modified, customer type Control Group and product type Control Group can not be modified.User Customized type Control Group empties the original domainList if no value is passed","zh_CN":"域名字符串数组，只有自定义类型的Control Group可做修改，若是客户类型与合同类型Control Group则不做修改。自定义类型Control Group若不传值则将原domainList清空"}
-  DomainList []*string `json:"domainList,omitempty" xml:"domainList,omitempty" type:"Repeated"`
-  // {"en":"Account object array,Used to specify accounts with permission.  all types of Control Group can be modified, if no value is passed, the original accountList will be emptied","zh_CN":"账号对象数组, 用来指定有权限访问的账号。客户类型，合同类型与自定义类型的Control Group都可以做修改，若不传值则将原accountList清空"}
-  AccountList []*EditControlGroupRequestAccountList `json:"accountList,omitempty" xml:"accountList,omitempty" type:"Repeated"`
-  // {"en":"Whether to add:\n1. Do not pass or pass false: rewrite method;\n2. Pass true: append method.","zh_CN":"是否追加:\n1.不传或false：覆盖方式;\n2.传true：追加方式."}
-  IsAdd *bool `json:"isAdd,omitempty" xml:"isAdd,omitempty"`
   // {"en":"Control Group name, which only the User Customized type Control Group can be modified, customer type Control Group and product type Control Group can not be modified. User Customized type Control Group keeps the original Control Group name if no value is passed","zh_CN":"Control Group名称，只有自定义类型的Control Group可做修改，若是客户类型与合同类型Control Group则不做修改。自定义类型Control Group若不传值则保持原来的Control Group名称"}
   ControlGroupName *string `json:"controlGroupName,omitempty" xml:"controlGroupName,omitempty"`
+  // {"en":"Account object array,Used to specify accounts with permission.  all types of Control Group can be modified, if no value is passed, the original accountList will be emptied","zh_CN":"账号对象数组, 用来指定有权限访问的账号。客户类型，合同类型与自定义类型的Control Group都可以做修改，若不传值则将原accountList清空"}
+  AccountList []*EditControlGroupRequestAccountList `json:"accountList,omitempty" xml:"accountList,omitempty" type:"Repeated"`
+  // {"en":"Domain array, which only the User Customized type Control Group can be modified, customer type Control Group and product type Control Group can not be modified.User Customized type Control Group empties the original domainList if no value is passed","zh_CN":"域名字符串数组，只有自定义类型的Control Group可做修改，若是客户类型与合同类型Control Group则不做修改。自定义类型Control Group若不传值则将原domainList清空"}
+  DomainList []*string `json:"domainList,omitempty" xml:"domainList,omitempty" type:"Repeated"`
+  // {"en":"Whether to add:\n1. Do not pass or pass false: rewrite method;\n2. Pass true: append method.","zh_CN":"是否追加:\n1.不传或false：覆盖方式;\n2.传true：追加方式."}
+  IsAdd *bool `json:"isAdd,omitempty" xml:"isAdd,omitempty"`
 }
 
 func (s EditControlGroupRequest) String() string {
@@ -592,8 +593,8 @@ func (s EditControlGroupRequest) GoString() string {
   return s.String()
 }
 
-func (s *EditControlGroupRequest) SetDomainList(v []*string) *EditControlGroupRequest {
-  s.DomainList = v
+func (s *EditControlGroupRequest) SetControlGroupName(v string) *EditControlGroupRequest {
+  s.ControlGroupName = &v
   return s
 }
 
@@ -602,13 +603,13 @@ func (s *EditControlGroupRequest) SetAccountList(v []*EditControlGroupRequestAcc
   return s
 }
 
-func (s *EditControlGroupRequest) SetIsAdd(v bool) *EditControlGroupRequest {
-  s.IsAdd = &v
+func (s *EditControlGroupRequest) SetDomainList(v []*string) *EditControlGroupRequest {
+  s.DomainList = v
   return s
 }
 
-func (s *EditControlGroupRequest) SetControlGroupName(v string) *EditControlGroupRequest {
-  s.ControlGroupName = &v
+func (s *EditControlGroupRequest) SetIsAdd(v bool) *EditControlGroupRequest {
+  s.IsAdd = &v
   return s
 }
 
@@ -671,10 +672,10 @@ func (s EditControlGroupParameters) GoString() string {
 }
 
 type EditControlGroupResponse struct {
-  // {"en":"Message","zh_CN":"消息提示"}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
   // {"en":"Status Code","zh_CN":"错误具体状态码"}
   Code *int `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Message","zh_CN":"消息提示"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
   // {"en":"","zh_CN":""}
   Data *EditControlGroupResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
   // {"en":"Request ID","zh_CN":"请求ID"}
@@ -689,13 +690,13 @@ func (s EditControlGroupResponse) GoString() string {
   return s.String()
 }
 
-func (s *EditControlGroupResponse) SetMsg(v string) *EditControlGroupResponse {
-  s.Msg = &v
+func (s *EditControlGroupResponse) SetCode(v int) *EditControlGroupResponse {
+  s.Code = &v
   return s
 }
 
-func (s *EditControlGroupResponse) SetCode(v int) *EditControlGroupResponse {
-  s.Code = &v
+func (s *EditControlGroupResponse) SetMsg(v string) *EditControlGroupResponse {
+  s.Msg = &v
   return s
 }
 
@@ -994,81 +995,15 @@ func (s QueryControlGroupListRequest) GoString() string {
   return s.String()
 }
 
-type QueryControlGroupListResponse struct {
-  // {"en":"Status Code 200:sueecss, 500:failed", "zh_CN":"错误具体状态码 # 200:sueecss， 500: failed"}
-  Code *int `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Message", "zh_CN":"消息提示"}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {"en":"Request ID","zh_CN":"请求ID"}
-  RequestId *string `json:"requestId,omitempty" xml:"requestId,omitempty" require:"true"`
-  Data []*QueryControlGroupListResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
+type QueryControlGroupListRequestHeader struct {
 }
 
-func (s QueryControlGroupListResponse) String() string {
+func (s QueryControlGroupListRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryControlGroupListResponse) GoString() string {
+func (s QueryControlGroupListRequestHeader) GoString() string {
   return s.String()
-}
-
-func (s *QueryControlGroupListResponse) SetCode(v int) *QueryControlGroupListResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *QueryControlGroupListResponse) SetMsg(v string) *QueryControlGroupListResponse {
-  s.Msg = &v
-  return s
-}
-
-func (s *QueryControlGroupListResponse) SetRequestId(v string) *QueryControlGroupListResponse {
-  s.RequestId = &v
-  return s
-}
-
-func (s *QueryControlGroupListResponse) SetData(v []*QueryControlGroupListResponseData) *QueryControlGroupListResponse {
-  s.Data = v
-  return s
-}
-
-type QueryControlGroupListResponseData struct     {
-  // {"en":"Control Group Name", "zh_CN":"Control Group名称"}
-  CONTROL_GROUP_NAME *string `json:"CONTROL_GROUP_NAME,omitempty" xml:"CONTROL_GROUP_NAME,omitempty" require:"true"`
-  // {"en":"Control Group Code", "zh_CN":"Control Group编号"}
-  CONTROL_GROUP_CODE *string `json:"CONTROL_GROUP_CODE,omitempty" xml:"CONTROL_GROUP_CODE,omitempty" require:"true"`
-  // {"en":"Control Group ID", "zh_CN":"Control GroupID"}
-  CONTROL_GROUP_ID *string `json:"CONTROL_GROUP_ID,omitempty" xml:"CONTROL_GROUP_ID,omitempty" require:"true"`
-  // {"en":"Control Group Type", "zh_CN":"Control Group 类型"}
-  CONTROL_GROUP_TYPE *string `json:"CONTROL_GROUP_TYPE,omitempty" xml:"CONTROL_GROUP_TYPE,omitempty" require:"true"`
-}
-
-func (s QueryControlGroupListResponseData) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryControlGroupListResponseData) GoString() string {
-  return s.String()
-}
-
-func (s *QueryControlGroupListResponseData) SetCONTROL_GROUP_NAME(v string) *QueryControlGroupListResponseData {
-  s.CONTROL_GROUP_NAME = &v
-  return s
-}
-
-func (s *QueryControlGroupListResponseData) SetCONTROL_GROUP_CODE(v string) *QueryControlGroupListResponseData {
-  s.CONTROL_GROUP_CODE = &v
-  return s
-}
-
-func (s *QueryControlGroupListResponseData) SetCONTROL_GROUP_ID(v string) *QueryControlGroupListResponseData {
-  s.CONTROL_GROUP_ID = &v
-  return s
-}
-
-func (s *QueryControlGroupListResponseData) SetCONTROL_GROUP_TYPE(v string) *QueryControlGroupListResponseData {
-  s.CONTROL_GROUP_TYPE = &v
-  return s
 }
 
 type QueryControlGroupListPaths struct {
@@ -1093,15 +1028,82 @@ func (s QueryControlGroupListParameters) GoString() string {
   return s.String()
 }
 
-type QueryControlGroupListRequestHeader struct {
+type QueryControlGroupListResponse struct {
+  // {"en":"Status Code 200:sueecss, 500:failed","zh_CN":"错误具体状态码 # 200:sueecss， 500: failed"}
+  Code *int `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Message","zh_CN":"消息提示"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"","zh_CN":""}
+  Data []*QueryControlGroupListResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
+  // {"en":"Request ID","zh_CN":"请求ID"}
+  RequestId *string `json:"requestId,omitempty" xml:"requestId,omitempty" require:"true"`
 }
 
-func (s QueryControlGroupListRequestHeader) String() string {
+func (s QueryControlGroupListResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryControlGroupListRequestHeader) GoString() string {
+func (s QueryControlGroupListResponse) GoString() string {
   return s.String()
+}
+
+func (s *QueryControlGroupListResponse) SetCode(v int) *QueryControlGroupListResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *QueryControlGroupListResponse) SetMsg(v string) *QueryControlGroupListResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *QueryControlGroupListResponse) SetData(v []*QueryControlGroupListResponseData) *QueryControlGroupListResponse {
+  s.Data = v
+  return s
+}
+
+func (s *QueryControlGroupListResponse) SetRequestId(v string) *QueryControlGroupListResponse {
+  s.RequestId = &v
+  return s
+}
+
+type QueryControlGroupListResponseData struct     {
+  // {"en":"Control Group Name","zh_CN":"Control Group名称"}
+  CONTROLGROUPNAME *string `json:"CONTROL_GROUP_NAME,omitempty" xml:"CONTROL_GROUP_NAME,omitempty" require:"true"`
+  // {"en":"Control Group Code","zh_CN":"Control Group编号"}
+  CONTROLGROUPCODE *string `json:"CONTROL_GROUP_CODE,omitempty" xml:"CONTROL_GROUP_CODE,omitempty" require:"true"`
+  // {"en":"Control Group ID","zh_CN":"Control GroupID"}
+  CONTROLGROUPID *string `json:"CONTROL_GROUP_ID,omitempty" xml:"CONTROL_GROUP_ID,omitempty" require:"true"`
+  // {"en":"Control Group Type","zh_CN":"Control Group 类型"}
+  CONTROLGROUPTYPE *string `json:"CONTROL_GROUP_TYPE,omitempty" xml:"CONTROL_GROUP_TYPE,omitempty" require:"true"`
+}
+
+func (s QueryControlGroupListResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryControlGroupListResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *QueryControlGroupListResponseData) SetCONTROLGROUPNAME(v string) *QueryControlGroupListResponseData {
+  s.CONTROLGROUPNAME = &v
+  return s
+}
+
+func (s *QueryControlGroupListResponseData) SetCONTROLGROUPCODE(v string) *QueryControlGroupListResponseData {
+  s.CONTROLGROUPCODE = &v
+  return s
+}
+
+func (s *QueryControlGroupListResponseData) SetCONTROLGROUPID(v string) *QueryControlGroupListResponseData {
+  s.CONTROLGROUPID = &v
+  return s
+}
+
+func (s *QueryControlGroupListResponseData) SetCONTROLGROUPTYPE(v string) *QueryControlGroupListResponseData {
+  s.CONTROLGROUPTYPE = &v
+  return s
 }
 
 type QueryControlGroupListResponseHeader struct {
@@ -1119,14 +1121,14 @@ func (s QueryControlGroupListResponseHeader) GoString() string {
 
 
 type EditControlGroupByCoverRequest struct {
-  // {"en":"Control Group Code","zh_CN":"Control Group 编码，可通过API接口 【查询ControlGroupList接口】 获取"}
-  ControlGroupCode *string `json:"controlGroupCode,omitempty" xml:"controlGroupCode,omitempty" require:"true"`
-  // {"en":"Domain array, which only the User Customized type Control Group can be modified, customer type Control Group and product type Control Group can not be modified.User Customized type Control Group empties the original domainList if no value is passed","zh_CN":"域名字符串数组，只有自定义类型的Control Group可做修改，若是客户类型与合同类型Control Group则不做修改。自定义类型Control Group若不传值则将原domainList清空"}
-  DomainList []*string `json:"domainList,omitempty" xml:"domainList,omitempty" type:"Repeated"`
-  // {"en":"Account object array,Used to specify accounts with permission.  all types of Control Group can be modified, if no value is passed, the original accountList will be emptied","zh_CN":"账号对象数组, 用来指定有权限访问的账号。客户类型，合同类型与自定义类型的Control Group都可以做修改，若不传值则将原accountList清空"}
-  AccountList []*EditControlGroupByCoverRequestAccountList `json:"accountList,omitempty" xml:"accountList,omitempty" type:"Repeated"`
   // {"en":"Control Group name, which only the User Customized type Control Group can be modified, customer type Control Group and product type Control Group can not be modified. User Customized type Control Group keeps the original Control Group name if no value is passed","zh_CN":"Control Group名称，只有自定义类型的Control Group可做修改，若是客户类型与合同类型Control Group则不做修改。自定义类型Control Group若不传值则保持原来的Control Group名称"}
   ControlGroupName *string `json:"controlGroupName,omitempty" xml:"controlGroupName,omitempty"`
+  // {"en":"Account object array,Used to specify accounts with permission.  all types of Control Group can be modified, if no value is passed, the original accountList will be emptied","zh_CN":"账号对象数组, 用来指定有权限访问的账号。客户类型，合同类型与自定义类型的Control Group都可以做修改，若不传值则将原accountList清空"}
+  AccountList []*EditControlGroupByCoverRequestAccountList `json:"accountList,omitempty" xml:"accountList,omitempty" type:"Repeated"`
+  // {"en":"Domain array, which only the User Customized type Control Group can be modified, customer type Control Group and product type Control Group can not be modified.User Customized type Control Group empties the original domainList if no value is passed","zh_CN":"域名字符串数组，只有自定义类型的Control Group可做修改，若是客户类型与合同类型Control Group则不做修改。自定义类型Control Group若不传值则将原domainList清空"}
+  DomainList []*string `json:"domainList,omitempty" xml:"domainList,omitempty" type:"Repeated"`
+  // {"en":"Control Group Code","zh_CN":"Control Group 编码，可通过API接口 【查询ControlGroupList接口】 获取"}
+  ControlGroupCode *string `json:"controlGroupCode,omitempty" xml:"controlGroupCode,omitempty" require:"true"`
 }
 
 func (s EditControlGroupByCoverRequest) String() string {
@@ -1137,13 +1139,8 @@ func (s EditControlGroupByCoverRequest) GoString() string {
   return s.String()
 }
 
-func (s *EditControlGroupByCoverRequest) SetControlGroupCode(v string) *EditControlGroupByCoverRequest {
-  s.ControlGroupCode = &v
-  return s
-}
-
-func (s *EditControlGroupByCoverRequest) SetDomainList(v []*string) *EditControlGroupByCoverRequest {
-  s.DomainList = v
+func (s *EditControlGroupByCoverRequest) SetControlGroupName(v string) *EditControlGroupByCoverRequest {
+  s.ControlGroupName = &v
   return s
 }
 
@@ -1152,8 +1149,13 @@ func (s *EditControlGroupByCoverRequest) SetAccountList(v []*EditControlGroupByC
   return s
 }
 
-func (s *EditControlGroupByCoverRequest) SetControlGroupName(v string) *EditControlGroupByCoverRequest {
-  s.ControlGroupName = &v
+func (s *EditControlGroupByCoverRequest) SetDomainList(v []*string) *EditControlGroupByCoverRequest {
+  s.DomainList = v
+  return s
+}
+
+func (s *EditControlGroupByCoverRequest) SetControlGroupCode(v string) *EditControlGroupByCoverRequest {
+  s.ControlGroupCode = &v
   return s
 }
 
@@ -1209,10 +1211,10 @@ func (s EditControlGroupByCoverParameters) GoString() string {
 }
 
 type EditControlGroupByCoverResponse struct {
-  // {"en":"Message","zh_CN":"消息提示"}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
   // {"en":"Status Code","zh_CN":"错误具体状态码"}
   Code *int `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Message","zh_CN":"消息提示"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
   // {"en":"","zh_CN":""}
   Data *EditControlGroupByCoverResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
   // {"en":"Request ID","zh_CN":"请求ID"}
@@ -1227,13 +1229,13 @@ func (s EditControlGroupByCoverResponse) GoString() string {
   return s.String()
 }
 
-func (s *EditControlGroupByCoverResponse) SetMsg(v string) *EditControlGroupByCoverResponse {
-  s.Msg = &v
+func (s *EditControlGroupByCoverResponse) SetCode(v int) *EditControlGroupByCoverResponse {
+  s.Code = &v
   return s
 }
 
-func (s *EditControlGroupByCoverResponse) SetCode(v int) *EditControlGroupByCoverResponse {
-  s.Code = &v
+func (s *EditControlGroupByCoverResponse) SetMsg(v string) *EditControlGroupByCoverResponse {
+  s.Msg = &v
   return s
 }
 
@@ -1297,40 +1299,19 @@ func (s DeleteControlGroupRequest) GoString() string {
   return s.String()
 }
 
-type DeleteControlGroupResponse struct {
-  // {"en":"Status Code", "zh_CN":"错误具体状态码"}
-  Code *int `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Message", "zh_CN":"消息提示"}
-  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {"en":"Success Mark", "zh_CN":"成功标记"}
-  Success *bool `json:"success,omitempty" xml:"success,omitempty" require:"true"`
+type DeleteControlGroupRequestHeader struct {
 }
 
-func (s DeleteControlGroupResponse) String() string {
+func (s DeleteControlGroupRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s DeleteControlGroupResponse) GoString() string {
+func (s DeleteControlGroupRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *DeleteControlGroupResponse) SetCode(v int) *DeleteControlGroupResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *DeleteControlGroupResponse) SetMsg(v string) *DeleteControlGroupResponse {
-  s.Msg = &v
-  return s
-}
-
-func (s *DeleteControlGroupResponse) SetSuccess(v bool) *DeleteControlGroupResponse {
-  s.Success = &v
-  return s
-}
-
 type DeleteControlGroupPaths struct {
-  // {"en":"Control Group Code", "zh_CN":"Control Group 编号"}
+  // {"en":"Control Group Code","zh_CN":"Control Group 编号"}
   ControlGroupCode *string `json:"ControlGroupCode,omitempty" xml:"ControlGroupCode,omitempty" require:"true"`
 }
 
@@ -1358,15 +1339,36 @@ func (s DeleteControlGroupParameters) GoString() string {
   return s.String()
 }
 
-type DeleteControlGroupRequestHeader struct {
+type DeleteControlGroupResponse struct {
+  // {"en":"Status Code","zh_CN":"错误具体状态码"}
+  Code *int `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Message","zh_CN":"消息提示"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"Success Mark","zh_CN":"成功标记"}
+  Success *bool `json:"success,omitempty" xml:"success,omitempty" require:"true"`
 }
 
-func (s DeleteControlGroupRequestHeader) String() string {
+func (s DeleteControlGroupResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s DeleteControlGroupRequestHeader) GoString() string {
+func (s DeleteControlGroupResponse) GoString() string {
   return s.String()
+}
+
+func (s *DeleteControlGroupResponse) SetCode(v int) *DeleteControlGroupResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *DeleteControlGroupResponse) SetMsg(v string) *DeleteControlGroupResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *DeleteControlGroupResponse) SetSuccess(v bool) *DeleteControlGroupResponse {
+  s.Success = &v
+  return s
 }
 
 type DeleteControlGroupResponseHeader struct {

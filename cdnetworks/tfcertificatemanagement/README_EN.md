@@ -70,4 +70,8 @@ For detailed API documentation and available methods, please refer to the [offic
 
 | ActionName | enDescription | client_methods | uri |
 | --- | --- | --- | --- |
+| Addcertificateforterraform | Add a new certificate interface for terraform | POST | /api/terraform/certificate |
+| Updatecertificateforterraform | Update certificate for terraform | PUT | /api/terraform/certificate/* |
+| Querycertificateforterraform | Returns certificate detail by certificate ID for terraform | GET | /api/terraform/certificate/* |
+| Deletecertificateforterraform | Delete certificate for terraform | DELETE | /api/terraform/certificate/* |
 | Querycertificatelistforterraform | Query certificate list for terraform. | POST | /api/terraform/certificates |

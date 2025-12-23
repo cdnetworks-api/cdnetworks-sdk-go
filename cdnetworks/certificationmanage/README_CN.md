@@ -22,7 +22,7 @@ go get github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/certificationmanag
 package main
 
 import (
-    "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/common/auth"
+    "github.com/cdnetworks-api/cdnetworks-sdk-go/common/auth"
     "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/certificationmanage"
     "log"
 )
@@ -81,3 +81,4 @@ if err != nil {
 | Getcertificateassociatedhostnames | 查看证书关联的加速域名 | GET | /api/certificate/*/domain |
 | Querydomainmulticertconfig | 查询域名证书配置 | GET | /api/config/certificate/v2/* |
 | Querycertificatepagination | 该接口用于分页查询SSL证书的列表及详细信息。用户可通过指定页码和每页记录数来获取证书列表，返回结果包含证书ID、证书名称、是否共享以及使用当前证书的域名信息等。 | POST | /api/ssl/certificate/pagination |
+| Getcertificatecontentinfos | 该接口根据提供的证书ID列表，批量查询多个证书的详细信息，包括加密后的key文件内容、证书过期时间、证书ID、加密后的crt文件内容以及证书名称等 | POST | /api/ssl/content |

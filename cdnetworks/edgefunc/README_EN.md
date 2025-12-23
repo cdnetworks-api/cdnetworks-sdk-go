@@ -71,3 +71,6 @@ For detailed API documentation and available methods, please refer to the [offic
 | ActionName | enDescription | client_methods | uri |
 | --- | --- | --- | --- |
 | Uploadfunccode | Function code upload interface, for the scenario that does not use CloudIDE, but directly calls the interface to upload function code | POST | /edgefunc/upload |
+| Createedgefunctrigger | This interface is used to create function triggers. Users are required to provide the domain and a list of routing rules as request parameters. Upon successful creation, the interface will return a status code and the list of successfully created triggers. | POST | /api/v2/cdn_triggers |
+| Queryedgefunctrigger | This interface is used to query a list of function triggers. Users can filter by domain or function name and use pagination. The response will return a detailed list of triggers. | GET | /api/v2/cdn_triggers |
+| Deletefuncdomaintrigger | This interface is used to remove an existing function trigger. The user needs to specify the unique identifier of the function trigger to be deleted via the REST parameter 'id'. | DELETE | /api/v2/cdn_triggers/* |

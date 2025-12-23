@@ -262,7 +262,7 @@ func (s QuerySpecificIPBelongResponseHeader) GoString() string {
 
 
 type CheckIpOwnerRequest struct {
-  // {"en":"The list of IP that needs to be querying is 20 times a single time.","zh_CN":"需要查询的IP列表，单次最大20个（联系技术支持可调上限）"}
+  // {"en":"The list of IP addresses to be queried, with a maximum of 20 per request (contact technical support for higher limits).","zh_CN":"需要查询的IP列表，单次最大20个（联系技术支持可调上限）"}
   Ip []*string `json:"ip,omitempty" xml:"ip,omitempty" require:"true" type:"Repeated"`
 }
 
@@ -313,7 +313,7 @@ func (s CheckIpOwnerParameters) GoString() string {
 }
 
 type CheckIpOwnerResponse struct {
-  // {"en":"result","zh_CN":"结果"}
+  // {"en":"List of query results, where each item contains the affiliation information for an IP address.","zh_CN":"结果"}
   Result []*CheckIpOwnerResponseResult `json:"result,omitempty" xml:"result,omitempty" require:"true" type:"Repeated"`
 }
 
@@ -333,15 +333,15 @@ func (s *CheckIpOwnerResponse) SetResult(v []*CheckIpOwnerResponseResult) *Check
 type CheckIpOwnerResponseResult struct     {
   // {"en":"IP addresses","zh_CN":"IP地址"}
   Ip *string `json:"ip,omitempty" xml:"ip,omitempty" require:"true"`
-  // {"en":"Whether the IP belongs to our CDN network.\n- true: Our CDN node IP.\n- false: Not our CDN node IP.","zh_CN":"是否我司CDN的IP：\n1.true：表示是我司CDN的节点IP\n2.false：表示不是我司CDN的节点IP","exampleValue":"true.false"}
+  // {"en":"Indicates whether the IP address belongs to our company's CDN network.\n - true: It is our CDN node IP.\n - false: It is not our CDN node IP.","zh_CN":"是否我司CDN的IP：\n1.true：表示是我司CDN的节点IP\n2.false：表示不是我司CDN的节点IP","exampleValue":"true.false"}
   IsCdnIp *bool `json:"isCdnIp,omitempty" xml:"isCdnIp,omitempty" require:"true"`
-  // {"en":"If it is not a node of the CDN, it will not return; if it is not planned, it will return unknown.","zh_CN":"归属国家地区；不是我司CDN的节点，不返回；如未规划的则返回未知。"}
+  // {"en":"The affiliated country/region. Not returned if the IP is not a CDN node of our company; returns 'unknown' if the information is not mapped.","zh_CN":"归属国家地区；不是我司CDN的节点，不返回；如未规划的则返回未知。"}
   Country *string `json:"country,omitempty" xml:"country,omitempty" require:"true"`
-  // {"en":"If it is not a node of the CDN, it will not return; if it is not planned, it will return unknown.","zh_CN":"归属省份；不是我司CDN的节点，不返回；如未规划的则返回未知；"}
+  // {"en":"The affiliated province. Not returned if the IP is not a CDN node of our company; returns 'unknown' if the information is not mapped.","zh_CN":"归属省份；不是我司CDN的节点，不返回；如未规划的则返回未知；"}
   Province *string `json:"province,omitempty" xml:"province,omitempty" require:"true"`
-  // {"en":"If it is not a node of the CDN, it will not return; if it is not planned, it will return unknown.","zh_CN":"归属城市；不是我司CDN的节点，不返回；如未规划的则返回未知；"}
+  // {"en":"The affiliated city. Not returned if the IP is not a CDN node of our company; returns 'unknown' if the information is not mapped.","zh_CN":"归属城市；不是我司CDN的节点，不返回；如未规划的则返回未知；"}
   City *string `json:"city,omitempty" xml:"city,omitempty" require:"true"`
-  // {"en":"If it is not a node of the CDN, it will not return; if it is not planned, it will return unknown.","zh_CN":"归属运营商；不是我司CDN的节点，不返回；如未规划的则返回未知。"}
+  // {"en":"The affiliated Internet Service Provider (ISP). Not returned if the IP is not a CDN node of our company; returns 'unknown' if the information is not mapped.","zh_CN":"归属运营商；不是我司CDN的节点，不返回；如未规划的则返回未知。"}
   Isp *string `json:"isp,omitempty" xml:"isp,omitempty" require:"true"`
 }
 

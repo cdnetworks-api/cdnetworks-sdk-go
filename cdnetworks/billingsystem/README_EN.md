@@ -22,7 +22,7 @@ The SDK uses AKSK (Access Key/Secret Key) authentication. Configure your credent
 package main
 
 import (
-    "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/common/auth"
+    "github.com/cdnetworks-api/cdnetworks-sdk-go/common/auth"
     "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/billingsystem"
     "log"
 )

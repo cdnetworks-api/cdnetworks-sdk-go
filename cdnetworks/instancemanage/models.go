@@ -1242,15 +1242,15 @@ type VMPCreateInstanceRequestServers struct     {
   DefaultGateway *string `json:"defaultGateway,omitempty" xml:"defaultGateway,omitempty"`
   // {"en":"Policy routing type","zh_CN":"策略路由类型：0-目的地址策略路由（默认）；1-源地址策略路由"}
   PolicyRoutingType *int `json:"policyRoutingType,omitempty" xml:"policyRoutingType,omitempty"`
-  // {"en":"Private gateway flag","zh_CN":"内网网关标识：1-分配内网网关"}
+  // {"en":"Private gateway flag","zh_CN":"内网网关标识：1-分配内网网关。指定该参数时，nodename必填。"}
   PrivateGatewayFlag *int `json:"privateGatewayFlag,omitempty" xml:"privateGatewayFlag,omitempty"`
   // {"en":"Nic allocate type","zh_CN":"实例网卡分配方式：0-多个ip共用一张网卡（默认）；1-每个ip独立一张网卡；2-V4V6混合，同协议IP同网卡，不同线路IP不同网卡"}
   NicAllocateType *int `json:"nicAllocateType,omitempty" xml:"nicAllocateType,omitempty"`
-  // {"en":"Ipv4 cidr","zh_CN":"指定外网IPv4网段CIDR(不支持多线)"}
+  // {"en":"Ipv4 cidr","zh_CN":"指定外网IPv4网段CIDR(不支持多线，仅单线节点可用)。指定该参数时，nodename必填。"}
   SinglePublicIpv4Cidr *string `json:"singlePublicIpv4Cidr,omitempty" xml:"singlePublicIpv4Cidr,omitempty"`
-  // {"en":"Specify certain public IPv4 ISPs; effective for multi-line nodes; if not specified, an instance with IPs from all carriers is created by default.","zh_CN":"指定部分公网ipv4运营商, 仅多线节点生效。多线节点未指定该参数时，默认创建包含所有运营商IP的实例"}
+  // {"en":"Specify certain public IPv4 ISPs; effective for multi-line nodes; if not specified, an instance with IPs from all carriers is created by default.","zh_CN":"指定部分公网ipv4运营商, 仅多线节点生效。多线节点未指定该参数时，默认创建包含所有运营商IP的实例。指定该参数时，nodename必填。"}
   PublicIpv4Info []*VMPCreateInstanceRequestServersPublicIpv4Info `json:"publicIpv4Info,omitempty" xml:"publicIpv4Info,omitempty" type:"Repeated"`
-  // {"en":"Specify certain public IPv6 ISPs; effective for multi-line nodes; if not specified, an instance with IPs from all carriers is created by default.","zh_CN":"指定部分公网ipv6运营商, 仅多线节点生效。多线节点指定需要ipv6未指定该参数时，默认创建包含所有运营商IP的实例"}
+  // {"en":"Specify certain public IPv6 ISPs; effective for multi-line nodes; if not specified, an instance with IPs from all carriers is created by default.","zh_CN":"指定部分公网ipv6运营商, 仅多线节点生效。多线节点指定需要ipv6未指定该参数时，默认创建包含所有运营商IP的实例。指定该参数时，nodename必填。"}
   PublicIpv6Info []*VMPCreateInstanceRequestServersPublicIpv6Info `json:"publicIpv6Info,omitempty" xml:"publicIpv6Info,omitempty" type:"Repeated"`
 }
 

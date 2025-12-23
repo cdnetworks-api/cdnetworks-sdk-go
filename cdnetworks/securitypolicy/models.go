@@ -2528,13 +2528,13 @@ func (s GetIntelligentAnalysisListResponseHeader) GoString() string {
 type AddCustomizeRuleRequest struct {
   // {"en":"Match Conditions.","zh_CN":"匹配条件。"}
   Condition *AddCustomizeRuleRequestCondition `json:"condition,omitempty" xml:"condition,omitempty" require:"true" type:"Struct"`
-  // {"en":"Action.\nNO_USE:Not Used\nLOG:Log\nDELAY:Delay\nBLOCK:Deny\nRESET:Reset Connection","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nDELAY：延迟响应\nBLOCK：拦截\nRESET:断开连接","exampleValue":"NO_USE,LOG,DELAY,BLOCK,RESET"}
+  // {"en":"Action.\nNO_USE:Not Used\nLOG:Log\nDELAY:Delay\nBLOCK:Deny\nRESET:Reset Connection\nCUSTOM_ACTION_ID:Fill in the custom action id of the corresponding action","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接\nCUSTOM_ACTION_ID：传入对应的自定义响应动作的ID","exampleValue":"NO_USE,LOG,DELAY,BLOCK,RESET"}
   Act *string `json:"act,omitempty" xml:"act,omitempty" require:"true"`
   // {"en":"Domain.","zh_CN":"域名。"}
   Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
-  // {"en":"Rule Name, maximum 50 characters.\nDoes not support # and &.","zh_CN":"规则名称，最多50个字符。\n不支持 # 和 &。"}
+  // {"en":"Rule Name, maximum 100 characters.Does not support # and &.","zh_CN":"规则名称，最多100个字符。不支持 # 和 &。"}
   RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
-  // {"en":"Description, maximum 200 characters.","zh_CN":"规则描述，最多200个字符。"}
+  // {"en":"Description, maximum 1000 characters.","zh_CN":"规则描述，最多1000个字符。"}
   Description *string `json:"description,omitempty" xml:"description,omitempty"`
   // {"en":"API ID under API business, multiple separated by ; sign.\nWhen the protected target is APIThis field is required.","zh_CN":"API业务下的API ID，多个用 ; 隔开。\n当业务场景为API业务时此字段必填。"}
   ApiId *string `json:"apiId,omitempty" xml:"apiId,omitempty"`
@@ -10152,7 +10152,7 @@ type ListRateLimitingRulesResponseData struct     {
   RateLimitEffective *ListRateLimitingRulesResponseDataRateLimitEffective `json:"rateLimitEffective,omitempty" xml:"rateLimitEffective,omitempty" require:"true" type:"Struct"`
   // {"en":"API ID under API business, multiple separated by ; sign.","zh_CN":"API业务下的API ID，多个用 ; 隔开。"}
   AssetApiId *string `json:"assetApiId,omitempty" xml:"assetApiId,omitempty" require:"true"`
-  // {"en":"Action.\nNO_USE:Not Used\nLOG:Log\nCOOKIE:Cookie verification\nJS_CHECK:Javascript verification\nDELAY:Delay\nBLOCK:Deny\nRESET:Reset Connection\nCustom response ID:Custom response ID","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nCOOKIE：Cookie校验\nJS_CHECK：JavaScript校验\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接\n自定义响应ID：自定义响应ID"}
+  // {"en":"Action.\nNO_USE:Not Used\nLOG:Log\nCOOKIE:Cookie verification\nJS_CHECK:Javascript verification\nDELAY:Delay\nBLOCK:Deny\nRESET:Reset Connection\nCUSTOM_ACTION_ID:Fill in the custom action id of the corresponding action","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nCOOKIE：Cookie校验\nJS_CHECK：JavaScript校验\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接\nCUSTOM_ACTION_ID：传入对应的自定义响应动作的ID"}
   Action *string `json:"action,omitempty" xml:"action,omitempty" require:"true"`
   // {"en":"Matching conditions.","zh_CN":"匹配条件。"}
   RateLimitRuleCondition *ListRateLimitingRulesResponseDataRateLimitRuleCondition `json:"rateLimitRuleCondition,omitempty" xml:"rateLimitRuleCondition,omitempty" require:"true" type:"Struct"`
@@ -10260,7 +10260,7 @@ type ListRateLimitingRulesResponseDataRateLimitEffective struct {
   Start *string `json:"start,omitempty" xml:"start,omitempty" require:"true"`
   // {"en":"End time, format: HH:mm.","zh_CN":"结束时间，格式：HH:mm。"}
   End *string `json:"end,omitempty" xml:"end,omitempty" require:"true"`
-  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_timezone","en":"Timezone,default value: GTM+8.","zh_CN":"时区，默认：GTM+8。"}
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_timezone","en":"Timezone,default value: GMT+8.","zh_CN":"时区，默认：GMT+8。"}
   Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty" require:"true"`
 }
 
@@ -11124,9 +11124,9 @@ func (s GetBuiltInRuleListResponseHeader) GoString() string {
 type UpdateRateLimitingRuleRequest struct {
   // {"en":"Rule ID.","zh_CN":"规则ID。"}
   Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
-  // {"en":"Rule Name, maximum 50 characters.\nDoes not support # and &.","zh_CN":"规则名称，最多50个字符。\n 不支持 # 和 &。"}
+  // {"en":"Rule Name, maximum 100 characters.Does not support # and &.","zh_CN":"规则名称，最多100个字符。 不支持 # 和 &。"}
   RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty"`
-  // {"en":"Description, maximum 200 characters.","zh_CN":"规则描述，最多200个字符。"}
+  // {"en":"Description, maximum 1000 characters.","zh_CN":"规则描述，最多1000个字符。"}
   Description *string `json:"description,omitempty" xml:"description,omitempty"`
   // {"en":"Protected target.\nWEB:Website\nAPI:API","zh_CN":"业务场景。\nWEB：网站业务\nAPI：API业务"}
   Scene *string `json:"scene,omitempty" xml:"scene,omitempty"`
@@ -11146,7 +11146,7 @@ type UpdateRateLimitingRuleRequest struct {
   RateLimitEffective *UpdateRateLimitingRuleRequestRateLimitEffective `json:"rateLimitEffective,omitempty" xml:"rateLimitEffective,omitempty" type:"Struct"`
   // {"en":"API ID under API business, multiple separated by ; sign.\nWhen the protected target is API, this field is required.","zh_CN":"API业务下的API ID，多个用 ; 隔开。\n当业务场景为API业务时此字段必填。"}
   AssetApiId *string `json:"assetApiId,omitempty" xml:"assetApiId,omitempty"`
-  // {"en":"Action.\nNO_USE:Not Used\nLOG:Log\nCOOKIE:Cookie verification\nJS_CHECK:Javascript verification\nDELAY:Delay\nBLOCK:Deny\nRESET:Reset Connection\nCustom response ID:Custom response ID\nWhen there is a status code in the matching condition, the supported actions are Log, Deny, NO_USE, and Reset, Connection.","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nCOOKIE：Cookie校验\nJS_CHECK：JavaScript校验\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接\n自定义响应ID：自定义响应ID\n当匹配条件中存在状态码时，支持处理动作为监控、拦截、不使用、断开连接。"}
+  // {"en":"Action.\nNO_USE:Not Used\nLOG:Log\nCOOKIE:Cookie verification\nJS_CHECK:Javascript verification\nDELAY:Delay\nBLOCK:Deny\nRESET:Reset Connection\nCUSTOM_ACTION_ID:Fill in the custom action id of the corresponding action\nWhen there is a status code in the matching condition, the supported actions are Log, Deny, NO_USE, and Reset, Connection.","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nCOOKIE：Cookie校验\nJS_CHECK：JavaScript校验\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接\nCUSTOM_ACTION_ID：传入对应的自定义响应动作的ID\n当匹配条件中存在状态码时，支持处理动作为监控、拦截、不使用、断开连接。"}
   Action *string `json:"action,omitempty" xml:"action,omitempty"`
   // {"en":"Matching conditions.","zh_CN":"匹配条件。"}
   RateLimitRuleCondition *UpdateRateLimitingRuleRequestRateLimitRuleCondition `json:"rateLimitRuleCondition,omitempty" xml:"rateLimitRuleCondition,omitempty" type:"Struct"`
@@ -11237,7 +11237,7 @@ type UpdateRateLimitingRuleRequestRateLimitEffective struct {
   Start *string `json:"start,omitempty" xml:"start,omitempty" require:"true"`
   // {"en":"End time, format: HH:mm.","zh_CN":"结束时间，格式：HH:mm。"}
   End *string `json:"end,omitempty" xml:"end,omitempty" require:"true"`
-  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_timezone","en":"Timezone,default value: GTM+8.","zh_CN":"时区，默认：GTM+8。"}
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_timezone","en":"Timezone,default value: GMT+8.","zh_CN":"时区，默认：GMT+8。"}
   Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty" require:"true"`
 }
 
@@ -12161,14 +12161,12 @@ func (s *UpdateDomainBaseInfoRequest) SetData(v []*UpdateDomainBaseInfoRequestDa
 type UpdateDomainBaseInfoRequestData struct     {
   // {"en":"domain.","zh_CN":"域名。"}
   Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
-  // {"en":"Layer 7 HTTP DDoS protection switch, on: 'ON', off: 'OFF'","zh_CN":"7层HTTP DDoS防护开关，开启：'ON'，关闭：'OFF'"}
-  L7DdosSwitch *string `json:"l7DdosSwitch,omitempty" xml:"l7DdosSwitch,omitempty"`
   // {"en":"Built in protective switch, on: 'ON', off: 'OFF'","zh_CN":"内置防护开关，开启：'ON'，关闭：'OFF'"}
   InnerSwitch *string `json:"innerSwitch,omitempty" xml:"innerSwitch,omitempty"`
   // {"en":"Is AI intelligent protection enabled? On: 'ON', Off: 'OFF'","zh_CN":"是否启用AI智能防护, 开启：'ON'，关闭：'OFF'"}
   AiSwitch *string `json:"aiSwitch,omitempty" xml:"aiSwitch,omitempty"`
   // {"en":"Protection mode, loose: 'LOOSE', moderate: 'MODERATE',strict: 'STRICT'","zh_CN":"防护模式, 宽松: 'LOOSE',   适中: 'MODERATE',严格: 'STRICT'"}
-  ProtectMode *string `json:"protectMode,omitempty" xml:"protectMode,omitempty"`
+  ProtectMode *string `json:"protectMode,omitempty" xml:"protectMode,omitempty" require:"true"`
   // {"en":"AI rule action, intercept: 'BLOCK', monitor: 'LOG',DDoS Managed Challenge: 'RR'","zh_CN":"ai规则动作，拦截:'BLOCK'，监控：'LOG',DDoS托管：'RR'"}
   AiAction *string `json:"aiAction,omitempty" xml:"aiAction,omitempty"`
 }
@@ -12183,11 +12181,6 @@ func (s UpdateDomainBaseInfoRequestData) GoString() string {
 
 func (s *UpdateDomainBaseInfoRequestData) SetDomain(v string) *UpdateDomainBaseInfoRequestData {
   s.Domain = &v
-  return s
-}
-
-func (s *UpdateDomainBaseInfoRequestData) SetL7DdosSwitch(v string) *UpdateDomainBaseInfoRequestData {
-  s.L7DdosSwitch = &v
   return s
 }
 
@@ -14341,11 +14334,11 @@ func (s QueryCustomRuleConfigurationResponseHeader) GoString() string {
 type UpdateCustomRuleRequest struct {
   // {"en":"Matching conditions. Except for header conditions, there can only be at most one record per match type under each type of condition.","zh_CN":"匹配条件。除了请求头条件，其它类型的条件下一种匹配类型最多只能有一条记录。"}
   Condition *UpdateCustomRuleRequestCondition `json:"condition,omitempty" xml:"condition,omitempty" type:"Struct"`
-  // {"en":"Action.\nNO_USE:Not Used\nLOG:Log\nDELAY:Delay\nBLOCK:Deny\nRESET:Reset Connection","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nDELAY：延迟响应\nBLOCK：拦截\nRESET:断开连接","exampleValue":"NO_USE,LOG,DELAY,BLOCK,RESET"}
+  // {"en":"Action.\nNO_USE:Not Used\nLOG:Log\nDELAY:Delay\nBLOCK:Deny\nRESET:Reset Connection\nCUSTOM_ACTION_ID:Fill in the custom action id of the corresponding action","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接\nCUSTOM_ACTION_ID：传入对应的自定义响应动作的ID","exampleValue":"NO_USE,LOG,DELAY,BLOCK,RESET"}
   Act *string `json:"act,omitempty" xml:"act,omitempty"`
-  // {"en":"Rule Name, maximum 50 characters.\nDoes not support # and &.","zh_CN":"规则名称，最多50个字符。\n不支持 # 和 &。"}
+  // {"en":"Rule Name, maximum 100 characters.Does not support # and &.","zh_CN":"规则名称，最多100个字符。不支持 # 和 &。"}
   RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty"`
-  // {"en":"Description, maximum 200 characters.","zh_CN":"规则描述，最多200个字符。"}
+  // {"en":"Description, maximum 1000 characters.","zh_CN":"规则描述，最多1000个字符。"}
   Description *string `json:"description,omitempty" xml:"description,omitempty"`
   // {"en":"Rule ID.","zh_CN":"规则ID。"}
   Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
@@ -15420,9 +15413,9 @@ func (s GetBlockPageSettingResponseHeader) GoString() string {
 type AddRateLimitingRuleRequest struct {
   // {"en":"Domain.","zh_CN":"域名。"}
   Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
-  // {"en":"Rule Name, maximum 50 characters.\nDoes not support # and &.","zh_CN":"规则名称，最多50个字符。\n不支持 # 和 &。"}
+  // {"en":"Rule Name, maximum 100 characters.Does not support # and &.","zh_CN":"规则名称，最多100个字符。不支持 # 和 &。"}
   RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
-  // {"en":"Description, maximum 200 characters.","zh_CN":"规则描述，最多200个字符。"}
+  // {"en":"Description, maximum 1000 characters.","zh_CN":"规则描述，最多1000个字符。"}
   Description *string `json:"description,omitempty" xml:"description,omitempty"`
   // {"en":"Protected target.\nWEB:Website\nAPI:API","zh_CN":"业务场景。\nWEB：网站业务\nAPI：API业务"}
   Scene *string `json:"scene,omitempty" xml:"scene,omitempty" require:"true"`
@@ -15442,7 +15435,7 @@ type AddRateLimitingRuleRequest struct {
   RateLimitEffective *AddRateLimitingRuleRequestRateLimitEffective `json:"rateLimitEffective,omitempty" xml:"rateLimitEffective,omitempty" type:"Struct"`
   // {"en":"API ID under API business, multiple separated by ; sign.\nWhen the protected target is APIThis field is required.","zh_CN":"API业务下的API ID，多个用 ; 隔开。\n当业务场景为API业务时此字段必填。"}
   AssetApiId *string `json:"assetApiId,omitempty" xml:"assetApiId,omitempty"`
-  // {"en":"Action.\nNO_USE:Not Used\nLOG:Log\nCOOKIE:Cookie verification\nJS_CHECK:Javascript verification\nDELAY:Delay\nBLOCK:Deny\nRESET:Reset Connection\nCustom response ID:Custom response ID\nWhen there is a status code in the matching condition, the supported actions are LOG, BLOCK, NO_USE, and RESET.","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nCOOKIE：Cookie校验\nJS_CHECK：JavaScript校验\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接\n自定义响应ID：自定义响应ID\n当匹配条件中存在状态码时，支持处理动作为监控、拦截、不使用、断开连接。","exampleValue":"NO_USE,LOG,COOKIE,JS_CHECK,DELAY,BLOCK,RESET"}
+  // {"en":"Action.\nNO_USE:Not Used\nLOG:Log\nCOOKIE:Cookie verification\nJS_CHECK:Javascript verification\nDELAY:Delay\nBLOCK:Deny\nRESET:Reset Connection\nCUSTOM_ACTION_ID:Fill in the custom action id of the corresponding action\nWhen there is a status code in the matching condition, the supported actions are LOG, BLOCK, NO_USE, and RESET.","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nCOOKIE：Cookie校验\nJS_CHECK：JavaScript校验\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接\nCUSTOM_ACTION_ID：传入对应的自定义响应动作的ID\n当匹配条件中存在状态码时，支持处理动作为监控、拦截、不使用、断开连接。","exampleValue":"NO_USE,LOG,COOKIE,JS_CHECK,DELAY,BLOCK,RESET"}
   Action *string `json:"action,omitempty" xml:"action,omitempty" require:"true"`
   // {"en":"Matching conditions.","zh_CN":"匹配条件。"}
   RateLimitRuleCondition *AddRateLimitingRuleRequestRateLimitRuleCondition `json:"rateLimitRuleCondition,omitempty" xml:"rateLimitRuleCondition,omitempty" require:"true" type:"Struct"`
@@ -15533,7 +15526,7 @@ type AddRateLimitingRuleRequestRateLimitEffective struct {
   Start *string `json:"start,omitempty" xml:"start,omitempty" require:"true"`
   // {"en":"End time, format: HH:mm.","zh_CN":"结束时间，格式：HH:mm。"}
   End *string `json:"end,omitempty" xml:"end,omitempty" require:"true"`
-  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_timezone","en":"Timezone,default value: GTM+8.","zh_CN":"时区，默认：GTM+8。"}
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_timezone","en":"Timezone,default value: GMT+8.","zh_CN":"时区，默认：GMT+8。"}
   Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty" require:"true"`
 }
 
@@ -20015,11 +20008,11 @@ func (s ListDomainInfosParameters) GoString() string {
 }
 
 type ListDomainInfosResponse struct {
-  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code.","zh_CN":"请参照错误码。"}
   Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Description.","zh_CN":"描述信息。"}
+  // {"en":"Description message.","zh_CN":"描述信息。"}
   Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
-  // {"en":"Data.","zh_CN":"出参数据。"}
+  // {"en":"Response data.","zh_CN":"出参数据。"}
   Data []*ListDomainInfosResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
 }
 
@@ -20051,30 +20044,32 @@ type ListDomainInfosResponseData struct     {
   Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
   // {"en":"Domain.","zh_CN":"域名。"}
   Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
-  // {"en":"Creation time, format: yyyy-MM-dd HH:mm:ss.","zh_CN":"接入时间，格式：yyyy-MM-dd HH:mm:ss。"}
+  // {"en":"Access time, format: yyyy-MM-dd HH:mm:ss.","zh_CN":"接入时间，格式：yyyy-MM-dd HH:mm:ss。"}
   CreateTime *string `json:"createTime,omitempty" xml:"createTime,omitempty" require:"true"`
-  // {"en":"Deployment status.\nDEPLOYING: Publishing\nSUCCESS: Success","zh_CN":"部署状态。\nDEPLOYING：部署中\nSUCCESS：部署成功","exampleValue":"DEPLOYING,SUCCESS"}
+  // {"en":"Deployment status.\nDEPLOYING: Deploying\nSUCCESS: Deployment successful","zh_CN":"部署状态。\nDEPLOYING：部署中\nSUCCESS：部署成功","exampleValue":"DEPLOYING,SUCCESS"}
   DeployStatus *string `json:"deployStatus,omitempty" xml:"deployStatus,omitempty" require:"true"`
-  // {"en":"IP/Geo blocking switch.\nON: Enabled\nOFF: Disabled","zh_CN":"IP/区域封禁开关。\nON：开启\nOFF：关闭","exampleValue":"ON,OFF"}
+  // {"en":"IP/Region block switch.\nON: On\nOFF: Off","zh_CN":"IP/区域封禁开关。\nON：开启\nOFF：关闭","exampleValue":"ON,OFF"}
   BlockSwitch *string `json:"blockSwitch,omitempty" xml:"blockSwitch,omitempty" require:"true"`
   // {"en":"Protection status.\nPROTECTING: Protecting\nUNPROTECTED: Unprotected","zh_CN":"防护状态。\nPROTECTING：防护中\nUNPROTECTED：未防护","exampleValue":"PROTECTING,UNPROTECTED"}
   DefendStatus *string `json:"defendStatus,omitempty" xml:"defendStatus,omitempty" require:"true"`
-  // {"en":"DDoS protection switch.\nON: Enabled\nOFF: Disabled","zh_CN":"DDoS防护开关。\nON：开启\nOFF：关闭","exampleValue":"ON,OFF"}
+  // {"en":"DDoS protection switch.\nON: On\nOFF: Off","zh_CN":"DDoS防护开关。\nON：开启\nOFF：关闭","exampleValue":"ON,OFF"}
   DmsDefendSwitch *string `json:"dmsDefendSwitch,omitempty" xml:"dmsDefendSwitch,omitempty" require:"true"`
-  // {"en":"Bot management switch.\nON: Enabled\nOFF: Disabled","zh_CN":"Bot管理开关。\nON：开启\nOFF：关闭","exampleValue":"ON,OFF"}
+  // {"en":"Bot management switch.\nON: On\nOFF: Off","zh_CN":"Bot管理开关。\nON：开启\nOFF：关闭","exampleValue":"ON,OFF"}
   BotManageSwitch *string `json:"botManageSwitch,omitempty" xml:"botManageSwitch,omitempty" require:"true"`
-  // {"en":"Custom rules switch.\nON: Enabled\nOFF: Disabled","zh_CN":"自定义规则开关。\nON：开启\nOFF：关闭","exampleValue":"ON,OFF"}
+  // {"en":"Custom rule switch.\nON: On\nOFF: Off","zh_CN":"自定义规则开关。\nON：开启\nOFF：关闭","exampleValue":"ON,OFF"}
   CustomizeRuleSwitch *string `json:"customizeRuleSwitch,omitempty" xml:"customizeRuleSwitch,omitempty" require:"true"`
-  // {"en":"API security switch.\nON: Enabled\nOFF: Disabled","zh_CN":"API安全开关。\nON：开启\nOFF：关闭","exampleValue":"ON,OFF"}
+  // {"en":"API security switch.\nON: On\nOFF: Off","zh_CN":"API安全开关。\nON：开启\nOFF：关闭","exampleValue":"ON,OFF"}
   ApiDefendSwitch *string `json:"apiDefendSwitch,omitempty" xml:"apiDefendSwitch,omitempty" require:"true"`
-  // {"en":"Rate limiting switch.\nON: Enabled\nOFF: Disabled","zh_CN":"频率限制开关。\nON：开启\nOFF：关闭","exampleValue":"ON,OFF"}
+  // {"en":"Rate limit switch.\nON: On\nOFF: Off","zh_CN":"频率限制开关。\nON：开启\nOFF：关闭","exampleValue":"ON,OFF"}
   RateLimitSwitch *string `json:"rateLimitSwitch,omitempty" xml:"rateLimitSwitch,omitempty" require:"true"`
-  // {"en":"Whitelist switch.\nON: Enabled\nOFF: Disabled","zh_CN":"白名单开关。\nON：开启\nOFF：关闭","exampleValue":"ON,OFF"}
+  // {"en":"Whitelist switch.\nON: On\nOFF: Off","zh_CN":"白名单开关。\nON：开启\nOFF：关闭","exampleValue":"ON,OFF"}
   WhitelistSwitch *string `json:"whitelistSwitch,omitempty" xml:"whitelistSwitch,omitempty" require:"true"`
-  // {"en":"Threat intelligence switch.\nON: Enabled\nOFF: Disabled","zh_CN":"威胁情报开关。\nON：开启\nOFF：关闭","exampleValue":"ON,OFF"}
+  // {"en":"Threat intelligence switch.\nON: On\nOFF: Off","zh_CN":"威胁情报开关。\nON：开启\nOFF：关闭","exampleValue":"ON,OFF"}
   IntelligenceSwitch *string `json:"intelligenceSwitch,omitempty" xml:"intelligenceSwitch,omitempty" require:"true"`
-  // {"en":"WAF protection switch.\nON: Enabled\nOFF: Disabled","zh_CN":"WAF防护开关。\nON：开启\nOFF：关闭","exampleValue":"ON,OFF"}
+  // {"en":"WAF protection switch.\nON: On\nOFF: Off","zh_CN":"WAF防护开关。\nON：开启\nOFF：关闭","exampleValue":"ON,OFF"}
   WafDefendSwitch *string `json:"wafDefendSwitch,omitempty" xml:"wafDefendSwitch,omitempty" require:"true"`
+  // {"en":"Whether it can be published to the production environment.","zh_CN":"是否可发布到生产环境。"}
+  Publishable *bool `json:"publishable,omitempty" xml:"publishable,omitempty" require:"true"`
 }
 
 func (s ListDomainInfosResponseData) String() string {
@@ -20155,6 +20150,11 @@ func (s *ListDomainInfosResponseData) SetWafDefendSwitch(v string) *ListDomainIn
   return s
 }
 
+func (s *ListDomainInfosResponseData) SetPublishable(v bool) *ListDomainInfosResponseData {
+  s.Publishable = &v
+  return s
+}
+
 type ListDomainInfosResponseHeader struct {
 }
 
@@ -20172,9 +20172,9 @@ func (s ListDomainInfosResponseHeader) GoString() string {
 type UpdateWhitelistRuleRequest struct {
   // {"en":"Rule ID.","zh_CN":"规则ID。"}
   Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
-  // {"en":"Rule name, maximum 50 characters.\nDoes not support # and &.","zh_CN":"规则名称，最多50个字符。\n不支持 # 和 &。"}
+  // {"en":"Rule name, maximum 100 characters.Does not support # and &.","zh_CN":"规则名称，最多100个字符。不支持 # 和 &。"}
   RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty"`
-  // {"en":"Description, maximum 200 characters.","zh_CN":"描述，最多200个字符。"}
+  // {"en":"Description, maximum 1000 characters.","zh_CN":"描述，最多1000个字符。"}
   Description *string `json:"description,omitempty" xml:"description,omitempty"`
   // {"en":"Match conditions, at least one, at most five.","zh_CN":"匹配条件，至少一个，至多五个。"}
   Conditions *UpdateWhitelistRuleRequestConditions `json:"conditions,omitempty" xml:"conditions,omitempty" type:"Struct"`
@@ -21403,6 +21403,145 @@ func (s DeleteRateLimitingRulesResponseHeader) String() string {
 }
 
 func (s DeleteRateLimitingRulesResponseHeader) GoString() string {
+  return s.String()
+}
+
+
+
+
+type UpdateWebBotDetectionRequest struct {
+  // {"en":"Hostname.","zh_CN":"域名。"}
+  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
+  // {"en":"Action.\nNO_USE: Do not use\nBLOCK: Intercept\nLOG: Monitor","zh_CN":"处理动作。\nNO_USE:不使用\nBLOCK:拦截\nLOG:监控"}
+  Act *string `json:"act,omitempty" xml:"act,omitempty"`
+  // {"en":"Automated tool detection function switch.\nON: Enable\nOFF: Disable","zh_CN":"自动化工具检测功能开关。\nON: 开启\nOFF: 关闭"}
+  AutoToolSwitch *string `json:"autoToolSwitch,omitempty" xml:"autoToolSwitch,omitempty"`
+  // {"en":"Cracking the behavior detection function switch.\nON: On\nOFF: Off","zh_CN":"破解行为检测功能开关。\nON: 开启\nOFF: 关闭"}
+  CrackAnalyseSwitch *string `json:"crackAnalyseSwitch,omitempty" xml:"crackAnalyseSwitch,omitempty"`
+  // {"en":"Page anti-debugging function switch.\nON: Enable\nOFF: Disable","zh_CN":"页面反调试功能开关。\nON: 开启\nOFF: 关闭"}
+  PageDebugSwitch *string `json:"pageDebugSwitch,omitempty" xml:"pageDebugSwitch,omitempty"`
+  // {"en":"Interactive behavior verification function switch.\nON: Enable\nOFF: Disable","zh_CN":"交互行为验证开关。\nON: 开启\nOFF: 关闭"}
+  InteractionAnalyseSwitch *string `json:"interactionAnalyseSwitch,omitempty" xml:"interactionAnalyseSwitch,omitempty"`
+  // {"en":"Ajax request exception function switch.ON: EnableOFF: Disable","zh_CN":"Ajax请求例外开关。ON：开启OFF：关闭"}
+  AjaxExceptionSwitch *string `json:"ajaxExceptionSwitch,omitempty" xml:"ajaxExceptionSwitch,omitempty"`
+}
+
+func (s UpdateWebBotDetectionRequest) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateWebBotDetectionRequest) GoString() string {
+  return s.String()
+}
+
+func (s *UpdateWebBotDetectionRequest) SetDomain(v string) *UpdateWebBotDetectionRequest {
+  s.Domain = &v
+  return s
+}
+
+func (s *UpdateWebBotDetectionRequest) SetAct(v string) *UpdateWebBotDetectionRequest {
+  s.Act = &v
+  return s
+}
+
+func (s *UpdateWebBotDetectionRequest) SetAutoToolSwitch(v string) *UpdateWebBotDetectionRequest {
+  s.AutoToolSwitch = &v
+  return s
+}
+
+func (s *UpdateWebBotDetectionRequest) SetCrackAnalyseSwitch(v string) *UpdateWebBotDetectionRequest {
+  s.CrackAnalyseSwitch = &v
+  return s
+}
+
+func (s *UpdateWebBotDetectionRequest) SetPageDebugSwitch(v string) *UpdateWebBotDetectionRequest {
+  s.PageDebugSwitch = &v
+  return s
+}
+
+func (s *UpdateWebBotDetectionRequest) SetInteractionAnalyseSwitch(v string) *UpdateWebBotDetectionRequest {
+  s.InteractionAnalyseSwitch = &v
+  return s
+}
+
+func (s *UpdateWebBotDetectionRequest) SetAjaxExceptionSwitch(v string) *UpdateWebBotDetectionRequest {
+  s.AjaxExceptionSwitch = &v
+  return s
+}
+
+type UpdateWebBotDetectionRequestHeader struct {
+  // {"en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+}
+
+func (s UpdateWebBotDetectionRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateWebBotDetectionRequestHeader) GoString() string {
+  return s.String()
+}
+
+func (s *UpdateWebBotDetectionRequestHeader) SetServiceType(v string) *UpdateWebBotDetectionRequestHeader {
+  s.ServiceType = &v
+  return s
+}
+
+type UpdateWebBotDetectionPaths struct {
+}
+
+func (s UpdateWebBotDetectionPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateWebBotDetectionPaths) GoString() string {
+  return s.String()
+}
+
+type UpdateWebBotDetectionParameters struct {
+}
+
+func (s UpdateWebBotDetectionParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateWebBotDetectionParameters) GoString() string {
+  return s.String()
+}
+
+type UpdateWebBotDetectionResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+}
+
+func (s UpdateWebBotDetectionResponse) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateWebBotDetectionResponse) GoString() string {
+  return s.String()
+}
+
+func (s *UpdateWebBotDetectionResponse) SetCode(v string) *UpdateWebBotDetectionResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *UpdateWebBotDetectionResponse) SetMsg(v string) *UpdateWebBotDetectionResponse {
+  s.Msg = &v
+  return s
+}
+
+type UpdateWebBotDetectionResponseHeader struct {
+}
+
+func (s UpdateWebBotDetectionResponseHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateWebBotDetectionResponseHeader) GoString() string {
   return s.String()
 }
 
@@ -24361,7 +24500,7 @@ type GetRateLimitingRulesForTheSharedConfigurationAsociatedWithDomainResponseDat
   EffectiveStatus *string `json:"effectiveStatus,omitempty" xml:"effectiveStatus,omitempty" require:"true"`
   // {"en":"Effective period.","zh_CN":"规则生效周期。"}
   RateLimitEffective *GetRateLimitingRulesForTheSharedConfigurationAsociatedWithDomainResponseDataRateLimitEffective `json:"rateLimitEffective,omitempty" xml:"rateLimitEffective,omitempty" require:"true" type:"Struct"`
-  // {"en":"Action.\nNO_USE:Not Used\nLOG:Log\nCOOKIE:Cookie verification\nJS_CHECK:Javascript verification\nDELAY:Delay\nBLOCK:Deny\nRESET:Reset Connection\nCustom response ID:Custom response ID","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nCOOKIE：Cookie校验\nJS_CHECK：JavaScript校验\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接\n自定义响应ID：自定义响应ID"}
+  // {"en":"Action.\nNO_USE:Not Used\nLOG:Log\nCOOKIE:Cookie verification\nJS_CHECK:Javascript verification\nDELAY:Delay\nBLOCK:Deny\nRESET:Reset Connection\nCUSTOM_ACTION_ID:Fill in the custom action id of the corresponding action","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nCOOKIE：Cookie校验\nJS_CHECK：JavaScript校验\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接\nCUSTOM_ACTION_ID：传入对应的自定义响应动作的ID"}
   Action *string `json:"action,omitempty" xml:"action,omitempty" require:"true"`
   // {"en":"Matching conditions.","zh_CN":"匹配条件。"}
   RateLimitRuleCondition *GetRateLimitingRulesForTheSharedConfigurationAsociatedWithDomainResponseDataRateLimitRuleCondition `json:"rateLimitRuleCondition,omitempty" xml:"rateLimitRuleCondition,omitempty" require:"true" type:"Struct"`
@@ -24464,7 +24603,7 @@ type GetRateLimitingRulesForTheSharedConfigurationAsociatedWithDomainResponseDat
   Start *string `json:"start,omitempty" xml:"start,omitempty" require:"true"`
   // {"en":"End time, format: HH:mm.","zh_CN":"结束时间，格式：HH:mm。"}
   End *string `json:"end,omitempty" xml:"end,omitempty" require:"true"`
-  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_timezone","en":"Timezone,default value: GTM+8.","zh_CN":"时区，默认：GTM+8。"}
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_timezone","en":"Timezone,default value: GMT+8.","zh_CN":"时区，默认：GMT+8。"}
   Timezone *string `json:"timezone,omitempty" xml:"timezone,omitempty" require:"true"`
 }
 
@@ -25285,7 +25424,7 @@ func (s *ListCustomRulesResponse) SetData(v []*ListCustomRulesResponseData) *Lis
 type ListCustomRulesResponseData struct     {
   // {"en":"Match Conditions.","zh_CN":"匹配条件。"}
   ConditionList *ListCustomRulesResponseDataConditionList `json:"conditionList,omitempty" xml:"conditionList,omitempty" require:"true" type:"Struct"`
-  // {"en":"Action.\nNO_USE:Not Used\nLOG:Log\nDELAY:Delay\nBLOCK:Deny\nRESET:Reset Connection","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nDELAY：延迟响应\nBLOCK：拦截\nRESET:断开连接","exampleValue":"NO_USE,LOG,DELAY,BLOCK,RESET"}
+  // {"en":"Action.\nNO_USE:Not Used\nLOG:Log\nDELAY:Delay\nBLOCK:Deny\nRESET:Reset Connection\nCUSTOM_ACTION_ID:Fill in the custom action id of the corresponding action","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接\nCUSTOM_ACTION_ID：传入对应的自定义响应动作的ID","exampleValue":"NO_USE,LOG,DELAY,BLOCK,RESET"}
   Act *string `json:"act,omitempty" xml:"act,omitempty" require:"true"`
   // {"en":"Domain.","zh_CN":"域名。"}
   Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
@@ -30598,9 +30737,9 @@ func (s QueryDomainAppApiExceptionsResponseHeader) GoString() string {
 type CreateWhitelistRuleRequest struct {
   // {"en":"Domain.","zh_CN":"域名。"}
   Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
-  // {"en":"Rule name, maximum 50 characters.\nDoes not support # and &.","zh_CN":"规则名称，最多50个字符。\n不支持 # 和 &。"}
+  // {"en":"Rule name, maximum 100 characters.Does not support # and &.","zh_CN":"规则名称，最多100个字符。不支持 # 和 &。"}
   RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
-  // {"en":"Description, maximum 200 characters.","zh_CN":"描述，最多200个字符。"}
+  // {"en":"Description, maximum 1000 characters.","zh_CN":"描述，最多1000个字符。"}
   Description *string `json:"description,omitempty" xml:"description,omitempty"`
   // {"en":"Match conditions, at least one, at most five.","zh_CN":"匹配条件，至少一个，至多五个。"}
   Conditions *CreateWhitelistRuleRequestConditions `json:"conditions,omitempty" xml:"conditions,omitempty" require:"true" type:"Struct"`
@@ -31491,6 +31630,283 @@ func (s UpdateIPBlockSettingsResponseHeader) GoString() string {
 
 
 
+type GetWebBotDetectionListRequest struct {
+  // {"en":"Hostname list.","zh_CN":"域名列表。"}
+  DomainList []*string `json:"domainList,omitempty" xml:"domainList,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s GetWebBotDetectionListRequest) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetWebBotDetectionListRequest) GoString() string {
+  return s.String()
+}
+
+func (s *GetWebBotDetectionListRequest) SetDomainList(v []*string) *GetWebBotDetectionListRequest {
+  s.DomainList = v
+  return s
+}
+
+type GetWebBotDetectionListRequestHeader struct {
+  // {"en":"Security service type. Please enter a specific service type, if you purchase multiple security services.","zh_CN":"安全服务类型。有使用多个不同的安全服务时，需要填写具体的服务类型。"}
+  ServiceType *string `json:"serviceType,omitempty" xml:"serviceType,omitempty"`
+}
+
+func (s GetWebBotDetectionListRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetWebBotDetectionListRequestHeader) GoString() string {
+  return s.String()
+}
+
+func (s *GetWebBotDetectionListRequestHeader) SetServiceType(v string) *GetWebBotDetectionListRequestHeader {
+  s.ServiceType = &v
+  return s
+}
+
+type GetWebBotDetectionListPaths struct {
+}
+
+func (s GetWebBotDetectionListPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetWebBotDetectionListPaths) GoString() string {
+  return s.String()
+}
+
+type GetWebBotDetectionListParameters struct {
+}
+
+func (s GetWebBotDetectionListParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetWebBotDetectionListParameters) GoString() string {
+  return s.String()
+}
+
+type GetWebBotDetectionListResponse struct {
+  // {"dictionary":"belong=WAAP-MS-Ext|dict=waap_retCodeEnum","en":"Please refer to the error code for exceptions.","zh_CN":"请参照错误码。"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述信息。"}
+  Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
+  // {"en":"Data.","zh_CN":"出参数据。"}
+  Data []*GetWebBotDetectionListResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s GetWebBotDetectionListResponse) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetWebBotDetectionListResponse) GoString() string {
+  return s.String()
+}
+
+func (s *GetWebBotDetectionListResponse) SetCode(v string) *GetWebBotDetectionListResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *GetWebBotDetectionListResponse) SetMsg(v string) *GetWebBotDetectionListResponse {
+  s.Msg = &v
+  return s
+}
+
+func (s *GetWebBotDetectionListResponse) SetData(v []*GetWebBotDetectionListResponseData) *GetWebBotDetectionListResponse {
+  s.Data = v
+  return s
+}
+
+type GetWebBotDetectionListResponseData struct     {
+  // {"en":"Hostname.","zh_CN":"域名。"}
+  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
+  // {"en":"Action.\nNO_USE: Do not use\nBLOCK: Intercept\nLOG: Monitor","zh_CN":"处理动作。\nNO_USE:不使用\nBLOCK:拦截\nLOG:监控"}
+  Act *string `json:"act,omitempty" xml:"act,omitempty" require:"true"`
+  // {"en":"Browser feature function switch.\nON: Enable\nOFF: Disable","zh_CN":"浏览器特性功能开关。\nON：开启\nOFF：关闭"}
+  BrowserAnalyseSwitch *string `json:"browserAnalyseSwitch,omitempty" xml:"browserAnalyseSwitch,omitempty" require:"true"`
+  // {"en":"Automated tool detection function switch.\nON: Enable\nOFF: Disable","zh_CN":"自动化工具检测功能开关。\nON：开启\nOFF：关闭"}
+  AutoToolSwitch *string `json:"autoToolSwitch,omitempty" xml:"autoToolSwitch,omitempty" require:"true"`
+  // {"en":"Cracking the behavior detection function switch.\nON: Enable\nOFF: Disable","zh_CN":"破解行为检测功能开关。\nON：开启\nOFF：关闭"}
+  CrackAnalyseSwitch *string `json:"crackAnalyseSwitch,omitempty" xml:"crackAnalyseSwitch,omitempty" require:"true"`
+  // {"en":"Page anti-debugging function switch.\nON: Enable\nOFF: Disable","zh_CN":"页面反调试功能开关。\nON：开启\nOFF：关闭"}
+  PageDebugSwitch *string `json:"pageDebugSwitch,omitempty" xml:"pageDebugSwitch,omitempty" require:"true"`
+  // {"en":"Interactive behavior verification function switch.\nON: Enable\nOFF: Disable","zh_CN":"交互行为验证开关。\nON：开启\nOFF：关闭"}
+  InteractionAnalyseSwitch *string `json:"interactionAnalyseSwitch,omitempty" xml:"interactionAnalyseSwitch,omitempty" require:"true"`
+  // {"en":"Rule list of html pages without embedding JS.","zh_CN":"不需要嵌入JS的html页面规则列表。"}
+  JsExceptionList []*GetWebBotDetectionListResponseDataJsExceptionList `json:"jsExceptionList,omitempty" xml:"jsExceptionList,omitempty" require:"true" type:"Repeated"`
+  // {"en":"Interactive behavior validation rule list.","zh_CN":"交互行为验证规则列表。"}
+  InteractionRuleList []*GetWebBotDetectionListResponseDataInteractionRuleList `json:"interactionRuleList,omitempty" xml:"interactionRuleList,omitempty" require:"true" type:"Repeated"`
+  // {"en":"Ajax request exception function switch.ON: EnableOFF: Disable","zh_CN":"Ajax请求例外开关。ON：开启OFF：关闭"}
+  AjaxExceptionSwitch *string `json:"ajaxExceptionSwitch,omitempty" xml:"ajaxExceptionSwitch,omitempty" require:"true"`
+}
+
+func (s GetWebBotDetectionListResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetWebBotDetectionListResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *GetWebBotDetectionListResponseData) SetDomain(v string) *GetWebBotDetectionListResponseData {
+  s.Domain = &v
+  return s
+}
+
+func (s *GetWebBotDetectionListResponseData) SetAct(v string) *GetWebBotDetectionListResponseData {
+  s.Act = &v
+  return s
+}
+
+func (s *GetWebBotDetectionListResponseData) SetBrowserAnalyseSwitch(v string) *GetWebBotDetectionListResponseData {
+  s.BrowserAnalyseSwitch = &v
+  return s
+}
+
+func (s *GetWebBotDetectionListResponseData) SetAutoToolSwitch(v string) *GetWebBotDetectionListResponseData {
+  s.AutoToolSwitch = &v
+  return s
+}
+
+func (s *GetWebBotDetectionListResponseData) SetCrackAnalyseSwitch(v string) *GetWebBotDetectionListResponseData {
+  s.CrackAnalyseSwitch = &v
+  return s
+}
+
+func (s *GetWebBotDetectionListResponseData) SetPageDebugSwitch(v string) *GetWebBotDetectionListResponseData {
+  s.PageDebugSwitch = &v
+  return s
+}
+
+func (s *GetWebBotDetectionListResponseData) SetInteractionAnalyseSwitch(v string) *GetWebBotDetectionListResponseData {
+  s.InteractionAnalyseSwitch = &v
+  return s
+}
+
+func (s *GetWebBotDetectionListResponseData) SetJsExceptionList(v []*GetWebBotDetectionListResponseDataJsExceptionList) *GetWebBotDetectionListResponseData {
+  s.JsExceptionList = v
+  return s
+}
+
+func (s *GetWebBotDetectionListResponseData) SetInteractionRuleList(v []*GetWebBotDetectionListResponseDataInteractionRuleList) *GetWebBotDetectionListResponseData {
+  s.InteractionRuleList = v
+  return s
+}
+
+func (s *GetWebBotDetectionListResponseData) SetAjaxExceptionSwitch(v string) *GetWebBotDetectionListResponseData {
+  s.AjaxExceptionSwitch = &v
+  return s
+}
+
+type GetWebBotDetectionListResponseDataJsExceptionList struct     {
+  // {"en":"Rule ID of html pages without embedding JS.","zh_CN":"不需要嵌入JS的html页面规则ID。"}
+  Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
+  // {"en":"Hostname.","zh_CN":"域名。"}
+  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
+  // {"en":"Path.","zh_CN":"验证路径。"}
+  Path *string `json:"path,omitempty" xml:"path,omitempty" require:"true"`
+  // {"en":"Description.","zh_CN":"描述。"}
+  Description *string `json:"description,omitempty" xml:"description,omitempty" require:"true"`
+  // {"en":"Whether it is REGEX.\nfalse: No\ntrue: Yes","zh_CN":"是否正则匹配。\nfalse：否\ntrue：是"}
+  Regex *bool `json:"regex,omitempty" xml:"regex,omitempty" require:"true"`
+}
+
+func (s GetWebBotDetectionListResponseDataJsExceptionList) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetWebBotDetectionListResponseDataJsExceptionList) GoString() string {
+  return s.String()
+}
+
+func (s *GetWebBotDetectionListResponseDataJsExceptionList) SetId(v string) *GetWebBotDetectionListResponseDataJsExceptionList {
+  s.Id = &v
+  return s
+}
+
+func (s *GetWebBotDetectionListResponseDataJsExceptionList) SetDomain(v string) *GetWebBotDetectionListResponseDataJsExceptionList {
+  s.Domain = &v
+  return s
+}
+
+func (s *GetWebBotDetectionListResponseDataJsExceptionList) SetPath(v string) *GetWebBotDetectionListResponseDataJsExceptionList {
+  s.Path = &v
+  return s
+}
+
+func (s *GetWebBotDetectionListResponseDataJsExceptionList) SetDescription(v string) *GetWebBotDetectionListResponseDataJsExceptionList {
+  s.Description = &v
+  return s
+}
+
+func (s *GetWebBotDetectionListResponseDataJsExceptionList) SetRegex(v bool) *GetWebBotDetectionListResponseDataJsExceptionList {
+  s.Regex = &v
+  return s
+}
+
+type GetWebBotDetectionListResponseDataInteractionRuleList struct     {
+  // {"en":"Interactive behavior validation rule ID.","zh_CN":"交互行为验证规则ID。"}
+  Id *string `json:"id,omitempty" xml:"id,omitempty" require:"true"`
+  // {"en":"Hostname.","zh_CN":"域名。"}
+  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
+  // {"en":"Path.","zh_CN":"验证路径。"}
+  Path *string `json:"path,omitempty" xml:"path,omitempty" require:"true"`
+  // {"en":"Minimum number of triggers.","zh_CN":"最少交互次数。"}
+  TriggerTimes *int `json:"triggerTimes,omitempty" xml:"triggerTimes,omitempty" require:"true"`
+  // {"en":"Whether it is REGEX.\nfalse: No\ntrue: Yes","zh_CN":"是否正则匹配。\nfalse：否\ntrue：是"}
+  Regex *bool `json:"regex,omitempty" xml:"regex,omitempty" require:"true"`
+}
+
+func (s GetWebBotDetectionListResponseDataInteractionRuleList) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetWebBotDetectionListResponseDataInteractionRuleList) GoString() string {
+  return s.String()
+}
+
+func (s *GetWebBotDetectionListResponseDataInteractionRuleList) SetId(v string) *GetWebBotDetectionListResponseDataInteractionRuleList {
+  s.Id = &v
+  return s
+}
+
+func (s *GetWebBotDetectionListResponseDataInteractionRuleList) SetDomain(v string) *GetWebBotDetectionListResponseDataInteractionRuleList {
+  s.Domain = &v
+  return s
+}
+
+func (s *GetWebBotDetectionListResponseDataInteractionRuleList) SetPath(v string) *GetWebBotDetectionListResponseDataInteractionRuleList {
+  s.Path = &v
+  return s
+}
+
+func (s *GetWebBotDetectionListResponseDataInteractionRuleList) SetTriggerTimes(v int) *GetWebBotDetectionListResponseDataInteractionRuleList {
+  s.TriggerTimes = &v
+  return s
+}
+
+func (s *GetWebBotDetectionListResponseDataInteractionRuleList) SetRegex(v bool) *GetWebBotDetectionListResponseDataInteractionRuleList {
+  s.Regex = &v
+  return s
+}
+
+type GetWebBotDetectionListResponseHeader struct {
+}
+
+func (s GetWebBotDetectionListResponseHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetWebBotDetectionListResponseHeader) GoString() string {
+  return s.String()
+}
+
+
+
+
 type GetBlockPageRequest struct {
   // {"en":"domain", "zh_CN":"域名"}
   Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
@@ -31754,7 +32170,7 @@ type ListCustomRulesForSharedConfigurationAssociatedWithDomainResponseData struc
   Condition *ListCustomRulesForSharedConfigurationAssociatedWithDomainResponseDataCondition `json:"condition,omitempty" xml:"condition,omitempty" require:"true" type:"Struct"`
   // {"en":"Creator.","zh_CN":"创建者。"}
   Creator *string `json:"creator,omitempty" xml:"creator,omitempty" require:"true"`
-  // {"en":"Action.\nNO_USE: Not Used\nLOG: Log\nDELAY: Delay\nBLOCK: Deny\nRESET: Reset Connection","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接","exampleValue":"NO_USE,LOG,DELAY,BLOCK,RESET"}
+  // {"en":"Action.\nNO_USE: Not Used\nLOG: Log\nDELAY: Delay\nBLOCK: Deny\nRESET: Reset Connection\nCUSTOM_ACTION_ID:Fill in the custom action id of the corresponding action","zh_CN":"处理动作。\nNO_USE：不使用\nLOG：监控\nDELAY：延迟响应\nBLOCK：拦截\nRESET：断开连接\nCUSTOM_ACTION_ID：传入对应的自定义响应动作的ID","exampleValue":"NO_USE,LOG,DELAY,BLOCK,RESET"}
   Act *string `json:"act,omitempty" xml:"act,omitempty" require:"true"`
   // {"en":"Create time.","zh_CN":"创建时间。"}
   CreateTime *string `json:"createTime,omitempty" xml:"createTime,omitempty" require:"true"`
@@ -33977,7 +34393,7 @@ func (s ShareDmsNativeAppApiConfigResponseHeader) GoString() string {
 
 
 type QueryDomainDDoSBaseInfoRequest struct {
-  // {"en":"domains","zh_CN":"域名列表"}
+  // {"en":"Domains","zh_CN":"域名列表"}
   Domains []*string `json:"domains,omitempty" xml:"domains,omitempty" type:"Repeated"`
 }
 
@@ -34035,12 +34451,14 @@ func (s QueryDomainDDoSBaseInfoParameters) GoString() string {
 }
 
 type QueryDomainDDoSBaseInfoResponse struct {
-  // {"en":"code","zh_CN":"状态码"}
+  // {"en":"The status code indicating the result of the operation.","zh_CN":"状态码"}
   Code *int `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"msg","zh_CN":"描述信息"}
+  // {"en":"A descriptive message regarding the operation result.","zh_CN":"描述信息"}
   Msg *string `json:"msg,omitempty" xml:"msg,omitempty" require:"true"`
   // {"en":"","zh_CN":""}
   Data []*QueryDomainDDoSBaseInfoResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
+  // {"en":"Error message","zh_CN":"错误信息描述"}
+  ErrorInfo *QueryDomainDDoSBaseInfoResponseErrorInfo `json:"errorInfo,omitempty" xml:"errorInfo,omitempty" require:"true" type:"Struct"`
 }
 
 func (s QueryDomainDDoSBaseInfoResponse) String() string {
@@ -34066,14 +34484,19 @@ func (s *QueryDomainDDoSBaseInfoResponse) SetData(v []*QueryDomainDDoSBaseInfoRe
   return s
 }
 
+func (s *QueryDomainDDoSBaseInfoResponse) SetErrorInfo(v *QueryDomainDDoSBaseInfoResponseErrorInfo) *QueryDomainDDoSBaseInfoResponse {
+  s.ErrorInfo = v
+  return s
+}
+
 type QueryDomainDDoSBaseInfoResponseData struct     {
-  // {"en":"domain","zh_CN":"域名"}
+  // {"en":"The domain name.","zh_CN":"域名"}
   Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
   // {"en":"L7 DDoS protection switch.\nON: Enabled\nOFF: Disabled","zh_CN":"应用层DDoS防护开关，开启：'ON'，关闭：'OFF'。","exampleValue":"ON,OFF"}
   L7DDoSSwitch *string `json:"l7DDoSSwitch,omitempty" xml:"l7DDoSSwitch,omitempty" require:"true"`
   // {"en":"Managed protection switch.\nON: Enabled\nOFF: Disabled","zh_CN":"内置规则防护开关，开启：'ON'，关闭：'OFF'。","exampleValue":"ON,OFF"}
   InnerSwitch *string `json:"innerSwitch,omitempty" xml:"innerSwitch,omitempty" require:"true"`
-  // {"en":"AdaptiAdaptive protection switch.ON: EnabledOFF: Disabled","zh_CN":"AI智能防护开关, 开启：'ON'，关闭：'OFF'。","exampleValue":"ON,OFF"}
+  // {"en":"Adaptive protection switch. ON: Enabled OFF: Disabled","zh_CN":"AI智能防护开关, 开启：'ON'，关闭：'OFF'。","exampleValue":"ON,OFF"}
   AiSwitch *string `json:"aiSwitch,omitempty" xml:"aiSwitch,omitempty" require:"true"`
   // {"en":"Loose: 'LOOSE',   Moderate:'MODERATE', Strict:'STRICT'.","zh_CN":"宽松: 'LOOSE',   适中:'MODERATE', 严格:'STRICT'。","exampleValue":"LOOSE,MODERATE,STRICT"}
   ProtectMode *string `json:"protectMode,omitempty" xml:"protectMode,omitempty" require:"true"`
@@ -34116,6 +34539,31 @@ func (s *QueryDomainDDoSBaseInfoResponseData) SetProtectMode(v string) *QueryDom
 
 func (s *QueryDomainDDoSBaseInfoResponseData) SetAiAction(v string) *QueryDomainDDoSBaseInfoResponseData {
   s.AiAction = &v
+  return s
+}
+
+type QueryDomainDDoSBaseInfoResponseErrorInfo struct {
+  // {"en":"List of non-existent domains.","zh_CN":"错误域名列表"}
+  Domain []*string `json:"domain,omitempty" xml:"domain,omitempty" require:"true" type:"Repeated"`
+  // {"en":"Error message","zh_CN":"错误信息"}
+  ErrorMsg *string `json:"errorMsg,omitempty" xml:"errorMsg,omitempty" require:"true"`
+}
+
+func (s QueryDomainDDoSBaseInfoResponseErrorInfo) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryDomainDDoSBaseInfoResponseErrorInfo) GoString() string {
+  return s.String()
+}
+
+func (s *QueryDomainDDoSBaseInfoResponseErrorInfo) SetDomain(v []*string) *QueryDomainDDoSBaseInfoResponseErrorInfo {
+  s.Domain = v
+  return s
+}
+
+func (s *QueryDomainDDoSBaseInfoResponseErrorInfo) SetErrorMsg(v string) *QueryDomainDDoSBaseInfoResponseErrorInfo {
+  s.ErrorMsg = &v
   return s
 }
 

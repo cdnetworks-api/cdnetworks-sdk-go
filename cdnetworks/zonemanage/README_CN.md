@@ -22,7 +22,7 @@ go get github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/zonemanage
 package main
 
 import (
-    "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/common/auth"
+    "github.com/cdnetworks-api/cdnetworks-sdk-go/common/auth"
     "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/zonemanage"
     "log"
 )
@@ -86,3 +86,4 @@ if err != nil {
 | Batchdeletezone | 批量删除Zone，最大可同时删除20个 | DELETE | /api/clouddns/zones/bulk/* |
 | Updateztsbulk | 批量创建更新ZTS配置信息，用户可通过接口自助创建更新ZTS的配置信息，实现Zone数据的同步 | PUT | /api/clouddns/zts/bulk |
 | Deleteztsbulk | ZTS配置删除接口，删除Zone上已配置的ZTS信息，删除之后将不会再自动同步Zone的配置修改 | DELETE | /api/clouddns/zones/zts/bulk |
+| Updatezonestatus | 该接口用于更新一个或多个Zone的启用或停用状态。通过该接口，用户可以自行控制Zone的解析或停止解析。请求时需在请求体中提供待操作的Zone ID列表（`zoneIds`）和目标状态（`status`）。 | PUT | /api/clouddns/zones/status/bulk |

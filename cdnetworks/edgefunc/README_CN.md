@@ -71,3 +71,6 @@ if err != nil {
 | ActionName | description | client_methods | uri |
 | --- | --- | --- | --- |
 | Uploadfunccode | 函数代码上传接口，针对不使用 CloudIDE ，而是直接调用接口上传函数代码的场景 | POST | /edgefunc/upload |
+| Createedgefunctrigger | 该接口用于创建函数触发器。用户需要提供域名和路由列表作为请求参数。成功创建后，接口将返回响应码和创建成功的触发器列表。 | POST | /api/v2/cdn_triggers |
+| Queryedgefunctrigger | 该接口用于查询函数触发器列表。用户可以根据域名或函数名称进行筛选，并支持分页查询。响应中将返回触发器的详细信息列表。 | GET | /api/v2/cdn_triggers |
+| Deletefuncdomaintrigger | 该接口用于删除一个已存在的函数触发器。用户需要通过REST参数 `id`指定待删除的函数触发器的唯一标识。 | DELETE | /api/v2/cdn_triggers/* |

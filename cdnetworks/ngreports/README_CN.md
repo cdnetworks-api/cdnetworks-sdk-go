@@ -22,7 +22,7 @@ go get github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/ngreports
 package main
 
 import (
-    "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/common/auth"
+    "github.com/cdnetworks-api/cdnetworks-sdk-go/common/auth"
     "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/ngreports"
     "log"
 )
@@ -90,3 +90,4 @@ if err != nil {
 | GetCpuTimeUsed | 查询处理用户请求所消耗的CPU时间（以秒为单位）。 | POST | /cdn/report/cpuTime |
 | GetASummaryOfTrafficVolume | 获取一段时间内的边缘、中间层（CDN Pro服务器之间）和回源流量的汇总数据。可以在请求体中指定加速域名或serverGroups（节点组）等参数进行查询和分组。<br> | POST | /cdn/report/volSummary |
 | Getedgehostnamestatistics | 获取一段时间内对调度域名发起的DNS解析请求数。 | POST | /cdn/report/edgeHostnameReq |
+| Getqtlconfig | 查询指定logConfigId的日志配置，只支持单个。 | GET | /api/qtlconfig/* |

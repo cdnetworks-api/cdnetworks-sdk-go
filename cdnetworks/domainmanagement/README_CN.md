@@ -22,7 +22,7 @@ go get github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/domainmanagement
 package main
 
 import (
-    "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/common/auth"
+    "github.com/cdnetworks-api/cdnetworks-sdk-go/common/auth"
     "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/domainmanagement"
     "log"
 )
@@ -75,6 +75,8 @@ if err != nil {
 | Deleteapidomainservice | 删除已添加的某个加速域名。删除后不能启用，只能重新创建加速域名。 | DELETE | /api/domain/* |
 | Getfuzzypagingdomainlist | 查询用户账号下所有的、或者指定的加速域名和状态，每个加速域名包含概要信息，返回的加速域名列表按照首字母顺序排序。 | POST | /api/domain/domainList |
 | Querydomainbyoriginip | 查询用户账号下，源站IP对应的所有域名名称列表。 | GET | /api/originaldomainlist |
+| Disablemultidomainservice | 禁用多个加速域名，禁用后加速域名的请求将被直接拒绝，不会回源。 | POST | /api/domain/disable |
+| Enablemultidomainservice | 启用多个状态为“禁用”的加速域名，使用已有的配置提供加速服务。 | POST | /api/domain/enable |
 | Addcdndomain | 为指定的域名申请加速服务 | POST | /cdnw/api/domain |
 | Updatecdndomain | 修改指定加速域名的配置。 | PUT | /cdnw/api/domain/* |
 | Querycdndomainservice | Get domain basic config. | GET | /cdnw/api/domain/* |

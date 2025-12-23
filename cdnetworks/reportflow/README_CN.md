@@ -22,7 +22,7 @@ go get github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/reportflow
 package main
 
 import (
-    "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/common/auth"
+    "github.com/cdnetworks-api/cdnetworks-sdk-go/common/auth"
     "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/reportflow"
     "log"
 )
@@ -70,13 +70,13 @@ if err != nil {
 
 | ActionName | description | client_methods | uri |
 | --- | --- | --- | --- |
+| Wctquery | 查询客户点播转码各种类型和梯度的5分钟粒度的统计信息 | POST | /myview/Wctquery |
 | Querydirectorybandwidthtrafficunderlivestreamdomain | 该接口用于查询直播推拉流域名下各个目录的流量或带宽统计数据。用户需提供起止时间、域名，可指定目录查询。默认情况下，数据以5分钟为粒度进行统计。返回结果包括每个目录的总流量或带宽峰值，以及时间分片的详细数据。 | POST | /api/report/flow/dir/detail |
 | Querystreamtrafficundermalbdomain | 该接口用于查询指定时间段内域名下的直播流流量或带宽数据。用户需提供时间范围、域名和流名，以及数据类型和粒度选项。接口返回每个域名下各流的流量或带宽详情，包括总流量和峰值带宽。有助于用户监控直播流量情况以优化资源配置。不用于计费核对。 | POST | /api/report/flow/stream/detail |
 | Querystaticdynamictrafficbyprotocol | 该接口用于查询各域名下不同协议的动静态流量明细。用户需提供时间范围和域名列表，最多可查询过去半年的数据。返回结果包括每个域名的流量数据，按指定协议和节点分级展示。此接口适用于需要分析域名流量模式、优化网络资源配置的用户，支持细致的流量管理和性能评估。 | POST | /api/report/flow/static-dynamic |
 | Queryoutputtrafficundershieldpop | 该接口的主要功能是查询多个域名的父节点下行流量数据。用户可以通过提供开始时间、结束时间以及域名列表来获得详细的流量数据报告。返回值包括每个域名的总流量，并提供每个时间片的流量值。此接口适用于需要监测和分析CDN父节点的流量概况及变化趋势。接口调用频率勿高于30/5min。 | POST | /api/report/flow/parent-node |
 | Queryspecificpoptraffic | 该接口用于查询短时间内指定多个域名的各个POP的流量明细。用户可通过指定开始时间和结束时间，获取各个域名下不同POP节点的流量数据，包括静态和动态的流入和流出流量。接口返回的数据以5分钟粒度展示。 | POST | /api/report/flow/pop |
 | Querymultiplestreamtrafficandbandwidthunderthedomain | 该接口用于查询指定时间段内多个域名下直播流的流量和带宽信息。用户输入开始时间、结束时间及域名等，即可获取详细数据，包含每个域名下各流的总流量、峰值带宽、各时间点的流量或带宽数据，以及（可选的）时间点在线人数。这适用于监控直播流网络性能和用户交互，通过数据分析优化网络配置和资源分配，提高直播服务质量。 | POST | /api/report/flow-bandwidth/stream/detail |
-| Wctquery | 查询客户点播转码各种类型和梯度的5分钟粒度的统计信息 | POST | /myview/Wctquery |
 | Querydatatransferforalldomainbyte | 查询账号下所有域名的流量汇总，单位字节。 | POST | /api/report/flow/byte |
 | QuerytotaltrafficinbyteforalldomainsunderdwaByte | 查询账号下所有域名的流量汇总，单位字节。 | POST | /api/report/flow/byte/dwa |
 | Querytotaltrafficforalldomainsunderdwa | 该接口用于查询动态加速下所有域名的流量数据。用户通过调用此接口可以获取某一时间段内所有域名的流量数据，包括每个时间片的具体流量，数据粒度可指定5分钟、1小时或1天。 | GET | /api/report/flow/dwa |

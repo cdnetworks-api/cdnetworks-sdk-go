@@ -22,7 +22,7 @@ go get github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/other
 package main
 
 import (
-    "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/common/auth"
+    "github.com/cdnetworks-api/cdnetworks-sdk-go/common/auth"
     "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/other"
     "log"
 )
@@ -73,12 +73,14 @@ if err != nil {
 | Querydailylivetranscodingduration | 直播转码时长每日统计。 | POST | /myview/LiveTranscodingPerDayV2 |
 | Query5minlivetranscodingduration | 输出客户分钟粒度的直播转码时长。 | POST | /myview/LiveTranscodingV2 |
 | Queryliverecordingduration | 输出客户分钟粒度的直播录制时长 | POST | /myview/RecordingTime |
+| Queryddosmitigatedbandwidthbysuiteorproduct | 查看套餐或产品下所有域名及转发规则所清洗的攻击带宽 | POST | /soc/api/report/QueryMitigatedBandwidth |
 | Picprocessstatistics | 查询域名5分钟粒度图片处理次数。 | POST | /myview/PicFlowHit |
 | Httpdnsstatistics | 查询5分钟粒度httpdns解析量。 | POST | /myview/HttpdnsStatistics |
+| Vodtranscodingapi | 查询客户点播转码各种类型和梯度的5分钟粒度的统计信息 | POST | /myview/wct-ov |
+| Querypopihmszone | 查询POP与Ihms zone关系 | POST | /myview/pop-ihms-zone |
 | Querylivestreamstatus | 当前接口非实时数据内容： 流状态信息，码率信息，帧率信息，在线人数，头部信息，频道带宽；实时数据内容有： 流状态信息，码率信息，帧率信息，在线人数(不包含HLS)，头部信息。 | POST | /api/quality/stream-status-statistic |
 | Getlivestreampushingstatus | 获取指定时刻，指定域名下（支持多个域名和流名）的所有频道的帧率、码率、丢帧率等信息 | POST | /api/quality/frame-rate |
 | Queryonlineviewercount | 提供直播域名或者频道的在线人数接口，接口只支持GET请求方式 | POST | /QOSS/api/onlineViewers |
-| Queryddosmitigatedbandwidthbysuiteorproduct | 查看套餐或产品下所有域名及转发规则所清洗的攻击带宽 | POST | /soc/api/report/QueryMitigatedBandwidth |
 | Queryedgeactiveconnectionsformultidomains | 此接口用于查询多域名的边缘活跃连接数，通过提供开始时间、结束时间和域名列表，可查询该时间段内多个域名在每个整5分钟的瞬间活跃连接数。适用于需要分析网站活跃连接趋势的场景。 | POST | /api/report/edge-active-conn |
 | Reportdomainstreamdurationservice | 查询多域名多流名的推流时长 | POST | /api/report/domain/stream/duration |
 | Querydirectoryrankbysuccessrequesthourly | 该接口用于查询指定时间下根据成功请求数最多Top 500的目录，状态码为2xx，3xx的定义为成功。用户需提供时间范围和域名，获取目录列表。接口返回目录对应的成功请求数和成功总流量数据。该接口有助于用户分析网站性能、流量趋势和优化目录结构。 | POST | /api/report/directory/success/rank |

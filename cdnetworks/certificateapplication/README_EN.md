@@ -22,7 +22,7 @@ The SDK uses AKSK (Access Key/Secret Key) authentication. Configure your credent
 package main
 
 import (
-    "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/common/auth"
+    "github.com/cdnetworks-api/cdnetworks-sdk-go/common/auth"
     "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/certificateapplication"
     "log"
 )
@@ -76,3 +76,8 @@ For detailed API documentation and available methods, please refer to the [offic
 | Cancelcertificateapplicationorder | Cancel the certificate applying order. | POST | /api/certificate/order/cancel |
 | Getcertificateapplicationorder | query certificate sale order detail info | POST | /api/certificate/order/detail |
 | Reissuecertificateforwplus | This interface is used for reissuing certificates. You can reissue the certificate by providing the certificate ID, certificate description, certificate algorithm, verification method, whether it is automatically verified, whether it is automatically deployed, common name, and subject alternate name. When the call is successful, the interface will return the sales order ID. | POST | /api/certificate/reissue |
+| Createcertificateapplicationorderforterraform | Creates a certificate application order specifically for the Terraform scenario. | POST | /api/terraform/certificate/order/create |
+| Listcertificateapplicationordersforterraform | Retrieves a list of certificate application orders for the Terraform scenario. | POST | /api/terraform/certificate/order/list |
+| Getcertificateapplicationorderforterraform | This interface is used to query certificate application order details in the Terraform scenario. | POST | /api/terraform/certificate/order/detail |
+| Cancelcertificateapplicationorderforterraform | Cancel the certificate applying order in the Terraform scenario. | POST | /api/terraform/certificate/order/cancel |
+| Batchgetdcvcontent | This interface is used to batch query the validation content required by CA organizations for domain control validation (DCV). Users need to provide a list of purchase record IDs or domain names for the query, and the interface will return the corresponding certificate domain validation information. | POST | /api/certificate/orders/domain/validate/info |

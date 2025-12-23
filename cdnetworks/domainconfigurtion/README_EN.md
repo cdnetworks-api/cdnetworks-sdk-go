@@ -22,7 +22,7 @@ The SDK uses AKSK (Access Key/Secret Key) authentication. Configure your credent
 package main
 
 import (
-    "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/common/auth"
+    "github.com/cdnetworks-api/cdnetworks-sdk-go/common/auth"
     "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/domainconfigurtion"
     "log"
 )
@@ -70,6 +70,7 @@ For detailed API documentation and available methods, please refer to the [offic
 
 | ActionName | enDescription | client_methods | uri |
 | --- | --- | --- | --- |
+| Batchupdateapidomainservice | Batch update domains' config. | POST | /api/domain/batchupdate |
 | Editdomainconfig | To modify configuration of the specified domain; both domain name and domain name ID are supported. | PUT | /api/domain/* |
 | Updatetimecontrolservice | Modify timestamp anti-theft chain custom configuration item content | PUT | /api/config/timecontrol/* |
 | Querytimecontrolservice | Query Time anti-theft chain custom configuration item content | GET | /api/config/timecontrol/* |
@@ -81,12 +82,16 @@ For detailed API documentation and available methods, please refer to the [offic
 | Queryantihotlinkingconfig | Self-checking IP black and white list anti-theft chain configuration through interface. The interface * can be domain name or domain id. | GET | /api/config/visitcontrol/* |
 | Updatesourceverificationconfig | Retweet back to the source with parameter authentication through the interface self-service, realize rtmp retweet back to the source, the edge can simulate the client with timestamp anti-leech parameters according to the encryption rules to retweet back to the source. | PUT | /api/config/sourceverification/* |
 | Querysourceverificationconfig | Query retweet back to the source with parameter authentication configuration. | GET | /api/config/sourceverification/* |
+| Updatedomainsrcinfo | Self-modify advanced source configurations through interfaces.Allows customers to specify regional configurations, different IP backsources, and when multiple sources are available, policy backsources can be specified. | PUT | /api/basicconfig/advancedsource/* |
+| Querybanurlunderdomain | Get domain ban urls. | GET | /api/basicconfig/illegalinformation/* |
 | Addbanurltodomian | The feature of URL blocking addition via API is now available. Customers can call the API to add URL blocking entries according to their own requirements. | PUT | /api/basicconfig/illegalinformation |
+| Predeploysrcinfo | Self-modify advanced source configurations through interfaces.Allows customers to specify regional configurations, different IP backsources, and when multiple sources are available, policy backsources can be specified. | PUT | /api/predeploy/advancedsource/* |
 | Queryapideployservice | Requests for new, modified, enabled, disabled, cancelled, restored, deleted, etc. for domain names | POST | /api/request/* |
 | Updatecompressionconfig | Modify compress setting configurations. | PUT | /api/config/compresssetting/* |
 | Querycompressionconfig | Get compress setting configurations. | GET | /api/config/compresssetting/* |
 | Queryhttpcodecasheconfig | Get http code cache configurations. | GET | /api/config/httpcodecache/* |
 | Queryipv6config | Get whether a domain uses ipv6 resources. | GET | /api/domain/ipv6/* |
+| Querysrcinfo | Query the customer advanced source configuration through the interface | GET | /api/basicconfig/advancedsource/* |
 | Queryinnerredirect | View internal redirect configuration | GET | /api/config/InnerRedirect/* |
 | Querycachetime | Self-service query of node cache configuration configuration through the interface. The * of the interface calling url can be the domain name or domain id. | GET | /api/config/cachetime/* |
 | Editquerystringurlconfig | Modify query string setting configurations. | PUT | /api/config/querystring/* |
@@ -128,3 +133,4 @@ For detailed API documentation and available methods, please refer to the [offic
 | Antihijackipupdate | Modify Anti-Hijack IP, customers can call this API to modify the business domain information associated with the mitigation IP. | POST | /api/v1/dms/antiHijackIP/update |
 | Antihijackipdelete | If you delete a hijacked mitigation IP, you can delete the mitigation IP address by calling the API. | POST | /api/v1/dms/antiHijackIP/delete |
 | Batchupdatedomaincertconfig | The interface is used to modify the configuration certificates of multiple CDN acceleration domains. Users can modify the certificates associated with the domains by providing the certificate ID and the list of domain names to be modified. | PUT | /api/config/certificate/batch |
+| Batchupdateapidomainforwplus | This API is used to batch modify the basic configuration of specified acceleration domains. Users need to pass a list of domainConfigs in the request body, each element containing the `domain-name` of the domain to be modified, as well as optional other domain configurations. | PUT | /api/batch/domain |

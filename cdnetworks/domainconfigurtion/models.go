@@ -336,7 +336,7 @@ func (s *EditHttpHeaderConfigRequest) SetDescription(v string) *EditHttpHeaderCo
 }
 
 type EditHttpHeaderConfigEditHttpHeaderConfigRequestHeaderModifyRules struct     {
-  // {"en":"Add a grid type identifier to indicate a specific group configuration when the client has multiple groups of configurations.","zh_CN":"添加grid类型标识，表示客户多组配置时，具体某组配置。\ndata-id可以通过查询接口获取。\n注意：添加grid类型标识：data-id，每一组配置对应一个data-id：\na、如果客户有传data-id，说明指定修改其中一组配置项内容，不需求修改其他组配置内容不需要入参；\nb、如果客户入参多组配置，其中有些组配置有传data-id，有些没有传，则有传data-id的表示修改具体某组配置，没有传data-id的表示在原来基础上新增一组配置；\nc、如果客户入参都没有传data-id,表示用本次的配置全量覆盖原先配置；\nd、如果客户入参没有传任何配置项参数，只传了域名和二级标签，表示清空这个接口对应域名二级服务所有配置。（c、d内容和当前方案实现一致）；\ne、一个gird标签下的入参不能为空，如果，没有具体的配置项，则data-id必填，且值为实际存在的data-id,表示清空这个data-id对应配置项的值；"}
+  // {"en":"Add a grid type identifier to indicate a specific set of configuration when the customer has multiple sets of configurations.  \nThe data-id can be obtained through a query interface.  \n\nNote: Add a grid type identifier: data-id. Each set of configurations corresponds to a data-id:  \na. If the customer provides a data-id, it means they are specifying to modify the content of a particular set of configuration items. There is no need to include parameters for other sets of configurations that do not require modification.  \nb. If the customer provides multiple sets of configurations in the input parameters, and some sets include a data-id while others do not, then those with a data-id indicate modification of a specific set of configurations. Those without a data-id indicate adding a new set of configurations on top of the existing ones.  \nc. If none of the customer's input parameters include a data-id, it means the current configurations will be fully overwritten with the configurations provided this time.  \nd. If the customer does not provide any configuration item parameters in the input, and only provides the domain name and secondary label, it means clearing all configurations for the domain's secondary service corresponding to this interface. (The content of points c and d is consistent with the current implementation plan.)  \ne. The input parameters under a grid tag cannot be empty. If there are no specific configuration items, the data-id must be provided, and its value must correspond to an existing data-id, indicating that the values of the configuration items corresponding to this data-id will be cleared.","zh_CN":"添加grid类型标识，表示客户多组配置时，具体某组配置。\ndata-id可以通过查询接口获取。\n注意：添加grid类型标识：data-id，每一组配置对应一个data-id：\na、如果客户有传data-id，说明指定修改其中一组配置项内容，不需求修改其他组配置内容不需要入参；\nb、如果客户入参多组配置，其中有些组配置有传data-id，有些没有传，则有传data-id的表示修改具体某组配置，没有传data-id的表示在原来基础上新增一组配置；\nc、如果客户入参都没有传data-id,表示用本次的配置全量覆盖原先配置；\nd、如果客户入参没有传任何配置项参数，只传了域名和二级标签，表示清空这个接口对应域名二级服务所有配置。（c、d内容和当前方案实现一致）；\ne、一个gird标签下的入参不能为空，如果，没有具体的配置项，则data-id必填，且值为实际存在的data-id,表示清空这个data-id对应配置项的值；"}
   DataId *int64 `json:"data-id,omitempty" xml:"data-id,omitempty"`
   // {"en":"The url matching mode supports fuzzy regularization. If all matches, the input parameters can be configured as:","zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*"}
   PathPattern *string `json:"path-pattern,omitempty" xml:"path-pattern,omitempty"`
@@ -378,6 +378,8 @@ type EditHttpHeaderConfigEditHttpHeaderConfigRequestHeaderModifyRules struct    
   ExceptRequestMethod *string `json:"except-request-method,omitempty" xml:"except-request-method,omitempty"`
   // {"en":"Exception request header.","zh_CN":"例外的请求头"}
   ExceptEditHttpHeaderConfigRequestHeader *string `json:"except-request-header,omitempty" xml:"except-request-header,omitempty"`
+  // {"en":"HTTP Header Override Option, Values: true/false/.Empty string  true: If the specified header already exists, the original header will be overwritten. If the header does not exist, a new header will be added. false: If the specified header already exists, the original header remains unchanged. If the header does not exist, a new header will be added. Empty string: indicating to clear the configuration Note: This override operation only applies to the cache2origin and cache2visitor directions.","zh_CN":"http头覆盖选项，可选值:true/false/空串。 true:表示若对应头部原来已存在，则会覆盖原来的头部；若对应头部原来不存在，则会新增头部。 false:表示若对应头部原来已存在，不会对原头部做任何修改；若对应头部原来不存在，则会新增头部。 空串：表示清空配置 注意：该覆盖操作只针对cache2origin、cache2visitor两个方向生效。"}
+  Override *string `json:"override,omitempty" xml:"override,omitempty"`
 }
 
 func (s EditHttpHeaderConfigEditHttpHeaderConfigRequestHeaderModifyRules) String() string {
@@ -490,6 +492,11 @@ func (s *EditHttpHeaderConfigEditHttpHeaderConfigRequestHeaderModifyRules) SetEx
 
 func (s *EditHttpHeaderConfigEditHttpHeaderConfigRequestHeaderModifyRules) SetExceptEditHttpHeaderConfigRequestHeader(v string) *EditHttpHeaderConfigEditHttpHeaderConfigRequestHeaderModifyRules {
   s.ExceptEditHttpHeaderConfigRequestHeader = &v
+  return s
+}
+
+func (s *EditHttpHeaderConfigEditHttpHeaderConfigRequestHeaderModifyRules) SetOverride(v string) *EditHttpHeaderConfigEditHttpHeaderConfigRequestHeaderModifyRules {
+  s.Override = &v
   return s
 }
 
@@ -719,11 +726,52 @@ func (s QueryHttpHeaderConfigRequest) GoString() string {
   return s.String()
 }
 
-type QueryHttpHeaderConfigResponse struct {
-  // {"en":"Domain name or domain name id to query configuration", "zh_CN":"需要查询配置的域名或域名id"}
+type QueryHttpHeaderConfigRequestHeader struct {
+}
+
+func (s QueryHttpHeaderConfigRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryHttpHeaderConfigRequestHeader) GoString() string {
+  return s.String()
+}
+
+type QueryHttpHeaderConfigPaths struct {
+  // {"en":"the domain whoes need query config","zh_CN":"需要查询配置的域名或域名id"}
   DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
-  // {"en":"Domain name or domain name id to query configuration", "zh_CN":"需要查询配置的域名或域名id"}
+}
+
+func (s QueryHttpHeaderConfigPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryHttpHeaderConfigPaths) GoString() string {
+  return s.String()
+}
+
+func (s *QueryHttpHeaderConfigPaths) SetDomainName(v string) *QueryHttpHeaderConfigPaths {
+  s.DomainName = &v
+  return s
+}
+
+type QueryHttpHeaderConfigParameters struct {
+}
+
+func (s QueryHttpHeaderConfigParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryHttpHeaderConfigParameters) GoString() string {
+  return s.String()
+}
+
+type QueryHttpHeaderConfigResponse struct {
+  // {"en":"Domain name or domain name id to query configuration","zh_CN":"需要查询配置的域名或域名id"}
+  DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
+  // {"en":"Domain name or domain name id to query configuration","zh_CN":"需要查询配置的域名或域名id"}
   DomainId *string `json:"domain-id,omitempty" xml:"domain-id,omitempty" require:"true"`
+  // {"en":"","zh_CN":""}
   HeaderModifyRules []*QueryHttpHeaderConfigQueryHttpHeaderConfigResponseHeaderModifyRules `json:"header-modify-rules,omitempty" xml:"header-modify-rules,omitempty" require:"true" type:"Repeated"`
 }
 
@@ -751,120 +799,50 @@ func (s *QueryHttpHeaderConfigResponse) SetHeaderModifyRules(v []*QueryHttpHeade
 }
 
 type QueryHttpHeaderConfigQueryHttpHeaderConfigResponseHeaderModifyRules struct     {
-  // {"en":"Exception url matching pattern, support regular. Example: ", "zh_CN":"例外的url匹配模式，支持正则。 入参参考："}
+  // {"en":"Exception url matching pattern, support regular. Example:","zh_CN":"例外的url匹配模式，支持正则。 入参参考："}
   ExceptPathPattern *string `json:"except-path-pattern,omitempty" xml:"except-path-pattern,omitempty" require:"true"`
-  // {"en":"Matching conditions: specify common types, optional values are all or homepage. 1. all: all files 2. homepage: home page", "zh_CN":"匹配条件：指定常用类型，可选值为all或homepage 1、all：全部文件 2、homepage：首页"}
+  // {"en":"Matching conditions: specify common types, optional values are all or homepage. 1. all: all files 2. homepage: home page","zh_CN":"匹配条件：指定常用类型，可选值为all或homepage 1、all：全部文件 2、homepage：首页"}
   CustomPattern *string `json:"custom-pattern,omitempty" xml:"custom-pattern,omitempty" require:"true"`
-  // {"en":"Matching conditions: file type, please separate by semicolon, optional values: gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf m3u8 xml f4m bootstarp ts.", "zh_CN":"匹配条件：文件类型，多个请以英文;分隔，可选值：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf m3u8 xml f4m bootstarp ts"}
+  // {"en":"Matching conditions: file type, please separate by semicolon, optional values: gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf m3u8 xml f4m bootstarp ts.","zh_CN":"匹配条件：文件类型，多个请以英文;分隔，可选值：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf m3u8 xml f4m bootstarp ts"}
   FileType *string `json:"file-type,omitempty" xml:"file-type,omitempty" require:"true"`
-  // {"en":"Matching condition: Custom file type, separate by semicolon.", "zh_CN":"匹配条件：自定义文件类型，多个请以英文分号分隔。"}
+  // {"en":"Matching condition: Custom file type, separate by semicolon.","zh_CN":"匹配条件：自定义文件类型，多个请以英文分号分隔。"}
   CustomFileType *string `json:"custom-file-type,omitempty" xml:"custom-file-type,omitempty" require:"true"`
-  // {"en":"directory", "zh_CN":"目录"}
+  // {"en":"directory","zh_CN":"目录"}
   Directory *string `json:"directory,omitempty" xml:"directory,omitempty" require:"true"`
-  // {"en":"Matching Condition: Specify URL. The input parameter does not support the URI format starting with http(s)://", "zh_CN":"匹配条件：指定URL 入参不支持含http(s):// 开头的URI格式"}
+  // {"en":"Matching Condition: Specify URL. The input parameter does not support the URI format starting with http(s)://","zh_CN":"匹配条件：指定URL 入参不支持含http(s):// 开头的URI格式"}
   SpecifyUrl *string `json:"specify-url,omitempty" xml:"specify-url,omitempty" require:"true"`
-  // {"en":"The matching request method, the optional values are: GET, POST, PUT, HEAD, DELETE, OPTIONS, separate by semicolons.", "zh_CN":"匹配的请求方式，可选值为：GET、POST、PUT、HEAD、DELETE、OPTIONS，多个请以英文分号分隔"}
+  // {"en":"The matching request method, the optional values are: GET, POST, PUT, HEAD, DELETE, OPTIONS, separate by semicolons.","zh_CN":"匹配的请求方式，可选值为：GET、POST、PUT、HEAD、DELETE、OPTIONS，多个请以英文分号分隔"}
   RequestMethod *string `json:"request-method,omitempty" xml:"request-method,omitempty" require:"true"`
-  // {"en":"Add a grid type identifier to indicate a specific group configuration when the client has multiple groups of configurations.", "zh_CN":"添加grid类型标识，表示客户多组配置时，具体某组配置"}
-  DataId *int `json:"data-id,omitempty" xml:"data-id,omitempty" require:"true"`
-  // {"en":"The url matching mode supports fuzzy regularization. If all matches, the input parameters can be configured as: *", "zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*"}
+  // {"en":"Add a grid type identifier to indicate a specific group configuration when the client has multiple groups of configurations.","zh_CN":"添加grid类型标识，表示客户多组配置时，具体某组配置"}
+  DataId *QueryHttpHeaderConfigQueryHttpHeaderConfigResponseHeaderModifyRulesDataId `json:"data-id,omitempty" xml:"data-id,omitempty" require:"true" type:"Struct"`
+  // {"en":"The url matching mode supports fuzzy regularization. If all matches, the input parameters can be configured as:","zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*"}
   PathPattern *string `json:" path-pattern,omitempty" xml:" path-pattern,omitempty" require:"true"`
-  // {"en":"The control direction of the http header, the optional value is cache2visitor/cache2origin/visitor2cache/origin2cache, single-select.
-  // Cache2origin refers to the source direction---corresponding to the configuration item return source request;
-  // Cache2visitor refers to the direction of the client back - the corresponding configuration item returns to the client response;
-  // Visitor2cache refers to receiving client requests
-  // Origin2cache refers to the receiving source response", "zh_CN":"http头的控制方向，可选值为cache2visitor/cache2origin/visitor2cache/origin2cache，单选。&nbsp;
-  // cache2origin是指回源方向---对应配置项回源请求；&nbsp;
-  // cache2visitor是指回客户端方向&mdash;对应配置项回客户端应答；
-  // visitor2cache是指接收客户端请求
-  // origin2cache是指接收源应答"}
+  // {"en":"The control direction of the http header, the optional value is cache2visitor/cache2origin/visitor2cache/origin2cache, single-select.\nCache2origin refers to the source direction---corresponding to the configuration item return source request;\nCache2visitor refers to the direction of the client back - the corresponding configuration item returns to the client response;\nVisitor2cache refers to receiving client requests\nOrigin2cache refers to the receiving source response","zh_CN":"http头的控制方向，可选值为cache2visitor/cache2origin/visitor2cache/origin2cache，单选。&nbsp;\ncache2origin是指回源方向---对应配置项回源请求；&nbsp;\ncache2visitor是指回客户端方向&mdash;对应配置项回客户端应答；\nvisitor2cache是指接收客户端请求\norigin2cache是指接收源应答"}
   HeaderDirection *string `json:"header-direction,omitempty" xml:"header-direction,omitempty" require:"true"`
-  // {"en":"The control type of the http header supports the addition and deletion of the http header value. The optional value is add|set|delete, which is single-selected. Corresponding to the header-name and header-value parameters
-  // Add: add a header
-  // Set: modify the header
-  // Delete: delete the header
-  // Note: priority is delete>set>add", "zh_CN":"http头的控制类型，支持http头部值的增改删，可选值为add|delete|set，单选。对应header-name、header-value参数
-  // add：新增头部
-  // set：修改头部
-  // delete：删除头部
-  // 注意：优先级顺序为delete>set>add"}
+  // {"en":"The control type of the http header supports the addition and deletion of the http header value. The optional value is add|set|delete, which is single-selected. Corresponding to the header-name and header-value parameters\nAdd: add a header\nSet: modify the header\nDelete: delete the header\nNote: priority is delete>set>add","zh_CN":"http头的控制类型，支持http头部值的增改删，可选值为add|delete|set，单选。对应header-name、header-value参数\nadd：新增头部\nset：修改头部\ndelete：删除头部\n注意：优先级顺序为delete>set>add"}
   Action *string `json:"action,omitempty" xml:"action,omitempty" require:"true"`
-  // {"en":"Http header regular match, optional value: true / false.
-  // True: indicates that the value of the header-name is handled as a regular match.
-  // False: indicates that the value of the header-name is processed according to the actual parameters, and no regular match is made.
-  // Do not pass the default is false", "zh_CN":"http头正则匹配，可选值：true/false。
-  // true：表示对header-name的值按正则匹配方式处理
-  // false:表示对header-name的值按实际入参处理，不做正则匹配。
-  // 不传默认是false"}
+  // {"en":"Http header regular match, optional value: true / false.\nTrue: indicates that the value of the header-name is handled as a regular match.\nFalse: indicates that the value of the header-name is processed according to the actual parameters, and no regular match is made.\nDo not pass the default is false","zh_CN":"http头正则匹配，可选值：true/false。\ntrue：表示对header-name的值按正则匹配方式处理\nfalse:表示对header-name的值按实际入参处理，不做正则匹配。\n不传默认是false"}
   AllowRegexp *string `json:" allow-regexp,omitempty" xml:" allow-regexp,omitempty" require:"true"`
-  // {"en":"Http header name, add or modify the http header, only one is allowed; delete the http header to allow multiple entries, separated by a semicolon ';'.
-  // Note: The operation of the special http header is limited, and the http header and operation type of the operation are allowed.
-  // This item is required and cannot be empty
-  // When the action is add: indicates that the header-name header is added.
-  // When the action is set: modify the header-name header
-  // When the action is delete: delete the header-name header", "zh_CN":"http头名称，新增或修改http头，只允许输入一个；删除http头允许输入多个，以分号&ldquo;;&rdquo;隔开。
-  // 注意：对特殊http头的操作是受限的，允许操作的http头及操作类型参看
-  // 此项为必填项，不能为空
-  // 当action为add：表示新增这个header-name头部
-  // 当action为set：修改这个header-name头部
-  // 当action为delete：删除这个header-name头部"}
+  // {"en":"Http header name, add or modify the http header, only one is allowed; delete the http header to allow multiple entries, separated by a semicolon ';'.\nNote: The operation of the special http header is limited, and the http header and operation type of the operation are allowed.\nThis item is required and cannot be empty\nWhen the action is add: indicates that the header-name header is added.\nWhen the action is set: modify the header-name header\nWhen the action is delete: delete the header-name header","zh_CN":"http头名称，新增或修改http头，只允许输入一个；删除http头允许输入多个，以分号&ldquo;;&rdquo;隔开。\n注意：对特殊http头的操作是受限的，允许操作的http头及操作类型参看\n此项为必填项，不能为空\n当action为add：表示新增这个header-name头部\n当action为set：修改这个header-name头部\n当action为delete：删除这个header-name头部"}
   HeaderName *string `json:"header-name,omitempty" xml:"header-name,omitempty" require:"true"`
-  // {"en":"The value corresponding to the HTTP header field, for example: mytest.example.com
-  // 
-  // Note:
-  // 
-  // 1. When the action is add or set, the input parameter must be passed a value
-  // 
-  // 2. When the action is delete, the input parameter is not passed
-  // 
-  // Support to get the value of specified variable by keyword, such as client IP, including:
-  // 
-  // Key words: meaning
-  // 
-  // #timestamp: current time, timestamp as 1559124945
-  // #request-host: host in the request header
-  // #request-url: request url, which contains the full path of the protocol domain name, etc., such as http://aaa.aa.com/a.html
-  // #request-uri: request uri, relative path format, such as /index.html
-  // #origin- IP: return source IP
-  // #cache-ip: edge node IP
-  // #server-ip: external service IP
-  // #client-ip: client IP, or visitor IP
-  // #response-header{XXX} : get the value in the response header, such as #response-header{etag}, get the etag value in response-header
-  // 
-  // #header{XXX} : to get the value in the HTTP header of the request, such as #header{user-agent}, is to get the user-agent value in the header
-  // 
-  // #cookie{XXX} : get the value in the cookie, such as #cookie{account}, is to get the value of the account set in the cookie", "zh_CN":"http头域对应的值，例如：mytest.example.com   
-  // 注意：
-  // 1、当action为add或set时，该入参必须传值
-  // 2、当action为delete时，该入参不用传
-  // 支持通过关键字获取指定变量值，如客户端ip，包含如下：
-  // 关键字：含义
-  // #timestamp ：当前时间，时间戳如1559124945
-  // #request-host：请求头中的HOST
-  // #request-url ：请求url，包含协议域名等的全路径，如http://aaa.aa.com/a.html
-  // #request-uri ：请求uri，相对路径格式，如/index.html
-  // #origin-ip ：回源IP
-  // #cache-ip ：边缘节点IP
-  // #server-ip ：对外服务IP
-  // #client-ip ：客户端IP，即访客IP
-  // #response-header{xxx}：获取响应头中的值，如#response-header{etag}，获取response-header中的etag值
-  // #header{xxx}：获取请求的http header中的值，如#header{User-Agent}，是获取header中的User-Agent值
-  // #cookie{xxx}：获取cookie中的值，如#cookie{account}，是获取cookie中设置的account的值&nbsp;&nbsp;"}
+  // {"en":"The value corresponding to the HTTP header field, for example: mytest.example.com\n\nNote:\n\n1. When the action is add or set, the input parameter must be passed a value\n\n2. When the action is delete, the input parameter is not passed\n\nSupport to get the value of specified variable by keyword, such as client IP, including:\n\nKey words: meaning\n\n#timestamp: current time, timestamp as 1559124945\n#request-host: host in the request header\n#request-url: request url, which contains the full path of the protocol domain name, etc., such as http://aaa.aa.com/a.html\n#request-uri: request uri, relative path format, such as /index.html\n#origin- IP: return source IP\n#cache-ip: edge node IP\n#server-ip: external service IP\n#client-ip: client IP, or visitor IP\n#response-header{XXX} : get the value in the response header, such as #response-header{etag}, get the etag value in response-header\n\n#header{XXX} : to get the value in the HTTP header of the request, such as #header{user-agent}, is to get the user-agent value in the header\n\n#cookie{XXX} : get the value in the cookie, such as #cookie{account}, is to get the value of the account set in the cookie","zh_CN":"http头域对应的值，例如：mytest.example.com\n注意：\n1、当action为add或set时，该入参必须传值\n2、当action为delete时，该入参不用传\n支持通过关键字获取指定变量值，如客户端ip，包含如下：\n关键字：含义\n#timestamp ：当前时间，时间戳如1559124945\n#request-host：请求头中的HOST\n#request-url ：请求url，包含协议域名等的全路径，如http://aaa.aa.com/a.html\n#request-uri ：请求uri，相对路径格式，如/index.html\n#origin-ip ：回源IP\n#cache-ip ：边缘节点IP\n#server-ip ：对外服务IP\n#client-ip ：客户端IP，即访客IP\n#response-header{xxx}：获取响应头中的值，如#response-header{etag}，获取response-header中的etag值\n#header{xxx}：获取请求的http header中的值，如#header{User-Agent}，是获取header中的User-Agent值\n#cookie{xxx}：获取cookie中的值，如#cookie{account}，是获取cookie中设置的account的值&nbsp;&nbsp;"}
   HeaderValue *string `json:"header-value,omitempty" xml:"header-value,omitempty" require:"true"`
   // {"en":"The original value corresponding to the HTTP header field","zh_CN":"http头域对应的原始值"}
   HeaderValueOld *string `json:"header-value-old,omitempty" xml:"header-value-old,omitempty" require:"true"`
-  // {"en":"Match request header, header values support regular, header and header values separated by Spaces, e.g. : Range bytes=[0-9]{9,}", "zh_CN":"匹配请求头，头部值支持正则，头和头部值用空格隔开，如：Range bytes=[0-9]{9,}"}
-  RequesHeader *string `json:"request-header,omitempty" xml:"request-header,omitempty" require:"true"`
-  // {"en":"Indicates the priority of execution order for multiple sets of configurations. A higher number indicates higher priority. If no parameters are passed, the default value is 10 and cannot be cleared.", "zh_CN":"表示客户多组配置的优先执行顺序。数字越大，优先级越高。 不传参默认为10，不可清空"}
+  // {"en":"Match request header, header values support regular, header and header values separated by Spaces, e.g. : Range bytes=[0-9]{9,}","zh_CN":"匹配请求头，头部值支持正则，头和头部值用空格隔开，如：Range bytes=[0-9]{9,}"}
+  QueryHttpHeaderConfigRequestHeader *string `json:"request-header,omitempty" xml:"request-header,omitempty" require:"true"`
+  // {"en":"Indicates the priority of execution order for multiple sets of configurations. A higher number indicates higher priority. If no parameters are passed, the default value is 10 and cannot be cleared.","zh_CN":"表示客户多组配置的优先执行顺序。数字越大，优先级越高。 不传参默认为10，不可清空"}
   Priority *string `json:"priority,omitempty" xml:"priority,omitempty" require:"true"`
-  // {"en":"Exception file type.", "zh_CN":"例外的文件类型	"}
+  // {"en":"Exception file type.","zh_CN":"例外的文件类型"}
   ExceptFileType *string `json:"except-file-type,omitempty" xml:"except-file-type,omitempty" require:"true"`
-  // {"en":"Exception directory.", "zh_CN":"例外的目录"}
+  // {"en":"Exception directory.","zh_CN":"例外的目录"}
   ExceptDirectory *string `json:"except-directory,omitempty" xml:"except-directory,omitempty" require:"true"`
-  // {"en":"Exception request method.", "zh_CN":"例外的请求方式"}
+  // {"en":"Exception request method.","zh_CN":"例外的请求方式"}
   ExceptRequestMethod *string `json:"except-request-method,omitempty" xml:"except-request-method,omitempty" require:"true"`
-  // {"en":"Exception request header.", "zh_CN":"例外的请求头"}
+  // {"en":"Exception request header.","zh_CN":"例外的请求头"}
   ExceptQueryHttpHeaderConfigRequestHeader *string `json:"except-request-header,omitempty" xml:"except-request-header,omitempty" require:"true"`
+  // {"en":"HTTP Header Override Option, Values: true/false/.Empty string  true: If the specified header already exists, the original header will be overwritten. If the header does not exist, a new header will be added. false: If the specified header already exists, the original header remains unchanged. If the header does not exist, a new header will be added. Empty string: indicating to clear the configuration Note: This override operation only applies to the cache2origin and cache2visitor directions.","zh_CN":"http头覆盖选项，可选值:true/false/空串。 true:表示若对应头部原来已存在，则会覆盖原来的头部；若对应头部原来不存在，则会新增头部。 false:表示若对应头部原来已存在，不会对原头部做任何修改；若对应头部原来不存在，则会新增头部。 空串：表示清空配置 注意：该覆盖操作只针对cache2origin、cache2visitor两个方向生效。"}
+  Override *string `json:"override,omitempty" xml:"override,omitempty" require:"true"`
 }
 
 func (s QueryHttpHeaderConfigQueryHttpHeaderConfigResponseHeaderModifyRules) String() string {
@@ -910,8 +888,8 @@ func (s *QueryHttpHeaderConfigQueryHttpHeaderConfigResponseHeaderModifyRules) Se
   return s
 }
 
-func (s *QueryHttpHeaderConfigQueryHttpHeaderConfigResponseHeaderModifyRules) SetDataId(v int) *QueryHttpHeaderConfigQueryHttpHeaderConfigResponseHeaderModifyRules {
-  s.DataId = &v
+func (s *QueryHttpHeaderConfigQueryHttpHeaderConfigResponseHeaderModifyRules) SetDataId(v *QueryHttpHeaderConfigQueryHttpHeaderConfigResponseHeaderModifyRulesDataId) *QueryHttpHeaderConfigQueryHttpHeaderConfigResponseHeaderModifyRules {
+  s.DataId = v
   return s
 }
 
@@ -950,8 +928,8 @@ func (s *QueryHttpHeaderConfigQueryHttpHeaderConfigResponseHeaderModifyRules) Se
   return s
 }
 
-func (s *QueryHttpHeaderConfigQueryHttpHeaderConfigResponseHeaderModifyRules) SetRequesHeader(v string) *QueryHttpHeaderConfigQueryHttpHeaderConfigResponseHeaderModifyRules {
-  s.RequesHeader = &v
+func (s *QueryHttpHeaderConfigQueryHttpHeaderConfigResponseHeaderModifyRules) SetQueryHttpHeaderConfigRequestHeader(v string) *QueryHttpHeaderConfigQueryHttpHeaderConfigResponseHeaderModifyRules {
+  s.QueryHttpHeaderConfigRequestHeader = &v
   return s
 }
 
@@ -980,43 +958,19 @@ func (s *QueryHttpHeaderConfigQueryHttpHeaderConfigResponseHeaderModifyRules) Se
   return s
 }
 
-type QueryHttpHeaderConfigPaths struct {
-  // {"en":"the domain whoes need query config", "zh_CN":"需要查询配置的域名或域名id"}
-  DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
-}
-
-func (s QueryHttpHeaderConfigPaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryHttpHeaderConfigPaths) GoString() string {
-  return s.String()
-}
-
-func (s *QueryHttpHeaderConfigPaths) SetDomainName(v string) *QueryHttpHeaderConfigPaths {
-  s.DomainName = &v
+func (s *QueryHttpHeaderConfigQueryHttpHeaderConfigResponseHeaderModifyRules) SetOverride(v string) *QueryHttpHeaderConfigQueryHttpHeaderConfigResponseHeaderModifyRules {
+  s.Override = &v
   return s
 }
 
-type QueryHttpHeaderConfigParameters struct {
+type QueryHttpHeaderConfigQueryHttpHeaderConfigResponseHeaderModifyRulesDataId struct {
 }
 
-func (s QueryHttpHeaderConfigParameters) String() string {
+func (s QueryHttpHeaderConfigQueryHttpHeaderConfigResponseHeaderModifyRulesDataId) String() string {
   return tea.Prettify(s)
 }
 
-func (s QueryHttpHeaderConfigParameters) GoString() string {
-  return s.String()
-}
-
-type QueryHttpHeaderConfigRequestHeader struct {
-}
-
-func (s QueryHttpHeaderConfigRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryHttpHeaderConfigRequestHeader) GoString() string {
+func (s QueryHttpHeaderConfigQueryHttpHeaderConfigResponseHeaderModifyRulesDataId) GoString() string {
   return s.String()
 }
 
@@ -4591,7 +4545,7 @@ type EditDomainConfigRequest struct {
   CacheHost *string `json:"cache-host,omitempty" xml:"cache-host,omitempty"`
   // {"en":"Enable httpdns settings.\nThe optional values are true and false, true means enabled; false means off. This function is not enabled by default. If you need it, please contact the technical support to apply for this feature.","zh_CN":"启用httpdns设置（使用需申请）\n可选值为true和false，true表示启用；false表示关闭\n注意：该功能默认不开启，若您有需要，请联系专属客服申请开通。"}
   EnableHttpdns *string `json:"enable-httpdns,omitempty" xml:"enable-httpdns,omitempty"`
-  // {"en":"Pass the response header of client IP. The optional values are Cdn-Src-Ip, X-Forwarded-For and ori_X-Forwarded-For. The default value is Cdn-Src-Ip.","zh_CN":"传递客户端ip的响应头部，可选值为Cdn-Src-Ip和X-Forwarded-For，默认值为Cdn-Src-Ip"}
+  // {"en":"Pass the response header of client IP. The optional values are Cdn-Src-Ip, X-Forwarded-For and ori_X-Forwarded-For. The default value is Cdn-Src-Ip.","zh_CN":"传递客户端ip的响应头部，可选值为Cdn-Src-Ip、X-Forwarded-For、ori_X-Forwarded-For\n1） Cdn-Src-Ip： 回源头部名称为Cdn-Src-Ip，获取与节点进行建联的IP作为客户端IP传递回源。\n2） X-Forwarded-For： 回源头部名称为X-Forwarded-For，携带的客户端IP值是Cdn-Src-Ip获取到的建联IP。\n3） ori_X-Forwarded-For：客户端请求CDN节点时会自带X-Forwarded-For，则CDN透传此头部和值回源。"}
   HeaderOfClientip *string `json:"header-of-clientip,omitempty" xml:"header-of-clientip,omitempty"`
   // {"en":"Live domain name configuration, used to set the push flow of live acceleration domain name","zh_CN":"直播域名配置，用于设置直播加速域名的推拉流"}
   LiveConfig *EditDomainConfigRequestLiveConfig `json:"live-config,omitempty" xml:"live-config,omitempty" type:"Struct"`
@@ -5426,7 +5380,7 @@ func (s EditDomainRedirectConfigResponseHeader) GoString() string {
 
 
 type UpdateHttp2SettingsConfigForWplusRequest struct {
-  // {"en":"Http2.0 settings, used to enable or disable http2.0, parent node.", "zh_CN":"http2.0设置，用于设置http2.0的开启或关闭，父标签"}
+  // {"en":"Http2.0 settings, used to enable or disable http2.0, parent node.","zh_CN":"http2.0设置，用于设置http2.0的开启或关闭，父标签"}
   Http2Settings *UpdateHttp2SettingsConfigForWplusRequestHttp2Settings `json:"http2Settings,omitempty" xml:"http2Settings,omitempty" require:"true" type:"Struct"`
 }
 
@@ -5444,15 +5398,9 @@ func (s *UpdateHttp2SettingsConfigForWplusRequest) SetHttp2Settings(v *UpdateHtt
 }
 
 type UpdateHttp2SettingsConfigForWplusRequestHttp2Settings struct {
-  // {"en":"Enable http2.0. The optional values are true and false. If it is empty, the default value is false. True means http2.0 is on; false means http2.0 is off.", "zh_CN":"开启http2.0，可选值为true和false，为空时默认为false。true表示开启http2.0；false表示关闭http2.0"}
+  // {"en":"Enable http2.0. The optional values are true and false. If it is empty, the default value is false. True means http2.0 is on; false means http2.0 is off.","zh_CN":"开启http2.0，可选值为true和false，为空时默认为false。true表示开启http2.0；false表示关闭http2.0"}
   EnableHttp2 *string `json:"enableHttp2,omitempty" xml:"enableHttp2,omitempty"`
-  // {"en":"Back-to-origin protocol, the optional value is
-  // http1.1: Use the HTTP1.1 protocol version to back to source. if not filled, use it as default.
-  // follow-request: Same as client request protocol
-  // http2.0: Use the HTTP2.0 protocol. version to back to source.", "zh_CN":"回源协议，可选值为
-  // http1.1：使用HTTP1.1协议版本回源，不填时默认该协议
-  // follow-request：跟随客户端请求协议
-  // http2.0：使用HTTP2.0协议版本回源（点播下载直播产品不支持H2回源）"}
+  // {"en":"Back-to-origin protocol, the optional value is\nhttp1.1: Use the HTTP1.1 protocol version to back to source. if not filled, use it as default.\nfollow-request: Same as client request protocol\nhttp2.0: Use the HTTP2.0 protocol. version to back to source.","zh_CN":"回源协议，可选值为\nhttp1.1：使用HTTP1.1协议版本回源，不填时默认该协议\nfollow-request：跟随客户端请求协议\nhttp2.0：使用HTTP2.0协议版本回源（点播下载直播产品不支持H2回源）"}
   BackToOriginProtocol *string `json:"backToOriginProtocol,omitempty" xml:"backToOriginProtocol,omitempty"`
 }
 
@@ -5474,33 +5422,19 @@ func (s *UpdateHttp2SettingsConfigForWplusRequestHttp2Settings) SetBackToOriginP
   return s
 }
 
-type UpdateHttp2SettingsConfigForWplusResponse struct {
-  // {"en":"Error code, which appears when HTTPStatus is not 202, represents the error type of the current request call", "zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Response information, success when successful", "zh_CN":"响应信息，成功时为success"}
-  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+type UpdateHttp2SettingsConfigForWplusRequestHeader struct {
 }
 
-func (s UpdateHttp2SettingsConfigForWplusResponse) String() string {
+func (s UpdateHttp2SettingsConfigForWplusRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateHttp2SettingsConfigForWplusResponse) GoString() string {
+func (s UpdateHttp2SettingsConfigForWplusRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *UpdateHttp2SettingsConfigForWplusResponse) SetCode(v string) *UpdateHttp2SettingsConfigForWplusResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *UpdateHttp2SettingsConfigForWplusResponse) SetMessage(v string) *UpdateHttp2SettingsConfigForWplusResponse {
-  s.Message = &v
-  return s
-}
-
 type UpdateHttp2SettingsConfigForWplusPaths struct {
-  // {"en":"the domain whoes need query config", "zh_CN":"需要查询配置的域名或域名id"}
+  // {"en":"the domain whoes need query config","zh_CN":"需要查询配置的域名或域名id"}
   DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
 }
 
@@ -5528,15 +5462,29 @@ func (s UpdateHttp2SettingsConfigForWplusParameters) GoString() string {
   return s.String()
 }
 
-type UpdateHttp2SettingsConfigForWplusRequestHeader struct {
+type UpdateHttp2SettingsConfigForWplusResponse struct {
+  // {"en":"Error code, which appears when HTTPStatus is not 202, represents the error type of the current request call","zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Response information, success when successful","zh_CN":"响应信息，成功时为success"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
 }
 
-func (s UpdateHttp2SettingsConfigForWplusRequestHeader) String() string {
+func (s UpdateHttp2SettingsConfigForWplusResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateHttp2SettingsConfigForWplusRequestHeader) GoString() string {
+func (s UpdateHttp2SettingsConfigForWplusResponse) GoString() string {
   return s.String()
+}
+
+func (s *UpdateHttp2SettingsConfigForWplusResponse) SetCode(v string) *UpdateHttp2SettingsConfigForWplusResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *UpdateHttp2SettingsConfigForWplusResponse) SetMessage(v string) *UpdateHttp2SettingsConfigForWplusResponse {
+  s.Message = &v
+  return s
 }
 
 type UpdateHttp2SettingsConfigForWplusResponseHeader struct {
@@ -6199,18 +6147,52 @@ func (s QueryAntiHotlinkingConfigRequest) GoString() string {
   return s.String()
 }
 
-type QueryAntiHotlinkingConfigResponse struct {
-  // {"en":"the domain whoes need query config", "zh_CN":"需要查询配置的域名"}
+type QueryAntiHotlinkingConfigRequestHeader struct {
+}
+
+func (s QueryAntiHotlinkingConfigRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAntiHotlinkingConfigRequestHeader) GoString() string {
+  return s.String()
+}
+
+type QueryAntiHotlinkingConfigPaths struct {
+  // {"en":"the domain whoes need query config","zh_CN":"需要查询配置的域名或域名id"}
   DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
-  // {"en":"the domain whoes need query config", "zh_CN":"需要查询配置的域名id"}
+}
+
+func (s QueryAntiHotlinkingConfigPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAntiHotlinkingConfigPaths) GoString() string {
+  return s.String()
+}
+
+func (s *QueryAntiHotlinkingConfigPaths) SetDomainName(v string) *QueryAntiHotlinkingConfigPaths {
+  s.DomainName = &v
+  return s
+}
+
+type QueryAntiHotlinkingConfigParameters struct {
+}
+
+func (s QueryAntiHotlinkingConfigParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryAntiHotlinkingConfigParameters) GoString() string {
+  return s.String()
+}
+
+type QueryAntiHotlinkingConfigResponse struct {
+  // {"en":"the domain whoes need query config","zh_CN":"需要查询配置的域名"}
+  DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
+  // {"en":"the domain whoes need query config","zh_CN":"需要查询配置的域名id"}
   DomainId *string `json:"domain-id,omitempty" xml:"domain-id,omitempty" require:"true"`
-  // {"en":"Anti-theft chain configuration
-  // note:
-  // 1. When you need to cancel the anti-theft chain configuration settings, you can pass in the empty node <cache-time-behaviors></cache-time-behaviors>.
-  // 2. When it is necessary to set the anti-theft chain configuration, this item is required.", "zh_CN":"防盗链配置
-  // 注意：
-  // 1、需要取消防盗链配置设置时，可以传入空节点<cache-time-behaviors></cache-time-behaviors>。
-  // 2、表示需要设置防盗链配置时，此项必填"}
+  // {"en":"Anti-theft chain configuration\nnote:\n1. When you need to cancel the anti-theft chain configuration settings, you can pass in the empty node <cache-time-behaviors></cache-time-behaviors>.\n2. When it is necessary to set the anti-theft chain configuration, this item is required.","zh_CN":"防盗链配置\n注意：\n1、需要取消防盗链配置设置时，可以传入空节点<cache-time-behaviors></cache-time-behaviors>。\n2、表示需要设置防盗链配置时，此项必填"}
   VisitControlRules []*QueryAntiHotlinkingConfigResponseVisitControlRules `json:"visit-control-rules,omitempty" xml:"visit-control-rules,omitempty" require:"true" type:"Repeated"`
 }
 
@@ -6238,86 +6220,51 @@ func (s *QueryAntiHotlinkingConfigResponse) SetVisitControlRules(v []*QueryAntiH
 }
 
 type QueryAntiHotlinkingConfigResponseVisitControlRules struct     {
-  // {"en":"Add a grid type identifier to indicate a specific group configuration when the client has multiple groups of configurations.", "zh_CN":"添加grid类型标识，表示客户多组配置时，具体某组配置"}
-  DataId *int32 `json:"data-id,omitempty" xml:"data-id,omitempty" require:"true"`
-  // {"en":"The url matching mode supports regularization. If all matches, the input parameters can be configured as: .*", "zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*"}
+  // {"en":"Add a grid type identifier to indicate a specific group configuration when the client has multiple groups of configurations.","zh_CN":"添加grid类型标识，表示客户多组配置时，具体某组配置"}
+  DataId *int `json:"data-id,omitempty" xml:"data-id,omitempty" require:"true"`
+  // {"en":"The url matching mode supports regularization. If all matches, the input parameters can be configured as: .*","zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*"}
   PathPattern *string `json:"path-pattern,omitempty" xml:"path-pattern,omitempty" require:"true"`
-  // {"en":"Exceptional url matching mode, except for some URLs: such as abc.jpg, do not do anti-theft chain function
-  // E.g: ^https?://[^/]+/.*\.m3u8", "zh_CN":"例外的url匹配模式，某些URL除外：如abc.jpg，不做防盗链功能
-  // 客户入参参考：^https?://[^/]+/.*\.m3u8"}
+  // {"en":"Exceptional url matching mode, except for some URLs: such as abc.jpg, do not do anti-theft chain function\nE.g: ^https?://[^/]+/.*\.m3u8","zh_CN":"例外的url匹配模式，某些URL除外：如abc.jpg，不做防盗链功能\n客户入参参考：^https?://[^/]+/.*\.m3u8"}
   ExceptPathPattern *string `json:"except-path-pattern,omitempty" xml:"except-path-pattern,omitempty" require:"true"`
-  // {"en":"Specify common types: Select the domain name that requires the anti-theft chain to be all files or the home page. :
-  // E.g:
-  // All: all files
-  // Homepage: homepage", "zh_CN":"指定常用类型：选择需要防盗链的域名是全部文件还是首页。入参参考值：
-  // all：全部文件
-  // homepage：首页"}
+  // {"en":"Specify common types: Select the domain name that requires the anti-theft chain to be all files or the home page. :\nE.g:\nAll: all files\nHomepage: homepage","zh_CN":"指定常用类型：选择需要防盗链的域名是全部文件还是首页。入参参考值：\nall：全部文件\nhomepage：首页"}
   CustomPattern *string `json:"custom-pattern,omitempty" xml:"custom-pattern,omitempty" require:"true"`
-  // {"en":"File Type: Specify the file type for anti-theft chain settings.
-  // File types include: gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf
-  // If you need all types, pass all directly. Multiples are separated by semicolons, and all and specific file types cannot be configured at the same time.", "zh_CN":"文件类型：指定文件类型进行防盗链设置。
-  // 文件类型包括：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf
-  // 如果需要全部类型，则直接传all。多个以分号隔开，all和具体文件类型不能同时配置。"}
+  // {"en":"File Type: Specify the file type for anti-theft chain settings.\nFile types include: gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf\nIf you need all types, pass all directly. Multiples are separated by semicolons, and all and specific file types cannot be configured at the same time.","zh_CN":"文件类型：指定文件类型进行防盗链设置。\n文件类型包括：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf\n如果需要全部类型，则直接传all。多个以分号隔开，all和具体文件类型不能同时配置。"}
   FileType *string `json:"file-type,omitempty" xml:"file-type,omitempty" require:"true"`
-  // {"en":"Custom file type: Fill in the appropriate identifiable file type according to your needs outside of the specified file type. Can be used with file-type. If the file-type is also configured, the actual file type is the sum of the two parameters.", "zh_CN":"自定义文件类型：在指定文件类型外根据自身需求，填写适当的可识别文件类型。可以搭配file-type使用。如果file-type也有配置，实际生效的文件类型是两个入参的总和"}
+  // {"en":"Custom file type: Fill in the appropriate identifiable file type according to your needs outside of the specified file type. Can be used with file-type. If the file-type is also configured, the actual file type is the sum of the two parameters.","zh_CN":"自定义文件类型：在指定文件类型外根据自身需求，填写适当的可识别文件类型。可以搭配file-type使用。如果file-type也有配置，实际生效的文件类型是两个入参的总和"}
   CustomFileType *string `json:"custom-file-type,omitempty" xml:"custom-file-type,omitempty" require:"true"`
-  // {"en":"Specify URL cache: Specify url according to requirements for anti-theft chain setting
-  // INS format does not support URI format with http(s)://", "zh_CN":"指定URL缓存：根据需求指定url进行防盗链设置
-  // 入参不支持含http(s):// 开头的URI格式"}
+  // {"en":"Specify URL cache: Specify url according to requirements for anti-theft chain setting\nINS format does not support URI format with http(s)://","zh_CN":"指定URL缓存：根据需求指定url进行防盗链设置\n入参不支持含http(s):// 开头的URI格式"}
   SpecifyUrlPattern *string `json:"specify-url-pattern,omitempty" xml:"specify-url-pattern,omitempty" require:"true"`
-  // {"en":"Directory: Specify the directory for anti-theft chain settings
-  // Enter a legal directory format. Multiple separated by semicolons", "zh_CN":"目录：指定目录进行防盗链设置
-  // 输入合法的目录格式。多个以英文分号隔开"}
+  // {"en":"Directory: Specify the directory for anti-theft chain settings\nEnter a legal directory format. Multiple separated by semicolons","zh_CN":"目录：指定目录进行防盗链设置\n输入合法的目录格式。多个以英文分号隔开"}
   Directory *string `json:"directory,omitempty" xml:"directory,omitempty" require:"true"`
-  // {"en":"Exception file type: Specify the file type that does not require anti-theft chain function
-  // File types include: gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf
-  // If you need all types, pass all directly. Multiple separated by semicolons, all and specific file types cannot be configured at the same time
-  // If file-type=all, except-file-type=all means that the task file type is not matched.", "zh_CN":"例外的文件类型：指定不需要进行防盗链功能的文件类型
-  // 文件类型包括：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf
-  // 如果需要全部类型，则直接传all。多个以分号隔开，all和具体文件类型不能同时配置
-  // 如果file-type=all,except-file-type=all 则表示不匹配任务文件类型"}
+  // {"en":"Exception file type: Specify the file type that does not require anti-theft chain function\nFile types include: gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf\nIf you need all types, pass all directly. Multiple separated by semicolons, all and specific file types cannot be configured at the same time\nIf file-type=all, except-file-type=all means that the task file type is not matched.","zh_CN":"例外的文件类型：指定不需要进行防盗链功能的文件类型\n文件类型包括：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf\n如果需要全部类型，则直接传all。多个以分号隔开，all和具体文件类型不能同时配置\n如果file-type=all,except-file-type=all 则表示不匹配任务文件类型"}
   ExceptFileType *string `json:"except-file-type,omitempty" xml:"except-file-type,omitempty" require:"true"`
-  // {"en":"Exceptional custom file types: Fill in the appropriate identifiable file types based on your needs, outside of the specified file type. Can be used with the exception-file-type. If the except-file-type is also configured, the actual file type is the sum of the two parameters.", "zh_CN":"例外的自定义文件类型：在指定文件类型外根据自身需求，填写适当的可识别文件类型。可以搭配except-file-type使用。如果except-file-type也有配置，实际生效的文件类型是两个入参的总和"}
+  // {"en":"Exceptional custom file types: Fill in the appropriate identifiable file types based on your needs, outside of the specified file type. Can be used with the exception-file-type. If the except-file-type is also configured, the actual file type is the sum of the two parameters.","zh_CN":"例外的自定义文件类型：在指定文件类型外根据自身需求，填写适当的可识别文件类型。可以搭配except-file-type使用。如果except-file-type也有配置，实际生效的文件类型是两个入参的总和"}
   ExceptCustomFileType *string `json:"except-custom-file-type,omitempty" xml:"except-custom-file-type,omitempty" require:"true"`
-  // {"en":"Exceptional directory: Specify a directory that does not require anti-theft chain settings
-  // Enter a legal directory format. Multiple separated by semicolons", "zh_CN":"例外的目录：指定不需要进行进行防盗链设置的目录
-  // 输入合法的目录格式。多个以英文分号隔开"}
+  // {"en":"Exceptional directory: Specify a directory that does not require anti-theft chain settings\nEnter a legal directory format. Multiple separated by semicolons","zh_CN":"例外的目录：指定不需要进行进行防盗链设置的目录\n输入合法的目录格式。多个以英文分号隔开"}
   ExceptDirectory *string `json:"except-directory,omitempty" xml:"except-directory,omitempty" require:"true"`
-  // {"en":"control direction. Available values: 403 and 302
-  // 1) 403 means to return a specific error status code to reject the service (the default mode, the status code can be specified, generally 403).
-  // 2) 302 means to return 302 the redirect url of the Found, the redirected url can be specified. If pass 302, rewrite-to is required", "zh_CN":"控制方向。可选值：403和302
-  // 1） 403表示返回特定的错误状态码来拒绝服务（默认方式，状态码可以指定，一般为403）。
-  // 2） 302表示返回302 Found的重定向url，重定向的url可以指定。如果传302，rewrite-to必填"}
+  // {"en":"control direction. Available values: 403 and 302\n1) 403 means to return a specific error status code to reject the service (the default mode, the status code can be specified, generally 403).\n2) 302 means to return 302 the redirect url of the Found, the redirected url can be specified. If pass 302, rewrite-to is required","zh_CN":"控制方向。可选值：403和302\n1） 403表示返回特定的错误状态码来拒绝服务（默认方式，状态码可以指定，一般为403）。\n2） 302表示返回302 Found的重定向url，重定向的url可以指定。如果传302，rewrite-to必填"}
   ControlAction *string `json:"control-action,omitempty" xml:"control-action,omitempty" require:"true"`
-  // {"en":"Specify the url after the 302 jump. This field is required if the control-action value is 302.", "zh_CN":"指定302跳转后的url。如果control-action值为302，此项必填"}
+  // {"en":"Specify the url after the 302 jump. This field is required if the control-action value is 302.","zh_CN":"指定302跳转后的url。如果control-action值为302，此项必填"}
   RewriteTo *string `json:"rewrite-to,omitempty" xml:"rewrite-to,omitempty" require:"true"`
-  // {"en":"Indicates the priority execution order of multiple sets of redirected content by the customer. The higher the number, the higher the priority.
-  // When adding a new configuration item, the default is 10", "zh_CN":"表示客户多组重定向内容的优先执行顺序。数字越大，优先级越高。
-  // 新增配置项时，不传默认为 10"}
-  Priority *int32 `json:"priority,omitempty" xml:"priority,omitempty" require:"true"`
-  // {"en":"Exceptional Request Method.Multiple entires separated by ;", "zh_CN":"例外的请求方法。多个以;隔开"}
+  // {"en":"Indicates the priority execution order of multiple sets of redirected content by the customer. The higher the number, the higher the priority.\nWhen adding a new configuration item, the default is 10","zh_CN":"表示客户多组重定向内容的优先执行顺序。数字越大，优先级越高。\n新增配置项时，不传默认为 10"}
+  Priority *int `json:"priority,omitempty" xml:"priority,omitempty" require:"true"`
+  // {"en":"Exceptional Request Method. Multiple entries detected, separated by \";\".","zh_CN":"例外的请求方法。多个以“;”隔开。"}
   ExceptionalRequest *string `json:"exceptional-request,omitempty" xml:"exceptional-request,omitempty" require:"true"`
-  // {"en":"Only true and false are allowed to be filled in ignoredcase.", "zh_CN":"是否忽略大小写。只允许填写true或false"}
+  // {"en":"Forbidden request method. Multiple entries detected, separated by \";\".","zh_CN":"禁止的请求方法。多个以“;”隔开。"}
+  ForbiddenRequest *string `json:"forbidden-request,omitempty" xml:"forbidden-request,omitempty" require:"true"`
+  // {"en":"Only true and false are allowed to be filled in ignoredcase.","zh_CN":"是否忽略大小写。只允许填写true或false"}
   IgnoredCase *string `json:"ignored-case,omitempty" xml:"ignored-case,omitempty" require:"true"`
-  // {"en":"You can set other visit control rules here.", "zh_CN":"配置其他访问控制策略，比如禁止访问的时间"}
+  // {"en":"You can set other visit control rules here.","zh_CN":"配置其他访问控制策略，比如禁止访问的时间"}
   AdvanceControlRules *QueryAntiHotlinkingConfigResponseVisitControlRulesAdvanceControlRules `json:"advance-control-rules,omitempty" xml:"advance-control-rules,omitempty" require:"true" type:"Struct"`
-  // {"en":"Identify IP black and white list anti-theft chain note: 1, a set of black and white list anti-theft chain, only one set under a data-id 2. When the air interface label indicates the exception of the IP segment configuration and the forbidden IP segment configuration.", "zh_CN":"标识IP黑白名单防盗链 注意： 1、表示一组黑白名单防盗链，一个data-id下只能一组 2、当传空标签表示清楚例外的IP段配置和禁止的IP段配置。"}
+  // {"en":"Identify IP black and white list anti-theft chain note: 1, a set of black and white list anti-theft chain, only one set under a data-id 2. When the air interface label indicates the exception of the IP segment configuration and the forbidden IP segment configuration.","zh_CN":"标识IP黑白名单防盗链 注意： 1、表示一组黑白名单防盗链，一个data-id下只能一组 2、当传空标签表示清楚例外的IP段配置和禁止的IP段配置。"}
   IpControlRule *QueryAntiHotlinkingConfigResponseVisitControlRulesIpControlRule `json:"ip-control-rule,omitempty" xml:"ip-control-rule,omitempty" require:"true" type:"Struct"`
-  // {"en":"The exception IP segment supports input IP or IP segment, and the IP segments are separated by a semicolon (;), such as 1.1.1.0/24; 2.2.2.2, some IP exceptions, no anti-theft chain", "zh_CN":"例外的IP段，支持输入IP或IP段，IP段之间用分号(;)隔开，如1.1.1.0/24;2.2.2.2，某些IP例外，不做防盗链"}
+  // {"en":"The exception IP segment supports input IP or IP segment, and the IP segments are separated by a semicolon (;), such as 1.1.1.0/24; 2.2.2.2, some IP exceptions, no anti-theft chain","zh_CN":"例外的IP段，支持输入IP或IP段，IP段之间用分号(;)隔开，如1.1.1.0/24;2.2.2.2，某些IP例外，不做防盗链"}
   AllowedIps *string `json:"allowed-ips,omitempty" xml:"allowed-ips,omitempty" require:"true"`
-  // {"en":"Identify referer anti-theft chain
-  // Note:
-  // 1. Represents a set of referer security chains, and a single data-id can only have one set under one
-  // 2. when the empty tag means to clear referer security chain
-  // 3. legal refer, ( legal domain name, legal URL), illegal refer, ( illegal domain name, illegal URL) these four, a data-id can only configure one or all empty under one data-id", "zh_CN":"标识referer防盗链
-  // 注意：
-  // 1、表示一组referer防盗链，一个data-id下只能一组
-  // 2、当传空标签表示清除referer防盗链
-  // 3、合法refer、（合法域名、合法URL）、非法refer、（非法域名、非法URL）这四项，一个data-id下只能配置一个或者都为空"}
+  // {"en":"Identify referer anti-theft chain\nNote:\n1. Represents a set of referer security chains, and a single data-id can only have one set under one\n2. when the empty tag means to clear referer security chain\n3. legal refer, ( legal domain name, legal URL), illegal refer, ( illegal domain name, illegal URL) these four, a data-id can only configure one or all empty under one data-id","zh_CN":"标识referer防盗链\n注意：\n1、表示一组referer防盗链，一个data-id下只能一组\n2、当传空标签表示清除referer防盗链\n3、合法refer、（合法域名、合法URL）、非法refer、（非法域名、非法URL）这四项，一个data-id下只能配置一个或者都为空"}
   RefererControlRule *QueryAntiHotlinkingConfigResponseVisitControlRulesRefererControlRule `json:"referer-control-rule,omitempty" xml:"referer-control-rule,omitempty" require:"true" type:"Struct"`
-  // {"en":"Configuration cookie control rules.Allow-cookie and forbidden-cookie are not allowed to be configured together.", "zh_CN":"配置Cookie防盗链策略。【允许的cookie】和【禁止的cookie】只允许配置一个"}
+  // {"en":"Configuration cookie control rules.Allow-cookie and forbidden-cookie are not allowed to be configured together.","zh_CN":"配置Cookie防盗链策略。【允许的cookie】和【禁止的cookie】只允许配置一个"}
   CookieControlRules *QueryAntiHotlinkingConfigResponseVisitControlRulesCookieControlRules `json:"cookie-control-rules,omitempty" xml:"cookie-control-rules,omitempty" require:"true" type:"Struct"`
-  // {"en":"Configuration custom header control rules.Header-whitelist and header-blacklist are not allowed to be configured together.", "zh_CN":"配置自定义头部防盗链。【头域黑名单】和【头域白名单】只允许配置一个"}
+  // {"en":"Configuration custom header control rules.Header-whitelist and header-blacklist are not allowed to be configured together.","zh_CN":"配置自定义头部防盗链。【头域黑名单】和【头域白名单】只允许配置一个"}
   CustomHeaderControlRules *QueryAntiHotlinkingConfigResponseVisitControlRulesCustomHeaderControlRules `json:"custom-header-control-rules,omitempty" xml:"custom-header-control-rules,omitempty" require:"true" type:"Struct"`
 }
 
@@ -6329,7 +6276,7 @@ func (s QueryAntiHotlinkingConfigResponseVisitControlRules) GoString() string {
   return s.String()
 }
 
-func (s *QueryAntiHotlinkingConfigResponseVisitControlRules) SetDataId(v int32) *QueryAntiHotlinkingConfigResponseVisitControlRules {
+func (s *QueryAntiHotlinkingConfigResponseVisitControlRules) SetDataId(v int) *QueryAntiHotlinkingConfigResponseVisitControlRules {
   s.DataId = &v
   return s
 }
@@ -6394,13 +6341,18 @@ func (s *QueryAntiHotlinkingConfigResponseVisitControlRules) SetRewriteTo(v stri
   return s
 }
 
-func (s *QueryAntiHotlinkingConfigResponseVisitControlRules) SetPriority(v int32) *QueryAntiHotlinkingConfigResponseVisitControlRules {
+func (s *QueryAntiHotlinkingConfigResponseVisitControlRules) SetPriority(v int) *QueryAntiHotlinkingConfigResponseVisitControlRules {
   s.Priority = &v
   return s
 }
 
 func (s *QueryAntiHotlinkingConfigResponseVisitControlRules) SetExceptionalRequest(v string) *QueryAntiHotlinkingConfigResponseVisitControlRules {
   s.ExceptionalRequest = &v
+  return s
+}
+
+func (s *QueryAntiHotlinkingConfigResponseVisitControlRules) SetForbiddenRequest(v string) *QueryAntiHotlinkingConfigResponseVisitControlRules {
+  s.ForbiddenRequest = &v
   return s
 }
 
@@ -6440,7 +6392,7 @@ func (s *QueryAntiHotlinkingConfigResponseVisitControlRules) SetCustomHeaderCont
 }
 
 type QueryAntiHotlinkingConfigResponseVisitControlRulesAdvanceControlRules struct {
-  // {"en":"The format is: YYYY start date - end date weekday start time - end date, Beijing time. For example: 2022 1/1-6/30 Mon 00:00-16:00, which means: 0:00-16:00 every Monday from January 1st to June 30th, 2017. You can only configure the start time, such as 00:00-16:00, which means 0:00 to 16:00 every day.", "zh_CN":"禁止访问的时间"}
+  // {"en":"The format is: YYYY start date - end date weekday start time - end date, Beijing time. For example: 2022 1/1-6/30 Mon 00:00-16:00, which means: 0:00-16:00 every Monday from January 1st to June 30th, 2017. You can only configure the start time, such as 00:00-16:00, which means 0:00 to 16:00 every day.","zh_CN":"禁止访问的时间"}
   InvalidTime *string `json:"invalid-time,omitempty" xml:"invalid-time,omitempty" require:"true"`
 }
 
@@ -6458,10 +6410,7 @@ func (s *QueryAntiHotlinkingConfigResponseVisitControlRulesAdvanceControlRules) 
 }
 
 type QueryAntiHotlinkingConfigResponseVisitControlRulesIpControlRule struct {
-  // {"en":"Prohibited IP segment
-  // Input parameter limit reference interface limit
-  // Forbidden IP and exceptional IP cannot be configured at the same time", "zh_CN":"禁止的IP段
-  // 禁止的IP和例外的IP只能一个有值"}
+  // {"en":"Prohibited IP segment\nInput parameter limit reference interface limit\nForbidden IP and exceptional IP cannot be configured at the same time","zh_CN":"禁止的IP段\n禁止的IP和例外的IP只能一个有值"}
   ForbiddenIps *string `json:"forbidden-ips,omitempty" xml:"forbidden-ips,omitempty" require:"true"`
 }
 
@@ -6479,31 +6428,23 @@ func (s *QueryAntiHotlinkingConfigResponseVisitControlRulesIpControlRule) SetFor
 }
 
 type QueryAntiHotlinkingConfigResponseVisitControlRulesRefererControlRule struct {
-  // {"en":"If any of the four terms 'nullreferer: legal referer, (legal domain name, legal URL), illegal referer, (illegal domain name, illegal URL)' is allowed, then 'nullreferer' cannot be null.If the four terms 'legal refer', 'legal domain name, legal URL', 'illegal refer', 'illegal domain name, illegal URL' are all null values, then 'whether to allow a null referer' must be null", "zh_CN":"是否允许空referer：合法refer、（合法域名、合法URL）、非法refer、（非法域名、非法URL）这四项任意一项有值，则&ldquo;是否允许空referer&rdquo;不能为空；合法refer、（合法域名、合法URL）、非法refer、（非法域名、非法URL）这四项都为空值，则&ldquo;是否允许空referer&rdquo;必须为空"}
+  // {"en":"If any of the four terms 'nullreferer: legal referer, (legal domain name, legal URL), illegal referer, (illegal domain name, illegal URL)' is allowed, then 'nullreferer' cannot be null.If the four terms 'legal refer', 'legal domain name, legal URL', 'illegal refer', 'illegal domain name, illegal URL' are all null values, then 'whether to allow a null referer' must be null","zh_CN":"是否允许空referer：合法refer、（合法域名、合法URL）、非法refer、（非法域名、非法URL）这四项任意一项有值，则&ldquo;是否允许空referer&rdquo;不能为空；合法refer、（合法域名、合法URL）、非法refer、（非法域名、非法URL）这四项都为空值，则&ldquo;是否允许空referer&rdquo;必须为空"}
   AllowNullReferer *string `json:"allow-null-referer,omitempty" xml:"allow-null-referer,omitempty" require:"true"`
-  // {"en":"Legal referer.", "zh_CN":"合法referer.可以输入url或域名"}
+  // {"en":"Legal referer.","zh_CN":"合法referer.可以输入url或域名"}
   ValidReferer *string `json:"valid-referer,omitempty" xml:"valid-referer,omitempty" require:"true"`
-  // {"en":"Legal url, enter the correct url format", "zh_CN":"合法url，输入正确的url格式"}
+  // {"en":"Legal url, enter the correct url format","zh_CN":"合法url，输入正确的url格式"}
   ValidUrl *string `json:"valid-url,omitempty" xml:"valid-url,omitempty" require:"true"`
-  // {"en":"Legal domain name", "zh_CN":"合法域名"}
+  // {"en":"Legal domain name","zh_CN":"合法域名"}
   ValidDomain *string `json:"valid-domain,omitempty" xml:"valid-domain,omitempty" require:"true"`
-  // {"en":"Illegal referer", "zh_CN":"非法referer，可以输入url或域名"}
+  // {"en":"Illegal referer","zh_CN":"非法referer，可以输入url或域名"}
   InvalidReferer *string `json:"invalid-referer,omitempty" xml:"invalid-referer,omitempty" require:"true"`
-  // {"en":"Invalid url, enter the correct url format", "zh_CN":"非法url，输入正确的url格式"}
+  // {"en":"Invalid url, enter the correct url format","zh_CN":"非法url，输入正确的url格式"}
   InvalidUrl *string `json:"invalid-url,omitempty" xml:"invalid-url,omitempty" require:"true"`
-  // {"en":"Illegal domain name", "zh_CN":"非法域名"}
+  // {"en":"Illegal domain name","zh_CN":"非法域名"}
   InvalidDomain *string `json:"invalid-domain,omitempty" xml:"invalid-domain,omitempty" require:"true"`
-  // {"en":"UA head protection against hotlinking,
-  // Note:
-  // 1. Represents a group of UA head defense hotlinking, and only one group under a data-id
-  // 2. when empty label means clear UA head protection hotlinking", "zh_CN":"标识UA头防盗链，
-  // 注意：
-  // 1、表示一组UA头防盗链，一个data-id下只能一组
-  // 2、当传空标签表示清除UA头防盗链"}
+  // {"en":"UA head protection against hotlinking,\nNote:\n1. Represents a group of UA head defense hotlinking, and only one group under a data-id\n2. when empty label means clear UA head protection hotlinking","zh_CN":"标识UA头防盗链，\n注意：\n1、表示一组UA头防盗链，一个data-id下只能一组\n2、当传空标签表示清除UA头防盗链"}
   UaControlRule *QueryAntiHotlinkingConfigResponseVisitControlRulesRefererControlRuleUaControlRule `json:"ua-control-rule,omitempty" xml:"ua-control-rule,omitempty" require:"true" type:"Struct"`
-  // {"en":"Configure other access control rules, such as invalid visitor regions, example:
-  // advance-control-rules:{invalid-visitor-region:CN;JP;K}", "zh_CN":"配置其他访问控制策略，比如禁止的访客区域，JSON示例：
-  // advance-control-rules:{invalid-visitor-region:CN;JP;KR}"}
+  // {"en":"Configure other access control rules, such as invalid visitor regions, example:\nadvance-control-rules:{invalid-visitor-region:CN;JP;K}","zh_CN":"配置其他访问控制策略，比如禁止的访客区域，JSON示例：\nadvance-control-rules:{invalid-visitor-region:CN;JP;KR}"}
   AdvanceControlRules *QueryAntiHotlinkingConfigResponseVisitControlRulesRefererControlRuleAdvanceControlRules `json:"advance-control-rules,omitempty" xml:"advance-control-rules,omitempty" require:"true" type:"Struct"`
 }
 
@@ -6561,11 +6502,9 @@ func (s *QueryAntiHotlinkingConfigResponseVisitControlRulesRefererControlRule) S
 }
 
 type QueryAntiHotlinkingConfigResponseVisitControlRulesRefererControlRuleUaControlRule struct {
-  // {"en":"Allows clients, regular matching, to configure multiple UA such as:
-  // < valid user - agents > Android | iPhone < / valid - the user - agents >", "zh_CN":"允许的客户端，正则匹配，配置多个UA如：<valid-user-agents>Android|iPhone</valid-user-agents>"}
+  // {"en":"Allows clients, regular matching, to configure multiple UA such as:\n< valid user - agents > Android | iPhone < / valid - the user - agents >","zh_CN":"允许的客户端，正则匹配，配置多个UA如：<valid-user-agents>Android|iPhone</valid-user-agents>"}
   ValidUserAgents *string `json:"valid-user-agents,omitempty" xml:"valid-user-agents,omitempty" require:"true"`
-  // {"en":"Forbidden client, regular match, configure multiple UA such as:
-  // <invalid-user-agents>Android|iPhone</invalid-user-agents>", "zh_CN":"禁止的客户端，正则匹配，配置多个UA如：<invalid-user-agents>Android|iPhone</invalid-user-agents>"}
+  // {"en":"Forbidden client, regular match, configure multiple UA such as:\n<invalid-user-agents>Android|iPhone</invalid-user-agents>","zh_CN":"禁止的客户端，正则匹配，配置多个UA如：<invalid-user-agents>Android|iPhone</invalid-user-agents>"}
   InvalidUserAgents *string `json:"invalid-user-agents,omitempty" xml:"invalid-user-agents,omitempty" require:"true"`
 }
 
@@ -6588,21 +6527,9 @@ func (s *QueryAntiHotlinkingConfigResponseVisitControlRulesRefererControlRuleUaC
 }
 
 type QueryAntiHotlinkingConfigResponseVisitControlRulesRefererControlRuleAdvanceControlRules struct {
-  // {"en":"Forbidden visitor regions, separate with semicolons. Note:
-  // 1. Only support ISO 3166-1-alpha-2 two-letter country codes.
-  // 2. If you have special regional configuration requirements, please contact your technical support.
-  // 3. In the same set of rules, forbidden and allowed visitor regions cannot be configured at the same time.", "zh_CN":"禁止的访客区域，多个请用英文分号分隔。注意
-  // 1、仅支持iso 3166-1国家二字简称
-  // 2、如果有特殊区域配置需求，请联系您的专属。
-  // 3、同一组规则里，禁止的访客区域、允许的访客区域，不能同时配"}
+  // {"en":"Forbidden visitor regions, separate with semicolons. Note:\n1. Only support ISO 3166-1-alpha-2 two-letter country codes.\n2. If you have special regional configuration requirements, please contact your technical support.\n3. In the same set of rules, forbidden and allowed visitor regions cannot be configured at the same time.","zh_CN":"禁止的访客区域，多个请用英文分号分隔。注意\n1、仅支持iso 3166-1国家二字简称\n2、如果有特殊区域配置需求，请联系您的专属。\n3、同一组规则里，禁止的访客区域、允许的访客区域，不能同时配"}
   InvalidVisitorRegion *string `json:"invalid-visitor-region,omitempty" xml:"invalid-visitor-region,omitempty" require:"true"`
-  // {"en":"Allowed  visitor regions, separate with semicolons. Note:
-  // 1. Only support ISO 3166-1-alpha-2 two-letter country codes.
-  // 2. If you have special regional configuration requirements, please contact your technical support.
-  // 3. In the same set of rules, forbidden and allowed visitor regions cannot be configured at the same time.", "zh_CN":"允许的访客区域，多个请用英文分号分隔。注意
-  // 1、仅支持iso 3166-1国家二字简称
-  // 2、如果有特殊区域配置需求，请联系您的专属。
-  // 3、同一组规则里，禁止的访客区域、允许的访客区域，不能同时配"}
+  // {"en":"Allowed  visitor regions, separate with semicolons. Note:\n1. Only support ISO 3166-1-alpha-2 two-letter country codes.\n2. If you have special regional configuration requirements, please contact your technical support.\n3. In the same set of rules, forbidden and allowed visitor regions cannot be configured at the same time.","zh_CN":"允许的访客区域，多个请用英文分号分隔。注意\n1、仅支持iso 3166-1国家二字简称\n2、如果有特殊区域配置需求，请联系您的专属。\n3、同一组规则里，禁止的访客区域、允许的访客区域，不能同时配"}
   ValidVisitorRegion *string `json:"valid-visitor-region,omitempty" xml:"valid-visitor-region,omitempty" require:"true"`
 }
 
@@ -6625,11 +6552,11 @@ func (s *QueryAntiHotlinkingConfigResponseVisitControlRulesRefererControlRuleAdv
 }
 
 type QueryAntiHotlinkingConfigResponseVisitControlRulesCookieControlRules struct {
-  // {"en":"Allow Cookie.Fill in regular format, e.g(. *) (range1 | range2) (. *)", "zh_CN":"允许的cookie。填写正则格式，比如(.*)(range1|range2)(.*)。"}
+  // {"en":"Allow Cookie.Fill in regular format, e.g(.) (range1 | range2) (.)","zh_CN":"允许的cookie。填写正则格式，比如(.*)(range1|range2)(.*)。"}
   AllowCookie *string `json:"allow-cookie,omitempty" xml:"allow-cookie,omitempty" require:"true"`
-  // {"en":"Allow Null Cookie.Only true and false are allowed to be filled in allow null cookie", "zh_CN":"是否允许空cookie。只允许填写true或false。"}
+  // {"en":"Allow Null Cookie.Only true and false are allowed to be filled in allow null cookie","zh_CN":"是否允许空cookie。只允许填写true或false。"}
   AllowNullCookie *string `json:"allow-null-cookie,omitempty" xml:"allow-null-cookie,omitempty" require:"true"`
-  // {"en":"Forbidden Cookie.Fill in regular format, e.g(. *) (range1 | range2) (. *)", "zh_CN":"禁止的cookie。填写正则格式，比如(.*)(range1|range2)(.*)。"}
+  // {"en":"Forbidden Cookie.Fill in regular format, e.g(.) (range1 | range2) (.)","zh_CN":"禁止的cookie。填写正则格式，比如(.*)(range1|range2)(.*)。"}
   ForbiddenCookie *string `json:"forbidden-cookie,omitempty" xml:"forbidden-cookie,omitempty" require:"true"`
 }
 
@@ -6657,15 +6584,15 @@ func (s *QueryAntiHotlinkingConfigResponseVisitControlRulesCookieControlRules) S
 }
 
 type QueryAntiHotlinkingConfigResponseVisitControlRulesCustomHeaderControlRules struct {
-  // {"en":"Header Direction.Can choose from the client or the server.Only allowed to fill client or server", "zh_CN":"来源。可选择来源于客户端还是服务端。客户端填写client，服务端填写server"}
+  // {"en":"Header Direction.Can choose from the client or the server.Only allowed to fill client or server","zh_CN":"来源。可选择来源于客户端还是服务端。客户端填写client，服务端填写server"}
   HeaderDirection *string `json:"header-direction,omitempty" xml:"header-direction,omitempty" require:"true"`
-  // {"en":"Header Whitelist", "zh_CN":"头域白名单"}
+  // {"en":"Header Whitelist","zh_CN":"头域白名单"}
   HeaderWhitelist *string `json:"header-whitelist,omitempty" xml:"header-whitelist,omitempty" require:"true"`
-  // {"en":"Header Value Whitelist", "zh_CN":"头域值白名单"}
+  // {"en":"Header Value Whitelist","zh_CN":"头域值白名单"}
   HeaderValueWhitelist *string `json:"header-value-whitelist,omitempty" xml:"header-value-whitelist,omitempty" require:"true"`
-  // {"en":"Header Blacklist", "zh_CN":"头域黑名单"}
+  // {"en":"Header Blacklist","zh_CN":"头域黑名单"}
   HeaderBlacklist *string `json:"header-blacklist,omitempty" xml:"header-blacklist,omitempty" require:"true"`
-  // {"en":"Header Value Blacklist", "zh_CN":"头域值黑名单"}
+  // {"en":"Header Value Blacklist","zh_CN":"头域值黑名单"}
   HeaderValueBlacklist *string `json:"header-value-blacklist,omitempty" xml:"header-value-blacklist,omitempty" require:"true"`
 }
 
@@ -6700,46 +6627,6 @@ func (s *QueryAntiHotlinkingConfigResponseVisitControlRulesCustomHeaderControlRu
 func (s *QueryAntiHotlinkingConfigResponseVisitControlRulesCustomHeaderControlRules) SetHeaderValueBlacklist(v string) *QueryAntiHotlinkingConfigResponseVisitControlRulesCustomHeaderControlRules {
   s.HeaderValueBlacklist = &v
   return s
-}
-
-type QueryAntiHotlinkingConfigPaths struct {
-  // {"en":"the domain whoes need query config", "zh_CN":"需要查询配置的域名或域名id"}
-  DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
-}
-
-func (s QueryAntiHotlinkingConfigPaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAntiHotlinkingConfigPaths) GoString() string {
-  return s.String()
-}
-
-func (s *QueryAntiHotlinkingConfigPaths) SetDomainName(v string) *QueryAntiHotlinkingConfigPaths {
-  s.DomainName = &v
-  return s
-}
-
-type QueryAntiHotlinkingConfigParameters struct {
-}
-
-func (s QueryAntiHotlinkingConfigParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAntiHotlinkingConfigParameters) GoString() string {
-  return s.String()
-}
-
-type QueryAntiHotlinkingConfigRequestHeader struct {
-}
-
-func (s QueryAntiHotlinkingConfigRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryAntiHotlinkingConfigRequestHeader) GoString() string {
-  return s.String()
 }
 
 type QueryAntiHotlinkingConfigResponseHeader struct {
@@ -8241,13 +8128,7 @@ func (s UpdatetimecontrolServiceResponseHeader) GoString() string {
 
 
 type EditAntiHotlinkingConfigRequest struct {
-  // {"en":"Anti-theft chain configuration
-  // note:
-  // 1. When you need to cancel the anti-theft chain configuration settings, you can pass in the empty node <cache-time-behaviors></cache-time-behaviors>.
-  // 2. When it is necessary to set the anti-theft chain configuration, this item is required.", "zh_CN":"防盗链配置
-  // 注意：
-  // 1. 需要取消防盗链配置设置时，可以传入空节点<cache-time-behaviors></cache-time-behaviors>。
-  // 2. 表示需要设置防盗链配置时，此项必填"}
+  // {"en":"Anti-theft chain configuration\nnote:\n1. When you need to cancel the anti-theft chain configuration settings, you can pass in the empty node <cache-time-behaviors></cache-time-behaviors>.\n2. When it is necessary to set the anti-theft chain configuration, this item is required.","zh_CN":"防盗链配置\n注意：\n1. 需要取消防盗链配置设置时，可以传入空节点<cache-time-behaviors></cache-time-behaviors>。\n2. 表示需要设置防盗链配置时，此项必填"}
   VisitControlRules []*EditAntiHotlinkingConfigRequestVisitControlRules `json:"visit-control-rules,omitempty" xml:"visit-control-rules,omitempty" require:"true" type:"Repeated"`
 }
 
@@ -8265,101 +8146,49 @@ func (s *EditAntiHotlinkingConfigRequest) SetVisitControlRules(v []*EditAntiHotl
 }
 
 type EditAntiHotlinkingConfigRequestVisitControlRules struct     {
-  // {"en":"When configuring multiple configuration sets, the specific configuration set's ID. The data-id can be obtained through the query interface. Note: a. If data-id is provided, it indicates the modification of a specific Configuration Item in one of the configuration sets. No modification is needed for other configuration sets. b. If multiple configuration sets are provided as input, and some have data-id while others do not, then those with data-id represent modifications to specific configuration sets, whereas those without data-id represent new configurations added on top of existing ones. c. If none of the inputs have data-id, it means the current configuration completely overrides the previous configuration. d. If no configuration parameters are provided and only the domain and secondary tag are transmitted, it indicates clearing all configurations corresponding to the domain's secondary service for this interface. e. If a configuration set has no specific Configuration Item, then data-id is required with an actual existing data-id value, indicating the clearing of the Configuration Item corresponding to this data-id. A configuration set with no specific Configuration Item and no data-id is not allowed.", "zh_CN":"配置多组配置时，具体某组配置的id。data-id可以通过查询接口获取。 注意： a、如果有传data-id，说明指定修改其中一组配置项内容，不需求修改其他组配置内容不需要入参；  b、如果入参多组配置，其中有些组配置有传data-id，有些没有传，则有传data-id的表示修改具体某组配置，没有传data-id的表示在原来基础上新增一组配置；  c、如果入参都没有传data-id,表示用本次的配置全量覆盖原先配置；  d、如果入参没有传任何配置项参数，只传了域名和二级标签，表示清空这个接口对应域名二级服务所有配置；  e、如果一组配置没有具体的配置项，则data-id必填，且值为实际存在的data-id，表示清空这个data-id对应配置项的值；不允许一组配置没有具体的配置项也没有data-id。"}
+  // {"en":"When configuring multiple configuration sets, the specific configuration set's ID. The data-id can be obtained through the query interface. Note: a. If data-id is provided, it indicates the modification of a specific Configuration Item in one of the configuration sets. No modification is needed for other configuration sets. b. If multiple configuration sets are provided as input, and some have data-id while others do not, then those with data-id represent modifications to specific configuration sets, whereas those without data-id represent new configurations added on top of existing ones. c. If none of the inputs have data-id, it means the current configuration completely overrides the previous configuration. d. If no configuration parameters are provided and only the domain and secondary tag are transmitted, it indicates clearing all configurations corresponding to the domain's secondary service for this interface. e. If a configuration set has no specific Configuration Item, then data-id is required with an actual existing data-id value, indicating the clearing of the Configuration Item corresponding to this data-id. A configuration set with no specific Configuration Item and no data-id is not allowed.","zh_CN":"配置多组配置时，具体某组配置的id。data-id可以通过查询接口获取。 注意： a、如果有传data-id，说明指定修改其中一组配置项内容，不需求修改其他组配置内容不需要入参；  b、如果入参多组配置，其中有些组配置有传data-id，有些没有传，则有传data-id的表示修改具体某组配置，没有传data-id的表示在原来基础上新增一组配置；  c、如果入参都没有传data-id,表示用本次的配置全量覆盖原先配置；  d、如果入参没有传任何配置项参数，只传了域名和二级标签，表示清空这个接口对应域名二级服务所有配置；  e、如果一组配置没有具体的配置项，则data-id必填，且值为实际存在的data-id，表示清空这个data-id对应配置项的值；不允许一组配置没有具体的配置项也没有data-id。"}
   DataId *int64 `json:"data-id,omitempty" xml:"data-id,omitempty"`
-  // {"en":"The url matching mode supports regularization. If all matches, the input parameters can be configured as: .*", "zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*"}
+  // {"en":"The url matching mode supports regularization. If all matches, the input parameters can be configured as: .*","zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*"}
   PathPattern *string `json:"path-pattern,omitempty" xml:"path-pattern,omitempty"`
-  // {"en":"Exceptional url matching mode, except for some URLs: such as abc.jpg, do not do anti-theft chain function
-  // E.g: ^https?://[^/]+/.*\.m3u8", "zh_CN":"例外的url匹配模式，某些URL除外：如abc.jpg，不做防盗链功能
-  // 客户入参参考：^https?://[^/]+/.*\.m3u8"}
+  // {"en":"Exceptional url matching mode, except for some URLs: such as abc.jpg, do not do anti-theft chain function\nE.g: `^https?://[^/]+/.*\.m3u8`","zh_CN":"例外的url匹配模式，某些URL除外：如abc.jpg，不做防盗链功能\n客户入参参考：`^https?://[^/]+/.*\.m3u8`"}
   ExceptPathPattern *string `json:"except-path-pattern,omitempty" xml:"except-path-pattern,omitempty"`
-  // {"en":"Specify common types: Select the domain name that requires the anti-theft chain to be all files or the home page. :
-  // E.g:
-  // All: all files
-  // Homepage: homepage", "zh_CN":"指定常用类型：选择需要防盗链的域名是全部文件还是首页。入参参考值：
-  // all：全部文件
-  // homepage：首页"}
+  // {"en":"Specify common types: Select the domain name that requires the anti-theft chain to be all files or the home page. :\nE.g:\nAll: all files\nHomepage: homepage","zh_CN":"指定常用类型：选择需要防盗链的域名是全部文件还是首页。入参参考值：\nall：全部文件\nhomepage：首页"}
   CustomPattern *string `json:"custom-pattern,omitempty" xml:"custom-pattern,omitempty"`
-  // {"en":"File Type: Specify the file type for anti-theft chain settings.
-  // File types include: gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf
-  // If you need all types, pass all directly. Multiples are separated by semicolons, and all and specific file types cannot be configured at the same time.", "zh_CN":"文件类型：指定文件类型进行防盗链设置。
-  // 文件类型包括：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf
-  // 如果需要全部类型，则直接传all。多个以分号隔开，all和具体文件类型不能同时配置。"}
+  // {"en":"File Type: Specify the file type for anti-theft chain settings.\nFile types include: gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf\nIf you need all types, pass all directly. Multiples are separated by semicolons, and all and specific file types cannot be configured at the same time.","zh_CN":"文件类型：指定文件类型进行防盗链设置。\n文件类型包括：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf\n如果需要全部类型，则直接传all。多个以分号隔开，all和具体文件类型不能同时配置。"}
   FileType *string `json:"file-type,omitempty" xml:"file-type,omitempty"`
-  // {"en":"Custom file type: Fill in the appropriate identifiable file type according to your needs outside of the specified file type. Can be used with file-type. If the file-type is also configured, the actual file type is the sum of the two parameters.", "zh_CN":"自定义文件类型：在指定文件类型外根据自身需求，填写适当的可识别文件类型。可以搭配file-type使用。如果file-type也有配置，实际生效的文件类型是两个入参的总和"}
+  // {"en":"Custom file type: Fill in the appropriate identifiable file type according to your needs outside of the specified file type. Can be used with file-type. If the file-type is also configured, the actual file type is the sum of the two parameters.","zh_CN":"自定义文件类型：在指定文件类型外根据自身需求，填写适当的可识别文件类型。可以搭配file-type使用。如果file-type也有配置，实际生效的文件类型是两个入参的总和"}
   CustomFileType *string `json:"custom-file-type,omitempty" xml:"custom-file-type,omitempty"`
-  // {"en":"Specify URL cache: Specify url according to requirements for anti-theft chain setting
-  // INS format does not support URI format with http(s)://", "zh_CN":"指定URL缓存：根据需求指定url进行防盗链设置
-  // 入参不支持含http(s):// 开头的URI格式"}
+  // {"en":"Specify URL cache: Specify url according to requirements for anti-theft chain setting\nINS format does not support URI format with `http(s)://`","zh_CN":"指定URL缓存：根据需求指定url进行防盗链设置\n入参不支持含`http(s)://`开头的URI格式"}
   SpecifyUrlPattern *string `json:"specify-url-pattern,omitempty" xml:"specify-url-pattern,omitempty"`
-  // {"en":"Directory: Specify the directory for anti-theft chain settings
-  // Enter a legal directory format. Multiple separated by semicolons", "zh_CN":"目录：指定目录进行防盗链设置
-  // 输入合法的目录格式。多个以英文分号隔开"}
+  // {"en":"Directory: Specify the directory for anti-theft chain settings\nEnter a legal directory format. Multiple separated by semicolons","zh_CN":"目录：指定目录进行防盗链设置\n输入合法的目录格式。多个以英文分号隔开"}
   Directory *string `json:"directory,omitempty" xml:"directory,omitempty"`
-  // {"en":"Exception file type: Specify the file type that does not require anti-theft chain function
-  // File types include: gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf
-  // If you need all types, pass all directly. Multiple separated by semicolons, all and specific file types cannot be configured at the same time
-  // If file-type=all, except-file-type=all means that the task file type is not matched.", "zh_CN":"例外的文件类型：指定不需要进行防盗链功能的文件类型
-  // 文件类型包括：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf
-  // 如果需要全部类型，则直接传all。多个以分号隔开，all和具体文件类型不能同时配置
-  // 如果file-type=all,except-file-type=all 则表示不匹配任务文件类型"}
+  // {"en":"Exception file type: Specify the file type that does not require anti-theft chain function\nFile types include: gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf\nIf you need all types, pass all directly. Multiple separated by semicolons, all and specific file types cannot be configured at the same time\nIf file-type=all, except-file-type=all means that the task file type is not matched.","zh_CN":"例外的文件类型：指定不需要进行防盗链功能的文件类型\n文件类型包括：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf\n如果需要全部类型，则直接传all。多个以分号隔开，all和具体文件类型不能同时配置\n如果file-type=all,except-file-type=all 则表示不匹配任务文件类型"}
   ExceptFileType *string `json:"except-file-type,omitempty" xml:"except-file-type,omitempty"`
-  // {"en":"Exceptional custom file types: Fill in the appropriate identifiable file types based on your needs, outside of the specified file type. Can be used with the exception-file-type. If the except-file-type is also configured, the actual file type is the sum of the two parameters.", "zh_CN":"例外的自定义文件类型：在指定文件类型外根据自身需求，填写适当的可识别文件类型。可以搭配except-file-type使用。如果except-file-type也有配置，实际生效的文件类型是两个入参的总和"}
+  // {"en":"Exceptional custom file types: Fill in the appropriate identifiable file types based on your needs, outside of the specified file type. Can be used with the exception-file-type. If the except-file-type is also configured, the actual file type is the sum of the two parameters.","zh_CN":"例外的自定义文件类型：在指定文件类型外根据自身需求，填写适当的可识别文件类型。可以搭配except-file-type使用。如果except-file-type也有配置，实际生效的文件类型是两个入参的总和"}
   ExceptCustomFileType *string `json:"except-custom-file-type,omitempty" xml:"except-custom-file-type,omitempty"`
-  // {"en":"Exceptional directory: Specify a directory that does not require anti-theft chain settings
-  // Enter a legal directory format. Multiple separated by semicolons", "zh_CN":"例外的目录：指定不需要进行进行防盗链设置的目录
-  // 输入合法的目录格式。多个以英文分号隔开"}
+  // {"en":"Exceptional directory: Specify a directory that does not require anti-theft chain settings\nEnter a legal directory format. Multiple separated by semicolons","zh_CN":"例外的目录：指定不需要进行进行防盗链设置的目录\n输入合法的目录格式。多个以英文分号隔开"}
   ExceptDirectory *string `json:"except-directory,omitempty" xml:"except-directory,omitempty"`
-  // {"en":"control direction. Available values: 403 and 302
-  // 1) 403 means to return a specific error status code to reject the service (the default mode, the status code can be specified, generally 403).
-  // 2) 302 means to return 302 the redirect url of the Found, the redirected url can be specified. If pass 302, rewrite-to is required", "zh_CN":"控制方向。可选值：403和302
-  // 1） 403表示返回特定的错误状态码来拒绝服务（默认方式，状态码可以指定，一般为403）。
-  // 2） 302表示返回302 Found的重定向url，重定向的url可以指定。如果传302，rewrite-to必填"}
+  // {"en":"control direction. Available values: 403 and 302\n1) 403 means to return a specific error status code to reject the service (the default mode, the status code can be specified, generally 403).\n2) 302 means to return 302 the redirect url of the Found, the redirected url can be specified. If pass 302, rewrite-to is required","zh_CN":"控制方向。可选值：403和302\n1） 403表示返回特定的错误状态码来拒绝服务（默认方式，状态码可以指定，一般为403）。\n2） 302表示返回302 Found的重定向url，重定向的url可以指定。如果传302，rewrite-to必填"}
   ControlAction *string `json:"control-action,omitempty" xml:"control-action,omitempty"`
-  // {"en":"Specify the url after the 302 jump. This field is required if the control-action value is 302.", "zh_CN":"指定302跳转后的url。如果control-action值为302，此项必填，值需为具体调整的url，不支持正则。如果control-action值为403，此项填不需要输入，值无效"}
+  // {"en":"Specify the url after the 302 jump. This field is required if the control-action value is 302.","zh_CN":"指定302跳转后的url。如果control-action值为302，此项必填，值需为具体调整的url，不支持正则。如果control-action值为403，此项填不需要输入，值无效"}
   RewriteTo *string `json:"rewrite-to,omitempty" xml:"rewrite-to,omitempty"`
-  // {"en":"Indicates the priority execution order of multiple sets of redirected content by the customer. The higher the number, the higher the priority.
-  // When adding a new configuration item, the default is 10", "zh_CN":"表示客户多组重定向内容的优先执行顺序。数字越大，优先级越高。
-  // 新增配置项时，不传默认为 10"}
+  // {"en":"Indicates the priority execution order of multiple sets of redirected content by the customer. The higher the number, the higher the priority.\nWhen adding a new configuration item, the default is 10","zh_CN":"表示客户多组重定向内容的优先执行顺序。数字越大，优先级越高。\n新增配置项时，不传默认为 10"}
   Priority *string `json:"priority,omitempty" xml:"priority,omitempty"`
-  // {"en":"Exceptional Request Method.Multiple entires separated by ;", "zh_CN":"例外的请求方法。多个以;隔开"}
+  // {"en":"Exceptional Request Method.Multiple entires separated by ;","zh_CN":"例外的请求方法。多个以;隔开"}
   ExceptionalRequest *string `json:"exceptional-request,omitempty" xml:"exceptional-request,omitempty"`
-  // {"en":"Only true and false are allowed to be filled in ignoredcase.", "zh_CN":"是否忽略大小写。只允许填写true或false"}
+  // {"en":"Only true and false are allowed to be filled in ignoredcase.","zh_CN":"是否忽略大小写。只允许填写true或false"}
   IgnoredCase *string `json:"ignored-case,omitempty" xml:"ignored-case,omitempty"`
-  // {"en":"Identify IP black and white list anti-theft chain
-  // note:
-  // 1. a set of black and white list anti-theft chain, only one set under a data-id
-  // 2. When the air interface label indicates the exception of the IP segment configuration and the forbidden IP segment configuration.", "zh_CN":"标识IP黑白名单防盗链
-  // 注意：
-  // 1. 表示一组黑白名单防盗链，一个data-id下只能一组
-  // 2. 当传空标签表示清楚例外的IP段配置和禁止的IP段配置。"}
+  // {"en":"Identify IP black and white list anti-theft chain\nnote:\n1. a set of black and white list anti-theft chain, only one set under a data-id\n2. When the air interface label indicates the exception of the IP segment configuration and the forbidden IP segment configuration.","zh_CN":"标识IP黑白名单防盗链\n注意：\n1. 表示一组黑白名单防盗链，一个data-id下只能一组\n2. 当传空标签表示清楚例外的IP段配置和禁止的IP段配置。"}
   IpControlRule *EditAntiHotlinkingConfigRequestVisitControlRulesIpControlRule `json:"ip-control-rule,omitempty" xml:"ip-control-rule,omitempty" type:"Struct"`
-  // {"en":"Identify referer anti-theft chain
-  // Note:
-  // 1. Represents a set of referer security chains, and a single data-id can only have one set under one
-  // 2. when the empty tag means to clear referer security chain
-  // 3. legal refer, ( legal domain name, legal URL), illegal refer, ( illegal domain name, illegal URL) these four, a data-id can only configure one or all empty under one data-id", "zh_CN":"标识referer防盗链
-  // 注意：
-  // 1. 表示一组referer防盗链，一个data-id下只能一组
-  // 2. 当传空标签表示清除referer防盗链
-  // 3. 合法refer、（合法域名、合法URL）、非法refer、（非法域名、非法URL）这四项，一个data-id下只能配置一个或者都为空
-  // 4. 匹配条件一致或者有存在交集的情况下（匹配条件包括URL匹配模式；文件类型；自定义文件类型；目录；指定常用类型；指定url），且控制动作均为禁止时，多条配置不能同时配置<合法refer>或者<合法域名>或者<合法URL>或者（<合法域名>和<合法URL>）"}
+  // {"en":"Identify referer anti-theft chain\nNote:\n1. Represents a set of referer security chains, and a single data-id can only have one set under one\n2. when the empty tag means to clear referer security chain\n3. legal refer, ( legal domain name, legal URL), illegal refer, ( illegal domain name, illegal URL) these four, a data-id can only configure one or all empty under one data-id","zh_CN":"标识referer防盗链\n注意：\n1. 表示一组referer防盗链，一个data-id下只能一组\n2. 当传空标签表示清除referer防盗链\n3. 合法refer、（合法域名、合法URL）、非法refer、（非法域名、非法URL）这四项，一个data-id下只能配置一个或者都为空\n4. 匹配条件一致或者有存在交集的情况下（匹配条件包括URL匹配模式；文件类型；自定义文件类型；目录；指定常用类型；指定url），且控制动作均为禁止时，多条配置不能同时配置<合法refer>或者<合法域名>或者<合法URL>或者（<合法域名>和<合法URL>）"}
   RefererControlRule *EditAntiHotlinkingConfigRequestVisitControlRulesRefererControlRule `json:"referer-control-rule,omitempty" xml:"referer-control-rule,omitempty" type:"Struct"`
-  // {"en":"UA head protection against hotlinking,
-  // Note:
-  // 1. Represents a group of UA head defense hotlinking, and only one group under a data-id
-  // 2. when empty label means clear UA head protection hotlinking", "zh_CN":"标识UA头防盗链，
-  // 注意：
-  // 1. 表示一组UA头防盗链，一个data-id下只能一组
-  // 2. 当传空标签表示清除UA头防盗链"}
+  // {"en":"UA head protection against hotlinking,\nNote:\n1. Represents a group of UA head defense hotlinking, and only one group under a data-id\n2. when empty label means clear UA head protection hotlinking","zh_CN":"标识UA头防盗链，\n注意：\n1. 表示一组UA头防盗链，一个data-id下只能一组\n2. 当传空标签表示清除UA头防盗链"}
   UaControlRule *EditAntiHotlinkingConfigRequestVisitControlRulesUaControlRule `json:"ua-control-rule,omitempty" xml:"ua-control-rule,omitempty" type:"Struct"`
-  // {"en":"Configure other access control rules, such as invalid visitor regions, example:
-  // advance-control-rules:{invalid-visitor-region:CN;JP;K}", "zh_CN":"配置其他访问控制策略，比如禁止的访客区域，JSON示例：
-  // advance-control-rules:{invalid-visitor-region:CN;JP;KR}"}
+  // {"en":"Configure other access control rules, such as invalid visitor regions, example:\nadvance-control-rules:{invalid-visitor-region:CN;JP;K}","zh_CN":"配置其他访问控制策略，比如禁止的访客区域，JSON示例：\nadvance-control-rules:{invalid-visitor-region:CN;JP;KR}"}
   AdvanceControlRules *EditAntiHotlinkingConfigRequestVisitControlRulesAdvanceControlRules `json:"advance-control-rules,omitempty" xml:"advance-control-rules,omitempty" type:"Struct"`
-  // {"en":"Configuration cookie control rules.Allow-cookie and forbidden-cookie are not allowed to be configured together.", "zh_CN":"配置Cookie防盗链策略。【允许的cookie】和【禁止的cookie】只允许配置一个"}
+  // {"en":"Configuration cookie control rules.Allow-cookie and forbidden-cookie are not allowed to be configured together.","zh_CN":"配置Cookie防盗链策略。【允许的cookie】和【禁止的cookie】只允许配置一个"}
   CookieControlRules *EditAntiHotlinkingConfigRequestVisitControlRulesCookieControlRules `json:"cookie-control-rules,omitempty" xml:"cookie-control-rules,omitempty" type:"Struct"`
-  // {"en":"Configuration custom header control rules.Header-whitelist and header-blacklist are not allowed to be configured together.", "zh_CN":"配置自定义头部防盗链。【头域黑名单】和【头域白名单】只允许配置一个"}
+  // {"en":"Configuration custom header control rules.Header-whitelist and header-blacklist are not allowed to be configured together.","zh_CN":"配置自定义头部防盗链。【头域黑名单】和【头域白名单】只允许配置一个"}
   CustomHeaderControlRules *EditAntiHotlinkingConfigRequestVisitControlRulesCustomHeaderControlRules `json:"custom-header-control-rules,omitempty" xml:"custom-header-control-rules,omitempty" type:"Struct"`
 }
 
@@ -8482,13 +8311,9 @@ func (s *EditAntiHotlinkingConfigRequestVisitControlRules) SetCustomHeaderContro
 }
 
 type EditAntiHotlinkingConfigRequestVisitControlRulesIpControlRule struct {
-  // {"en":"Prohibited IP segment
-  // Input parameter limit reference interface limit
-  // Forbidden IP and exceptional IP cannot be configured at the same time", "zh_CN":"禁止的IP段
-  // 支持输入IP或IP段，IP段之间用分号(;)隔开，如1.1.1.0/24;2.2.2.2
-  // 禁止的IP和例外的IP，只能一个有值"}
+  // {"en":"Prohibited IP segment\nInput parameter limit reference interface limit\nForbidden IP and exceptional IP cannot be configured at the same time","zh_CN":"禁止的IP段\n支持输入IP或IP段，IP段之间用分号(;)隔开，如1.1.1.0/24;2.2.2.2\n禁止的IP和例外的IP，只能一个有值"}
   ForbiddenIps *string `json:"forbidden-ips,omitempty" xml:"forbidden-ips,omitempty"`
-  // {"en":"The exception IP segment supports input IP or IP segment, and the IP segments are separated by a semicolon (;), such as 1.1.1.0/24; 2.2.2.2, some IP exceptions, no anti-theft chain", "zh_CN":"例外的IP段，支持输入IP或IP段，IP段之间用分号(;)隔开，如1.1.1.0/24;2.2.2.2，某些IP例外，不做防盗链"}
+  // {"en":"The exception IP segment supports input IP or IP segment, and the IP segments are separated by a semicolon (;), such as 1.1.1.0/24; 2.2.2.2, some IP exceptions, no anti-theft chain","zh_CN":"例外的IP段，支持输入IP或IP段，IP段之间用分号(;)隔开，如1.1.1.0/24;2.2.2.2，某些IP例外，不做防盗链"}
   AllowedIps *string `json:"allowed-ips,omitempty" xml:"allowed-ips,omitempty"`
 }
 
@@ -8511,19 +8336,19 @@ func (s *EditAntiHotlinkingConfigRequestVisitControlRulesIpControlRule) SetAllow
 }
 
 type EditAntiHotlinkingConfigRequestVisitControlRulesRefererControlRule struct {
-  // {"en":"If any of the four terms 'nullreferer: legal referer, (legal domain name, legal URL), illegal referer, (illegal domain name, illegal URL)' is allowed, then 'nullreferer' cannot be null.If the four terms 'legal refer', 'legal domain name, legal URL', 'illegal refer', 'illegal domain name, illegal URL' are all null values, then 'whether to allow a null referer' must be null", "zh_CN":"是否允许空referer：合法refer、（合法域名、合法URL）、非法refer、（非法域名、非法URL）这六项任意一项有值，则&ldquo;是否允许空referer&rdquo;不能为空；合法refer、（合法域名、合法URL）、非法refer、（非法域名、非法URL）这四项都为空值，则&ldquo;是否允许空referer&rdquo;必须为空"}
+  // {"en":"If any of the four terms 'nullreferer: legal referer, (legal domain name, legal URL), illegal referer, (illegal domain name, illegal URL)' is allowed, then 'nullreferer' cannot be null.If the four terms 'legal refer', 'legal domain name, legal URL', 'illegal refer', 'illegal domain name, illegal URL' are all null values, then 'whether to allow a null referer' must be null","zh_CN":"是否允许空referer：合法refer、（合法域名、合法URL）、非法refer、（非法域名、非法URL）这六项任意一项有值，则&ldquo;是否允许空referer&rdquo;不能为空；合法refer、（合法域名、合法URL）、非法refer、（非法域名、非法URL）这四项都为空值，则&ldquo;是否允许空referer&rdquo;必须为空"}
   AllowNullReferer *string `json:"allow-null-referer,omitempty" xml:"allow-null-referer,omitempty"`
-  // {"en":"Legal referer.", "zh_CN":"合法referer.可以输入url或域名，支持正则，可以多个，多个以空格隔开"}
+  // {"en":"Legal Referer. \nMultiple items are separated by spaces, and each substring is treated as a regular expression to match the value of the Referer header. If any substring matches the Referer value, the request will be allowed. Requests for which none of the substrings match will be denied access.\n\nExample:\n`^https?://www\.demo1\.com($|/) ^https?://www\.demo2\.com($|/)`\n\nThese values will match the following Referer headers (the string \"...\" represents any request path):\n\nreferer: http://www.demo1.com\nreferer: https://www.demo1.com\nreferer: http://www.demo1.com/...\nreferer: https://www.demo1.com/...\nreferer: http://www.demo2.com\nreferer: https://www.demo2.com\nreferer: http://www.demo2.com/...\nreferer: https://www.demo2.com/...\n\nRequests with the above Referer headers will be allowed; all other requests will be denied.","zh_CN":"合法referer。\n多个以空格作分隔，每个子串都会当作正则表达式，去匹配referer头部的值。任意一个子串匹配referer值，将允许该请求，所有子串都不匹配的请求，将拒绝访问。\n\n示例：`^https?://www\.demo1\.com($|/) ^https?://www\.demo2\.com($|/)`\n\n该值将匹配以下referer头部，字符串\"...\" 表示所有请求。\nreferer: http://www.demo1.com        \nreferer: https://www.demo1.com       \nreferer: http://www.demo1.com/...   \nreferer: https://www.demo1.com/...  \nreferer: http://www.demo2.com\nreferer: https://www.demo2.com\nreferer: http://www.demo2.com/...\nreferer: https://www.demo2.com/...\n以上请求会允许访问，其它请求会拒绝访问。"}
   ValidReferer *string `json:"valid-referer,omitempty" xml:"valid-referer,omitempty"`
-  // {"en":"Legal url, enter the correct url format", "zh_CN":"合法url，输入正确的url格式，不支持正则，可以多个，多个以分号分割。"}
+  // {"en":"Legal url, enter the correct url format","zh_CN":"合法url，输入正确的url格式，不支持正则，可以多个，多个以分号分割。"}
   ValidUrl *string `json:"valid-url,omitempty" xml:"valid-url,omitempty"`
-  // {"en":"Legal domain name", "zh_CN":"合法域名，不支持正则，可以多个，多个以分号分割"}
+  // {"en":"Legal domain name","zh_CN":"合法域名，不支持正则，可以多个，多个以分号分割"}
   ValidDomain *string `json:"valid-domain,omitempty" xml:"valid-domain,omitempty"`
-  // {"en":"Illegal referer", "zh_CN":"非法referer，可以输入url或域名，支持正则，可以多个，多个以空格隔开"}
+  // {"en":"Illegal Referer. \nMultiple items are separated by spaces, and each substring is treated as a regular expression to match the value of the Referer header. If any substring matches the Referer value, the request will be denied.\n\nExample:\n`^https?://www\.demo1\.com($|/) ^https?://www\.demo2\.com($|/)`\n\nThis value will match the following Referer headers, where the string \"...\" represents any request path:\n\nreferer: http://www.demo1.com\nreferer: https://www.demo1.com\nreferer: http://www.demo1.com/...\nreferer: https://www.demo1.com/...\nreferer: http://www.demo2.com\nreferer: https://www.demo2.com\nreferer: http://www.demo2.com/...\nreferer: https://www.demo2.com/...","zh_CN":"非法referer。\n多个以空格作分隔，每个子串都会当作正则表达式，去匹配referer头部的值。任意一个子串匹配referer值，将拒绝该请求。\n\n示例：`^https?://www\.demo1\.com($|/) ^https?://www\.demo2\.com($|/)`\n\n该值将匹配以下referer头部，字符串\"...\" 表示所有请求。\nreferer: http://www.demo1.com        \nreferer: https://www.demo1.com       \nreferer: http://www.demo1.com/...  \nreferer: https://www.demo1.com/... \nreferer: http://www.demo2.com\nreferer: https://www.demo2.com\nreferer: http://www.demo2.com/...\nreferer: https://www.demo2.com/..."}
   InvalidReferer *string `json:"invalid-referer,omitempty" xml:"invalid-referer,omitempty"`
-  // {"en":"Invalid url, enter the correct url format", "zh_CN":"非法url，输入正确的url格式，不支持正则，可以多个，多个以分号分割"}
+  // {"en":"Invalid url, enter the correct url format","zh_CN":"非法url，输入正确的url格式，不支持正则，可以多个，多个以分号分割"}
   InvalidUrl *string `json:"invalid-url,omitempty" xml:"invalid-url,omitempty"`
-  // {"en":"Illegal domain name", "zh_CN":"非法域名，不支持正则，可以多个，多个以分号分割"}
+  // {"en":"Illegal domain name","zh_CN":"非法域名，不支持正则，可以多个，多个以分号分割"}
   InvalidDomain *string `json:"invalid-domain,omitempty" xml:"invalid-domain,omitempty"`
 }
 
@@ -8571,11 +8396,9 @@ func (s *EditAntiHotlinkingConfigRequestVisitControlRulesRefererControlRule) Set
 }
 
 type EditAntiHotlinkingConfigRequestVisitControlRulesUaControlRule struct {
-  // {"en":"Allowed clients, regular matching, no spaces allowed, to configure multiple UA such as:
-  // <valid-user-agents>Android|iPhone</valid-user-agents>", "zh_CN":"允许的客户端，不允许空格，配置多个UA如：<valid-user-agents>Android|iPhone</valid-user-agents>"}
+  // {"en":"Allowed clients, regular matching, no spaces allowed, to configure multiple UA such as:\n<valid-user-agents>Android|iPhone</valid-user-agents>","zh_CN":"允许的客户端，正则匹配，不允许空格，配置多个UA如：<valid-user-agents>Android|iPhone</valid-user-agents>"}
   ValidUserAgents *string `json:"valid-user-agents,omitempty" xml:"valid-user-agents,omitempty"`
-  // {"en":"Forbidden client, regular match, no spaces allowed, configure multiple UA such as:
-  // <invalid-user-agents>Android|iPhone</invalid-user-agents>", "zh_CN":"禁止的客户端，不允许空格，配置多个UA如：<invalid-user-agents>Android|iPhone</invalid-user-agents>"}
+  // {"en":"Forbidden client, regular match, no spaces allowed, configure multiple UA such as:\n<invalid-user-agents>Android|iPhone</invalid-user-agents>","zh_CN":"禁止的客户端，正则匹配，不允许空格，配置多个UA如：<invalid-user-agents>Android|iPhone</invalid-user-agents>"}
   InvalidUserAgents *string `json:"invalid-user-agents,omitempty" xml:"invalid-user-agents,omitempty"`
 }
 
@@ -8598,21 +8421,9 @@ func (s *EditAntiHotlinkingConfigRequestVisitControlRulesUaControlRule) SetInval
 }
 
 type EditAntiHotlinkingConfigRequestVisitControlRulesAdvanceControlRules struct {
-  // {"en":"Forbidden visitor regions, separate with semicolons. Note:
-  // 1. Only support ISO 3166-1-alpha-2 two-letter country codes.
-  // 2. If you have special regional configuration requirements, please contact your technical support.
-  // 3. In the same set of rules, forbidden and allowed visitor regions cannot be configured at the same time.", "zh_CN":"禁止的访客区域，多个请用英文分号分隔。注意
-  // 1、仅支持iso 3166-1国家二字简称
-  // 2、如果有特殊区域配置需求，请联系您的专属。
-  // 3、同一组规则里，禁止的访客区域、允许的访客区域，不能同时配"}
+  // {"en":"Forbidden visitor regions, separate with semicolons. Note:\n1. Only support ISO 3166-1-alpha-2 two-letter country codes.\n2. If you have special regional configuration requirements, please contact your technical support.\n3. In the same set of rules, forbidden and allowed visitor regions cannot be configured at the same time.","zh_CN":"禁止的访客区域，多个请用英文分号分隔。注意\n1、仅支持iso 3166-1国家二字简称\n2、如果有特殊区域配置需求，请联系您的专属。\n3、同一组规则里，禁止的访客区域、允许的访客区域，不能同时配"}
   InvalidVisitorRegion *string `json:"invalid-visitor-region,omitempty" xml:"invalid-visitor-region,omitempty"`
-  // {"en":"Allowed  visitor regions, separate with semicolons. Note:
-  // 1. Only support ISO 3166-1-alpha-2 two-letter country codes.
-  // 2. If you have special regional configuration requirements, please contact your technical support.
-  // 3. In the same set of rules, forbidden and allowed visitor regions cannot be configured at the same time.", "zh_CN":"允许的访客区域，多个请用英文分号分隔。注意
-  // 1、仅支持iso 3166-1国家二字简称
-  // 2、如果有特殊区域配置需求，请联系您的专属。
-  // 3、同一组规则里，禁止的访客区域、允许的访客区域，不能同时配"}
+  // {"en":"Allowed  visitor regions, separate with semicolons. Note:\n1. Only support ISO 3166-1-alpha-2 two-letter country codes.\n2. If you have special regional configuration requirements, please contact your technical support.\n3. In the same set of rules, forbidden and allowed visitor regions cannot be configured at the same time.","zh_CN":"允许的访客区域，多个请用英文分号分隔。注意\n1、仅支持iso 3166-1国家二字简称\n2、如果有特殊区域配置需求，请联系您的专属。\n3、同一组规则里，禁止的访客区域、允许的访客区域，不能同时配"}
   ValidVisitorRegion *string `json:"valid-visitor-region,omitempty" xml:"valid-visitor-region,omitempty"`
 }
 
@@ -8635,11 +8446,11 @@ func (s *EditAntiHotlinkingConfigRequestVisitControlRulesAdvanceControlRules) Se
 }
 
 type EditAntiHotlinkingConfigRequestVisitControlRulesCookieControlRules struct {
-  // {"en":"Allow Cookie.Fill in regular format, e.g(. *) (range1 | range2) (. *)", "zh_CN":"允许的cookie。填写正则格式，比如(.*)(range1|range2)(.*)。"}
+  // {"en":"Allow Cookie.Fill in regular format, e.g(.) (range1 | range2) (.)","zh_CN":"允许的cookie。填写正则格式，比如(.*)(range1|range2)(.*)。"}
   AllowCookie *string `json:"allow-cookie,omitempty" xml:"allow-cookie,omitempty"`
-  // {"en":"Allow Null Cookie.Only true and false are allowed to be filled in allow null cookie", "zh_CN":"是否允许空cookie。只允许填写true或false。"}
+  // {"en":"Allow Null Cookie.Only true and false are allowed to be filled in allow null cookie","zh_CN":"是否允许空cookie。只允许填写true或false。"}
   AllowNullCookie *string `json:"allow-null-cookie,omitempty" xml:"allow-null-cookie,omitempty"`
-  // {"en":"Forbidden Cookie.Fill in regular format, e.g(. *) (range1 | range2) (. *)", "zh_CN":"禁止的cookie。填写正则格式，比如(.*)(range1|range2)(.*)。"}
+  // {"en":"Forbidden Cookie.Fill in regular format, e.g(.) (range1 | range2) (.)","zh_CN":"禁止的cookie。填写正则格式，比如(.*)(range1|range2)(.*)。"}
   ForbiddenCookie *string `json:"forbidden-cookie,omitempty" xml:"forbidden-cookie,omitempty"`
 }
 
@@ -8667,15 +8478,15 @@ func (s *EditAntiHotlinkingConfigRequestVisitControlRulesCookieControlRules) Set
 }
 
 type EditAntiHotlinkingConfigRequestVisitControlRulesCustomHeaderControlRules struct {
-  // {"en":"Header Direction.Can choose from the client or the server.Only allowed to fill client or server", "zh_CN":"来源。可选择来源于客户端还是服务端。客户端填写client，服务端填写server"}
+  // {"en":"Header Direction.Can choose from the client or the server.Only allowed to fill client or server","zh_CN":"来源。可选择来源于客户端还是服务端。客户端填写client，服务端填写server"}
   HeaderDirection *string `json:"header-direction,omitempty" xml:"header-direction,omitempty"`
-  // {"en":"Header Whitelist", "zh_CN":"头域白名单"}
+  // {"en":"Header Whitelist","zh_CN":"头域白名单"}
   HeaderWhitelist *string `json:"header-whitelist,omitempty" xml:"header-whitelist,omitempty"`
-  // {"en":"Header Value Whitelist", "zh_CN":"头域值白名单"}
+  // {"en":"Header Value Whitelist","zh_CN":"头域值白名单"}
   HeaderValueWhitelist *string `json:"header-value-whitelist,omitempty" xml:"header-value-whitelist,omitempty"`
-  // {"en":"Header Blacklist", "zh_CN":"头域黑名单"}
+  // {"en":"Header Blacklist","zh_CN":"头域黑名单"}
   HeaderBlacklist *string `json:"header-blacklist,omitempty" xml:"header-blacklist,omitempty"`
-  // {"en":"Header Value Blacklist", "zh_CN":"头域值黑名单"}
+  // {"en":"Header Value Blacklist","zh_CN":"头域值黑名单"}
   HeaderValueBlacklist *string `json:"header-value-blacklist,omitempty" xml:"header-value-blacklist,omitempty"`
 }
 
@@ -8712,16 +8523,56 @@ func (s *EditAntiHotlinkingConfigRequestVisitControlRulesCustomHeaderControlRule
   return s
 }
 
+type EditAntiHotlinkingConfigRequestHeader struct {
+}
+
+func (s EditAntiHotlinkingConfigRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s EditAntiHotlinkingConfigRequestHeader) GoString() string {
+  return s.String()
+}
+
+type EditAntiHotlinkingConfigPaths struct {
+  // {"en":"the domain whoes need query config","zh_CN":"需要查询配置的域名或域名id"}
+  DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
+}
+
+func (s EditAntiHotlinkingConfigPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s EditAntiHotlinkingConfigPaths) GoString() string {
+  return s.String()
+}
+
+func (s *EditAntiHotlinkingConfigPaths) SetDomainName(v string) *EditAntiHotlinkingConfigPaths {
+  s.DomainName = &v
+  return s
+}
+
+type EditAntiHotlinkingConfigParameters struct {
+}
+
+func (s EditAntiHotlinkingConfigParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s EditAntiHotlinkingConfigParameters) GoString() string {
+  return s.String()
+}
+
 type EditAntiHotlinkingConfigResponse struct {
-  // {"en":"httpstatus=202; Indicates that the new domain API was successfully invoked, and the current deployment of the new domain can be viewed using x-cnc-request-id in the header", "zh_CN":"httpstatus=202;   表示成功调用新增域名接口，可使用header中的x-cnc-request-id查看当前新增域名的部署情况"}
-  HttpStatus *int `json:"http status code,omitempty" xml:"http status code,omitempty" require:"true"`
-  // {"en":"Uniquely identified id for querying tasks per request (for all API)", "zh_CN":"唯一标示的id，用于查询每次请求的任务 （适用全部接口）"}
+  // {"en":"httpstatus=202; Indicates that the new domain API was successfully invoked, and the current deployment of the new domain can be viewed using x-cnc-request-id in the header","zh_CN":"httpstatus=202;   表示成功调用新增域名接口，可使用header中的x-cnc-request-id查看当前新增域名的部署情况"}
+  HttpStatus *int `json:"httpStatus,omitempty" xml:"httpStatus,omitempty" require:"true"`
+  // {"en":"Uniquely identified id for querying tasks per request (for all API)","zh_CN":"唯一标示的id，用于查询每次请求的任务 （适用全部接口）"}
   XCncRequestId *string `json:"x-cnc-request-id,omitempty" xml:"x-cnc-request-id,omitempty" require:"true"`
-  // {"en":"The URL used to access the domain information, where domain-id is the unique token generated by our cloud platform for the domain name and whose value is a string.", "zh_CN":"响应信用于访问该域名信息的URL，其中domain-id为我司云平台为该域名生成的唯一标示，其值为字符串。"}
+  // {"en":"The URL used to access the domain information, where domain-id is the unique token generated by our cloud platform for the domain name and whose value is a string.","zh_CN":"响应信用于访问该域名信息的URL，其中domain-id为我司云平台为该域名生成的唯一标示，其值为字符串。"}
   Location *string `json:"location,omitempty" xml:"location,omitempty" require:"true"`
-  // {"en":"Error code, which appears when HTTPStatus is not 202, represents the error type of the current request call", "zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
+  // {"en":"Error code, which appears when HTTPStatus is not 202, represents the error type of the current request call","zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
   Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Response information, success when successful", "zh_CN":"响应信息，成功时为success"}
+  // {"en":"Response information, success when successful","zh_CN":"响应信息，成功时为success"}
   Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
 }
 
@@ -8756,46 +8607,6 @@ func (s *EditAntiHotlinkingConfigResponse) SetCode(v string) *EditAntiHotlinking
 func (s *EditAntiHotlinkingConfigResponse) SetMessage(v string) *EditAntiHotlinkingConfigResponse {
   s.Message = &v
   return s
-}
-
-type EditAntiHotlinkingConfigPaths struct {
-  // {"en":"the domain whoes need query config", "zh_CN":"需要查询配置的域名或域名id"}
-  DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
-}
-
-func (s EditAntiHotlinkingConfigPaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s EditAntiHotlinkingConfigPaths) GoString() string {
-  return s.String()
-}
-
-func (s *EditAntiHotlinkingConfigPaths) SetDomainName(v string) *EditAntiHotlinkingConfigPaths {
-  s.DomainName = &v
-  return s
-}
-
-type EditAntiHotlinkingConfigParameters struct {
-}
-
-func (s EditAntiHotlinkingConfigParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s EditAntiHotlinkingConfigParameters) GoString() string {
-  return s.String()
-}
-
-type EditAntiHotlinkingConfigRequestHeader struct {
-}
-
-func (s EditAntiHotlinkingConfigRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s EditAntiHotlinkingConfigRequestHeader) GoString() string {
-  return s.String()
 }
 
 type EditAntiHotlinkingConfigResponseHeader struct {
@@ -10481,6 +10292,577 @@ func (s QueryOriginUriAndHostResponseHeader) String() string {
 }
 
 func (s QueryOriginUriAndHostResponseHeader) GoString() string {
+  return s.String()
+}
+
+
+
+
+type BatchUpdateApiDomainForWplusRequest struct {
+  // {"en":"Domain config list","zh_CN":"域名配置列表"}
+  DomainConfigs []*BatchUpdateApiDomainForWplusRequestDomainConfigs `json:"domainConfigs,omitempty" xml:"domainConfigs,omitempty" type:"Repeated"`
+}
+
+func (s BatchUpdateApiDomainForWplusRequest) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchUpdateApiDomainForWplusRequest) GoString() string {
+  return s.String()
+}
+
+func (s *BatchUpdateApiDomainForWplusRequest) SetDomainConfigs(v []*BatchUpdateApiDomainForWplusRequestDomainConfigs) *BatchUpdateApiDomainForWplusRequest {
+  s.DomainConfigs = v
+  return s
+}
+
+type BatchUpdateApiDomainForWplusRequestDomainConfigs struct     {
+  // {"en":"Domain name","zh_CN":"域名名称"}
+  DomainName *string `json:"domain-name,omitempty" xml:"domain-name,omitempty" require:"true"`
+  // {"en":"Version, the current version is 1.0.0","zh_CN":"版本号，当前版本号1.0.0"}
+  Version *string `json:"version,omitempty" xml:"version,omitempty"`
+  // {"en":"Remarks, up to 1000 characters.","zh_CN":"备注信息，最大限制1000个字符"}
+  Comment *string `json:"comment,omitempty" xml:"comment,omitempty"`
+  // {"en":"The acceleration area of the acceleration domain, if the resource coverage needs to be limited according to the area, the acceleration area needs to be specified. When no acceleration area is specified, we will provide acceleration services with optimal resource coverage according to the service area opened by the customer. Multiple regions are separated by semicolons, and the supported regions are as follows: cn (Mainland China), am (Americas), emea (Europe, Middle East, Africa), apac (Asia-Pacific region).","zh_CN":"加速域名的加速区域，如果有需要根据区域限定资源覆盖时，才需要指定加速区域。未指定加速区域时，我们将按照客户开通的服务区域，以最优的资源覆盖提供加速服务。多个区域以分号分隔，支持配置的区域如下：cn（中国大陆）、am（美洲）、emea（欧洲、中东、非洲）、apac（亚太地区）"}
+  ServiceAreas *string `json:"service-areas,omitempty" xml:"service-areas,omitempty"`
+  // {"en":"If you need to share a CNAME between domains, you can use this parameter. This parameter is a unique label for a public CNAME. Domains with the same cname-label will have the same CNAME.Note:1. Domains with the same cname-label have the same coverage.2. Constraints of sharing a CNAME: consistent service-type, consistent certificate-id (if there is a certificate), consistent service-areas3. Multiple http domains can share a CNAME, multiple sni https domains can share a CNAME too.4. When a cname-label is used by a single domain, then the domain can be canceled acceleration. While a cname-label using by more then one domains, they can not be canceled acceleration.5. Support the purpose of modifying cname by modifying cname-label.","zh_CN":"共用一级标签，若有多个加速域名需要共用一级域名，则可以使用该参数。即拥有相同cname-label的一组域名，共用一级cname。\n注意：\n1、拥有相同cname-label的域名共用一级cname，且有完全一致的dns覆盖\n2、共用一级的约束：加速类型一致(service-type)、证书id一致（certificate-id,如果有证书）、加速区域一致(service-areas)\n3、多个http域名可共用一级，多个sni https域名可共用一级\n4、单个域名使用cname-label时，域名可cancel；多个域名共用一级时，不允许cancel这些域名\n5、支持通过修改cname-label达到修改cname的目的。"}
+  CnameLabel *string `json:"cname-label,omitempty" xml:"cname-label,omitempty"`
+  // {"en":"Back to origin policy settings for setting source site information and return source policies for accelerated domain names","zh_CN":"回源策略设置，用于设置加速域名的源站信息和回源策略"}
+  OriginConfig *BatchUpdateApiDomainForWplusRequestDomainConfigsOriginConfig `json:"origin-config,omitempty" xml:"origin-config,omitempty" type:"Struct"`
+  // {"en":"SSL settings, to bind a certificate with the accelerated domain. You can use the interface [CreateCertificateV2] to upload your  certificates. If you want to modify a certificate, please use the interface: [UpdateCertificateV2]","zh_CN":"ssl证书设置，用于设置加速域名的ssl证书配置。上传证书请使用接口：【新增证书V2】；若要修改证书，请使用接口：【修改证书V2】"}
+  Ssl *BatchUpdateApiDomainForWplusRequestDomainConfigsSsl `json:"ssl,omitempty" xml:"ssl,omitempty" type:"Struct"`
+  // {"en":"Cache file HOST.\nCache rules for caching HOST domain names and accelerated domain names must be consistent.","zh_CN":"缓存文件HOST。缓存HOST域名和加速域名的缓存规则必须一致。"}
+  CacheHost *string `json:"cache-host,omitempty" xml:"cache-host,omitempty"`
+  // {"en":"Enable httpdns settings.\nThe optional values are true and false, true means enabled; false means off. This function is not enabled by default. If you need it, please contact the technical support to apply for this feature.","zh_CN":"启用httpdns设置（使用需申请）\n可选值为true和false，true表示启用；false表示关闭\n注意：该功能默认不开启，若您有需要，请联系专属客服申请开通。"}
+  EnableHttpdns *string `json:"enable-httpdns,omitempty" xml:"enable-httpdns,omitempty"`
+  // {"en":"Pass the response header of client IP. The optional values are Cdn-Src-Ip, X-Forwarded-For. The default value is Cdn-Src-Ip.","zh_CN":"传递客户端ip的响应头部，可选值为Cdn-Src-Ip和X-Forwarded-For，默认值为Cdn-Src-Ip"}
+  HeaderOfClientip *string `json:"header-of-clientip,omitempty" xml:"header-of-clientip,omitempty"`
+  // {"en":"Live domain name configuration, used to set the push flow of live acceleration domain name","zh_CN":"直播域名配置，用于设置直播加速域名的推拉流"}
+  LiveConfig *BatchUpdateApiDomainForWplusRequestDomainConfigsLiveConfig `json:"live-config,omitempty" xml:"live-config,omitempty" type:"Struct"`
+  // {"en":"Set the publishing point of the live push-pull domain.\nNote:\n1. The pull stream and the corresponding push stream domain must be configured with the same publishing point.\n2. If you are not going to modify the publishing point, please do not pass this param.\n3. The publishing point adopts the overlay update. Each time you modify, you need to submit all the publishing points. You cannot submit only the parts that need to be modified.","zh_CN":"设置直播推拉流域名的发布点\n注意：\n1、拉流和对应的推流域名，必须配置相同的发布点；\n2、不想修改发布点时，不要传入该节点及以下入参；\n3、发布点采用覆盖式更新，每次修改时，需要提交全部发布点，不能仅提交需要修改的部分。"}
+  PublishPoints []*BatchUpdateApiDomainForWplusRequestDomainConfigsPublishPoints `json:"publish-points,omitempty" xml:"publish-points,omitempty" type:"Repeated"`
+  // {"en":"Cache time configuration\nnote:\n1. When you need to cancel the cache time configuration setting, you can pass in the empty node <cache-time-behaviors></cache-time-behaviors>.\n2. When it is required to set the cache time configuration, this item is required.","zh_CN":"缓存时间配置\n注意：\n1. 需要取消缓存时间配置设置时，可以传入空节点<cache-time-behaviors></cache-time-behaviors>。\n2. 表示需要设置缓存时间配置时，此项必填"}
+  CacheTimeBehaviors []*BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors `json:"cache-time-behaviors,omitempty" xml:"cache-time-behaviors,omitempty" type:"Repeated"`
+  // {"en":"Back to origin rewrite rule.","zh_CN":"修改回源协议和端口；若要按原始请求回源，则可清空该对象，示例\"back-to-origin-rewrite-rule\":{}"}
+  BackToOriginRewriteRule *BatchUpdateApiDomainForWplusRequestDomainConfigsBackToOriginRewriteRule `json:"back-to-origin-rewrite-rule,omitempty" xml:"back-to-origin-rewrite-rule,omitempty" type:"Struct"`
+  // {"en":"Domain modification task description","zh_CN":"修改任务描述"}
+  Description *string `json:"description,omitempty" xml:"description,omitempty"`
+}
+
+func (s BatchUpdateApiDomainForWplusRequestDomainConfigs) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchUpdateApiDomainForWplusRequestDomainConfigs) GoString() string {
+  return s.String()
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigs) SetDomainName(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigs {
+  s.DomainName = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigs) SetVersion(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigs {
+  s.Version = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigs) SetComment(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigs {
+  s.Comment = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigs) SetServiceAreas(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigs {
+  s.ServiceAreas = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigs) SetCnameLabel(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigs {
+  s.CnameLabel = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigs) SetOriginConfig(v *BatchUpdateApiDomainForWplusRequestDomainConfigsOriginConfig) *BatchUpdateApiDomainForWplusRequestDomainConfigs {
+  s.OriginConfig = v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigs) SetSsl(v *BatchUpdateApiDomainForWplusRequestDomainConfigsSsl) *BatchUpdateApiDomainForWplusRequestDomainConfigs {
+  s.Ssl = v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigs) SetCacheHost(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigs {
+  s.CacheHost = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigs) SetEnableHttpdns(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigs {
+  s.EnableHttpdns = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigs) SetHeaderOfClientip(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigs {
+  s.HeaderOfClientip = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigs) SetLiveConfig(v *BatchUpdateApiDomainForWplusRequestDomainConfigsLiveConfig) *BatchUpdateApiDomainForWplusRequestDomainConfigs {
+  s.LiveConfig = v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigs) SetPublishPoints(v []*BatchUpdateApiDomainForWplusRequestDomainConfigsPublishPoints) *BatchUpdateApiDomainForWplusRequestDomainConfigs {
+  s.PublishPoints = v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigs) SetCacheTimeBehaviors(v []*BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors) *BatchUpdateApiDomainForWplusRequestDomainConfigs {
+  s.CacheTimeBehaviors = v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigs) SetBackToOriginRewriteRule(v *BatchUpdateApiDomainForWplusRequestDomainConfigsBackToOriginRewriteRule) *BatchUpdateApiDomainForWplusRequestDomainConfigs {
+  s.BackToOriginRewriteRule = v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigs) SetDescription(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigs {
+  s.Description = &v
+  return s
+}
+
+type BatchUpdateApiDomainForWplusRequestDomainConfigsOriginConfig struct {
+  // {"en":"Origin address, which can be an IP or domain name.\n1. Multiple IPs are supported, separated by semicolons.\n2. Only one domain name is allowed. IP and domain name cannot exist at the same time.\n3. The length cannot exceed 500 characters.\n4. The number of IPs cannot exceed 15.","zh_CN":"回源地址，可以是IP或域名。\n1、IP以分号分隔，支持多个。\n2、域名只能输入一个。IP与域名不能同时输入。\n3、限制最大不能超过500个字符长度。\n4、IP最多15个。"}
+  OriginIps *string `json:"origin-ips,omitempty" xml:"origin-ips,omitempty"`
+  // {"en":"Back-to-origin HOST, used to change the HOST field in the back-to-origin HTTP request header. The supported formats are: 1.domain name 2.ip\nNote:\n1. Must comply with the ip/domain name format specification. If it is a domain name, the length of the domain name must be less than or equal to 128 characters.","zh_CN":"回源HOST，用于更改回源HTTP请求头中的HOST字段。支持格式为: ①域名；②ip；\n注意：\n1、必须符合ip/域名格式规范。如果是域名，则域名长度小于等于128。"}
+  DefaultOriginHostHeader *string `json:"default-origin-host-header,omitempty" xml:"default-origin-host-header,omitempty"`
+}
+
+func (s BatchUpdateApiDomainForWplusRequestDomainConfigsOriginConfig) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchUpdateApiDomainForWplusRequestDomainConfigsOriginConfig) GoString() string {
+  return s.String()
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsOriginConfig) SetOriginIps(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsOriginConfig {
+  s.OriginIps = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsOriginConfig) SetDefaultOriginHostHeader(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsOriginConfig {
+  s.DefaultOriginHostHeader = &v
+  return s
+}
+
+type BatchUpdateApiDomainForWplusRequestDomainConfigsSsl struct {
+  // {"en":"Use a certificate, true means to use the certificate, false means not to use the certificate","zh_CN":"使用证书，true表示使用证书，false表示不使用证书","exampleValue":"true,false"}
+  UseSsl *string `json:"use-ssl,omitempty" xml:"use-ssl,omitempty"`
+  // {"en":"Use sni certificate, true means use sni certificate, false means use shared certificate (not supported)","zh_CN":"使用sni证书，true表示使用sni证书，false表示使用合用证书（暂不支持）","exampleValue":"true,false"}
+  UseForSni *string `json:"use-for-sni,omitempty" xml:"use-for-sni,omitempty"`
+  // {"en":"Certificate ID: The certificate ID returned by the system after successfully adding a new certificate.  \nssl-certificate-id can only be passed when use-ssl is true.","zh_CN":"证书ID，新增证书成功后，系统返回的证书ID。\nuse-ssl为true时，才能传ssl-certificate-id。"}
+  SslCertificateId *int `json:"ssl-certificate-id,omitempty" xml:"ssl-certificate-id,omitempty"`
+}
+
+func (s BatchUpdateApiDomainForWplusRequestDomainConfigsSsl) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchUpdateApiDomainForWplusRequestDomainConfigsSsl) GoString() string {
+  return s.String()
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsSsl) SetUseSsl(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsSsl {
+  s.UseSsl = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsSsl) SetUseForSni(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsSsl {
+  s.UseForSni = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsSsl) SetSslCertificateId(v int) *BatchUpdateApiDomainForWplusRequestDomainConfigsSsl {
+  s.SslCertificateId = &v
+  return s
+}
+
+type BatchUpdateApiDomainForWplusRequestDomainConfigsLiveConfig struct {
+  // {"en":"Source station IP. When the stream-type is pull, at least one of the source station IP and the companion push stream domain name is not empty.\n1. If it is a push-pull flow package, fill in 127.0.0.1, and the system will also default to 127.0.0.1.\n2. If it is directly returning to the source, fill in the source IP of the source pull stream.","zh_CN":"源站IP，当stream-type为pull时，源站IP和配套推流域名至少一个不为空。\n1、如果是推拉流配套，则填写127.0.0.1，不传系统也默认为127.0.0.1\n2、如果是直接回源拉流，则填写回源拉流的源站IP"}
+  OriginIps *string `json:"origin-ips,omitempty" xml:"origin-ips,omitempty"`
+  // {"en":"A matching push domain name is used to set up a current domain name corresponding to the live streaming domain name. When the stream-type is pull, the source station IP and the supporting current domain name are at least one empty; when stream-type is push, it does not need to be introduced.","zh_CN":"配套推流域名，用于设置直播拉流域名对应的推流域名，当stream-type为pull时，源站IP和配套推流域名至少一个不为空；当stream-type为push时，无需传入。"}
+  OriginPushHost *string `json:"origin-push-host,omitempty" xml:"origin-push-host,omitempty"`
+}
+
+func (s BatchUpdateApiDomainForWplusRequestDomainConfigsLiveConfig) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchUpdateApiDomainForWplusRequestDomainConfigsLiveConfig) GoString() string {
+  return s.String()
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsLiveConfig) SetOriginIps(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsLiveConfig {
+  s.OriginIps = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsLiveConfig) SetOriginPushHost(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsLiveConfig {
+  s.OriginPushHost = &v
+  return s
+}
+
+type BatchUpdateApiDomainForWplusRequestDomainConfigsPublishPoints struct     {
+  // {"en":"Livestream domain settings. Publish point, support multiple, do not pass the system by default to generate a publishing point uri for [/]","zh_CN":"发布点，支持多个，不传系统默认生成一条发布点uri为“/”"}
+  Uri *string `json:"uri,omitempty" xml:"uri,omitempty"`
+}
+
+func (s BatchUpdateApiDomainForWplusRequestDomainConfigsPublishPoints) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchUpdateApiDomainForWplusRequestDomainConfigsPublishPoints) GoString() string {
+  return s.String()
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsPublishPoints) SetUri(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsPublishPoints {
+  s.Uri = &v
+  return s
+}
+
+type BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors struct     {
+  // {"en":"The url matching mode supports fuzzy regularization. If all matches, the input parameters can be configured as: .*","zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：.*"}
+  PathPattern *string `json:"path-pattern,omitempty" xml:"path-pattern,omitempty"`
+  // {"en":"Exceptional url matching mode, except for some URLs: such as abc.jpg, do not do anti-theft chain function\nE.g: ^https?://[^/]+/.*\.m3u8","zh_CN":"例外的url匹配模式，某些URL除外：如abc.jpg，不做内容重定向\n客户入参参考：^https?://[^/]+/.*\.m3u8"}
+  ExceptPathPattern *string `json:"except-path-pattern,omitempty" xml:"except-path-pattern,omitempty"`
+  // {"en":"Specify common types: Select the domain name that requires the cache  to be all files or the home page. :\nE.g:\nAll: all files\nHomepage: homepage","zh_CN":"指定常用类型：选择缓存域名的是全部文件还是首页。入参参考值：\nall：全部文件\nhomepage：首页"}
+  CustomPattern *string `json:"custom-pattern,omitempty" xml:"custom-pattern,omitempty"`
+  // {"en":"File Type: Specify the file type for cache settings.\nFile types include: gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf\nIf you need all types, pass all directly. Multiples are separated by semicolons, and all and specific file types cannot be configured at the same time.","zh_CN":"文件类型：指定需要缓存的文件类型。\n文件类型包括：gif png bmp jpeg jpg html htm shtml mp3 wma flv mp4 wmv zip exe rar css txt ico js swf\n如果需要全部类型，则直接传all。多个以分号隔开，all和具体文件类型不能同时配置。"}
+  FileType *string `json:"file-type,omitempty" xml:"file-type,omitempty"`
+  // {"en":"Custom file type: Fill in the appropriate identifiable file type according to your needs outside of the specified file type. Can be used with file-type. If the file-type is also configured, the actual file type is the sum of the two parameters.","zh_CN":"自定义文件类型：在指定文件类型外根据自身需求，填写适当的可识别文件类型。可以搭配file-type使用。如果file-type也有配置，实际生效的文件类型是两个入参的总和"}
+  CustomFileType *string `json:"custom-file-type,omitempty" xml:"custom-file-type,omitempty"`
+  // {"en":"Specify URL cache: Specify url according to requirements for cache\nINS format does not support URI format with http(s)://","zh_CN":"指定URL缓存：根据需求指定url进行缓存\n入参不支持含http(s):// 开头的URI格式"}
+  SpecifyUrlPattern *string `json:"specify-url-pattern,omitempty" xml:"specify-url-pattern,omitempty"`
+  // {"en":"Directory: Specify the directory cache.\nEnter a legal directory format. Multiple separated by semicolons","zh_CN":"目录：指定目录缓存。\n输入合法的目录格式。多个以英文分号隔开"}
+  Directory *string `json:"directory,omitempty" xml:"directory,omitempty"`
+  // {"en":"Cache time: set the time corresponding to the cache object\nInput format: integer plus unit, such as 20s, 30m, 1h, 2d, no cache is set to 0. \nThere is no upper limit on the cache time theory. This time is set according to the customer's own needs. If the customer feels that some of the files are not changed frequently, then the setting is longer. For example, the text class js, css, html, etc. can be set shorter, the picture, video and audio classes can be set longer (because the cache time will be replaced by the new file due to the file heat algorithm, the longest suggestion Do not exceed one month)","zh_CN":"缓存时间：设置缓存对象对应的时间\n入参格式：整数加单位，比如20s、30m、1h、2d，不缓存设置为0。\n缓存时间理论上没有上限限制，这个时间根据客户自身的需求设定，如果客户觉得其中一些文件，变更不频繁，那么就设置长一点。例如，文本类的js，css，html等可以设置得短一些，图片、视频音频类的可以设置的长一点（因为缓存时间会因文件热度算法，旧文件会被新文件替换掉，最长建议不要超过一个月）"}
+  CacheTtl *string `json:"cache-ttl,omitempty" xml:"cache-ttl,omitempty"`
+  // {"en":"Ignore the source station does not cache the header. The optional values are true and false, which are used to ignore the two configurations of cache-control in the request header (private, no-cache) and the Authorization set by the client.\nThe ture indicates that the source station's settings for the three are ignored. Enables resources to be cached on the service node in the form of cache-control: public, and then our nodes can cache this type of resource and provide acceleration services.\nFalse means that when the source station sets cache-control: private, cache-control: no-cache for a resource or specifies to cache according to authorization, our service node will not cache such files.","zh_CN":"忽略源站不缓存头。可选值为true和false，用于忽略请求头中cache-control的两种配置（private，no-cache）和客户端设置的Authorization。\nture表示会忽略掉源站对于这三者的设定。使得资源能够以cache-control: public的方式缓存在服务节点上，然后我们的节点才能缓存这种类型的资源，提供加速服务。\nfalse表示当源站对某种资源设定了cache-control: private,cache-control:no-cache或指定根据authorization进行缓存时，我们的服务节点将不会对此类文件进行缓存。"}
+  IgnoreCacheControl *string `json:"ignore-cache-control,omitempty" xml:"ignore-cache-control,omitempty"`
+  // {"en":"Respect the server: Accelerate whether to prioritize the source cache time.\nOptional values: true and false\nTrue: indicates that the server is time-first\nFalse: The cache time of the CDN configuration takes precedence.","zh_CN":"尊重服务端：加速是否要按源站缓存时间优先。\n可选值：true和false\ntrue：表示重服务端时间优先\nfalse:CDN配置的缓存时间优先"}
+  IsRespectServer *string `json:"is-respect-server,omitempty" xml:"is-respect-server,omitempty"`
+  // {"en":"Ignore case, the optional value is true or false, true means to ignore case; false means not to ignore case;\nWhen adding a new configuration item, the default is not true.","zh_CN":"忽略大小写，可选值为true或false，true表示忽略大小写；false表示不忽略大小写；\n新增配置项时，不传默认为 true"}
+  IgnoreLetterCase *string `json:"ignore-letter-case,omitempty" xml:"ignore-letter-case,omitempty"`
+  // {"en":"Reload processing rules, optional: ignore or if-modified-since\nIf-modified-since: indicates that you want to convert to if-modified-since\nIgnore: means to ignore client refresh","zh_CN":"reload处理规则，可选项：ignore或者if-modified-since\nif-modified-since：表示要转成if-modified-since\nignore:表示忽略客户端刷新"}
+  ReloadManage *string `json:"reload-manage,omitempty" xml:"reload-manage,omitempty"`
+  // {"en":"Indicates the priority execution order of multiple sets of redirected content by the customer. The higher the number, the higher the priority.\nWhen adding a new configuration item, the default is 10","zh_CN":"表示客户多组重定向内容的优先执行顺序。数字越大，优先级越高。\n新增配置项时，不传默认为 10\n如果传了值，不能为空"}
+  Priority *string `json:"priority,omitempty" xml:"priority,omitempty"`
+  // {"en":"You can set it 'true' to cache\nignoring the http header 'Authentication'.  If it is empty, the header is not ignored by default.","zh_CN":"忽略鉴权头部Authentication，可选值为true和false。默认为不忽略。"}
+  IgnoreAuthenticationHeader *string `json:"ignore-authentication-header,omitempty" xml:"ignore-authentication-header,omitempty"`
+  // {"en":"UA","zh_CN":"UA"}
+  Ua *string `json:"ua,omitempty" xml:"ua,omitempty"`
+  // {"en":"Exceptional UA","zh_CN":"例外的ua"}
+  ExceptionUa *string `json:"exception-ua,omitempty" xml:"exception-ua,omitempty"`
+  // {"en":"Specify URI match pattern.\nE.g:\nexact: exact match\nparameter-ignoring: parameter ignoring match","zh_CN":"指定URI匹配模式，可选值：exact：精准匹配、parameter-ignoring：忽略参数匹配"}
+  UriMatchPattern *string `json:"uri-match-pattern,omitempty" xml:"uri-match-pattern,omitempty"`
+}
+
+func (s BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors) GoString() string {
+  return s.String()
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors) SetPathPattern(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors {
+  s.PathPattern = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors) SetExceptPathPattern(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors {
+  s.ExceptPathPattern = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors) SetCustomPattern(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors {
+  s.CustomPattern = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors) SetFileType(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors {
+  s.FileType = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors) SetCustomFileType(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors {
+  s.CustomFileType = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors) SetSpecifyUrlPattern(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors {
+  s.SpecifyUrlPattern = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors) SetDirectory(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors {
+  s.Directory = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors) SetCacheTtl(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors {
+  s.CacheTtl = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors) SetIgnoreCacheControl(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors {
+  s.IgnoreCacheControl = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors) SetIsRespectServer(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors {
+  s.IsRespectServer = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors) SetIgnoreLetterCase(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors {
+  s.IgnoreLetterCase = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors) SetReloadManage(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors {
+  s.ReloadManage = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors) SetPriority(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors {
+  s.Priority = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors) SetIgnoreAuthenticationHeader(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors {
+  s.IgnoreAuthenticationHeader = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors) SetUa(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors {
+  s.Ua = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors) SetExceptionUa(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors {
+  s.ExceptionUa = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors) SetUriMatchPattern(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsCacheTimeBehaviors {
+  s.UriMatchPattern = &v
+  return s
+}
+
+type BatchUpdateApiDomainForWplusRequestDomainConfigsBackToOriginRewriteRule struct {
+  // {"en":"The specified protocol is either http or https.","zh_CN":"改写后的回源协议，可选值：http、https"}
+  Protocol *string `json:"protocol,omitempty" xml:"protocol,omitempty"`
+  // {"en":"If the protocol is http, the default is 80. If the protocol is https, the default is 443","zh_CN":"改写后的回源端口，若protocol为http时，默认为80，若protocol为https时，默认为443"}
+  Port *string `json:"port,omitempty" xml:"port,omitempty"`
+}
+
+func (s BatchUpdateApiDomainForWplusRequestDomainConfigsBackToOriginRewriteRule) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchUpdateApiDomainForWplusRequestDomainConfigsBackToOriginRewriteRule) GoString() string {
+  return s.String()
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsBackToOriginRewriteRule) SetProtocol(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsBackToOriginRewriteRule {
+  s.Protocol = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusRequestDomainConfigsBackToOriginRewriteRule) SetPort(v string) *BatchUpdateApiDomainForWplusRequestDomainConfigsBackToOriginRewriteRule {
+  s.Port = &v
+  return s
+}
+
+type BatchUpdateApiDomainForWplusRequestHeader struct {
+}
+
+func (s BatchUpdateApiDomainForWplusRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchUpdateApiDomainForWplusRequestHeader) GoString() string {
+  return s.String()
+}
+
+type BatchUpdateApiDomainForWplusPaths struct {
+}
+
+func (s BatchUpdateApiDomainForWplusPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchUpdateApiDomainForWplusPaths) GoString() string {
+  return s.String()
+}
+
+type BatchUpdateApiDomainForWplusParameters struct {
+}
+
+func (s BatchUpdateApiDomainForWplusParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchUpdateApiDomainForWplusParameters) GoString() string {
+  return s.String()
+}
+
+type BatchUpdateApiDomainForWplusResponse struct {
+  // {"en":"Result of domain modification","zh_CN":"修改域名的结果"}
+  Data *BatchUpdateApiDomainForWplusResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
+  // {"en":"Error code, appears when HTTPStatus is not 202, indicating the error type of the current request","zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Response message, success when successful","zh_CN":"响应信息，成功时为success"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+}
+
+func (s BatchUpdateApiDomainForWplusResponse) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchUpdateApiDomainForWplusResponse) GoString() string {
+  return s.String()
+}
+
+func (s *BatchUpdateApiDomainForWplusResponse) SetData(v *BatchUpdateApiDomainForWplusResponseData) *BatchUpdateApiDomainForWplusResponse {
+  s.Data = v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusResponse) SetCode(v string) *BatchUpdateApiDomainForWplusResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusResponse) SetMessage(v string) *BatchUpdateApiDomainForWplusResponse {
+  s.Message = &v
+  return s
+}
+
+type BatchUpdateApiDomainForWplusResponseData struct {
+  // {"en":"Domains modified successfully","zh_CN":"修改成功的域名"}
+  SuccessDomains []*BatchUpdateApiDomainForWplusResponseDataSuccessDomains `json:"successDomains,omitempty" xml:"successDomains,omitempty" require:"true" type:"Repeated"`
+  // {"en":"Domains failed to modify","zh_CN":"修改失败的域名"}
+  FailedDomains []*BatchUpdateApiDomainForWplusResponseDataFailedDomains `json:"failedDomains,omitempty" xml:"failedDomains,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s BatchUpdateApiDomainForWplusResponseData) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchUpdateApiDomainForWplusResponseData) GoString() string {
+  return s.String()
+}
+
+func (s *BatchUpdateApiDomainForWplusResponseData) SetSuccessDomains(v []*BatchUpdateApiDomainForWplusResponseDataSuccessDomains) *BatchUpdateApiDomainForWplusResponseData {
+  s.SuccessDomains = v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusResponseData) SetFailedDomains(v []*BatchUpdateApiDomainForWplusResponseDataFailedDomains) *BatchUpdateApiDomainForWplusResponseData {
+  s.FailedDomains = v
+  return s
+}
+
+type BatchUpdateApiDomainForWplusResponseDataSuccessDomains struct     {
+  // {"en":"Domain name","zh_CN":"域名名称"}
+  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
+  // {"en":"Domain modification task ID","zh_CN":"域名修改任务ID"}
+  TaskId *string `json:"taskId,omitempty" xml:"taskId,omitempty" require:"true"`
+  // {"en":"Status, optional values: success, fail","zh_CN":"状态，可选值：success、fail"}
+  Status *string `json:"status,omitempty" xml:"status,omitempty" require:"true"`
+  // {"en":"Domain modification task message","zh_CN":"域名修改任务消息"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+}
+
+func (s BatchUpdateApiDomainForWplusResponseDataSuccessDomains) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchUpdateApiDomainForWplusResponseDataSuccessDomains) GoString() string {
+  return s.String()
+}
+
+func (s *BatchUpdateApiDomainForWplusResponseDataSuccessDomains) SetDomain(v string) *BatchUpdateApiDomainForWplusResponseDataSuccessDomains {
+  s.Domain = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusResponseDataSuccessDomains) SetTaskId(v string) *BatchUpdateApiDomainForWplusResponseDataSuccessDomains {
+  s.TaskId = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusResponseDataSuccessDomains) SetStatus(v string) *BatchUpdateApiDomainForWplusResponseDataSuccessDomains {
+  s.Status = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusResponseDataSuccessDomains) SetMessage(v string) *BatchUpdateApiDomainForWplusResponseDataSuccessDomains {
+  s.Message = &v
+  return s
+}
+
+type BatchUpdateApiDomainForWplusResponseDataFailedDomains struct     {
+  // {"en":"Domain name","zh_CN":"域名名称"}
+  Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
+  // {"en":"Domain modification task ID","zh_CN":"域名修改任务ID"}
+  TaskId *string `json:"taskId,omitempty" xml:"taskId,omitempty" require:"true"`
+  // {"en":"Status, optional values: success, fail","zh_CN":"状态，可选值：success、fail"}
+  Status *string `json:"status,omitempty" xml:"status,omitempty" require:"true"`
+  // {"en":"Domain modification task message","zh_CN":"域名修改任务消息"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+}
+
+func (s BatchUpdateApiDomainForWplusResponseDataFailedDomains) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchUpdateApiDomainForWplusResponseDataFailedDomains) GoString() string {
+  return s.String()
+}
+
+func (s *BatchUpdateApiDomainForWplusResponseDataFailedDomains) SetDomain(v string) *BatchUpdateApiDomainForWplusResponseDataFailedDomains {
+  s.Domain = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusResponseDataFailedDomains) SetTaskId(v string) *BatchUpdateApiDomainForWplusResponseDataFailedDomains {
+  s.TaskId = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusResponseDataFailedDomains) SetStatus(v string) *BatchUpdateApiDomainForWplusResponseDataFailedDomains {
+  s.Status = &v
+  return s
+}
+
+func (s *BatchUpdateApiDomainForWplusResponseDataFailedDomains) SetMessage(v string) *BatchUpdateApiDomainForWplusResponseDataFailedDomains {
+  s.Message = &v
+  return s
+}
+
+type BatchUpdateApiDomainForWplusResponseHeader struct {
+}
+
+func (s BatchUpdateApiDomainForWplusResponseHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s BatchUpdateApiDomainForWplusResponseHeader) GoString() string {
   return s.String()
 }
 

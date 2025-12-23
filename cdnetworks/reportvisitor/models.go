@@ -658,13 +658,9 @@ func (s StatisticalAnalysisOfChinaMainlandProvincevisitorsResponseHeader) GoStri
 
 
 type QueryTotalNumberofUniqueIPUnderSingleDomainRequest struct {
-  // {"en":"Domain, maximum number is 1", "zh_CN":"域名，数量上限1个"}
+  // {"en":"Domain, maximum number is 1","zh_CN":"域名，数量上限1个"}
   Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
-  // {"en":"Stream name:
-  // 1. Limit to the number of streams can be adjusted depending on different accounts. The default value is 20;
-  // 2. All streams are queried by default is this field is left empty and at the same time, the upper limit of the number of streams can be set.", "zh_CN":"流名：
-  // 1.流名个数限制根据账号可调，默认为20个；
-  // 2.不传时默认查询域名下所有流名，同时受流名数量上限限制；"}
+  // {"en":"Stream name:\n1. Limit to the number of streams can be adjusted depending on different accounts. The default value is 20;\n2. All streams are queried by default is this field is left empty and at the same time, the upper limit of the number of streams can be set.","zh_CN":"流名：\n1.流名个数限制根据账号可调，默认为20个；\n2.不传时默认查询域名下所有流名，同时受流名数量上限限制；"}
   Stream *string `json:"stream,omitempty" xml:"stream,omitempty"`
 }
 
@@ -686,7 +682,55 @@ func (s *QueryTotalNumberofUniqueIPUnderSingleDomainRequest) SetStream(v string)
   return s
 }
 
+type QueryTotalNumberofUniqueIPUnderSingleDomainRequestHeader struct {
+}
+
+func (s QueryTotalNumberofUniqueIPUnderSingleDomainRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryTotalNumberofUniqueIPUnderSingleDomainRequestHeader) GoString() string {
+  return s.String()
+}
+
+type QueryTotalNumberofUniqueIPUnderSingleDomainPaths struct {
+}
+
+func (s QueryTotalNumberofUniqueIPUnderSingleDomainPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryTotalNumberofUniqueIPUnderSingleDomainPaths) GoString() string {
+  return s.String()
+}
+
+type QueryTotalNumberofUniqueIPUnderSingleDomainParameters struct {
+  // {"en":"Start time\n1. The format is yyyy-MM-ddTHH:mm:ss+08:00;\n2. Must be smaller than the current time and dateTo;\n3. Period between dataFrom and dateTo cannot be longer than 3 days(technical support can be contacted to adjust);\n4. You can only query data for the last 2 years.","zh_CN":"开始时间\n1.格式为yyyy-MM-ddTHH:mm:ss+08:00；\n2.必须小于当前时间和dateTo；\n3.dateFrom和dateTo相差不能超过3天（可联系技术支持调整）；\n4.只能查询最近2年内数据。"}
+  DateFrom *string `json:"dateFrom,omitempty" xml:"dateFrom,omitempty" require:"true"`
+  // {"en":"End time\n1. The format is yyyy-MM-ddTHH:mm:ss+08:00;\n2. Must be greater than dateFrom;\n3. The query range must include 00:00:00 of a certain day to query the data of that day. For example, if the query range includes 2017-11-07 00:00:00, the data of 2017-11-07 can be queried.","zh_CN":"结束时间\n1.格式为yyyy-MM-ddTHH:mm:ss+08:00；\n2.必须大于dateFrom；\n3.查询范围必须包含某一天的00:00:00，才能查询到当天数据，例如查询范围包含 2017-11-07 00:00:00 可以查询到2017-11-07当天数据。"}
+  DateTo *string `json:"dateTo,omitempty" xml:"dateTo,omitempty" require:"true"`
+}
+
+func (s QueryTotalNumberofUniqueIPUnderSingleDomainParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s QueryTotalNumberofUniqueIPUnderSingleDomainParameters) GoString() string {
+  return s.String()
+}
+
+func (s *QueryTotalNumberofUniqueIPUnderSingleDomainParameters) SetDateFrom(v string) *QueryTotalNumberofUniqueIPUnderSingleDomainParameters {
+  s.DateFrom = &v
+  return s
+}
+
+func (s *QueryTotalNumberofUniqueIPUnderSingleDomainParameters) SetDateTo(v string) *QueryTotalNumberofUniqueIPUnderSingleDomainParameters {
+  s.DateTo = &v
+  return s
+}
+
 type QueryTotalNumberofUniqueIPUnderSingleDomainResponse struct {
+  // {"en":"","zh_CN":""}
   Result []*QueryTotalNumberofUniqueIPUnderSingleDomainResponseResult `json:"result,omitempty" xml:"result,omitempty" require:"true" type:"Repeated"`
 }
 
@@ -704,8 +748,9 @@ func (s *QueryTotalNumberofUniqueIPUnderSingleDomainResponse) SetResult(v []*Que
 }
 
 type QueryTotalNumberofUniqueIPUnderSingleDomainResponseResult struct     {
-  // {"en":"Domain", "zh_CN":"域名"}
+  // {"en":"Domain","zh_CN":"域名"}
   Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
+  // {"en":"","zh_CN":""}
   Details []*QueryTotalNumberofUniqueIPUnderSingleDomainResponseResultDetails `json:"details,omitempty" xml:"details,omitempty" require:"true" type:"Repeated"`
 }
 
@@ -728,11 +773,11 @@ func (s *QueryTotalNumberofUniqueIPUnderSingleDomainResponseResult) SetDetails(v
 }
 
 type QueryTotalNumberofUniqueIPUnderSingleDomainResponseResultDetails struct     {
-  // {"en":"Stream name", "zh_CN":"流名"}
+  // {"en":"Stream name","zh_CN":"流名"}
   Stream *string `json:"stream,omitempty" xml:"stream,omitempty" require:"true"`
-  // {"en":"Time, format is yyyy-MM-dd", "zh_CN":"时间，格式为yyyy-MM-dd"}
+  // {"en":"Time, format is yyyy-MM-dd","zh_CN":"时间，格式为yyyy-MM-dd"}
   Timestamp *string `json:"timestamp,omitempty" xml:"timestamp,omitempty" require:"true"`
-  // {"en":"Number of unique IP addresses", "zh_CN":"独立IP数"}
+  // {"en":"Number of unique IP addresses","zh_CN":"独立IP数"}
   Total *int `json:"total,omitempty" xml:"total,omitempty" require:"true"`
 }
 
@@ -757,67 +802,6 @@ func (s *QueryTotalNumberofUniqueIPUnderSingleDomainResponseResultDetails) SetTi
 func (s *QueryTotalNumberofUniqueIPUnderSingleDomainResponseResultDetails) SetTotal(v int) *QueryTotalNumberofUniqueIPUnderSingleDomainResponseResultDetails {
   s.Total = &v
   return s
-}
-
-type QueryTotalNumberofUniqueIPUnderSingleDomainPaths struct {
-}
-
-func (s QueryTotalNumberofUniqueIPUnderSingleDomainPaths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryTotalNumberofUniqueIPUnderSingleDomainPaths) GoString() string {
-  return s.String()
-}
-
-type QueryTotalNumberofUniqueIPUnderSingleDomainParameters struct {
-  // {"en":"Start time
-  // 1. The format is yyyy-MM-ddTHH:mm:ss+08:00;
-  // 2. Must be smaller than the current time and dateTo;
-  // 3. Period between dataFrom and dateTo cannot be longer than 3 days(technical support can be contacted to adjust);
-  // 4. You can only query data for the last 2 years.", "zh_CN":"开始时间
-  // 1.格式为yyyy-MM-ddTHH:mm:ss+08:00；
-  // 2.必须小于当前时间和dateTo；
-  // 3.dateFrom和dateTo相差不能超过3天（可联系技术支持调整）；
-  // 4.只能查询最近2年内数据。"}
-  DateFrom *string `json:"dateFrom,omitempty" xml:"dateFrom,omitempty" require:"true"`
-  // {"en":"End time
-  // 1. The format is yyyy-MM-ddTHH:mm:ss+08:00;
-  // 2. Must be greater than dateFrom;
-  // 3. The query range must include 00:00:00 of a certain day to query the data of that day. For example, if the query range includes 2017-11-07 00:00:00, the data of 2017-11-07 can be queried.", "zh_CN":"结束时间
-  // 1.格式为yyyy-MM-ddTHH:mm:ss+08:00；
-  // 2.必须大于dateFrom；
-  // 3.查询范围必须包含某一天的00:00:00，才能查询到当天数据，例如查询范围包含 2017-11-07 00:00:00 可以查询到2017-11-07当天数据。"}
-  DateTo *string `json:"dateTo,omitempty" xml:"dateTo,omitempty" require:"true"`
-}
-
-func (s QueryTotalNumberofUniqueIPUnderSingleDomainParameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryTotalNumberofUniqueIPUnderSingleDomainParameters) GoString() string {
-  return s.String()
-}
-
-func (s *QueryTotalNumberofUniqueIPUnderSingleDomainParameters) SetDateFrom(v string) *QueryTotalNumberofUniqueIPUnderSingleDomainParameters {
-  s.DateFrom = &v
-  return s
-}
-
-func (s *QueryTotalNumberofUniqueIPUnderSingleDomainParameters) SetDateTo(v string) *QueryTotalNumberofUniqueIPUnderSingleDomainParameters {
-  s.DateTo = &v
-  return s
-}
-
-type QueryTotalNumberofUniqueIPUnderSingleDomainRequestHeader struct {
-}
-
-func (s QueryTotalNumberofUniqueIPUnderSingleDomainRequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s QueryTotalNumberofUniqueIPUnderSingleDomainRequestHeader) GoString() string {
-  return s.String()
 }
 
 type QueryTotalNumberofUniqueIPUnderSingleDomainResponseHeader struct {

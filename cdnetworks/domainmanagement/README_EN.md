@@ -22,7 +22,7 @@ The SDK uses AKSK (Access Key/Secret Key) authentication. Configure your credent
 package main
 
 import (
-    "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/common/auth"
+    "github.com/cdnetworks-api/cdnetworks-sdk-go/common/auth"
     "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/domainmanagement"
     "log"
 )
@@ -75,6 +75,8 @@ For detailed API documentation and available methods, please refer to the [offic
 | Deleteapidomainservice | Delete one of the added accelerator domains. Cannot be enabled after deletion, only the accelerated domain name can be re-created. | DELETE | /api/domain/* |
 | Getfuzzypagingdomainlist | Queries all, or specified, acceleration domains and states under the user's account. Each acceleration domain name contains profile information. The returned accelerated domain name list is sorted in alphabetical order of the initials. | POST | /api/domain/domainList |
 | Querydomainbyoriginip | Query the list of all domain name names corresponding to the origin station IP under the user account. | GET | /api/originaldomainlist |
+| Disablemultidomainservice | Disable multiple accelerated domain names. Once disabled, all requests for accelerated domain names will be directly rejected and will not be forwarded to the source server. | POST | /api/domain/disable |
+| Enablemultidomainservice | Enable multiple acceleration domain names that are currently disabled, and provide acceleration services using the existing configuration. | POST | /api/domain/enable |
 | Addcdndomain | When you apply the non-live-streaming acceleration service for specified domain. Content Acceleration, Dynamic Web Acceleration, Download Acceleration are supported.<br><br>The newly added domains can be deployed in a fast mode after the following requirements are met service form for relevant acceleration type; and application that no manual review needed are finished. By default, manual review is required.<br><br>When creating Accelerated domain inside china or outside china, the requirements are as below. <br><br>1. To create the accelerated domain inside china <br>- The accelerated domain name MUST obtain an ICP license<br>- Keep the core requirement of obtaining ICP certification <br> Accelerated domain names should not contain the following information: the sale of controlled drugs and tools, unlawful remarks and information.<br> Video-related accelerated domain names must have Audio Visual Services License; blog forums or community-related accelerated domain names must have BBS special approval qualifications.<br><br>2. To create the accelerated domain outside china <br>- The accelerated domain name MUST use accelerate-no-china = true that indicates that the customer domain name is not accelerated in China.<br><br>Note:<br>1. Data format: Both request and response support XML.<br>2. Recommended frequency: 1 times per15min. | POST | /cdnw/api/domain |
 | Updatecdndomain | Modify the configurations of the specified accelerated domain name. | PUT | /cdnw/api/domain/* |
 | Querycdndomainservice | View the configuration of the specified accelerated domain name. | GET | /cdnw/api/domain/* |

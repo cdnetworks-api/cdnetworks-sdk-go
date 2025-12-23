@@ -22,7 +22,7 @@ go get github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/domainconfigurtion
 package main
 
 import (
-    "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/common/auth"
+    "github.com/cdnetworks-api/cdnetworks-sdk-go/common/auth"
     "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/domainconfigurtion"
     "log"
 )
@@ -70,6 +70,7 @@ if err != nil {
 
 | ActionName | description | client_methods | uri |
 | --- | --- | --- | --- |
+| Batchupdateapidomainservice | 修改指定的多个加速域名的配置信息，禁用的域名不可修改（慎用！） | POST | /api/domain/batchupdate |
 | Editdomainconfig | 修改指定加速域名的基础配置。接口调用url的*可为域名名称或域名ID | PUT | /api/domain/* |
 | Updatetimecontrolservice | 修改时间戳防盗链 | PUT | /api/config/timecontrol/* |
 | Querytimecontrolservice | 查看时间戳防盗链 | GET | /api/config/timecontrol/* |
@@ -81,12 +82,16 @@ if err != nil {
 | Queryantihotlinkingconfig | 通过接口自助查询防盗链配置。接口url的*可为域名名称或域名id。 | GET | /api/config/visitcontrol/* |
 | Updatesourceverificationconfig | 通过接口自助实现转推回源带参数鉴权，实现rtmp转推回源，边缘能够根据加密规则，模拟客户端带上时间戳防盗链的参数进行转推回源 | PUT | /api/config/sourceverification/* |
 | Querysourceverificationconfig | 通过接口自助查询转推回源带参数鉴权配置 | GET | /api/config/sourceverification/* |
+| Updatedomainsrcinfo | 通过接口自助修改高级源配置。允许客户指定区域配置，不同的IP回源，以及多源时候，可以指定策略回源。接口url的*可为域名名称或域名id。 | PUT | /api/basicconfig/advancedsource/* |
+| Querybanurlunderdomain | 通过接口自助查询域名URL屏蔽内容 | GET | /api/basicconfig/illegalinformation/* |
 | Addbanurltodomian | 通过接口自助新增URL屏蔽的功能。客户可以根据自己的需求调用接口，新增URL屏蔽内容。 | PUT | /api/basicconfig/illegalinformation |
+| Predeploysrcinfo | 通过接口自助修改高级源配置。允许客户指定区域配置，不同的IP回源，以及多源时候，可以指定策略回源。 | PUT | /api/predeploy/advancedsource/* |
 | Queryapideployservice | 对于域名的新增、修改、启用、禁用、取消、恢复、删除等请求 | POST | /api/request/* |
 | Updatecompressionconfig | 通过接口自助实现压缩响应功能 | PUT | /api/config/compresssetting/* |
 | Querycompressionconfig | 通过接口自助查询压缩响应配置 | GET | /api/config/compresssetting/* |
 | Queryhttpcodecasheconfig | 通过接口自助查询状态码缓存配置 | GET | /api/config/httpcodecache/* |
 | Queryipv6config | 通过接口自助查询域名是否使用ipv6资源 | GET | /api/domain/ipv6/* |
+| Querysrcinfo | 通过接口查询客户高级源配置 | GET | /api/basicconfig/advancedsource/* |
 | Queryinnerredirect | 查看内部重定向配置 | GET | /api/config/InnerRedirect/* |
 | Querycachetime | 通过接口自助查询节点缓存配置配置。接口调用url的*可为域名名称或域名id。 | GET | /api/config/cachetime/* |
 | Editquerystringurlconfig | 通过接口自助实现查询串设置功能 | PUT | /api/config/querystring/* |
@@ -128,3 +133,4 @@ if err != nil {
 | Antihijackipupdate | 修改劫持缓解IP，客户调用该接口可以修改缓解IP关联的业务域名信息。 | POST | /api/v1/dms/antiHijackIP/update |
 | Antihijackipdelete | 删除劫持缓解IP，客户调用该接口可以删除对应的缓解IP。 | POST | /api/v1/dms/antiHijackIP/delete |
 | Batchupdatedomaincertconfig | 该接口用于修改多个CDN加速域名的配置证书。用户可以通过提供证书ID与待修改的域名名称列表修改域名关联的证书。 | PUT | /api/config/certificate/batch |
+| Batchupdateapidomainforwplus | 该接口用于批量修改指定加速域名的基础配置。用户需在请求体中传入一个domainConfigs列表，每个元素包含待修改域名的`domain-name`，以及可选的其他域名配置。 | PUT | /api/batch/domain |

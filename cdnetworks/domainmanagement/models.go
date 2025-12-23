@@ -6,9 +6,9 @@ import (
 )
 
 type UpdateCustomerAnycastIPRecordStatusRequest struct {
-  // {"en":"Ip list", "zh_CN":"ip 列表"}
+  // {"en":"Ip list","zh_CN":"ip 列表"}
   Ips []*string `json:"ips,omitempty" xml:"ips,omitempty" require:"true" type:"Repeated"`
-  // {"en":"Record Status, For example, lock or unlock; data of length 1 or 2 can be passed.", "zh_CN":"记录状态，例如锁定、非锁定等，可以传长度为1或2的数据"}
+  // {"en":"Record status, such as locked, unlocked, etc. The maximum length of the status value is 2 characters.","zh_CN":"记录状态，例如锁定、非锁定等。状态值最长为2个字符。"}
   RecordStatus *string `json:"recordStatus,omitempty" xml:"recordStatus,omitempty" require:"true"`
 }
 
@@ -30,29 +30,15 @@ func (s *UpdateCustomerAnycastIPRecordStatusRequest) SetRecordStatus(v string) *
   return s
 }
 
-type UpdateCustomerAnycastIPRecordStatusResponse struct {
-  // {"en":"The error code that appears when the HTTP status is not 202, indicating the type of error for the current request.", "zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Response information, when success is successful", "zh_CN":"响应信息，成功时为success"}
-  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+type UpdateCustomerAnycastIPRecordStatusRequestHeader struct {
 }
 
-func (s UpdateCustomerAnycastIPRecordStatusResponse) String() string {
+func (s UpdateCustomerAnycastIPRecordStatusRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateCustomerAnycastIPRecordStatusResponse) GoString() string {
+func (s UpdateCustomerAnycastIPRecordStatusRequestHeader) GoString() string {
   return s.String()
-}
-
-func (s *UpdateCustomerAnycastIPRecordStatusResponse) SetCode(v string) *UpdateCustomerAnycastIPRecordStatusResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *UpdateCustomerAnycastIPRecordStatusResponse) SetMessage(v string) *UpdateCustomerAnycastIPRecordStatusResponse {
-  s.Message = &v
-  return s
 }
 
 type UpdateCustomerAnycastIPRecordStatusPaths struct {
@@ -77,15 +63,29 @@ func (s UpdateCustomerAnycastIPRecordStatusParameters) GoString() string {
   return s.String()
 }
 
-type UpdateCustomerAnycastIPRecordStatusRequestHeader struct {
+type UpdateCustomerAnycastIPRecordStatusResponse struct {
+  // {"en":"The error code that appears when the HTTP status is not 202, indicating the type of error for the current request.","zh_CN":"错误代码，当HTTPStatus不为202时出现，表示当前请求调用的错误类型"}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Response information, when success is successful","zh_CN":"响应信息，成功时为success"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
 }
 
-func (s UpdateCustomerAnycastIPRecordStatusRequestHeader) String() string {
+func (s UpdateCustomerAnycastIPRecordStatusResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateCustomerAnycastIPRecordStatusRequestHeader) GoString() string {
+func (s UpdateCustomerAnycastIPRecordStatusResponse) GoString() string {
   return s.String()
+}
+
+func (s *UpdateCustomerAnycastIPRecordStatusResponse) SetCode(v string) *UpdateCustomerAnycastIPRecordStatusResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *UpdateCustomerAnycastIPRecordStatusResponse) SetMessage(v string) *UpdateCustomerAnycastIPRecordStatusResponse {
+  s.Message = &v
+  return s
 }
 
 type UpdateCustomerAnycastIPRecordStatusResponseHeader struct {
@@ -1438,7 +1438,7 @@ type AddCdnDomainRequest struct {
   CnameLabel *string `json:"cname-label,omitempty" xml:"cname-label,omitempty"`
   // {"en":"Remarks, up to 1000 characters","zh_CN":"备注信息，最大限制1000个字符"}
   Comment *string `json:"comment,omitempty" xml:"comment,omitempty"`
-  // {"en":"Pass the response header of client IP. The optional values are Cdn-Src-Ip and X-Forwarded-For. The default value is Cdn-Src-Ip.","zh_CN":"传递客户端ip的响应头部，可选值为Cdn-Src-Ip和X-Forwarded-For，默认值为Cdn-Src-Ip"}
+  // {"en":"Pass the response header of client IP. The optional values are Cdn-Src-Ip, X-Forwarded-For and ori_X-Forwarded-For. The default value is Cdn-Src-Ip.","zh_CN":"传递客户端ip的响应头部，可选值为Cdn-Src-Ip、X-Forwarded-For、ori_X-Forwarded-For\n1） Cdn-Src-Ip： 回源头部名称为Cdn-Src-Ip，获取与节点进行建联的IP作为客户端IP传递回源。\n2） X-Forwarded-For： 回源头部名称为X-Forwarded-For，携带的客户端IP值是Cdn-Src-Ip获取到的建联IP。\n3） ori_X-Forwarded-For：客户端请求CDN节点时会自带X-Forwarded-For，则CDN透传此头部和值回源。"}
   HeaderOfClientip *string `json:"header-of-clientip,omitempty" xml:"header-of-clientip,omitempty"`
   // {"en":"Back-to-origin policy setting, which is used to set the origin site information and the back-to-origin policy of the accelerated domain name","zh_CN":"回源策略设置，用于设置加速域名的源站信息和回源策略"}
   OriginConfig *AddCdnDomainRequestOriginConfig `json:"origin-config,omitempty" xml:"origin-config,omitempty" require:"true" type:"Struct"`
@@ -3298,50 +3298,27 @@ func (s *QueryApiDomainListServiceResponseHeader) SetXCncRequestId(v string) *Qu
 
 
 type UpdateCdnDomainRequest struct {
-  // {"en":"The current version is 1.0.0.", "zh_CN":"版本号"}
+  // {"en":"The current version is 1.0.0.","zh_CN":"版本号"}
   Version *string `json:"version,omitempty" xml:"version,omitempty"`
-  // {"en":"The acceleration area of the acceleration domain, if the resource coverage needs to be limited according to the area, the acceleration area needs to be specified. When no acceleration area is specified, we will provide acceleration services with optimal resource coverage according to the service area opened by the customer. Multiple regions are separated by semicolons, and the supported regions are as follows: cn (Mainland China), am (Americas), emea (Europe, Middle East, Africa), apac (Asia-Pacific region).", 
-  //     "zh_CN":"加速域名的加速区域，如果有需要根据区域限定资源覆盖时，才需要指定加速区域。未指定加速区域时，我们将按照客户开通的服务区域，以最优的资源覆盖提供加速服务。多个区域以分号分隔，支持配置的区域如下：cn（中国大陆）、am（美洲）、emea（欧洲、中东、非洲）、apac（亚太地区）"}
+  // {"en":"The acceleration area of the acceleration domain, if the resource coverage needs to be limited according to the area, the acceleration area needs to be specified. When no acceleration area is specified, we will provide acceleration services with optimal resource coverage according to the service area opened by the customer. Multiple regions are separated by semicolons, and the supported regions are as follows: cn (Mainland China), am (Americas), emea (Europe, Middle East, Africa), apac (Asia-Pacific region).","zh_CN":"加速域名的加速区域，如果有需要根据区域限定资源覆盖时，才需要指定加速区域。未指定加速区域时，我们将按照客户开通的服务区域，以最优的资源覆盖提供加速服务。多个区域以分号分隔，支持配置的区域如下：cn（中国大陆）、am（美洲）、emea（欧洲、中东、非洲）、apac（亚太地区）"}
   ServiceAreas *string `json:"service-areas,omitempty" xml:"service-areas,omitempty"`
-  // {"en":"If you need to share a CNAME between domains, you can use this parameter. This parameter is a unique label for a public CNAME. Domains with the same cname-label will have the same CNAME. 
-  // Note:
-  // 1. Domains with the same cname-label have the same coverage.
-  // 2. Constraints of sharing a CNAME: consistent service-type, consistent certificate-id (if there is a certificate), consistent service-areas
-  // 3. Multiple http domains can share a CNAME, multiple sni https domains can share a CNAME too.
-  // 4. When a cname-label is used by a single domain, then the domain can be canceled acceleration. While a cname-label using by more then one domains, they can not be canceled acceleration.
-  // 5. Support the purpose of modifying cname by modifying cname-label. )", 
-  // "zh_CN":"共用一级标签，若有多个加速域名需要共用一级域名，则可以使用该参数。即拥有相同cname-label的一组域名，共用一级cname。
-  // 注意：
-  // 1、拥有相同cname-label的域名共用一级cname，且有完全一致的dns覆盖
-  // 2、共用一级的约束：加速类型一致(service-type)、证书id一致（certificate-id,如果有证书）、加速区域一致(service-areas)
-  // 3、多个http域名可共用一级，多个sni https域名可共用一级
-  // 4、单个域名使用cname-label时，域名可cancel；多个域名共用一级时，不允许cancel这些域名
-  // 5、支持通过修改cname-label达到修改cname的目的。"}
+  // {"en":"If you need to share a CNAME between domains, you can use this parameter. This parameter is a unique label for a public CNAME. Domains with the same cname-label will have the same CNAME.\nNote:\n1. Domains with the same cname-label have the same coverage.\n2. Constraints of sharing a CNAME: consistent service-type, consistent certificate-id (if there is a certificate), consistent service-areas\n3. Multiple http domains can share a CNAME, multiple sni https domains can share a CNAME too.\n4. When a cname-label is used by a single domain, then the domain can be canceled acceleration. While a cname-label using by more then one domains, they can not be canceled acceleration.\n5. Support the purpose of modifying cname by modifying cname-label. )","zh_CN":"共用一级标签，若有多个加速域名需要共用一级域名，则可以使用该参数。即拥有相同cname-label的一组域名，共用一级cname。\n注意：\n1、拥有相同cname-label的域名共用一级cname，且有完全一致的dns覆盖\n2、共用一级的约束：加速类型一致(service-type)、证书id一致（certificate-id,如果有证书）、加速区域一致(service-areas)\n3、多个http域名可共用一级，多个sni https域名可共用一级\n4、单个域名使用cname-label时，域名可cancel；多个域名共用一级时，不允许cancel这些域名\n5、支持通过修改cname-label达到修改cname的目的。"}
   CnameLabel *string `json:"cname-label,omitempty" xml:"cname-label,omitempty"`
-  // {"en":"Remarks, up to 1000 characters", "zh_CN":"备注信息，最大限制1000个字符"}
+  // {"en":"Remarks, up to 1000 characters","zh_CN":"备注信息，最大限制1000个字符"}
   Comment *string `json:"comment,omitempty" xml:"comment,omitempty"`
-  // {"en":"Cache file HOST.
-  // Cache rules for caching HOST domain names and accelerated domain names must be consistent.", "zh_CN":"缓存文件HOST。缓存HOST域名和加速域名的缓存规则必须一致。"}
+  // {"en":"Cache file HOST.\nCache rules for caching HOST domain names and accelerated domain names must be consistent.","zh_CN":"缓存文件HOST。缓存HOST域名和加速域名的缓存规则必须一致。"}
   CacheHost *string `json:"cache-host,omitempty" xml:"cache-host,omitempty"`
-  // {"en":"Pass the response header of client IP. The optional values areCdn-Src-Ip,X-Forwarded-For and ori_X-Forwarded-For. The default value isCdn-Src-Ip.", "zh_CN":"传递客户端ip的响应头部，可选值为Cdn-Src-Ip，X-Forwarded-For和ori_X-Forwarded-For，默认值为Cdn-Src-Ip"}
-  HeaderOfClientIp *string `json:"header-of-clientip,omitempty" xml:"header-of-clientip,omitempty"`
-  // {"en":"Back-to-origin policy setting, which is used to set the origin site information and the back-to-origin policy of the accelerated domain name", "zh_CN":"回源策略设置，用于设置加速域名的源站信息和回源策略"}
+  // {"en":"Pass the response header of client IP. The optional values are Cdn-Src-Ip, X-Forwarded-For and ori_X-Forwarded-For. The default value is Cdn-Src-Ip.","zh_CN":"传递客户端ip的响应头部，可选值为Cdn-Src-Ip、X-Forwarded-For、ori_X-Forwarded-For\n1） Cdn-Src-Ip： 回源头部名称为Cdn-Src-Ip，获取与节点进行建联的IP作为客户端IP传递回源。\n2） X-Forwarded-For： 回源头部名称为X-Forwarded-For，携带的客户端IP值是Cdn-Src-Ip获取到的建联IP。\n3） ori_X-Forwarded-For：客户端请求CDN节点时会自带X-Forwarded-For，则CDN透传此头部和值回源。"}
+  HeaderOfClientip *string `json:"header-of-clientip,omitempty" xml:"header-of-clientip,omitempty"`
+  // {"en":"Back-to-origin policy setting, which is used to set the origin site information and the back-to-origin policy of the accelerated domain name","zh_CN":"回源策略设置，用于设置加速域名的源站信息和回源策略"}
   OriginConfig *UpdateCdnDomainRequestOriginConfig `json:"origin-config,omitempty" xml:"origin-config,omitempty" type:"Struct"`
-  // {"en":"Live domain configuration, used to set the push and pull domain of live streaming.", "zh_CN":"直播域名配置，用于设置直播加速域名的推拉流"}
-  LiveConfigView *UpdateCdnDomainRequestLiveConfigView `json:"live-config,omitempty" xml:"live-config,omitempty" type:"Struct"`
-  // {"en":"SSL settings, to bind a certificate with the accelerated domain. You can use the interface [AddCertificate] to upload your certificates. If you want to modify a certificate, please use the interface: [UpdateCertificate].", "zh_CN":"ssl证书设置，用于设置加速域名的ssl证书配置。上传证书请使用接口：【新增证书V2】；若要修改证书，请使用接口：【修改证书V2】。"}
+  // {"en":"Live domain configuration, used to set the push and pull domain of live streaming.","zh_CN":"直播域名配置，用于设置直播加速域名的推拉流"}
+  LiveConfig *UpdateCdnDomainRequestLiveConfig `json:"live-config,omitempty" xml:"live-config,omitempty" type:"Struct"`
+  // {"en":"SSL settings, to bind a certificate with the accelerated domain. You can use the interface [AddCertificate] to upload your certificates. If you want to modify a certificate, please use the interface: [UpdateCertificate].","zh_CN":"ssl证书设置，用于设置加速域名的ssl证书配置。上传证书请使用接口：【新增证书V2】；若要修改证书，请使用接口：【修改证书V2】。"}
   Ssl *UpdateCdnDomainRequestSsl `json:"ssl,omitempty" xml:"ssl,omitempty" type:"Struct"`
-  // {"en":"Cache policy settings are for setting cache rules for accelerated domain names", "zh_CN":"缓存规则设置，用于设置加速域名的缓存规则,请使用新接口：修改缓存时间配置接口"}
+  // {"en":"Cache policy settings are for setting cache rules for accelerated domain names","zh_CN":"缓存规则设置，用于设置加速域名的缓存规则,请使用新接口：修改缓存时间配置接口"}
   CacheBehaviors []*UpdateCdnDomainRequestCacheBehaviors `json:"cache-behaviors,omitempty" xml:"cache-behaviors,omitempty" type:"Repeated"`
-  // {"en":"Livestream domain settings. Set the publishing point of the live push-pull domain.
-  // note:
-  // 1. The pull stream and the corresponding push stream domain must be configured with the same publishing point.
-  // 2. If you are not going to modify the publishing point, please do not pass this param.
-  // 3. The publishing point adopts the overlay update. Each time you modify, you need to submit all the publishing points. You cannot submit only the parts that need to be modified.", "zh_CN":"设置直播推拉流域名的发布点
-  // 注意：
-  // 1、拉流和对应的推流域名，必须配置相同的发布点；
-  // 2、不想修改发布点时，不要传入该节点及以下入参；
-  // 3、发布点采用覆盖式更新，每次修改时，需要提交全部发布点，不能仅提交需要修改的部分。"}
+  // {"en":"Livestream domain settings. Set the publishing point of the live push-pull domain.\nnote:\n1. The pull stream and the corresponding push stream domain must be configured with the same publishing point.\n2. If you are not going to modify the publishing point, please do not pass this param.\n3. The publishing point adopts the overlay update. Each time you modify, you need to submit all the publishing points. You cannot submit only the parts that need to be modified.","zh_CN":"设置直播推拉流域名的发布点\n注意：\n1、拉流和对应的推流域名，必须配置相同的发布点；\n2、不想修改发布点时，不要传入该节点及以下入参；\n3、发布点采用覆盖式更新，每次修改时，需要提交全部发布点，不能仅提交需要修改的部分。"}
   PublishPoints []*UpdateCdnDomainRequestPublishPoints `json:"publish-points,omitempty" xml:"publish-points,omitempty" type:"Repeated"`
 }
 
@@ -3378,8 +3355,8 @@ func (s *UpdateCdnDomainRequest) SetCacheHost(v string) *UpdateCdnDomainRequest 
   return s
 }
 
-func (s *UpdateCdnDomainRequest) SetHeaderOfClientIp(v string) *UpdateCdnDomainRequest {
-  s.HeaderOfClientIp = &v
+func (s *UpdateCdnDomainRequest) SetHeaderOfClientip(v string) *UpdateCdnDomainRequest {
+  s.HeaderOfClientip = &v
   return s
 }
 
@@ -3388,8 +3365,8 @@ func (s *UpdateCdnDomainRequest) SetOriginConfig(v *UpdateCdnDomainRequestOrigin
   return s
 }
 
-func (s *UpdateCdnDomainRequest) SetLiveConfigView(v *UpdateCdnDomainRequestLiveConfigView) *UpdateCdnDomainRequest {
-  s.LiveConfigView = v
+func (s *UpdateCdnDomainRequest) SetLiveConfig(v *UpdateCdnDomainRequestLiveConfig) *UpdateCdnDomainRequest {
+  s.LiveConfig = v
   return s
 }
 
@@ -3409,22 +3386,13 @@ func (s *UpdateCdnDomainRequest) SetPublishPoints(v []*UpdateCdnDomainRequestPub
 }
 
 type UpdateCdnDomainRequestOriginConfig struct {
-  // {"en":"Origin address, which can be an IP or domain name.
-  // 1. Multiple IPs are supported, separated by semicolons.
-  // 2. Only one domain name is allowed. IP and domain name cannot exist at the same time.
-  // 3. The length cannot exceed 500 characters.
-  // 4. The number of IPs cannot exceed 15.
-  // ", "zh_CN":"回源地址，可以是IP或域名。
-  // 1、IP以分号分隔，支持多个。
-  // 2、域名只能输入一个。IP与域名不能同时输入。
-  // 3、限制最大不能超过500个字符长度。
-  // 4、IP最多15个。"}
+  // {"en":"Origin address, which can be an IP or domain name.\n1. Multiple IPs are supported, separated by semicolons.\n2. Only one domain name is allowed. IP and domain name cannot exist at the same time.\n3. The length cannot exceed 500 characters.\n4. The number of IPs cannot exceed 15.","zh_CN":"回源地址，可以是IP或域名。\n1、IP以分号分隔，支持多个。\n2、域名只能输入一个。IP与域名不能同时输入。\n3、限制最大不能超过500个字符长度。\n4、IP最多15个。"}
   OriginIps *string `json:"origin-ips,omitempty" xml:"origin-ips,omitempty"`
+  // {"en":"","zh_CN":""}
   AdvOriginConfigs *UpdateCdnDomainRequestOriginConfigAdvOriginConfigs `json:"adv-origin-configs,omitempty" xml:"adv-origin-configs,omitempty" type:"Struct"`
-  // {"en":"The Origin HOST for changing the HOST field in the return source HTTP request header. It should be domain name or IP format. For domain name, each segement separated by a dot, does not exceed 62 characters, the total length should not exceed 128 characters.", "zh_CN":"回源HOST，用于更改回源HTTP请求头中的HOST字段。支持格式为域名或ip。
-  // 注意：必须符合ip/域名格式规范。如果是域名，则域名每段（点号分隔）长度小于等于62，域名总长度小于等于128。"}
+  // {"en":"The Origin HOST for changing the HOST field in the return source HTTP request header. It should be domain name or IP format. For domain name, each segement separated by a dot, does not exceed 62 characters, the total length should not exceed 128 characters.","zh_CN":"回源HOST，用于更改回源HTTP请求头中的HOST字段。支持格式为域名或ip。\n注意：必须符合ip/域名格式规范。如果是域名，则域名每段（点号分隔）长度小于等于62，域名总长度小于等于128。"}
   DefaultOriginHostHeader *string `json:"default-origin-host-header,omitempty" xml:"default-origin-host-header,omitempty"`
-  // {"en":"Origin port.", "zh_CN":"回源请求端口。"}
+  // {"en":"Origin port.","zh_CN":"回源请求端口。"}
   OriginPort *string `json:"origin-port,omitempty" xml:"origin-port,omitempty"`
 }
 
@@ -3457,12 +3425,12 @@ func (s *UpdateCdnDomainRequestOriginConfig) SetOriginPort(v string) *UpdateCdnD
 }
 
 type UpdateCdnDomainRequestOriginConfigAdvOriginConfigs struct {
-  // {"en":"The advanced origin monitoring url, and requests <master-ips> through the url. If the response is neither 2** nor 3** response, it is considered that the primary source ip is faulty, and <backup-ips> is used at this time.", "zh_CN":"高级源监控url，通过该url请求<master-ips>，如果返回非2**，3**响应时，认为主要回源ip故障，此时使用<backup-ips>。 需要输入完整的url，例如：http://a.example.com/test.html"}
+  // {"en":"The advanced origin monitoring url, and requests <master-ips> through the url. If the response is neither 2** nor 3** response, it is considered that the primary source ip is faulty, and <backup-ips> is used at this time.","zh_CN":"高级源监控url，通过该url请求<master-ips>，如果返回非2**，3**响应时，认为主要回源ip故障，此时使用<backup-ips>。 需要输入完整的url，例如：http://a.example.com/test.html"}
   DetectUrl *string `json:"detect-url,omitempty" xml:"detect-url,omitempty"`
-  // {"en":"Advanced source monitoring period, and the unit is in seconds, optional as an integer greater than or equal to 0, 0 means no monitoring", "zh_CN":"高级源监控周期，单位秒，可选值为大于等于0的整数，0表示不监控"}
+  // {"en":"Advanced source monitoring period, and the unit is in seconds, optional as an integer greater than or equal to 0, 0 means no monitoring","zh_CN":"高级源监控周期，单位秒，可选值为大于等于0的整数，0表示不监控"}
   DetectPeriod *string `json:"detect-period,omitempty" xml:"detect-period,omitempty"`
-  // {"en":"adv-origin-config", "zh_CN":"高级源配置"}
-  AdvOriginConfigList []*UpdateCdnDomainRequestOriginConfigAdvOriginConfigsAdvOriginConfigList `json:"adv-origin-config,omitempty" xml:"adv-origin-config,omitempty" type:"Repeated"`
+  // {"en":"adv-origin-config","zh_CN":"高级源配置"}
+  AdvOriginConfig []*UpdateCdnDomainRequestOriginConfigAdvOriginConfigsAdvOriginConfig `json:"adv-origin-config,omitempty" xml:"adv-origin-config,omitempty" type:"Repeated"`
 }
 
 func (s UpdateCdnDomainRequestOriginConfigAdvOriginConfigs) String() string {
@@ -3483,73 +3451,67 @@ func (s *UpdateCdnDomainRequestOriginConfigAdvOriginConfigs) SetDetectPeriod(v s
   return s
 }
 
-func (s *UpdateCdnDomainRequestOriginConfigAdvOriginConfigs) SetAdvOriginConfigList(v []*UpdateCdnDomainRequestOriginConfigAdvOriginConfigsAdvOriginConfigList) *UpdateCdnDomainRequestOriginConfigAdvOriginConfigs {
-  s.AdvOriginConfigList = v
+func (s *UpdateCdnDomainRequestOriginConfigAdvOriginConfigs) SetAdvOriginConfig(v []*UpdateCdnDomainRequestOriginConfigAdvOriginConfigsAdvOriginConfig) *UpdateCdnDomainRequestOriginConfigAdvOriginConfigs {
+  s.AdvOriginConfig = v
   return s
 }
 
-type UpdateCdnDomainRequestOriginConfigAdvOriginConfigsAdvOriginConfigList struct     {
-  // {"en":"The advanced source mainly returns the source IP. Multiple IPs are separated by a semicolon ';', and the returned source IP cannot be repeated.", "zh_CN":"高级源主要回源IP，多个IP用分号&ldquo;;&rdquo;分隔，回源IP不能重复"}
+type UpdateCdnDomainRequestOriginConfigAdvOriginConfigsAdvOriginConfig struct     {
+  // {"en":"The advanced source mainly returns the source IP. Multiple IPs are separated by a semicolon ';', and the returned source IP cannot be repeated.","zh_CN":"高级源主要回源IP，多个IP用分号&ldquo;;&rdquo;分隔，回源IP不能重复"}
   MasterIps *string `json:"master-ips,omitempty" xml:"master-ips,omitempty"`
-  // {"en":"Advanced source backup source IP, multiple IPs are separated by semicolon ';', and the returned source IP cannot be duplicated.", "zh_CN":"高级源备用回源IP，多个IP用分号&ldquo;;&rdquo;分隔，回源IP不能重复"}
+  // {"en":"Advanced source backup source IP, multiple IPs are separated by semicolon ';', and the returned source IP cannot be duplicated.","zh_CN":"高级源备用回源IP，多个IP用分号&ldquo;;&rdquo;分隔，回源IP不能重复"}
   BackupIps *string `json:"backup-ips,omitempty" xml:"backup-ips,omitempty"`
 }
 
-func (s UpdateCdnDomainRequestOriginConfigAdvOriginConfigsAdvOriginConfigList) String() string {
+func (s UpdateCdnDomainRequestOriginConfigAdvOriginConfigsAdvOriginConfig) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateCdnDomainRequestOriginConfigAdvOriginConfigsAdvOriginConfigList) GoString() string {
+func (s UpdateCdnDomainRequestOriginConfigAdvOriginConfigsAdvOriginConfig) GoString() string {
   return s.String()
 }
 
-func (s *UpdateCdnDomainRequestOriginConfigAdvOriginConfigsAdvOriginConfigList) SetMasterIps(v string) *UpdateCdnDomainRequestOriginConfigAdvOriginConfigsAdvOriginConfigList {
+func (s *UpdateCdnDomainRequestOriginConfigAdvOriginConfigsAdvOriginConfig) SetMasterIps(v string) *UpdateCdnDomainRequestOriginConfigAdvOriginConfigsAdvOriginConfig {
   s.MasterIps = &v
   return s
 }
 
-func (s *UpdateCdnDomainRequestOriginConfigAdvOriginConfigsAdvOriginConfigList) SetBackupIps(v string) *UpdateCdnDomainRequestOriginConfigAdvOriginConfigsAdvOriginConfigList {
+func (s *UpdateCdnDomainRequestOriginConfigAdvOriginConfigsAdvOriginConfig) SetBackupIps(v string) *UpdateCdnDomainRequestOriginConfigAdvOriginConfigsAdvOriginConfig {
   s.BackupIps = &v
   return s
 }
 
-type UpdateCdnDomainRequestLiveConfigView struct {
-  // {"en":"Source station IP. When the stream-type is pull, at least one of the source station IP and the companion push stream domain name is not empty.
-  // 1. If it is a push-pull flow package, fill in 127.0.0.1, and the system will also default to 127.0.0.1.
-  // 2. If it is directly returning to the source, fill in the source IP of the source pull stream.
-  // ", "zh_CN":"源站IP，当stream-type为pull时，源站IP和配套推流域名至少一个不为空。
-  // 1、如果是推拉流配套，则填写127.0.0.1，不传系统也默认为127.0.0.1
-  // 2、如果是直接回源拉流，则填写回源拉流的源站IP"}
-  LiveConfigOriginIps *string `json:"origin-ips,omitempty" xml:"origin-ips,omitempty"`
-  // {"en":"A matching push domain name is used to set up a current domain name corresponding to the live streaming domain name. When the stream-type is pull, the source station IP and the supporting current domain name are at least one empty; when stream-type is push, it does not need to be introduced.", "zh_CN":"配套推流域名，用于设置直播拉流域名对应的推流域名，当stream-type为pull时，源站IP和配套推流域名至少一个不为空；当stream-type为push时，无需传入。"}
+type UpdateCdnDomainRequestLiveConfig struct {
+  // {"en":"Source station IP. When the stream-type is pull, at least one of the source station IP and the companion push stream domain name is not empty.\n1. If it is a push-pull flow package, fill in 127.0.0.1, and the system will also default to 127.0.0.1.\n2. If it is directly returning to the source, fill in the source IP of the source pull stream.","zh_CN":"源站IP，当stream-type为pull时，源站IP和配套推流域名至少一个不为空。\n1、如果是推拉流配套，则填写127.0.0.1，不传系统也默认为127.0.0.1\n2、如果是直接回源拉流，则填写回源拉流的源站IP"}
+  OriginIps *string `json:"origin-ips,omitempty" xml:"origin-ips,omitempty"`
+  // {"en":"A matching push domain name is used to set up a current domain name corresponding to the live streaming domain name. When the stream-type is pull, the source station IP and the supporting current domain name are at least one empty; when stream-type is push, it does not need to be introduced.","zh_CN":"配套推流域名，用于设置直播拉流域名对应的推流域名，当stream-type为pull时，源站IP和配套推流域名至少一个不为空；当stream-type为push时，无需传入。"}
   OriginPushHost *string `json:"origin-push-host,omitempty" xml:"origin-push-host,omitempty"`
 }
 
-func (s UpdateCdnDomainRequestLiveConfigView) String() string {
+func (s UpdateCdnDomainRequestLiveConfig) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateCdnDomainRequestLiveConfigView) GoString() string {
+func (s UpdateCdnDomainRequestLiveConfig) GoString() string {
   return s.String()
 }
 
-func (s *UpdateCdnDomainRequestLiveConfigView) SetLiveConfigOriginIps(v string) *UpdateCdnDomainRequestLiveConfigView {
-  s.LiveConfigOriginIps = &v
+func (s *UpdateCdnDomainRequestLiveConfig) SetOriginIps(v string) *UpdateCdnDomainRequestLiveConfig {
+  s.OriginIps = &v
   return s
 }
 
-func (s *UpdateCdnDomainRequestLiveConfigView) SetOriginPushHost(v string) *UpdateCdnDomainRequestLiveConfigView {
+func (s *UpdateCdnDomainRequestLiveConfig) SetOriginPushHost(v string) *UpdateCdnDomainRequestLiveConfig {
   s.OriginPushHost = &v
   return s
 }
 
 type UpdateCdnDomainRequestSsl struct {
-  // {"en":"Use a certificate, and the optional values are true and false, true means using this certificate, false means not using the certificate.", "zh_CN":"使用证书，可选值为true和false，true表示使用证书，false表示不使用证书"}
+  // {"en":"Use a certificate, and the optional values are true and false, true means using this certificate, false means not using the certificate.","zh_CN":"使用证书，可选值为true和false，true表示使用证书，false表示不使用证书"}
   UseSsl *string `json:"use-ssl,omitempty" xml:"use-ssl,omitempty"`
-  // {"en":"Use sni certificate, and the optional values are true and false, true means using sni certificate, false means using shared certificate (not supported)", "zh_CN":"使用sni证书，可选值为true和false，true表示使用sni证书，false表示使用合用证书（暂不支持）"}
+  // {"en":"Use sni certificate, and the optional values are true and false, true means using sni certificate, false means using shared certificate (not supported)","zh_CN":"使用sni证书，可选值为true和false，true表示使用sni证书，false表示使用合用证书（暂不支持）"}
   UseForSni *string `json:"use-for-sni,omitempty" xml:"use-for-sni,omitempty"`
-  // {"en":"Certificate ID, and it is the certificate ID returned by the system after the new certificate is successfully added.", "zh_CN":"证书ID，新增证书成功后，系统返回的证书ID
-  // use-ssl为true时，才能传ssl-certificate-id。（点播和下载加速类型的证书需要下单给运维单独配置）"}
+  // {"en":"Certificate ID, and it is the certificate ID returned by the system after the new certificate is successfully added.","zh_CN":"证书ID，新增证书成功后，系统返回的证书ID\nuse-ssl为true时，才能传ssl-certificate-id。（点播和下载加速类型的证书需要下单给运维单独配置）"}
   SslCertificateId *string `json:"ssl-certificate-id,omitempty" xml:"ssl-certificate-id,omitempty"`
 }
 
@@ -3577,21 +3539,15 @@ func (s *UpdateCdnDomainRequestSsl) SetSslCertificateId(v string) *UpdateCdnDoma
 }
 
 type UpdateCdnDomainRequestCacheBehaviors struct     {
-  // {"en":"The url matching mode supports fuzzy regularization. The optional values are?: /(a|b)/*.(jpg|bmp|png|gif) and other regular contents. If you want to modify the caching rules, this item is required.", "zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：* 
-  // 如果要修改缓存规则，此项必填"}
+  // {"en":"The url matching mode supports fuzzy regularization. The optional values are?: /(a|b)/*.(jpg|bmp|png|gif) and other regular contents. If you want to modify the caching rules, this item is required.","zh_CN":"url匹配模式，支持正则，如果是全部匹配，入参可以配置为：*\n如果要修改缓存规则，此项必填"}
   PathPattern *string `json:"path-pattern,omitempty" xml:"path-pattern,omitempty"`
-  // {"en":"Indicates the priority of a configuration, the larger the value, the higher the priority.", "zh_CN":"表示一条配置的优先级，值越大优先级越高"}
+  // {"en":"Indicates the priority of a configuration, the larger the value, the higher the priority.","zh_CN":"表示一条配置的优先级，值越大优先级越高"}
   Priority *string `json:"priority,omitempty" xml:"priority,omitempty"`
-  // {"en":"Cache Time: Set the time corresponding to the cache object. Input UpdateCdnDomainParameters format: integer, set to 0 if no cache is used. There is no upper limit on the cache time rule. The time is set attuned to the customer's own needs. If the customer feels that some of the files does not change frequently, then the setting is longer. For example, the text class js, css, html, etc. can be set shorter, the picture, video and audio classes can be set longer (because the cache time will be replaced by the new file due to the file heat algorithm, the suggestion is that the length should not exceed one month)
-  // If you want to modify the caching rules, this item is required.", "zh_CN":"缓存时间：设置缓存对象对应的时间。入参格式：整数，不缓存设置为0。
-  // 缓存时间理论上没有上限限制，这个时间根据客户自身的需求设定，如果客户觉得其中一些文件，变更不频繁，那么就设置长一点。例如，文本类的js，css，html等可以设置得短一些，图片、视频音频类的可以设置的长一点（因为缓存时间会因文件热度算法，旧文件会被新文件替换掉，最长建议不要超过一个月）
-  // 如果要修改缓存规则，此项必填"}
+  // {"en":"Cache Time: Set the time corresponding to the cache object. Input UpdateCdnDomainParameters format: integer, set to 0 if no cache is used. There is no upper limit on the cache time rule. The time is set attuned to the customer's own needs. If the customer feels that some of the files does not change frequently, then the setting is longer. For example, the text class js, css, html, etc. can be set shorter, the picture, video and audio classes can be set longer (because the cache time will be replaced by the new file due to the file heat algorithm, the suggestion is that the length should not exceed one month)\nIf you want to modify the caching rules, this item is required.","zh_CN":"缓存时间：设置缓存对象对应的时间。入参格式：整数，不缓存设置为0。\n缓存时间理论上没有上限限制，这个时间根据客户自身的需求设定，如果客户觉得其中一些文件，变更不频繁，那么就设置长一点。例如，文本类的js，css，html等可以设置得短一些，图片、视频音频类的可以设置的长一点（因为缓存时间会因文件热度算法，旧文件会被新文件替换掉，最长建议不要超过一个月）\n如果要修改缓存规则，此项必填"}
   CacheTtl *string `json:"cache-ttl,omitempty" xml:"cache-ttl,omitempty"`
-  // {"en":"Cache Time unit: Set the time unit corresponding to the cache object: such as s, m, h, d. If no unit is entered, the default is seconds.", "zh_CN":"缓存时间单位：设置缓存对象对应的时间单位：比如s、m、h、d。不输入单位默认是秒"}
+  // {"en":"Cache Time unit: Set the time unit corresponding to the cache object: such as s, m, h, d. If no unit is entered, the default is seconds.","zh_CN":"缓存时间单位：设置缓存对象对应的时间单位：比如s、m、h、d。不输入单位默认是秒"}
   CacheUnit *string `json:"cache-unit,omitempty" xml:"cache-unit,omitempty"`
-  // {"en":"Ignore that the source station does not cache the header. The optional values are true and false, which are used to ignore the two configurations of cache-control in the request header (private, no-cache) and the authorization is set by the client.", "zh_CN":"忽略源站不缓存头。可选值为true和false，用于忽略请求头中cache-control的两种配置（private，no-cache）和客户端设置的Authorization。
-  // ture表示会忽略掉源站对于这三者的设定。使得资源能够以cache-control: public的方式缓存在服务节点上，然后我们的节点才能缓存这种类型的资源，提供加速服务。
-  // false表示当源站对某种资源设定了cache-control: private,cache-control:no-cache或指定根据authorization进行缓存时，我们的服务节点将不会对此类文件进行缓存。"}
+  // {"en":"Ignore that the source station does not cache the header. The optional values are true and false, which are used to ignore the two configurations of cache-control in the request header (private, no-cache) and the authorization is set by the client.","zh_CN":"忽略源站不缓存头。可选值为true和false，用于忽略请求头中cache-control的两种配置（private，no-cache）和客户端设置的Authorization。\nture表示会忽略掉源站对于这三者的设定。使得资源能够以cache-control: public的方式缓存在服务节点上，然后我们的节点才能缓存这种类型的资源，提供加速服务。\nfalse表示当源站对某种资源设定了cache-control: private,cache-control:no-cache或指定根据authorization进行缓存时，我们的服务节点将不会对此类文件进行缓存。"}
   IgnoreCacheControl *string `json:"ignore-cache-control,omitempty" xml:"ignore-cache-control,omitempty"`
 }
 
@@ -3629,7 +3585,7 @@ func (s *UpdateCdnDomainRequestCacheBehaviors) SetIgnoreCacheControl(v string) *
 }
 
 type UpdateCdnDomainRequestPublishPoints struct     {
-  // {"en":"Livestream domain settings. Publish point, support multiple, do not pass the system by default to generate a publishing point uri for [/]", "zh_CN":"发布点，支持多个，不传系统默认生成一条发布点uri为“/”"}
+  // {"en":"Livestream domain settings. Publish point, support multiple, do not pass the system by default to generate a publishing point uri for [/]","zh_CN":"发布点，支持多个，不传系统默认生成一条发布点uri为“/”"}
   Uri *string `json:"uri,omitempty" xml:"uri,omitempty"`
 }
 
@@ -3646,33 +3602,19 @@ func (s *UpdateCdnDomainRequestPublishPoints) SetUri(v string) *UpdateCdnDomainR
   return s
 }
 
-type UpdateCdnDomainResponse struct {
-  // {"en":"Error code occurs when HTTP Status is not 202, indicating the error type of the current request calls.", "zh_CN":"Error code occurs when HTTPStatus is not 202, indicating the error type of the current request calls."}
-  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Response information, demonstrates success when it is successful.", "zh_CN":"Response information, demonstrates success when it is successful."}
-  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+type UpdateCdnDomainRequestHeader struct {
 }
 
-func (s UpdateCdnDomainResponse) String() string {
+func (s UpdateCdnDomainRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateCdnDomainResponse) GoString() string {
+func (s UpdateCdnDomainRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *UpdateCdnDomainResponse) SetCode(v string) *UpdateCdnDomainResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *UpdateCdnDomainResponse) SetMessage(v string) *UpdateCdnDomainResponse {
-  s.Message = &v
-  return s
-}
-
 type UpdateCdnDomainPaths struct {
-  // {"en":"The domain you are going to modify, it can be domain id or domain name.", "zh_CN":"需要修改的域名，可以是域名名称或域名id。"}
+  // {"en":"The domain you are going to modify, it can be domain id or domain name.","zh_CN":"需要修改的域名，可以是域名名称或域名id。"}
   Domain *string `json:"domain,omitempty" xml:"domain,omitempty" require:"true"`
 }
 
@@ -3700,15 +3642,29 @@ func (s UpdateCdnDomainParameters) GoString() string {
   return s.String()
 }
 
-type UpdateCdnDomainRequestHeader struct {
+type UpdateCdnDomainResponse struct {
+  // {"en":"Error code occurs when HTTP Status is not 202, indicating the error type of the current request calls.","zh_CN":"Error code occurs when HTTPStatus is not 202, indicating the error type of the current request calls."}
+  Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Response information, demonstrates success when it is successful.","zh_CN":"Response information, demonstrates success when it is successful."}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
 }
 
-func (s UpdateCdnDomainRequestHeader) String() string {
+func (s UpdateCdnDomainResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s UpdateCdnDomainRequestHeader) GoString() string {
+func (s UpdateCdnDomainResponse) GoString() string {
   return s.String()
+}
+
+func (s *UpdateCdnDomainResponse) SetCode(v string) *UpdateCdnDomainResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *UpdateCdnDomainResponse) SetMessage(v string) *UpdateCdnDomainResponse {
+  s.Message = &v
+  return s
 }
 
 type UpdateCdnDomainResponseHeader struct {

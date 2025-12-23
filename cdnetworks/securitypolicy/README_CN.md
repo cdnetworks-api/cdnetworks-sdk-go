@@ -22,7 +22,7 @@ go get github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/securitypolicy
 package main
 
 import (
-    "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/common/auth"
+    "github.com/cdnetworks-api/cdnetworks-sdk-go/common/auth"
     "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/securitypolicy"
     "log"
 )
@@ -212,6 +212,8 @@ if err != nil {
 | Addspecificclienttrafficbypass | 新增应用白名单。 | POST | /api/v1/bot-manage/scene/whitelist/add |
 | Updatespecificclienttrafficbypass | 更新应用白名单。 | POST | /api/v1/bot-manage/scene/whitelist/update |
 | Deletespecificclienttrafficbypass | 删除应用请求白名单。 | POST | /api/v1/bot-manage/scene/whitelist/delete |
+| Getwebbotdetectionlist | 查询Web风险检测配置。 | POST | /api/v1/bot-manage/web/list |
+| Updatewebbotdetection | 更新Web风险检测配置。<br>浏览器特性功能开关browserAnalyseSwitch默认为ON，并且这个字段不允许更新。 | POST | /api/v1/bot-manage/web/update |
 | Addhtmlpageswithoutembeddingjs | 针对Web风险检测，新增不需要嵌入JS的html页面。 | POST | /api/v1/bot-manage/scene/web/js-exception/add |
 | Updatehtmlpageswithoutembeddingjs | 针对Web风险检测，更新不需要嵌入JS的html页面。 | POST | /api/v1/bot-manage/scene/web/js-exception/update |
 | Deletehtmlpageswithoutembeddingjs | 针对Web风险检测，删除不需要嵌入JS的html页面。 | POST | /api/v1/bot-manage/scene/web/js-exception/delete |

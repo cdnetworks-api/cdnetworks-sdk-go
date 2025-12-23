@@ -343,6 +343,103 @@ func (s DeleteZTSBulkResponseHeader) GoString() string {
 
 
 
+type UpdateZoneStatusRequest struct {
+  // {"en":"Status: enable for enabled, disable for disabled.","zh_CN":"状态：enable启用，disable停用"}
+  Status *string `json:"status,omitempty" xml:"status,omitempty" require:"true"`
+  // {"en":"zoneId, separated by commas if there are multiple","zh_CN":"zoneId，多个用逗号隔开"}
+  ZoneIds *string `json:"zoneIds,omitempty" xml:"zoneIds,omitempty" require:"true"`
+}
+
+func (s UpdateZoneStatusRequest) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateZoneStatusRequest) GoString() string {
+  return s.String()
+}
+
+func (s *UpdateZoneStatusRequest) SetStatus(v string) *UpdateZoneStatusRequest {
+  s.Status = &v
+  return s
+}
+
+func (s *UpdateZoneStatusRequest) SetZoneIds(v string) *UpdateZoneStatusRequest {
+  s.ZoneIds = &v
+  return s
+}
+
+type UpdateZoneStatusRequestHeader struct {
+}
+
+func (s UpdateZoneStatusRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateZoneStatusRequestHeader) GoString() string {
+  return s.String()
+}
+
+type UpdateZoneStatusPaths struct {
+}
+
+func (s UpdateZoneStatusPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateZoneStatusPaths) GoString() string {
+  return s.String()
+}
+
+type UpdateZoneStatusParameters struct {
+}
+
+func (s UpdateZoneStatusParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateZoneStatusParameters) GoString() string {
+  return s.String()
+}
+
+type UpdateZoneStatusResponse struct {
+  // {"en":"Status code, 0 indicates success","zh_CN":"状态码,成功为0"}
+  Code *int `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"Error message or Success","zh_CN":"错误信息或Success"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+}
+
+func (s UpdateZoneStatusResponse) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateZoneStatusResponse) GoString() string {
+  return s.String()
+}
+
+func (s *UpdateZoneStatusResponse) SetCode(v int) *UpdateZoneStatusResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *UpdateZoneStatusResponse) SetMessage(v string) *UpdateZoneStatusResponse {
+  s.Message = &v
+  return s
+}
+
+type UpdateZoneStatusResponseHeader struct {
+}
+
+func (s UpdateZoneStatusResponseHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s UpdateZoneStatusResponseHeader) GoString() string {
+  return s.String()
+}
+
+
+
+
 type BulkUpdateRecordsByZoneIDRequest struct {
   // {"en":"request data", "zh_CN":"请求数据"}
   Data []*BulkUpdateRecordsByZoneIDRequestData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Repeated"`
@@ -1983,40 +2080,19 @@ func (s BatchDeleteZoneRequest) GoString() string {
   return s.String()
 }
 
-type BatchDeleteZoneResponse struct {
-  // {"en":"If it fails, the name of the failed zone is returned, separated by commas", "zh_CN":"如果失败，返回的是失败zone的名称，逗号分割"}
-  Data *string `json:"data,omitempty" xml:"data,omitempty" require:"true"`
-  // {"en":"code,success is 0", "zh_CN":"状态码,成功为0"}
-  Code *int `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"error message or Success", "zh_CN":"错误信息或Success"}
-  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+type BatchDeleteZoneRequestHeader struct {
 }
 
-func (s BatchDeleteZoneResponse) String() string {
+func (s BatchDeleteZoneRequestHeader) String() string {
   return tea.Prettify(s)
 }
 
-func (s BatchDeleteZoneResponse) GoString() string {
+func (s BatchDeleteZoneRequestHeader) GoString() string {
   return s.String()
 }
 
-func (s *BatchDeleteZoneResponse) SetData(v string) *BatchDeleteZoneResponse {
-  s.Data = &v
-  return s
-}
-
-func (s *BatchDeleteZoneResponse) SetCode(v int) *BatchDeleteZoneResponse {
-  s.Code = &v
-  return s
-}
-
-func (s *BatchDeleteZoneResponse) SetMessage(v string) *BatchDeleteZoneResponse {
-  s.Message = &v
-  return s
-}
-
 type BatchDeleteZonePaths struct {
-  // {"en":"zone's ID list, split by comma", "zh_CN":"zone的ID列表，逗号分割"}
+  // {"en":"zone's ID list, split by comma","zh_CN":"zone的ID列表，逗号分割"}
   ZoneIds *string `json:"zoneIds,omitempty" xml:"zoneIds,omitempty" require:"true"`
 }
 
@@ -2044,15 +2120,36 @@ func (s BatchDeleteZoneParameters) GoString() string {
   return s.String()
 }
 
-type BatchDeleteZoneRequestHeader struct {
+type BatchDeleteZoneResponse struct {
+  // {"en":"If it fails, the name of the failed zone is returned, separated by commas","zh_CN":"如果失败，返回的是失败zone的名称，逗号分割"}
+  Data *string `json:"data,omitempty" xml:"data,omitempty" require:"true"`
+  // {"en":"code,success is 0","zh_CN":"状态码,成功为0"}
+  Code *int `json:"code,omitempty" xml:"code,omitempty" require:"true"`
+  // {"en":"error message or Success","zh_CN":"错误信息或Success"}
+  Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
 }
 
-func (s BatchDeleteZoneRequestHeader) String() string {
+func (s BatchDeleteZoneResponse) String() string {
   return tea.Prettify(s)
 }
 
-func (s BatchDeleteZoneRequestHeader) GoString() string {
+func (s BatchDeleteZoneResponse) GoString() string {
   return s.String()
+}
+
+func (s *BatchDeleteZoneResponse) SetData(v string) *BatchDeleteZoneResponse {
+  s.Data = &v
+  return s
+}
+
+func (s *BatchDeleteZoneResponse) SetCode(v int) *BatchDeleteZoneResponse {
+  s.Code = &v
+  return s
+}
+
+func (s *BatchDeleteZoneResponse) SetMessage(v string) *BatchDeleteZoneResponse {
+  s.Message = &v
+  return s
 }
 
 type BatchDeleteZoneResponseHeader struct {

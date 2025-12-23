@@ -22,7 +22,7 @@ The SDK uses AKSK (Access Key/Secret Key) authentication. Configure your credent
 package main
 
 import (
-    "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/common/auth"
+    "github.com/cdnetworks-api/cdnetworks-sdk-go/common/auth"
     "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/uploadassets"
     "log"
 )
@@ -75,3 +75,9 @@ For detailed API documentation and available methods, please refer to the [offic
 | Getmaterialuploadtoken | Call getMaterialUploadToken to obtain the upload address and credentials of materials. You can batch obtain a maximum of 50 material addresses and credentials. | POST | /vod/material/getMaterialUploadToken |
 | Pullvideo | Call pullVideo to set the url of the video to be pulled to the background. The background automatically pulls and saves url videos from third-party platforms. You can set pull tasks in batches. | POST | /vod/videoManage/pullVideo |
 | Pullvideoquery | You can query the completion of pullVideoQuery. | POST | /vod/videoManage/pullVideoQuery |
+| Getworkflowlist | Get WorkflowList | POST | /workflow/getWorkflowList |
+| Gettranscodecombinelist | Get TranscodeCombine List | POST | /vod/transcodeManage/getTranscodeCombineList |
+| Getsubtitlelist | Get Subtitle List | POST | /vod/material/getSubtitleList |
+| Getdomainlistforcloudvuploadtool | Get Domain List | POST | /vod/domainManage/getDomainList |
+| Getwatermarklist | get Watermark List | POST | /vod/watermarkManage/getWatermarkList |
+| Getcategorylist | Get Category List | POST | /vod/categoryManage/getCategoryList |

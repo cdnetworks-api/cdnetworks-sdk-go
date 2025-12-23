@@ -22,7 +22,7 @@ The SDK uses AKSK (Access Key/Secret Key) authentication. Configure your credent
 package main
 
 import (
-    "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/common/auth"
+    "github.com/cdnetworks-api/cdnetworks-sdk-go/common/auth"
     "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/toolservice"
     "log"
 )
@@ -70,6 +70,7 @@ For detailed API documentation and available methods, please refer to the [offic
 
 | ActionName | enDescription | client_methods | uri |
 | --- | --- | --- | --- |
+| Bandwidthlimitservice | Set/cancel bandwidth limits to certain specified domain. It's recommended that the call frequency is no higher than 1/5min.<br><br>Limit: no more than 3 domains can be operated on at a time. To set the limit higher, please contact technological customer service to evaluate. (The interface must be under strict control because it directly affects bandwidth) | POST | /api/tools/setBandwidthLimit |
 | Querybandwidthlimittasklistservice | This interface is used to query the bandwidth limit task list under the account and return detailed information of all tasks with bandwidth. The returned content includes the domain name, task name, and the set maximum bandwidth value. This interface is suitable for scenarios where traffic control policies need to be evaluated and managed, helping users quickly identify and manage the currently set bandwidth limit tasks. | POST | /api/tools/queryBandwidthLimitTaskList |
 | Icpqueryservice | Query whether specified domain has been registered in MIIT of Mainland China.<br><br>Limit: call frequency of the interface cannot exceed 50 times/day. | GET | /api/icp |
 | Ipdomainservice | This interface is used to query the domain names that are using the IP address. The user enters the IP address to obtain the list of domain names associated with the IP. The information returned by the interface includes the current usage status of the IP and the list of domain names that use the IP. In actual applications, this interface can help users detect the domain name usage of a specific IP, which is suitable for network monitoring and management. | POST | /api/tools/ip/domain-list |

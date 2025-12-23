@@ -12,7 +12,7 @@ type QueryDomainLogDownloadAddressRequest struct {
   Datefrom *string `json:"datefrom,omitempty" xml:"datefrom,omitempty" require:"true"`
   // {"en":"End time, format is yyyy-MM-ddTHH:mm:ss+00:00(The actual range of logs that can be queried depends on the number of days of log retention configured by the domain name).","zh_CN":"结束时间,格式为yyyy-MM-ddTHH:mm:ss+00:00(实际可查询的日志范围,取决于域名配置的日志保留天数)."}
   Dateto *string `json:"dateto,omitempty" xml:"dateto,omitempty" require:"true"`
-  // {"defaultValue":"cdn,bot","en":"Log type, optional values:cdn,bot,ddos,waap,waf;Multiple are separated by English commas. If they are not transmitted, the data will be queried by logtype = cdn,bot by default.","zh_CN":"日志类型,可选值: cdn,bot,ddos,waap,waf; 多个通过英文逗号分隔,若未传则默认按logtype=cdn,bot查询数据","exampleValue":"cdn,bot,ddos"}
+  // {"defaultValue":"cdn,bot","en":"Log type, optional values:cdn,bot,ddos,waap,waf;Multiple are separated by English commas. If they are not transmitted, the data will be queried by logtype = cdn,bot by default.","zh_CN":"日志类型,可选值: cdn,bot,ddos,waap,waf; 多个通过英文逗号分隔,若未传则默认按logtype=cdn,bot查询数据","exampleValue":"cdn,bot,ddos,waap,waf"}
   LogType *string `json:"logType,omitempty" xml:"logType,omitempty"`
   // {"dictionary":"belong=BCS-CC-API|dict=flowRegionCode","en":"areaCode","zh_CN":"加速区域"}
   AreaCode *string `json:"areaCode,omitempty" xml:"areaCode,omitempty"`

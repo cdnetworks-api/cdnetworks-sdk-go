@@ -22,7 +22,7 @@ go get github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/uploadassets
 package main
 
 import (
-    "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/common/auth"
+    "github.com/cdnetworks-api/cdnetworks-sdk-go/common/auth"
     "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/uploadassets"
     "log"
 )
@@ -75,3 +75,9 @@ if err != nil {
 | Getmaterialuploadtoken | 调用getMaterialUploadToken获取素材上传地址和凭证，支持批量获取多个素材地址和凭证（最多50个）。 | POST | /vod/material/getMaterialUploadToken |
 | Pullvideo | 调用pullVideo向后台设置要拉取的视频url。后台定时自动完成第三方平台url视频拉取并保存。支持批量设置拉取任务。 | POST | /vod/videoManage/pullVideo |
 | Pullvideoquery | 调用pullVideoQuery可以查询拉取任务完成情况。 | POST | /vod/videoManage/pullVideoQuery |
+| Getworkflowlist | 获取工作流 | POST | /workflow/getWorkflowList |
+| Gettranscodecombinelist | 获取转码组合 | POST | /vod/transcodeManage/getTranscodeCombineList |
+| Getsubtitlelist | 获取工作流列表 | POST | /vod/material/getSubtitleList |
+| Getdomainlistforcloudvuploadtool | 获取域名列表 | POST | /vod/domainManage/getDomainList |
+| Getwatermarklist | 获取水印 | POST | /vod/watermarkManage/getWatermarkList |
+| Getcategorylist | 获取分类列表 | POST | /vod/categoryManage/getCategoryList |

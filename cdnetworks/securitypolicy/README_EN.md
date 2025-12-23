@@ -22,7 +22,7 @@ The SDK uses AKSK (Access Key/Secret Key) authentication. Configure your credent
 package main
 
 import (
-    "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/common/auth"
+    "github.com/cdnetworks-api/cdnetworks-sdk-go/common/auth"
     "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/securitypolicy"
     "log"
 )
@@ -212,6 +212,8 @@ For detailed API documentation and available methods, please refer to the [offic
 | Addspecificclienttrafficbypass | Add the rules of Bypass Traffic from Specific Clients. | POST | /api/v1/bot-manage/scene/whitelist/add |
 | Updatespecificclienttrafficbypass | Update the rules of Bypass Traffic from Specific Clients. | POST | /api/v1/bot-manage/scene/whitelist/update |
 | Deletespecificclienttrafficbypass | Delete the rules of Bypass Traffic from Specific Clients. | POST | /api/v1/bot-manage/scene/whitelist/delete |
+| Getwebbotdetectionlist | Query web Bot detection configuration. | POST | /api/v1/bot-manage/web/list |
+| Updatewebbotdetection | Update web Bot detection configuration.<br>The browser analyse switch is ON by default , and this field is not allowed to be updated. | POST | /api/v1/bot-manage/web/update |
 | Addhtmlpageswithoutembeddingjs | For web Bot detection, add html pages without embedding JS. | POST | /api/v1/bot-manage/scene/web/js-exception/add |
 | Updatehtmlpageswithoutembeddingjs | For web Bot detection, update html pages without embedding JS. | POST | /api/v1/bot-manage/scene/web/js-exception/update |
 | Deletehtmlpageswithoutembeddingjs | For web Bot detection, delete html pages without embedding JS. | POST | /api/v1/bot-manage/scene/web/js-exception/delete |

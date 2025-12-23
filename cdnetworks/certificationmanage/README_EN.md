@@ -22,7 +22,7 @@ The SDK uses AKSK (Access Key/Secret Key) authentication. Configure your credent
 package main
 
 import (
-    "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/common/auth"
+    "github.com/cdnetworks-api/cdnetworks-sdk-go/common/auth"
     "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/certificationmanage"
     "log"
 )
@@ -81,3 +81,4 @@ For detailed API documentation and available methods, please refer to the [offic
 | Getcertificateassociatedhostnames | Query certificate related domains | GET | /api/certificate/*/domain |
 | Querydomainmulticertconfig | Query Domain MultiCert Config | GET | /api/config/certificate/v2/* |
 | Querycertificatepagination | This API is used to query paginated SSL certificate lists and their details. Users can specify the page number and page size to retrieve the certificate list. The results include certificate ID, certificate name, whether it is shared, and domain information using the current certificate. | POST | /api/ssl/certificate/pagination |
+| Getcertificatecontentinfos | This API retrieves detailed information for multiple certificates based on the provided list of certificate IDs, including encrypted key file content, certificate expiration date, certificate ID, encrypted crt file content, and certificate name. | POST | /api/ssl/content |

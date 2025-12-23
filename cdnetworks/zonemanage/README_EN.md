@@ -22,7 +22,7 @@ The SDK uses AKSK (Access Key/Secret Key) authentication. Configure your credent
 package main
 
 import (
-    "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/common/auth"
+    "github.com/cdnetworks-api/cdnetworks-sdk-go/common/auth"
     "github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/zonemanage"
     "log"
 )
@@ -86,3 +86,4 @@ For detailed API documentation and available methods, please refer to the [offic
 | Batchdeletezone | Batch delete zones, maximum 20 zones can be deleted at the same time | DELETE | /api/clouddns/zones/bulk/* |
 | Updateztsbulk | Batch create or update ZTS configuration information. Users can create or update ZTS configuration information autonomously through the interface to achieve Zone data synchronization | PUT | /api/clouddns/zts/bulk |
 | Deleteztsbulk | The ZTS configuration deletion interface removes the ZTS information configured on the Zone. After deletion, configuration changes to the Zone will no longer be automatically synchronized. | DELETE | /api/clouddns/zones/zts/bulk |
+| Updatezonestatus | This API is used to update the enable or disable status of one or more Zones. Through this API, users can control the resolution or stop the resolution of Zones. The request body must include the list of Zone IDs (`zoneIds`) to be operated on and the target status (`status`). | PUT | /api/clouddns/zones/status/bulk |

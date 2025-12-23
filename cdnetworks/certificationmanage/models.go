@@ -456,6 +456,124 @@ func (s QueryCertificatePaginationResponseHeader) GoString() string {
 
 
 
+type GetCertificateContentInfosRequest struct {
+  // {"en":"Certificate ID list","zh_CN":"证书ID列表"}
+  CertificateIdList []*string `json:"certificateIdList,omitempty" xml:"certificateIdList,omitempty" require:"true" type:"Repeated"`
+}
+
+func (s GetCertificateContentInfosRequest) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetCertificateContentInfosRequest) GoString() string {
+  return s.String()
+}
+
+func (s *GetCertificateContentInfosRequest) SetCertificateIdList(v []*string) *GetCertificateContentInfosRequest {
+  s.CertificateIdList = v
+  return s
+}
+
+type GetCertificateContentInfosRequestHeader struct {
+  // {"en":"Date.  Formatting to comply with RFC 1123 specifications as for Thu, 17 May 2012 19:37:58 GMT","zh_CN":"时间戳，格式需符合RFC 1123规范，如Thu, 17 May 2012 19:37:58 GMT"}
+  Date *string `json:"date,omitempty" xml:"date,omitempty" require:"true"`
+}
+
+func (s GetCertificateContentInfosRequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetCertificateContentInfosRequestHeader) GoString() string {
+  return s.String()
+}
+
+func (s *GetCertificateContentInfosRequestHeader) SetDate(v string) *GetCertificateContentInfosRequestHeader {
+  s.Date = &v
+  return s
+}
+
+type GetCertificateContentInfosPaths struct {
+}
+
+func (s GetCertificateContentInfosPaths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetCertificateContentInfosPaths) GoString() string {
+  return s.String()
+}
+
+type GetCertificateContentInfosParameters struct {
+}
+
+func (s GetCertificateContentInfosParameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetCertificateContentInfosParameters) GoString() string {
+  return s.String()
+}
+
+type GetCertificateContentInfosResponse struct {
+  // {"en":"Certificate id","zh_CN":"证书ID"}
+  CertificateId *int64 `json:"certificateId,omitempty" xml:"certificateId,omitempty" require:"true"`
+  // {"en":"The certificate name is unique under a customer.\nNote:\n1. Support single domain, multi domain and wildcard domain name.\n2. For example, the authorized domain name of certificate A is.example.com , a.example2.com, b.example2.com test.example.com , a.example2.com, can be associated with certificate A, while the domain name c.example2.com cannot use certificate A.","zh_CN":"证书名称，客户粒度下是唯一的\n\n注意：\n1、支持单域名、多域名和泛域名证书，即证书的授权域名允许为多个域名，或者泛域名\n2、例如：证书A的授权域名为.example.com，a.example2.com，b.example2.com，则域名test.example.com，a.example2.com，都可以关联使用证书A，而域名c.example2.com不能使用证书A"}
+  CertificateName *string `json:"certificateName,omitempty" xml:"certificateName,omitempty" require:"true"`
+  // {"en":"Certificate content. The encryption algorithm is the same as the creating a certificate.\nEncryption algorithm: First get md5 value of the request header 'Date'. Then take the left 8 bits of MD5 value as the key and the right 8 bits as the IV. Finally, encode the encrypted binary content with Base64. For example:\ndate=`env LANG=\"en_US.UTF-8\" date -u \"+%a, %d %b %Y %H:%M:%S GMT\"`\nmd5str=`echo -n $date | openssl md5`\nkey=`echo -n ${md5str:$((-32)):$((8))}|hexdump -e '8/1 \"%02X\"'`\niv=`echo -n ${md5str:$((-8))}|hexdump -e '8/1 \"%02X\"'`\nNote:\n1.Decryption command: file is the content of the certificate file (CRT, key, CA) responded by the interface\ncat $file |base64 -d|openssl enc -des -K $key -iv $iv -nosalt -d\n2. The date time of the HTTP request header must be the same as that of the above certificate encryption.","zh_CN":"crt文件内容，已加密。加密算法同新增证书的加密算法。\n加密算法说明：将http头中的Date值做md5运算，将md5值的左8位作为key，右8位作为iv，然后对文件内容作des加密，将加密后的二进制内容作base64编码，以下为示例参考：\ndate=`env LANG=\"en_US.UTF-8\" date -u \"+%a, %d %b %Y %H:%M:%S GMT\"`\nmd5str=`echo -n $date | openssl md5`\nkey=`echo -n ${md5str:$((-32)):$((8))}|hexdump -e '8/1 \"%02X\"'`\niv=`echo -n ${md5str:$((-8))}|hexdump -e '8/1 \"%02X\"'`\n注意：\n1、解密命令如下，file就是接口响应的证书文件内容（crt，key，ca）\ncat $file |base64 -d|openssl enc -des -K $key -iv $iv -nosalt -d\n2、http请求头的Date时间必须和上述证书加解密的时间一致"}
+  Certificate *string `json:"certificate,omitempty" xml:"certificate,omitempty" require:"true"`
+  // {"en":"Certificate key. The encryption algorithm is the same as creating a  new certificate","zh_CN":"key文件内容，已加密。加密算法同新增证书的加密算法。"}
+  PrivateKey *string `json:"privateKey,omitempty" xml:"privateKey,omitempty" require:"true"`
+  // {"en":"Certificate expiration time","zh_CN":"证书过期时间"}
+  ExpirationTime *string `json:"expirationTime,omitempty" xml:"expirationTime,omitempty" require:"true"`
+}
+
+func (s GetCertificateContentInfosResponse) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetCertificateContentInfosResponse) GoString() string {
+  return s.String()
+}
+
+func (s *GetCertificateContentInfosResponse) SetCertificateId(v int64) *GetCertificateContentInfosResponse {
+  s.CertificateId = &v
+  return s
+}
+
+func (s *GetCertificateContentInfosResponse) SetCertificateName(v string) *GetCertificateContentInfosResponse {
+  s.CertificateName = &v
+  return s
+}
+
+func (s *GetCertificateContentInfosResponse) SetCertificate(v string) *GetCertificateContentInfosResponse {
+  s.Certificate = &v
+  return s
+}
+
+func (s *GetCertificateContentInfosResponse) SetPrivateKey(v string) *GetCertificateContentInfosResponse {
+  s.PrivateKey = &v
+  return s
+}
+
+func (s *GetCertificateContentInfosResponse) SetExpirationTime(v string) *GetCertificateContentInfosResponse {
+  s.ExpirationTime = &v
+  return s
+}
+
+type GetCertificateContentInfosResponseHeader struct {
+}
+
+func (s GetCertificateContentInfosResponseHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetCertificateContentInfosResponseHeader) GoString() string {
+  return s.String()
+}
+
+
+
+
 type GetCertificateContentRequest struct {
 }
 
@@ -1047,8 +1165,6 @@ func (s GetCertificateAssociatedHostnamesResponseHeader) GoString() string {
 
 
 type GetCertificateV2Request struct {
-  // {"en":"The certificate ID you want to query.", "zh_CN":"指定要查询的证书ID，在URI上"}
-  CertificateId *int `json:"certificateId,omitempty" xml:"certificateId,omitempty" require:"true"`
 }
 
 func (s GetCertificateV2Request) String() string {
@@ -1059,17 +1175,52 @@ func (s GetCertificateV2Request) GoString() string {
   return s.String()
 }
 
-func (s *GetCertificateV2Request) SetCertificateId(v int) *GetCertificateV2Request {
+type GetCertificateV2RequestHeader struct {
+}
+
+func (s GetCertificateV2RequestHeader) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetCertificateV2RequestHeader) GoString() string {
+  return s.String()
+}
+
+type GetCertificateV2Paths struct {
+  // {"en":"The certificate ID you want to query.","zh_CN":"需要查询的证书id"}
+  CertificateId *int `json:"certificateId,omitempty" xml:"certificateId,omitempty" require:"true"`
+}
+
+func (s GetCertificateV2Paths) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetCertificateV2Paths) GoString() string {
+  return s.String()
+}
+
+func (s *GetCertificateV2Paths) SetCertificateId(v int) *GetCertificateV2Paths {
   s.CertificateId = &v
   return s
 }
 
+type GetCertificateV2Parameters struct {
+}
+
+func (s GetCertificateV2Parameters) String() string {
+  return tea.Prettify(s)
+}
+
+func (s GetCertificateV2Parameters) GoString() string {
+  return s.String()
+}
+
 type GetCertificateV2Response struct {
-  // {"en":"Response code, 0 means successful.", "zh_CN":"接口响应code，0代表成功。"}
+  // {"en":"Response code, 0 means successful.","zh_CN":"接口响应code，0代表成功。"}
   Code *int `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"Response error message if failed.", "zh_CN":"接口响应信息，success代表成功，失败则提供失败信息。"}
+  // {"en":"Response error message if failed.","zh_CN":"接口响应信息，success代表成功，失败则提供失败信息。"}
   Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
-  // {"en":"Response data array.", "zh_CN":"接口响应数据"}
+  // {"en":"Response data array.","zh_CN":"接口响应数据"}
   Data *GetCertificateV2ResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
 }
 
@@ -1097,21 +1248,21 @@ func (s *GetCertificateV2Response) SetData(v *GetCertificateV2ResponseData) *Get
 }
 
 type GetCertificateV2ResponseData struct {
-  // {"en":"certificate Id", "zh_CN":"证书ID。"}
+  // {"en":"Certificate ID","zh_CN":"证书ID。"}
   CertificateId *int `json:"certificateId,omitempty" xml:"certificateId,omitempty" require:"true"`
-  // {"en":"certificate name", "zh_CN":"证书名称。"}
+  // {"en":"Certificate name","zh_CN":"证书名称。"}
   Name *string `json:"name,omitempty" xml:"name,omitempty" require:"true"`
-  // {"en":"comment", "zh_CN":"备注信息。"}
+  // {"en":"Comment","zh_CN":"备注信息。"}
   Comment *string `json:"comment,omitempty" xml:"comment,omitempty" require:"true"`
-  // {"en":"certificate serial", "zh_CN":"证书序列号。"}
+  // {"en":"Certificate serial","zh_CN":"证书序列号。"}
   Serial *string `json:"serial,omitempty" xml:"serial,omitempty" require:"true"`
-  // {"en":"not befoe", "zh_CN":"签发时间。"}
+  // {"en":"Issue Date","zh_CN":"签发时间。"}
   NotBefore *string `json:"notBefore,omitempty" xml:"notBefore,omitempty" require:"true"`
-  // {"en":"not after", "zh_CN":"到期时间。"}
+  // {"en":"Expiration Date","zh_CN":"到期时间。"}
   NotAfter *string `json:"notAfter,omitempty" xml:"notAfter,omitempty" require:"true"`
-  // {"en":"common name", "zh_CN":"证书绑定的主域名。"}
+  // {"en":"Common name","zh_CN":"证书绑定的主域名。"}
   CommonName *string `json:"commonName,omitempty" xml:"commonName,omitempty" require:"true"`
-  // {"en":"Subject Alternative Names", "zh_CN":"证书绑定的附加域名列表。"}
+  // {"en":"Subject Alternative Names","zh_CN":"证书绑定的附加域名列表。"}
   SubjectAlternativeNames []*GetCertificateV2ResponseDataSubjectAlternativeNames `json:"subjectAlternativeNames,omitempty" xml:"subjectAlternativeNames,omitempty" require:"true" type:"Repeated"`
 }
 
@@ -1164,7 +1315,7 @@ func (s *GetCertificateV2ResponseData) SetSubjectAlternativeNames(v []*GetCertif
 }
 
 type GetCertificateV2ResponseDataSubjectAlternativeNames struct     {
-  // {"en":"Subject Alternative Name", "zh_CN":"证书绑定的附加域名"}
+  // {"en":"Subject Alternative Name","zh_CN":"证书绑定的附加域名"}
   SubjectAlternativeName *string `json:"subjectAlternativeName,omitempty" xml:"subjectAlternativeName,omitempty" require:"true"`
 }
 
@@ -1179,46 +1330,6 @@ func (s GetCertificateV2ResponseDataSubjectAlternativeNames) GoString() string {
 func (s *GetCertificateV2ResponseDataSubjectAlternativeNames) SetSubjectAlternativeName(v string) *GetCertificateV2ResponseDataSubjectAlternativeNames {
   s.SubjectAlternativeName = &v
   return s
-}
-
-type GetCertificateV2Paths struct {
-  // {"en":"The certificate ID you want to query.", "zh_CN":"需要查询的证书id"}
-  CertificateId *int `json:"certificateId,omitempty" xml:"certificateId,omitempty" require:"true"`
-}
-
-func (s GetCertificateV2Paths) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetCertificateV2Paths) GoString() string {
-  return s.String()
-}
-
-func (s *GetCertificateV2Paths) SetCertificateId(v int) *GetCertificateV2Paths {
-  s.CertificateId = &v
-  return s
-}
-
-type GetCertificateV2Parameters struct {
-}
-
-func (s GetCertificateV2Parameters) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetCertificateV2Parameters) GoString() string {
-  return s.String()
-}
-
-type GetCertificateV2RequestHeader struct {
-}
-
-func (s GetCertificateV2RequestHeader) String() string {
-  return tea.Prettify(s)
-}
-
-func (s GetCertificateV2RequestHeader) GoString() string {
-  return s.String()
 }
 
 type GetCertificateV2ResponseHeader struct {

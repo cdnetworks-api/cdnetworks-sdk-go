@@ -149,10 +149,10 @@ func (s QuerySubAccountInfoParameters) GoString() string {
 type QuerySubAccountInfoResponse struct {
   // {"en":"Status Code","zh_CN":"错误具体状态码"}
   Code *string `json:"code,omitempty" xml:"code,omitempty" require:"true"`
-  // {"en":"data","zh_CN":"返回数据"}
-  Data *QuerySubAccountInfoResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
   // {"en":"Message","zh_CN":"消息提示"}
   Message *string `json:"message,omitempty" xml:"message,omitempty" require:"true"`
+  // {"en":"data","zh_CN":"返回数据"}
+  Data *QuerySubAccountInfoResponseData `json:"data,omitempty" xml:"data,omitempty" require:"true" type:"Struct"`
 }
 
 func (s QuerySubAccountInfoResponse) String() string {
@@ -168,29 +168,29 @@ func (s *QuerySubAccountInfoResponse) SetCode(v string) *QuerySubAccountInfoResp
   return s
 }
 
-func (s *QuerySubAccountInfoResponse) SetData(v *QuerySubAccountInfoResponseData) *QuerySubAccountInfoResponse {
-  s.Data = v
-  return s
-}
-
 func (s *QuerySubAccountInfoResponse) SetMessage(v string) *QuerySubAccountInfoResponse {
   s.Message = &v
   return s
 }
 
+func (s *QuerySubAccountInfoResponse) SetData(v *QuerySubAccountInfoResponseData) *QuerySubAccountInfoResponse {
+  s.Data = v
+  return s
+}
+
 type QuerySubAccountInfoResponseData struct {
+  // {"en":"login name","zh_CN":"登录名"}
+  LoginName *string `json:"loginName,omitempty" xml:"loginName,omitempty" require:"true"`
+  // {"en":"display name","zh_CN":"称呼"}
+  DisplayName *string `json:"displayName,omitempty" xml:"displayName,omitempty" require:"true"`
+  // {"en":"email","zh_CN":"邮箱"}
+  Email *string `json:"email,omitempty" xml:"email,omitempty" require:"true"`
+  // {"en":"mobile","zh_CN":"手机"}
+  Mobile *string `json:"mobile,omitempty" xml:"mobile,omitempty" require:"true"`
   // {"en":"create time","zh_CN":"创建时间"}
   CreateTime *string `json:"createTime,omitempty" xml:"createTime,omitempty" require:"true"`
   // {"en":"consoleEnable","zh_CN":"是否允许登录控制台：1是 0 否"}
   ConsoleEnable *int `json:"consoleEnable,omitempty" xml:"consoleEnable,omitempty" require:"true"`
-  // {"en":"display name","zh_CN":"称呼"}
-  DisplayName *string `json:"displayName,omitempty" xml:"displayName,omitempty" require:"true"`
-  // {"en":"login name","zh_CN":"登录名"}
-  LoginName *string `json:"loginName,omitempty" xml:"loginName,omitempty" require:"true"`
-  // {"en":"mobile","zh_CN":"手机"}
-  Mobile *string `json:"mobile,omitempty" xml:"mobile,omitempty" require:"true"`
-  // {"en":"email","zh_CN":"邮箱"}
-  Email *string `json:"email,omitempty" xml:"email,omitempty" require:"true"`
   // {"en":"status","zh_CN":"状态： 1 启用 0 停用"}
   Status *int `json:"status,omitempty" xml:"status,omitempty" require:"true"`
 }
@@ -203,13 +203,8 @@ func (s QuerySubAccountInfoResponseData) GoString() string {
   return s.String()
 }
 
-func (s *QuerySubAccountInfoResponseData) SetCreateTime(v string) *QuerySubAccountInfoResponseData {
-  s.CreateTime = &v
-  return s
-}
-
-func (s *QuerySubAccountInfoResponseData) SetConsoleEnable(v int) *QuerySubAccountInfoResponseData {
-  s.ConsoleEnable = &v
+func (s *QuerySubAccountInfoResponseData) SetLoginName(v string) *QuerySubAccountInfoResponseData {
+  s.LoginName = &v
   return s
 }
 
@@ -218,8 +213,8 @@ func (s *QuerySubAccountInfoResponseData) SetDisplayName(v string) *QuerySubAcco
   return s
 }
 
-func (s *QuerySubAccountInfoResponseData) SetLoginName(v string) *QuerySubAccountInfoResponseData {
-  s.LoginName = &v
+func (s *QuerySubAccountInfoResponseData) SetEmail(v string) *QuerySubAccountInfoResponseData {
+  s.Email = &v
   return s
 }
 
@@ -228,8 +223,13 @@ func (s *QuerySubAccountInfoResponseData) SetMobile(v string) *QuerySubAccountIn
   return s
 }
 
-func (s *QuerySubAccountInfoResponseData) SetEmail(v string) *QuerySubAccountInfoResponseData {
-  s.Email = &v
+func (s *QuerySubAccountInfoResponseData) SetCreateTime(v string) *QuerySubAccountInfoResponseData {
+  s.CreateTime = &v
+  return s
+}
+
+func (s *QuerySubAccountInfoResponseData) SetConsoleEnable(v int) *QuerySubAccountInfoResponseData {
+  s.ConsoleEnable = &v
   return s
 }
 
@@ -891,25 +891,25 @@ func (s QueryPolicyAttachedMainAccountOrSubAccountResponseHeader) GoString() str
 
 
 type UpdateSubAccountRequest struct {
-  // {"en":"area code","zh_CN":"手机号区号"}
-  AreaCode *string `json:"areaCode,omitempty" xml:"areaCode,omitempty"`
-  // {"en":"password","zh_CN":"密码"}
-  Password *string `json:"password,omitempty" xml:"password,omitempty"`
-  // {"en":"openApiStatus","zh_CN":"是否开启OpenAPI 0否，1是"}
-  OpenApiStatus *int `json:"openApiStatus,omitempty" xml:"openApiStatus,omitempty"`
-  // {"en":"Programmatic Access or not 1:Yes0:No","zh_CN":"子用户是否允许登录控制台：1是 0 否"}
-  ConsoleEnable *int `json:"consoleEnable,omitempty" xml:"consoleEnable,omitempty"`
-  // {"en":"display name","zh_CN":"子用户显示名称"}
-  DisplayName *string `json:"displayName,omitempty" xml:"displayName,omitempty"`
   // {"en":"Sub account login name","zh_CN":"子用户登录名"}
   LoginName *string `json:"loginName,omitempty" xml:"loginName,omitempty" require:"true"`
-  // {"en":"mobile","zh_CN":"手机"}
-  Mobile *string `json:"mobile,omitempty" xml:"mobile,omitempty"`
-  // {"en":"loginResetPassword","zh_CN":"登录是否重置密码 1 是 0  否"}
-  LoginResetPassword *int `json:"loginResetPassword,omitempty" xml:"loginResetPassword,omitempty"`
+  // {"en":"display name","zh_CN":"子用户显示名称"}
+  DisplayName *string `json:"displayName,omitempty" xml:"displayName,omitempty"`
   // {"en":"email","zh_CN":"邮箱"}
   Email *string `json:"email,omitempty" xml:"email,omitempty"`
-  // {"en":"","zh_CN":"账号状态：0：禁用，1：启用"}
+  // {"en":"mobile","zh_CN":"手机"}
+  Mobile *string `json:"mobile,omitempty" xml:"mobile,omitempty"`
+  // {"en":"Programmatic Access or not 1:Yes0:No","zh_CN":"子用户是否允许登录控制台：1是 0 否"}
+  ConsoleEnable *int `json:"consoleEnable,omitempty" xml:"consoleEnable,omitempty"`
+  // {"en":"openApiStatus","zh_CN":"是否开启OpenAPI 0否，1是"}
+  OpenApiStatus *int `json:"openApiStatus,omitempty" xml:"openApiStatus,omitempty"`
+  // {"en":"area code","zh_CN":"手机号区号"}
+  AreaCode *string `json:"areaCode,omitempty" xml:"areaCode,omitempty"`
+  // {"en":"loginResetPassword","zh_CN":"登录是否重置密码 1 是 0  否"}
+  LoginResetPassword *int `json:"loginResetPassword,omitempty" xml:"loginResetPassword,omitempty"`
+  // {"en":"password","zh_CN":"密码"}
+  Password *string `json:"password,omitempty" xml:"password,omitempty"`
+  // {"en":"Account status: 0: Disabled, 1: Enabled","zh_CN":"账号状态：0：禁用，1：启用"}
   Status *int `json:"status,omitempty" xml:"status,omitempty"`
 }
 
@@ -921,23 +921,8 @@ func (s UpdateSubAccountRequest) GoString() string {
   return s.String()
 }
 
-func (s *UpdateSubAccountRequest) SetAreaCode(v string) *UpdateSubAccountRequest {
-  s.AreaCode = &v
-  return s
-}
-
-func (s *UpdateSubAccountRequest) SetPassword(v string) *UpdateSubAccountRequest {
-  s.Password = &v
-  return s
-}
-
-func (s *UpdateSubAccountRequest) SetOpenApiStatus(v int) *UpdateSubAccountRequest {
-  s.OpenApiStatus = &v
-  return s
-}
-
-func (s *UpdateSubAccountRequest) SetConsoleEnable(v int) *UpdateSubAccountRequest {
-  s.ConsoleEnable = &v
+func (s *UpdateSubAccountRequest) SetLoginName(v string) *UpdateSubAccountRequest {
+  s.LoginName = &v
   return s
 }
 
@@ -946,8 +931,8 @@ func (s *UpdateSubAccountRequest) SetDisplayName(v string) *UpdateSubAccountRequ
   return s
 }
 
-func (s *UpdateSubAccountRequest) SetLoginName(v string) *UpdateSubAccountRequest {
-  s.LoginName = &v
+func (s *UpdateSubAccountRequest) SetEmail(v string) *UpdateSubAccountRequest {
+  s.Email = &v
   return s
 }
 
@@ -956,13 +941,28 @@ func (s *UpdateSubAccountRequest) SetMobile(v string) *UpdateSubAccountRequest {
   return s
 }
 
+func (s *UpdateSubAccountRequest) SetConsoleEnable(v int) *UpdateSubAccountRequest {
+  s.ConsoleEnable = &v
+  return s
+}
+
+func (s *UpdateSubAccountRequest) SetOpenApiStatus(v int) *UpdateSubAccountRequest {
+  s.OpenApiStatus = &v
+  return s
+}
+
+func (s *UpdateSubAccountRequest) SetAreaCode(v string) *UpdateSubAccountRequest {
+  s.AreaCode = &v
+  return s
+}
+
 func (s *UpdateSubAccountRequest) SetLoginResetPassword(v int) *UpdateSubAccountRequest {
   s.LoginResetPassword = &v
   return s
 }
 
-func (s *UpdateSubAccountRequest) SetEmail(v string) *UpdateSubAccountRequest {
-  s.Email = &v
+func (s *UpdateSubAccountRequest) SetPassword(v string) *UpdateSubAccountRequest {
+  s.Password = &v
   return s
 }
 
