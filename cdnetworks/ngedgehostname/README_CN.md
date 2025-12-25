@@ -8,12 +8,6 @@
 go get github.com/cdnetworks-api/cdnetworks-sdk-go
 ```
 
-## 单独安装
-
-```bash
-go get github.com/cdnetworks-api/cdnetworks-sdk-go/cdnetworks/ngedgehostname
-```
-
 ## 示例用法
 
 该 SDK 使用 AKSK（访问密钥/秘密密钥）认证。按如下方式配置您的凭据：
@@ -29,7 +23,7 @@ import (
 
 func main() {
     // 参考本文档最后的API列表，修改一下对应的{ActionName}、Method、Uri
-    request := &ngedgehostname.ActionNameRequest{}
+    request := &ngedgehostname.{ActionName}Request{}
 
     // Configure authentication
     var config auth.AkskConfig

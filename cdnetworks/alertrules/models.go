@@ -100,11 +100,11 @@ type QueryCloudMonitorRealTimeAlarmRuleResponseData struct {
   RuleId *string `json:"ruleId,omitempty" xml:"ruleId,omitempty" require:"true"`
   // {"en":"Alert rule name","zh_CN":"报警规则名称"}
   RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
-  // {"en":"Monitor product or dimension","zh_CN":"按指定维度或指定已开通商品监控（userDimension-主账号维度、DG-域名组、CG-服务组、domainDimension-域名维度）"}
+  // {"en":"Monitor product or dimension\nuserDimension: Means monitor per account level.\nDG: Means monitor per Domain Group.\nCG: Means monitor per Control Group.\ndomainDimension: Means monitor per domains.\nAcceptable product codes are: web, web-https, wsa, wsa-https, download, dl-https, livestream, live-https, dms, and dms-https.","zh_CN":"展示监控维度：\n主账号维度：userDimension\n域名组：DG\n服务组：CG\n域名维度：domainDimension\n已开通产品维度: web, web-https, wsa, wsa-https, download, dl-https, livestream, live-https, dms, and dms-https."}
   MonitorProduct *string `json:"monitorProduct,omitempty" xml:"monitorProduct,omitempty" require:"true"`
-  // {"en":"Resource type","zh_CN":"监控资源类型"}
+  // {"en":"Type of resources monitored.","zh_CN":"监控资源类型"}
   ResourceType *string `json:"resourceType,omitempty" xml:"resourceType,omitempty" require:"true"`
-  // {"en":"Monitor resources list or ALL","zh_CN":"监控的资源名称列表或ALL"}
+  // {"en":"List of resources to be monitored.\n1. Empty when monitorProduct is userDimension.\n2. \"ALL\" or a list of domain names when monitorProduct is a product code.\n3. A list of domain names when monitorProduct is set to \"domainDimension\".\n4. A list of domain group IDs when monitorProduct is set to \"DG\".\n5. A list of control group codes when monitorProduct is set to \"CG\".","zh_CN":"展示具体监控资源列表：\n1.当monitorProduct 值为 userDimension时，值为空\n2.当monitorProduct 值为具体产品code时，值为ALL 或为具体域名信息\n3.当monitorProduct 值为 domainDimension 时，值为具体域名信息\n4.当monitorProduct 值为 DG 时，值为域名组ID列表\n5.当monitorProduct 值为 CG 时，值为Control Group Code列表"}
   MonitorResources []*string `json:"monitorResources,omitempty" xml:"monitorResources,omitempty" require:"true" type:"Repeated"`
   // {"en":"Statistical method (CONSOLIDATED/SEPARATE)","zh_CN":"统计方式（CONSOLIDATED-合并统计、SEPARATE-逐一统计）"}
   StatisticalMethod *string `json:"statisticalMethod,omitempty" xml:"statisticalMethod,omitempty" require:"true"`
@@ -237,11 +237,11 @@ func (s *QueryCloudMonitorRealTimeAlarmRuleResponseDataRuleItems) SetConditionRu
 }
 
 type QueryCloudMonitorRealTimeAlarmRuleResponseDataRuleItemsConditionRules struct     {
-  // {"en":"Monitor item (BANDWIDTH, FLOW, REQUEST, etc.)","zh_CN":"监控项（BANDWIDTH-带宽、FLOW-流量、REQUEST-请求数等）"}
+  // {"en":"Monitor item: BANDWIDTH(Bandwidth), BTOB(Back-to-Origin Bandwidth), FLOW(Traffic), REQUEST(Requests), O_REQUEST_COUNT(Origin Back-to-Origin Requests), FLOW_HIT_RATE(Traffic Hit Ratio), STATUS_0(Status Code 0XX Ratio), STATUS_4(Status Code 4XX Ratio), STATUS_5(Status Code 5XX Ratio), O_STATUS_4(Back-to-Origin Status Code 4XX Ratio), O_STATUS_5(Back-to-Origin Status Code 5XX Ratio), STATUS_0_NUM(Status Code 0XX Requests), STATUS_4_NUM(Status Code 4XX Requests), STATUS_5_NUM(Status Code 5XX Requests), O_STATUS_4_NUM(Back-to-Origin Status Code 4XX Requests), O_STATUS_5_NUM(Back-to-Origin Status Code 4XX Requests) etc.","zh_CN":"监控项（BANDWIDTH-带宽、BTOB-回源带宽、FLOW-流量、REQUEST-请求数、O_REQUEST_COUNT-回源请求数、FLOW_HIT_RATE-流量命中率、STATUS_0-状态码0XX占比、STATUS_4-状态码4XX占比、STATUS_5-状态码5XX占比、O_STATUS_4-回源状态码4XX占比、O_STATUS_5-回源状态码5XX占比、STATUS_0_NUM-状态码0XX个数、STATUS_4_NUM-状态码4XX个数、STATUS_5_NUM-状态码5XX个数、O_STATUS_4_NUM-回源状态码4XX个数、O_STATUS_5_NUM-回源状态码5XX个数）"}
   MonitorItem *string `json:"monitorItem,omitempty" xml:"monitorItem,omitempty" require:"true"`
   // {"en":"Condition type (MAX, MIN, UPRUSH, SLUMPED)","zh_CN":"条件类型（MAX-大于、MIN-小于、UPRUSH-突增、SLUMPED-突降）"}
   Condition *string `json:"condition,omitempty" xml:"condition,omitempty" require:"true"`
-  // {"en":"Threshold value","zh_CN":"监控项阈值"}
+  // {"en":"Threshold value\nUnit Description:\nBandwidth / Peak Bandwidth  Unit: Mbps \nTraffic Unit: MB\nStatus Code / Number of Requests  Unit: requests\nRatio Unit: %","zh_CN":"监控项阈值\n单位说明：\n带宽/带宽峰值类 单位：Mbps\n流量类 单位：MB\n状态码/请求数类 单位：个\n占比类 单位：%"}
   Threshold *string `json:"threshold,omitempty" xml:"threshold,omitempty" require:"true"`
 }
 
@@ -312,17 +312,17 @@ type EditCloudMonitorRealTimeAlarmRuleRequest struct {
   RuleId *string `json:"ruleId,omitempty" xml:"ruleId,omitempty" require:"true"`
   // {"en":"Alert rule name, only supports Chinese, English, numbers, underscore, hyphen, max 100 characters","zh_CN":"报警规则名称，仅支持中英文、数字、下划线、中划线，最多100个字符"}
   RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
-  // {"en":"Monitor by dimension or product. Dimensions: userDimension, DG, CG, domainDimension. Or input product code","zh_CN":"可选按指定维度或指定已开通商品监控。指定维度可选项：userDimension-主账号维度、DG-域名组、CG-服务组、domainDimension-域名维度。若按商品监控，请传入商品code"}
+  // {"en":"Moinitor per a given dimension. Supported dimensions are:\n\nuserDimension: Means monitor per account level.\nDG: Means monitor per Domain Group.\nCG: Means monitor per Control Group.\ndomainDimension: Means monitor per domains.\n\nIf you're subscribed to multiple products and you want to set up product specific monitor rules, specify a product code here. Acceptable product codes are: web, web-https, wsa, wsa-https, download, dl-https, livestream, live-https, dms, and dms-https.","zh_CN":"可选按指定维度或指定已开通商品监控。指定维度可选项：userDimension-主账号维度、DG-域名组、CG-服务组、domainDimension-域名维度。\n若按商品监控，请传入已开通的商品code，例如 web,web-https,wsa,wsa-https,download,dl-https,livestream,live-https,dms,dms-https 等"}
   MonitorProduct *string `json:"monitorProduct,omitempty" xml:"monitorProduct,omitempty" require:"true"`
-  // {"en":"Resource type. Required when monitorProduct is specific product. Options: domain","zh_CN":"监控资源类型。当monitorPorduct传入指定商品时，需要必传resourceType。可选值：domain"}
+  // {"en":"Type of resources monitored. Required only when the value specified for monitorProduct is a product code. The type must be always set to \"domain\".","zh_CN":"监控资源类型。当monitorPorduct传入指定商品时，需要必传resourceType。可选值：domain"}
   ResourceType *string `json:"resourceType,omitempty" xml:"resourceType,omitempty"`
-  // {"en":"List of resource names to monitor or ALL","zh_CN":"传入具体要监控的资源名称列表或ALL"}
+  // {"en":"List of resources to be monitored. Required unless monitorProduct is set to \"userDimension\". The resources specified must be:\n\n1. Either \"ALL\" or a list of domains, when monitorProduct specified is a product code.\n2. Must be a list of domains, when monitorProduct is set to \"domainDimension\".\n3. Must be a list of Ids of domain groups, when monitorProduct is set to \"DG\".\n4. Must be a list of codes of control groups, when monitorProduct is set to \"CG\".","zh_CN":"需要监控的资源列表。除非 monitorProduct 设置为“userDimension”，否则此项为必填项。\n指定的资源列表需满足以下规则：\n1. 当 monitorProduct 为产品代码时，可以是“ALL”或域名列表。\n2. 当 monitorProduct 设置为“domainDimension”时，必须是域名列表。\n3. 当 monitorProduct 设置为“DG”时，必须是域名组ID列表。\n4. 当 monitorProduct 设置为“CG”时，必须是Control Group Code列表。"}
   MonitorResources []*string `json:"monitorResources,omitempty" xml:"monitorResources,omitempty" type:"Repeated"`
-  // {"en":"Statistical method. Default: CONSOLIDATED. Options: CONSOLIDATED-consolidated statistics, SEPARATE-separate statistics","zh_CN":"统计方式。未传默认按合并统计。可选值：CONSOLIDATED-合并统计、SEPARATE-逐一统计"}
+  // {"defaultValue":"CONSOLIDATED","en":"Statistical method. Default: CONSOLIDATED. Options: CONSOLIDATED-consolidated statistics, SEPARATE-separate statistics","zh_CN":"统计方式。未传默认按合并统计。可选值：CONSOLIDATED-合并统计、SEPARATE-逐一统计","exampleValue":"CONSOLIDATED,SEPARATE"}
   StatisticalMethod *string `json:"statisticalMethod,omitempty" xml:"statisticalMethod,omitempty"`
-  // {"en":"Alert frequency in minutes. Default: 5. Options: 0-first alert only, 2, 5, 10, 15, 20","zh_CN":"告警频率。避免告警风暴，每X分钟内产生的告警仅通知一次。未传默认值是5。可选值：0-仅首次告警、2、5、10、15、20"}
+  // {"defaultValue":"5","en":"Alert frequency in minutes. Default: 5. Options: 0-first alert only, 2, 5, 10, 15, 20","zh_CN":"告警频率。避免告警风暴，每X分钟内产生的告警仅通知一次。未传默认值是5。可选值：0-仅首次告警、2、5、10、15、20","exampleValue":"0,2,5,10,15,20"}
   AlertFrequency *int `json:"alertFrequency,omitempty" xml:"alertFrequency,omitempty"`
-  // {"en":"Whether to notify on alert recovery. Default: true","zh_CN":"告警消警是否通知，未传默认为是。可选值：true-是、false-否"}
+  // {"defaultValue":"true","en":"Whether to notify on alert recovery. Default: true","zh_CN":"告警消警是否通知，未传默认为是。可选值：true-是、false-否","exampleValue":"true,false"}
   RestoreNotice *string `json:"restoreNotice,omitempty" xml:"restoreNotice,omitempty"`
   // {"en":"Rule items list","zh_CN":"规则项列表"}
   RuleItems []*EditCloudMonitorRealTimeAlarmRuleRequestRuleItems `json:"ruleItems,omitempty" xml:"ruleItems,omitempty" require:"true" type:"Repeated"`
@@ -395,11 +395,11 @@ type EditCloudMonitorRealTimeAlarmRuleRequestRuleItems struct     {
   StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
   // {"en":"Monitoring period end time, format: HH:59, example: 01:59","zh_CN":"监控时段结束时间，格式：HH:59，示例：01:59"}
   EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
-  // {"en":"Alert condition type. Options: ANY-any condition, ALL-all conditions","zh_CN":"告警需满足任意或全部条件。可选值：ANY-任意、ALL-全部"}
+  // {"defaultValue":"ANY","en":"Alert condition type. Options: ANY-any condition, ALL-all conditions","zh_CN":"告警需满足任意或全部条件。可选值：ANY-任意、ALL-全部","exampleValue":"ANY,ALL"}
   ConditionType *string `json:"conditionType,omitempty" xml:"conditionType,omitempty" require:"true"`
-  // {"en":"Monitoring cycle in minutes. Options: 1, 5, 10","zh_CN":"监控周期，周期单位为分钟。可选值：1-1分钟、5-5分钟、10-10分钟"}
+  // {"en":"Monitoring cycle in minutes. Options: 1, 5, 10","zh_CN":"监控周期，周期单位为分钟。可选值：1-1分钟、5-5分钟、10-10分钟","exampleValue":"1,5,10"}
   Period *int `json:"period,omitempty" xml:"period,omitempty" require:"true"`
-  // {"en":"Number of cycles to meet conditions before alerting. Options: 1, 2, 3, 5, 15, 30","zh_CN":"持续几个周期满足条件告警。可选值：1、2、3、5、15、30"}
+  // {"en":"Number of cycles to meet conditions before alerting. Options: 1, 2, 3, 5, 15, 30","zh_CN":"持续几个周期满足条件告警。可选值：1、2、3、5、15、30","exampleValue":"1,2,3,5,15,30"}
   PeriodTimes *int `json:"periodTimes,omitempty" xml:"periodTimes,omitempty" require:"true"`
   // {"en":"Condition rules list","zh_CN":"条件规则列表"}
   ConditionRules []*EditCloudMonitorRealTimeAlarmRuleRequestRuleItemsConditionRules `json:"conditionRules,omitempty" xml:"conditionRules,omitempty" require:"true" type:"Repeated"`
@@ -449,11 +449,11 @@ func (s *EditCloudMonitorRealTimeAlarmRuleRequestRuleItems) SetConditionRules(v 
 }
 
 type EditCloudMonitorRealTimeAlarmRuleRequestRuleItemsConditionRules struct     {
-  // {"en":"Monitoring items currently only support domain-type monitoring items. Options: BANDWIDTH, FLOW, REQUEST, BTOB, FLOW_HIT_RATE, etc.","zh_CN":"当前仅支持监控对象类型为域名的监控项。可选监控项：BANDWIDTH-带宽、FLOW-流量、REQUEST-请求数、BTOB-回源带宽、FLOW_HIT_RATE-流量命中率等"}
+  // {"en":"Monitoring items currently only support domain-type monitoring items. Options: BANDWIDTH(Bandwidth), BTOB(Back-to-Origin Bandwidth), FLOW(Traffic), REQUEST(Requests), O_REQUEST_COUNT(Origin Back-to-Origin Requests), FLOW_HIT_RATE(Traffic Hit Ratio), STATUS_0(Status Code 0XX Ratio), STATUS_4(Status Code 4XX Ratio), STATUS_5(Status Code 5XX Ratio), O_STATUS_4(Back-to-Origin Status Code 4XX Ratio), O_STATUS_5(Back-to-Origin Status Code 5XX Ratio), STATUS_0_NUM(Status Code 0XX Requests), STATUS_4_NUM(Status Code 4XX Requests), STATUS_5_NUM(Status Code 5XX Requests), O_STATUS_4_NUM(Back-to-Origin Status Code 4XX Requests), O_STATUS_5_NUM(Back-to-Origin Status Code 4XX Requests) etc.","zh_CN":"当前仅支持监控对象类型为域名的监控项。\n可选监控项：BANDWIDTH-带宽、BTOB-回源带宽、FLOW-流量、REQUEST-请求数、O_REQUEST_COUNT-回源请求数、FLOW_HIT_RATE-流量命中率、STATUS_0-状态码0XX占比、STATUS_4-状态码4XX占比、STATUS_5-状态码5XX占比、O_STATUS_4-回源状态码4XX占比、O_STATUS_5-回源状态码5XX占比、STATUS_0_NUM-状态码0XX个数、STATUS_4_NUM-状态码4XX个数、STATUS_5_NUM-状态码5XX个数、O_STATUS_4_NUM-回源状态码4XX个数、O_STATUS_5_NUM-回源状态码5XX个数 等","exampleValue":"BANDWIDTH,BTOB,FLOW,REQUEST,O_REQUEST_COUNT,FLOW_HIT_RATE,STATUS_0,STATUS_4,STATUS_5,O_STATUS_4,O_STATUS_5,STATUS_0_NUM,STATUS_4_NUM,STATUS_5_NUM,O_STATUS_4_NUM,O_STATUS_5_NUM"}
   MonitorItem *string `json:"monitorItem,omitempty" xml:"monitorItem,omitempty" require:"true"`
-  // {"en":"Condition type. Options: MAX-greater than, MIN-less than, UPRUSH-surge, SLUMPED-plunge","zh_CN":"条件类型。可选值：MAX-大于、MIN-小于、UPRUSH-突增、SLUMPED-突降"}
+  // {"en":"Condition type. Options: MAX-greater than, MIN-less than, UPRUSH-surge, SLUMPED-plunge","zh_CN":"条件类型。可选值：MAX-大于、MIN-小于、UPRUSH-突增、SLUMPED-突降","exampleValue":"MAX,MIN,UPRUSH,SLUMPED"}
   Condition *string `json:"condition,omitempty" xml:"condition,omitempty" require:"true"`
-  // {"en":"Threshold value, please provide a positive integer","zh_CN":"监控项阈值，请传递正整数"}
+  // {"en":"Threshold value, please provide a positive integer\nUnit Description:\nBandwidth / Peak Bandwidth  Unit: Mbps \nTraffic Unit: MB\nStatus Code / Number of Requests  Unit: requests\nRatio Unit: %","zh_CN":"监控项阈值，请传递正整数\n单位说明：\n带宽/带宽峰值类 单位：Mbps\n流量类 单位：MB\n状态码/请求数类 单位：个\n占比类 单位：%"}
   Threshold *string `json:"threshold,omitempty" xml:"threshold,omitempty" require:"true"`
 }
 
@@ -481,7 +481,7 @@ func (s *EditCloudMonitorRealTimeAlarmRuleRequestRuleItemsConditionRules) SetThr
 }
 
 type EditCloudMonitorRealTimeAlarmRuleRequestNotices struct     {
-  // {"en":"Notification method. Options: MOBILE, EMAIL, robot, webhook","zh_CN":"通知方式。可选值：MOBILE-短信、EMAIL-邮件、ROBOT-机器人、WEBHOOK-webhook回调"}
+  // {"en":"Notification method. Options: MOBILE, EMAIL, robot, webhook","zh_CN":"通知方式。可选值：MOBILE-短信、EMAIL-邮件、ROBOT-机器人、WEBHOOK-webhook回调","exampleValue":"MOBILE,EMAIL,ROBOT,WEBHOOK"}
   NoticeMethod *string `json:"noticeMethod,omitempty" xml:"noticeMethod,omitempty" require:"true"`
   // {"en":"Notification object. For MOBILE/EMAIL: contact IDs separated by ;. For ROBOT: robot IDs separated by ;. For WEBHOOK: webhook URL","zh_CN":"告警通知对象。若noticeMethod为MOBILE、EMAIL：请传递联系人id，多个用;分隔。若为ROBOT：请传递机器人id，多个用;分隔。若为WEBHOOK：请直接传递webhook地址"}
   NoticeObject *string `json:"noticeObject,omitempty" xml:"noticeObject,omitempty" require:"true"`
@@ -695,17 +695,17 @@ func (s DeleteCloudMonitorRealTimeAlarmRuleResponseHeader) GoString() string {
 type CreateCloudMonitorRealTimeAlarmRuleRequest struct {
   // {"en":"Alert rule name, only supports Chinese, English, numbers, underscore, hyphen, max 100 characters","zh_CN":"报警规则名称，仅支持中英文、数字、下划线、中划线，最多100个字符"}
   RuleName *string `json:"ruleName,omitempty" xml:"ruleName,omitempty" require:"true"`
-  // {"en":"Monitor by dimension or product. Dimensions: userDimension, DG, CG, domainDimension. Or input product code","zh_CN":"可选按指定维度或指定已开通商品监控。指定维度可选项：userDimension-主账号维度、DG-域名组、CG-服务组、domainDimension-域名维度。若按商品监控，请传入商品code"}
+  // {"en":"Moinitor per a given dimension. Supported dimensions are:\n\nuserDimension: Means monitor per account level.\nDG: Means monitor per Domain Group.\nCG: Means monitor per Control Group.\ndomainDimension: Means monitor per domains.\n\nIf you're subscribed to multiple products and you want to set up product specific monitor rules, specify a product code here. Acceptable product codes are: web, web-https, wsa, wsa-https, download, dl-https, livestream, live-https, dms, and dms-https.","zh_CN":"可选按指定维度或指定已开通商品监控。指定维度可选项：userDimension-主账号维度、DG-域名组、CG-服务组、domainDimension-域名维度。\n若按商品监控，请传入已开通的商品code，例如 web,web-https,wsa,wsa-https,download,dl-https,livestream,live-https,dms,dms-https 等"}
   MonitorProduct *string `json:"monitorProduct,omitempty" xml:"monitorProduct,omitempty" require:"true"`
-  // {"en":"Resource type. Required when monitorProduct is specific product. Options: domain","zh_CN":"监控资源类型。当monitorPorduct传入指定商品时，需要必传resourceType。可选值：domain"}
+  // {"en":"Type of resources monitored. Required only when the value specified for monitorProduct is a product code. The type must be always set to \"domain\".","zh_CN":"监控资源类型。当monitorPorduct传入商品信息时，需要必传resourceType。可选值：domain"}
   ResourceType *string `json:"resourceType,omitempty" xml:"resourceType,omitempty"`
-  // {"en":"List of resource names to monitor or ALL","zh_CN":"传入具体要监控的资源名称列表或ALL"}
+  // {"en":"List of resources to be monitored. Required unless monitorProduct is set to \"userDimension\". The resources specified must be:\n\n1. Either \"ALL\" or a list of domains, when monitorProduct specified is a product code.\n2. Must be a list of domains, when monitorProduct is set to \"domainDimension\".\n3. Must be a list of Ids of domain groups, when monitorProduct is set to \"DG\".\n4. Must be a list of codes of control groups, when monitorProduct is set to \"CG\".","zh_CN":"需要监控的资源列表。除非 monitorProduct 设置为“userDimension”，否则此项为必填项。\n指定的资源列表需满足以下规则：\n1. 当 monitorProduct 为产品代码时，可以是“ALL”或域名列表。\n2. 当 monitorProduct 设置为“domainDimension”时，必须是域名列表。\n3. 当 monitorProduct 设置为“DG”时，必须是域名组ID列表。\n4. 当 monitorProduct 设置为“CG”时，必须是Control Group Code列表。"}
   MonitorResources []*string `json:"monitorResources,omitempty" xml:"monitorResources,omitempty" type:"Repeated"`
-  // {"en":"Statistical method. Default: CONSOLIDATED. Options: CONSOLIDATED-consolidated statistics, SEPARATE-separate statistics","zh_CN":"统计方式。未传默认按合并统计。可选值：CONSOLIDATED-合并统计、SEPARATE-逐一统计"}
+  // {"defaultValue":"CONSOLIDATED","en":"Statistical method. Default: CONSOLIDATED. Options: CONSOLIDATED-consolidated statistics, SEPARATE-separate statistics","zh_CN":"统计方式。未传默认按合并统计。可选值：CONSOLIDATED-合并统计、SEPARATE-逐一统计","exampleValue":"CONSOLIDATED,SEPARATE"}
   StatisticalMethod *string `json:"statisticalMethod,omitempty" xml:"statisticalMethod,omitempty"`
-  // {"en":"Alert frequency in minutes. Default: 5. Options: 0-first alert only, 2, 5, 10, 15, 20","zh_CN":"告警频率。避免告警风暴，每X分钟内产生的告警仅通知一次。未传默认值是5。可选值：0-仅首次告警、2、5、10、15、20"}
+  // {"defaultValue":"5","en":"Alert frequency in minutes. Default: 5. Options: 0-first alert only, 2, 5, 10, 15, 20","zh_CN":"告警频率。避免告警风暴，每X分钟内产生的告警仅通知一次。未传默认值是5。可选值：0-仅首次告警、2、5、10、15、20","exampleValue":"0,2,5,10,15,20"}
   AlertFrequency *int `json:"alertFrequency,omitempty" xml:"alertFrequency,omitempty"`
-  // {"en":"Whether to notify on alert recovery. Default: true","zh_CN":"告警消警是否通知，未传默认为是。可选值：true-是、false-否"}
+  // {"defaultValue":"true","en":"Whether to notify on alert recovery. Default: true","zh_CN":"告警消警是否通知，未传默认为是。可选值：true-是、false-否","exampleValue":"true,false"}
   RestoreNotice *string `json:"restoreNotice,omitempty" xml:"restoreNotice,omitempty"`
   // {"en":"Rule items list","zh_CN":"规则项列表"}
   RuleItems []*CreateCloudMonitorRealTimeAlarmRuleRequestRuleItems `json:"ruleItems,omitempty" xml:"ruleItems,omitempty" require:"true" type:"Repeated"`
@@ -771,11 +771,11 @@ type CreateCloudMonitorRealTimeAlarmRuleRequestRuleItems struct     {
   StartTime *string `json:"startTime,omitempty" xml:"startTime,omitempty" require:"true"`
   // {"en":"Monitoring period end time, format: HH:59, example: 01:59","zh_CN":"监控时段结束时间，格式：HH:59，示例：01:59"}
   EndTime *string `json:"endTime,omitempty" xml:"endTime,omitempty" require:"true"`
-  // {"en":"Alert condition type. Options: ANY-any condition, ALL-all conditions","zh_CN":"告警需满足任意或全部条件。可选值：ANY-任意、ALL-全部"}
+  // {"defaultValue":"ANY","en":"Alert condition type. Options: ANY-any condition, ALL-all conditions","zh_CN":"告警需满足任意或全部条件。可选值：ANY-任意、ALL-全部","exampleValue":"ANY,ALL"}
   ConditionType *string `json:"conditionType,omitempty" xml:"conditionType,omitempty" require:"true"`
-  // {"en":"Monitoring cycle in minutes. Options: 1, 5, 10","zh_CN":"监控周期，周期单位为分钟。可选值：1-1分钟、5-5分钟、10-10分钟"}
+  // {"en":"Monitoring cycle in minutes. Options: 1, 5, 10","zh_CN":"监控周期，周期单位为分钟。可选值：1-1分钟、5-5分钟、10-10分钟","exampleValue":"1,5,10"}
   Period *int `json:"period,omitempty" xml:"period,omitempty" require:"true"`
-  // {"en":"Number of cycles to meet conditions before alerting. Options: 1, 2, 3, 5, 15, 30","zh_CN":"持续几个周期满足条件告警。可选值：1、2、3、5、15、30"}
+  // {"en":"Number of cycles to meet conditions before alerting. Options: 1, 2, 3, 5, 15, 30","zh_CN":"持续几个周期满足条件告警。可选值：1、2、3、5、15、30","exampleValue":"1,2,3,5,15,30"}
   PeriodTimes *int `json:"periodTimes,omitempty" xml:"periodTimes,omitempty" require:"true"`
   // {"en":"Condition rules list","zh_CN":"条件规则列表"}
   ConditionRules []*CreateCloudMonitorRealTimeAlarmRuleRequestRuleItemsConditionRules `json:"conditionRules,omitempty" xml:"conditionRules,omitempty" require:"true" type:"Repeated"`
@@ -820,11 +820,11 @@ func (s *CreateCloudMonitorRealTimeAlarmRuleRequestRuleItems) SetConditionRules(
 }
 
 type CreateCloudMonitorRealTimeAlarmRuleRequestRuleItemsConditionRules struct     {
-  // {"en":"Monitoring items currently only support domain-type monitoring items. Options: BANDWIDTH, FLOW, REQUEST, BTOB, FLOW_HIT_RATE, etc.","zh_CN":"当前仅支持监控对象类型为域名的监控项。可选监控项：BANDWIDTH-带宽、FLOW-流量、REQUEST-请求数、BTOB-回源带宽、FLOW_HIT_RATE-流量命中率等"}
+  // {"en":"Monitoring items currently only support domain-type monitoring items. Options: BANDWIDTH(Bandwidth), BTOB(Back-to-Origin Bandwidth), FLOW(Traffic), REQUEST(Requests), O_REQUEST_COUNT(Origin Back-to-Origin Requests), FLOW_HIT_RATE(Traffic Hit Ratio), STATUS_0(Status Code 0XX Ratio), STATUS_4(Status Code 4XX Ratio), STATUS_5(Status Code 5XX Ratio), O_STATUS_4(Back-to-Origin Status Code 4XX Ratio), O_STATUS_5(Back-to-Origin Status Code 5XX Ratio), STATUS_0_NUM(Status Code 0XX Requests), STATUS_4_NUM(Status Code 4XX Requests), STATUS_5_NUM(Status Code 5XX Requests), O_STATUS_4_NUM(Back-to-Origin Status Code 4XX Requests), O_STATUS_5_NUM(Back-to-Origin Status Code 4XX Requests) etc.","zh_CN":"当前仅支持监控对象类型为域名的监控项。可选监控项：BANDWIDTH-带宽、BTOB-回源带宽、FLOW-流量、REQUEST-请求数、O_REQUEST_COUNT-回源请求数、FLOW_HIT_RATE-流量命中率、STATUS_0-状态码0XX占比、STATUS_4-状态码4XX占比、STATUS_5-状态码5XX占比、O_STATUS_4-回源状态码4XX占比、O_STATUS_5-回源状态码5XX占比、STATUS_0_NUM-状态码0XX个数、STATUS_4_NUM-状态码4XX个数、STATUS_5_NUM-状态码5XX个数、O_STATUS_4_NUM-回源状态码4XX个数、O_STATUS_5_NUM-回源状态码5XX个数等","exampleValue":"BANDWIDTH,BTOB,FLOW,REQUEST,O_REQUEST_COUNT,FLOW_HIT_RATE,STATUS_0,STATUS_4,STATUS_5,O_STATUS_4,O_STATUS_5,STATUS_0_NUM,STATUS_4_NUM,STATUS_5_NUM,O_STATUS_4_NUM,O_STATUS_5_NUM"}
   MonitorItem *string `json:"monitorItem,omitempty" xml:"monitorItem,omitempty" require:"true"`
-  // {"en":"Condition type. Options: MAX-greater than, MIN-less than, UPRUSH-surge, SLUMPED-plunge","zh_CN":"条件类型。可选值：MAX-大于、MIN-小于、UPRUSH-突增、SLUMPED-突降"}
+  // {"en":"Condition type. Options: MAX-greater than, MIN-less than, UPRUSH-surge, SLUMPED-plunge","zh_CN":"条件类型。可选值：MAX-大于、MIN-小于、UPRUSH-突增、SLUMPED-突降","exampleValue":"MAX,MIN,UPRUSH,SLUMPED"}
   Condition *string `json:"condition,omitempty" xml:"condition,omitempty" require:"true"`
-  // {"en":"Threshold value, please provide a positive integer","zh_CN":"监控项阈值，请传递正整数"}
+  // {"en":"Threshold value, please provide a positive integer\nUnit Description:\nBandwidth / Peak Bandwidth  Unit: Mbps \nTraffic Unit: MB\nStatus Code / Number of Requests  Unit: requests\nRatio Unit: %","zh_CN":"监控项阈值，请传递正整数\n单位说明：\n带宽/带宽峰值类 单位：Mbps\n流量类 单位：MB\n状态码/请求数类 单位：个\n占比类 单位：%"}
   Threshold *string `json:"threshold,omitempty" xml:"threshold,omitempty" require:"true"`
 }
 
