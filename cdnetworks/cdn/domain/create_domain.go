@@ -15,6 +15,8 @@ type AddDomainForTerraformRequest struct {
 	ItemId *string `json:"itemId,omitempty" xml:"itemId,omitempty"`
 	// 是否纯海外加速，入参范围：true、false
 	AccelerateNoChina *string `json:"accelerateNoChina,omitempty" xml:"accelerateNoChina,omitempty"`
+	// {"en":"Control group name, specifies which control group the domain will be added to.If a sub-account does not specify a service group, it will be added under the main account by default, which may result in a lack of permission to query.", "zh_CN":"服务组名称，用来指定域名添加后在哪个服务组中，子账号未指定服务组，会默认加到主账号下，可能查询无权限"}
+	ControlGroupName *string `json:"controlGroupName,omitempty" xml:"controlGroupName,omitempty"`
 	// {"en":"The service type of the accelerated domain name (only one service type can be submitted at a time):
 	//   web/web-https: Web page acceleration/Web page acceleration-https
 	// wsa/Wsa-https: Full-station acceleration/full-station acceleration-https
@@ -134,6 +136,11 @@ func (s *AddDomainForTerraformRequest) SetItemId(v string) *AddDomainForTerrafor
 
 func (s *AddDomainForTerraformRequest) SetAccelerateNoChina(v string) *AddDomainForTerraformRequest {
 	s.AccelerateNoChina = &v
+	return s
+}
+
+func (s *AddDomainForTerraformRequest) SetControlGroupName(v string) *AddDomainForTerraformRequest {
+	s.ControlGroupName = &v
 	return s
 }
 
